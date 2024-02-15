@@ -1693,47 +1693,445 @@
                                     android:orientation="vertical">
 
                                     <LinearLayout
+                                        android:id="@+id/f3_pelanggan_lama"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:orientation="vertical"
-                                        android:gravity="center">
-
-                                        <ImageView
-                                            android:src="@drawable/apologize_img"
-                                            android:scaleType="fitCenter"
-                                            android:layout_width="150dp"
-                                            android:layout_height="150dp"
-                                            tools:ignore="ContentDescription" />
+                                        android:orientation="vertical">
 
                                         <TextView
-                                            android:layout_width="match_parent"
+                                            android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginLeft="20dp"
-                                            android:layout_marginRight="20dp"
-                                            android:ellipsize="end"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
-                                            android:text="Coming Soon"
-                                            android:textAlignment="center"
-                                            android:textColor="@color/colorPrimaryDark"
-                                            android:textSize="17dp"
+                                            android:layout_marginTop="5dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="Nama Pelanggan :"
+                                            android:textColor="#696969"
+                                            android:textSize="12dp"
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                                        <TextView
+                                        <LinearLayout
+                                            android:id="@+id/f3_nama_pelanggan_lama_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:paddingStart="20dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+
+                                                <LinearLayout
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_marginBottom="10dp"
+                                                    android:layout_marginRight="48dp"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="40dp"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                    <TextView
+                                                        android:id="@+id/f3_nama_pelanggan_lama_choice_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="13dp"
+                                                        android:textStyle="bold"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:text=""
+                                                        tools:ignore="SpUsage" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_alignParentRight="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_down"/>
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/f3_detail_pelanggan"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginLeft="20dp"
-                                            android:layout_marginRight="20dp"
-                                            android:ellipsize="end"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
-                                            android:text="Fitur akan segera tersedia"
-                                            android:textAlignment="center"
-                                            android:textColor="#C66F00"
-                                            android:textSize="13dp"
-                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="Detail Pelanggan :"
+                                                android:textColor="#696969"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:background="@drawable/shape_pengumuman"
+                                                android:paddingTop="15dp"
+                                                android:paddingBottom="18dp"
+                                                android:paddingLeft="20dp"
+                                                android:paddingRight="20dp"
+                                                android:orientation="vertical">
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="3dp"
+                                                    android:orientation="vertical"
+                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="5dp"
+                                                        android:text="Alamat :"
+                                                        android:textColor="#696969"
+                                                        android:textSize="12dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                    <TextView
+                                                        android:id="@+id/f3_alamat_pelanggan_lama_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="#555555"
+                                                        android:textSize="13dp"
+                                                        android:lineSpacingExtra="2dp"
+                                                        android:text="Memuat data..."
+                                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="1.5dp"
+                                                        android:layout_marginTop="12dp"
+                                                        android:background="#3CCFCFCF" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="10dp"
+                                                    android:orientation="vertical"
+                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="5dp"
+                                                        android:text="PIC :"
+                                                        android:textColor="#696969"
+                                                        android:textSize="12dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                    <TextView
+                                                        android:id="@+id/f3_pic_pelanggan_lama_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="#555555"
+                                                        android:textSize="13dp"
+                                                        android:lineSpacingExtra="2dp"
+                                                        android:text="Memuat data..."
+                                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="1.5dp"
+                                                        android:layout_marginTop="12dp"
+                                                        android:background="#3CCFCFCF" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="10dp"
+                                                    android:orientation="vertical"
+                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="5dp"
+                                                        android:text="Telepon :"
+                                                        android:textColor="#696969"
+                                                        android:textSize="12dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                    <TextView
+                                                        android:id="@+id/f3_telepon_pelanggan_lama_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="#555555"
+                                                        android:textSize="13dp"
+                                                        android:lineSpacingExtra="2dp"
+                                                        android:text="Memuat data..."
+                                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                                                </LinearLayout>
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/f3_detail_list_inv_part"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="List Invoice Piutang"
+                                                android:textColor="#B15735"
+                                                android:textSize="14dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                            <androidx.recyclerview.widget.RecyclerView
+                                                android:id="@+id/inv_rv"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:visibility="gone"/>
+
+                                            <LinearLayout
+                                                android:id="@+id/f3_no_data_piutang"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center"
+                                                android:orientation="vertical"
+                                                android:paddingLeft="20dp"
+                                                android:paddingRight="20dp"
+                                                android:paddingTop="35dp"
+                                                android:paddingBottom="40dp">
+
+                                                <TextView
+                                                    android:layout_width="70dp"
+                                                    android:layout_height="70dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:background="@drawable/empty_image"
+                                                    android:textAlignment="center"
+                                                    android:textSize="12dp"
+                                                    android:textStyle="bold"
+                                                    tools:ignore="SpUsage" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="-8dp"
+                                                    android:text="Data tidak tersedia"
+                                                    android:textAlignment="center"
+                                                    android:textColor="#E1BB8A"
+                                                    android:textSize="12dp"
+                                                    android:textStyle="bold"
+                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Data piutang tidak tersedia"
+                                                    android:textAlignment="center"
+                                                    android:textColor="#ECC28D"
+                                                    android:textSize="10dp"
+                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical">
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="1.5dp"
+                                                    android:layout_marginTop="15dp"
+                                                    android:layout_marginBottom="10dp"
+                                                    android:background="#3CCFCFCF" />
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_marginBottom="15dp"
+                                                    android:paddingLeft="3dp"
+                                                    android:paddingRight="3dp"
+                                                    android:orientation="horizontal"
+                                                    tools:ignore="DisableBaselineAlignment">
+
+                                                    <LinearLayout
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:layout_marginRight="5dp"
+                                                        android:gravity="center|left"
+                                                        android:layout_weight=".50"
+                                                        android:orientation="vertical"
+                                                        tools:ignore="RtlHardcoded">
+
+                                                        <TextView
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="Total Piutang :"
+                                                            android:textColor="#696969"
+                                                            android:textSize="14dp"
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_weight=".50"
+                                                        android:gravity="right|center"
+                                                        android:orientation="vertical"
+                                                        tools:ignore="RtlHardcoded">
+
+                                                        <TextView
+                                                            android:id="@+id/f3_total_piutang_tv"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="Rp 0"
+                                                            android:textColor="#B15735"
+                                                            android:textSize="15dp"
+                                                            android:textStyle="bold"
+                                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                                    </LinearLayout>
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="1.5dp"
+                                                    android:layout_marginTop="8dp"
+                                                    android:layout_marginBottom="15dp"
+                                                    android:background="#3CCFCFCF" />
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginBottom="15dp"
+                                                    android:paddingRight="2dp"
+                                                    android:paddingLeft="2dp"
+                                                    android:orientation="horizontal"
+                                                    tools:ignore="DisableBaselineAlignment">
+
+                                                    <LinearLayout
+                                                        android:id="@+id/f3_gps_btn"
+                                                        android:layout_width="0dp"
+                                                        android:layout_weight=".50"
+                                                        android:layout_marginRight="5dp"
+                                                        android:layout_height="35dp"
+                                                        android:background="@drawable/shape_second_btn"
+                                                        android:gravity="center"
+                                                        tools:ignore="RtlHardcoded">
+
+                                                        <TextView
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:textSize="12dp"
+                                                            android:textColor="@color/white"
+                                                            android:text="Check GPS Location"
+                                                            tools:ignore="HardcodedText,SpUsage" />
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:id="@+id/f3_foto_lampiran_btn"
+                                                        android:layout_width="0dp"
+                                                        android:layout_weight=".50"
+                                                        android:layout_marginLeft="5dp"
+                                                        android:layout_height="35dp"
+                                                        android:background="@drawable/shape_btn_edit_permohonan"
+                                                        android:gravity="center"
+                                                        tools:ignore="RtlHardcoded">
+
+                                                        <TextView
+                                                            android:id="@+id/f3_label_lampiran_tv"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:textSize="12dp"
+                                                            android:textColor="@color/white"
+                                                            android:text="+ Lampiran Foto"
+                                                            tools:ignore="HardcodedText,SpUsage" />
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:visibility="gone"
+                                                        android:id="@+id/f3_view_lampiran_btn"
+                                                        android:layout_width="35dp"
+                                                        android:paddingTop="5dp"
+                                                        android:paddingBottom="5dp"
+                                                        android:paddingRight="5dp"
+                                                        android:paddingLeft="5dp"
+                                                        android:layout_marginLeft="10dp"
+                                                        android:gravity="center"
+                                                        android:background="@drawable/shape_btn_approved"
+                                                        android:layout_height="35dp"
+                                                        tools:ignore="RtlHardcoded">
+
+                                                        <TextView
+                                                            android:layout_width="18dp"
+                                                            android:gravity="center"
+                                                            android:background="@drawable/ic_baseline_content_surat"
+                                                            android:layout_height="18dp" />
+
+                                                    </LinearLayout>
+
+                                                </LinearLayout>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/f3_submit_data_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="25dp"
+                                                android:layout_marginTop="15dp"
+                                                android:paddingTop="12dp"
+                                                android:paddingBottom="12dp"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:drawableLeft="@drawable/ic_baseline_send_form"
+                                                    android:drawablePadding="7dp"
+                                                    android:drawableTint="@color/white"
+                                                    android:text="SUBMIT"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
