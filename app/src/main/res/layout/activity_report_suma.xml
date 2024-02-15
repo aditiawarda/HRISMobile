@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -374,17 +375,18 @@
 
                                         <LinearLayout
                                             android:id="@+id/f1_pelanggan_baru"
-                                            android:layout_marginTop="20dp"
+                                            android:layout_marginTop="18dp"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:visibility="gone"
-                                            android:paddingRight="25dp"
-                                            android:paddingLeft="25dp"
+                                            android:paddingRight="22dp"
+                                            android:paddingLeft="22dp"
                                             android:orientation="vertical">
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
                                                 android:layout_marginBottom="5dp"
                                                 android:text="Nama Pelanggan :"
                                                 android:textColor="#696969"
@@ -399,7 +401,7 @@
                                                 android:background="@drawable/shape_input_form"
                                                 android:drawablePadding="10dp"
                                                 android:hint=""
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textCapSentences|textNoSuggestions"
                                                 android:maxLength="255"
                                                 android:minHeight="40dp"
                                                 android:paddingLeft="20dp"
@@ -430,21 +432,21 @@
                                                 android:layout_marginBottom="10dp"
                                                 android:background="@drawable/shape_input_form"
                                                 android:drawablePadding="10dp"
+                                                android:gravity="top"
                                                 android:hint=""
                                                 android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:lineSpacingExtra="3dp"
                                                 android:maxLength="255"
-                                                android:minHeight="40dp"
+                                                android:minHeight="80dp"
                                                 android:paddingLeft="20dp"
+                                                android:paddingTop="13dp"
                                                 android:paddingRight="20dp"
-                                                android:paddingTop="10dp"
-                                                android:paddingBottom="12dp"
-                                                android:gravity="center|left"
+                                                android:paddingBottom="13dp"
                                                 android:textColor="#595959"
                                                 android:textColorHighlight="#FFE1BC"
                                                 android:textColorHint="#595959"
                                                 android:textSize="14dp"
-                                                android:maxLines="3"
-                                                tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+                                                tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -463,7 +465,7 @@
                                                 android:background="@drawable/shape_input_form"
                                                 android:drawablePadding="10dp"
                                                 android:hint=""
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textCapSentences|textNoSuggestions"
                                                 android:maxLength="255"
                                                 android:minHeight="40dp"
                                                 android:paddingLeft="20dp"
@@ -517,9 +519,9 @@
                                             android:layout_marginTop="18dp"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
+                                            android:visibility="gone"
                                             android:paddingRight="22dp"
                                             android:paddingLeft="22dp"
-                                            android:visibility="gone"
                                             android:orientation="vertical">
 
                                             <TextView
@@ -846,58 +848,142 @@
 
                                         <LinearLayout
                                             android:id="@+id/f2_pelanggan_baru"
-                                            android:layout_marginTop="23dp"
+                                            android:layout_marginTop="18dp"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:visibility="gone"
+                                            android:paddingRight="22dp"
+                                            android:paddingLeft="22dp"
                                             android:orientation="vertical">
 
-                                            <LinearLayout
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="Nama Pelanggan :"
+                                                android:textColor="#696969"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <EditText
+                                                android:id="@+id/f2_nama_pelanggan_baru_ed"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:layout_marginTop="10dp"
-                                                android:layout_marginBottom="20dp"
-                                                android:orientation="vertical"
-                                                android:gravity="center"
-                                                tools:ignore="TooManyViews">
+                                                android:layout_marginBottom="10dp"
+                                                android:background="@drawable/shape_input_form"
+                                                android:drawablePadding="10dp"
+                                                android:hint=""
+                                                android:inputType="textCapSentences|textNoSuggestions"
+                                                android:maxLength="255"
+                                                android:minHeight="40dp"
+                                                android:paddingLeft="20dp"
+                                                android:paddingRight="20dp"
+                                                android:paddingTop="10dp"
+                                                android:paddingBottom="12dp"
+                                                android:gravity="center|left"
+                                                android:textColor="#595959"
+                                                android:textColorHighlight="#FFE1BC"
+                                                android:textColorHint="#595959"
+                                                android:textSize="14dp"
+                                                android:maxLines="3"
+                                                tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
-                                                <ImageView
-                                                    android:src="@drawable/apologize_img"
-                                                    android:scaleType="fitCenter"
-                                                    android:layout_width="120dp"
-                                                    android:layout_height="120dp"
-                                                    tools:ignore="ContentDescription" />
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="Alamat :"
+                                                android:textColor="#696969"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                                                <TextView
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginLeft="20dp"
-                                                    android:layout_marginRight="20dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:text="Coming Soon"
-                                                    android:textAlignment="center"
-                                                    android:textColor="@color/colorPrimaryDark"
-                                                    android:textSize="15dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                            <EditText
+                                                android:id="@+id/f2_alamat_pelanggan_baru_ed"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="10dp"
+                                                android:background="@drawable/shape_input_form"
+                                                android:drawablePadding="10dp"
+                                                android:gravity="top"
+                                                android:hint=""
+                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:lineSpacingExtra="3dp"
+                                                android:maxLength="255"
+                                                android:minHeight="80dp"
+                                                android:paddingLeft="20dp"
+                                                android:paddingTop="13dp"
+                                                android:paddingRight="20dp"
+                                                android:paddingBottom="13dp"
+                                                android:textColor="#595959"
+                                                android:textColorHighlight="#FFE1BC"
+                                                android:textColorHint="#595959"
+                                                android:textSize="14dp"
+                                                tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
-                                                <TextView
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginLeft="20dp"
-                                                    android:layout_marginRight="20dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:text="Fitur akan segera tersedia"
-                                                    android:textAlignment="center"
-                                                    android:textColor="#C66F00"
-                                                    android:textSize="13dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="PIC :"
+                                                android:textColor="#696969"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                                            </LinearLayout>
+                                            <EditText
+                                                android:id="@+id/f2_pic_pelanggan_baru_ed"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="10dp"
+                                                android:background="@drawable/shape_input_form"
+                                                android:drawablePadding="10dp"
+                                                android:hint=""
+                                                android:inputType="textCapSentences|textNoSuggestions"
+                                                android:maxLength="255"
+                                                android:minHeight="40dp"
+                                                android:paddingLeft="20dp"
+                                                android:paddingRight="20dp"
+                                                android:paddingTop="10dp"
+                                                android:paddingBottom="12dp"
+                                                android:gravity="center|left"
+                                                android:textColor="#595959"
+                                                android:textColorHighlight="#FFE1BC"
+                                                android:textColorHint="#595959"
+                                                android:textSize="14dp"
+                                                android:maxLines="3"
+                                                tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="Telepon :"
+                                                android:textColor="#696969"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <EditText
+                                                android:id="@+id/f2_telepon_pelanggan_baru_ed"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="10dp"
+                                                android:background="@drawable/shape_input_form"
+                                                android:drawablePadding="10dp"
+                                                android:hint=""
+                                                android:inputType="number"
+                                                android:maxLength="255"
+                                                android:minHeight="40dp"
+                                                android:paddingLeft="20dp"
+                                                android:paddingRight="20dp"
+                                                android:paddingTop="10dp"
+                                                android:paddingBottom="12dp"
+                                                android:gravity="center|left"
+                                                android:textColor="#595959"
+                                                android:textColorHighlight="#FFE1BC"
+                                                android:textColorHint="#595959"
+                                                android:textSize="14dp"
+                                                android:maxLines="3"
+                                                tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
                                         </LinearLayout>
 
