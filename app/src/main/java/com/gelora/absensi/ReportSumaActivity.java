@@ -138,6 +138,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     String f3IdPelangganLama = "";
     RecyclerView f3InvRV;
     ImageView f3LoadingDataPiutangImg;
+    EditText f3KeteranganED;
     private DataInvoicePiutang[] dataInvoicePiutangs;
     private AdapterInvoicePiutang adapterInvoicePiutang;
 
@@ -255,7 +256,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f3TotalPiutangTV = findViewById(R.id.f3_total_piutang_tv);
         f3LoadingDataPiutang = findViewById(R.id.f3_loading_data_piutang);
         f3LoadingDataPiutangImg = findViewById(R.id.f3_loading_data_piutang_img);
-        //f3KeteranganKunjunganED = findViewById(R.id.f3_keterangan_kunjungan_ed);
+        f3KeteranganED = findViewById(R.id.f3_keterangan_ed);
 
         adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
         f2ListProductInputRV.setLayoutManager(new LinearLayoutManager(this));
@@ -379,6 +380,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f3TeleponPelangganLamaTV.setText("");
                 f3IdPelangganLama = "";
                 f3TotalPiutangTV.setText("Rp 0");
+                f3KeteranganED.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1160,6 +1162,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3TeleponPelangganLamaTV.setText("");
                         f3IdPelangganLama = "";
                         f3TotalPiutangTV.setText("Rp 0");
+                        f3KeteranganED.setText("");
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -1280,6 +1283,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3TeleponPelangganLamaTV.setText("");
                         f3IdPelangganLama = "";
                         f3TotalPiutangTV.setText("Rp 0");
+                        f3KeteranganED.setText("");
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -1400,6 +1404,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3TeleponPelangganLamaTV.setText("");
                         f3IdPelangganLama = "";
                         f3TotalPiutangTV.setText("Rp 0");
+                        f3KeteranganED.setText("");
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -1520,6 +1525,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3TeleponPelangganLamaTV.setText("");
                         f3IdPelangganLama = "";
                         f3TotalPiutangTV.setText("Rp 0");
+                        f3KeteranganED.setText("");
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -2326,6 +2332,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                             f2ListProductInputRV.setHasFixedSize(true);
                             f2ListProductInputRV.setNestedScrollingEnabled(false);
                             f2ListProductInputRV.setItemAnimator(new DefaultItemAnimator());
+
+                            f2HitungTotalPesanan();
                         }
                     })
                     .show();

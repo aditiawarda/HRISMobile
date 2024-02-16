@@ -1530,8 +1530,6 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="15dp"
-                                                android:paddingRight="2dp"
-                                                android:paddingLeft="2dp"
                                                 android:orientation="horizontal"
                                                 tools:ignore="DisableBaselineAlignment">
 
@@ -1571,7 +1569,7 @@
                                                         android:layout_height="wrap_content"
                                                         android:textSize="12dp"
                                                         android:textColor="@color/white"
-                                                        android:text="+ Lampiran Foto"
+                                                        android:text="+ Lampiran Foto/SP"
                                                         tools:ignore="HardcodedText,SpUsage" />
 
                                                 </LinearLayout>
@@ -1924,9 +1922,9 @@
                                                 android:gravity="center"
                                                 android:orientation="vertical"
                                                 android:paddingLeft="20dp"
-                                                android:paddingTop="60dp"
+                                                android:paddingTop="30dp"
                                                 android:paddingRight="20dp"
-                                                android:paddingBottom="35dp"
+                                                android:paddingBottom="40dp"
                                                 android:visibility="visible">
 
                                                 <ImageView
@@ -1995,7 +1993,7 @@
                                                 <TextView
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
-                                                    android:text="Data piutang tidak tersedia"
+                                                    android:text="Data tagihan tidak tersedia"
                                                     android:textAlignment="center"
                                                     android:textColor="#ECC28D"
                                                     android:textSize="10dp"
@@ -2070,15 +2068,45 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="1.5dp"
                                                     android:layout_marginTop="8dp"
-                                                    android:layout_marginBottom="15dp"
+                                                    android:layout_marginBottom="12dp"
                                                     android:background="#3CCFCFCF" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:text="Keterangan :"
+                                                    android:textColor="#696969"
+                                                    android:textSize="12dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                <EditText
+                                                    android:id="@+id/f3_keterangan_ed"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginBottom="10dp"
+                                                    android:background="@drawable/shape_input_form"
+                                                    android:drawablePadding="10dp"
+                                                    android:gravity="top"
+                                                    android:hint=""
+                                                    android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                    android:lineSpacingExtra="3dp"
+                                                    android:maxLength="255"
+                                                    android:minHeight="80dp"
+                                                    android:paddingLeft="20dp"
+                                                    android:paddingTop="13dp"
+                                                    android:paddingRight="20dp"
+                                                    android:paddingBottom="13dp"
+                                                    android:textColor="#595959"
+                                                    android:textColorHighlight="#FFE1BC"
+                                                    android:textColorHint="#595959"
+                                                    android:textSize="14dp"
+                                                    tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
                                                 <LinearLayout
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginBottom="15dp"
-                                                    android:paddingRight="2dp"
-                                                    android:paddingLeft="2dp"
                                                     android:orientation="horizontal"
                                                     tools:ignore="DisableBaselineAlignment">
 
@@ -2118,7 +2146,7 @@
                                                             android:layout_height="wrap_content"
                                                             android:textSize="12dp"
                                                             android:textColor="@color/white"
-                                                            android:text="+ Lampiran Foto"
+                                                            android:text="+ Lampiran Foto/SP"
                                                             tools:ignore="HardcodedText,SpUsage" />
 
                                                     </LinearLayout>
