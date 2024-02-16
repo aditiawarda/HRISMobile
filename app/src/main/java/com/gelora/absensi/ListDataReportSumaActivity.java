@@ -491,9 +491,9 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 categoryChoiceTV.setText("Rencana Kunjungan");
             } else if(categoryCode.equals("2")) {
                 categoryChoiceTV.setText("Kunjungan");
-            } else if(categoryCode.equals("3")) {
-                categoryChoiceTV.setText("Penawaran");
             } else if(categoryCode.equals("4")) {
+                categoryChoiceTV.setText("Penawaran");
+            } else if(categoryCode.equals("3")) {
                 categoryChoiceTV.setText("Penagihan");
             }
 

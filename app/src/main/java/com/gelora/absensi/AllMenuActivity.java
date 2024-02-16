@@ -440,7 +440,7 @@ public class AllMenuActivity extends AppCompatActivity {
             messengerPart.setVisibility(View.VISIBLE);
             newsPart.setVisibility(View.GONE);
 
-            if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpNik().equals("1309131210")||sharedPrefManager.getSpNik().equals("0172110302")){ //Kabag Kadep
+            if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")){ //Kabag Kadep
                 cardPart.setVisibility(View.GONE);
                 sdmPart.setVisibility(View.VISIBLE);
                 projectPart.setVisibility(View.VISIBLE);

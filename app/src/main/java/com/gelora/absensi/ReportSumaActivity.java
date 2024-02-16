@@ -2148,21 +2148,35 @@ public class ReportSumaActivity extends AppCompatActivity {
                                     f3NoDataPiutang.setVisibility(View.GONE);
                                     f3InvRV.setVisibility(View.VISIBLE);
 
-                                    JSONObject object1 = new JSONObject();
-
-                                    for(int i=0; i<= mainData.length(); i++){
-                                        JSONObject data = mainData.getJSONObject(i);
-                                        String nomor_Invoice = data.getString("nomor_Invoice");
-
-                                        JSONArray product = data.getJSONArray("produk");
-                                        for(int j=0; j<= product.length(); j++){
-                                            JSONObject prodctData = product.getJSONObject(j);
-                                            String total = prodctData.getString("total");
-
-                                            Toast.makeText(ReportSumaActivity.this, total, Toast.LENGTH_SHORT).show();
-
+                                    JSONArray jsonArray = new JSONArray();
+                                    JSONObject data = new JSONObject();
+                                    JSONObject prodctData = new JSONObject();
+                                    JSONObject dataRecap = new JSONObject();
+                                    try {
+                                        for (int i = 0; i < mainData.length(); i++) {
+                                            data = mainData.getJSONObject(i);
+                                            String nomor_Invoice = data.getString("nomor_Invoice");
+                                            String tanggal_pemesanan = data.getString("tanggal_pemesanan");
+                                            JSONArray product = data.getJSONArray("produk");
+                                            int total = 0;
+                                            for (int j = 0; j < product.length(); j++) {
+                                                prodctData = product.getJSONObject(j);
+                                                total = total + Integer.parseInt(prodctData.getString("total"));
+                                                if((product.length()-1)==j){
+                                                    Toast.makeText(ReportSumaActivity.this, nomor_Invoice+" - "+tanggal_pemesanan+" - "+String.valueOf(total), Toast.LENGTH_SHORT).show();
+                                                    dataRecap.put("noInvoice", nomor_Invoice);
+                                                    dataRecap.put("tglPemesanan", tanggal_pemesanan);
+                                                    dataRecap.put("piutang", total);
+                                                    jsonArray.put(dataRecap);
+                                                }
+                                            }
                                         }
 
+                                        String jsonString = jsonArray.toString();
+                                        Toast.makeText(ReportSumaActivity.this, jsonString, Toast.LENGTH_SHORT).show();
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
 
                                 } else {
@@ -2170,17 +2184,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                                     f3InvRV.setVisibility(View.GONE);
                                 }
 
-//                                startAttantionPartProduk.setVisibility(View.GONE);
-//                                loadingDataPartProduk.setVisibility(View.GONE);
-//                                noDataPartProduk.setVisibility(View.GONE);
-//                                produkRV.setVisibility(View.VISIBLE);
-//
-//                                String data = response.getString("data");
-//                                GsonBuilder builder = new GsonBuilder();
-//                                Gson gson = builder.create();
-//                                productSumas = gson.fromJson(data, ProductSuma[].class);
-//                                adapterProductSuma = new AdapterProductSuma(productSumas, ReportSumaActivity.this);
-//                                produkRV.setAdapter(adapterProductSuma);
                             } else {
                                f3NoDataPiutang.setVisibility(View.VISIBLE);
                                f3InvRV.setVisibility(View.GONE);
