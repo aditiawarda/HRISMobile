@@ -2834,7 +2834,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     params.put("kategori_laporan", categoryReport);
                     params.put("id_pelanggan", f3IdPelangganLama);
                     params.put("nik_sales", sharedPrefManager.getSpNik());
-                    params.put("keterangan_kunjungan", f3KeteranganED.getText().toString());
+                    params.put("keterangan", f3KeteranganED.getText().toString());
                     params.put("file_lampiran", fullBase64String);
                     params.put("latitude", salesLat);
                     params.put("logitude", salesLong);
