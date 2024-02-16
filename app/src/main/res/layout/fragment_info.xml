@@ -1378,6 +1378,7 @@
                                 android:layout_marginBottom="15dp"
                                 android:background="@drawable/shape_project_form"
                                 android:gravity="center"
+                                android:visibility="gone"
                                 android:orientation="vertical">
 
                                 <RelativeLayout
