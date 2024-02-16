@@ -1918,6 +1918,48 @@
                                                 android:visibility="gone"/>
 
                                             <LinearLayout
+                                                android:id="@+id/f3_loading_data_piutang"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center"
+                                                android:orientation="vertical"
+                                                android:paddingLeft="20dp"
+                                                android:paddingTop="60dp"
+                                                android:paddingRight="20dp"
+                                                android:paddingBottom="35dp"
+                                                android:visibility="visible">
+
+                                                <ImageView
+                                                    android:id="@+id/f3_loading_data_piutang_img"
+                                                    android:layout_width="75dp"
+                                                    android:layout_height="75dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    app:srcCompat="@drawable/loading_sgn_digital"
+                                                    tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="-8dp"
+                                                    android:text="Memuat data"
+                                                    android:textAlignment="center"
+                                                    android:textColor="#E1BB8A"
+                                                    android:textSize="12dp"
+                                                    android:textStyle="bold"
+                                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck,TooManyViews" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Tunggu beberapa saat"
+                                                    android:textAlignment="center"
+                                                    android:textColor="#ECC28D"
+                                                    android:textSize="10dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
                                                 android:id="@+id/f3_no_data_piutang"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
@@ -1926,7 +1968,8 @@
                                                 android:paddingLeft="20dp"
                                                 android:paddingRight="20dp"
                                                 android:paddingTop="35dp"
-                                                android:paddingBottom="40dp">
+                                                android:paddingBottom="40dp"
+                                                android:visibility="gone">
 
                                                 <TextView
                                                     android:layout_width="70dp"
@@ -1994,7 +2037,7 @@
                                                         <TextView
                                                             android:layout_width="wrap_content"
                                                             android:layout_height="wrap_content"
-                                                            android:text="Total Piutang :"
+                                                            android:text="Grand Total Tagihan :"
                                                             android:textColor="#696969"
                                                             android:textSize="14dp"
                                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />

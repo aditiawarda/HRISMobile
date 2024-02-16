@@ -57,10 +57,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gelora.absensi.adapter.AdapterInvoicePiutang;
 import com.gelora.absensi.adapter.AdapterPelangganLama;
 import com.gelora.absensi.adapter.AdapterProductInputSuma;
 import com.gelora.absensi.adapter.AdapterProductSuma;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.model.DataInvoicePiutang;
 import com.gelora.absensi.model.PelangganLama;
 import com.gelora.absensi.model.ProductSuma;
 import com.gelora.absensi.support.ImagePickerActivity;
@@ -131,10 +133,13 @@ public class ReportSumaActivity extends AppCompatActivity {
     private AdapterProductSuma adapterProductSuma;
     String f2IdPelangganLama = "", f2JenisPelanggan = "", f2TotalPesanan = "", f2FullDataProduct = "", f2QtyProduct = "", f2IdProduct = "", f2ProductName = "", f2ProductHargaSatuan = "", f2SubTotal = "";
 
-    LinearLayout f3LampiranFotoBTN, f3GPSLocationBTN, f3NoDataPiutang, f3NamaPelangganLamaBTN, f3DetailPelanggan, f3DetailListInvPart;
-    TextView f3TeleponPelangganLamaTV, f3NamaPelangganLamaChoiceTV, f3AlamatPelangganLamaTV, f3PicPelangganLamaTV;
+    LinearLayout f3LampiranFotoBTN, f3GPSLocationBTN, f3NoDataPiutang, f3LoadingDataPiutang, f3NamaPelangganLamaBTN, f3DetailPelanggan, f3DetailListInvPart;
+    TextView f3TotalPiutangTV, f3TeleponPelangganLamaTV, f3NamaPelangganLamaChoiceTV, f3AlamatPelangganLamaTV, f3PicPelangganLamaTV;
     String f3IdPelangganLama = "";
     RecyclerView f3InvRV;
+    ImageView f3LoadingDataPiutangImg;
+    private DataInvoicePiutang[] dataInvoicePiutangs;
+    private AdapterInvoicePiutang adapterInvoicePiutang;
 
     TextView reportKategoriChoiceTV, namaKaryawanTV, nikKaryawanTV;
     SharedPrefManager sharedPrefManager;
@@ -247,6 +252,9 @@ public class ReportSumaActivity extends AppCompatActivity {
         f3GPSLocationBTN = findViewById(R.id.f3_gps_btn);
         f3LampiranFotoBTN = findViewById(R.id.f3_foto_lampiran_btn);
         f3InvRV = findViewById(R.id.inv_rv);
+        f3TotalPiutangTV = findViewById(R.id.f3_total_piutang_tv);
+        f3LoadingDataPiutang = findViewById(R.id.f3_loading_data_piutang);
+        f3LoadingDataPiutangImg = findViewById(R.id.f3_loading_data_piutang_img);
         //f3KeteranganKunjunganED = findViewById(R.id.f3_keterangan_kunjungan_ed);
 
         adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
@@ -265,6 +273,10 @@ public class ReportSumaActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
                 .into(successGif);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_sgn_digital)
+                .into(f3LoadingDataPiutangImg);
 
         namaKaryawanTV.setText(sharedPrefManager.getSpNama());
         nikKaryawanTV.setText(sharedPrefManager.getSpNik());
@@ -366,6 +378,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f3PicPelangganLamaTV.setText("");
                 f3TeleponPelangganLamaTV.setText("");
                 f3IdPelangganLama = "";
+                f3TotalPiutangTV.setText("Rp 0");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1146,6 +1159,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3PicPelangganLamaTV.setText("");
                         f3TeleponPelangganLamaTV.setText("");
                         f3IdPelangganLama = "";
+                        f3TotalPiutangTV.setText("Rp 0");
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -1265,6 +1279,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3PicPelangganLamaTV.setText("");
                         f3TeleponPelangganLamaTV.setText("");
                         f3IdPelangganLama = "";
+                        f3TotalPiutangTV.setText("Rp 0");
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -1384,6 +1399,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3PicPelangganLamaTV.setText("");
                         f3TeleponPelangganLamaTV.setText("");
                         f3IdPelangganLama = "";
+                        f3TotalPiutangTV.setText("Rp 0");
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -1503,6 +1519,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3PicPelangganLamaTV.setText("");
                         f3TeleponPelangganLamaTV.setText("");
                         f3IdPelangganLama = "";
+                        f3TotalPiutangTV.setText("Rp 0");
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -2112,12 +2129,19 @@ public class ReportSumaActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 //f3KeteranganKunjunganED.clearFocus();
 
-                getDataInvoice(f3IdPelangganLama);
-
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
+                        f3LoadingDataPiutang.setVisibility(View.VISIBLE);
+                        f3InvRV.setVisibility(View.GONE);
+                        f3NoDataPiutang.setVisibility(View.GONE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                getDataInvoice(f3IdPelangganLama);
+                            }
+                        }, 300);
                     }
                 }, 300);
             }
@@ -2145,15 +2169,22 @@ public class ReportSumaActivity extends AppCompatActivity {
                             if (status.equals("200")) {
                                 JSONArray mainData = response.getJSONArray("data");
                                 if(mainData.length() > 0){
-                                    f3NoDataPiutang.setVisibility(View.GONE);
+                                    f3LoadingDataPiutang.setVisibility(View.GONE);
                                     f3InvRV.setVisibility(View.VISIBLE);
+                                    f3NoDataPiutang.setVisibility(View.GONE);
+
+                                    f3InvRV.setLayoutManager(new LinearLayoutManager(ReportSumaActivity.this));
+                                    f3InvRV.setHasFixedSize(true);
+                                    f3InvRV.setNestedScrollingEnabled(false);
+                                    f3InvRV.setItemAnimator(new DefaultItemAnimator());
 
                                     JSONArray jsonArray = new JSONArray();
                                     JSONObject data = new JSONObject();
                                     JSONObject prodctData = new JSONObject();
-                                    JSONObject dataRecap = new JSONObject();
                                     try {
+                                        int grandTotal = 0;
                                         for (int i = 0; i < mainData.length(); i++) {
+                                            JSONObject dataRecap = new JSONObject();
                                             data = mainData.getJSONObject(i);
                                             String nomor_Invoice = data.getString("nomor_Invoice");
                                             String tanggal_pemesanan = data.getString("tanggal_pemesanan");
@@ -2163,7 +2194,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                                                 prodctData = product.getJSONObject(j);
                                                 total = total + Integer.parseInt(prodctData.getString("total"));
                                                 if((product.length()-1)==j){
-                                                    Toast.makeText(ReportSumaActivity.this, nomor_Invoice+" - "+tanggal_pemesanan+" - "+String.valueOf(total), Toast.LENGTH_SHORT).show();
+                                                    grandTotal = grandTotal + total;
                                                     dataRecap.put("noInvoice", nomor_Invoice);
                                                     dataRecap.put("tglPemesanan", tanggal_pemesanan);
                                                     dataRecap.put("piutang", total);
@@ -2173,20 +2204,33 @@ public class ReportSumaActivity extends AppCompatActivity {
                                         }
 
                                         String jsonString = jsonArray.toString();
-                                        Toast.makeText(ReportSumaActivity.this, jsonString, Toast.LENGTH_SHORT).show();
+                                        GsonBuilder builder = new GsonBuilder();
+                                        Gson gson = builder.create();
+                                        dataInvoicePiutangs = gson.fromJson(jsonString, DataInvoicePiutang[].class);
+                                        adapterInvoicePiutang = new AdapterInvoicePiutang(dataInvoicePiutangs, ReportSumaActivity.this);
+                                        f3InvRV.setAdapter(adapterInvoicePiutang);
+
+                                        Locale localeID = new Locale("id", "ID");
+                                        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
+                                        decimalFormat.applyPattern("¤ #,##0;-¤ #,##0");
+                                        decimalFormat.setMaximumFractionDigits(0);
+
+                                        f3TotalPiutangTV.setText(decimalFormat.format(grandTotal));
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
 
                                 } else {
-                                    f3NoDataPiutang.setVisibility(View.VISIBLE);
+                                    f3LoadingDataPiutang.setVisibility(View.GONE);
                                     f3InvRV.setVisibility(View.GONE);
+                                    f3NoDataPiutang.setVisibility(View.VISIBLE);
                                 }
 
                             } else {
-                               f3NoDataPiutang.setVisibility(View.VISIBLE);
-                               f3InvRV.setVisibility(View.GONE);
+                                f3LoadingDataPiutang.setVisibility(View.GONE);
+                                f3InvRV.setVisibility(View.GONE);
+                                f3NoDataPiutang.setVisibility(View.VISIBLE);
                             }
 
                         } catch (JSONException e) {
