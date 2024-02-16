@@ -492,7 +492,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         } else if(status_approve_kadept.equals("0")){
                                             accMark.setVisibility(View.GONE);
                                             rejMark.setVisibility(View.GONE);
-                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
                                                 actionPart.setVisibility(View.VISIBLE);
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
@@ -633,7 +633,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         } else if(status_approve_kadept.equals("0")){
                                             accMark.setVisibility(View.GONE);
                                             rejMark.setVisibility(View.GONE);
-                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
                                                 actionPart.setVisibility(View.VISIBLE);
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
@@ -659,7 +659,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                         startActivity(intent);
                                                     }
                                                 });
-                                                if(approval_penilaian.equals("0") && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                                if(approval_penilaian.equals("0") && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
                                                     warningPenilaian.setVisibility(View.VISIBLE);
                                                 } else {
                                                     warningPenilaian.setVisibility(View.GONE);
@@ -773,7 +773,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         } else if(status_approve_kadept.equals("0")){
                                             accMark.setVisibility(View.GONE);
                                             rejMark.setVisibility(View.GONE);
-                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
                                                 actionPart.setVisibility(View.VISIBLE);
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
@@ -799,7 +799,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                         startActivity(intent);
                                                     }
                                                 });
-                                                if(approval_penilaian.equals("0") && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                                if(approval_penilaian.equals("0") && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
                                                     warningPenilaian.setVisibility(View.VISIBLE);
                                                 } else {
                                                     warningPenilaian.setVisibility(View.GONE);
@@ -905,7 +905,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         } else if(status_approve_kadept.equals("0")){
                                             accMark.setVisibility(View.GONE);
                                             rejMark.setVisibility(View.GONE);
-                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
                                                 actionPart.setVisibility(View.VISIBLE);
                                             } else {
                                                 actionPart.setVisibility(View.GONE);

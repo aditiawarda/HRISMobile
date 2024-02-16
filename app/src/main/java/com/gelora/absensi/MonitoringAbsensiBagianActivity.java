@@ -289,13 +289,10 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         });
 
         //PT Gelora Aksara Pratama
-        if (sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) {
+        if (sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) {
             pageTitle.setText("KEHADIRAN DEPARTEMEN");
             choiceBagianBTN.setVisibility(View.VISIBLE);
         } else if (sharedPrefManager.getSpIdJabatan().equals("11")) {
-            pageTitle.setText("KEHADIRAN BAGIAN");
-            choiceBagianBTN.setVisibility(View.GONE);
-        } else if (sharedPrefManager.getSpNik().equals("1304101110")) {
             pageTitle.setText("KEHADIRAN BAGIAN");
             choiceBagianBTN.setVisibility(View.GONE);
         }
@@ -383,13 +380,10 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
-                                if (sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("33")){
+                                if (sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("33")){
                                     namaBagian.setText(data.getString("desc_departemen"));
                                     jumlahKaryawanTV.setText(data.getString("jumlah_karyawan_dept"));
                                 } else if (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("35")) {
-                                    namaBagian.setText(data.getString("nama_bagian"));
-                                    jumlahKaryawanTV.setText(data.getString("jumlah_karyawan"));
-                                } else if (sharedPrefManager.getSpNik().equals("1304101110")) {
                                     namaBagian.setText(data.getString("nama_bagian"));
                                     jumlahKaryawanTV.setText(data.getString("jumlah_karyawan"));
                                 } else if (sharedPrefManager.getSpNik().equals("E1004")) {

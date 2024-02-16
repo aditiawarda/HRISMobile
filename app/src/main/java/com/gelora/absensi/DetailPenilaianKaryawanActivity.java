@@ -537,7 +537,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
                                     } else if(status_approve_kadept.equals("0")){
-                                        if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                        if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
                                             actionPart.setVisibility(View.VISIBLE);
                                         } else {
                                             actionPart.setVisibility(View.GONE);

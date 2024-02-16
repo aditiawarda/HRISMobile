@@ -828,7 +828,14 @@ public class FragmentInfo extends Fragment {
                                 if (monitoring.equals("1")) {
 
                                     //PT Gelora Aksara Pratama
-                                    if (sharedPrefManager.getSpIdJabatan().equals("10")) {
+                                    if (sharedPrefManager.getSpIdJabatan().equals("41")) {
+                                        monitoringStaffBTN.setVisibility(View.VISIBLE);
+                                        titlePantau.setText("Pantau kehadiran departemen*");
+                                        notePantau.setText("*Fitur khusus General Manager");
+                                        bagianNameTV.setText(departemen);
+                                        bagianNameTVSDM.setText(departemen);
+                                        bagianNameTvEc.setText(departemen);
+                                    } else if (sharedPrefManager.getSpIdJabatan().equals("10")) {
                                         monitoringStaffBTN.setVisibility(View.VISIBLE);
                                         titlePantau.setText("Pantau kehadiran departemen*");
                                         notePantau.setText("*Fitur khusus Kepala Departemen");
@@ -846,13 +853,6 @@ public class FragmentInfo extends Fragment {
                                         monitoringStaffBTN.setVisibility(View.VISIBLE);
                                         titlePantau.setText("Pantau kehadiran bagian*");
                                         notePantau.setText("*Fitur khusus Kepala Bagian");
-                                        bagianNameTV.setText(bagian);
-                                        bagianNameTVSDM.setText(bagian);
-                                        bagianNameTvEc.setText(bagian);
-                                    } else if (sharedPrefManager.getSpNik().equals("1304101110")){
-                                        monitoringStaffBTN.setVisibility(View.VISIBLE);
-                                        titlePantau.setText("Pantau kehadiran bagian*");
-                                        notePantau.setText("*Fitur khusus Kepala Bagian/Koordinator");
                                         bagianNameTV.setText(bagian);
                                         bagianNameTVSDM.setText(bagian);
                                         bagianNameTvEc.setText(bagian);

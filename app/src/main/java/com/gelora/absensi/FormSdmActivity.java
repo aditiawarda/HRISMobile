@@ -2248,7 +2248,7 @@ public class FormSdmActivity extends AppCompatActivity {
                     f1IdBagian = sharedPrefManager.getSpIdDept();
 
                     getBagianDepartemen();
-                } else if(sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")){
+                } else if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")){
                     f1UnitBisnisPart.setVisibility(View.GONE);
                     f1UnitBisnisDisableMode.setVisibility(View.VISIBLE);
                     f1DepartemenPart.setVisibility(View.GONE);

@@ -87,7 +87,7 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
         }
 
         myViewHolder.namaKaryawanTV.setText(listPermohonanIzin.getNmKaryawan().toUpperCase());
-        if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("33")){ // Kadep Askadep
+        if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("33")){ // Kadep Askadep
             myViewHolder.nikKaryawanTV.setText(listPermohonanIzin.getNIK()+" | "+listPermohonanIzin.getKdDept());
         } else if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("35")) { // Kabag Supervisor
            // if(sharedPrefManager.getSpNik().equals("0056010793")){ // Bu Sorta
@@ -207,7 +207,7 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
                     }
                 // }
             }
-            else if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("33")){
+            else if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("33")){
                 if(!listPermohonanIzin.getStatus_approve().equals("0")){
                     myViewHolder.namaKaryawanTV.setTextColor(Color.parseColor("#7d7d7d"));
                     myViewHolder.namaKaryawanTV.setTypeface(myViewHolder.namaKaryawanTV.getTypeface(), Typeface.NORMAL);
@@ -257,7 +257,7 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
                     }
                 // }
             }
-            else if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("33")){
+            else if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("33")){
                 if(!listPermohonanIzin.getStatus_approve_kadept().equals("0")){
                     myViewHolder.namaKaryawanTV.setTextColor(Color.parseColor("#7d7d7d"));
                     myViewHolder.namaKaryawanTV.setTypeface(myViewHolder.namaKaryawanTV.getTypeface(), Typeface.NORMAL);

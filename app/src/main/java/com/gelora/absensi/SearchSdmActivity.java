@@ -258,7 +258,7 @@ public class SearchSdmActivity extends AppCompatActivity {
     public void checkUser(){
         bagianPilih = sharedPrefManager.getSpIdDept();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_BAGIAN, bagianPilih);
-        if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")){
+        if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")){
             choiceBagianBTN.setVisibility(View.VISIBLE);
         } else if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")){
             choiceBagianBTN.setVisibility(View.GONE);

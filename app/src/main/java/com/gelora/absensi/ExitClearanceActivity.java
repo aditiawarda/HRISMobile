@@ -226,7 +226,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
             }
         });
 
-        if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || !otoritorEC.equals("0")){
+        if (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || !otoritorEC.equals("0")){
             if(sharedPrefManager.getSpNik().equals("000112092023")){
                 float scale = getResources().getDisplayMetrics().density;
                 int side = (int) (17*scale + 0.5f);

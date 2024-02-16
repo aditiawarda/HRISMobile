@@ -114,7 +114,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
                 myViewHolder.accMark.setVisibility(View.GONE);
                 myViewHolder.rejMark.setVisibility(View.GONE);
                 myViewHolder.proMark.setVisibility(View.VISIBLE);
-                if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")){
+                if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")){
                     myViewHolder.waitingMark.setVisibility(View.VISIBLE);
                 } else {
                     myViewHolder.waitingMark.setVisibility(View.GONE);

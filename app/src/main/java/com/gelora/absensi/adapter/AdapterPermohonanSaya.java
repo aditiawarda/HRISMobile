@@ -80,14 +80,14 @@ public class AdapterPermohonanSaya extends RecyclerView.Adapter<AdapterPermohona
                 } else if (listPermohonanIzin.getStatus_approve_hrd().equals("2")) {
                     statusPermohonan = "Permohonan Ditolak HRD";
                 } else if (listPermohonanIzin.getStatus_approve_hrd().equals("0")) {
-                    if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                    if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")){
                         statusPermohonan = "Permohonan Disetujui Direksi";
                     } else {
                         statusPermohonan = "Permohonan Disetujui Atasan";
                     }
                 }
             } else if (listPermohonanIzin.getStatus_approve().equals("2")){
-                if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")){
                     statusPermohonan = "Permohonan Ditolak Direksi";
                 } else {
                     statusPermohonan = "Permohonan Ditolak Atasan";
@@ -103,21 +103,21 @@ public class AdapterPermohonanSaya extends RecyclerView.Adapter<AdapterPermohona
                     statusPermohonan = "Permohonan Ditolak HRD";
                 } else if (listPermohonanIzin.getStatus_approve_hrd().equals("0")) {
                     if(listPermohonanIzin.getStatus_approve_kadept().equals("1")){
-                        if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                        if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")){
                             statusPermohonan = "Menunggu Persetujuan HRD";
                         } else {
                             statusPermohonan = "Permohonan Disetujui Kepala Departemen";
                         }
                     } else if(listPermohonanIzin.getStatus_approve_kadept().equals("2")){
-                        if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                        if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")){
                             statusPermohonan = "Permohonan Ditolak Atasan";
                         } else {
                             statusPermohonan = "Permohonan Ditolak Kepala Departemen";
                         }
                     } else if(listPermohonanIzin.getStatus_approve_kadept().equals("0")){
-                        if(sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
+                        if(sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")){
                             statusPermohonan = "Menunggu Persetujuan Kepala Departemen";
-                        } else if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                        } else if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")){
                             statusPermohonan = "Menunggu Persetujuan Atasan";
                         } else {
                             statusPermohonan = "Permohonan Disetujui Kepala Bagian";

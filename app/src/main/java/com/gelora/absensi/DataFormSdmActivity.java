@@ -127,7 +127,7 @@ public class DataFormSdmActivity extends AppCompatActivity {
                                 String waiting_kadep = data.getString("waiting_kadep");
                                 String waiting_kabag = data.getString("waiting_kabag");
 
-                                if(sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")){
+                                if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")){
                                     if(Integer.parseInt(waiting_kadep)>0){
                                         countWaitingBTN.setVisibility(View.VISIBLE);
                                         countWaitingTV.setText(waiting_kadep);
