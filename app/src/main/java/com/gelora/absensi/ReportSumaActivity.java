@@ -656,6 +656,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f1SubmitPesananBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                f1KeteranganKunjunganED.clearFocus();
                 if(!categoryReport.equals("") && !f1DateChoice.equals("") && !f1KeteranganKunjunganED.getText().toString().equals("") && !f1JenisPelanggan.equals("")){
                     if(f1JenisPelanggan.equals("1")){
                         if(!f1NamaPelangganBaruED.getText().toString().equals("") && !f1AlamatPelangganBaruED.getText().toString().equals("") && !f1PicPelangganBaruED.getText().toString().equals("") && !f1TeleponPelangganBaruED.getText().toString().equals("") ){
@@ -828,6 +829,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2SubmitPesananBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                f2KeteranganKunjunganED.clearFocus();
                 if(!categoryReport.equals("") && !f2KeteranganKunjunganED.getText().toString().equals("") && !f2JenisPelanggan.equals("")){
                     if(f2JenisPelanggan.equals("1")){
                         if(!f2NamaPelangganBaruED.getText().toString().equals("") && !f2AlamatPelangganBaruED.getText().toString().equals("") && !f2PicPelangganBaruED.getText().toString().equals("") && !f2TeleponPelangganBaruED.getText().toString().equals("")){
@@ -1017,6 +1019,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f3SubmitPesananBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                f3KeteranganED.clearFocus();
                 if(!categoryReport.equals("") && !f3IdPelangganLama.equals("") && !f3KeteranganED.getText().toString().equals("")){
                     if(salesLat.equals("")||salesLong.equals("")||String.valueOf(uri).equals("null")){
                         new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
@@ -2810,6 +2813,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     }
 
                     params.put("nik_sales", sharedPrefManager.getSpNik());
+                    params.put("created_at", getTimeStamp());
                 } else if(categoryReport.equals("2")){
                     params.put("kategori_laporan", categoryReport);
                     params.put("keterangan_kunjungan", f2KeteranganKunjunganED.getText().toString());
@@ -2827,7 +2831,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                     params.put("nik_sales", sharedPrefManager.getSpNik());
                     params.put("file_lampiran", fullBase64String);
                     params.put("latitude", salesLat);
-                    params.put("logitude", salesLong);
+                    params.put("longitude", salesLong);
+                    params.put("created_at", getTimeStamp());
 
                     params.put("data_produk", listToString(dataProduct));
                 } else if(categoryReport.equals("3")){
@@ -2837,7 +2842,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                     params.put("keterangan", f3KeteranganED.getText().toString());
                     params.put("file_lampiran", fullBase64String);
                     params.put("latitude", salesLat);
-                    params.put("logitude", salesLong);
+                    params.put("longitude", salesLong);
+                    params.put("created_at", getTimeStamp());
                 }
 
                 return params;
@@ -2850,6 +2856,13 @@ public class ReportSumaActivity extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         postRequest.setRetryPolicy(retryPolicy);
 
+    }
+
+    private String getTimeStamp() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
     private String getDateD() {
