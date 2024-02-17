@@ -14,6 +14,8 @@ import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gelora.absensi.DetailPermohonanFingerscanActivity;
+import com.gelora.absensi.DetailReportSumaActivity;
 import com.gelora.absensi.FormPermohonanCutiActivity;
 import com.gelora.absensi.ListDataReportSumaActivity;
 import com.gelora.absensi.R;
@@ -87,9 +89,18 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             myViewHolder.rencanaKunjunganPart.setVisibility(View.GONE);
             myViewHolder.kunjunganPart.setVisibility(View.GONE);
             myViewHolder.penagihanPart.setVisibility(View.VISIBLE);
-            // myViewHolder.f3TotalTagihanTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalPesanan())));
             myViewHolder.f3TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
         }
+
+        myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, DetailReportSumaActivity.class);
+                intent.putExtra("report_id",dataReportSuma.getId());
+                mContext.startActivity(intent);
+            }
+        });
+
 
     }
 

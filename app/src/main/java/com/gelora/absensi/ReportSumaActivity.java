@@ -115,7 +115,7 @@ import java.util.Map;
 public class ReportSumaActivity extends AppCompatActivity {
 
     LinearLayout loadingFormPart, attantionNoForm, rencanaKunjunganFormPart, penagihanFormPart, penawaranFormPart, kunjunganFormPart, actionBar, backBTN, reportCategoryBTN;
-    LinearLayout formPart, successPart, loadingDataPart, loadingDataPartProduk, noDataPart, noDataPartProduk, startAttantionPart, startAttantionPartProduk, penawaranBTN, kunjunganBTN, penagihanBTN, rencanaKunjunaganBTN, markKunjungan, markPenawaran, markPenagihan, markRencanaKunjungan;
+    LinearLayout viewPermohonanBTN, formPart, successPart, loadingDataPart, loadingDataPartProduk, noDataPart, noDataPartProduk, startAttantionPart, startAttantionPartProduk, penawaranBTN, kunjunganBTN, penagihanBTN, rencanaKunjunaganBTN, markKunjungan, markPenawaran, markPenagihan, markRencanaKunjungan;
 
     EditText f1KeteranganKunjunganED, f1NamaPelangganBaruED, f1AlamatPelangganBaruED, f1PicPelangganBaruED, f1TeleponPelangganBaruED;
     LinearLayout f1ChoiceDateBTN, f1DetailPelanggan, f1NamaPelangganLamaBTN, f1SubmitPesananBTN, f1PelangganAttantionPart, f1PelangganBaruPart, f1PelangganLamaPart;
@@ -190,6 +190,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         formPart = findViewById(R.id.form_part);
         successPart = findViewById(R.id.success_submit);
         successGif = findViewById(R.id.success_gif);
+        viewPermohonanBTN = findViewById(R.id.view_permohonan_btn);
 
         f1KeteranganKunjunganED = findViewById(R.id.f1_keterangan_kunjungan_ed);
         f1ChoiceDateBTN = findViewById(R.id.f1_choice_date_btn);
@@ -2763,6 +2764,16 @@ public class ReportSumaActivity extends AppCompatActivity {
                                 laporanTerkirim = "1";
                                 successPart.setVisibility(View.VISIBLE);
                                 formPart.setVisibility(View.GONE);
+
+                                viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(ReportSumaActivity.this, DetailReportSumaActivity.class);
+                                        intent.putExtra("report_id",idLaporan);
+                                        startActivity(intent);
+                                    }
+                                });
+
                                 pDialog.dismiss();
                             } else {
                                 successPart.setVisibility(View.GONE);
