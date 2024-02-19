@@ -271,7 +271,7 @@
                                 android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:text="LIST LAPORAN HARIAN SUMA "
+                                android:text="LIST LAPORAN HARIAN "
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"

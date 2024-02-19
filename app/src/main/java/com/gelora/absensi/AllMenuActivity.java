@@ -445,7 +445,11 @@ public class AllMenuActivity extends AppCompatActivity {
                 sdmPart.setVisibility(View.VISIBLE);
                 projectPart.setVisibility(View.VISIBLE);
                 reportSumaPart.setVisibility(View.GONE);
-                reportSumaPart2.setVisibility(View.VISIBLE);
+                if(sharedPrefManager.getSpIdHeadDept().equals("3")){
+                    reportSumaPart2.setVisibility(View.VISIBLE);
+                } else {
+                    reportSumaPart2.setVisibility(View.GONE);
+                }
 
                 newsPartSub.setVisibility(View.VISIBLE);
                 calendarPartSub.setVisibility(View.VISIBLE);
@@ -459,7 +463,11 @@ public class AllMenuActivity extends AppCompatActivity {
                     sdmPart.setVisibility(View.VISIBLE);
                     projectPart.setVisibility(View.VISIBLE);
                     reportSumaPart.setVisibility(View.GONE);
-                    reportSumaPart2.setVisibility(View.VISIBLE);
+                    if(sharedPrefManager.getSpIdHeadDept().equals("3")){
+                        reportSumaPart2.setVisibility(View.VISIBLE);
+                    } else {
+                        reportSumaPart2.setVisibility(View.GONE);
+                    }
 
                     newsPartSub.setVisibility(View.VISIBLE);
                     calendarPartSub.setVisibility(View.VISIBLE);
@@ -477,7 +485,11 @@ public class AllMenuActivity extends AppCompatActivity {
                     cardPart.setVisibility(View.VISIBLE);
                     sdmPart.setVisibility(View.GONE);
                     projectPart.setVisibility(View.GONE);
-                    reportSumaPart.setVisibility(View.VISIBLE);
+                    if(sharedPrefManager.getSpIdHeadDept().equals("3")||sharedPrefManager.getSpNik().equals("3186150321")){
+                        reportSumaPart.setVisibility(View.VISIBLE);
+                    } else {
+                        reportSumaPart.setVisibility(View.GONE);
+                    }
                     reportSumaPart2.setVisibility(View.GONE);
 
                     newsPartSub.setVisibility(View.VISIBLE);

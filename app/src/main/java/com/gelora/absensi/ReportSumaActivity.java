@@ -17,6 +17,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -24,8 +25,11 @@ import android.content.IntentSender;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.icu.util.Calendar;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -128,7 +132,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     LinearLayout f2SubmitPesananBTN, f2GPSLocationBTN, f2ViewLampiranBTN, f2LampiranFotoBTN, f2ProductInputDetailPart, f2AddProductBTN, f2ProductChoiceBTN, f2DetailPesananPart, f2DetailPelanggan, f2NamaPelangganLamaBTN, f2PelangganAttantionPart, f2PelangganBaruPart, f2PelangganLamaPart;
     RadioGroup f2PelangganOption;
     RadioButton f2PelangganOptionBaru, f2PelangganOptionLama;
-    TextView f2LabelLampiranTV, f2TotalPesananTV, f2SubTotalTV, f2ProductHargaSatuanTV, f2ProductChoiceTV, f2TeleponPelangganLamaTV, f2NamaPelangganLamaChoiceTV, f2AlamatPelangganLamaTV, f2PicPelangganLamaTV;
+    TextView f2DetailLocationTV, f2LabelLampiranTV, f2TotalPesananTV, f2SubTotalTV, f2ProductHargaSatuanTV, f2ProductChoiceTV, f2TeleponPelangganLamaTV, f2NamaPelangganLamaChoiceTV, f2AlamatPelangganLamaTV, f2PicPelangganLamaTV;
     NumberPicker f2QtyProductPicker;
     RecyclerView pelangganRV, produkRV, f2ListProductInputRV;
     private PelangganLama[] pelangganLamas;
@@ -138,7 +142,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     String f2IdPelangganLama = "", f2JenisPelanggan = "", f2TotalPesanan = "", f2FullDataProduct = "", f2QtyProduct = "", f2IdProduct = "", f2ProductName = "", f2ProductHargaSatuan = "", f2SubTotal = "";
 
     LinearLayout f3SubmitPesananBTN, f3LampiranFotoBTN, f3ViewLampiranBTN, f3GPSLocationBTN, f3NoDataPiutang, f3LoadingDataPiutang, f3NamaPelangganLamaBTN, f3DetailPelanggan, f3DetailListInvPart;
-    TextView f3LabelLampiranTV, f3TotalPiutangTV, f3TeleponPelangganLamaTV, f3NamaPelangganLamaChoiceTV, f3AlamatPelangganLamaTV, f3PicPelangganLamaTV;
+    TextView f3DetailLocationTV, f3LabelLampiranTV, f3TotalPiutangTV, f3TeleponPelangganLamaTV, f3NamaPelangganLamaChoiceTV, f3AlamatPelangganLamaTV, f3PicPelangganLamaTV;
     String f3IdPelangganLama = "";
     RecyclerView f3InvRV;
     ImageView f3LoadingDataPiutangImg;
@@ -245,6 +249,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2AlamatPelangganBaruED = findViewById(R.id.f2_alamat_pelanggan_baru_ed);
         f2PicPelangganBaruED = findViewById(R.id.f2_pic_pelanggan_baru_ed);
         f2TeleponPelangganBaruED = findViewById(R.id.f2_telepon_pelanggan_baru_ed);
+        f2DetailLocationTV = findViewById(R.id.f2_detail_location_tv);
 
         f3NamaPelangganLamaBTN = findViewById(R.id.f3_nama_pelanggan_lama_btn);
         f3DetailPelanggan = findViewById(R.id.f3_detail_pelanggan);
@@ -264,6 +269,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f3LoadingDataPiutang = findViewById(R.id.f3_loading_data_piutang);
         f3LoadingDataPiutangImg = findViewById(R.id.f3_loading_data_piutang_img);
         f3KeteranganED = findViewById(R.id.f3_keterangan_ed);
+        f3DetailLocationTV = findViewById(R.id.f3_detail_location_tv);
         f3SubmitPesananBTN = findViewById(R.id.f3_submit_data_btn);
 
         adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
@@ -2266,7 +2272,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     view = new View(ReportSumaActivity.this);
                 }
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                //f3KeteranganKunjunganED.clearFocus();
+                f3KeteranganED.clearFocus();
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -2504,6 +2510,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                     Log.e("TAG", "GPS is on" + String.valueOf(location));
                     salesLat = String.valueOf(location.getLatitude());
                     salesLong = String.valueOf(location.getLongitude());
+
+                    Location getLoc = new Location("dummyProvider");
+                    getLoc.setLatitude(location.getLatitude());
+                    getLoc.setLongitude(location.getLongitude());
+                    new ReverseGeocodingTask().execute(getLoc);
                 }  else {
                     gpsEnableAction();
                 }
@@ -2550,6 +2561,49 @@ public class ReportSumaActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class ReverseGeocodingTask extends AsyncTask<Location, Void, String> {
+
+        @Override
+        protected String doInBackground(Location... params) {
+            Location location = params[0];
+            String addressText = "";
+
+            Geocoder geocoder = new Geocoder(ReportSumaActivity.this, Locale.getDefault());
+
+            try {
+                List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                if (addresses != null && addresses.size() > 0) {
+                    Address address = addresses.get(0);
+                    StringBuilder addressBuilder = new StringBuilder();
+                    for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
+                        addressBuilder.append(address.getAddressLine(i)).append(", ");
+                    }
+                    addressText = addressBuilder.toString();
+                }
+            } catch (IOException e) {
+                Log.e(ContentValues.TAG, "Error fetching address: " + e.getMessage());
+            }
+
+            return addressText;
+        }
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        protected void onPostExecute(String address) {
+            super.onPostExecute(address);
+            if (!address.isEmpty()) {
+                Log.d(ContentValues.TAG, "Alamat: " + address);
+                f2DetailLocationTV.setText(address.substring(0,address.length()-2));
+                f3DetailLocationTV.setText(address.substring(0,address.length()-2));
+            } else {
+                Log.e(ContentValues.TAG, "Alamat tidak ditemukan");
+                f2DetailLocationTV.setText("Alamat tidak ditemukan");
+                f3DetailLocationTV.setText("Alamat tidak ditemukan");
+            }
+        }
     }
 
     private void dexterCall(){
