@@ -2941,22 +2941,22 @@ public class ReportSumaActivity extends AppCompatActivity {
                 new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
                         .addFileToUpload(path, "image")
                         .addParameter("id_report", idReport)
-                        .setMaxRetries(10)
+                        .setMaxRetries(1)
                         .startUpload();
 
-                laporanTerkirim = "1";
-                successPart.setVisibility(View.VISIBLE);
-                formPart.setVisibility(View.GONE);
+//                laporanTerkirim = "1";
+//                successPart.setVisibility(View.VISIBLE);
+//                formPart.setVisibility(View.GONE);
                 pDialog.dismiss();
-
-                viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(ReportSumaActivity.this, DetailReportSumaActivity.class);
-                        intent.putExtra("report_id",idReport);
-                        startActivity(intent);
-                    }
-                });
+//
+//                viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent(ReportSumaActivity.this, DetailReportSumaActivity.class);
+//                        intent.putExtra("report_id",idReport);
+//                        startActivity(intent);
+//                    }
+//                });
 
             } catch (Exception exc) {
                 Log.e("PaRSE JSON", "Oke");
