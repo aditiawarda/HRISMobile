@@ -3105,9 +3105,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                                         }
                                     });
                                 } else if(categoryReport.equals("2")){
-                                    uploadLampiran(idLaporan);
+                                    String filename = data.getString("file_name");
+                                    uploadLampiran(filename, idLaporan);
                                 } else if(categoryReport.equals("3")){
-                                    uploadLampiran(idLaporan);
+                                    String filename = data.getString("file_name");
+                                    uploadLampiran(filename, idLaporan);
                                 }
 
                             } else {
@@ -3202,25 +3204,25 @@ public class ReportSumaActivity extends AppCompatActivity {
 
     }
 
-    public void uploadLampiran(String idReport) {
-        String url = "https://reporting.sumasistem.co.id/api/attachment_upload";
+    public void uploadLampiran(String filename, String idReport) {
         String path = FilePathimage.getPath(this, uri);
-        File imageFile = new File(path);
 
-        ImageUploadTask uploadTask = new ImageUploadTask(url, idReport, imageFile);
-        uploadTask.execute();
+        // String url = "https://reporting.sumasistem.co.id/api/attachment_upload";
+        // File imageFile = new File(path);
+        // ImageUploadTask uploadTask = new ImageUploadTask(url, idReport, imageFile);
+        // uploadTask.execute();
 
-        String UPLOAD_URL = "https://reporting.sumasistem.co.id/api/attachment_upload";
+        String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_lampiran";
 
         if (path == null) {
             Toast.makeText(this, "Please move your image file to internal storage and retry", Toast.LENGTH_LONG).show();
         } else {
+            String uploadId = UUID.randomUUID().toString();
             try {
-                String uploadId = UUID.randomUUID().toString();
                 new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
                         .addFileToUpload(path, "image")
-                        .addParameter("id_report", idReport)
-                        .setMaxRetries(1)
+                        .addParameter("filename", filename)
+                        .setMaxRetries(2)
                         .startUpload();
 
                 laporanTerkirim = "1";
@@ -3236,11 +3238,10 @@ public class ReportSumaActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-
             } catch (Exception exc) {
-                Log.e("PaRSE JSON", "Oke");
-                pDialog.dismiss();
+                Log.e("UploadError", "Error uploading file", exc);
             }
+
         }
     }
 

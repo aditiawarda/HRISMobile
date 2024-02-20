@@ -71,6 +71,11 @@ public class ViewImageActivity extends AppCompatActivity {
                 Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                         .into(photoView);
+            } else if(jenis_detail.equals("suma")){
+                titlePageTV.setText("LAMPIRAN");
+                Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
+                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                        .into(photoView);
             }
         } else if (kode.equals("chat_mate")){
             String nameChatMate = getIntent().getExtras().getString("name_chat_mate");

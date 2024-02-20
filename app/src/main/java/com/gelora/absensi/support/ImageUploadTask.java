@@ -15,7 +15,6 @@ import okhttp3.Response;
 
 public class ImageUploadTask extends AsyncTask<Void, Void, String> {
     private static final String TAG = "ImageUploadTask";
-
     private final String url;
     private final String idReport;
     private final File imageFile;
@@ -40,7 +39,7 @@ public class ImageUploadTask extends AsyncTask<Void, Void, String> {
 
             Request request = new Request.Builder()
                     .url(url)
-                    .post(requestBody)
+                    .method("POST",requestBody)
                     .build();
 
             Response response = client.newCall(request).execute();
