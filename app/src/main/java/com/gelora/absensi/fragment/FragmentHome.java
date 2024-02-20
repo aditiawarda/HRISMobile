@@ -1,5 +1,7 @@
 package com.gelora.absensi.fragment;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -13,9 +15,12 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -57,6 +62,7 @@ import com.gelora.absensi.ChatSplashScreenActivity;
 import com.gelora.absensi.DataFormSdmActivity;
 import com.gelora.absensi.DetailCuacaActivity;
 import com.gelora.absensi.DetailPengumumanActivity;
+import com.gelora.absensi.DetailReportSumaActivity;
 import com.gelora.absensi.DigitalCardActivity;
 import com.gelora.absensi.DigitalSignatureActivity;
 import com.gelora.absensi.ExitClearanceActivity;
@@ -101,12 +107,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -918,10 +927,15 @@ public class FragmentHome extends Fragment {
                             timeLive();
 
                             getCurrentWeather(weather_key, String.valueOf(lati), String.valueOf(longi));
-                            Location location = new Location("providerNA");
-                            location.setLongitude(longi);
-                            location.setLatitude(lati);
-                            fetchaddressfromlocation(location);
+                            // Location location = new Location("providerNA");
+                            // location.setLongitude(longi);
+                            // location.setLatitude(lati);
+                            // fetchaddressfromlocation(location);
+
+                            Location getLoc = new Location("dummyProvider");
+                            getLoc.setLatitude(lati);
+                            getLoc.setLongitude(longi);
+                            new ReverseGeocodingTask().execute(getLoc);
                         } else {
                             gpsEnableAction();
                         }
@@ -1131,6 +1145,46 @@ public class FragmentHome extends Fragment {
         }
         catch (Exception e) {
             Log.e("Error", e.toString());
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class ReverseGeocodingTask extends AsyncTask<Location, Void, String> {
+        @Override
+        protected String doInBackground(Location... params) {
+            Location location = params[0];
+            String addressText = "";
+
+            Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+
+            try {
+                List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                if (addresses != null && addresses.size() > 0) {
+                    Address address = addresses.get(0);
+                    StringBuilder addressBuilder = new StringBuilder();
+                    for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
+                        addressBuilder.append(address.getAddressLine(i)).append(", ");
+                    }
+                    addressText = addressBuilder.toString();
+                }
+            } catch (IOException e) {
+                Log.e(TAG, "Error fetching address: " + e.getMessage());
+            }
+
+            return addressText;
+        }
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        protected void onPostExecute(String address) {
+            super.onPostExecute(address);
+            if (!address.isEmpty()) {
+                Log.d(TAG, "Alamat: " + address);
+                currentAddress.setText(address.substring(0,address.length()-2));
+            } else {
+                Log.e(TAG, "Alamat tidak ditemukan");
+                currentAddress.setText("Alamat tidak ditemukan");
+            }
         }
     }
 

@@ -341,7 +341,6 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="10dp"
                                         android:orientation="horizontal">
 
                                         <TextView
@@ -385,61 +384,71 @@
                                     </LinearLayout>
 
                                     <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="#DE5A5A5A"
-                                        android:padding="0.5dp"
-                                        android:layout_marginBottom="15dp">
-
-                                        <fragment
-                                            android:id="@+id/map"
-                                            android:name="com.google.android.gms.maps.SupportMapFragment"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="300dp"
-                                            tools:ignore="FragmentTagUsage" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
+                                        android:id="@+id/maps_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <TextView
-                                            android:layout_width="0dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginBottom="5dp"
-                                            android:layout_weight=".25"
-                                            android:text="Detail Titik"
-                                            android:textColor="#515151"
-                                            android:textSize="12dp"
-                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                        android:visibility="gone"
+                                        android:layout_marginTop="10dp"
+                                        android:orientation="vertical">
 
                                         <LinearLayout
-                                            android:orientation="horizontal"
-                                            android:layout_width="0dp"
-                                            android:layout_weight=".65"
-                                            android:layout_height="wrap_content">
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="#DE5A5A5A"
+                                            android:padding="0.5dp"
+                                            android:layout_marginBottom="15dp">
+
+                                            <fragment
+                                                android:id="@+id/map"
+                                                android:name="com.google.android.gms.maps.SupportMapFragment"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="300dp"
+                                                tools:ignore="FragmentTagUsage" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
 
                                             <TextView
-                                                android:layout_width="wrap_content"
+                                                android:layout_width="0dp"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
-                                                android:text=":  "
+                                                android:layout_weight=".25"
+                                                android:text="Detail Titik"
                                                 android:textColor="#515151"
                                                 android:textSize="12dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                                            <TextView
-                                                android:id="@+id/detail_location_tv"
+                                            <LinearLayout
+                                                android:orientation="horizontal"
                                                 android:layout_width="0dp"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginBottom="5dp"
                                                 android:layout_weight=".65"
-                                                android:text="Memuat data..."
-                                                android:textColor="#515151"
-                                                android:textSize="12dp"
-                                                tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
+                                                android:layout_height="wrap_content">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:text=":  "
+                                                    android:textColor="#515151"
+                                                    android:textSize="12dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                <TextView
+                                                    android:id="@+id/detail_location_tv"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:layout_weight=".65"
+                                                    android:text="Memuat data..."
+                                                    android:textColor="#515151"
+                                                    android:textSize="12dp"
+                                                    tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
+
+                                            </LinearLayout>
 
                                         </LinearLayout>
 
@@ -477,6 +486,52 @@
 
                                             <TextView
                                                 android:id="@+id/keterangan_tv"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:layout_weight=".65"
+                                                android:text="Memuat data..."
+                                                android:textColor="#515151"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/tgl_rencana_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="5dp"
+                                            android:layout_weight=".25"
+                                            android:text="Tgl Rencana"
+                                            android:textColor="#515151"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <LinearLayout
+                                            android:orientation="horizontal"
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".65"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:text=":  "
+                                                android:textColor="#515151"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <TextView
+                                                android:id="@+id/tgl_rencana_tv"
                                                 android:layout_width="0dp"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"

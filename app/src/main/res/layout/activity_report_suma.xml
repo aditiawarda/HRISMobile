@@ -1599,12 +1599,21 @@
                                             </LinearLayout>
 
                                             <TextView
-                                                android:id="@+id/f2_detail_location_tv"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
+                                                android:text="Titik Lokasi Anda :"
+                                                android:textColor="#6E6E6E"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
+
+                                            <TextView
+                                                android:id="@+id/f2_detail_location_tv"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="10dp"
                                                 android:text="Memuat data..."
-                                                android:textColor="#515151"
+                                                android:textColor="#6E6E6E"
                                                 android:textSize="12dp"
                                                 tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
 
@@ -2186,12 +2195,21 @@
                                                 </LinearLayout>
 
                                                 <TextView
-                                                    android:id="@+id/f3_detail_location_tv"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginBottom="5dp"
+                                                    android:text="Titik Lokasi Anda :"
+                                                    android:textColor="#6E6E6E"
+                                                    android:textSize="12dp"
+                                                    tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
+
+                                                <TextView
+                                                    android:id="@+id/f3_detail_location_tv"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginBottom="10dp"
                                                     android:text="Memuat data..."
-                                                    android:textColor="#515151"
+                                                    android:textColor="#6E6E6E"
                                                     android:textSize="12dp"
                                                     tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
 

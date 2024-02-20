@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -62,6 +63,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -71,11 +73,13 @@ import java.util.Map;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout backBTN, actionBar;
+    LinearLayout tglRencanaPart, backBTN, actionBar, mapsPart;
     SharedPrefManager sharedPrefManager;
     RequestQueue requestQueue;
-    TextView nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
+    TextView tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
     String idReport = "";
+    SwipeRefreshLayout refreshLayout;
+    SharedPrefAbsen sharedPrefAbsen;
     private StatusBarColorManager mStatusBarColorManager;
     private LatLng userPoint;
     private GoogleMap mMap;
@@ -104,9 +108,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         }
         idReport = getIntent().getExtras().getString("report_id");
 
-        reportKategoriTV = findViewById(R.id.report_kategori_tv);
-        requestQueue = Volley.newRequestQueue(this);
+        refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         sharedPrefManager = new SharedPrefManager(this);
+        sharedPrefAbsen = new SharedPrefAbsen(this);
+        requestQueue = Volley.newRequestQueue(this);
+        reportKategoriTV = findViewById(R.id.report_kategori_tv);
         backBTN = findViewById(R.id.back_btn);
         actionBar = findViewById(R.id.action_bar);
         namaPelangganTV = findViewById(R.id.nama_pelanggan_tv);
@@ -117,6 +123,22 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         detailLocationTV = findViewById(R.id.detail_location_tv);
         namaSalesTV = findViewById(R.id.nama_sales_tv);
         nikSalesTV = findViewById(R.id.nik_sales_tv);
+        mapsPart = findViewById(R.id.maps_part);
+        tglRencanaPart = findViewById(R.id.tgl_rencana_part);
+        tglRencanaTV = findViewById(R.id.tgl_rencana_tv);
+
+        refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        permissionLoc();
+                    }
+                }, 1000);
+            }
+        });
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -245,10 +267,94 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                 if(tipeLaporan.equals("1")){
                                     reportKategoriTV.setText("RENCANA KUNJUNGAN");
+                                    tglRencanaPart.setVisibility(View.VISIBLE);
+                                    String tgl_rencana = dataArray.getString("tgl_rencana");
+
+                                    String input_date = tgl_rencana;
+                                    @SuppressLint("SimpleDateFormat")
+                                    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                                    Date dt1 = null;
+                                    try {
+                                        dt1 = format1.parse(input_date);
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
+                                    @SuppressLint("SimpleDateFormat")
+                                    DateFormat format2 = new SimpleDateFormat("EEE");
+                                    String finalDay = format2.format(dt1);
+                                    String hariName = "";
+
+                                    if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                                        hariName = "Senin";
+                                    } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                                        hariName = "Selasa";
+                                    } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                                        hariName = "Rabu";
+                                    } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                                        hariName = "Kamis";
+                                    } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                                        hariName = "Jumat";
+                                    } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                                        hariName = "Sabtu";
+                                    } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                                        hariName = "Minggu";
+                                    }
+
+                                    String dayDate = input_date.substring(8,10);
+                                    String yearDate = input_date.substring(0,4);
+                                    String bulanValue = input_date.substring(5,7);
+                                    String bulanName;
+
+                                    switch (bulanValue) {
+                                        case "01":
+                                            bulanName = "Januari";
+                                            break;
+                                        case "02":
+                                            bulanName = "Februari";
+                                            break;
+                                        case "03":
+                                            bulanName = "Maret";
+                                            break;
+                                        case "04":
+                                            bulanName = "April";
+                                            break;
+                                        case "05":
+                                            bulanName = "Mei";
+                                            break;
+                                        case "06":
+                                            bulanName = "Juni";
+                                            break;
+                                        case "07":
+                                            bulanName = "Juli";
+                                            break;
+                                        case "08":
+                                            bulanName = "Agustus";
+                                            break;
+                                        case "09":
+                                            bulanName = "September";
+                                            break;
+                                        case "10":
+                                            bulanName = "Oktober";
+                                            break;
+                                        case "11":
+                                            bulanName = "November";
+                                            break;
+                                        case "12":
+                                            bulanName = "Desember";
+                                            break;
+                                        default:
+                                            bulanName = "Not found!";
+                                            break;
+                                    }
+
+                                    tglRencanaTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
                                 } else if(tipeLaporan.equals("2")){
                                     reportKategoriTV.setText("KUNJUNGAN");
+                                    tglRencanaPart.setVisibility(View.GONE);
                                 } else if(tipeLaporan.equals("3")){
                                     reportKategoriTV.setText("PENAGIHAN");
+                                    tglRencanaPart.setVisibility(View.GONE);
                                 }
 
                                 String namaPelanggan = dataArray.getString("namaPelanggan");
@@ -262,7 +368,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 teleponPelangganTV.setText(no_telp);
                                 keteranganTV.setText(keterangan);
 
-                                if(mMap != null){
+                                if(mMap != null && (tipeLaporan.equals("2") || tipeLaporan.equals("3"))){
+                                    mapsPart.setVisibility(View.VISIBLE);
                                     mMap.setMyLocationEnabled(false);
                                     mMap.getUiSettings().setMyLocationButtonEnabled(false);
                                     userPoint = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
@@ -273,8 +380,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     Location location = new Location("dummyProvider");
                                     location.setLatitude(Double.parseDouble(latitude));
                                     location.setLongitude(Double.parseDouble(longitude));
-                                    //fetchaddressfromlocation(location);
                                     new ReverseGeocodingTask().execute(location);
+                                } else {
+                                    mapsPart.setVisibility(View.GONE);
                                 }
 
                             } else {
@@ -542,7 +650,5 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             }
         }
     }
-
-
 
 }

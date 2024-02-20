@@ -69,6 +69,7 @@ import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataInvoicePiutang;
 import com.gelora.absensi.model.PelangganLama;
 import com.gelora.absensi.model.ProductSuma;
+import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -94,6 +95,8 @@ import com.travijuu.numberpicker.library.Enums.ActionEnum;
 import com.travijuu.numberpicker.library.Interface.ValueChangedListener;
 import com.travijuu.numberpicker.library.NumberPicker;
 
+import net.gotev.uploadservice.MultipartUploadRequest;
+
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -115,6 +118,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 public class ReportSumaActivity extends AppCompatActivity {
 
@@ -2758,7 +2762,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                                 }
                             });
                         }
-                        // uploadStatus = "1";
                         uriToBase64(uri);
 
                     } else {
@@ -2779,7 +2782,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                             }
                         }, 800);
                     }
-
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -2815,20 +2817,27 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                             if(status.equals("Success")) {
                                 String idLaporan = data.getString("idLaporan");
-                                laporanTerkirim = "1";
-                                successPart.setVisibility(View.VISIBLE);
-                                formPart.setVisibility(View.GONE);
 
-                                viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent intent = new Intent(ReportSumaActivity.this, DetailReportSumaActivity.class);
-                                        intent.putExtra("report_id",idLaporan);
-                                        startActivity(intent);
-                                    }
-                                });
+                                if(categoryReport.equals("1")){
+                                    laporanTerkirim = "1";
+                                    successPart.setVisibility(View.VISIBLE);
+                                    formPart.setVisibility(View.GONE);
+                                    pDialog.dismiss();
 
-                                pDialog.dismiss();
+                                    viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(ReportSumaActivity.this, DetailReportSumaActivity.class);
+                                            intent.putExtra("report_id",idLaporan);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                } else if(categoryReport.equals("2")){
+                                    uploadLampiran(idLaporan);
+                                } else if(categoryReport.equals("3")){
+                                    uploadLampiran(idLaporan);
+                                }
+
                             } else {
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
@@ -2894,7 +2903,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                     }
 
                     params.put("nik_sales", sharedPrefManager.getSpNik());
-                    params.put("file_lampiran", fullBase64String);
                     params.put("latitude", salesLat);
                     params.put("longitude", salesLong);
                     params.put("created_at", getTimeStamp());
@@ -2905,7 +2913,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                     params.put("id_pelanggan", f3IdPelangganLama);
                     params.put("nik_sales", sharedPrefManager.getSpNik());
                     params.put("keterangan", f3KeteranganED.getText().toString());
-                    params.put("file_lampiran", fullBase64String);
                     params.put("latitude", salesLat);
                     params.put("longitude", salesLong);
                     params.put("created_at", getTimeStamp());
@@ -2921,6 +2928,41 @@ public class ReportSumaActivity extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         postRequest.setRetryPolicy(retryPolicy);
 
+    }
+
+    public void uploadLampiran(String idReport) {
+        String UPLOAD_URL = "https://reporting.sumasistem.co.id/api/attachment_upload";
+        String path = FilePathimage.getPath(this, uri);
+        if (path == null) {
+            Toast.makeText(this, "Please move your image file to internal storage and retry", Toast.LENGTH_LONG).show();
+        } else {
+            try {
+                String uploadId = UUID.randomUUID().toString();
+                new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
+                        .addFileToUpload(path, "image")
+                        .addParameter("id_report", idReport)
+                        .setMaxRetries(10)
+                        .startUpload();
+
+                laporanTerkirim = "1";
+                successPart.setVisibility(View.VISIBLE);
+                formPart.setVisibility(View.GONE);
+                pDialog.dismiss();
+
+                viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(ReportSumaActivity.this, DetailReportSumaActivity.class);
+                        intent.putExtra("report_id",idReport);
+                        startActivity(intent);
+                    }
+                });
+
+            } catch (Exception exc) {
+                Log.e("PaRSE JSON", "Oke");
+                pDialog.dismiss();
+            }
+        }
     }
 
     private String getTimeStamp() {
@@ -2972,6 +3014,10 @@ public class ReportSumaActivity extends AppCompatActivity {
                 base64String = Base64.getEncoder().encodeToString(content);
                 Log.d("Base64 : ", base64String);
                 fullBase64String = base64String;
+
+//                TextView tes_tv = findViewById(R.id.tes_tv);
+//                tes_tv.setText(base64String);
+
             }
         } catch (IOException e) {
             e.printStackTrace();
