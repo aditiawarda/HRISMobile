@@ -106,6 +106,78 @@
 
                             </LinearLayout>
 
+                            <LinearLayout
+                                android:id="@+id/date_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="Filter Tanggal Rencana :"
+                                    android:textColor="#696969"
+                                    android:textSize="12dp"
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                <LinearLayout
+                                    android:id="@+id/f1_choice_date_btn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:paddingStart="20dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:background="@drawable/shape_feel"
+                                    android:orientation="horizontal"
+                                    tools:ignore="RtlSymmetry">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent">
+
+                                        <LinearLayout
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="40dp"
+                                            android:orientation="vertical"
+                                            android:gravity="center|left"
+                                            tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                            <TextView
+                                                android:id="@+id/choice_date_tv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="#B15735"
+                                                android:textSize="13dp"
+                                                android:textStyle="bold"
+                                                android:text=""
+                                                tools:ignore="SpUsage" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_alignParentRight="true"
+                                            android:layout_width="40dp"
+                                            android:layout_height="match_parent"
+                                            android:background="@drawable/shape_btn"
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
+
+                                            <TextView
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"
+                                                android:background="@drawable/ic_baseline_date"/>
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
                         </LinearLayout>
 
                         <LinearLayout

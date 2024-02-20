@@ -9,6 +9,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -31,22 +32,28 @@ import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataReportSuma;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.takisoft.datetimepicker.DatePickerDialog;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ListDataReportSumaActivity extends AppCompatActivity {
 
-    LinearLayout noDataPartReport, loadingDataPartReport, rencanaKunjunganBTN, penagihanBTN, penawaranBTN, kunjunganBTN, markRencanaKunjungan, markPenagihan, markPenawaran, markKunjungan, markSemua, semuaBTN, actionBar, backBTN, addBTN, filterCategoryBTN;
-    TextView categoryChoiceTV;
+    LinearLayout dateBTN, noDataPartReport, loadingDataPartReport, rencanaKunjunganBTN, penagihanBTN, penawaranBTN, kunjunganBTN, markRencanaKunjungan, markPenagihan, markPenawaran, markKunjungan, markSemua, semuaBTN, actionBar, backBTN, addBTN, filterCategoryBTN;
+    TextView choiceDateTV, categoryChoiceTV;
     ImageView loadingDataReport;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
     BottomSheetLayout bottomSheet;
-    String categoryCode = "1";
+    String categoryCode = "1", dateChoice = getDate();
     private RecyclerView reportRV;
     private DataReportSuma[] dataReportSumas;
     private AdapterSumaReport adapterSumaReport;
@@ -72,6 +79,8 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         loadingDataPartReport = findViewById(R.id.loading_data_part_report);
         noDataPartReport = findViewById(R.id.no_data_part_report);
         reportRV = findViewById(R.id.data_report_rv);
+        dateBTN = findViewById(R.id.date_btn);
+        choiceDateTV = findViewById(R.id.choice_date_tv);
 
         categoryChoiceTV.setText("Rencana Kunjungan");
 
@@ -83,6 +92,8 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
                 .into(loadingDataReport);
+
+        getDateNow();
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +132,13 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             }
         });
 
+        dateBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePicker();
+            }
+        });
+
         addBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,8 +159,100 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
+    private void getDateNow(){
+        dateChoice = getDate();
+        String input_date = dateChoice;
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        Date dt1= null;
+        try {
+            dt1 = format1.parse(input_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        @SuppressLint("SimpleDateFormat")
+        DateFormat format2 = new SimpleDateFormat("EEE");
+        @SuppressLint("SimpleDateFormat")
+        DateFormat getweek = new SimpleDateFormat("W");
+        String finalDay = format2.format(dt1);
+        String week = getweek.format(dt1);
+        String hariName = "";
+
+        if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+            hariName = "Senin";
+        } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+            hariName = "Selasa";
+        } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+            hariName = "Rabu";
+        } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+            hariName = "Kamis";
+        } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+            hariName = "Jumat";
+        } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+            hariName = "Sabtu";
+        } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+            hariName = "Minggu";
+        }
+
+        String dayDate = input_date.substring(8,10);
+        String yearDate = input_date.substring(0,4);
+        String bulanValue = input_date.substring(5,7);
+        String bulanName;
+
+        switch (bulanValue) {
+            case "01":
+                bulanName = "Januari";
+                break;
+            case "02":
+                bulanName = "Februari";
+                break;
+            case "03":
+                bulanName = "Maret";
+                break;
+            case "04":
+                bulanName = "April";
+                break;
+            case "05":
+                bulanName = "Mei";
+                break;
+            case "06":
+                bulanName = "Juni";
+                break;
+            case "07":
+                bulanName = "Juli";
+                break;
+            case "08":
+                bulanName = "Agustus";
+                break;
+            case "09":
+                bulanName = "September";
+                break;
+            case "10":
+                bulanName = "Oktober";
+                break;
+            case "11":
+                bulanName = "November";
+                break;
+            case "12":
+                bulanName = "Desember";
+                break;
+            default:
+                bulanName = "Not found!";
+                break;
+        }
+
+        choiceDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+    }
+
     private void getData(String category_code){
-        final String url = "https://reporting.sumasistem.co.id/api/suma_report?nik="+sharedPrefManager.getSpNik()+"&"+"tipe_laporan="+category_code;
+        String url = "";
+        if(category_code.equals("1")){
+            url = "https://reporting.sumasistem.co.id/api/suma_report?nik="+sharedPrefManager.getSpNik()+"&"+"tipe_laporan="+category_code+"&"+"tanggal="+dateChoice;
+        } else {
+            url = "https://reporting.sumasistem.co.id/api/suma_report?nik="+sharedPrefManager.getSpNik()+"&"+"tipe_laporan="+category_code;
+        }
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")
@@ -224,6 +334,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         markRencanaKunjungan = findViewById(R.id.mark_rencana_kunjungan);
 
         if (categoryCode.equals("0")) {
+            dateBTN.setVisibility(View.GONE);
             markSemua.setVisibility(View.VISIBLE);
             markRencanaKunjungan.setVisibility(View.GONE);
             markKunjungan.setVisibility(View.GONE);
@@ -235,6 +346,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             penawaranBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
         } else if(categoryCode.equals("1")) {
+            dateBTN.setVisibility(View.VISIBLE);
             markSemua.setVisibility(View.GONE);
             markRencanaKunjungan.setVisibility(View.VISIBLE);
             markKunjungan.setVisibility(View.GONE);
@@ -246,6 +358,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             penawaranBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
         } else if(categoryCode.equals("2")) {
+            dateBTN.setVisibility(View.GONE);
             markSemua.setVisibility(View.GONE);
             markRencanaKunjungan.setVisibility(View.GONE);
             markKunjungan.setVisibility(View.VISIBLE);
@@ -257,6 +370,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             penawaranBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
         } else if(categoryCode.equals("4")) {
+            dateBTN.setVisibility(View.GONE);
             markSemua.setVisibility(View.GONE);
             markRencanaKunjungan.setVisibility(View.GONE);
             markKunjungan.setVisibility(View.GONE);
@@ -268,6 +382,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             penawaranBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option_choice));
             penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
         } else if(categoryCode.equals("3")) {
+            dateBTN.setVisibility(View.GONE);
             markSemua.setVisibility(View.GONE);
             markRencanaKunjungan.setVisibility(View.GONE);
             markKunjungan.setVisibility(View.GONE);
@@ -284,6 +399,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
+                dateBTN.setVisibility(View.GONE);
                 categoryCode = "0";
                 categoryChoiceTV.setText("Semua");
                 markSemua.setVisibility(View.VISIBLE);
@@ -322,6 +438,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
+                dateBTN.setVisibility(View.VISIBLE);
                 categoryCode = "1";
                 categoryChoiceTV.setText("Rencana Kunjungan");
                 markSemua.setVisibility(View.GONE);
@@ -359,6 +476,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
+                dateBTN.setVisibility(View.GONE);
                 categoryCode = "2";
                 categoryChoiceTV.setText("Kunjungan");
                 markSemua.setVisibility(View.GONE);
@@ -396,6 +514,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
+                dateBTN.setVisibility(View.GONE);
                 categoryCode = "3";
                 categoryChoiceTV.setText("Penagihan");
                 markSemua.setVisibility(View.GONE);
@@ -433,6 +552,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
+                dateBTN.setVisibility(View.GONE);
                 categoryCode = "4";
                 categoryChoiceTV.setText("Penawaran");
                 markSemua.setVisibility(View.GONE);
@@ -468,6 +588,238 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SimpleDateFormat")
+    private void datePicker(){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            Calendar cal = Calendar.getInstance();
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(ListDataReportSumaActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
+
+                dateChoice = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                String input_date = dateChoice;
+                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                Date dt1= null;
+                try {
+                    dt1 = format1.parse(input_date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                DateFormat format2 = new SimpleDateFormat("EEE");
+                DateFormat getweek = new SimpleDateFormat("W");
+                String finalDay = format2.format(dt1);
+                String week = getweek.format(dt1);
+                String hariName = "";
+
+                if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                    hariName = "Senin";
+                } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                    hariName = "Selasa";
+                } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                    hariName = "Rabu";
+                } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                    hariName = "Kamis";
+                } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                    hariName = "Jumat";
+                } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                    hariName = "Sabtu";
+                } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                    hariName = "Minggu";
+                }
+
+                String dayDate = input_date.substring(8,10);
+                String yearDate = input_date.substring(0,4);
+                String bulanValue = input_date.substring(5,7);
+                String bulanName;
+
+                switch (bulanValue) {
+                    case "01":
+                        bulanName = "Januari";
+                        break;
+                    case "02":
+                        bulanName = "Februari";
+                        break;
+                    case "03":
+                        bulanName = "Maret";
+                        break;
+                    case "04":
+                        bulanName = "April";
+                        break;
+                    case "05":
+                        bulanName = "Mei";
+                        break;
+                    case "06":
+                        bulanName = "Juni";
+                        break;
+                    case "07":
+                        bulanName = "Juli";
+                        break;
+                    case "08":
+                        bulanName = "Agustus";
+                        break;
+                    case "09":
+                        bulanName = "September";
+                        break;
+                    case "10":
+                        bulanName = "Oktober";
+                        break;
+                    case "11":
+                        bulanName = "November";
+                        break;
+                    case "12":
+                        bulanName = "Desember";
+                        break;
+                    default:
+                        bulanName = "Not found!";
+                        break;
+                }
+
+                choiceDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                reportRV.setVisibility(View.GONE);
+                loadingDataPartReport.setVisibility(View.VISIBLE);
+                noDataPartReport.setVisibility(View.GONE);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getData(categoryCode);
+                    }
+                }, 1000);
+
+            }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
+            dpd.show();
+        } else {
+            int y = Integer.parseInt(getDateY());
+            int m = Integer.parseInt(getDateM());
+            int d = Integer.parseInt(getDateD());
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(ListDataReportSumaActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
+
+                dateChoice = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                String input_date = dateChoice;
+                SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                Date dt1= null;
+                try {
+                    dt1 = format1.parse(input_date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                DateFormat format2 = new SimpleDateFormat("EEE");
+                DateFormat getweek = new SimpleDateFormat("W");
+                String finalDay = format2.format(dt1);
+                String week = getweek.format(dt1);
+                String hariName = "";
+
+                if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                    hariName = "Senin";
+                } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                    hariName = "Selasa";
+                } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                    hariName = "Rabu";
+                } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                    hariName = "Kamis";
+                } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                    hariName = "Jumat";
+                } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                    hariName = "Sabtu";
+                } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                    hariName = "Minggu";
+                }
+
+                String dayDate = input_date.substring(8,10);
+                String yearDate = input_date.substring(0,4);
+                String bulanValue = input_date.substring(5,7);
+                String bulanName;
+
+                switch (bulanValue) {
+                    case "01":
+                        bulanName = "Januari";
+                        break;
+                    case "02":
+                        bulanName = "Februari";
+                        break;
+                    case "03":
+                        bulanName = "Maret";
+                        break;
+                    case "04":
+                        bulanName = "April";
+                        break;
+                    case "05":
+                        bulanName = "Mei";
+                        break;
+                    case "06":
+                        bulanName = "Juni";
+                        break;
+                    case "07":
+                        bulanName = "Juli";
+                        break;
+                    case "08":
+                        bulanName = "Agustus";
+                        break;
+                    case "09":
+                        bulanName = "September";
+                        break;
+                    case "10":
+                        bulanName = "Oktober";
+                        break;
+                    case "11":
+                        bulanName = "November";
+                        break;
+                    case "12":
+                        bulanName = "Desember";
+                        break;
+                    default:
+                        bulanName = "Not found!";
+                        break;
+                }
+
+                choiceDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                reportRV.setVisibility(View.GONE);
+                loadingDataPartReport.setVisibility(View.VISIBLE);
+                noDataPartReport.setVisibility(View.GONE);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getData(categoryCode);
+                    }
+                }, 1000);
+
+            }, y,m-1,d);
+            dpd.show();
+        }
+
+    }
+
+    private String getDateD() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateM() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateY() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDate() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onResume() {
@@ -486,14 +838,19 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         } else {
             categoryCode = sharedPrefAbsen.getSpReportCategoryActive();
             if (categoryCode.equals("0")) {
+                dateBTN.setVisibility(View.GONE);
                 categoryChoiceTV.setText("Semua");
             } else if(categoryCode.equals("1")) {
+                dateBTN.setVisibility(View.VISIBLE);
                 categoryChoiceTV.setText("Rencana Kunjungan");
             } else if(categoryCode.equals("2")) {
+                dateBTN.setVisibility(View.GONE);
                 categoryChoiceTV.setText("Kunjungan");
             } else if(categoryCode.equals("4")) {
+                dateBTN.setVisibility(View.GONE);
                 categoryChoiceTV.setText("Penawaran");
             } else if(categoryCode.equals("3")) {
+                dateBTN.setVisibility(View.GONE);
                 categoryChoiceTV.setText("Penagihan");
             }
 
