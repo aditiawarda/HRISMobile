@@ -1025,6 +1025,19 @@ public class ReportSumaActivity extends AppCompatActivity {
                             }
                         }
                     }
+                } else {
+                    new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap isi semua data!")
+                            .setConfirmText("   OK   ")
+                            .showCancelButton(true)
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
                 }
             }
         });
@@ -1108,6 +1121,19 @@ public class ReportSumaActivity extends AppCompatActivity {
                                 })
                                 .show();
                     }
+                } else {
+                    new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap isi semua data!")
+                            .setConfirmText("   OK   ")
+                            .showCancelButton(true)
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
                 }
             }
         });
