@@ -71,6 +71,7 @@ import com.gelora.absensi.model.PelangganLama;
 import com.gelora.absensi.model.ProductSuma;
 import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
+import com.gelora.absensi.support.ImageUploadTask;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -102,6 +103,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
@@ -2931,8 +2933,15 @@ public class ReportSumaActivity extends AppCompatActivity {
     }
 
     public void uploadLampiran(String idReport) {
-        String UPLOAD_URL = "https://reporting.sumasistem.co.id/api/attachment_upload";
+        String url = "https://reporting.sumasistem.co.id/api/attachment_upload";
         String path = FilePathimage.getPath(this, uri);
+        File imageFile = new File(path);
+
+        ImageUploadTask uploadTask = new ImageUploadTask(url, idReport, imageFile);
+        uploadTask.execute();
+
+        String UPLOAD_URL = "https://reporting.sumasistem.co.id/api/attachment_upload";
+
         if (path == null) {
             Toast.makeText(this, "Please move your image file to internal storage and retry", Toast.LENGTH_LONG).show();
         } else {
@@ -2944,19 +2953,19 @@ public class ReportSumaActivity extends AppCompatActivity {
                         .setMaxRetries(1)
                         .startUpload();
 
-//                laporanTerkirim = "1";
-//                successPart.setVisibility(View.VISIBLE);
-//                formPart.setVisibility(View.GONE);
+                laporanTerkirim = "1";
+                successPart.setVisibility(View.VISIBLE);
+                formPart.setVisibility(View.GONE);
                 pDialog.dismiss();
-//
-//                viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(ReportSumaActivity.this, DetailReportSumaActivity.class);
-//                        intent.putExtra("report_id",idReport);
-//                        startActivity(intent);
-//                    }
-//                });
+
+                viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(ReportSumaActivity.this, DetailReportSumaActivity.class);
+                        intent.putExtra("report_id",idReport);
+                        startActivity(intent);
+                    }
+                });
 
             } catch (Exception exc) {
                 Log.e("PaRSE JSON", "Oke");
