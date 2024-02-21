@@ -3163,7 +3163,6 @@ public class ReportSumaActivity extends AppCompatActivity {
     }
 
     private void submitLaporan(){
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://reporting.sumasistem.co.id/api/create_suma_report";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,

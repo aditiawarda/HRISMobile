@@ -83,7 +83,11 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             myViewHolder.rencanaKunjunganPart.setVisibility(View.GONE);
             myViewHolder.kunjunganPart.setVisibility(View.VISIBLE);
             myViewHolder.penagihanPart.setVisibility(View.GONE);
-            myViewHolder.f2TotalPesananTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalPesanan())));
+            if(!dataReportSuma.getTotalPesanan().equals("null") && !dataReportSuma.getTotalPesanan().equals("") && !dataReportSuma.equals(null)){
+                myViewHolder.f2TotalPesananTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalPesanan())));
+            } else {
+                myViewHolder.f2TotalPesananTV.setText("Pada SP");
+            }
             myViewHolder.f2TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
         } else if(dataReportSuma.getTipeLaporan().equals("3")){
             myViewHolder.rencanaKunjunganPart.setVisibility(View.GONE);

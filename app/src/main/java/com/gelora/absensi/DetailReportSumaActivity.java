@@ -3,6 +3,8 @@ package com.gelora.absensi;
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -15,14 +17,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.ResultReceiver;
+import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -30,6 +38,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -37,6 +46,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.support.FilePathimage;
+import com.gelora.absensi.support.ImagePickerActivity;
 import com.gelora.absensi.support.StatusBarColorManager;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -58,8 +69,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
+import net.gotev.uploadservice.MultipartUploadRequest;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -74,15 +91,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart;
-    RelativeLayout updateRealisasiPart;
+    LinearLayout realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiPart;
     SharedPrefManager sharedPrefManager;
     ExpandableLayout updateRealisasiForm;
     RequestQueue requestQueue;
-    TextView tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
+    TextView labelLampiranTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
     String idReport = "";
     SwipeRefreshLayout refreshLayout;
     SharedPrefAbsen sharedPrefAbsen;
@@ -95,7 +112,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     ResultReceiver resultReceiver;
     Context mContext;
     Activity mActivity;
-    String locationNow = "";
+    String locationNow = "", salesLat = "", salesLong = "";
+    int REQUEST_IMAGE = 100;
+    private Uri uri;
+    KAlertDialog pDialog;
+    private int i = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,6 +158,12 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         updateRealisasiForm = findViewById(R.id.update_realisasi_form);
         updateRealisasiPart = findViewById(R.id.update_realisasi_part);
         gpsRealisasiBTN = findViewById(R.id.gps_realisasi_btn);
+        detailLocationRealisasiTV = findViewById(R.id.detail_location_realisasi_tv);
+        fotoLampiranRealisasiBTN = findViewById(R.id.foto_lampiran_realisasi_btn);
+        viewLampiranRealisasiBTN = findViewById(R.id.view_lampiran_realisasi_btn);
+        labelLampiranTV = findViewById(R.id.label_lampiran_tv);
+        submitRealisasiBTN = findViewById(R.id.submit_realisasi_btn);
+        realMark = findViewById(R.id.real_mark);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -183,6 +210,92 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             }
         });
 
+        fotoLampiranRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dexterCall();
+            }
+        });
+
+        submitRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!salesLat.equals("") && !salesLong.equals("") && !String.valueOf(uri).equals("null")){
+                    new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Update realisasi sekarang?")
+                            .setCancelText("TIDAK")
+                            .setConfirmText("   YA   ")
+                            .showCancelButton(true)
+                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                    pDialog = new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                    pDialog.show();
+                                    pDialog.setCancelable(false);
+                                    new CountDownTimer(1300, 800) {
+                                        public void onTick(long millisUntilFinished) {
+                                            i++;
+                                            switch (i) {
+                                                case 0:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien));
+                                                    break;
+                                                case 1:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien2));
+                                                    break;
+                                                case 2:
+                                                case 6:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien3));
+                                                    break;
+                                                case 3:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien4));
+                                                    break;
+                                                case 4:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien5));
+                                                    break;
+                                                case 5:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien6));
+                                                    break;
+                                            }
+                                        }
+                                        public void onFinish() {
+                                            i = -1;
+                                            submitRealisasi();
+                                        }
+                                    }.start();
+                                }
+                            })
+                            .show();
+
+                } else {
+                    new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap unggah lampiran dan pastikan posisi GPS sesuai!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
+            }
+        });
+
     }
 
     @Override
@@ -200,6 +313,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         } else {
             mMap.clear();
             getData();
+            userPosition();
         }
     }
 
@@ -213,6 +327,13 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 // GPS location can be null if GPS is switched off
                 if (location != null) {
                     Log.e("TAG", "GPS is on" + String.valueOf(location));
+                    salesLat = String.valueOf(location.getLatitude());
+                    salesLong = String.valueOf(location.getLongitude());
+
+                    Location getLoc = new Location("dummyProvider");
+                    getLoc.setLatitude(location.getLatitude());
+                    getLoc.setLongitude(location.getLongitude());
+                    new ReverseGeocodingTaskRealisasi().execute(getLoc);
                 }  else {
                     gpsEnableAction();
                 }
@@ -259,6 +380,255 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             }
         });
 
+    }
+
+    private void submitRealisasi(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://reporting.sumasistem.co.id/api/update_realisasi";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")) {
+                                String idLaporan = data.getString("idLaporan");
+                                String filename = data.getString("file_name");
+                                uploadLampiran(filename, idLaporan);
+                            } else {
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Error.Response", error.toString());
+                        pDialog.setTitleText("Gagal Terkirim")
+                                .setConfirmText("    OK    ")
+                                .changeAlertType(KAlertDialog.ERROR_TYPE);
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id_report", idReport);
+                params.put("latitude", salesLat);
+                params.put("longitude", salesLong);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void uploadLampiran(String filename, String idReport) {
+        String path = FilePathimage.getPath(this, uri);
+        String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_lampiran";
+
+        if (path == null) {
+            Toast.makeText(this, "Please move your image file to internal storage and retry", Toast.LENGTH_LONG).show();
+        } else {
+            String uploadId = UUID.randomUUID().toString();
+            try {
+                new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
+                        .addFileToUpload(path, "image")
+                        .addParameter("filename", filename)
+                        .setMaxRetries(2)
+                        .startUpload();
+                pDialog.dismiss();
+                updateRealisasiPart.setVisibility(View.GONE);
+
+                getData();
+            } catch (Exception exc) {
+                Log.e("UploadError", "Error uploading file", exc);
+            }
+
+        }
+    }
+
+    private void dexterCall(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Dexter.withActivity(DetailReportSumaActivity.this)
+                    .withPermissions(Manifest.permission.CAMERA, Manifest.permission.READ_MEDIA_IMAGES)
+                    .withListener(new MultiplePermissionsListener() {
+                        @Override
+                        public void onPermissionsChecked(MultiplePermissionsReport report) {
+                            if (report.areAllPermissionsGranted()) {
+                                showImagePickerOptions();
+                            }
+                            if (report.isAnyPermissionPermanentlyDenied()) {
+                                showSettingsDialog();
+                            }
+                        }
+                        @Override
+                        public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                            token.continuePermissionRequest();
+                        }
+                    }).check();
+        } else {
+            Dexter.withActivity(DetailReportSumaActivity.this)
+                    .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    .withListener(new MultiplePermissionsListener() {
+                        @Override
+                        public void onPermissionsChecked(MultiplePermissionsReport report) {
+                            if (report.areAllPermissionsGranted()) {
+                                showImagePickerOptions();
+                            }
+                            if (report.isAnyPermissionPermanentlyDenied()) {
+                                showSettingsDialog();
+                            }
+                        }
+                        @Override
+                        public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                            token.continuePermissionRequest();
+                        }
+                    }).check();
+        }
+    }
+
+    private void showImagePickerOptions() {
+        ImagePickerActivity.showImagePickerOptions(this, new ImagePickerActivity.PickerOptionListener() {
+            @Override
+            public void onTakeCameraSelected() {
+                launchCameraIntent();
+            }
+            @Override
+            public void onChooseGallerySelected() {
+                launchGalleryIntent();
+            }
+        }, "suma_report");
+    }
+
+    private void showSettingsDialog() {
+        androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(DetailReportSumaActivity.this);
+        builder.setTitle(getString(R.string.dialog_permission_title));
+        builder.setMessage(getString(R.string.dialog_permission_message));
+        builder.setPositiveButton(getString(R.string.go_to_settings), (dialog, which) -> {
+            dialog.cancel();
+            openSettings();
+        });
+        builder.setNegativeButton(getString(android.R.string.cancel), (dialog, which) -> dialog.cancel());
+        builder.show();
+    }
+
+    private void launchCameraIntent() {
+        Intent intent = new Intent(DetailReportSumaActivity.this, ImagePickerActivity.class);
+        intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_IMAGE_CAPTURE);
+        // setting aspect ratio
+        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 4); // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 6);
+        // setting maximum bitmap width and height
+        intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 600);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 900);
+        startActivityForResult(intent, REQUEST_IMAGE);
+    }
+
+    private void launchGalleryIntent() {
+        Intent intent = new Intent(DetailReportSumaActivity.this, ImagePickerActivity.class);
+        intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_GALLERY_IMAGE);
+        // setting aspect ratio
+        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 4); // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 6);
+        startActivityForResult(intent, REQUEST_IMAGE);
+    }
+
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        String file_directori = getRealPathFromURIPath(uri, DetailReportSumaActivity.this);
+        startActivityForResult(intent, REQUEST_IMAGE);
+    }
+
+    private String getRealPathFromURIPath(Uri contentURI, Activity activity) {
+        @SuppressLint("Recycle")
+        Cursor cursor = activity.getContentResolver().query(contentURI, null, null, null, null);
+        if (cursor == null) {
+            return contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            return cursor.getString(idx);
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE) {
+            if (resultCode == Activity.RESULT_OK) {
+                uri = data.getParcelableExtra("path");
+                String stringUri = String.valueOf(uri);
+                String extension = stringUri.substring(stringUri.lastIndexOf("."));
+                try {
+                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")||extension.equals(".png")||extension.equals(".PNG")){
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                        String file_directori = getRealPathFromURIPath(uri, DetailReportSumaActivity.this);
+                        String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
+                        Log.e("PaRSE JSON", a);
+
+                        viewLampiranRealisasiBTN.setVisibility(View.VISIBLE);
+                        labelLampiranTV.setText("Ubah Lampiran");
+                        viewLampiranRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageActivity.class);
+                                intent.putExtra("url", String.valueOf(uri));
+                                intent.putExtra("kode", "form");
+                                intent.putExtra("jenis_form", "suma");
+                                startActivity(intent);
+                            }
+                        });
+
+                    } else {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Format file tidak sesuai!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        }, 800);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     private String getTimeH() {
@@ -383,8 +753,10 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     String statusRealisasi = dataArray.getString("statusRealisasi");
                                     if(statusRealisasi.equals("0")){
                                         updateRealisasiPart.setVisibility(View.VISIBLE);
+                                        realMark.setVisibility(View.GONE);
                                     } else if(statusRealisasi.equals("1")){
                                         updateRealisasiPart.setVisibility(View.GONE);
+                                        realMark.setVisibility(View.VISIBLE);
                                     }
 
                                 } else if(tipeLaporan.equals("2")){
@@ -678,7 +1050,6 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
     @SuppressLint("StaticFieldLeak")
     private class ReverseGeocodingTask extends AsyncTask<Location, Void, String> {
-
         @Override
         protected String doInBackground(Location... params) {
             Location location = params[0];
@@ -713,6 +1084,46 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             } else {
                 Log.e(TAG, "Alamat tidak ditemukan");
                 detailLocationTV.setText("Alamat tidak ditemukan");
+            }
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class ReverseGeocodingTaskRealisasi extends AsyncTask<Location, Void, String> {
+        @Override
+        protected String doInBackground(Location... params) {
+            Location location = params[0];
+            String addressText = "";
+
+            Geocoder geocoder = new Geocoder(DetailReportSumaActivity.this, Locale.getDefault());
+
+            try {
+                List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                if (addresses != null && addresses.size() > 0) {
+                    Address address = addresses.get(0);
+                    StringBuilder addressBuilder = new StringBuilder();
+                    for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
+                        addressBuilder.append(address.getAddressLine(i)).append(", ");
+                    }
+                    addressText = addressBuilder.toString();
+                }
+            } catch (IOException e) {
+                Log.e(TAG, "Error fetching address: " + e.getMessage());
+            }
+
+            return addressText;
+        }
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        protected void onPostExecute(String address) {
+            super.onPostExecute(address);
+            if (!address.isEmpty()) {
+                Log.d(TAG, "Alamat: " + address);
+                detailLocationRealisasiTV.setText(address.substring(0,address.length()-2));
+            } else {
+                Log.e(TAG, "Alamat tidak ditemukan");
+                detailLocationRealisasiTV.setText("Alamat tidak ditemukan");
             }
         }
     }
