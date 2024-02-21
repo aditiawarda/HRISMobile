@@ -165,6 +165,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     ImageView loadingForm, loadingGif, loadingGifProduk, successGif;
     String salesLat = "", salesLong = "", categoryReport = "", laporanTerkirim = "", fullBase64String = "";
 
+    int totalLaporan = 0;
     private List<String> dataProduct = new ArrayList<>();
     private AdapterProductInputSuma adapterProductInputSuma;
     private static final int INITIAL_REQUEST = 1337;
@@ -2604,6 +2605,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                                     JSONObject prodctData = new JSONObject();
                                     try {
                                         int grandTotal = 0;
+
                                         for (int i = 0; i < mainData.length(); i++) {
                                             JSONObject dataRecap = new JSONObject();
                                             data = mainData.getJSONObject(i);
@@ -2623,6 +2625,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                                                 }
                                             }
                                         }
+
+                                        totalLaporan = grandTotal;
 
                                         String jsonString = jsonArray.toString();
                                         GsonBuilder builder = new GsonBuilder();
@@ -2770,6 +2774,9 @@ public class ReportSumaActivity extends AppCompatActivity {
             String[] arrayData = array[i].split("/");
             jumlah += Integer.parseInt(arrayData[4]);
         }
+        totalLaporan = jumlah;
+
+
 
         f2TotalPesananTV.setText(decimalFormat.format(jumlah));
     }
@@ -3074,6 +3081,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     }
 
     private void submitLaporan(){
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://reporting.sumasistem.co.id/api/create_suma_report";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -3113,8 +3121,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                                 }
 
                             } else {
+
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
+                                Log.d("Error Mang: ", response.toString());
+
                                 pDialog.setTitleText("Gagal Terkirim")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
@@ -3180,6 +3191,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     params.put("latitude", salesLat);
                     params.put("longitude", salesLong);
                     params.put("created_at", getTimeStamp());
+                    params.put("total_laporan", String.valueOf(totalLaporan));
 
                     params.put("data_produk", listToString(dataProduct));
                 } else if(categoryReport.equals("3")){
@@ -3189,9 +3201,13 @@ public class ReportSumaActivity extends AppCompatActivity {
                     params.put("keterangan", f3KeteranganED.getText().toString());
                     params.put("latitude", salesLat);
                     params.put("longitude", salesLong);
+
+
+                    params.put("total_laporan", String.valueOf(totalLaporan));
+
                     params.put("created_at", getTimeStamp());
                 }
-
+                Log.d("Params Cek", params.toString());
                 return params;
             }
         };
