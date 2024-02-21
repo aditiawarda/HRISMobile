@@ -57,7 +57,7 @@ public class AdapterPelangganList extends RecyclerView.Adapter<AdapterPelangganL
         myViewHolder.teleponPelangganLamaTV.setText(pelangganList.getTeleponPelanggan());
         myViewHolder.keteranganKunjunganTV.setText(pelangganList.getKeteranganKunjunganPelanggan());
 
-        myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
+        myViewHolder.deleteBTN.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
@@ -78,7 +78,7 @@ public class AdapterPelangganList extends RecyclerView.Adapter<AdapterPelangganL
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView kategoriPelangganTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganLamaTV, keteranganKunjunganTV;
-        LinearLayout parentPart;
+        LinearLayout parentPart, deleteBTN;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parentPart = itemView.findViewById(R.id.parent_part);
@@ -88,6 +88,7 @@ public class AdapterPelangganList extends RecyclerView.Adapter<AdapterPelangganL
             picPelangganTV = itemView.findViewById(R.id.pic_pelanggan_tv);
             teleponPelangganLamaTV = itemView.findViewById(R.id.telepon_pelanggan_lama_tv);
             keteranganKunjunganTV = itemView.findViewById(R.id.keterangan_kunjungan_tv);
+            deleteBTN = itemView.findViewById(R.id.delete_btn);
         }
     }
 }

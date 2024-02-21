@@ -359,7 +359,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     String file = dataArray.getString("file");
                                 } else if(tipeLaporan.equals("3")){
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
-                                    reportKategoriTV.setText("PENAGIHAN");
+                                    reportKategoriTV.setText("AKTIVITAS PENAGIHAN");
                                     tglRencanaPart.setVisibility(View.GONE);
 
                                     String file = dataArray.getString("file");
