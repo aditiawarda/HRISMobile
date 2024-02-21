@@ -478,7 +478,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 dateBTN.setVisibility(View.GONE);
                 categoryCode = "2";
-                categoryChoiceTV.setText("Kunjungan");
+                categoryChoiceTV.setText("Laporan Kunjungan");
                 markSemua.setVisibility(View.GONE);
                 markRencanaKunjungan.setVisibility(View.GONE);
                 markKunjungan.setVisibility(View.VISIBLE);
@@ -845,7 +845,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 categoryChoiceTV.setText("Rencana Kunjungan");
             } else if(categoryCode.equals("2")) {
                 dateBTN.setVisibility(View.GONE);
-                categoryChoiceTV.setText("Kunjungan");
+                categoryChoiceTV.setText("Laporan Kunjungan");
             } else if(categoryCode.equals("4")) {
                 dateBTN.setVisibility(View.GONE);
                 categoryChoiceTV.setText("Penawaran");
