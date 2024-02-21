@@ -270,7 +270,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     viewLampiranBTN.setVisibility(View.GONE);
                                     reportKategoriTV.setText("RENCANA KUNJUNGAN");
                                     tglRencanaPart.setVisibility(View.VISIBLE);
-                                    String tgl_rencana = dataArray.getString("tgl_rencana");
+                                    String tgl_rencana = dataArray.getString("tanggalRencana");
 
                                     String input_date = tgl_rencana;
                                     @SuppressLint("SimpleDateFormat")
