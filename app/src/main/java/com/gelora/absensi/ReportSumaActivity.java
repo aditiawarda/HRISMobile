@@ -160,7 +160,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     private DataInvoicePiutang[] dataInvoicePiutangs;
     private AdapterInvoicePiutang adapterInvoicePiutang;
 
-    TextView reportKategoriChoiceTV, namaKaryawanTV, nikKaryawanTV;
+    TextView viewPermohonanTV, reportKategoriChoiceTV, namaKaryawanTV, nikKaryawanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -205,6 +205,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         successPart = findViewById(R.id.success_submit);
         successGif = findViewById(R.id.success_gif);
         viewPermohonanBTN = findViewById(R.id.view_permohonan_btn);
+        viewPermohonanTV = findViewById(R.id.view_permohonan_tv);
 
         f1KeteranganKunjunganED = findViewById(R.id.f1_keterangan_kunjungan_ed);
         f1ChoiceDateBTN = findViewById(R.id.f1_choice_date_btn);
@@ -840,6 +841,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                                         public void onFinish() {
                                             i = -1;
                                             submitLaporan();
+                                            Log.d("Data Customer : ", f1JsonArrayPelanggan.toString());
                                         }
                                     }.start();
 
@@ -3172,12 +3174,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                                     formPart.setVisibility(View.GONE);
                                     pDialog.dismiss();
 
+                                    viewPermohonanTV.setText("OK");
                                     viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            Intent intent = new Intent(ReportSumaActivity.this, DetailReportSumaActivity.class);
-                                            intent.putExtra("report_id",idLaporan);
-                                            startActivity(intent);
+                                           onBackPressed();
                                         }
                                     });
                                 } else if(categoryReport.equals("2")){
@@ -3224,8 +3225,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                 if(categoryReport.equals("1")){
                     params.put("kategori_laporan", categoryReport);
                     params.put("tanggal_rencana", f1DateChoice);
-                    // params.put("keterangan_kunjungan", f1KeteranganKunjunganED.getText().toString());
-                    // params.put("tipe_pelanggan", f1JenisPelanggan);
                     params.put("list_pelanggan", f1JsonArrayPelanggan.toString());
                     params.put("nik_sales", sharedPrefManager.getSpNik());
                     params.put("created_at", getTimeStamp());
@@ -3271,14 +3270,9 @@ public class ReportSumaActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     public void uploadLampiran(String filename, String idReport) {
         String path = FilePathimage.getPath(this, uri);
-
-        // String url = "https://reporting.sumasistem.co.id/api/attachment_upload";
-        // File imageFile = new File(path);
-        // ImageUploadTask uploadTask = new ImageUploadTask(url, idReport, imageFile);
-        // uploadTask.execute();
-
         String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_lampiran";
 
         if (path == null) {
@@ -3297,6 +3291,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 formPart.setVisibility(View.GONE);
                 pDialog.dismiss();
 
+                viewPermohonanTV.setText("LIHAT DETAIL LAPORAN");
                 viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
