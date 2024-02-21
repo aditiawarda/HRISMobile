@@ -128,7 +128,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     LinearLayout viewPermohonanBTN, formPart, successPart, loadingDataPart, loadingDataPartProduk, noDataPart, noDataPartProduk, startAttantionPart, startAttantionPartProduk, penawaranBTN, kunjunganBTN, penagihanBTN, rencanaKunjunaganBTN, markKunjungan, markPenawaran, markPenagihan, markRencanaKunjungan;
 
     EditText f1KeteranganKunjunganED, f1NamaPelangganBaruED, f1AlamatPelangganBaruED, f1PicPelangganBaruED, f1TeleponPelangganBaruED;
-    LinearLayout f1ChoiceDateBTN, f1DetailPelanggan, f1NamaPelangganLamaBTN, f1SubmitPesananBTN, f1PelangganAttantionPart, f1PelangganBaruPart, f1PelangganLamaPart;
+    LinearLayout f1AddPelangganBTN, f1AddPelangganPart, f1ChoiceDateBTN, f1DetailPelanggan, f1NamaPelangganLamaBTN, f1SubmitPesananBTN, f1PelangganAttantionPart, f1PelangganBaruPart, f1PelangganLamaPart;
     RadioGroup f1PelangganOption;
     RadioButton f1PelangganOptionBaru, f1PelangganOptionLama;
     String f1DateChoice = "", f1JenisPelanggan = "", f1IdPelangganLama = "";
@@ -222,6 +222,8 @@ public class ReportSumaActivity extends AppCompatActivity {
         f1AlamatPelangganBaruED = findViewById(R.id.f1_alamat_pelanggan_baru_ed);
         f1PicPelangganBaruED = findViewById(R.id.f1_pic_pelanggan_baru_ed);
         f1TeleponPelangganBaruED = findViewById(R.id.f1_telepon_pelanggan_baru_ed);
+        f1AddPelangganPart = findViewById(R.id.f1_add_pelanggan_part);
+        f1AddPelangganBTN = findViewById(R.id.f1_add_pelanggan_btn);
 
         f2KeteranganKunjunganED = findViewById(R.id.f2_keterangan_kunjungan_ed);
         f2PelangganAttantionPart = findViewById(R.id.f2_pelanggan_attantion);
@@ -346,6 +348,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f1AlamatPelangganBaruED.setText("");
                 f1PicPelangganBaruED.setText("");
                 f1TeleponPelangganBaruED.setText("");
+                f1AddPelangganPart.setVisibility(View.GONE);
 
                 f2KeteranganKunjunganED.setText("");
                 f2PelangganOption.clearCheck();
@@ -467,6 +470,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1AlamatPelangganLamaTV.setText("");
                     f1PicPelangganLamaTV.setText("");
                     f1TeleponPelangganLamaTV.setText("");
+                    f1AddPelangganPart.setVisibility(View.VISIBLE);
                 } else if (f1PelangganOptionLama.isChecked()) {
                     f1JenisPelanggan = "2";
                     f1PelangganBaruPart.setVisibility(View.GONE);
@@ -476,6 +480,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1AlamatPelangganBaruED.setText("");
                     f1PicPelangganBaruED.setText("");
                     f1TeleponPelangganBaruED.setText("");
+                    f1AddPelangganPart.setVisibility(View.GONE);
                 }
             }
         });
@@ -484,6 +489,18 @@ public class ReportSumaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 f1PelangganLamaBottomSheet();
+            }
+        });
+
+        f1AddPelangganBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})
+            @Override
+            public void onClick(View v) {
+                if (f1JenisPelanggan.equals("1")) {
+
+                } else if (f1JenisPelanggan.equals("2")) {
+
+                }
             }
         });
 
@@ -1254,6 +1271,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1AlamatPelangganLamaTV.setText("");
                         f1PicPelangganLamaTV.setText("");
                         f1TeleponPelangganLamaTV.setText("");
+                        f1AddPelangganPart.setVisibility(View.GONE);
 
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
@@ -1380,6 +1398,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1AlamatPelangganLamaTV.setText("");
                         f1PicPelangganLamaTV.setText("");
                         f1TeleponPelangganLamaTV.setText("");
+                        f1AddPelangganPart.setVisibility(View.GONE);
 
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
@@ -1506,6 +1525,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1AlamatPelangganLamaTV.setText("");
                         f1PicPelangganLamaTV.setText("");
                         f1TeleponPelangganLamaTV.setText("");
+                        f1AddPelangganPart.setVisibility(View.GONE);
 
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
@@ -1632,6 +1652,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1AlamatPelangganLamaTV.setText("");
                         f1PicPelangganLamaTV.setText("");
                         f1TeleponPelangganLamaTV.setText("");
+                        f1AddPelangganPart.setVisibility(View.GONE);
 
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
@@ -2491,6 +2512,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f1DetailPelanggan.setVisibility(View.VISIBLE);
 
                 f1NamaPelangganLamaChoiceTV.setText(namaPelangganLama);
+                f1AddPelangganPart.setVisibility(View.VISIBLE);
 
                 InputMethodManager imm = (InputMethodManager) ReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
                 View view = ReportSumaActivity.this.getCurrentFocus();

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/parent_part"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp"
+        android:paddingBottom="17dp"
+        android:background="@drawable/shape_notifikasi"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginBottom="-20dp"
+            android:layout_marginTop="-30dp"
+            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_height="wrap_content"
+            tools:ignore="RtlHardcoded,VisualLintBounds">
+
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:background="@drawable/shape_ornament_1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/f1_pelanggan_lama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/f1_detail_pelanggan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:orientation="vertical"
+                            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                            <TextView
+                                android:id="@+id/kategori_pelanggan_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:lineSpacingExtra="2dp"
+                                android:text="Memuat data..."
+                                android:textColor="#555555"
+                                android:textSize="13dp"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1.5dp"
+                                android:layout_marginTop="12dp"
+                                android:background="#3CCFCFCF" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical"
+                            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="Nama Pelanggan :"
+                                android:textColor="#696969"
+                                android:textSize="12dp"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                            <TextView
+                                android:id="@+id/nama_pelanggan_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="2dp"
+                                android:text="Memuat data..."
+                                android:textColor="#555555"
+                                android:textSize="13dp"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1.5dp"
+                                android:layout_marginTop="12dp"
+                                android:background="#3CCFCFCF" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical"
+                            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="Alamat :"
+                                android:textColor="#696969"
+                                android:textSize="12dp"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                            <TextView
+                                android:id="@+id/alamat_pelanggan_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="2dp"
+                                android:text="Memuat data..."
+                                android:textColor="#555555"
+                                android:textSize="13dp"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1.5dp"
+                                android:layout_marginTop="12dp"
+                                android:background="#3CCFCFCF" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical"
+                            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="PIC :"
+                                android:textColor="#696969"
+                                android:textSize="12dp"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                            <TextView
+                                android:id="@+id/pic_pelanggan_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="2dp"
+                                android:text="Memuat data..."
+                                android:textColor="#555555"
+                                android:textSize="13dp"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1.5dp"
+                                android:layout_marginTop="12dp"
+                                android:background="#3CCFCFCF" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical"
+                            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="Telepon :"
+                                android:textColor="#696969"
+                                android:textSize="12dp"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                            <TextView
+                                android:id="@+id/f1_telepon_pelanggan_lama_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="2dp"
+                                android:text="Memuat data..."
+                                android:textColor="#555555"
+                                android:textSize="13dp"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1.5dp"
+                                android:layout_marginTop="12dp"
+                                android:background="#3CCFCFCF" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical"
+                            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="Keterangan Kunjungan :"
+                                android:textColor="#696969"
+                                android:textSize="12dp"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                            <TextView
+                                android:id="@+id/keterangan_kunjungan_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="2dp"
+                                android:text="Memuat data..."
+                                android:textColor="#555555"
+                                android:textSize="13dp"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/delete_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/shape_btn_gray"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="7dp"
+                    android:drawableTint="#C35830"
+                    android:text="Hapus Pesanan Produk"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml,TextContrastCheck" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
