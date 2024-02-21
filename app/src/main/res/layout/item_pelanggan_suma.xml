@@ -106,8 +106,9 @@
                                 android:layout_height="wrap_content"
                                 android:lineSpacingExtra="2dp"
                                 android:text="Memuat data..."
-                                android:textColor="#555555"
+                                android:textColor="#B15735"
                                 android:textSize="13dp"
+                                android:textStyle="bold"
                                 tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                             <LinearLayout

@@ -59,9 +59,9 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         if (dataReportSuma.getTipeLaporan().equals("1")) {
             myViewHolder.reportCategoryTV.setText("Rencana Kunjungan");
         } else if (dataReportSuma.getTipeLaporan().equals("2")) {
-            myViewHolder.reportCategoryTV.setText("Kunjungan");
+            myViewHolder.reportCategoryTV.setText("Laporan Kunjungan");
         } else if (dataReportSuma.getTipeLaporan().equals("3")) {
-            myViewHolder.reportCategoryTV.setText("Penagihan");
+            myViewHolder.reportCategoryTV.setText("Aktivitas Penagihan");
         } else if (dataReportSuma.getTipeLaporan().equals("4")) {
             myViewHolder.reportCategoryTV.setText("Penawaran");
         }
