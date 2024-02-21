@@ -63,15 +63,16 @@ import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterInvoicePiutang;
 import com.gelora.absensi.adapter.AdapterPelangganLama;
+import com.gelora.absensi.adapter.AdapterPelangganList;
 import com.gelora.absensi.adapter.AdapterProductInputSuma;
 import com.gelora.absensi.adapter.AdapterProductSuma;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataInvoicePiutang;
 import com.gelora.absensi.model.PelangganLama;
+import com.gelora.absensi.model.PelangganList;
 import com.gelora.absensi.model.ProductSuma;
 import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
-import com.gelora.absensi.support.ImageUploadTask;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -103,7 +104,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
@@ -133,6 +133,10 @@ public class ReportSumaActivity extends AppCompatActivity {
     RadioButton f1PelangganOptionBaru, f1PelangganOptionLama;
     String f1DateChoice = "", f1JenisPelanggan = "", f1IdPelangganLama = "";
     TextView f1ChoiceDateTV, f1NamaPelangganLamaChoiceTV, f1LabelLampiranTV, f1TotalPesananTV, f1SubTotalTV, f1AlamatPelangganLamaTV, f1PicPelangganLamaTV, f1TeleponPelangganLamaTV;
+    RecyclerView f1PelangganRV;
+    JSONArray f1JsonArrayPelanggan = new JSONArray();
+    private PelangganList[] pelangganLists;
+    private AdapterPelangganList adapterPelangganList;
 
     EditText f2KeteranganKunjunganED, keywordED, keywordEDProduk, f2NamaPelangganBaruED, f2AlamatPelangganBaruED, f2PicPelangganBaruED, f2TeleponPelangganBaruED;
     LinearLayout f2SubmitPesananBTN, f2GPSLocationBTN, f2ViewLampiranBTN, f2LampiranFotoBTN, f2ProductInputDetailPart, f2AddProductBTN, f2ProductChoiceBTN, f2DetailPesananPart, f2DetailPelanggan, f2NamaPelangganLamaBTN, f2PelangganAttantionPart, f2PelangganBaruPart, f2PelangganLamaPart;
@@ -224,6 +228,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f1TeleponPelangganBaruED = findViewById(R.id.f1_telepon_pelanggan_baru_ed);
         f1AddPelangganPart = findViewById(R.id.f1_add_pelanggan_part);
         f1AddPelangganBTN = findViewById(R.id.f1_add_pelanggan_btn);
+        f1PelangganRV = findViewById(R.id.item_pelanggan_rv);
 
         f2KeteranganKunjunganED = findViewById(R.id.f2_keterangan_kunjungan_ed);
         f2PelangganAttantionPart = findViewById(R.id.f2_pelanggan_attantion);
@@ -307,6 +312,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(pelangganLamaBroad, new IntentFilter("pelanggan_lama_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(productSumaBroad, new IntentFilter("product_suma_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(productDeleteBroad, new IntentFilter("product_delete_broad"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(removePelanggan, new IntentFilter("remove_pelanggan_list"));
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -332,7 +338,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f1KeteranganKunjunganED.setText("");
                 f1PelangganOption.clearCheck();
                 f1PelangganAttantionPart.setVisibility(View.VISIBLE);
-                f1SubmitPesananBTN.setVisibility(View.GONE);
                 f1PelangganBaruPart.setVisibility(View.GONE);
                 f1PelangganLamaPart.setVisibility(View.GONE);
                 f1DateChoice = "";
@@ -349,6 +354,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f1PicPelangganBaruED.setText("");
                 f1TeleponPelangganBaruED.setText("");
                 f1AddPelangganPart.setVisibility(View.GONE);
+                f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
                 f2KeteranganKunjunganED.setText("");
                 f2PelangganOption.clearCheck();
@@ -458,7 +464,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 f1KeteranganKunjunganED.clearFocus();
                 f1PelangganAttantionPart.setVisibility(View.GONE);
-                f1SubmitPesananBTN.setVisibility(View.VISIBLE);
                 if (f1PelangganOptionBaru.isChecked()) {
                     f1JenisPelanggan = "1";
                     f1PelangganBaruPart.setVisibility(View.VISIBLE);
@@ -497,9 +502,104 @@ public class ReportSumaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (f1JenisPelanggan.equals("1")) {
+                    if(!f1NamaPelangganBaruED.getText().toString().equals("") && !f1AlamatPelangganBaruED.getText().toString().equals("") && !f1PicPelangganBaruED.getText().toString().equals("") && !f1TeleponPelangganBaruED.getText().toString().equals("") && !f1KeteranganKunjunganED.getText().toString().equals("")){
+                        JSONObject dataPelangganBaru = new JSONObject();
+                        try {
+                            dataPelangganBaru.put("idPelanggan", "null");
+                            dataPelangganBaru.put("kategoriPelanggan", f1JenisPelanggan);
+                            dataPelangganBaru.put("namaPelanggan", f1NamaPelangganBaruED.getText().toString());
+                            dataPelangganBaru.put("alamatPelanggan", f1AlamatPelangganBaruED.getText().toString());
+                            dataPelangganBaru.put("picPelanggan", f1PicPelangganBaruED.getText().toString());
+                            dataPelangganBaru.put("teleponPelanggan", f1TeleponPelangganBaruED.getText().toString());
+                            dataPelangganBaru.put("keteranganKunjunganPelanggan", f1KeteranganKunjunganED.getText().toString());
+                            f1JsonArrayPelanggan.put(dataPelangganBaru);
 
+                            f1PelangganOption.clearCheck();
+                            f1JenisPelanggan = "";
+                            f1NamaPelangganBaruED.setText("");
+                            f1AlamatPelangganBaruED.setText("");
+                            f1PicPelangganBaruED.setText("");
+                            f1TeleponPelangganBaruED.setText("");
+                            f1KeteranganKunjunganED.setText("");
+                            f1PelangganAttantionPart.setVisibility(View.VISIBLE);
+                            f1PelangganLamaPart.setVisibility(View.GONE);
+                            f1PelangganBaruPart.setVisibility(View.GONE);
+                            f1AddPelangganPart.setVisibility(View.GONE);
+
+                            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                            f1NamaPelangganLamaChoiceTV.setText("");
+                            f1DetailPelanggan.setVisibility(View.GONE);
+                            f1AlamatPelangganLamaTV.setText("");
+                            f1PicPelangganLamaTV.setText("");
+                            f1TeleponPelangganLamaTV.setText("");
+
+                            updateListPelanggan(f1JsonArrayPelanggan.toString());
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else {
+                        new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi semua data pelanggan baru!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
                 } else if (f1JenisPelanggan.equals("2")) {
+                    if(!f1IdPelangganLama.equals("") && !f1KeteranganKunjunganED.getText().toString().equals("")){
+                        JSONObject dataPelangganLama = new JSONObject();
+                        try {
+                            dataPelangganLama.put("idPelanggan", f1IdPelangganLama);
+                            dataPelangganLama.put("kategoriPelanggan", f1JenisPelanggan);
+                            dataPelangganLama.put("namaPelanggan", f1NamaPelangganLamaChoiceTV.getText().toString());
+                            dataPelangganLama.put("alamatPelanggan", f1AlamatPelangganLamaTV.getText().toString());
+                            dataPelangganLama.put("picPelanggan", f1PicPelangganLamaTV.getText().toString());
+                            dataPelangganLama.put("teleponPelanggan", f1TeleponPelangganLamaTV.getText().toString());
+                            dataPelangganLama.put("keteranganKunjunganPelanggan", f1KeteranganKunjunganED.getText().toString());
+                            f1JsonArrayPelanggan.put(dataPelangganLama);
 
+                            f1PelangganOption.clearCheck();
+                            f1JenisPelanggan = "";
+
+                            f1NamaPelangganBaruED.setText("");
+                            f1AlamatPelangganBaruED.setText("");
+                            f1PicPelangganBaruED.setText("");
+                            f1TeleponPelangganBaruED.setText("");
+                            f1KeteranganKunjunganED.setText("");
+                            f1PelangganAttantionPart.setVisibility(View.VISIBLE);
+                            f1PelangganLamaPart.setVisibility(View.GONE);
+                            f1PelangganBaruPart.setVisibility(View.GONE);
+                            f1AddPelangganPart.setVisibility(View.GONE);
+
+                            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                            f1NamaPelangganLamaChoiceTV.setText("");
+                            f1DetailPelanggan.setVisibility(View.GONE);
+                            f1AlamatPelangganLamaTV.setText("");
+                            f1PicPelangganLamaTV.setText("");
+                            f1TeleponPelangganLamaTV.setText("");
+
+                            updateListPelanggan(f1JsonArrayPelanggan.toString());
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else {
+                        new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi semua data!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
                 }
             }
         });
@@ -1180,7 +1280,6 @@ public class ReportSumaActivity extends AppCompatActivity {
         markPenawaran = findViewById(R.id.mark_penawaran);
         markPenagihan = findViewById(R.id.mark_penagihan);
 
-
         if (categoryReport.equals("1")) {
             markRencanaKunjungan.setVisibility(View.VISIBLE);
             markKunjungan.setVisibility(View.GONE);
@@ -1259,7 +1358,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1KeteranganKunjunganED.setText("");
                         f1PelangganOption.clearCheck();
                         f1PelangganAttantionPart.setVisibility(View.VISIBLE);
-                        f1SubmitPesananBTN.setVisibility(View.GONE);
                         f1PelangganBaruPart.setVisibility(View.GONE);
                         f1PelangganLamaPart.setVisibility(View.GONE);
                         f1DateChoice = "";
@@ -1272,6 +1370,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1PicPelangganLamaTV.setText("");
                         f1TeleponPelangganLamaTV.setText("");
                         f1AddPelangganPart.setVisibility(View.GONE);
+                        f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
@@ -1386,7 +1485,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1KeteranganKunjunganED.setText("");
                         f1PelangganOption.clearCheck();
                         f1PelangganAttantionPart.setVisibility(View.VISIBLE);
-                        f1SubmitPesananBTN.setVisibility(View.GONE);
                         f1PelangganBaruPart.setVisibility(View.GONE);
                         f1PelangganLamaPart.setVisibility(View.GONE);
                         f1DateChoice = "";
@@ -1399,6 +1497,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1PicPelangganLamaTV.setText("");
                         f1TeleponPelangganLamaTV.setText("");
                         f1AddPelangganPart.setVisibility(View.GONE);
+                        f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
@@ -1513,7 +1612,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f2KeteranganKunjunganED.setText("");
                         f1PelangganOption.clearCheck();
                         f1PelangganAttantionPart.setVisibility(View.VISIBLE);
-                        f1SubmitPesananBTN.setVisibility(View.GONE);
                         f1PelangganBaruPart.setVisibility(View.GONE);
                         f1PelangganLamaPart.setVisibility(View.GONE);
                         f1DateChoice = "";
@@ -1526,6 +1624,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1PicPelangganLamaTV.setText("");
                         f1TeleponPelangganLamaTV.setText("");
                         f1AddPelangganPart.setVisibility(View.GONE);
+                        f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
@@ -1640,7 +1739,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f2KeteranganKunjunganED.setText("");
                         f1PelangganOption.clearCheck();
                         f1PelangganAttantionPart.setVisibility(View.VISIBLE);
-                        f1SubmitPesananBTN.setVisibility(View.GONE);
                         f1PelangganBaruPart.setVisibility(View.GONE);
                         f1PelangganLamaPart.setVisibility(View.GONE);
                         f1DateChoice = "";
@@ -1653,6 +1751,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1PicPelangganLamaTV.setText("");
                         f1TeleponPelangganLamaTV.setText("");
                         f1AddPelangganPart.setVisibility(View.GONE);
+                        f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
@@ -2777,6 +2876,50 @@ public class ReportSumaActivity extends AppCompatActivity {
         }
     };
 
+    public BroadcastReceiver removePelanggan = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String key = intent.getStringExtra("nama_pelanggan");
+
+            new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                    .setTitleText("Perhatian")
+                    .setContentText("Yakin untuk menghapus pelanggan?")
+                    .setCancelText("TIDAK")
+                    .setConfirmText("   YA   ")
+                    .showCancelButton(true)
+                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(KAlertDialog sDialog) {
+                            sDialog.dismiss();
+                        }
+                    })
+                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(KAlertDialog sDialog) {
+                            sDialog.dismiss();
+                            try {
+                                JSONObject jsonObject = new JSONObject(jsonString);
+                                JSONArray dataArray = jsonObject.getJSONArray("data");
+                                String valueToRemove = "RS-123456";
+
+                                // Menghapus elemen dari JSON array dengan nilai tertentu
+                                JSONArray modifiedArray = removeElementsByValue(dataArray, valueToRemove);
+
+                                // Mengonversi JSON array yang sudah dimodifikasi menjadi string
+                                String modifiedJsonString = modifiedArray.toString();
+
+                                // Mencetak JSON string yang sudah dimodifikasi
+                                Log.d("Modified JSON Array", modifiedJsonString);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    })
+                    .show();
+        }
+    };
+
     private void f2HitungTotalPesanan() {
         Locale localeID = new Locale("id", "ID");
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
@@ -3323,14 +3466,23 @@ public class ReportSumaActivity extends AppCompatActivity {
                 base64String = Base64.getEncoder().encodeToString(content);
                 Log.d("Base64 : ", base64String);
                 fullBase64String = base64String;
-
-//                TextView tes_tv = findViewById(R.id.tes_tv);
-//                tes_tv.setText(base64String);
-
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void updateListPelanggan(String jsonStringPlanggan){
+        f1PelangganRV.setLayoutManager(new LinearLayoutManager(ReportSumaActivity.this));
+        f1PelangganRV.setHasFixedSize(true);
+        f1PelangganRV.setNestedScrollingEnabled(false);
+        f1PelangganRV.setItemAnimator(new DefaultItemAnimator());
+
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        pelangganLists = gson.fromJson(jsonStringPlanggan, PelangganList[].class);
+        adapterPelangganList = new AdapterPelangganList(pelangganLists, ReportSumaActivity.this);
+        f1PelangganRV.setAdapter(adapterPelangganList);
     }
 
     public void onBackPressed() {
@@ -3358,6 +3510,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                                 public void onClick(KAlertDialog sDialog) {
                                     sDialog.dismiss();
                                     categoryReport = "";
+                                    f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
                                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "");
                                     f2IdPelangganLama = "";
                                     reportKategoriChoiceTV.setText("");
@@ -3378,6 +3531,13 @@ public class ReportSumaActivity extends AppCompatActivity {
                 super.onBackPressed();
             }
         }
+    }
+
+    private JSONArray clearJSONArray(JSONArray jsonArray) {
+        while (jsonArray.length() > 0) {
+            jsonArray.remove(0);
+        }
+        return jsonArray;
     }
 
 }
