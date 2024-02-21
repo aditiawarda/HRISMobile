@@ -369,6 +369,7 @@ public class LoginActivity extends AppCompatActivity {
                         String namaUser = jsonArray.getString("NmKaryawan");
                         String idCor = jsonArray.getString("id_perusahaan");
                         String idCab = jsonArray.getString("IdCab");
+                        String cabName = jsonArray.getString("namaCabang");
                         String idHeadDept = jsonArray.getString("IdHeadDept");
                         String idDept = jsonArray.getString("IdDept");
                         String idJabatan = jsonArray.getString("IdJabatan");
@@ -382,6 +383,7 @@ public class LoginActivity extends AppCompatActivity {
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, namaUser);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_COR, idCor);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_CAB, idCab);
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA_CAB, cabName);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_HEAD_DEPT, idHeadDept);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_DEPT, idDept);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_JABATAN, idJabatan);

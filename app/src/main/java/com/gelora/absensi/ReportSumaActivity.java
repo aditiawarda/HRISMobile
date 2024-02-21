@@ -2453,7 +2453,8 @@ public class ReportSumaActivity extends AppCompatActivity {
     }
 
     private void getProduct(String keyword) {
-        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/list_produk/"+keyword;
+        String wilayah = sharedPrefManager.getSpCabName();
+        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/list_produk?keyword="+keyword+"&wilayah="+wilayah;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
