@@ -10,7 +10,7 @@ public class DataReportSuma {
     private String namaPelanggan;
     private String idSales;
     private String createdAt;
-    private String tgl_rencana;
+    private String tanggalRencana;
     private String totalPesanan;
 
     public String getId() {
@@ -78,11 +78,11 @@ public class DataReportSuma {
     }
 
     public String getTgl_rencana() {
-        return tgl_rencana;
+        return tanggalRencana;
     }
 
-    public void setTgl_rencana(String tgl_rencana) {
-        this.tgl_rencana = tgl_rencana;
+    public void setTgl_rencana(String tanggalRencana) {
+        this.tanggalRencana = tanggalRencana;
     }
 
     public String getTotalPesanan() {

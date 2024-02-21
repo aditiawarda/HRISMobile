@@ -160,7 +160,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     private DataInvoicePiutang[] dataInvoicePiutangs;
     private AdapterInvoicePiutang adapterInvoicePiutang;
 
-    TextView reportKategoriChoiceTV, namaKaryawanTV, nikKaryawanTV;
+    TextView viewPermohonanTV, reportKategoriChoiceTV, namaKaryawanTV, nikKaryawanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -206,6 +206,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         successPart = findViewById(R.id.success_submit);
         successGif = findViewById(R.id.success_gif);
         viewPermohonanBTN = findViewById(R.id.view_permohonan_btn);
+        viewPermohonanTV = findViewById(R.id.view_permohonan_tv);
 
         f1KeteranganKunjunganED = findViewById(R.id.f1_keterangan_kunjungan_ed);
         f1ChoiceDateBTN = findViewById(R.id.f1_choice_date_btn);
@@ -787,159 +788,67 @@ public class ReportSumaActivity extends AppCompatActivity {
         f1SubmitPesananBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                f1KeteranganKunjunganED.clearFocus();
-                if(!categoryReport.equals("") && !f1DateChoice.equals("") && !f1KeteranganKunjunganED.getText().toString().equals("") && !f1JenisPelanggan.equals("")){
-                    if(f1JenisPelanggan.equals("1")){
-                        if(!f1NamaPelangganBaruED.getText().toString().equals("") && !f1AlamatPelangganBaruED.getText().toString().equals("") && !f1PicPelangganBaruED.getText().toString().equals("") && !f1TeleponPelangganBaruED.getText().toString().equals("") ){
-                            new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
-                                    .setTitleText("Perhatian")
-                                    .setContentText("Kirim permohonan sekarang?")
-                                    .setCancelText("TIDAK")
-                                    .setConfirmText("   YA   ")
-                                    .showCancelButton(true)
-                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismiss();
+                if(!categoryReport.equals("") && !f1DateChoice.equals("") && f1JsonArrayPelanggan.length() > 0){
+                    new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Kirim permohonan sekarang?")
+                            .setCancelText("TIDAK")
+                            .setConfirmText("   YA   ")
+                            .showCancelButton(true)
+                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                    pDialog = new KAlertDialog(ReportSumaActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                    pDialog.show();
+                                    pDialog.setCancelable(false);
+                                    new CountDownTimer(1300, 800) {
+                                        public void onTick(long millisUntilFinished) {
+                                            i++;
+                                            switch (i) {
+                                                case 0:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (ReportSumaActivity.this, R.color.colorGradien));
+                                                    break;
+                                                case 1:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (ReportSumaActivity.this, R.color.colorGradien2));
+                                                    break;
+                                                case 2:
+                                                case 6:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (ReportSumaActivity.this, R.color.colorGradien3));
+                                                    break;
+                                                case 3:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (ReportSumaActivity.this, R.color.colorGradien4));
+                                                    break;
+                                                case 4:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (ReportSumaActivity.this, R.color.colorGradien5));
+                                                    break;
+                                                case 5:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (ReportSumaActivity.this, R.color.colorGradien6));
+                                                    break;
+                                            }
                                         }
-                                    })
-                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismiss();
-                                            pDialog = new KAlertDialog(ReportSumaActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                                            pDialog.show();
-                                            pDialog.setCancelable(false);
-                                            new CountDownTimer(1300, 800) {
-                                                public void onTick(long millisUntilFinished) {
-                                                    i++;
-                                                    switch (i) {
-                                                        case 0:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (ReportSumaActivity.this, R.color.colorGradien));
-                                                            break;
-                                                        case 1:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (ReportSumaActivity.this, R.color.colorGradien2));
-                                                            break;
-                                                        case 2:
-                                                        case 6:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (ReportSumaActivity.this, R.color.colorGradien3));
-                                                            break;
-                                                        case 3:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (ReportSumaActivity.this, R.color.colorGradien4));
-                                                            break;
-                                                        case 4:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (ReportSumaActivity.this, R.color.colorGradien5));
-                                                            break;
-                                                        case 5:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (ReportSumaActivity.this, R.color.colorGradien6));
-                                                            break;
-                                                    }
-                                                }
-                                                public void onFinish() {
-                                                    i = -1;
-                                                    submitLaporan();
-                                                }
-                                            }.start();
+                                        public void onFinish() {
+                                            i = -1;
+                                            submitLaporan();
+                                            Log.d("Data Customer : ", f1JsonArrayPelanggan.toString());
+                                        }
+                                    }.start();
 
-                                        }
-                                    })
-                                    .show();
-                        } else {
-                            new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
-                                    .setTitleText("Perhatian")
-                                    .setContentText("Harap isi semua data pelanggan baru!")
-                                    .setConfirmText("   OK   ")
-                                    .showCancelButton(true)
-                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismiss();
-                                        }
-                                    })
-                                    .show();
-                        }
-                    } else if(f1JenisPelanggan.equals("2")){
-                        if(f1IdPelangganLama.equals("")){
-                            new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
-                                    .setTitleText("Perhatian")
-                                    .setContentText("Harap isi semua data!")
-                                    .setConfirmText("   OK   ")
-                                    .showCancelButton(true)
-                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismiss();
-                                        }
-                                    })
-                                    .show();
-                        } else {
-                            new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
-                                    .setTitleText("Perhatian")
-                                    .setContentText("Kirim permohonan sekarang?")
-                                    .setCancelText("TIDAK")
-                                    .setConfirmText("   YA   ")
-                                    .showCancelButton(true)
-                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismiss();
-                                        }
-                                    })
-                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismiss();
-                                            pDialog = new KAlertDialog(ReportSumaActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                                            pDialog.show();
-                                            pDialog.setCancelable(false);
-                                            new CountDownTimer(1300, 800) {
-                                                public void onTick(long millisUntilFinished) {
-                                                    i++;
-                                                    switch (i) {
-                                                        case 0:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (ReportSumaActivity.this, R.color.colorGradien));
-                                                            break;
-                                                        case 1:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (ReportSumaActivity.this, R.color.colorGradien2));
-                                                            break;
-                                                        case 2:
-                                                        case 6:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (ReportSumaActivity.this, R.color.colorGradien3));
-                                                            break;
-                                                        case 3:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (ReportSumaActivity.this, R.color.colorGradien4));
-                                                            break;
-                                                        case 4:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (ReportSumaActivity.this, R.color.colorGradien5));
-                                                            break;
-                                                        case 5:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (ReportSumaActivity.this, R.color.colorGradien6));
-                                                            break;
-                                                    }
-                                                }
-                                                public void onFinish() {
-                                                    i = -1;
-                                                    submitLaporan();
-                                                }
-                                            }.start();
-
-                                        }
-                                    })
-                                    .show();
-                        }
-                    }
+                                }
+                            })
+                            .show();
                 } else {
                     new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
@@ -1461,7 +1370,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 categoryReport = "2";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport);
-                reportKategoriChoiceTV.setText("Kunjungan");
+                reportKategoriChoiceTV.setText("Laporan Kunjungan");
                 markRencanaKunjungan.setVisibility(View.GONE);
                 markKunjungan.setVisibility(View.VISIBLE);
                 markPenawaran.setVisibility(View.GONE);
@@ -1588,7 +1497,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 categoryReport = "3";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport);
-                reportKategoriChoiceTV.setText("Penagihan");
+                reportKategoriChoiceTV.setText("Aktivitas Penagihan");
                 markKunjungan.setVisibility(View.GONE);
                 markPenawaran.setVisibility(View.GONE);
                 markPenagihan.setVisibility(View.VISIBLE);
@@ -2902,27 +2811,31 @@ public class ReportSumaActivity extends AppCompatActivity {
                         @Override
                         public void onClick(KAlertDialog sDialog) {
                             sDialog.dismiss();
-                            try {
-                                JSONObject jsonObject = new JSONObject(jsonString);
-                                JSONArray dataArray = jsonObject.getJSONArray("data");
-                                String valueToRemove = "RS-123456";
-
-                                // Menghapus elemen dari JSON array dengan nilai tertentu
-                                JSONArray modifiedArray = removeElementsByValue(dataArray, valueToRemove);
-
-                                // Mengonversi JSON array yang sudah dimodifikasi menjadi string
-                                String modifiedJsonString = modifiedArray.toString();
-
-                                // Mencetak JSON string yang sudah dimodifikasi
-                                Log.d("Modified JSON Array", modifiedJsonString);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                            String valueToRemove = key;
+                            JSONArray modifiedArray = removeElementsByValue(f1JsonArrayPelanggan, valueToRemove);
+                            f1JsonArrayPelanggan = modifiedArray;
+                            updateListPelanggan(f1JsonArrayPelanggan.toString());
                         }
                     })
                     .show();
         }
     };
+
+    private JSONArray removeElementsByValue(JSONArray jsonArray, String value) {
+        JSONArray modifiedArray = new JSONArray();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            try {
+                JSONObject currentObject = jsonArray.getJSONObject(i);
+                String namaPelanggan = currentObject.getString("namaPelanggan");
+                if (!namaPelanggan.equals(value)) {
+                    modifiedArray.put(currentObject);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return modifiedArray;
+    }
 
     private void f2HitungTotalPesanan() {
         Locale localeID = new Locale("id", "ID");
@@ -3269,12 +3182,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                                     formPart.setVisibility(View.GONE);
                                     pDialog.dismiss();
 
+                                    viewPermohonanTV.setText("OK");
                                     viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            Intent intent = new Intent(ReportSumaActivity.this, DetailReportSumaActivity.class);
-                                            intent.putExtra("report_id",idLaporan);
-                                            startActivity(intent);
+                                           onBackPressed();
                                         }
                                     });
                                 } else if(categoryReport.equals("2")){
@@ -3324,18 +3236,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 if(categoryReport.equals("1")){
                     params.put("kategori_laporan", categoryReport);
                     params.put("tanggal_rencana", f1DateChoice);
-                    params.put("keterangan_kunjungan", f1KeteranganKunjunganED.getText().toString());
-                    params.put("tipe_pelanggan", f1JenisPelanggan);
-
-                    if(f1JenisPelanggan.equals("1")){
-                        params.put("nama_pelanggan", f1NamaPelangganBaruED.getText().toString());
-                        params.put("alamat_pelanggan", f1AlamatPelangganBaruED.getText().toString());
-                        params.put("pic_pelanggan", f1PicPelangganBaruED.getText().toString());
-                        params.put("telepon_pelanggan", f1TeleponPelangganBaruED.getText().toString());
-                    } else if(f1JenisPelanggan.equals("2")){
-                        params.put("id_pelanggan", f1IdPelangganLama);
-                    }
-
+                    params.put("list_pelanggan", f1JsonArrayPelanggan.toString());
                     params.put("nik_sales", sharedPrefManager.getSpNik());
                     params.put("created_at", getTimeStamp());
                 } else if(categoryReport.equals("2")){
@@ -3385,14 +3286,9 @@ public class ReportSumaActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     public void uploadLampiran(String filename, String idReport) {
         String path = FilePathimage.getPath(this, uri);
-
-        // String url = "https://reporting.sumasistem.co.id/api/attachment_upload";
-        // File imageFile = new File(path);
-        // ImageUploadTask uploadTask = new ImageUploadTask(url, idReport, imageFile);
-        // uploadTask.execute();
-
         String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_lampiran";
 
         if (path == null) {
@@ -3411,6 +3307,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 formPart.setVisibility(View.GONE);
                 pDialog.dismiss();
 
+                viewPermohonanTV.setText("LIHAT DETAIL LAPORAN");
                 viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
