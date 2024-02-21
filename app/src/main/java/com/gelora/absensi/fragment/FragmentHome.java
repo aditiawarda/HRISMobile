@@ -618,6 +618,7 @@ public class FragmentHome extends Fragment {
 
                                 String id_corporate = data.getString("id_corporate");
                                 String id_cab = data.getString("id_cab");
+                                String nama_cab = data.getString("namaCabang");
                                 String id_dept = data.getString("id_dept");
                                 String id_bagian = data.getString("id_bagian");
                                 String id_jabatan = data.getString("id_jabatan");
@@ -645,6 +646,9 @@ public class FragmentHome extends Fragment {
                                 }
                                 if(!sharedPrefManager.getSpIdCab().equals(id_cab)){
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_CAB, id_cab);
+                                }
+                                if(!sharedPrefManager.getSpCabName().equals(nama_cab)){
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA_CAB, nama_cab);
                                 }
                                 if(!sharedPrefManager.getSpIdHeadDept().equals(id_dept)){
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_HEAD_DEPT, id_dept);

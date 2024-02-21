@@ -15,6 +15,7 @@ public class SharedPrefManager {
     public static final String SP_NAMA = "spNama";
     public static final String SP_ID_COR = "spIdCor";
     public static final String SP_ID_CAB = "spIdCab";
+    public static final String SP_NAMA_CAB = "spCabName";
     public static final String SP_ID_HEAD_DEPT = "spIdHeadDept";
     public static final String SP_ID_DEPT = "spIdDept";
     public static final String SP_ID_JABATAN = "spIdJabatan";
@@ -71,6 +72,9 @@ public class SharedPrefManager {
     }
     public String getSpIdCab(){
         return sp.getString(SP_ID_CAB, "");
+    }
+    public String getSpCabName(){
+        return sp.getString(SP_NAMA_CAB, "");
     }
     public String getSpIdHeadDept(){
         return sp.getString(SP_ID_HEAD_DEPT, "");
