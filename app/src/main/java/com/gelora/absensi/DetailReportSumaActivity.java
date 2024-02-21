@@ -173,6 +173,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        refreshLayout.setRefreshing(false);
                         permissionLoc();
                     }
                 }, 1000);
@@ -461,7 +462,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 pDialog.dismiss();
                 updateRealisasiPart.setVisibility(View.GONE);
                 viewRealisasiBTN.setVisibility(View.VISIBLE);
-                viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                viewRealisasiBTN.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
@@ -769,12 +770,12 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         updateRealisasiPart.setVisibility(View.GONE);
                                         realMark.setVisibility(View.VISIBLE);
                                         viewRealisasiBTN.setVisibility(View.VISIBLE);
-                                        String idRencana = dataArray.getString("idRencana");
-                                        viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                                        String realisasi = data.getString("realisasi");
+                                        viewRealisasiBTN.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
                                                 Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
-                                                intent.putExtra("report_id",idRencana);
+                                                intent.putExtra("report_id",realisasi);
                                                 startActivity(intent);
                                             }
                                         });
