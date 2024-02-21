@@ -417,6 +417,7 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                 uri = null;
                 fullBase64String = "";
+                totalLaporan = 0;
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1346,6 +1347,7 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                         uri = null;
                         fullBase64String = "";
+                        totalLaporan = 0;
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -1473,6 +1475,7 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                         uri = null;
                         fullBase64String = "";
+                        totalLaporan = 0;
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -1600,6 +1603,7 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                         uri = null;
                         fullBase64String = "";
+                        totalLaporan = 0;
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -1727,6 +1731,7 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                         uri = null;
                         fullBase64String = "";
+                        totalLaporan = 0;
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -2853,10 +2858,8 @@ public class ReportSumaActivity extends AppCompatActivity {
             jumlah += Integer.parseInt(arrayData[4]);
         }
         totalLaporan = jumlah;
-
-
-
         f2TotalPesananTV.setText(decimalFormat.format(jumlah));
+
     }
 
     @SuppressLint("MissingPermission")
@@ -3267,10 +3270,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     params.put("keterangan", f3KeteranganED.getText().toString());
                     params.put("latitude", salesLat);
                     params.put("longitude", salesLong);
-
-
                     params.put("total_laporan", String.valueOf(totalLaporan));
-
                     params.put("created_at", getTimeStamp());
                 }
                 Log.d("Params Cek", params.toString());

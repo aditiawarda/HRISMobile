@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DetailReportSumaActivity">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -12,6 +12,7 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -571,6 +572,174 @@
                                         tools:ignore="HardcodedText,RtlHardcoded,SpUsage,UseCompatTextViewDrawableXml,TextSizeCheck,TextContrastCheck" />
 
                                 </LinearLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/update_realisasi_part"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <net.cachapa.expandablelayout.ExpandableLayout
+                                        android:id="@+id/update_realisasi_form"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:paddingLeft="15dp"
+                                        android:paddingRight="15dp"
+                                        android:paddingBottom="15dp"
+                                        android:background="@drawable/shape_bg_expand_info_menu"
+                                        app:el_duration="300"
+                                        app:el_expanded="false">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:paddingTop="45dp"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="15dp"
+                                                android:orientation="horizontal"
+                                                tools:ignore="DisableBaselineAlignment">
+
+                                                <LinearLayout
+                                                    android:id="@+id/gps_realisasi_btn"
+                                                    android:layout_width="0dp"
+                                                    android:layout_weight=".50"
+                                                    android:layout_marginRight="5dp"
+                                                    android:layout_height="35dp"
+                                                    android:background="@drawable/shape_second_btn"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:textSize="12dp"
+                                                        android:textColor="@color/white"
+                                                        android:text="Check GPS Location"
+                                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:id="@+id/foto_lampiran_realisasi_btn"
+                                                    android:layout_width="0dp"
+                                                    android:layout_weight=".50"
+                                                    android:layout_marginLeft="5dp"
+                                                    android:layout_height="35dp"
+                                                    android:background="@drawable/shape_btn_edit_permohonan"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:id="@+id/label_lampiran_tv"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:textSize="12dp"
+                                                        android:textColor="@color/white"
+                                                        android:text="+ Lampiran Foto/SP"
+                                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:visibility="gone"
+                                                    android:id="@+id/view_lampiran_realisasi_btn"
+                                                    android:layout_width="35dp"
+                                                    android:paddingTop="5dp"
+                                                    android:paddingBottom="5dp"
+                                                    android:paddingRight="5dp"
+                                                    android:paddingLeft="5dp"
+                                                    android:layout_marginLeft="10dp"
+                                                    android:gravity="center"
+                                                    android:background="@drawable/shape_btn_approved"
+                                                    android:layout_height="35dp"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="18dp"
+                                                        android:gravity="center"
+                                                        android:background="@drawable/ic_baseline_content_surat"
+                                                        android:layout_height="18dp" />
+
+                                                </LinearLayout>
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="Titik Lokasi Anda :"
+                                                android:textColor="#6E6E6E"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
+
+                                            <TextView
+                                                android:id="@+id/detail_location_realisasi_tv"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="10dp"
+                                                android:text="Memuat data..."
+                                                android:textColor="#6E6E6E"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </net.cachapa.expandablelayout.ExpandableLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/update_realisasi_btn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/shape_third_btn"
+                                        android:orientation="horizontal"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="12dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="12dp">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            tools:ignore="UselessParent">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:gravity="left|center"
+                                                    android:orientation="horizontal"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:ellipsize="end"
+                                                        android:gravity="center"
+                                                        android:text="Update Realisasi"
+                                                        android:textColor="#CF811F"
+                                                        android:textSize="13dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
 
                             </LinearLayout>
 

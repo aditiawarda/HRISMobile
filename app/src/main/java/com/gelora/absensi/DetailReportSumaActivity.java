@@ -26,7 +26,9 @@ import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -57,6 +59,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import net.cachapa.expandablelayout.ExpandableLayout;
+
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -73,8 +77,10 @@ import java.util.Map;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart;
+    LinearLayout gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart;
+    RelativeLayout updateRealisasiPart;
     SharedPrefManager sharedPrefManager;
+    ExpandableLayout updateRealisasiForm;
     RequestQueue requestQueue;
     TextView tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
     String idReport = "";
@@ -127,6 +133,10 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         tglRencanaPart = findViewById(R.id.tgl_rencana_part);
         tglRencanaTV = findViewById(R.id.tgl_rencana_tv);
         viewLampiranBTN = findViewById(R.id.view_lampiran_btn);
+        updateRealisasiBTN = findViewById(R.id.update_realisasi_btn);
+        updateRealisasiForm = findViewById(R.id.update_realisasi_form);
+        updateRealisasiPart = findViewById(R.id.update_realisasi_part);
+        gpsRealisasiBTN = findViewById(R.id.gps_realisasi_btn);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -151,6 +161,25 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        updateRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(updateRealisasiForm.isExpanded()){
+                    updateRealisasiForm.collapse();
+                } else {
+                    updateRealisasiForm.expand();
+                }
+            }
+        });
+
+        gpsRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailReportSumaActivity.this, LocationPickerActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -351,7 +380,15 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                     tglRencanaTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                                    String statusRealisasi = dataArray.getString("statusRealisasi");
+                                    if(statusRealisasi.equals("0")){
+                                        updateRealisasiPart.setVisibility(View.VISIBLE);
+                                    } else if(statusRealisasi.equals("1")){
+                                        updateRealisasiPart.setVisibility(View.GONE);
+                                    }
+
                                 } else if(tipeLaporan.equals("2")){
+                                    updateRealisasiPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     reportKategoriTV.setText("LAPORAN KUNJUNGAN");
                                     tglRencanaPart.setVisibility(View.GONE);
@@ -368,6 +405,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         }
                                     });
                                 } else if(tipeLaporan.equals("3")){
+                                    updateRealisasiPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     reportKategoriTV.setText("AKTIVITAS PENAGIHAN");
                                     tglRencanaPart.setVisibility(View.GONE);
@@ -388,7 +426,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 String namaPelanggan = dataArray.getString("namaPelanggan");
                                 String alamat_customer = dataArray.getString("alamat_customer");
                                 String pic = dataArray.getString("pic");
-                                String no_telp = dataArray.getString("no_telp");
+                                String no_telp = dataArray.getString("noTelp");
                                 String keterangan = dataArray.getString("keterangan");
                                 namaPelangganTV.setText(namaPelanggan);
                                 alamatPelangganTV.setText(alamat_customer);
