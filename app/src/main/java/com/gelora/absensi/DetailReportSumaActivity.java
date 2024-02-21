@@ -353,10 +353,20 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                 } else if(tipeLaporan.equals("2")){
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
-                                    reportKategoriTV.setText("KUNJUNGAN");
+                                    reportKategoriTV.setText("LAPORAN KUNJUNGAN");
                                     tglRencanaPart.setVisibility(View.GONE);
 
                                     String file = dataArray.getString("file");
+                                    viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageActivity.class);
+                                            intent.putExtra("url", file);
+                                            intent.putExtra("kode", "detail");
+                                            intent.putExtra("jenis_detail", "suma");
+                                            startActivity(intent);
+                                        }
+                                    });
                                 } else if(tipeLaporan.equals("3")){
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     reportKategoriTV.setText("AKTIVITAS PENAGIHAN");
