@@ -95,7 +95,7 @@ import java.util.UUID;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiPart;
+    LinearLayout viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiPart;
     SharedPrefManager sharedPrefManager;
     ExpandableLayout updateRealisasiForm;
     RequestQueue requestQueue;
@@ -164,6 +164,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         labelLampiranTV = findViewById(R.id.label_lampiran_tv);
         submitRealisasiBTN = findViewById(R.id.submit_realisasi_btn);
         realMark = findViewById(R.id.real_mark);
+        viewRealisasiBTN = findViewById(R.id.view_realisasi_btn);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -459,6 +460,15 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                         .startUpload();
                 pDialog.dismiss();
                 updateRealisasiPart.setVisibility(View.GONE);
+                viewRealisasiBTN.setVisibility(View.VISIBLE);
+                viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
+                        intent.putExtra("report_id",idReport);
+                        startActivity(intent);
+                    }
+                });
 
                 getData();
             } catch (Exception exc) {
@@ -754,9 +764,20 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     if(statusRealisasi.equals("0")){
                                         updateRealisasiPart.setVisibility(View.VISIBLE);
                                         realMark.setVisibility(View.GONE);
+                                        viewRealisasiBTN.setVisibility(View.GONE);
                                     } else if(statusRealisasi.equals("1")){
                                         updateRealisasiPart.setVisibility(View.GONE);
                                         realMark.setVisibility(View.VISIBLE);
+                                        viewRealisasiBTN.setVisibility(View.VISIBLE);
+                                        String idRencana = dataArray.getString("idRencana");
+                                        viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
+                                                intent.putExtra("report_id",idRencana);
+                                                startActivity(intent);
+                                            }
+                                        });
                                     }
 
                                 } else if(tipeLaporan.equals("2")){
