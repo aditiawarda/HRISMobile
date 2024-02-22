@@ -81,7 +81,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:text="00/00/0000 00:00"
-                                        android:textColor="#6E6E6E"
+                                        android:textColor="#ED9C83"
                                         android:textSize="10dp"
                                         android:gravity="right"
                                         tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,TooDeepLayout" />
@@ -730,11 +730,194 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/reschedule_part"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone"
+                                    android:orientation="vertical"
+                                    tools:ignore="TooManyViews">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1.5dp"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="3dp"
+                                        android:background="#3CCFCFCF" />
+
+                                    <RelativeLayout
+                                        android:layout_marginTop="15dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <net.cachapa.expandablelayout.ExpandableLayout
+                                            android:id="@+id/reschedule_form"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="10dp"
+                                            android:paddingLeft="15dp"
+                                            android:paddingRight="15dp"
+                                            android:paddingBottom="15dp"
+                                            android:background="@drawable/shape_bg_expand_info_menu"
+                                            app:el_duration="300"
+                                            app:el_expanded="false">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:paddingTop="45dp"
+                                                android:orientation="vertical">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:text="Tanggal Rencana Kunjungan :"
+                                                    android:textColor="#696969"
+                                                    android:textSize="12dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                <LinearLayout
+                                                    android:id="@+id/choice_date_btn"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="40dp"
+                                                    android:paddingStart="20dp"
+                                                    android:layout_marginBottom="10dp"
+                                                    android:background="@drawable/shape_feel"
+                                                    android:orientation="horizontal"
+                                                    tools:ignore="RtlSymmetry">
+
+                                                    <RelativeLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent">
+
+                                                        <LinearLayout
+                                                            android:layout_marginTop="10dp"
+                                                            android:layout_marginBottom="10dp"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="40dp"
+                                                            android:orientation="vertical"
+                                                            android:gravity="center|left"
+                                                            tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                            <TextView
+                                                                android:id="@+id/choice_date_tv"
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:textColor="#B15735"
+                                                                android:textSize="13dp"
+                                                                android:textStyle="bold"
+                                                                android:text=""
+                                                                tools:ignore="SpUsage" />
+
+                                                        </LinearLayout>
+
+                                                        <LinearLayout
+                                                            android:layout_alignParentRight="true"
+                                                            android:layout_width="40dp"
+                                                            android:layout_height="match_parent"
+                                                            android:background="@drawable/shape_btn"
+                                                            android:gravity="center"
+                                                            tools:ignore="RtlHardcoded">
+
+                                                            <TextView
+                                                                android:layout_width="25dp"
+                                                                android:layout_height="25dp"
+                                                                android:background="@drawable/ic_baseline_date"/>
+
+                                                        </LinearLayout>
+
+                                                    </RelativeLayout>
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:id="@+id/submit_reschedule_btn"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:layout_marginTop="15dp"
+                                                    android:paddingTop="12dp"
+                                                    android:paddingBottom="12dp"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:drawableLeft="@drawable/ic_baseline_send_form"
+                                                        android:drawablePadding="7dp"
+                                                        android:drawableTint="@color/white"
+                                                        android:text="SUBMIT"
+                                                        android:textColor="@color/white"
+                                                        android:textSize="13dp"
+                                                        android:textStyle="bold"
+                                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
+
+                                                </LinearLayout>
+
+                                            </LinearLayout>
+
+                                        </net.cachapa.expandablelayout.ExpandableLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/reschedule_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="@drawable/shape_third_btn"
+                                            android:orientation="horizontal"
+                                            android:paddingLeft="20dp"
+                                            android:paddingTop="12dp"
+                                            android:paddingRight="20dp"
+                                            android:paddingBottom="12dp">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                tools:ignore="UselessParent">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:gravity="left|center"
+                                                        android:orientation="horizontal"
+                                                        tools:ignore="RtlHardcoded">
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:ellipsize="end"
+                                                            android:gravity="center"
+                                                            android:text="Jadwalkan Ulang"
+                                                            android:textColor="#CF811F"
+                                                            android:textSize="13dp"
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                                    </LinearLayout>
+
+                                                </RelativeLayout>
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:id="@+id/update_realisasi_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:visibility="gone"
-                                    android:orientation="vertical">
+                                    android:orientation="vertical"
+                                    tools:ignore="TooManyViews">
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -843,6 +1026,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginBottom="5dp"
+                                                    android:layout_marginLeft="3dp"
+                                                    android:layout_marginRight="3dp"
                                                     android:text="Titik Lokasi Anda :"
                                                     android:textColor="#6E6E6E"
                                                     android:textSize="12dp"
@@ -853,6 +1038,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginBottom="10dp"
+                                                    android:layout_marginLeft="3dp"
+                                                    android:layout_marginRight="3dp"
                                                     android:text="Memuat data..."
                                                     android:textColor="#6E6E6E"
                                                     android:textSize="12dp"

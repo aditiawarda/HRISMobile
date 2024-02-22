@@ -19,6 +19,7 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.icu.util.Calendar;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -33,6 +34,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -74,6 +76,7 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.takisoft.datetimepicker.DatePickerDialog;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -97,11 +100,11 @@ import java.util.UUID;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout totalPenagihanPart, totalPesananPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiPart;
+    LinearLayout submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiPart;
     SharedPrefManager sharedPrefManager;
-    ExpandableLayout updateRealisasiForm;
+    ExpandableLayout updateRealisasiForm, rescheduleForm;
     RequestQueue requestQueue;
-    TextView totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
+    TextView choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
     String idReport = "";
     SwipeRefreshLayout refreshLayout;
     SharedPrefAbsen sharedPrefAbsen;
@@ -114,7 +117,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     ResultReceiver resultReceiver;
     Context mContext;
     Activity mActivity;
-    String locationNow = "", salesLat = "", salesLong = "";
+    String locationNow = "", salesLat = "", salesLong = "", choiceDateReschedule = "";
     int REQUEST_IMAGE = 100;
     private Uri uri;
     KAlertDialog pDialog;
@@ -172,11 +175,21 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         totalPesananTV = findViewById(R.id.total_pesanan_tv);
         totalPenagihanPart = findViewById(R.id.total_penagihan_part);
         totalPenagihanTV = findViewById(R.id.total_piutang_tv);
+        reschedulePart = findViewById(R.id.reschedule_part);
+        rescheduleBTN = findViewById(R.id.reschedule_btn);
+        rescheduleForm = findViewById(R.id.reschedule_form);
+        choiceDateBTN = findViewById(R.id.choice_date_btn);
+        choiceDateTV = findViewById(R.id.choice_date_tv);
+        submitRescheduleBTN = findViewById(R.id.submit_reschedule_btn);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                rescheduleForm.collapse();
+                rescheduleForm.collapse();
+                choiceDateTV.setText("");
+                choiceDateReschedule = "";
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -200,6 +213,25 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             }
         });
 
+        rescheduleBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(rescheduleForm.isExpanded()){
+                    rescheduleForm.collapse();
+                } else {
+                    rescheduleForm.expand();
+                    updateRealisasiForm.collapse();
+                }
+            }
+        });
+
+        choiceDateBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickerOfDate();
+            }
+        });
+
         updateRealisasiBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -207,6 +239,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                     updateRealisasiForm.collapse();
                 } else {
                     updateRealisasiForm.expand();
+                    rescheduleForm.collapse();
                 }
             }
         });
@@ -226,10 +259,89 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             }
         });
 
-        submitRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+        submitRescheduleBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!salesLat.equals("") && !salesLong.equals("") && !String.valueOf(uri).equals("null")){
+                    new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Kirim penjadwalan ulang?")
+                            .setCancelText("TIDAK")
+                            .setConfirmText("   YA   ")
+                            .showCancelButton(true)
+                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                    pDialog = new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                    pDialog.show();
+                                    pDialog.setCancelable(false);
+                                    new CountDownTimer(1300, 800) {
+                                        public void onTick(long millisUntilFinished) {
+                                            i++;
+                                            switch (i) {
+                                                case 0:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien));
+                                                    break;
+                                                case 1:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien2));
+                                                    break;
+                                                case 2:
+                                                case 6:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien3));
+                                                    break;
+                                                case 3:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien4));
+                                                    break;
+                                                case 4:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien5));
+                                                    break;
+                                                case 5:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien6));
+                                                    break;
+                                            }
+                                        }
+                                        public void onFinish() {
+                                            i = -1;
+                                            submitRealisasi();
+                                        }
+                                    }.start();
+                                }
+                            })
+                            .show();
+
+                } else {
+                    new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap isi data tanggal!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
+            }
+        });
+
+        submitRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!choiceDateReschedule.equals("")){
                     new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
                             .setTitleText("Perhatian")
                             .setContentText("Update realisasi sekarang?")
@@ -282,7 +394,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         }
                                         public void onFinish() {
                                             i = -1;
-                                            submitRealisasi();
+                                            submitReschedule();
                                         }
                                     }.start();
                                 }
@@ -388,6 +500,306 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 }
             }
         });
+
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private void pickerOfDate(){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            Calendar cal = Calendar.getInstance();
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(DetailReportSumaActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
+
+                choiceDateReschedule = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                Date date2 = null;
+                try {
+                    date = sdf.parse(choiceDateReschedule);
+                    date2 = sdf.parse(getDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long choice = date.getTime();
+                long now = date2.getTime();
+
+                if (choice>=now){
+                    String input_date = choiceDateReschedule;
+                    SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                    Date dt1= null;
+                    try {
+                        dt1 = format1.parse(input_date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    DateFormat format2 = new SimpleDateFormat("EEE");
+                    DateFormat getweek = new SimpleDateFormat("W");
+                    String finalDay = format2.format(dt1);
+                    String week = getweek.format(dt1);
+                    String hariName = "";
+
+                    if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                        hariName = "Senin";
+                    } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                        hariName = "Selasa";
+                    } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                        hariName = "Rabu";
+                    } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                        hariName = "Kamis";
+                    } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                        hariName = "Jumat";
+                    } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                        hariName = "Sabtu";
+                    } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                        hariName = "Minggu";
+                    }
+
+                    String dayDate = input_date.substring(8,10);
+                    String yearDate = input_date.substring(0,4);
+                    String bulanValue = input_date.substring(5,7);
+                    String bulanName;
+
+                    switch (bulanValue) {
+                        case "01":
+                            bulanName = "Januari";
+                            break;
+                        case "02":
+                            bulanName = "Februari";
+                            break;
+                        case "03":
+                            bulanName = "Maret";
+                            break;
+                        case "04":
+                            bulanName = "April";
+                            break;
+                        case "05":
+                            bulanName = "Mei";
+                            break;
+                        case "06":
+                            bulanName = "Juni";
+                            break;
+                        case "07":
+                            bulanName = "Juli";
+                            break;
+                        case "08":
+                            bulanName = "Agustus";
+                            break;
+                        case "09":
+                            bulanName = "September";
+                            break;
+                        case "10":
+                            bulanName = "Oktober";
+                            break;
+                        case "11":
+                            bulanName = "November";
+                            break;
+                        case "12":
+                            bulanName = "Desember";
+                            break;
+                        default:
+                            bulanName = "Not found!";
+                            break;
+                    }
+
+                    choiceDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+                } else {
+                    choiceDateTV.setText("Pilih Kembali !");
+                    choiceDateReschedule = "";
+
+                    new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Tidak bisa memilih tanggal lampau!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
+
+            }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
+            dpd.show();
+        } else {
+            int y = Integer.parseInt(getDateY());
+            int m = Integer.parseInt(getDateM());
+            int d = Integer.parseInt(getDateD());
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(DetailReportSumaActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
+
+                choiceDateReschedule = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                Date date2 = null;
+                try {
+                    date = sdf.parse(choiceDateReschedule);
+                    date2 = sdf.parse(getDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long choice = date.getTime();
+                long now = date2.getTime();
+
+                if (choice>=now){
+                    String input_date = choiceDateReschedule;
+                    SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                    Date dt1= null;
+                    try {
+                        dt1 = format1.parse(input_date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    DateFormat format2 = new SimpleDateFormat("EEE");
+                    DateFormat getweek = new SimpleDateFormat("W");
+                    String finalDay = format2.format(dt1);
+                    String week = getweek.format(dt1);
+                    String hariName = "";
+
+                    if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                        hariName = "Senin";
+                    } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                        hariName = "Selasa";
+                    } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                        hariName = "Rabu";
+                    } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                        hariName = "Kamis";
+                    } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                        hariName = "Jumat";
+                    } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                        hariName = "Sabtu";
+                    } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                        hariName = "Minggu";
+                    }
+
+                    String dayDate = input_date.substring(8,10);
+                    String yearDate = input_date.substring(0,4);
+                    String bulanValue = input_date.substring(5,7);
+                    String bulanName;
+
+                    switch (bulanValue) {
+                        case "01":
+                            bulanName = "Januari";
+                            break;
+                        case "02":
+                            bulanName = "Februari";
+                            break;
+                        case "03":
+                            bulanName = "Maret";
+                            break;
+                        case "04":
+                            bulanName = "April";
+                            break;
+                        case "05":
+                            bulanName = "Mei";
+                            break;
+                        case "06":
+                            bulanName = "Juni";
+                            break;
+                        case "07":
+                            bulanName = "Juli";
+                            break;
+                        case "08":
+                            bulanName = "Agustus";
+                            break;
+                        case "09":
+                            bulanName = "September";
+                            break;
+                        case "10":
+                            bulanName = "Oktober";
+                            break;
+                        case "11":
+                            bulanName = "November";
+                            break;
+                        case "12":
+                            bulanName = "Desember";
+                            break;
+                        default:
+                            bulanName = "Not found!";
+                            break;
+                    }
+
+                    choiceDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                } else {
+                    choiceDateTV.setText("Pilih Kembali !");
+                    choiceDateReschedule = "";
+
+                    new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Tidak bisa memilih tanggal lampau!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
+
+            }, y,m-1,d);
+            dpd.show();
+        }
+
+
+    }
+
+    private void submitReschedule(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://reporting.sumasistem.co.id/api/update_reschedule";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")) {
+
+                            } else {
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Error.Response", error.toString());
+                        pDialog.setTitleText("Gagal Terkirim")
+                                .setConfirmText("    OK    ")
+                                .changeAlertType(KAlertDialog.ERROR_TYPE);
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("tanggal", choiceDateReschedule);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
 
     }
 
@@ -775,10 +1187,30 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                     String statusRealisasi = dataArray.getString("statusRealisasi");
                                     if(statusRealisasi.equals("0")){
-                                        updateRealisasiPart.setVisibility(View.VISIBLE);
+                                        reschedulePart.setVisibility(View.VISIBLE);
+                                        @SuppressLint("SimpleDateFormat")
+                                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                        Date date = null;
+                                        Date date2 = null;
+                                        try {
+                                            date = sdf.parse(tgl_rencana);
+                                            date2 = sdf.parse(getDate());
+                                        } catch (ParseException e) {
+                                            e.printStackTrace();
+                                        }
+                                        long rencana = date.getTime();
+                                        long now = date2.getTime();
+
+                                        if (rencana<=now){
+                                            updateRealisasiPart.setVisibility(View.VISIBLE);
+                                        } else {
+                                            updateRealisasiPart.setVisibility(View.GONE);
+                                        }
+
                                         realMark.setVisibility(View.GONE);
                                         viewRealisasiBTN.setVisibility(View.GONE);
                                     } else if(statusRealisasi.equals("1")){
+                                        reschedulePart.setVisibility(View.GONE);
                                         updateRealisasiPart.setVisibility(View.GONE);
                                         realMark.setVisibility(View.VISIBLE);
                                         viewRealisasiBTN.setVisibility(View.VISIBLE);
@@ -807,7 +1239,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     decimalFormat.setMaximumFractionDigits(0);
 
                                     String totalLaporan = dataArray.getString("totalLaporan");
-                                    totalPesananTV.setText(decimalFormat.format(Integer.parseInt(totalLaporan)));
+                                    if(totalLaporan.equals("")||totalLaporan.equals("null")||totalLaporan.equals("0")){
+                                        totalPesananTV.setText("Terlihat pada SP Manual");
+                                    } else {
+                                        totalPesananTV.setText(decimalFormat.format(Integer.parseInt(totalLaporan)));
+                                    }
 
                                     String file = dataArray.getString("file");
                                     viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
@@ -834,9 +1270,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     decimalFormat.setMaximumFractionDigits(0);
 
                                     String totalLaporan = dataArray.getString("totalLaporan");
-
                                     if(totalLaporan.equals("")||totalLaporan.equals("null")||totalLaporan.equals("0")){
-                                        totalPenagihanTV.setText("Terlihat pada SP Manual");
+                                        totalPenagihanTV.setText("Terlihat pada Faktur");
                                     } else {
                                         totalPenagihanTV.setText(decimalFormat.format(Integer.parseInt(totalLaporan)));
                                     }
@@ -1185,6 +1620,34 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 detailLocationRealisasiTV.setText("Alamat tidak ditemukan");
             }
         }
+    }
+
+    private String getDateD() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateM() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateY() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDate() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
 }
