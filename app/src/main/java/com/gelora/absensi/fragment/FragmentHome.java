@@ -37,6 +37,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -1159,23 +1160,29 @@ public class FragmentHome extends Fragment {
             Location location = params[0];
             String addressText = "";
 
-            Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
-
-            try {
-                List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                if (addresses != null && addresses.size() > 0) {
-                    Address address = addresses.get(0);
-                    StringBuilder addressBuilder = new StringBuilder();
-                    for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
-                        addressBuilder.append(address.getAddressLine(i)).append(", ");
+            Context context = getContext();
+            if(context != null){
+                Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+                try {
+                    List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                    if (addresses != null && addresses.size() > 0) {
+                        Address address = addresses.get(0);
+                        StringBuilder addressBuilder = new StringBuilder();
+                        for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
+                            addressBuilder.append(address.getAddressLine(i)).append(", ");
+                        }
+                        addressText = addressBuilder.toString();
                     }
-                    addressText = addressBuilder.toString();
+                } catch (IOException e) {
+                    Log.e(TAG, "Error fetching address: " + e.getMessage());
                 }
-            } catch (IOException e) {
-                Log.e(TAG, "Error fetching address: " + e.getMessage());
+            } else {
+                addressText = "Alamat tidak ditemukan";
+                Log.d(TAG, addressText);
             }
 
             return addressText;
+
         }
 
         @SuppressLint("SetTextI18n")

@@ -73,18 +73,29 @@
                                     android:paddingLeft="20dp"
                                     android:paddingTop="15dp"
                                     android:paddingRight="20dp"
-                                    android:paddingBottom="10dp">
+                                    android:paddingBottom="10dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tanggal_buat_tv"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="00/00/0000 00:00"
+                                        android:textColor="#6E6E6E"
+                                        android:textSize="10dp"
+                                        android:gravity="right"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,TooDeepLayout" />
 
                                     <TextView
                                         android:id="@+id/report_kategori_tv"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
                                         android:text="KATEGORI LAPORAN "
                                         android:textColor="#B1670B"
                                         android:textSize="13dp"
                                         android:textStyle="bold"
                                         tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck,TooDeepLayout" />
+
 
                                 </LinearLayout>
 
@@ -122,6 +133,7 @@
                                             android:layout_width="0dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginBottom="5dp"
+                                            android:lineSpacingExtra="4dp"
                                             android:layout_weight=".25"
                                             android:text="Nama"
                                             android:textColor="#515151"
@@ -138,6 +150,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
                                                 android:text=":  "
                                                 android:textColor="#515151"
                                                 android:textSize="12dp"
@@ -146,6 +159,7 @@
                                             <TextView
                                                 android:id="@+id/nama_pelanggan_tv"
                                                 android:layout_width="0dp"
+                                                android:lineSpacingExtra="4dp"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
                                                 android:layout_weight=".65"
@@ -167,6 +181,7 @@
                                             android:layout_width="0dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginBottom="5dp"
+                                            android:lineSpacingExtra="4dp"
                                             android:layout_weight=".25"
                                             android:text="Alamat"
                                             android:textColor="#515151"
@@ -183,6 +198,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
                                                 android:text=":  "
                                                 android:textColor="#515151"
                                                 android:textSize="12dp"
@@ -191,6 +207,7 @@
                                             <TextView
                                                 android:id="@+id/alamat_pelanggan_tv"
                                                 android:layout_width="0dp"
+                                                android:lineSpacingExtra="4dp"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
                                                 android:layout_weight=".65"
@@ -212,6 +229,7 @@
                                             android:layout_width="0dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginBottom="5dp"
+                                            android:lineSpacingExtra="4dp"
                                             android:layout_weight=".25"
                                             android:text="PIC"
                                             android:textColor="#515151"
@@ -273,6 +291,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
                                                 android:text=":  "
                                                 android:textColor="#515151"
                                                 android:textSize="12dp"
@@ -283,6 +302,7 @@
                                                 android:layout_width="0dp"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
                                                 android:layout_weight=".65"
                                                 android:text="Memuat data..."
                                                 android:textColor="#515151"
@@ -326,6 +346,7 @@
                                             android:layout_width="0dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginBottom="5dp"
+                                            android:lineSpacingExtra="4dp"
                                             android:layout_weight=".25"
                                             android:text="Nama"
                                             android:textColor="#515151"
@@ -342,6 +363,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
                                                 android:text=":  "
                                                 android:textColor="#515151"
                                                 android:textSize="12dp"
@@ -352,6 +374,7 @@
                                                 android:layout_width="0dp"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
                                                 android:layout_weight=".65"
                                                 android:text="Memuat data..."
                                                 android:textColor="#515151"
@@ -371,6 +394,7 @@
                                             android:layout_width="0dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginBottom="5dp"
+                                            android:lineSpacingExtra="4dp"
                                             android:layout_weight=".25"
                                             android:text="NIK"
                                             android:textColor="#515151"
@@ -387,6 +411,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
                                                 android:text=":  "
                                                 android:textColor="#515151"
                                                 android:textSize="12dp"
@@ -397,6 +422,7 @@
                                                 android:layout_width="0dp"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
                                                 android:layout_weight=".65"
                                                 android:text="Memuat data..."
                                                 android:textColor="#515151"
@@ -440,6 +466,7 @@
                                                 android:layout_width="0dp"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
                                                 android:layout_weight=".25"
                                                 android:text="Detail Titik"
                                                 android:textColor="#515151"
@@ -456,6 +483,7 @@
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginBottom="5dp"
+                                                    android:lineSpacingExtra="4dp"
                                                     android:text=":  "
                                                     android:textColor="#515151"
                                                     android:textSize="12dp"
@@ -466,6 +494,7 @@
                                                     android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginBottom="5dp"
+                                                    android:lineSpacingExtra="4dp"
                                                     android:layout_weight=".65"
                                                     android:text="Memuat data..."
                                                     android:textColor="#515151"
@@ -487,6 +516,7 @@
                                             android:layout_width="0dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginBottom="5dp"
+                                            android:lineSpacingExtra="4dp"
                                             android:layout_weight=".25"
                                             android:text="Keterangan"
                                             android:textColor="#515151"
@@ -503,6 +533,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
                                                 android:text=":  "
                                                 android:textColor="#515151"
                                                 android:textSize="12dp"
@@ -513,6 +544,7 @@
                                                 android:layout_width="0dp"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
                                                 android:layout_weight=".65"
                                                 android:text="Memuat data..."
                                                 android:textColor="#515151"
@@ -533,8 +565,9 @@
                                             android:layout_width="0dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginBottom="5dp"
+                                            android:lineSpacingExtra="4dp"
                                             android:layout_weight=".25"
-                                            android:text="Tgl Rencana"
+                                            android:text="Tgl. Rencana"
                                             android:textColor="#515151"
                                             android:textSize="12dp"
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -549,6 +582,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
                                                 android:text=":  "
                                                 android:textColor="#515151"
                                                 android:textSize="12dp"
@@ -559,6 +593,105 @@
                                                 android:layout_width="0dp"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
+                                                android:layout_weight=".65"
+                                                android:text="Memuat data..."
+                                                android:textColor="#515151"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/total_pesanan_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="5dp"
+                                            android:lineSpacingExtra="4dp"
+                                            android:layout_weight=".25"
+                                            android:text="Renc. Pesanan"
+                                            android:textColor="#515151"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <LinearLayout
+                                            android:orientation="horizontal"
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".65"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
+                                                android:text=":  "
+                                                android:textColor="#515151"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <TextView
+                                                android:id="@+id/total_pesanan_tv"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
+                                                android:layout_weight=".65"
+                                                android:text="Memuat data..."
+                                                android:textColor="#515151"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/total_penagihan_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="5dp"
+                                            android:lineSpacingExtra="4dp"
+                                            android:layout_weight=".25"
+                                            android:text="Piutang"
+                                            android:textColor="#515151"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <LinearLayout
+                                            android:orientation="horizontal"
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".65"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
+                                                android:text=":  "
+                                                android:textColor="#515151"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <TextView
+                                                android:id="@+id/total_piutang_tv"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
                                                 android:layout_weight=".65"
                                                 android:text="Memuat data..."
                                                 android:textColor="#515151"

@@ -99,7 +99,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     SharedPrefManager sharedPrefManager;
     ExpandableLayout updateRealisasiForm;
     RequestQueue requestQueue;
-    TextView labelLampiranTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
+    TextView tanggalBuatTV, labelLampiranTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
     String idReport = "";
     SwipeRefreshLayout refreshLayout;
     SharedPrefAbsen sharedPrefAbsen;
@@ -165,6 +165,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         submitRealisasiBTN = findViewById(R.id.submit_realisasi_btn);
         realMark = findViewById(R.id.real_mark);
         viewRealisasiBTN = findViewById(R.id.view_realisasi_btn);
+        tanggalBuatTV = findViewById(R.id.tanggal_buat_tv);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -675,6 +676,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 String idSales = dataArray.getString("idSales");
                                 getSales(idSales);
                                 String tipeLaporan = dataArray.getString("tipeLaporan");
+                                String createdAt = dataArray.getString("createdAt");
+
+                                tanggalBuatTV.setText(createdAt.substring(8,10)+"/"+createdAt.substring(5,7)+"/"+createdAt.substring(0,4)+" "+createdAt.substring(10,16));
 
                                 if(tipeLaporan.equals("1")){
                                     viewLampiranBTN.setVisibility(View.GONE);
