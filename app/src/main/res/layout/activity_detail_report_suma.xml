@@ -950,6 +950,39 @@
                                                 android:paddingTop="45dp"
                                                 android:orientation="vertical">
 
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:text="Keterangan Kunjungan :"
+                                                    android:textColor="#696969"
+                                                    android:textSize="12dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                <EditText
+                                                    android:id="@+id/keterangan_kunjungan_ed"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginBottom="10dp"
+                                                    android:background="@drawable/shape_input_form"
+                                                    android:drawablePadding="10dp"
+                                                    android:gravity="top"
+                                                    android:hint=""
+                                                    android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                    android:lineSpacingExtra="3dp"
+                                                    android:maxLength="1000"
+                                                    android:minHeight="80dp"
+                                                    android:paddingLeft="20dp"
+                                                    android:paddingTop="13dp"
+                                                    android:paddingRight="20dp"
+                                                    android:paddingBottom="13dp"
+                                                    android:textColor="#595959"
+                                                    android:textColorHighlight="#FFE1BC"
+                                                    android:textColorHint="#595959"
+                                                    android:textSize="14dp"
+                                                    tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+
                                                 <LinearLayout
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"

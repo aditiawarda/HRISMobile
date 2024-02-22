@@ -35,6 +35,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -102,6 +103,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
     LinearLayout submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiPart;
     SharedPrefManager sharedPrefManager;
+    EditText keteranganKunjunganRealisasiED;
     ExpandableLayout updateRealisasiForm, rescheduleForm;
     RequestQueue requestQueue;
     TextView choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
@@ -181,6 +183,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         choiceDateBTN = findViewById(R.id.choice_date_btn);
         choiceDateTV = findViewById(R.id.choice_date_tv);
         submitRescheduleBTN = findViewById(R.id.submit_reschedule_btn);
+        keteranganKunjunganRealisasiED = findViewById(R.id.keterangan_kunjungan_ed);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -262,89 +265,10 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         submitRescheduleBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!salesLat.equals("") && !salesLong.equals("") && !String.valueOf(uri).equals("null")){
-                    new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Kirim penjadwalan ulang?")
-                            .setCancelText("TIDAK")
-                            .setConfirmText("   YA   ")
-                            .showCancelButton(true)
-                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                    pDialog = new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                                    pDialog.show();
-                                    pDialog.setCancelable(false);
-                                    new CountDownTimer(1300, 800) {
-                                        public void onTick(long millisUntilFinished) {
-                                            i++;
-                                            switch (i) {
-                                                case 0:
-                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                            (DetailReportSumaActivity.this, R.color.colorGradien));
-                                                    break;
-                                                case 1:
-                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                            (DetailReportSumaActivity.this, R.color.colorGradien2));
-                                                    break;
-                                                case 2:
-                                                case 6:
-                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                            (DetailReportSumaActivity.this, R.color.colorGradien3));
-                                                    break;
-                                                case 3:
-                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                            (DetailReportSumaActivity.this, R.color.colorGradien4));
-                                                    break;
-                                                case 4:
-                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                            (DetailReportSumaActivity.this, R.color.colorGradien5));
-                                                    break;
-                                                case 5:
-                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                            (DetailReportSumaActivity.this, R.color.colorGradien6));
-                                                    break;
-                                            }
-                                        }
-                                        public void onFinish() {
-                                            i = -1;
-                                            submitRealisasi();
-                                        }
-                                    }.start();
-                                }
-                            })
-                            .show();
-
-                } else {
-                    new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Harap isi data tanggal!")
-                            .setConfirmText("    OK    ")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
-                }
-            }
-        });
-
-        submitRealisasiBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 if(!choiceDateReschedule.equals("")){
                     new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Update realisasi sekarang?")
+                            .setContentText("Kirim penjadwalan ulang?")
                             .setCancelText("TIDAK")
                             .setConfirmText("   YA   ")
                             .showCancelButton(true)
@@ -404,7 +328,86 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 } else {
                     new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Harap unggah lampiran dan pastikan posisi GPS sesuai!")
+                            .setContentText("Harap isi data tanggal!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
+            }
+        });
+
+        submitRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!salesLat.equals("") && !salesLong.equals("") && !String.valueOf(uri).equals("null") && !keteranganKunjunganRealisasiED.getText().toString().equals("")){
+                    new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Update realisasi sekarang?")
+                            .setCancelText("TIDAK")
+                            .setConfirmText("   YA   ")
+                            .showCancelButton(true)
+                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                    pDialog = new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                    pDialog.show();
+                                    pDialog.setCancelable(false);
+                                    new CountDownTimer(1300, 800) {
+                                        public void onTick(long millisUntilFinished) {
+                                            i++;
+                                            switch (i) {
+                                                case 0:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien));
+                                                    break;
+                                                case 1:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien2));
+                                                    break;
+                                                case 2:
+                                                case 6:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien3));
+                                                    break;
+                                                case 3:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien4));
+                                                    break;
+                                                case 4:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien5));
+                                                    break;
+                                                case 5:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailReportSumaActivity.this, R.color.colorGradien6));
+                                                    break;
+                                            }
+                                        }
+                                        public void onFinish() {
+                                            i = -1;
+                                            submitRealisasi();
+                                        }
+                                    }.start();
+                                }
+                            })
+                            .show();
+
+                } else {
+                    new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap masukkan keterangan, unggah lampiran dan pastikan posisi GPS sesuai!")
                             .setConfirmText("    OK    ")
                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                 @Override
@@ -762,7 +765,69 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                             String status = data.getString("status");
 
                             if(status.equals("Success")) {
+                                String input_date = choiceDateReschedule;
+                                String dayDate = input_date.substring(8,10);
+                                String yearDate = input_date.substring(0,4);
+                                String bulanValue = input_date.substring(5,7);
+                                String bulanName;
 
+                                switch (bulanValue) {
+                                    case "01":
+                                        bulanName = "Januari";
+                                        break;
+                                    case "02":
+                                        bulanName = "Februari";
+                                        break;
+                                    case "03":
+                                        bulanName = "Maret";
+                                        break;
+                                    case "04":
+                                        bulanName = "April";
+                                        break;
+                                    case "05":
+                                        bulanName = "Mei";
+                                        break;
+                                    case "06":
+                                        bulanName = "Juni";
+                                        break;
+                                    case "07":
+                                        bulanName = "Juli";
+                                        break;
+                                    case "08":
+                                        bulanName = "Agustus";
+                                        break;
+                                    case "09":
+                                        bulanName = "September";
+                                        break;
+                                    case "10":
+                                        bulanName = "Oktober";
+                                        break;
+                                    case "11":
+                                        bulanName = "November";
+                                        break;
+                                    case "12":
+                                        bulanName = "Desember";
+                                        break;
+                                    default:
+                                        bulanName = "Not found!";
+                                        break;
+                                }
+
+                                String tanggal = String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate;
+                                pDialog.setTitleText("Berhasil")
+                                        .setContentText("Tanggal rencana kunjungan berhasil dijadwalkan ulang ke tanggal "+tanggal)
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                getData();
+                                                rescheduleForm.collapse();
+                                                choiceDateReschedule = "";
+                                                choiceDateTV.setText("");
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                             } else {
                                 pDialog.setTitleText("Gagal Terkirim")
                                         .setConfirmText("    OK    ")
@@ -790,7 +855,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             protected Map<String, String> getParams()
             {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("tanggal", choiceDateReschedule);
+                params.put("id_report", idReport);
+                params.put("tanggal_rencana", choiceDateReschedule);
                 return params;
             }
         };
@@ -851,6 +917,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 params.put("id_report", idReport);
                 params.put("latitude", salesLat);
                 params.put("longitude", salesLong);
+                params.put("keterangan", keteranganKunjunganRealisasiED.getText().toString());
                 return params;
             }
         };
