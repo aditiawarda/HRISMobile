@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:background="?attr/alertDialogDark"
     android:paddingTop="15dp"
-    android:paddingBottom="18dp"
+    android:paddingBottom="19dp"
     android:paddingRight="23dp"
     android:paddingLeft="23dp">
 
@@ -115,13 +115,14 @@
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
+        android:textSize="16dp"
         android:fontFamily="@font/roboto"
         android:layout_marginTop="10dp"
         android:singleLine="true"
         android:visibility="gone"
         android:textColor="?attr/alertDialogTextColor"
-        android:text="@string/dialog_default_title" />
+        android:text="@string/dialog_default_title"
+        tools:ignore="SpUsage" />
 
     <TextView
         android:id="@+id/content_text"
@@ -129,12 +130,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lineSpacingExtra="2dp"
-        android:textSize="14dp"
+        android:textSize="13dp"
         android:fontFamily="@font/roboto"
         android:textColor="?attr/alertDialogContentTextColor"
         android:textAlignment="center"
         android:gravity="center"
-        android:visibility="gone" />
+        android:visibility="gone"
+        tools:ignore="SpUsage" />
 
     <FrameLayout
         android:id="@+id/custom_view_container"
@@ -165,16 +167,20 @@
             style="@style/dialog_blue_button"
             android:background="@drawable/gray_button_background"
             android:text="@string/dialog_cancel"
+            android:textSize="13dp"
             android:visibility="gone"
             android:singleLine="true"
-            android:layout_marginEnd="15dp" />
+            android:layout_marginEnd="15dp"
+            tools:ignore="SpUsage" />
 
         <Button
             android:id="@+id/custom_confirm_button"
             style="@style/dialog_blue_button"
+            android:textSize="13dp"
             android:visibility="gone"
             android:singleLine="true"
-            android:text="@string/dialog_ok" />
+            android:text="@string/dialog_ok"
+            tools:ignore="SpUsage" />
 
     </LinearLayout>
 

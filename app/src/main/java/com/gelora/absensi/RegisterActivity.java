@@ -65,7 +65,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
-        //RegisterActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(APPEARANCE_LIGHT_STATUS_BARS, APPEARANCE_LIGHT_STATUS_BARS);
 
         rootview = findViewById(android.R.id.content);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
@@ -284,7 +283,6 @@ public class RegisterActivity extends AppCompatActivity {
                 passwordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
                 repasswordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
 
-
                 nikED.setError(null);
                 passwordED.setError(null);
                 repasswordED.setError(null);
@@ -297,16 +295,16 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = passwordED.getText().toString();
                 String repassword = repasswordED.getText().toString();
 
-                if (regisStatus.equals("registered") || regisStatus.equals("notfound")){
-                    if (TextUtils.isEmpty(nik)){
-                        if (TextUtils.isEmpty(password)){
-                            if (TextUtils.isEmpty(repassword)){
+                if (regisStatus.equals("registered") || regisStatus.equals("notfound") || regisStatus.equals("")){
+                    if (TextUtils.isEmpty(nik) || nik.equals("")){
+                        if (TextUtils.isEmpty(password) || password.equals("")){
+                            if (TextUtils.isEmpty(repassword) || repassword.equals("")){
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Masukkan data!")
                                         .setConfirmText("    OK    ")
                                         .show();
-                                fokus = repasswordED;
+                                fokus = nikED;
                                 cancel = true;
                             } else {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
@@ -314,17 +312,17 @@ public class RegisterActivity extends AppCompatActivity {
                                         .setContentText("Masukkan NIK dan Password!")
                                         .setConfirmText("    OK    ")
                                         .show();
-                                fokus = repasswordED;
+                                fokus = nikED;
                                 cancel = true;
                             }
                         } else {
-                            if (TextUtils.isEmpty(repassword)) {
+                            if (TextUtils.isEmpty(repassword) || repassword.equals("")) {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Masukkan NIK dan Re-Password!")
                                         .setConfirmText("    OK    ")
                                         .show();
-                                fokus = repasswordED;
+                                fokus = nikED;
                                 cancel = true;
                             } else {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
@@ -337,14 +335,14 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }
                     } else {
-                        if (TextUtils.isEmpty(password)){
-                            if (TextUtils.isEmpty(repassword)) {
+                        if (TextUtils.isEmpty(password) || password.equals("")){
+                            if (TextUtils.isEmpty(repassword) || repassword.equals("")) {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("NIK tidak terdaftar dan Password kosong!")
                                         .setConfirmText("    OK    ")
                                         .show();
-                                fokus = repasswordED;
+                                fokus = nikED;
                                 cancel = true;
                             } else {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
@@ -352,17 +350,17 @@ public class RegisterActivity extends AppCompatActivity {
                                         .setContentText("NIK tidak terdaftar dan lengkapi Password!")
                                         .setConfirmText("    OK    ")
                                         .show();
-                                fokus = repasswordED;
+                                fokus = nikED;
                                 cancel = true;
                             }
                         } else {
-                            if (TextUtils.isEmpty(repassword)) {
+                            if (TextUtils.isEmpty(repassword) || repassword.equals("")) {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("NIK tidak terdaftar dan lengkapi Password!")
                                         .setConfirmText("    OK    ")
                                         .show();
-                                fokus = repasswordED;
+                                fokus = nikED;
                                 cancel = true;
                             } else {
                                 if (!password.equals(repassword)){
@@ -371,7 +369,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             .setContentText("NIK tidak terdaftar dan Password tidak cocok!")
                                             .setConfirmText("    OK    ")
                                             .show();
-                                    fokus = repasswordED;
+                                    fokus = nikED;
                                     cancel = true;
                                 } else {
                                     if (regisStatus.equals("registered")){
@@ -394,14 +392,14 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 } else {
-                    if (TextUtils.isEmpty(password)) {
-                        if (TextUtils.isEmpty(repassword)) {
+                    if (TextUtils.isEmpty(password) || password.equals("")) {
+                        if (TextUtils.isEmpty(repassword) || repassword.equals("")) {
                             new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Lengkapi Password dan Re-Passwword!")
                                     .setConfirmText("    OK    ")
                                     .show();
-                            fokus = repasswordED;
+                            fokus = passwordED;
                             cancel = true;
                         } else {
                             new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
@@ -413,7 +411,7 @@ public class RegisterActivity extends AppCompatActivity {
                             cancel = true;
                         }
                     } else {
-                        if (TextUtils.isEmpty(repassword)) {
+                        if (TextUtils.isEmpty(repassword) || repassword.equals("")) {
                             new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Lengkapi Re-Password!")
@@ -478,16 +476,16 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = passwordED.getText().toString();
                 String repassword = repasswordED.getText().toString();
 
-                if (regisStatus.equals("registered") || regisStatus.equals("notfound")){
-                    if (TextUtils.isEmpty(nik)){
-                        if (TextUtils.isEmpty(password)){
-                            if (TextUtils.isEmpty(repassword)){
+                if (regisStatus.equals("registered") || regisStatus.equals("notfound") || regisStatus.equals("")){
+                    if (TextUtils.isEmpty(nik) || nik.equals("")){
+                        if (TextUtils.isEmpty(password) || password.equals("")){
+                            if (TextUtils.isEmpty(repassword) || repassword.equals("")){
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Masukkan data!")
                                         .setConfirmText("    OK    ")
                                         .show();
-                                fokus = repasswordED;
+                                fokus = nikED;
                                 cancel = true;
                             } else {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
@@ -495,17 +493,17 @@ public class RegisterActivity extends AppCompatActivity {
                                         .setContentText("Masukkan NIK dan Password!")
                                         .setConfirmText("    OK    ")
                                         .show();
-                                fokus = repasswordED;
+                                fokus = nikED;
                                 cancel = true;
                             }
                         } else {
-                            if (TextUtils.isEmpty(repassword)) {
+                            if (TextUtils.isEmpty(repassword) || repassword.equals("")) {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Masukkan NIK dan Re-Password!")
                                         .setConfirmText("    OK    ")
                                         .show();
-                                fokus = repasswordED;
+                                fokus = nikED;
                                 cancel = true;
                             } else {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
@@ -518,14 +516,14 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }
                     } else {
-                        if (TextUtils.isEmpty(password)){
-                            if (TextUtils.isEmpty(repassword)) {
+                        if (TextUtils.isEmpty(password) || password.equals("")){
+                            if (TextUtils.isEmpty(repassword) || repassword.equals("")) {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("NIK tidak terdaftar dan Password kosong!")
                                         .setConfirmText("    OK    ")
                                         .show();
-                                fokus = repasswordED;
+                                fokus = nikED;
                                 cancel = true;
                             } else {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
@@ -533,17 +531,17 @@ public class RegisterActivity extends AppCompatActivity {
                                         .setContentText("NIK tidak terdaftar dan lenkapi Password!")
                                         .setConfirmText("    OK    ")
                                         .show();
-                                fokus = repasswordED;
+                                fokus = nikED;
                                 cancel = true;
                             }
                         } else {
-                            if (TextUtils.isEmpty(repassword)) {
+                            if (TextUtils.isEmpty(repassword) || repassword.equals("")) {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("NIK tidak terdaftar dan lengkapi Password!")
                                         .setConfirmText("    OK    ")
                                         .show();
-                                fokus = repasswordED;
+                                fokus = nikED;
                                 cancel = true;
                             } else {
                                 if (!password.equals(repassword)){
@@ -552,7 +550,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             .setContentText("NIK tidak terdaftar dan Password tidak cocok!")
                                             .setConfirmText("    OK    ")
                                             .show();
-                                    fokus = repasswordED;
+                                    fokus = nikED;
                                     cancel = true;
                                 } else {
                                     if (regisStatus.equals("registered")){
@@ -575,14 +573,14 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 } else {
-                    if (TextUtils.isEmpty(password)) {
-                        if (TextUtils.isEmpty(repassword)) {
+                    if (TextUtils.isEmpty(password) || password.equals("")) {
+                        if (TextUtils.isEmpty(repassword) || repassword.equals("")) {
                             new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Lengkapi Password dan Re-Passwword!")
                                     .setConfirmText("    OK    ")
                                     .show();
-                            fokus = repasswordED;
+                            fokus = passwordED;
                             cancel = true;
                         } else {
                             new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
@@ -594,7 +592,7 @@ public class RegisterActivity extends AppCompatActivity {
                             cancel = true;
                         }
                     } else {
-                        if (TextUtils.isEmpty(repassword)) {
+                        if (TextUtils.isEmpty(repassword) || repassword.equals("")) {
                             new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Lengkapi Re-Password!")

@@ -84,6 +84,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -95,11 +97,11 @@ import java.util.UUID;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiPart;
+    LinearLayout totalPenagihanPart, totalPesananPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiPart;
     SharedPrefManager sharedPrefManager;
     ExpandableLayout updateRealisasiForm;
     RequestQueue requestQueue;
-    TextView tanggalBuatTV, labelLampiranTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
+    TextView totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
     String idReport = "";
     SwipeRefreshLayout refreshLayout;
     SharedPrefAbsen sharedPrefAbsen;
@@ -166,6 +168,10 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         realMark = findViewById(R.id.real_mark);
         viewRealisasiBTN = findViewById(R.id.view_realisasi_btn);
         tanggalBuatTV = findViewById(R.id.tanggal_buat_tv);
+        totalPesananPart = findViewById(R.id.total_pesanan_part);
+        totalPesananTV = findViewById(R.id.total_pesanan_tv);
+        totalPenagihanPart = findViewById(R.id.total_penagihan_part);
+        totalPenagihanTV = findViewById(R.id.total_piutang_tv);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -684,6 +690,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     viewLampiranBTN.setVisibility(View.GONE);
                                     reportKategoriTV.setText("RENCANA KUNJUNGAN");
                                     tglRencanaPart.setVisibility(View.VISIBLE);
+                                    totalPesananPart.setVisibility(View.GONE);
+                                    totalPenagihanPart.setVisibility(View.GONE);
                                     String tgl_rencana = dataArray.getString("tanggalRencana");
 
                                     String input_date = tgl_rencana;
@@ -790,6 +798,16 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     reportKategoriTV.setText("LAPORAN KUNJUNGAN");
                                     tglRencanaPart.setVisibility(View.GONE);
+                                    totalPesananPart.setVisibility(View.VISIBLE);
+                                    totalPenagihanPart.setVisibility(View.GONE);
+
+                                    Locale localeID = new Locale("id", "ID");
+                                    DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
+                                    decimalFormat.applyPattern("¤ #,##0;-¤ #,##0");
+                                    decimalFormat.setMaximumFractionDigits(0);
+
+                                    String totalLaporan = dataArray.getString("totalLaporan");
+                                    totalPesananTV.setText(decimalFormat.format(Integer.parseInt(totalLaporan)));
 
                                     String file = dataArray.getString("file");
                                     viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
@@ -807,6 +825,21 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     reportKategoriTV.setText("AKTIVITAS PENAGIHAN");
                                     tglRencanaPart.setVisibility(View.GONE);
+                                    totalPesananPart.setVisibility(View.GONE);
+                                    totalPenagihanPart.setVisibility(View.VISIBLE);
+
+                                    Locale localeID = new Locale("id", "ID");
+                                    DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
+                                    decimalFormat.applyPattern("¤ #,##0;-¤ #,##0");
+                                    decimalFormat.setMaximumFractionDigits(0);
+
+                                    String totalLaporan = dataArray.getString("totalLaporan");
+
+                                    if(totalLaporan.equals("")||totalLaporan.equals("null")||totalLaporan.equals("0")){
+                                        totalPenagihanTV.setText("Terlihat pada SP Manual");
+                                    } else {
+                                        totalPenagihanTV.setText(decimalFormat.format(Integer.parseInt(totalLaporan)));
+                                    }
 
                                     String file = dataArray.getString("file");
                                     viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
