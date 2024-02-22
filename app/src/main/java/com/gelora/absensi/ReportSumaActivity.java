@@ -3012,6 +3012,13 @@ public class ReportSumaActivity extends AppCompatActivity {
     }
 
     private void showImagePickerOptions() {
+        String code = "";
+        if(categoryReport.equals("1") || categoryReport.equals("2")){
+            code = "suma_report";
+        } else if(categoryReport.equals("3")){
+            code = "suma_report_penagihan";
+        }
+
         ImagePickerActivity.showImagePickerOptions(this, new ImagePickerActivity.PickerOptionListener() {
             @Override
             public void onTakeCameraSelected() {
@@ -3021,7 +3028,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onChooseGallerySelected() {
                 launchGalleryIntent();
             }
-        }, "suma_report");
+        }, code);
     }
 
     private void showSettingsDialog() {
