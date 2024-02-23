@@ -1775,7 +1775,7 @@
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:id="@+id/penawaran_form_part"
+                                    android:id="@+id/pengiriman_form_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:visibility="gone"

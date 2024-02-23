@@ -45,7 +45,7 @@ import java.util.Date;
 
 public class ListDataReportSumaActivity extends AppCompatActivity {
 
-    LinearLayout dateBTN, noDataPartReport, loadingDataPartReport, rencanaKunjunganBTN, penagihanBTN, penawaranBTN, kunjunganBTN, markRencanaKunjungan, markPenagihan, markPenawaran, markKunjungan, markSemua, semuaBTN, actionBar, backBTN, addBTN, filterCategoryBTN;
+    LinearLayout dateBTN, noDataPartReport, loadingDataPartReport, rencanaKunjunganBTN, penagihanBTN, pengirimanBTN, kunjunganBTN, markRencanaKunjungan, markPenagihan, markPengiriman, markKunjungan, markSemua, semuaBTN, actionBar, backBTN, addBTN, filterCategoryBTN;
     TextView choiceDateTV, categoryChoiceTV;
     ImageView loadingDataReport;
     SharedPrefManager sharedPrefManager;
@@ -324,12 +324,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         bottomSheet.showWithSheetView(LayoutInflater.from(ListDataReportSumaActivity.this).inflate(R.layout.layout_kategori_report_suma_list_data, bottomSheet, false));
         semuaBTN = findViewById(R.id.semua_btn);
         kunjunganBTN = findViewById(R.id.kunjungan_btn);
-        penawaranBTN = findViewById(R.id.penawaran_btn);
+        pengirimanBTN = findViewById(R.id.pengiriman_btn);
         penagihanBTN = findViewById(R.id.penagihan_btn);
         rencanaKunjunganBTN = findViewById(R.id.rencana_kunjunagan_btn);
         markSemua = findViewById(R.id.mark_semua);
         markKunjungan = findViewById(R.id.mark_pesanan);
-        markPenawaran = findViewById(R.id.mark_penawaran);
+        markPengiriman = findViewById(R.id.mark_pengiriman);
         markPenagihan = findViewById(R.id.mark_penagihan);
         markRencanaKunjungan = findViewById(R.id.mark_rencana_kunjungan);
 
@@ -338,60 +338,60 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             markSemua.setVisibility(View.VISIBLE);
             markRencanaKunjungan.setVisibility(View.GONE);
             markKunjungan.setVisibility(View.GONE);
-            markPenawaran.setVisibility(View.GONE);
+            markPengiriman.setVisibility(View.GONE);
             markPenagihan.setVisibility(View.GONE);
             semuaBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option_choice));
             rencanaKunjunganBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             kunjunganBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
-            penawaranBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+            pengirimanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
         } else if(categoryCode.equals("1")) {
             dateBTN.setVisibility(View.VISIBLE);
             markSemua.setVisibility(View.GONE);
             markRencanaKunjungan.setVisibility(View.VISIBLE);
             markKunjungan.setVisibility(View.GONE);
-            markPenawaran.setVisibility(View.GONE);
+            markPengiriman.setVisibility(View.GONE);
             markPenagihan.setVisibility(View.GONE);
             semuaBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             rencanaKunjunganBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option_choice));
             kunjunganBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
-            penawaranBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+            pengirimanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
         } else if(categoryCode.equals("2")) {
             dateBTN.setVisibility(View.GONE);
             markSemua.setVisibility(View.GONE);
             markRencanaKunjungan.setVisibility(View.GONE);
             markKunjungan.setVisibility(View.VISIBLE);
-            markPenawaran.setVisibility(View.GONE);
+            markPengiriman.setVisibility(View.GONE);
             markPenagihan.setVisibility(View.GONE);
             semuaBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             rencanaKunjunganBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             kunjunganBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option_choice));
-            penawaranBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+            pengirimanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
         } else if(categoryCode.equals("4")) {
             dateBTN.setVisibility(View.GONE);
             markSemua.setVisibility(View.GONE);
             markRencanaKunjungan.setVisibility(View.GONE);
             markKunjungan.setVisibility(View.GONE);
-            markPenawaran.setVisibility(View.VISIBLE);
+            markPengiriman.setVisibility(View.VISIBLE);
             markPenagihan.setVisibility(View.GONE);
             semuaBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             rencanaKunjunganBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             kunjunganBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
-            penawaranBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option_choice));
+            pengirimanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option_choice));
             penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
         } else if(categoryCode.equals("3")) {
             dateBTN.setVisibility(View.GONE);
             markSemua.setVisibility(View.GONE);
             markRencanaKunjungan.setVisibility(View.GONE);
             markKunjungan.setVisibility(View.GONE);
-            markPenawaran.setVisibility(View.GONE);
+            markPengiriman.setVisibility(View.GONE);
             markPenagihan.setVisibility(View.VISIBLE);
             semuaBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             rencanaKunjunganBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             kunjunganBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
-            penawaranBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+            pengirimanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option_choice));
         }
 
@@ -405,12 +405,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 markSemua.setVisibility(View.VISIBLE);
                 markRencanaKunjungan.setVisibility(View.GONE);
                 markKunjungan.setVisibility(View.GONE);
-                markPenawaran.setVisibility(View.GONE);
+                markPengiriman.setVisibility(View.GONE);
                 markPenagihan.setVisibility(View.GONE);
                 semuaBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
                 rencanaKunjunganBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 kunjunganBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
-                penawaranBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                pengirimanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 penagihanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
 
                 new Handler().postDelayed(new Runnable() {
@@ -444,12 +444,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 markSemua.setVisibility(View.GONE);
                 markRencanaKunjungan.setVisibility(View.VISIBLE);
                 markKunjungan.setVisibility(View.GONE);
-                markPenawaran.setVisibility(View.GONE);
+                markPengiriman.setVisibility(View.GONE);
                 markPenagihan.setVisibility(View.GONE);
                 semuaBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 rencanaKunjunganBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
                 kunjunganBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
-                penawaranBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                pengirimanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 penagihanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -482,12 +482,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 markSemua.setVisibility(View.GONE);
                 markRencanaKunjungan.setVisibility(View.GONE);
                 markKunjungan.setVisibility(View.VISIBLE);
-                markPenawaran.setVisibility(View.GONE);
+                markPengiriman.setVisibility(View.GONE);
                 markPenagihan.setVisibility(View.GONE);
                 semuaBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 rencanaKunjunganBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 kunjunganBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
-                penawaranBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                pengirimanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 penagihanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -520,12 +520,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 markSemua.setVisibility(View.GONE);
                 markRencanaKunjungan.setVisibility(View.GONE);
                 markKunjungan.setVisibility(View.GONE);
-                markPenawaran.setVisibility(View.GONE);
+                markPengiriman.setVisibility(View.GONE);
                 markPenagihan.setVisibility(View.VISIBLE);
                 semuaBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 rencanaKunjunganBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 kunjunganBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
-                penawaranBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                pengirimanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 penagihanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -548,22 +548,22 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             }
         });
 
-        penawaranBTN.setOnClickListener(new View.OnClickListener() {
+        pengirimanBTN.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 dateBTN.setVisibility(View.GONE);
                 categoryCode = "4";
-                categoryChoiceTV.setText("Penawaran");
+                categoryChoiceTV.setText("Laporan Pengiriman");
                 markSemua.setVisibility(View.GONE);
                 markRencanaKunjungan.setVisibility(View.GONE);
                 markKunjungan.setVisibility(View.GONE);
-                markPenawaran.setVisibility(View.VISIBLE);
+                markPengiriman.setVisibility(View.VISIBLE);
                 markPenagihan.setVisibility(View.GONE);
                 semuaBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 rencanaKunjunganBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 kunjunganBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
-                penawaranBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
+                pengirimanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
                 penagihanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 new Handler().postDelayed(new Runnable() {
                     @Override

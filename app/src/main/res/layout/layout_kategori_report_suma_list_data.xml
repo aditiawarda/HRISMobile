@@ -201,57 +201,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/penawaran_btn"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:background="@drawable/shape_option"
-                android:orientation="horizontal"
-                tools:ignore="DisableBaselineAlignment"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight=".80"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="17dp"
-                        android:paddingBottom="17dp"
-                        android:text="Penawaran"
-                        android:textColor="#C16D02"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:visibility="gone"
-                    android:id="@+id/mark_penawaran"
-                    android:gravity="right|center"
-                    android:layout_width="0dp"
-                    android:layout_weight=".20"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    tools:ignore="RtlHardcoded">
-
-                    <TextView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/success"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/penagihan_btn"
                 android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
@@ -285,6 +234,56 @@
                 <LinearLayout
                     android:visibility="gone"
                     android:id="@+id/mark_penagihan"
+                    android:gravity="right|center"
+                    android:layout_width="0dp"
+                    android:layout_weight=".20"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    tools:ignore="RtlHardcoded">
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/success"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pengiriman_btn"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:background="@drawable/shape_option"
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".80"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="17dp"
+                        android:paddingBottom="17dp"
+                        android:text="Laporan Pengiriman"
+                        android:textColor="#C16D02"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/mark_pengiriman"
                     android:gravity="right|center"
                     android:layout_width="0dp"
                     android:layout_weight=".20"
