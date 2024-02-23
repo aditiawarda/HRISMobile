@@ -43,11 +43,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -142,13 +145,16 @@ public class ReportSumaActivity extends AppCompatActivity {
     LinearLayout f2SubmitPesananBTN, f2GPSLocationBTN, f2ViewLampiranBTN, f2LampiranFotoBTN, f2ProductInputDetailPart, f2AddProductBTN, f2ProductChoiceBTN, f2DetailPesananPart, f2DetailPelanggan, f2NamaPelangganLamaBTN, f2PelangganAttantionPart, f2PelangganBaruPart, f2PelangganLamaPart;
     RadioGroup f2PelangganOption;
     RadioButton f2PelangganOptionBaru, f2PelangganOptionLama;
-    TextView f2DetailLocationTV, f2LabelLampiranTV, f2TotalPesananTV, f2SubTotalTV, f2ProductHargaSatuanTV, f2ProductChoiceTV, f2TeleponPelangganLamaTV, f2NamaPelangganLamaChoiceTV, f2AlamatPelangganLamaTV, f2PicPelangganLamaTV;
+    TextView f2KategoriPelangganBaruPilih, f2DetailLocationTV, f2LabelLampiranTV, f2TotalPesananTV, f2SubTotalTV, f2ProductHargaSatuanTV, f2ProductChoiceTV, f2TeleponPelangganLamaTV, f2NamaPelangganLamaChoiceTV, f2AlamatPelangganLamaTV, f2PicPelangganLamaTV;
     NumberPicker f2QtyProductPicker;
     RecyclerView pelangganRV, produkRV, f2ListProductInputRV;
     private PelangganLama[] pelangganLamas;
     private ProductSuma[] productSumas;
     private AdapterPelangganLama adapterPelangganLama;
     private AdapterProductSuma adapterProductSuma;
+    Spinner f2SpinnerKategoriPelanggan;
+
+    String[] SubKategoriListPilih = {"Nilai 1", "Nilai 2", "Nilai 3"};
     String f2IdPelangganLama = "", f2JenisPelanggan = "", f2TotalPesanan = "", f2FullDataProduct = "", f2QtyProduct = "", f2IdProduct = "", f2ProductName = "", f2ProductHargaSatuan = "", f2SubTotal = "";
 
     LinearLayout f3SubmitPesananBTN, f3LampiranFotoBTN, f3ViewLampiranBTN, f3GPSLocationBTN, f3NoDataPiutang, f3LoadingDataPiutang, f3NamaPelangganLamaBTN, f3DetailPelanggan, f3DetailListInvPart;
@@ -265,6 +271,8 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2PicPelangganBaruED = findViewById(R.id.f2_pic_pelanggan_baru_ed);
         f2TeleponPelangganBaruED = findViewById(R.id.f2_telepon_pelanggan_baru_ed);
         f2DetailLocationTV = findViewById(R.id.f2_detail_location_tv);
+        f2KategoriPelangganBaruPilih = findViewById(R.id.f2_kategori_pelanggan_baru_pilih);
+        f2SpinnerKategoriPelanggan = findViewById(R.id.f2_kategori_pelanggan_baru_sp);
 
         f3NamaPelangganLamaBTN = findViewById(R.id.f3_nama_pelanggan_lama_btn);
         f3DetailPelanggan = findViewById(R.id.f3_detail_pelanggan);
@@ -293,6 +301,32 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2ListProductInputRV.setHasFixedSize(true);
         f2ListProductInputRV.setNestedScrollingEnabled(false);
         f2ListProductInputRV.setItemAnimator(new DefaultItemAnimator());
+
+        f2SpinnerKategoriPelanggan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                f2SpinnerKategoriPelanggan.setBackground(getResources().getDrawable(R.drawable.bg_spinner_up));
+                f2KategoriPelangganBaruPilih.setText(SubKategoriListPilih[position]);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //getData();
+                    }
+                },50);
+            }
+
+            @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                f2KategoriPelangganBaruPilih.setBackground(getResources().getDrawable(R.drawable.bg_spinner));
+                f2KategoriPelangganBaruPilih.setText("Sub Kategori");
+            }
+        });
+
+        ArrayAdapter adapterPelangganBaruKategori = new ArrayAdapter(this, android.R.layout.simple_list_item_1, SubKategoriListPilih);
+        adapterPelangganBaruKategori.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        f2SpinnerKategoriPelanggan.setAdapter(adapterPelangganBaruKategori);
 
         salesPosition();
 
@@ -665,6 +699,22 @@ public class ReportSumaActivity extends AppCompatActivity {
                 }
             }
         });
+
+        f2SpinnerKategoriPelanggan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Di sini Anda bisa menanggapi perubahan opsi yang dipilih
+                String selectedOption = (String) parentView.getItemAtPosition(position);
+                // Contoh: Tampilkan opsi yang dipilih dalam Toast
+                Toast.makeText(getApplicationContext(), "Selected: " + selectedOption, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Metode ini dipanggil jika tidak ada opsi yang dipilih
+            }
+        });
+
 
         f2NamaPelangganLamaBTN.setOnClickListener(new View.OnClickListener() {
             @Override

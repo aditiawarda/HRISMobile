@@ -292,7 +292,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         if (sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) {
             pageTitle.setText("KEHADIRAN DEPARTEMEN");
             choiceBagianBTN.setVisibility(View.VISIBLE);
-        } else if (sharedPrefManager.getSpIdJabatan().equals("11")) {
+        } else if (sharedPrefManager.getSpIdJabatan().equals("11") || (sharedPrefManager.getSpIdJabatan().equals("14")&&(sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) {
             pageTitle.setText("KEHADIRAN BAGIAN");
             choiceBagianBTN.setVisibility(View.GONE);
         }
@@ -383,7 +383,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                                 if (sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("33")){
                                     namaBagian.setText(data.getString("desc_departemen"));
                                     jumlahKaryawanTV.setText(data.getString("jumlah_karyawan_dept"));
-                                } else if (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("35")) {
+                                } else if (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpIdJabatan().equals("14")&&(sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) {
                                     namaBagian.setText(data.getString("nama_bagian"));
                                     jumlahKaryawanTV.setText(data.getString("jumlah_karyawan"));
                                 } else if (sharedPrefManager.getSpNik().equals("E1004")) {

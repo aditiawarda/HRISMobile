@@ -783,7 +783,8 @@
                                         android:paddingTop="12dp"
                                         android:paddingBottom="12dp"
                                         android:background="@drawable/shape_btn"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="TooManyViews">
 
                                         <TextView
                                             android:layout_width="wrap_content"
@@ -927,6 +928,55 @@
                                             android:paddingRight="22dp"
                                             android:paddingLeft="22dp"
                                             android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="Kategori Pelanggan :"
+                                                android:textColor="#696969"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="40dp"
+                                                android:layout_marginBottom="10dp">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="40dp"
+                                                    android:orientation="horizontal"
+                                                    android:paddingTop="10dp"
+                                                    android:paddingBottom="10dp">
+
+                                                    <TextView
+                                                        android:id="@+id/f2_kategori_pelanggan_baru_pilih"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:paddingLeft="10dp"
+                                                        android:text="Pilih kategori pelanggan..."
+                                                        android:textColor="#B15735"
+                                                        android:textSize="13dp"
+                                                        android:textStyle="bold"
+                                                        android:ellipsize="end"
+                                                        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SpUsage" />
+
+                                                    <Spinner
+                                                        android:id="@+id/f2_kategori_pelanggan_baru_sp"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:background="@drawable/bg_spinner_up" />
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="40dp"
+                                                        android:background="@drawable/shape_feel"/>
+
+                                                </RelativeLayout>
+
+                                            </LinearLayout>
 
                                             <TextView
                                                 android:layout_width="wrap_content"
