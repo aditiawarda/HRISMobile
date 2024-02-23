@@ -145,7 +145,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     LinearLayout f2SubmitPesananBTN, f2GPSLocationBTN, f2ViewLampiranBTN, f2LampiranFotoBTN, f2ProductInputDetailPart, f2AddProductBTN, f2ProductChoiceBTN, f2DetailPesananPart, f2DetailPelanggan, f2NamaPelangganLamaBTN, f2PelangganAttantionPart, f2PelangganBaruPart, f2PelangganLamaPart;
     RadioGroup f2PelangganOption;
     RadioButton f2PelangganOptionBaru, f2PelangganOptionLama;
-    TextView f2KategoriPelangganBaruPilih, f2DetailLocationTV, f2LabelLampiranTV, f2TotalPesananTV, f2SubTotalTV, f2ProductHargaSatuanTV, f2ProductChoiceTV, f2TeleponPelangganLamaTV, f2NamaPelangganLamaChoiceTV, f2AlamatPelangganLamaTV, f2PicPelangganLamaTV;
+    TextView f2DetailLocationTV, f2LabelLampiranTV, f2TotalPesananTV, f2SubTotalTV, f2ProductHargaSatuanTV, f2ProductChoiceTV, f2TeleponPelangganLamaTV, f2NamaPelangganLamaChoiceTV, f2AlamatPelangganLamaTV, f2PicPelangganLamaTV;
     NumberPicker f2QtyProductPicker;
     RecyclerView pelangganRV, produkRV, f2ListProductInputRV;
     private PelangganLama[] pelangganLamas;
@@ -153,9 +153,8 @@ public class ReportSumaActivity extends AppCompatActivity {
     private AdapterPelangganLama adapterPelangganLama;
     private AdapterProductSuma adapterProductSuma;
     Spinner f2SpinnerKategoriPelanggan;
-
-    String[] subKategoriListPilih = {"0", "1", "2", "3", "4"};
-    String f2IdPelangganLama = "", f2JenisPelanggan = "", f2TotalPesanan = "", f2FullDataProduct = "", f2QtyProduct = "", f2IdProduct = "", f2ProductName = "", f2ProductHargaSatuan = "", f2SubTotal = "";
+    String[] subKategoriListPilih = {"","TK","SD","SMP","SMA","SMK","MI","MTS","MA","PERTI","TBUKU","PERSON","PERUSAHAAN","ERLSAL","SEKOLAH","SALESERL","MARKETPLACE","COORPORATE","ERLANGGAGROUP","TOKOGAP","YAYASAN","PAMERAN"};
+    String f2KategoriPelangganPilih = "", f2IdPelangganLama = "", f2JenisPelanggan = "", f2TotalPesanan = "", f2FullDataProduct = "", f2QtyProduct = "", f2IdProduct = "", f2ProductName = "", f2ProductHargaSatuan = "", f2SubTotal = "";
 
     LinearLayout f3SubmitPesananBTN, f3LampiranFotoBTN, f3ViewLampiranBTN, f3GPSLocationBTN, f3NoDataPiutang, f3LoadingDataPiutang, f3NamaPelangganLamaBTN, f3DetailPelanggan, f3DetailListInvPart;
     TextView f3DetailLocationTV, f3LabelLampiranTV, f3TotalPiutangTV, f3TeleponPelangganLamaTV, f3NamaPelangganLamaChoiceTV, f3AlamatPelangganLamaTV, f3PicPelangganLamaTV;
@@ -271,7 +270,6 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2PicPelangganBaruED = findViewById(R.id.f2_pic_pelanggan_baru_ed);
         f2TeleponPelangganBaruED = findViewById(R.id.f2_telepon_pelanggan_baru_ed);
         f2DetailLocationTV = findViewById(R.id.f2_detail_location_tv);
-        f2KategoriPelangganBaruPilih = findViewById(R.id.f2_kategori_pelanggan_baru_pilih);
         f2SpinnerKategoriPelanggan = findViewById(R.id.f2_kategori_pelanggan_baru_sp);
 
         f3NamaPelangganLamaBTN = findViewById(R.id.f3_nama_pelanggan_lama_btn);
@@ -306,22 +304,12 @@ public class ReportSumaActivity extends AppCompatActivity {
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                f2SpinnerKategoriPelanggan.setBackground(getResources().getDrawable(R.drawable.bg_spinner_up));
-                if(subKategoriListPilih[position]=="0"){
-
-                } else if(subKategoriListPilih[position]=="1"){
-
-                } else if(subKategoriListPilih[position]=="0"){
-
-                }
-                f2KategoriPelangganBaruPilih.setText(subKategoriListPilih[position]);
+                f2KategoriPelangganPilih = String.valueOf(subKategoriListPilih[position]);
             }
-
             @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                f2KategoriPelangganBaruPilih.setBackground(getResources().getDrawable(R.drawable.bg_spinner));
-                f2KategoriPelangganBaruPilih.setText("Sub Kategori");
+                f2KategoriPelangganPilih = "";
             }
         });
 
@@ -701,22 +689,6 @@ public class ReportSumaActivity extends AppCompatActivity {
             }
         });
 
-        f2SpinnerKategoriPelanggan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Di sini Anda bisa menanggapi perubahan opsi yang dipilih
-                String selectedOption = (String) parentView.getItemAtPosition(position);
-                // Contoh: Tampilkan opsi yang dipilih dalam Toast
-                Toast.makeText(getApplicationContext(), "Selected: " + selectedOption, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Metode ini dipanggil jika tidak ada opsi yang dipilih
-            }
-        });
-
-
         f2NamaPelangganLamaBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -924,7 +896,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f2KeteranganKunjunganED.clearFocus();
                 if(!categoryReport.equals("") && !f2KeteranganKunjunganED.getText().toString().equals("") && !f2JenisPelanggan.equals("")){
                     if(f2JenisPelanggan.equals("1")){
-                        if(!f2NamaPelangganBaruED.getText().toString().equals("") && !f2AlamatPelangganBaruED.getText().toString().equals("") && !f2PicPelangganBaruED.getText().toString().equals("") && !f2TeleponPelangganBaruED.getText().toString().equals("")){
+                        if(!f2KategoriPelangganPilih.equals("") && !f2NamaPelangganBaruED.getText().toString().equals("") && !f2AlamatPelangganBaruED.getText().toString().equals("") && !f2PicPelangganBaruED.getText().toString().equals("") && !f2TeleponPelangganBaruED.getText().toString().equals("")){
                             if(salesLat.equals("")||salesLong.equals("")||String.valueOf(uri).equals("null")){
                                 new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
@@ -3122,6 +3094,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     params.put("tipe_pelanggan", f2JenisPelanggan);
 
                     if(f2JenisPelanggan.equals("1")){
+                        params.put("kategori_pelanggan", f2KategoriPelangganPilih);
                         params.put("nama_pelanggan", f2NamaPelangganBaruED.getText().toString());
                         params.put("alamat_pelanggan", f2AlamatPelangganBaruED.getText().toString());
                         params.put("pic_pelanggan", f2PicPelangganBaruED.getText().toString());
