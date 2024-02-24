@@ -1644,7 +1644,6 @@
                                                     android:id="@+id/f2_gps_btn"
                                                     android:layout_width="0dp"
                                                     android:layout_weight=".50"
-                                                    android:layout_marginRight="5dp"
                                                     android:layout_height="35dp"
                                                     android:background="@drawable/shape_second_btn"
                                                     android:gravity="center"
@@ -1664,7 +1663,7 @@
                                                     android:id="@+id/f2_foto_lampiran_btn"
                                                     android:layout_width="0dp"
                                                     android:layout_weight=".50"
-                                                    android:layout_marginLeft="5dp"
+                                                    android:layout_marginLeft="10dp"
                                                     android:layout_height="35dp"
                                                     android:background="@drawable/shape_btn_edit_permohonan"
                                                     android:gravity="center"
@@ -1684,15 +1683,16 @@
                                                 <LinearLayout
                                                     android:visibility="gone"
                                                     android:id="@+id/f2_view_lampiran_btn"
-                                                    android:layout_width="35dp"
+                                                    android:layout_width="wrap_content"
                                                     android:paddingTop="5dp"
                                                     android:paddingBottom="5dp"
-                                                    android:paddingRight="5dp"
-                                                    android:paddingLeft="5dp"
+                                                    android:paddingRight="7dp"
+                                                    android:paddingLeft="7dp"
                                                     android:layout_marginLeft="10dp"
                                                     android:gravity="center"
                                                     android:background="@drawable/shape_btn_approved"
                                                     android:layout_height="35dp"
+                                                    android:orientation="horizontal"
                                                     tools:ignore="RtlHardcoded">
 
                                                     <TextView
@@ -1700,6 +1700,20 @@
                                                         android:gravity="center"
                                                         android:background="@drawable/ic_baseline_content_surat"
                                                         android:layout_height="18dp" />
+
+                                                    <TextView
+                                                        android:id="@+id/f2_count_image_tv"
+                                                        android:layout_width="wrap_content"
+                                                        android:gravity="center"
+                                                        android:layout_height="18dp"
+                                                        android:textStyle="bold"
+                                                        android:textColor="@color/white"
+                                                        android:paddingRight="1dp"
+                                                        android:paddingLeft="3dp"
+                                                        android:textSize="13dp"
+                                                        android:paddingBottom="1dp"
+                                                        android:text="10"
+                                                        tools:ignore="HardcodedText,SpUsage" />
 
                                                 </LinearLayout>
 
@@ -1765,6 +1779,39 @@
                                     android:layout_height="wrap_content"
                                     android:visibility="gone"
                                     android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+                                        android:id="@+id/f4_keterangan_ed"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint=""
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="1000"
+                                        android:minHeight="80dp"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -2244,7 +2291,6 @@
                                                         android:id="@+id/f3_gps_btn"
                                                         android:layout_width="0dp"
                                                         android:layout_weight=".50"
-                                                        android:layout_marginRight="5dp"
                                                         android:layout_height="35dp"
                                                         android:background="@drawable/shape_second_btn"
                                                         android:gravity="center"
@@ -2264,7 +2310,7 @@
                                                         android:id="@+id/f3_foto_lampiran_btn"
                                                         android:layout_width="0dp"
                                                         android:layout_weight=".50"
-                                                        android:layout_marginLeft="5dp"
+                                                        android:layout_marginLeft="10dp"
                                                         android:layout_height="35dp"
                                                         android:background="@drawable/shape_btn_edit_permohonan"
                                                         android:gravity="center"
@@ -2284,15 +2330,16 @@
                                                     <LinearLayout
                                                         android:visibility="gone"
                                                         android:id="@+id/f3_view_lampiran_btn"
-                                                        android:layout_width="35dp"
+                                                        android:layout_width="wrap_content"
                                                         android:paddingTop="5dp"
                                                         android:paddingBottom="5dp"
-                                                        android:paddingRight="5dp"
-                                                        android:paddingLeft="5dp"
+                                                        android:paddingRight="7dp"
+                                                        android:paddingLeft="7dp"
                                                         android:layout_marginLeft="10dp"
                                                         android:gravity="center"
                                                         android:background="@drawable/shape_btn_approved"
                                                         android:layout_height="35dp"
+                                                        android:orientation="horizontal"
                                                         tools:ignore="RtlHardcoded">
 
                                                         <TextView
@@ -2300,6 +2347,20 @@
                                                             android:gravity="center"
                                                             android:background="@drawable/ic_baseline_content_surat"
                                                             android:layout_height="18dp" />
+
+                                                        <TextView
+                                                            android:id="@+id/f3_count_image_tv"
+                                                            android:layout_width="wrap_content"
+                                                            android:gravity="center"
+                                                            android:layout_height="18dp"
+                                                            android:textStyle="bold"
+                                                            android:textColor="@color/white"
+                                                            android:paddingRight="1dp"
+                                                            android:paddingLeft="3dp"
+                                                            android:textSize="13dp"
+                                                            android:paddingBottom="1dp"
+                                                            android:text="10"
+                                                            tools:ignore="HardcodedText,SpUsage" />
 
                                                     </LinearLayout>
 

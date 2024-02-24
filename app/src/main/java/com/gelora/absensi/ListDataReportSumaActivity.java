@@ -848,7 +848,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 categoryChoiceTV.setText("Laporan Kunjungan");
             } else if(categoryCode.equals("4")) {
                 dateBTN.setVisibility(View.GONE);
-                categoryChoiceTV.setText("Penawaran");
+                categoryChoiceTV.setText("Laporan Pengiriman");
             } else if(categoryCode.equals("3")) {
                 dateBTN.setVisibility(View.GONE);
                 categoryChoiceTV.setText("Aktifitas Penagihan");

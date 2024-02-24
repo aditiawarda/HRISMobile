@@ -1316,10 +1316,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageActivity.class);
-                                            intent.putExtra("url", file);
-                                            intent.putExtra("kode", "detail");
-                                            intent.putExtra("jenis_detail", "suma");
+                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                            intent.putExtra("data", file);
                                             startActivity(intent);
                                         }
                                     });
@@ -1347,10 +1345,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageActivity.class);
-                                            intent.putExtra("url", file);
-                                            intent.putExtra("kode", "detail");
-                                            intent.putExtra("jenis_detail", "suma");
+                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                            intent.putExtra("data", file);
                                             startActivity(intent);
                                         }
                                     });

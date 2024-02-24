@@ -70,6 +70,7 @@ import com.gelora.absensi.adapter.AdapterPelangganList;
 import com.gelora.absensi.adapter.AdapterProductInputSuma;
 import com.gelora.absensi.adapter.AdapterProductSuma;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.model.DataImageSlider;
 import com.gelora.absensi.model.DataInvoicePiutang;
 import com.gelora.absensi.model.PelangganLama;
 import com.gelora.absensi.model.PelangganList;
@@ -145,7 +146,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     LinearLayout f2SubmitPesananBTN, f2GPSLocationBTN, f2ViewLampiranBTN, f2LampiranFotoBTN, f2ProductInputDetailPart, f2AddProductBTN, f2ProductChoiceBTN, f2DetailPesananPart, f2DetailPelanggan, f2NamaPelangganLamaBTN, f2PelangganAttantionPart, f2PelangganBaruPart, f2PelangganLamaPart;
     RadioGroup f2PelangganOption;
     RadioButton f2PelangganOptionBaru, f2PelangganOptionLama;
-    TextView f2DetailLocationTV, f2LabelLampiranTV, f2TotalPesananTV, f2SubTotalTV, f2ProductHargaSatuanTV, f2ProductChoiceTV, f2TeleponPelangganLamaTV, f2NamaPelangganLamaChoiceTV, f2AlamatPelangganLamaTV, f2PicPelangganLamaTV;
+    TextView f2CountImageTV, f2DetailLocationTV, f2LabelLampiranTV, f2TotalPesananTV, f2SubTotalTV, f2ProductHargaSatuanTV, f2ProductChoiceTV, f2TeleponPelangganLamaTV, f2NamaPelangganLamaChoiceTV, f2AlamatPelangganLamaTV, f2PicPelangganLamaTV;
     NumberPicker f2QtyProductPicker;
     RecyclerView pelangganRV, produkRV, f2ListProductInputRV;
     private PelangganLama[] pelangganLamas;
@@ -157,7 +158,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     String f2KategoriPelangganPilih = "", f2IdPelangganLama = "", f2JenisPelanggan = "", f2TotalPesanan = "", f2FullDataProduct = "", f2QtyProduct = "", f2IdProduct = "", f2ProductName = "", f2ProductHargaSatuan = "", f2SubTotal = "";
 
     LinearLayout f3SubmitPesananBTN, f3LampiranFotoBTN, f3ViewLampiranBTN, f3GPSLocationBTN, f3NoDataPiutang, f3LoadingDataPiutang, f3NamaPelangganLamaBTN, f3DetailPelanggan, f3DetailListInvPart;
-    TextView f3DetailLocationTV, f3LabelLampiranTV, f3TotalPiutangTV, f3TeleponPelangganLamaTV, f3NamaPelangganLamaChoiceTV, f3AlamatPelangganLamaTV, f3PicPelangganLamaTV;
+    TextView f3CountImageTV, f3DetailLocationTV, f3LabelLampiranTV, f3TotalPiutangTV, f3TeleponPelangganLamaTV, f3NamaPelangganLamaChoiceTV, f3AlamatPelangganLamaTV, f3PicPelangganLamaTV;
     String f3IdPelangganLama = "";
     RecyclerView f3InvRV;
     ImageView f3LoadingDataPiutangImg;
@@ -181,6 +182,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     private static final int LOCATION_REQUEST = INITIAL_REQUEST + 3;
     int REQUEST_IMAGE = 100;
     private Uri uri;
+    private List<String> lampiranImage = new ArrayList<>();
     KAlertDialog pDialog;
     private int i = -1;
 
@@ -271,6 +273,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2TeleponPelangganBaruED = findViewById(R.id.f2_telepon_pelanggan_baru_ed);
         f2DetailLocationTV = findViewById(R.id.f2_detail_location_tv);
         f2SpinnerKategoriPelanggan = findViewById(R.id.f2_kategori_pelanggan_baru_sp);
+        f2CountImageTV = findViewById(R.id.f2_count_image_tv);
 
         f3NamaPelangganLamaBTN = findViewById(R.id.f3_nama_pelanggan_lama_btn);
         f3DetailPelanggan = findViewById(R.id.f3_detail_pelanggan);
@@ -292,6 +295,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f3KeteranganED = findViewById(R.id.f3_keterangan_ed);
         f3DetailLocationTV = findViewById(R.id.f3_detail_location_tv);
         f3SubmitPesananBTN = findViewById(R.id.f3_submit_data_btn);
+        f3CountImageTV = findViewById(R.id.f3_count_image_tv);
 
         adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
         f2ListProductInputRV.setLayoutManager(new LinearLayoutManager(this));
@@ -381,6 +385,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f1AddPelangganPart.setVisibility(View.GONE);
                 f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
+                f2KategoriPelangganPilih = "";
                 f2KeteranganKunjunganED.setText("");
                 f2PelangganOption.clearCheck();
                 f2PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -897,7 +902,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 if(!categoryReport.equals("") && !f2KeteranganKunjunganED.getText().toString().equals("") && !f2JenisPelanggan.equals("")){
                     if(f2JenisPelanggan.equals("1")){
                         if(!f2KategoriPelangganPilih.equals("") && !f2NamaPelangganBaruED.getText().toString().equals("") && !f2AlamatPelangganBaruED.getText().toString().equals("") && !f2PicPelangganBaruED.getText().toString().equals("") && !f2TeleponPelangganBaruED.getText().toString().equals("")){
-                            if(salesLat.equals("")||salesLong.equals("")||String.valueOf(uri).equals("null")){
+                            if(salesLat.equals("")||salesLong.equals("")||lampiranImage.size()==0){
                                 new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi semua data!")
@@ -1000,7 +1005,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                                     })
                                     .show();
                         } else {
-                            if(salesLat.equals("")||salesLong.equals("")||String.valueOf(uri).equals("null")){
+                            if(salesLat.equals("")||salesLong.equals("")||lampiranImage.size()==0){
                                 new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi semua data!")
@@ -1098,7 +1103,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 f3KeteranganED.clearFocus();
                 if(!categoryReport.equals("") && !f3IdPelangganLama.equals("") && !f3KeteranganED.getText().toString().equals("")){
-                    if(salesLat.equals("")||salesLong.equals("")||String.valueOf(uri).equals("null")){
+                    if(salesLat.equals("")||salesLong.equals("")||lampiranImage.size()==0){
                         new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Harap isi semua data!")
@@ -1306,6 +1311,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1AddPelangganPart.setVisibility(View.GONE);
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
+                        f2KategoriPelangganPilih = "";
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1434,6 +1440,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1AddPelangganPart.setVisibility(View.GONE);
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
+                        f2KategoriPelangganPilih = "";
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1545,6 +1552,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         attantionNoForm.setVisibility(View.GONE);
                         loadingFormPart.setVisibility(View.VISIBLE);
 
+                        f2KategoriPelangganPilih = "";
                         f2KeteranganKunjunganED.setText("");
                         f1PelangganOption.clearCheck();
                         f1PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1562,6 +1570,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1AddPelangganPart.setVisibility(View.GONE);
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
+                        f2KategoriPelangganPilih = "";
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1673,6 +1682,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         attantionNoForm.setVisibility(View.GONE);
                         loadingFormPart.setVisibility(View.VISIBLE);
 
+                        f2KategoriPelangganPilih = "";
                         f2KeteranganKunjunganED.setText("");
                         f1PelangganOption.clearCheck();
                         f1PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1690,6 +1700,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1AddPelangganPart.setVisibility(View.GONE);
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
+                        f2KategoriPelangganPilih = "";
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -2934,6 +2945,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 uri = data.getParcelableExtra("path");
                 String stringUri = String.valueOf(uri);
+                lampiranImage.add(stringUri);
                 String extension = stringUri.substring(stringUri.lastIndexOf("."));
                 try {
                     if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")||extension.equals(".png")||extension.equals(".PNG")){
@@ -2943,28 +2955,36 @@ public class ReportSumaActivity extends AppCompatActivity {
                         Log.e("PaRSE JSON", a);
 
                         if(categoryReport.equals("2")){
+                            f2CountImageTV.setText(String.valueOf(lampiranImage.size()));
+                            if(lampiranImage.size()>=2){
+                                f2LampiranFotoBTN.setVisibility(View.GONE);
+                            } else {
+                                f2LampiranFotoBTN.setVisibility(View.VISIBLE);
+                            }
                             f2ViewLampiranBTN.setVisibility(View.VISIBLE);
-                            f2LabelLampiranTV.setText("Ubah Lampiran");
+                            f2LabelLampiranTV.setText("+ Lampiran Foto/SP");
                             f2ViewLampiranBTN.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Intent intent = new Intent(ReportSumaActivity.this, ViewImageActivity.class);
-                                    intent.putExtra("url", String.valueOf(uri));
-                                    intent.putExtra("kode", "form");
-                                    intent.putExtra("jenis_form", "suma");
+                                    Intent intent = new Intent(ReportSumaActivity.this, ViewImageSliderActivity.class);
+                                    intent.putExtra("data", String.valueOf(lampiranImage));
                                     startActivity(intent);
                                 }
                             });
                         } else if(categoryReport.equals("3")) {
+                            f3CountImageTV.setText(String.valueOf(lampiranImage.size()));
+                            if(lampiranImage.size()>=2){
+                                f3LampiranFotoBTN.setVisibility(View.GONE);
+                            } else {
+                                f3LampiranFotoBTN.setVisibility(View.VISIBLE);
+                            }
                             f3ViewLampiranBTN.setVisibility(View.VISIBLE);
-                            f3LabelLampiranTV.setText("Ubah Lampiran");
+                            f3LabelLampiranTV.setText("+ Lampiran Foto/SP");
                             f3ViewLampiranBTN.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Intent intent = new Intent(ReportSumaActivity.this, ViewImageActivity.class);
-                                    intent.putExtra("url", String.valueOf(uri));
-                                    intent.putExtra("kode", "form");
-                                    intent.putExtra("jenis_form", "suma");
+                                    Intent intent = new Intent(ReportSumaActivity.this, ViewImageSliderActivity.class);
+                                    intent.putExtra("data", String.valueOf(lampiranImage));
                                     startActivity(intent);
                                 }
                             });
@@ -3108,6 +3128,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     params.put("longitude", salesLong);
                     params.put("created_at", getTimeStamp());
                     params.put("total_laporan", String.valueOf(totalLaporan));
+                    params.put("jumlah_lampiran", String.valueOf(lampiranImage.size()));
 
                     params.put("data_produk", listToString(dataProduct));
                 } else if(categoryReport.equals("3")){
@@ -3119,6 +3140,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     params.put("longitude", salesLong);
                     params.put("total_laporan", String.valueOf(totalLaporan));
                     params.put("created_at", getTimeStamp());
+                    params.put("jumlah_lampiran", String.valueOf(lampiranImage.size()));
                 }
                 Log.d("Params Cek", params.toString());
                 return params;
@@ -3135,25 +3157,30 @@ public class ReportSumaActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void uploadLampiran(String filename, String idReport) {
-        String path = FilePathimage.getPath(this, uri);
         String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_lampiran";
+        String[] parts = filename.substring(1, filename.length() - 1).split(",");
 
-        if (path == null) {
-            Toast.makeText(this, "Please move your image file to internal storage and retry", Toast.LENGTH_LONG).show();
-        } else {
-            String uploadId = UUID.randomUUID().toString();
-            try {
-                new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
-                        .addFileToUpload(path, "image")
-                        .addParameter("filename", filename)
-                        .setMaxRetries(2)
-                        .startUpload();
-
+        for (int i = 0; i < lampiranImage.size(); i++) {
+            String path = FilePathimage.getPath(this, Uri.parse(String.valueOf(lampiranImage.get(i))));
+            if (path == null) {
+                Toast.makeText(this, "Please move your image file to internal storage and retry", Toast.LENGTH_LONG).show();
+            } else {
+                String uploadId = UUID.randomUUID().toString();
+                try {
+                    new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
+                            .addFileToUpload(path, "image")
+                            .addParameter("filename", parts[i])
+                            .setMaxRetries(2)
+                            .startUpload();
+                } catch (Exception exc) {
+                    Log.e("UploadError", "Error uploading file", exc);
+                }
+            }
+            if(lampiranImage.size()-1==i){
                 laporanTerkirim = "1";
                 successPart.setVisibility(View.VISIBLE);
                 formPart.setVisibility(View.GONE);
                 pDialog.dismiss();
-
                 viewPermohonanTV.setText("LIHAT DETAIL LAPORAN");
                 viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -3163,10 +3190,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-            } catch (Exception exc) {
-                Log.e("UploadError", "Error uploading file", exc);
             }
-
         }
     }
 
