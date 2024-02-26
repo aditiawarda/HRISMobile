@@ -2957,10 +2957,10 @@ public class ReportSumaActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 uri = data.getParcelableExtra("path");
                 String stringUri = String.valueOf(uri);
-                lampiranImage.add(stringUri);
                 String extension = stringUri.substring(stringUri.lastIndexOf("."));
                 try {
                     if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")||extension.equals(".png")||extension.equals(".PNG")){
+                        lampiranImage.add(stringUri);
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                         String file_directori = getRealPathFromURIPath(uri, ReportSumaActivity.this);
                         String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
