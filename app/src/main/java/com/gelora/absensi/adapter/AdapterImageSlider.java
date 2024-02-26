@@ -55,12 +55,10 @@ public class AdapterImageSlider extends SliderViewAdapter<AdapterImageSlider.Sli
     @Override
     public void onBindViewHolder(AdapterImageSlider.SliderAdapterVH viewHolder, final int position) {
         DataImageSlider image = mSliderItems.get(position);
-
         Glide.with(viewHolder.itemView)
                 .load(image.getImageUrl())
                 .centerCrop()
                 .into(viewHolder.image);
-
     }
 
     @Override

@@ -1395,7 +1395,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 teleponPelangganTV.setText(no_telp);
                                 keteranganTV.setText(keterangan);
 
-                                if(mMap != null && (tipeLaporan.equals("2") || tipeLaporan.equals("3"))){
+                                if(mMap != null && (tipeLaporan.equals("2") || tipeLaporan.equals("3") || tipeLaporan.equals("4"))){
                                     mapsPart.setVisibility(View.VISIBLE);
                                     mMap.setMyLocationEnabled(false);
                                     mMap.getUiSettings().setMyLocationButtonEnabled(false);
