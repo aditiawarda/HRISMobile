@@ -3371,7 +3371,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                                 }
 
                             } else {
-
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
                                 Log.d("Error Mang: ", response.toString());
