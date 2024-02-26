@@ -1094,7 +1094,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 String stringUri = String.valueOf(uri);
                 String extension = stringUri.substring(stringUri.lastIndexOf("."));
                 try {
-                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")||extension.equals(".png")||extension.equals(".PNG")){
+                    if(extension.equals(".jpg")||extension.equals(".JPG")){
                         lampiranImage.add(stringUri);
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                         String file_directori = getRealPathFromURIPath(uri, DetailReportSumaActivity.this);

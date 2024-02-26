@@ -3231,7 +3231,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 String stringUri = String.valueOf(uri);
                 String extension = stringUri.substring(stringUri.lastIndexOf("."));
                 try {
-                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")||extension.equals(".png")||extension.equals(".PNG")){
+                    if(extension.equals(".jpg")||extension.equals(".JPG")){
                         lampiranImage.add(stringUri);
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                         String file_directori = getRealPathFromURIPath(uri, ReportSumaActivity.this);
@@ -3322,7 +3322,6 @@ public class ReportSumaActivity extends AppCompatActivity {
         for (String item : list) {
             stringBuilder.append(item).append(", ");
         }
-        // Remove the trailing comma and space
         if (stringBuilder.length() > 0) {
             stringBuilder.setLength(stringBuilder.length() - 2);
         }
