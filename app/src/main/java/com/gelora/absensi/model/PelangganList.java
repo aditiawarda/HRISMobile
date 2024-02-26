@@ -5,6 +5,7 @@ public class PelangganList {
 
     private String idPelanggan;
     private String kategoriPelanggan;
+    private String tipePelanggan;
     private String namaPelanggan;
     private String alamatPelanggan;
     private String picPelanggan;
@@ -67,4 +68,11 @@ public class PelangganList {
         this.keteranganKunjunganPelanggan = keteranganKunjunganPelanggan;
     }
 
+    public String getTipePelanggan() {
+        return tipePelanggan;
+    }
+
+    public void setTipePelanggan(String tipePelanggan) {
+        this.tipePelanggan = tipePelanggan;
+    }
 }

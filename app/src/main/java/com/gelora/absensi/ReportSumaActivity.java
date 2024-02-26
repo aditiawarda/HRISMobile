@@ -140,6 +140,8 @@ public class ReportSumaActivity extends AppCompatActivity {
     JSONArray f1JsonArrayPelanggan = new JSONArray();
     private PelangganList[] pelangganLists;
     private AdapterPelangganList adapterPelangganList;
+    Spinner f1SpinnerKategoriPelangganBaru;
+    String f1KategoriPelangganBaruPilih = "";
 
     EditText f2KeteranganKunjunganED, keywordED, keywordEDProduk, f2NamaPelangganBaruED, f2AlamatPelangganBaruED, f2PicPelangganBaruED, f2TeleponPelangganBaruED;
     LinearLayout f2SubmitPesananBTN, f2GPSLocationBTN, f2ViewLampiranBTN, f2LampiranFotoBTN, f2ProductInputDetailPart, f2AddProductBTN, f2ProductChoiceBTN, f2DetailPesananPart, f2DetailPelanggan, f2NamaPelangganLamaBTN, f2PelangganAttantionPart, f2PelangganBaruPart, f2PelangganLamaPart;
@@ -152,9 +154,8 @@ public class ReportSumaActivity extends AppCompatActivity {
     private ProductSuma[] productSumas;
     private AdapterPelangganLama adapterPelangganLama;
     private AdapterProductSuma adapterProductSuma;
-    Spinner f2SpinnerKategoriPelanggan;
-    String[] subKategoriListPilih = {"","TK","SD","SMP","SMA","SMK","MI","MTS","MA","PERTI","TBUKU","PERSON","PERUSAHAAN","ERLSAL","SEKOLAH","SALESERL","MARKETPLACE","COORPORATE","ERLANGGAGROUP","TOKOGAP","YAYASAN","PAMERAN"};
-    String f2KategoriPelangganPilih = "", f2IdPelangganLama = "", f2JenisPelanggan = "", f2TotalPesanan = "", f2FullDataProduct = "", f2QtyProduct = "", f2IdProduct = "", f2ProductName = "", f2ProductHargaSatuan = "", f2SubTotal = "";
+    Spinner f2SpinnerKategoriPelangganBaru;
+    String f2KategoriPelangganBaruPilih = "", f2IdPelangganLama = "", f2JenisPelanggan = "", f2TotalPesanan = "", f2FullDataProduct = "", f2QtyProduct = "", f2IdProduct = "", f2ProductName = "", f2ProductHargaSatuan = "", f2SubTotal = "";
 
     LinearLayout f3SubmitPesananBTN, f3LampiranFotoBTN, f3ViewLampiranBTN, f3GPSLocationBTN, f3NoDataPiutang, f3LoadingDataPiutang, f3NamaPelangganLamaBTN, f3DetailPelanggan, f3DetailListInvPart;
     TextView f3CountImageTV, f3DetailLocationTV, f3LabelLampiranTV, f3TotalPiutangTV, f3TeleponPelangganLamaTV, f3NamaPelangganLamaChoiceTV, f3AlamatPelangganLamaTV, f3PicPelangganLamaTV;
@@ -189,6 +190,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     private List<String> lampiranImage = new ArrayList<>();
     KAlertDialog pDialog;
     private int i = -1;
+    String[] subKategoriListPilih = {"","TK","SD","SMP","SMA","SMK","MI","MTS","MA","PERTI","TBUKU","PERSON","PERUSAHAAN","ERLSAL","SEKOLAH","SALESERL","MARKETPLACE","COORPORATE","ERLANGGAGROUP","TOKOGAP","YAYASAN","PAMERAN"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -242,6 +244,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f1AddPelangganPart = findViewById(R.id.f1_add_pelanggan_part);
         f1AddPelangganBTN = findViewById(R.id.f1_add_pelanggan_btn);
         f1PelangganRV = findViewById(R.id.item_pelanggan_rv);
+        f1SpinnerKategoriPelangganBaru = findViewById(R.id.f1_kategori_pelanggan_baru_sp);
 
         f2KeteranganKunjunganED = findViewById(R.id.f2_keterangan_kunjungan_ed);
         f2PelangganAttantionPart = findViewById(R.id.f2_pelanggan_attantion);
@@ -276,7 +279,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2PicPelangganBaruED = findViewById(R.id.f2_pic_pelanggan_baru_ed);
         f2TeleponPelangganBaruED = findViewById(R.id.f2_telepon_pelanggan_baru_ed);
         f2DetailLocationTV = findViewById(R.id.f2_detail_location_tv);
-        f2SpinnerKategoriPelanggan = findViewById(R.id.f2_kategori_pelanggan_baru_sp);
+        f2SpinnerKategoriPelangganBaru = findViewById(R.id.f2_kategori_pelanggan_baru_sp);
         f2CountImageTV = findViewById(R.id.f2_count_image_tv);
 
         f3NamaPelangganLamaBTN = findViewById(R.id.f3_nama_pelanggan_lama_btn);
@@ -323,22 +326,26 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2ListProductInputRV.setNestedScrollingEnabled(false);
         f2ListProductInputRV.setItemAnimator(new DefaultItemAnimator());
 
-        f2SpinnerKategoriPelanggan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        f2SpinnerKategoriPelangganBaru.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                f2KategoriPelangganPilih = String.valueOf(subKategoriListPilih[position]);
+                f2KategoriPelangganBaruPilih = String.valueOf(subKategoriListPilih[position]);
             }
             @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                f2KategoriPelangganPilih = "";
+                f2KategoriPelangganBaruPilih = "";
             }
         });
 
-        ArrayAdapter adapterPelangganBaruKategori = new ArrayAdapter(this, android.R.layout.simple_list_item_1, subKategoriListPilih);
-        adapterPelangganBaruKategori.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        f2SpinnerKategoriPelanggan.setAdapter(adapterPelangganBaruKategori);
+        ArrayAdapter f1AdapterPelangganBaruKategori = new ArrayAdapter(this, android.R.layout.simple_list_item_1, subKategoriListPilih);
+        f1AdapterPelangganBaruKategori.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        f1SpinnerKategoriPelangganBaru.setAdapter(f1AdapterPelangganBaruKategori);
+
+        ArrayAdapter f2AdapterPelangganBaruKategori = new ArrayAdapter(this, android.R.layout.simple_list_item_1, subKategoriListPilih);
+        f2AdapterPelangganBaruKategori.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        f2SpinnerKategoriPelangganBaru.setAdapter(f2AdapterPelangganBaruKategori);
 
         salesPosition();
 
@@ -383,6 +390,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                 attantionNoForm.setVisibility(View.GONE);
                 loadingFormPart.setVisibility(View.VISIBLE);
 
+                f1KategoriPelangganBaruPilih = "";
+                f1SpinnerKategoriPelangganBaru.setSelection(0);
                 f1KeteranganKunjunganED.setText("");
                 f1PelangganOption.clearCheck();
                 f1PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -404,8 +413,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f1AddPelangganPart.setVisibility(View.GONE);
                 f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
-                f2KategoriPelangganPilih = "";
-                f2SpinnerKategoriPelanggan.setSelection(0);
+                f2KategoriPelangganBaruPilih = "";
+                f2SpinnerKategoriPelangganBaru.setSelection(0);
                 f2KeteranganKunjunganED.setText("");
                 f2PelangganOption.clearCheck();
                 f2PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -570,6 +579,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         try {
                             dataPelangganBaru.put("idPelanggan", "null");
                             dataPelangganBaru.put("kategoriPelanggan", f1JenisPelanggan);
+                            dataPelangganBaru.put("tipePelanggan", f1KategoriPelangganBaruPilih);
                             dataPelangganBaru.put("namaPelanggan", f1NamaPelangganBaruED.getText().toString());
                             dataPelangganBaru.put("alamatPelanggan", f1AlamatPelangganBaruED.getText().toString());
                             dataPelangganBaru.put("picPelanggan", f1PicPelangganBaruED.getText().toString());
@@ -619,6 +629,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         try {
                             dataPelangganLama.put("idPelanggan", f1IdPelangganLama);
                             dataPelangganLama.put("kategoriPelanggan", f1JenisPelanggan);
+                            dataPelangganLama.put("tipePelanggan", "null");
                             dataPelangganLama.put("namaPelanggan", f1NamaPelangganLamaChoiceTV.getText().toString());
                             dataPelangganLama.put("alamatPelanggan", f1AlamatPelangganLamaTV.getText().toString());
                             dataPelangganLama.put("picPelanggan", f1PicPelangganLamaTV.getText().toString());
@@ -955,7 +966,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f2KeteranganKunjunganED.clearFocus();
                 if(!categoryReport.equals("") && !f2KeteranganKunjunganED.getText().toString().equals("") && !f2JenisPelanggan.equals("")){
                     if(f2JenisPelanggan.equals("1")){
-                        if(!f2KategoriPelangganPilih.equals("") && !f2NamaPelangganBaruED.getText().toString().equals("") && !f2AlamatPelangganBaruED.getText().toString().equals("") && !f2PicPelangganBaruED.getText().toString().equals("") && !f2TeleponPelangganBaruED.getText().toString().equals("")){
+                        if(!f2KategoriPelangganBaruPilih.equals("") && !f2NamaPelangganBaruED.getText().toString().equals("") && !f2AlamatPelangganBaruED.getText().toString().equals("") && !f2PicPelangganBaruED.getText().toString().equals("") && !f2TeleponPelangganBaruED.getText().toString().equals("")){
                             if((salesLat.equals("0")&&salesLong.equals("0"))||salesLat.equals("")||salesLong.equals("")||lampiranImage.size()==0){
                                 new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
@@ -1444,6 +1455,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                         attantionNoForm.setVisibility(View.GONE);
                         loadingFormPart.setVisibility(View.VISIBLE);
 
+                        f1KategoriPelangganBaruPilih = "";
+                        f1SpinnerKategoriPelangganBaru.setSelection(0);
                         f1KeteranganKunjunganED.setText("");
                         f1PelangganOption.clearCheck();
                         f1PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1461,8 +1474,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1AddPelangganPart.setVisibility(View.GONE);
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
-                        f2KategoriPelangganPilih = "";
-                        f2SpinnerKategoriPelanggan.setSelection(0);
+                        f2KategoriPelangganBaruPilih = "";
+                        f2SpinnerKategoriPelangganBaru.setSelection(0);
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1586,6 +1599,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                         attantionNoForm.setVisibility(View.GONE);
                         loadingFormPart.setVisibility(View.VISIBLE);
 
+                        f1KategoriPelangganBaruPilih = "";
+                        f1SpinnerKategoriPelangganBaru.setSelection(0);
                         f1KeteranganKunjunganED.setText("");
                         f1PelangganOption.clearCheck();
                         f1PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1603,8 +1618,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1AddPelangganPart.setVisibility(View.GONE);
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
-                        f2KategoriPelangganPilih = "";
-                        f2SpinnerKategoriPelanggan.setSelection(0);
+                        f2KategoriPelangganBaruPilih = "";
+                        f2SpinnerKategoriPelangganBaru.setSelection(0);
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1728,8 +1743,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                         attantionNoForm.setVisibility(View.GONE);
                         loadingFormPart.setVisibility(View.VISIBLE);
 
-                        f2KategoriPelangganPilih = "";
-                        f2SpinnerKategoriPelanggan.setSelection(0);
+                        f1KategoriPelangganBaruPilih = "";
+                        f1SpinnerKategoriPelangganBaru.setSelection(0);
                         f2KeteranganKunjunganED.setText("");
                         f1PelangganOption.clearCheck();
                         f1PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1747,8 +1762,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1AddPelangganPart.setVisibility(View.GONE);
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
-                        f2KategoriPelangganPilih = "";
-                        f2SpinnerKategoriPelanggan.setSelection(0);
+                        f2KategoriPelangganBaruPilih = "";
+                        f2SpinnerKategoriPelangganBaru.setSelection(0);
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1872,8 +1887,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                         attantionNoForm.setVisibility(View.GONE);
                         loadingFormPart.setVisibility(View.VISIBLE);
 
-                        f2KategoriPelangganPilih = "";
-                        f2SpinnerKategoriPelanggan.setSelection(0);
+                        f1KategoriPelangganBaruPilih = "";
+                        f1SpinnerKategoriPelangganBaru.setSelection(0);
                         f2KeteranganKunjunganED.setText("");
                         f1PelangganOption.clearCheck();
                         f1PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1891,8 +1906,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1AddPelangganPart.setVisibility(View.GONE);
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
-                        f2KategoriPelangganPilih = "";
-                        f2SpinnerKategoriPelanggan.setSelection(0);
+                        f2KategoriPelangganBaruPilih = "";
+                        f2SpinnerKategoriPelangganBaru.setSelection(0);
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -3416,7 +3431,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     params.put("tipe_pelanggan", f2JenisPelanggan);
 
                     if(f2JenisPelanggan.equals("1")){
-                        params.put("kategori_pelanggan", f2KategoriPelangganPilih);
+                        params.put("kategori_pelanggan", f2KategoriPelangganBaruPilih);
                         params.put("nama_pelanggan", f2NamaPelangganBaruED.getText().toString());
                         params.put("alamat_pelanggan", f2AlamatPelangganBaruED.getText().toString());
                         params.put("pic_pelanggan", f2PicPelangganBaruED.getText().toString());
