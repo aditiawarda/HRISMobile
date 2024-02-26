@@ -67,10 +67,8 @@ public class AdapterImageSlider extends SliderViewAdapter<AdapterImageSlider.Sli
     }
 
     public static class SliderAdapterVH extends ViewHolder {
-
         View itemView;
         private PhotoView image;
-
         public SliderAdapterVH(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image_dokumentasi);
