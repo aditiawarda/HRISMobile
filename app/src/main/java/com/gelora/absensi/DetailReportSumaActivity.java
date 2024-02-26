@@ -1364,6 +1364,23 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                             startActivity(intent);
                                         }
                                     });
+                                } else if(tipeLaporan.equals("4")){
+                                    updateRealisasiPart.setVisibility(View.GONE);
+                                    viewLampiranBTN.setVisibility(View.VISIBLE);
+                                    reportKategoriTV.setText("LAPORAN PENGIRIMAN");
+                                    tglRencanaPart.setVisibility(View.GONE);
+                                    totalPesananPart.setVisibility(View.GONE);
+                                    totalPenagihanPart.setVisibility(View.GONE);
+
+                                    String file = dataArray.getString("file");
+                                    viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                            intent.putExtra("data", file);
+                                            startActivity(intent);
+                                        }
+                                    });
                                 }
 
                                 String namaPelanggan = dataArray.getString("namaPelanggan");

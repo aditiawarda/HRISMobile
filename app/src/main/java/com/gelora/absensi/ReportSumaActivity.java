@@ -956,7 +956,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 if(!categoryReport.equals("") && !f2KeteranganKunjunganED.getText().toString().equals("") && !f2JenisPelanggan.equals("")){
                     if(f2JenisPelanggan.equals("1")){
                         if(!f2KategoriPelangganPilih.equals("") && !f2NamaPelangganBaruED.getText().toString().equals("") && !f2AlamatPelangganBaruED.getText().toString().equals("") && !f2PicPelangganBaruED.getText().toString().equals("") && !f2TeleponPelangganBaruED.getText().toString().equals("")){
-                            if(salesLat.equals("")||salesLong.equals("")||lampiranImage.size()==0){
+                            if((!salesLat.equals("0")&&!salesLong.equals("0"))||salesLat.equals("")||salesLong.equals("")||lampiranImage.size()==0){
                                 new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi semua data!")
@@ -1059,7 +1059,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                                     })
                                     .show();
                         } else {
-                            if(salesLat.equals("")||salesLong.equals("")||lampiranImage.size()==0){
+                            if((!salesLat.equals("0")&&!salesLong.equals("0"))||salesLat.equals("")||salesLong.equals("")||lampiranImage.size()==0){
                                 new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi semua data!")
@@ -1157,7 +1157,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 f3KeteranganED.clearFocus();
                 if(!categoryReport.equals("") && !f3IdPelangganLama.equals("") && !f3KeteranganED.getText().toString().equals("")){
-                    if(salesLat.equals("")||salesLong.equals("")||lampiranImage.size()==0){
+                    if((!salesLat.equals("0")&&!salesLong.equals("0"))||salesLat.equals("")||salesLong.equals("")||lampiranImage.size()==0){
                         new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Harap isi semua data!")
@@ -1253,7 +1253,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 f4KeteranganED.clearFocus();
                 if(!categoryReport.equals("") && !f4IdPelangganLama.equals("") && !f4KeteranganED.getText().toString().equals("")){
-                    if(salesLat.equals("")||salesLong.equals("")||lampiranImage.size()==0){
+                    if((!salesLat.equals("0")&&!salesLong.equals("0"))||salesLat.equals("")||salesLong.equals("")||lampiranImage.size()==0){
                         new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Harap isi semua data!")

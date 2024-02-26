@@ -63,7 +63,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         } else if (dataReportSuma.getTipeLaporan().equals("3")) {
             myViewHolder.reportCategoryTV.setText("Aktivitas Penagihan");
         } else if (dataReportSuma.getTipeLaporan().equals("4")) {
-            myViewHolder.reportCategoryTV.setText("Penawaran");
+            myViewHolder.reportCategoryTV.setText("Laporan Pengiriman");
         }
 
         myViewHolder.keteranganTV.setText(dataReportSuma.getKeterangan());
@@ -73,6 +73,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             myViewHolder.rencanaKunjunganPart.setVisibility(View.VISIBLE);
             myViewHolder.kunjunganPart.setVisibility(View.GONE);
             myViewHolder.penagihanPart.setVisibility(View.GONE);
+            myViewHolder.pengirimanPart.setVisibility(View.GONE);
             if(String.valueOf(dataReportSuma.getTgl_rencana()).equals("")||String.valueOf(dataReportSuma.getTgl_rencana()).equals("null")){
                 myViewHolder.f1TanggalRencanaTV.setText("Tidak tersedia");
             } else {
@@ -83,6 +84,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             myViewHolder.rencanaKunjunganPart.setVisibility(View.GONE);
             myViewHolder.kunjunganPart.setVisibility(View.VISIBLE);
             myViewHolder.penagihanPart.setVisibility(View.GONE);
+            myViewHolder.pengirimanPart.setVisibility(View.GONE);
             if(!dataReportSuma.getTotalPesanan().equals("null") && !dataReportSuma.getTotalPesanan().equals("") && !dataReportSuma.equals(null)){
                 if(!dataReportSuma.getTotalPesanan().equals("0")){
                     myViewHolder.f2TotalPesananTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalPesanan())));
@@ -97,7 +99,14 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             myViewHolder.rencanaKunjunganPart.setVisibility(View.GONE);
             myViewHolder.kunjunganPart.setVisibility(View.GONE);
             myViewHolder.penagihanPart.setVisibility(View.VISIBLE);
+            myViewHolder.pengirimanPart.setVisibility(View.GONE);
             myViewHolder.f3TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
+        } else if(dataReportSuma.getTipeLaporan().equals("4")){
+            myViewHolder.rencanaKunjunganPart.setVisibility(View.GONE);
+            myViewHolder.kunjunganPart.setVisibility(View.GONE);
+            myViewHolder.penagihanPart.setVisibility(View.GONE);
+            myViewHolder.pengirimanPart.setVisibility(View.VISIBLE);
+            myViewHolder.f4TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
         }
 
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
@@ -119,8 +128,8 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView namaPelangganTV;
-        TextView f3TanggalLaporanTV, f3TotalTagihanTV, reportCategoryTV, keteranganTV, f1TanggalRencanaTV, f1TanggalLaporanTV, f2TotalPesananTV, f2TanggalLaporanTV;
-        LinearLayout parentPart, kunjunganPart, rencanaKunjunganPart, penagihanPart;
+        TextView f4TanggalLaporanTV, f3TanggalLaporanTV, f3TotalTagihanTV, reportCategoryTV, keteranganTV, f1TanggalRencanaTV, f1TanggalLaporanTV, f2TotalPesananTV, f2TanggalLaporanTV;
+        LinearLayout pengirimanPart, parentPart, kunjunganPart, rencanaKunjunganPart, penagihanPart;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parentPart = itemView.findViewById(R.id.parent_part);
@@ -134,10 +143,12 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             f2TanggalLaporanTV = itemView.findViewById(R.id.f2_tanggal_laporan_tv);
             f3TotalTagihanTV = itemView.findViewById(R.id.f3_total_tagihan_tv);
             f3TanggalLaporanTV = itemView.findViewById(R.id.f3_tanggal_laporan_tv);
+            f4TanggalLaporanTV = itemView.findViewById(R.id.f4_tanggal_laporan_tv);
 
             kunjunganPart = itemView.findViewById(R.id.kunjungan_part);
             rencanaKunjunganPart = itemView.findViewById(R.id.rencana_kunjungan_part);
             penagihanPart = itemView.findViewById(R.id.penagihan_part);
+            pengirimanPart = itemView.findViewById(R.id.pengiriman_part);
         }
     }
 
