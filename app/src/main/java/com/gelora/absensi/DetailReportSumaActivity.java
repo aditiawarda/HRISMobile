@@ -92,6 +92,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -106,7 +107,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     EditText keteranganKunjunganRealisasiED;
     ExpandableLayout updateRealisasiForm, rescheduleForm;
     RequestQueue requestQueue;
-    TextView choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
+    TextView countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
     String idReport = "";
     SwipeRefreshLayout refreshLayout;
     SharedPrefAbsen sharedPrefAbsen;
@@ -122,6 +123,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     String locationNow = "", salesLat = "", salesLong = "", choiceDateReschedule = "";
     int REQUEST_IMAGE = 100;
     private Uri uri;
+    private List<String> lampiranImage = new ArrayList<>();
     KAlertDialog pDialog;
     private int i = -1;
 
@@ -184,6 +186,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         choiceDateTV = findViewById(R.id.choice_date_tv);
         submitRescheduleBTN = findViewById(R.id.submit_reschedule_btn);
         keteranganKunjunganRealisasiED = findViewById(R.id.keterangan_kunjungan_ed);
+        countImageTV = findViewById(R.id.count_image_tv);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -193,6 +196,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 rescheduleForm.collapse();
                 choiceDateTV.setText("");
                 choiceDateReschedule = "";
+                lampiranImage.clear();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -344,7 +348,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         submitRealisasiBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!salesLat.equals("") && !salesLong.equals("") && !String.valueOf(uri).equals("null") && !keteranganKunjunganRealisasiED.getText().toString().equals("")){
+                if(!salesLat.equals("") && !salesLong.equals("") && lampiranImage.size()!=0 && !keteranganKunjunganRealisasiED.getText().toString().equals("")){
                     new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
                             .setTitleText("Perhatian")
                             .setContentText("Update realisasi sekarang?")
@@ -918,6 +922,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 params.put("latitude", salesLat);
                 params.put("longitude", salesLong);
                 params.put("keterangan", keteranganKunjunganRealisasiED.getText().toString());
+                params.put("jumlah_lampiran", String.valueOf(lampiranImage.size()));
                 return params;
             }
         };
@@ -932,19 +937,26 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
     @SuppressLint("SetTextI18n")
     public void uploadLampiran(String filename, String idReport) {
-        String path = FilePathimage.getPath(this, uri);
         String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_lampiran";
+        String[] parts = filename.substring(1, filename.length() - 1).split(",");
 
-        if (path == null) {
-            Toast.makeText(this, "Please move your image file to internal storage and retry", Toast.LENGTH_LONG).show();
-        } else {
-            String uploadId = UUID.randomUUID().toString();
-            try {
-                new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
-                        .addFileToUpload(path, "image")
-                        .addParameter("filename", filename)
-                        .setMaxRetries(2)
-                        .startUpload();
+        for (int i = 0; i < lampiranImage.size(); i++) {
+            String path = FilePathimage.getPath(this, Uri.parse(String.valueOf(lampiranImage.get(i))));
+            if (path == null) {
+                Toast.makeText(this, "Please move your image file to internal storage and retry", Toast.LENGTH_LONG).show();
+            } else {
+                String uploadId = UUID.randomUUID().toString();
+                try {
+                    new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
+                            .addFileToUpload(path, "image")
+                            .addParameter("filename", parts[i])
+                            .setMaxRetries(2)
+                            .startUpload();
+                } catch (Exception exc) {
+                    Log.e("UploadError", "Error uploading file", exc);
+                }
+            }
+            if(lampiranImage.size()-1==i){
                 pDialog.dismiss();
                 updateRealisasiPart.setVisibility(View.GONE);
                 viewRealisasiBTN.setVisibility(View.VISIBLE);
@@ -958,10 +970,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 });
 
                 getData();
-            } catch (Exception exc) {
-                Log.e("UploadError", "Error uploading file", exc);
             }
-
         }
     }
 
@@ -1082,6 +1091,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             if (resultCode == Activity.RESULT_OK) {
                 uri = data.getParcelableExtra("path");
                 String stringUri = String.valueOf(uri);
+                lampiranImage.add(stringUri);
                 String extension = stringUri.substring(stringUri.lastIndexOf("."));
                 try {
                     if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")||extension.equals(".png")||extension.equals(".PNG")){
@@ -1090,15 +1100,19 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                         String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
                         Log.e("PaRSE JSON", a);
 
+                        countImageTV.setText(String.valueOf(lampiranImage.size()));
+                        if(lampiranImage.size()>=2){
+                            fotoLampiranRealisasiBTN.setVisibility(View.GONE);
+                        } else {
+                            fotoLampiranRealisasiBTN.setVisibility(View.VISIBLE);
+                        }
                         viewLampiranRealisasiBTN.setVisibility(View.VISIBLE);
-                        labelLampiranTV.setText("Ubah Lampiran");
+                        labelLampiranTV.setText("+ Lampiran Foto/SP");
                         viewLampiranRealisasiBTN.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageActivity.class);
-                                intent.putExtra("url", String.valueOf(uri));
-                                intent.putExtra("kode", "form");
-                                intent.putExtra("jenis_form", "suma");
+                                Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                intent.putExtra("data", String.valueOf(lampiranImage));
                                 startActivity(intent);
                             }
                         });

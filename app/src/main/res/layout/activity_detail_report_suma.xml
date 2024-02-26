@@ -994,7 +994,6 @@
                                                         android:id="@+id/gps_realisasi_btn"
                                                         android:layout_width="0dp"
                                                         android:layout_weight=".50"
-                                                        android:layout_marginRight="5dp"
                                                         android:layout_height="35dp"
                                                         android:background="@drawable/shape_second_btn"
                                                         android:gravity="center"
@@ -1014,7 +1013,7 @@
                                                         android:id="@+id/foto_lampiran_realisasi_btn"
                                                         android:layout_width="0dp"
                                                         android:layout_weight=".50"
-                                                        android:layout_marginLeft="5dp"
+                                                        android:layout_marginLeft="10dp"
                                                         android:layout_height="35dp"
                                                         android:background="@drawable/shape_btn_edit_permohonan"
                                                         android:gravity="center"
@@ -1034,15 +1033,16 @@
                                                     <LinearLayout
                                                         android:visibility="gone"
                                                         android:id="@+id/view_lampiran_realisasi_btn"
-                                                        android:layout_width="35dp"
+                                                        android:layout_width="wrap_content"
                                                         android:paddingTop="5dp"
                                                         android:paddingBottom="5dp"
-                                                        android:paddingRight="5dp"
-                                                        android:paddingLeft="5dp"
+                                                        android:paddingRight="7dp"
+                                                        android:paddingLeft="7dp"
                                                         android:layout_marginLeft="10dp"
                                                         android:gravity="center"
                                                         android:background="@drawable/shape_btn_approved"
                                                         android:layout_height="35dp"
+                                                        android:orientation="horizontal"
                                                         tools:ignore="RtlHardcoded">
 
                                                         <TextView
@@ -1050,6 +1050,20 @@
                                                             android:gravity="center"
                                                             android:background="@drawable/ic_baseline_content_surat"
                                                             android:layout_height="18dp" />
+
+                                                        <TextView
+                                                            android:id="@+id/count_image_tv"
+                                                            android:layout_width="wrap_content"
+                                                            android:gravity="center"
+                                                            android:layout_height="18dp"
+                                                            android:textStyle="bold"
+                                                            android:textColor="@color/white"
+                                                            android:paddingRight="1dp"
+                                                            android:paddingLeft="3dp"
+                                                            android:textSize="13dp"
+                                                            android:paddingBottom="1dp"
+                                                            android:text="10"
+                                                            tools:ignore="HardcodedText,SpUsage" />
 
                                                     </LinearLayout>
 

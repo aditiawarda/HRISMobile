@@ -386,6 +386,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
                 f2KategoriPelangganPilih = "";
+                f2SpinnerKategoriPelanggan.setSelection(0);
                 f2KeteranganKunjunganED.setText("");
                 f2PelangganOption.clearCheck();
                 f2PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -444,6 +445,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f3ViewLampiranBTN.setVisibility(View.GONE);
 
                 uri = null;
+                lampiranImage.clear();
                 fullBase64String = "";
                 totalLaporan = 0;
 
@@ -1312,6 +1314,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
                         f2KategoriPelangganPilih = "";
+                        f2SpinnerKategoriPelanggan.setSelection(0);
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1375,6 +1378,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3ViewLampiranBTN.setVisibility(View.GONE);
 
                         uri = null;
+                        lampiranImage.clear();
                         fullBase64String = "";
                         totalLaporan = 0;
 
@@ -1441,6 +1445,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
                         f2KategoriPelangganPilih = "";
+                        f2SpinnerKategoriPelanggan.setSelection(0);
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1504,6 +1509,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3ViewLampiranBTN.setVisibility(View.GONE);
 
                         uri = null;
+                        lampiranImage.clear();
                         fullBase64String = "";
                         totalLaporan = 0;
 
@@ -1553,6 +1559,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         loadingFormPart.setVisibility(View.VISIBLE);
 
                         f2KategoriPelangganPilih = "";
+                        f2SpinnerKategoriPelanggan.setSelection(0);
                         f2KeteranganKunjunganED.setText("");
                         f1PelangganOption.clearCheck();
                         f1PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1571,6 +1578,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
                         f2KategoriPelangganPilih = "";
+                        f2SpinnerKategoriPelanggan.setSelection(0);
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1634,6 +1642,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3ViewLampiranBTN.setVisibility(View.GONE);
 
                         uri = null;
+                        lampiranImage.clear();
                         fullBase64String = "";
                         totalLaporan = 0;
 
@@ -1683,6 +1692,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         loadingFormPart.setVisibility(View.VISIBLE);
 
                         f2KategoriPelangganPilih = "";
+                        f2SpinnerKategoriPelanggan.setSelection(0);
                         f2KeteranganKunjunganED.setText("");
                         f1PelangganOption.clearCheck();
                         f1PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1701,6 +1711,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
 
                         f2KategoriPelangganPilih = "";
+                        f2SpinnerKategoriPelanggan.setSelection(0);
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
@@ -1764,6 +1775,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3ViewLampiranBTN.setVisibility(View.GONE);
 
                         uri = null;
+                        lampiranImage.clear();
                         fullBase64String = "";
                         totalLaporan = 0;
 
