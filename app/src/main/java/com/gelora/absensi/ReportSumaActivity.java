@@ -70,7 +70,6 @@ import com.gelora.absensi.adapter.AdapterPelangganList;
 import com.gelora.absensi.adapter.AdapterProductInputSuma;
 import com.gelora.absensi.adapter.AdapterProductSuma;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.model.DataImageSlider;
 import com.gelora.absensi.model.DataInvoicePiutang;
 import com.gelora.absensi.model.PelangganLama;
 import com.gelora.absensi.model.PelangganList;
@@ -165,6 +164,11 @@ public class ReportSumaActivity extends AppCompatActivity {
     EditText f3KeteranganED;
     private DataInvoicePiutang[] dataInvoicePiutangs;
     private AdapterInvoicePiutang adapterInvoicePiutang;
+
+    EditText f4KeteranganED;
+    LinearLayout f4SubmitPesananBTN, f4ViewLampiranBTN, f4LampiranFotoBTN, f4NamaPelangganLamaBTN, f4DetailPelanggan, f4GPSLocationBTN;
+    TextView f4LabelLampiranTV, f4CountImageTV, f4DetailLocationTV, f4AlamatPelangganLamaTV, f4PicPelangganLamaTV, f4TeleponPelangganLamaTV, f4NamaPelangganLamaChoiceTV;
+    String f4IdPelangganLama = "";
 
     TextView viewPermohonanTV, reportKategoriChoiceTV, namaKaryawanTV, nikKaryawanTV;
     SharedPrefManager sharedPrefManager;
@@ -296,6 +300,21 @@ public class ReportSumaActivity extends AppCompatActivity {
         f3DetailLocationTV = findViewById(R.id.f3_detail_location_tv);
         f3SubmitPesananBTN = findViewById(R.id.f3_submit_data_btn);
         f3CountImageTV = findViewById(R.id.f3_count_image_tv);
+
+        f4KeteranganED = findViewById(R.id.f4_keterangan_ed);
+        f4DetailPelanggan = findViewById(R.id.f4_detail_pelanggan);
+        f4NamaPelangganLamaChoiceTV = findViewById(R.id.f4_nama_pelanggan_lama_choice_tv);
+        f4NamaPelangganLamaBTN = findViewById(R.id.f4_nama_pelanggan_lama_btn);
+        f4AlamatPelangganLamaTV = findViewById(R.id.f4_alamat_pelanggan_lama_tv);
+        f4PicPelangganLamaTV = findViewById(R.id.f4_pic_pelanggan_lama_tv);
+        f4TeleponPelangganLamaTV = findViewById(R.id.f4_telepon_pelanggan_lama_tv);
+        f4GPSLocationBTN = findViewById(R.id.f4_gps_btn);
+        f4DetailLocationTV = findViewById(R.id.f4_detail_location_tv);
+        f4CountImageTV = findViewById(R.id.f4_count_image_tv);
+        f4LampiranFotoBTN = findViewById(R.id.f4_foto_lampiran_btn);
+        f4ViewLampiranBTN = findViewById(R.id.f4_view_lampiran_btn);
+        f4LabelLampiranTV = findViewById(R.id.f4_label_lampiran_tv);
+        f4SubmitPesananBTN = findViewById(R.id.f4_submit_data_btn);
 
         adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
         f2ListProductInputRV.setLayoutManager(new LinearLayoutManager(this));
@@ -443,6 +462,17 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f3KeteranganED.setText("");
                 f3LabelLampiranTV.setText("+ Lampiran Foto/SP");
                 f3ViewLampiranBTN.setVisibility(View.GONE);
+
+                f4KeteranganED.setText("");
+                f4NamaPelangganLamaChoiceTV.setText("");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                f4DetailPelanggan.setVisibility(View.GONE);
+                f4AlamatPelangganLamaTV.setText("");
+                f4PicPelangganLamaTV.setText("");
+                f4TeleponPelangganLamaTV.setText("");
+                f4IdPelangganLama = "";
+                f4LabelLampiranTV.setText("+ Lampiran Foto/SP");
+                f4ViewLampiranBTN.setVisibility(View.GONE);
 
                 uri = null;
                 lampiranImage.clear();
@@ -797,7 +827,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f3NamaPelangganLamaBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                f1PelangganLamaBottomSheet();
+                f3PelangganLamaBottomSheet();
             }
         });
 
@@ -816,13 +846,35 @@ public class ReportSumaActivity extends AppCompatActivity {
             }
         });
 
+        f4NamaPelangganLamaBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                f4PelangganLamaBottomSheet();
+            }
+        });
+
+        f4GPSLocationBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ReportSumaActivity.this, LocationPickerActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        f4LampiranFotoBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dexterCall();
+            }
+        });
+
         f1SubmitPesananBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!categoryReport.equals("") && !f1DateChoice.equals("") && f1JsonArrayPelanggan.length() > 0){
                     new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Kirim permohonan sekarang?")
+                            .setContentText("Kirim laporan sekarang?")
                             .setCancelText("TIDAK")
                             .setConfirmText("   YA   ")
                             .showCancelButton(true)
@@ -920,7 +972,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                             } else {
                                 new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
-                                        .setContentText("Kirim permohonan sekarang?")
+                                        .setContentText("Kirim laporan sekarang?")
                                         .setCancelText("TIDAK")
                                         .setConfirmText("   YA   ")
                                         .showCancelButton(true)
@@ -1023,7 +1075,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                             } else {
                                 new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
-                                        .setContentText("Kirim permohonan sekarang?")
+                                        .setContentText("Kirim laporan sekarang?")
                                         .setCancelText("TIDAK")
                                         .setConfirmText("   YA   ")
                                         .showCancelButton(true)
@@ -1121,7 +1173,103 @@ public class ReportSumaActivity extends AppCompatActivity {
                     } else {
                         new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
                                 .setTitleText("Perhatian")
-                                .setContentText("Kirim permohonan sekarang?")
+                                .setContentText("Kirim laporan sekarang?")
+                                .setCancelText("TIDAK")
+                                .setConfirmText("   YA   ")
+                                .showCancelButton(true)
+                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                        pDialog = new KAlertDialog(ReportSumaActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                        pDialog.show();
+                                        pDialog.setCancelable(false);
+                                        new CountDownTimer(1300, 800) {
+                                            public void onTick(long millisUntilFinished) {
+                                                i++;
+                                                switch (i) {
+                                                    case 0:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (ReportSumaActivity.this, R.color.colorGradien));
+                                                        break;
+                                                    case 1:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (ReportSumaActivity.this, R.color.colorGradien2));
+                                                        break;
+                                                    case 2:
+                                                    case 6:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (ReportSumaActivity.this, R.color.colorGradien3));
+                                                        break;
+                                                    case 3:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (ReportSumaActivity.this, R.color.colorGradien4));
+                                                        break;
+                                                    case 4:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (ReportSumaActivity.this, R.color.colorGradien5));
+                                                        break;
+                                                    case 5:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (ReportSumaActivity.this, R.color.colorGradien6));
+                                                        break;
+                                                }
+                                            }
+                                            public void onFinish() {
+                                                i = -1;
+                                                submitLaporan();
+                                            }
+                                        }.start();
+
+                                    }
+                                })
+                                .show();
+                    }
+                } else {
+                    new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap isi semua data!")
+                            .setConfirmText("   OK   ")
+                            .showCancelButton(true)
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
+            }
+        });
+
+        f4SubmitPesananBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                f4KeteranganED.clearFocus();
+                if(!categoryReport.equals("") && !f4IdPelangganLama.equals("") && !f4KeteranganED.getText().toString().equals("")){
+                    if(salesLat.equals("")||salesLong.equals("")||lampiranImage.size()==0){
+                        new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi semua data!")
+                                .setConfirmText("   OK   ")
+                                .showCancelButton(true)
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    } else {
+                        new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Kirim laporan sekarang?")
                                 .setCancelText("TIDAK")
                                 .setConfirmText("   YA   ")
                                 .showCancelButton(true)
@@ -1377,6 +1525,17 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3LabelLampiranTV.setText("+ Lampiran Foto/SP");
                         f3ViewLampiranBTN.setVisibility(View.GONE);
 
+                        f4KeteranganED.setText("");
+                        f4NamaPelangganLamaChoiceTV.setText("");
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                        f4DetailPelanggan.setVisibility(View.GONE);
+                        f4AlamatPelangganLamaTV.setText("");
+                        f4PicPelangganLamaTV.setText("");
+                        f4TeleponPelangganLamaTV.setText("");
+                        f4IdPelangganLama = "";
+                        f4LabelLampiranTV.setText("+ Lampiran Foto/SP");
+                        f4ViewLampiranBTN.setVisibility(View.GONE);
+
                         uri = null;
                         lampiranImage.clear();
                         fullBase64String = "";
@@ -1507,6 +1666,17 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3KeteranganED.setText("");
                         f3LabelLampiranTV.setText("+ Lampiran Foto/SP");
                         f3ViewLampiranBTN.setVisibility(View.GONE);
+
+                        f4KeteranganED.setText("");
+                        f4NamaPelangganLamaChoiceTV.setText("");
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                        f4DetailPelanggan.setVisibility(View.GONE);
+                        f4AlamatPelangganLamaTV.setText("");
+                        f4PicPelangganLamaTV.setText("");
+                        f4TeleponPelangganLamaTV.setText("");
+                        f4IdPelangganLama = "";
+                        f4LabelLampiranTV.setText("+ Lampiran Foto/SP");
+                        f4ViewLampiranBTN.setVisibility(View.GONE);
 
                         uri = null;
                         lampiranImage.clear();
@@ -1641,6 +1811,17 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3LabelLampiranTV.setText("+ Lampiran Foto/SP");
                         f3ViewLampiranBTN.setVisibility(View.GONE);
 
+                        f4KeteranganED.setText("");
+                        f4NamaPelangganLamaChoiceTV.setText("");
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                        f4DetailPelanggan.setVisibility(View.GONE);
+                        f4AlamatPelangganLamaTV.setText("");
+                        f4PicPelangganLamaTV.setText("");
+                        f4TeleponPelangganLamaTV.setText("");
+                        f4IdPelangganLama = "";
+                        f4LabelLampiranTV.setText("+ Lampiran Foto/SP");
+                        f4ViewLampiranBTN.setVisibility(View.GONE);
+
                         uri = null;
                         lampiranImage.clear();
                         fullBase64String = "";
@@ -1773,6 +1954,17 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f3KeteranganED.setText("");
                         f3LabelLampiranTV.setText("+ Lampiran Foto/SP");
                         f3ViewLampiranBTN.setVisibility(View.GONE);
+
+                        f4KeteranganED.setText("");
+                        f4NamaPelangganLamaChoiceTV.setText("");
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                        f4DetailPelanggan.setVisibility(View.GONE);
+                        f4AlamatPelangganLamaTV.setText("");
+                        f4PicPelangganLamaTV.setText("");
+                        f4TeleponPelangganLamaTV.setText("");
+                        f4IdPelangganLama = "";
+                        f4LabelLampiranTV.setText("+ Lampiran Foto/SP");
+                        f4ViewLampiranBTN.setVisibility(View.GONE);
 
                         uri = null;
                         lampiranImage.clear();
@@ -2182,7 +2374,61 @@ public class ReportSumaActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                //f3KeteranganKunjunganED.clearFocus();
+                f3KeteranganED.clearFocus();
+
+                String keyWordSearch = keywordED.getText().toString();
+
+                startAttantionPart.setVisibility(View.GONE);
+                loadingDataPart.setVisibility(View.VISIBLE);
+                noDataPart.setVisibility(View.GONE);
+                pelangganRV.setVisibility(View.GONE);
+
+                if (!keyWordSearch.equals("")) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getPelangganLama(keyWordSearch);
+                        }
+                    }, 500);
+                }
+            }
+
+        });
+
+    }
+
+    private void f4PelangganLamaBottomSheet() {
+        bottomSheet.showWithSheetView(LayoutInflater.from(ReportSumaActivity.this).inflate(R.layout.layout_report_suma_list_nama_pelanggan_lama, bottomSheet, false));
+        keywordED = findViewById(R.id.keyword_ed);
+        keywordED.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
+        pelangganRV = findViewById(R.id.pelanggan_rv);
+        startAttantionPart = findViewById(R.id.attantion_data_part);
+        noDataPart = findViewById(R.id.no_data_part);
+        loadingDataPart = findViewById(R.id.loading_data_part);
+        loadingGif = findViewById(R.id.loading_data);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_sgn_digital)
+                .into(loadingGif);
+
+        pelangganRV.setLayoutManager(new LinearLayoutManager(this));
+        pelangganRV.setHasFixedSize(true);
+        pelangganRV.setNestedScrollingEnabled(false);
+        pelangganRV.setItemAnimator(new DefaultItemAnimator());
+
+        keywordED.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                f4KeteranganED.clearFocus();
 
                 String keyWordSearch = keywordED.getText().toString();
 
@@ -2462,6 +2708,30 @@ public class ReportSumaActivity extends AppCompatActivity {
                                 getDataInvoice(f3IdPelangganLama);
                             }
                         }, 300);
+                    }
+                }, 300);
+            } else if(categoryReport.equals("4")){
+                f4AlamatPelangganLamaTV.setText(alamatPelanggan);
+                f4PicPelangganLamaTV.setText(picPelanggan);
+                f4TeleponPelangganLamaTV.setText(teleponPelanggan);
+
+                f4IdPelangganLama = idPelanggan;
+                f4DetailPelanggan.setVisibility(View.VISIBLE);
+
+                f4NamaPelangganLamaChoiceTV.setText(namaPelangganLama);
+
+                InputMethodManager imm = (InputMethodManager) ReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                View view = ReportSumaActivity.this.getCurrentFocus();
+                if (view == null) {
+                    view = new View(ReportSumaActivity.this);
+                }
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                f4KeteranganED.clearFocus();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
                     }
                 }, 300);
             }
@@ -2825,10 +3095,12 @@ public class ReportSumaActivity extends AppCompatActivity {
                 Log.d(ContentValues.TAG, "Alamat: " + address);
                 f2DetailLocationTV.setText(address.substring(0,address.length()-2));
                 f3DetailLocationTV.setText(address.substring(0,address.length()-2));
+                f4DetailLocationTV.setText(address.substring(0,address.length()-2));
             } else {
                 Log.e(ContentValues.TAG, "Alamat tidak ditemukan");
                 f2DetailLocationTV.setText("Alamat tidak ditemukan");
                 f3DetailLocationTV.setText("Alamat tidak ditemukan");
+                f4DetailLocationTV.setText("Alamat tidak ditemukan");
             }
         }
     }
@@ -2877,7 +3149,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         String code = "";
         if(categoryReport.equals("1") || categoryReport.equals("2")){
             code = "suma_report";
-        } else if(categoryReport.equals("3")){
+        } else if(categoryReport.equals("3") || categoryReport.equals("4")){
             code = "suma_report_penagihan";
         }
 
@@ -3000,6 +3272,23 @@ public class ReportSumaActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }
                             });
+                        } else if(categoryReport.equals("4")) {
+                            f4CountImageTV.setText(String.valueOf(lampiranImage.size()));
+                            if(lampiranImage.size()>=2){
+                                f4LampiranFotoBTN.setVisibility(View.GONE);
+                            } else {
+                                f4LampiranFotoBTN.setVisibility(View.VISIBLE);
+                            }
+                            f4ViewLampiranBTN.setVisibility(View.VISIBLE);
+                            f4LabelLampiranTV.setText("+ Lampiran Foto/SP");
+                            f4ViewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(ReportSumaActivity.this, ViewImageSliderActivity.class);
+                                    intent.putExtra("data", String.valueOf(lampiranImage));
+                                    startActivity(intent);
+                                }
+                            });
                         }
                         uriToBase64(uri);
 
@@ -3074,6 +3363,9 @@ public class ReportSumaActivity extends AppCompatActivity {
                                     String filename = data.getString("file_name");
                                     uploadLampiran(filename, idLaporan);
                                 } else if(categoryReport.equals("3")){
+                                    String filename = data.getString("file_name");
+                                    uploadLampiran(filename, idLaporan);
+                                } else if(categoryReport.equals("4")){
                                     String filename = data.getString("file_name");
                                     uploadLampiran(filename, idLaporan);
                                 }
@@ -3153,7 +3445,17 @@ public class ReportSumaActivity extends AppCompatActivity {
                     params.put("total_laporan", String.valueOf(totalLaporan));
                     params.put("created_at", getTimeStamp());
                     params.put("jumlah_lampiran", String.valueOf(lampiranImage.size()));
+                } else if(categoryReport.equals("4")){
+                    params.put("kategori_laporan", categoryReport);
+                    params.put("id_pelanggan", f4IdPelangganLama);
+                    params.put("nik_sales", sharedPrefManager.getSpNik());
+                    params.put("keterangan", f4KeteranganED.getText().toString());
+                    params.put("latitude", salesLat);
+                    params.put("longitude", salesLong);
+                    params.put("created_at", getTimeStamp());
+                    params.put("jumlah_lampiran", String.valueOf(lampiranImage.size()));
                 }
+
                 Log.d("Params Cek", params.toString());
                 return params;
             }
