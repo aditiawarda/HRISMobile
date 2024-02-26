@@ -83,8 +83,8 @@ public class ViewImageSliderActivity extends AppCompatActivity {
     }
 
     private void getImage() {
-        String[] parts = data.substring(1, data.length() - 1).split(",");
-
+        String cleanString = data.substring(1, data.length() - 1);
+        String[] parts = cleanString.split(",");
         String[] array = new String[parts.length];
         for (int i = 0; i < parts.length; i++) {
             array[i] = parts[i].trim();

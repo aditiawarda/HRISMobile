@@ -348,7 +348,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         submitRealisasiBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!salesLat.equals("") && !salesLong.equals("") && lampiranImage.size()!=0 && !keteranganKunjunganRealisasiED.getText().toString().equals("")){
+                if((!salesLat.equals("0")&&!salesLong.equals("0")) && !salesLat.equals("") && !salesLong.equals("") && lampiranImage.size()!=0 && !keteranganKunjunganRealisasiED.getText().toString().equals("")){
                     new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
                             .setTitleText("Perhatian")
                             .setContentText("Update realisasi sekarang?")
@@ -938,7 +938,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     @SuppressLint("SetTextI18n")
     public void uploadLampiran(String filename, String idReport) {
         String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_lampiran";
-        String[] parts = filename.substring(1, filename.length() - 1).split(",");
+        String cleanString = filename.substring(1, filename.length() - 1);
+        String[] parts = cleanString.split(",");
 
         for (int i = 0; i < lampiranImage.size(); i++) {
             String path = FilePathimage.getPath(this, Uri.parse(String.valueOf(lampiranImage.get(i))));

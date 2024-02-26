@@ -371,12 +371,12 @@
                                 tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                             <TextView
-                                android:id="@+id/f4_no_sp_tv"
+                                android:id="@+id/f4_no_sj_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="1dp"
                                 android:layout_marginBottom="20dp"
-                                android:text="SP/00/00/P-000"
+                                android:text="SJ/00/00/J-000"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="12dp"
                                 android:ellipsize="end"
