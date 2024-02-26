@@ -17,10 +17,6 @@ import com.smarteist.autoimageslider.SliderViewAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by yarolegovich on 07.03.2017.
- */
-
 public class AdapterDokumentasiProject extends SliderViewAdapter<AdapterDokumentasiProject.SliderAdapterVH> {
 
     private Context context;
