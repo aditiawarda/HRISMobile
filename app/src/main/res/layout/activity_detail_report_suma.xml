@@ -54,7 +54,7 @@
                                     android:ellipsize="end"
                                     android:maxLines="1"
                                     android:singleLine="true"
-                                    android:text="V E R I F I E D"
+                                    android:text="T E R L A K S A N A"
                                     android:textColor="#30A33B"
                                     android:textSize="15dp"
                                     tools:ignore="HardcodedText,SpUsage" />
