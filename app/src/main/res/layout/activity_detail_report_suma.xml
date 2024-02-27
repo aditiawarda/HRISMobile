@@ -715,7 +715,7 @@
                                             android:layout_marginBottom="5dp"
                                             android:lineSpacingExtra="4dp"
                                             android:layout_weight=".25"
-                                            android:text="No. SJ"
+                                            android:text="Nomor SJ"
                                             android:textColor="#515151"
                                             android:textSize="12dp"
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
