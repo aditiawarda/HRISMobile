@@ -587,6 +587,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                             dataPelangganBaru.put("keteranganKunjunganPelanggan", f1KeteranganKunjunganED.getText().toString());
                             f1JsonArrayPelanggan.put(dataPelangganBaru);
 
+                            Toast.makeText(ReportSumaActivity.this, f1JsonArrayPelanggan.toString(), Toast.LENGTH_SHORT).show();
+
                             f1PelangganOption.clearCheck();
                             f1JenisPelanggan = "";
                             f1NamaPelangganBaruED.setText("");

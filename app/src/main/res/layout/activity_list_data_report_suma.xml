@@ -30,79 +30,89 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:paddingTop="65dp"
                         android:orientation="vertical">
 
                         <LinearLayout
+                            android:id="@+id/filter_bar_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:paddingLeft="20dp"
-                            android:paddingTop="85dp"
-                            android:paddingRight="20dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:text="Filter Kategori :"
-                                android:textColor="#696969"
-                                android:textSize="12dp"
-                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                            android:paddingTop="20dp">
 
                             <LinearLayout
-                                android:id="@+id/filter_category_btn"
+                                android:id="@+id/cat_btn"
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:paddingStart="20dp"
-                                android:layout_marginBottom="10dp"
-                                android:background="@drawable/shape_feel"
-                                android:orientation="horizontal"
-                                tools:ignore="RtlSymmetry">
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:orientation="vertical">
 
-                                <RelativeLayout
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="Filter Kategori :"
+                                    android:textColor="#696969"
+                                    android:textSize="12dp"
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                <LinearLayout
+                                    android:id="@+id/filter_category_btn"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    tools:ignore="UselessParent">
+                                    android:layout_height="40dp"
+                                    android:paddingStart="20dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:background="@drawable/shape_feel"
+                                    android:orientation="horizontal"
+                                    tools:ignore="RtlSymmetry">
 
-                                    <LinearLayout
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="10dp"
+                                    <RelativeLayout
                                         android:layout_width="match_parent"
-                                        android:layout_marginRight="50dp"
-                                        android:layout_height="40dp"
-                                        android:orientation="vertical"
-                                        android:gravity="center|left"
-                                        tools:ignore="RtlHardcoded,TooDeepLayout">
-
-                                        <TextView
-                                            android:id="@+id/category_choice_tv"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:textColor="#B15735"
-                                            android:ellipsize="end"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
-                                            android:textStyle="bold"
-                                            android:text=""/>
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_alignParentRight="true"
-                                        android:layout_width="40dp"
                                         android:layout_height="match_parent"
-                                        android:background="@drawable/shape_btn"
-                                        android:gravity="center"
-                                        tools:ignore="RtlHardcoded">
+                                        tools:ignore="UselessParent">
 
-                                        <TextView
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:background="@drawable/ic_baseline_down"/>
+                                        <LinearLayout
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_marginRight="50dp"
+                                            android:layout_height="40dp"
+                                            android:orientation="vertical"
+                                            android:gravity="center|left"
+                                            tools:ignore="RtlHardcoded,TooDeepLayout">
 
-                                    </LinearLayout>
+                                            <TextView
+                                                android:id="@+id/category_choice_tv"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="#B15735"
+                                                android:ellipsize="end"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:textStyle="bold"
+                                                android:text=""/>
 
-                                </RelativeLayout>
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_alignParentRight="true"
+                                            android:layout_width="40dp"
+                                            android:layout_height="match_parent"
+                                            android:background="@drawable/shape_btn"
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
+
+                                            <TextView
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"
+                                                android:background="@drawable/ic_baseline_down"/>
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
 
                             </LinearLayout>
 
@@ -110,9 +120,12 @@
                                 android:id="@+id/date_btn"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/date_label"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
@@ -179,18 +192,18 @@
 
                             </LinearLayout>
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp"
+                                android:layout_marginTop="10dp"
+                                android:background="#3CCFCFCF" />
+
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="10dp"
-                            android:layout_marginTop="10dp"
-                            android:background="#3CCFCFCF" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="10dp"
+                            android:paddingTop="20dp"
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="110dp"
@@ -344,7 +357,7 @@
                                 android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:text="LIST LAPORAN HARIAN "
+                                android:text="LIST LAPORAN HARIAN SALES "
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"

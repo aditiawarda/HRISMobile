@@ -47,7 +47,6 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="8dp"
                                 android:orientation="horizontal">
 
                                 <LinearLayout
@@ -58,7 +57,7 @@
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginRight="15dp"
                                         android:layout_weight=".25"
                                         android:orientation="vertical"
@@ -87,18 +86,17 @@
                                             android:layout_marginTop="3dp"
                                             android:ellipsize="end"
                                             android:gravity="center"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
+                                            android:maxLines="2"
                                             android:text="Absensi"
                                             android:textColor="#515151"
-                                            android:textSize="12dp"
+                                            android:textSize="10dp"
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     </LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginLeft="15dp"
                                         android:layout_marginRight="15dp"
                                         android:layout_weight=".25"
@@ -127,18 +125,17 @@
                                             android:layout_marginTop="3dp"
                                             android:ellipsize="end"
                                             android:gravity="center"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
+                                            android:maxLines="2"
                                             android:text="Izin"
                                             android:textColor="#515151"
-                                            android:textSize="12dp"
+                                            android:textSize="10dp"
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     </LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginLeft="15dp"
                                         android:layout_marginRight="15dp"
                                         android:layout_weight=".25"
@@ -174,11 +171,10 @@
                                                 android:layout_marginTop="3dp"
                                                 android:ellipsize="end"
                                                 android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
+                                                android:maxLines="2"
                                                 android:text="Cuti"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
@@ -213,11 +209,10 @@
                                                 android:layout_marginTop="3dp"
                                                 android:ellipsize="end"
                                                 android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
+                                                android:maxLines="2"
                                                 android:text="Pengaduan"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
@@ -226,7 +221,7 @@
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginLeft="15dp"
                                         android:layout_weight=".25"
                                         android:orientation="vertical"
@@ -255,11 +250,10 @@
                                             android:layout_marginTop="3dp"
                                             android:ellipsize="end"
                                             android:gravity="center"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
+                                            android:maxLines="2"
                                             android:text="Fingerscan"
                                             android:textColor="#515151"
-                                            android:textSize="12dp"
+                                            android:textSize="10dp"
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     </LinearLayout>
@@ -271,8 +265,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginBottom="8dp"
+                                android:layout_marginTop="2dp"
                                 android:orientation="horizontal">
 
                                 <LinearLayout
@@ -283,7 +276,7 @@
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginRight="15dp"
                                         android:layout_weight=".25"
                                         android:orientation="vertical"
@@ -319,11 +312,10 @@
                                                 android:layout_marginTop="3dp"
                                                 android:ellipsize="end"
                                                 android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
+                                                android:maxLines="2"
                                                 android:text="ID Card"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
@@ -367,11 +359,10 @@
                                                         android:layout_marginTop="3dp"
                                                         android:ellipsize="end"
                                                         android:gravity="center"
-                                                        android:maxLines="1"
-                                                        android:singleLine="true"
+                                                        android:maxLines="2"
                                                         android:text="SDM"
                                                         android:textColor="#515151"
-                                                        android:textSize="12dp"
+                                                        android:textSize="10dp"
                                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
@@ -410,7 +401,7 @@
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginLeft="15dp"
                                         android:layout_marginRight="15dp"
                                         android:layout_weight=".25"
@@ -455,11 +446,10 @@
                                                         android:layout_marginTop="3dp"
                                                         android:ellipsize="end"
                                                         android:gravity="center"
-                                                        android:maxLines="1"
-                                                        android:singleLine="true"
+                                                        android:maxLines="2"
                                                         android:text="Clearance"
                                                         android:textColor="#515151"
-                                                        android:textSize="12dp"
+                                                        android:textSize="10dp"
                                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
@@ -525,11 +515,10 @@
                                                 android:layout_marginTop="3dp"
                                                 android:ellipsize="end"
                                                 android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
+                                                android:maxLines="2"
                                                 android:text="Kalender"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
@@ -538,7 +527,7 @@
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginLeft="15dp"
                                         android:layout_marginRight="15dp"
                                         android:layout_weight=".25"
@@ -567,18 +556,17 @@
                                             android:layout_marginTop="3dp"
                                             android:ellipsize="end"
                                             android:gravity="center"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
+                                            android:maxLines="2"
                                             android:text="Signature"
                                             android:textColor="#515151"
-                                            android:textSize="12dp"
+                                            android:textSize="10dp"
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     </LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginLeft="15dp"
                                         android:layout_weight=".25"
                                         android:orientation="vertical"
@@ -623,11 +611,10 @@
                                                         android:layout_marginTop="3dp"
                                                         android:ellipsize="end"
                                                         android:gravity="center"
-                                                        android:maxLines="1"
-                                                        android:singleLine="true"
+                                                        android:maxLines="2"
                                                         android:text="Messenger"
                                                         android:textColor="#515151"
-                                                        android:textSize="12dp"
+                                                        android:textSize="10dp"
                                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
@@ -692,11 +679,10 @@
                                                 android:layout_marginTop="3dp"
                                                 android:ellipsize="end"
                                                 android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
+                                                android:maxLines="2"
                                                 android:text="News"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
@@ -710,8 +696,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginBottom="8dp"
+                                android:layout_marginTop="2dp"
                                 android:orientation="horizontal">
 
                                 <LinearLayout
@@ -722,7 +707,7 @@
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginRight="15dp"
                                         android:layout_weight=".25"
                                         android:orientation="vertical"
@@ -758,11 +743,10 @@
                                                 android:layout_marginTop="3dp"
                                                 android:ellipsize="end"
                                                 android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
+                                                android:maxLines="2"
                                                 android:text="Berita"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
@@ -771,7 +755,7 @@
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginLeft="15dp"
                                         android:layout_marginRight="15dp"
                                         android:layout_weight=".25"
@@ -806,11 +790,10 @@
                                                 android:layout_marginTop="3dp"
                                                 android:ellipsize="end"
                                                 android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
+                                                android:maxLines="2"
                                                 android:text="Kalender"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
@@ -819,7 +802,7 @@
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginLeft="15dp"
                                         android:layout_marginRight="15dp"
                                         android:layout_weight=".25"
@@ -854,11 +837,10 @@
                                                 android:layout_marginTop="3dp"
                                                 android:ellipsize="end"
                                                 android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
+                                                android:maxLines="2"
                                                 android:text="Pengaduan"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
@@ -867,7 +849,7 @@
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginLeft="15dp"
                                         android:layout_weight=".25"
                                         android:orientation="vertical"
@@ -902,11 +884,10 @@
                                                 android:layout_marginTop="3dp"
                                                 android:ellipsize="end"
                                                 android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
+                                                android:maxLines="2"
                                                 android:text="ID Card"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
@@ -942,11 +923,10 @@
                                                 android:layout_marginTop="3dp"
                                                 android:ellipsize="end"
                                                 android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
+                                                android:maxLines="2"
                                                 android:text="Project"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
@@ -960,7 +940,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
+                                android:layout_marginTop="2dp"
                                 android:orientation="horizontal">
 
                                 <LinearLayout
@@ -971,7 +951,7 @@
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginRight="15dp"
                                         android:layout_weight=".25"
                                         android:orientation="vertical"
@@ -1007,11 +987,10 @@
                                                 android:layout_marginTop="3dp"
                                                 android:ellipsize="end"
                                                 android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
+                                                android:maxLines="2"
                                                 android:text="Project"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
@@ -1047,11 +1026,10 @@
                                                 android:layout_marginTop="3dp"
                                                 android:ellipsize="end"
                                                 android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
-                                                android:text="Daily Report"
+                                                android:maxLines="2"
+                                                android:text="Daily Report Salesman"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
@@ -1060,7 +1038,7 @@
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginLeft="15dp"
                                         android:layout_marginRight="15dp"
                                         android:layout_weight=".25"
@@ -1096,12 +1074,11 @@
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="3dp"
                                                 android:ellipsize="end"
+                                                android:maxLines="2"
                                                 android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
-                                                android:text="Daily Report"
+                                                android:text="Daily Report Salesman"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
@@ -1110,7 +1087,7 @@
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginLeft="15dp"
                                         android:layout_marginRight="15dp"
                                         android:layout_weight=".25"
@@ -1122,7 +1099,7 @@
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_height="90dp"
+                                        android:layout_height="100dp"
                                         android:layout_marginLeft="15dp"
                                         android:layout_weight=".25"
                                         android:orientation="vertical"
@@ -1188,8 +1165,7 @@
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
                                 android:gravity="right"
-                                android:maxLines="1"
-                                android:singleLine="true"
+                                android:maxLines="2"
                                 android:text="MENU"
                                 android:textColor="@color/white"
                                 android:textSize="15dp"

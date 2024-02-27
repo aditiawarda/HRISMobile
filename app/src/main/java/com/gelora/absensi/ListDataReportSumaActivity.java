@@ -45,15 +45,15 @@ import java.util.Date;
 
 public class ListDataReportSumaActivity extends AppCompatActivity {
 
-    LinearLayout dateBTN, noDataPartReport, loadingDataPartReport, rencanaKunjunganBTN, penagihanBTN, pengirimanBTN, kunjunganBTN, markRencanaKunjungan, markPenagihan, markPengiriman, markKunjungan, markSemua, semuaBTN, actionBar, backBTN, addBTN, filterCategoryBTN;
-    TextView choiceDateTV, categoryChoiceTV;
+    LinearLayout catBTN, filterBarPart, dateBTN, noDataPartReport, loadingDataPartReport, rencanaKunjunganBTN, penagihanBTN, pengirimanBTN, kunjunganBTN, markRencanaKunjungan, markPenagihan, markPengiriman, markKunjungan, markSemua, semuaBTN, actionBar, backBTN, addBTN, filterCategoryBTN;
+    TextView choiceDateTV, categoryChoiceTV, dateLabel;
     ImageView loadingDataReport;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
     BottomSheetLayout bottomSheet;
-    String categoryCode = "1", dateChoice = getDate();
+    String categoryCode = "", dateChoice = getDate();
     private RecyclerView reportRV;
     private DataReportSuma[] dataReportSumas;
     private AdapterSumaReport adapterSumaReport;
@@ -81,8 +81,25 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         reportRV = findViewById(R.id.data_report_rv);
         dateBTN = findViewById(R.id.date_btn);
         choiceDateTV = findViewById(R.id.choice_date_tv);
+        filterBarPart = findViewById(R.id.filter_bar_part);
+        dateLabel = findViewById(R.id.date_label);
+        catBTN = findViewById(R.id.cat_btn);
 
-        categoryChoiceTV.setText("Rencana Kunjungan");
+        if(sharedPrefManager.getSpNik().equals("0499070507")){
+            catBTN.setVisibility(View.GONE);
+            dateBTN.setVisibility(View.VISIBLE);
+            addBTN.setVisibility(View.GONE);
+            categoryCode = "3";
+            dateLabel.setText("Filter Tanggal Penagihan :");
+            categoryChoiceTV.setText("Aktivitas Penagihan");
+        } else {
+            catBTN.setVisibility(View.VISIBLE);
+            dateBTN.setVisibility(View.VISIBLE);
+            addBTN.setVisibility(View.VISIBLE);
+            categoryCode = "1";
+            dateLabel.setText("Filter Tanggal Rencana :");
+            categoryChoiceTV.setText("Rencana Kunjungan");
+        }
 
         reportRV.setLayoutManager(new LinearLayoutManager(this));
         reportRV.setHasFixedSize(true);
@@ -247,12 +264,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     }
 
     private void getData(String category_code){
-        String url = "";
-        if(category_code.equals("1")){
-            url = "https://reporting.sumasistem.co.id/api/suma_report?nik="+sharedPrefManager.getSpNik()+"&"+"tipe_laporan="+category_code+"&"+"tanggal="+dateChoice;
-        } else {
-            url = "https://reporting.sumasistem.co.id/api/suma_report?nik="+sharedPrefManager.getSpNik()+"&"+"tipe_laporan="+category_code;
-        }
+        String url = "https://reporting.sumasistem.co.id/api/suma_report?nik="+sharedPrefManager.getSpNik()+"&"+"tipe_laporan="+category_code+"&"+"tanggal="+dateChoice;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")
@@ -320,6 +332,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 .show();
     }
 
+    @SuppressLint("SetTextI18n")
     private void categoryChoice(){
         bottomSheet.showWithSheetView(LayoutInflater.from(ListDataReportSumaActivity.this).inflate(R.layout.layout_kategori_report_suma_list_data, bottomSheet, false));
         semuaBTN = findViewById(R.id.semua_btn);
@@ -334,7 +347,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         markRencanaKunjungan = findViewById(R.id.mark_rencana_kunjungan);
 
         if (categoryCode.equals("0")) {
-            dateBTN.setVisibility(View.GONE);
+            dateLabel.setText("Filter Tanggal :");
             markSemua.setVisibility(View.VISIBLE);
             markRencanaKunjungan.setVisibility(View.GONE);
             markKunjungan.setVisibility(View.GONE);
@@ -346,7 +359,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             pengirimanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
         } else if(categoryCode.equals("1")) {
-            dateBTN.setVisibility(View.VISIBLE);
+            dateLabel.setText("Filter Tanggal Rencana :");
             markSemua.setVisibility(View.GONE);
             markRencanaKunjungan.setVisibility(View.VISIBLE);
             markKunjungan.setVisibility(View.GONE);
@@ -358,7 +371,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             pengirimanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
         } else if(categoryCode.equals("2")) {
-            dateBTN.setVisibility(View.GONE);
+            dateLabel.setText("Filter Tanggal :");
             markSemua.setVisibility(View.GONE);
             markRencanaKunjungan.setVisibility(View.GONE);
             markKunjungan.setVisibility(View.VISIBLE);
@@ -370,7 +383,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             pengirimanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
             penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
         } else if(categoryCode.equals("4")) {
-            dateBTN.setVisibility(View.GONE);
+            dateLabel.setText("Filter Tanggal :");
             markSemua.setVisibility(View.GONE);
             markRencanaKunjungan.setVisibility(View.GONE);
             markKunjungan.setVisibility(View.GONE);
@@ -382,7 +395,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             pengirimanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option_choice));
             penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
         } else if(categoryCode.equals("3")) {
-            dateBTN.setVisibility(View.GONE);
+            dateLabel.setText("Filter Tanggal :");
             markSemua.setVisibility(View.GONE);
             markRencanaKunjungan.setVisibility(View.GONE);
             markKunjungan.setVisibility(View.GONE);
@@ -399,7 +412,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                dateBTN.setVisibility(View.GONE);
+                dateLabel.setText("Filter Tanggal :");
                 categoryCode = "0";
                 categoryChoiceTV.setText("Semua");
                 markSemua.setVisibility(View.VISIBLE);
@@ -438,7 +451,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                dateBTN.setVisibility(View.VISIBLE);
+                dateLabel.setText("Filter Tanggal Rencana :");
                 categoryCode = "1";
                 categoryChoiceTV.setText("Rencana Kunjungan");
                 markSemua.setVisibility(View.GONE);
@@ -476,7 +489,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                dateBTN.setVisibility(View.GONE);
+                dateLabel.setText("Filter Tanggal :");
                 categoryCode = "2";
                 categoryChoiceTV.setText("Laporan Kunjungan");
                 markSemua.setVisibility(View.GONE);
@@ -514,7 +527,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                dateBTN.setVisibility(View.GONE);
+                dateLabel.setText("Filter Tanggal :");
                 categoryCode = "3";
                 categoryChoiceTV.setText("Aktivitas Penagihan");
                 markSemua.setVisibility(View.GONE);
@@ -552,7 +565,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                dateBTN.setVisibility(View.GONE);
+                dateLabel.setText("Filter Tanggal :");
                 categoryCode = "4";
                 categoryChoiceTV.setText("Laporan Pengiriman");
                 markSemua.setVisibility(View.GONE);

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.gelora.absensi.R;
 import com.gelora.absensi.model.DataDokumentasiProject;
 import com.gelora.absensi.model.DataImageSlider;
@@ -51,15 +52,28 @@ public class AdapterImageSlider extends SliderViewAdapter<AdapterImageSlider.Sli
     @Override
     public void onBindViewHolder(AdapterImageSlider.SliderAdapterVH viewHolder, final int position) {
         DataImageSlider image = mSliderItems.get(position);
-        Glide.with(viewHolder.itemView)
-                .load(image.getImageUrl())
-                .centerCrop()
-                .into(viewHolder.image);
+        boolean karakterDitemukan = cekKarakter(image.getImageUrl(), '"');
+        if (karakterDitemukan) {
+            Glide.with(viewHolder.itemView)
+                    .load(image.getImageUrl().substring(1, image.getImageUrl().length() -1))
+                    .centerCrop()
+                    .into(viewHolder.image);
+        } else {
+            Glide.with(viewHolder.itemView)
+                    .load(image.getImageUrl())
+                    .centerCrop()
+                    .into(viewHolder.image);
+        }
+
     }
 
     @Override
     public int getCount() {
         return mSliderItems.size();
+    }
+
+    public static boolean cekKarakter(String string, char karakter) {
+        return string.indexOf(karakter) != -1;
     }
 
     public static class SliderAdapterVH extends ViewHolder {
