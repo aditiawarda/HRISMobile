@@ -1380,7 +1380,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     noSuratJalanPart.setVisibility(View.VISIBLE);
 
                                     String noSuratJalan = dataArray.getString("noSuratJalan");
-                                    noSuratJalanTV.setText(noSuratJalan);
+                                    if(noSuratJalan.equals("null")||noSuratJalan.equals("")){
+                                        noSuratJalanTV.setText("Tidak dicantumkan");
+                                    } else {
+                                        noSuratJalanTV.setText(noSuratJalan);
+                                    }
 
                                     String file = dataArray.getString("file");
                                     viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
