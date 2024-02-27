@@ -304,7 +304,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
 
                 new KAlertDialog(ListDataReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                         .setTitleText("Perhatian")
-                        .setContentText("Gagal terhubung, harap periksa jaringan anda")
+                        .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
                         .setConfirmText("    OK    ")
                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override

@@ -852,7 +852,7 @@ public class AllMenuActivity extends AppCompatActivity {
                     error.printStackTrace();
                     new KAlertDialog(AllMenuActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Gagal terhubung, harap periksa jaringan anda")
+                            .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
                             .setConfirmText("    OK    ")
                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                 @Override
@@ -907,7 +907,7 @@ public class AllMenuActivity extends AppCompatActivity {
                     error.printStackTrace();
                     new KAlertDialog(AllMenuActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Gagal terhubung, harap periksa jaringan anda")
+                            .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
                             .setConfirmText("    OK    ")
                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                 @Override

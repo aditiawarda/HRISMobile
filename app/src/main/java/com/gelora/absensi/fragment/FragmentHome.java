@@ -1747,7 +1747,7 @@ public class FragmentHome extends Fragment {
                     error.printStackTrace();
                     new KAlertDialog(mContext, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Gagal terhubung, harap periksa jaringan anda")
+                            .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
                             .setConfirmText("    OK    ")
                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                 @Override
@@ -1802,7 +1802,7 @@ public class FragmentHome extends Fragment {
                     error.printStackTrace();
                     new KAlertDialog(mContext, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Gagal terhubung, harap periksa jaringan anda")
+                            .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
                             .setConfirmText("    OK    ")
                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                 @Override
