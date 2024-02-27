@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -47,6 +48,7 @@ public class CalendarPageActivity extends AppCompatActivity {
     TextView eventCalender, yearTV, monthTV, dayDateTV, monthDateTV, yearDateTV, celebrateTV;
     LinearLayout prevBTN, nextBTN, backBTN, peringatanPart;
     SharedPrefManager sharedPrefManager;
+    String yearActive = "", yearBefore = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +122,9 @@ public class CalendarPageActivity extends AppCompatActivity {
         monthDateTV.setText(bulanName.toUpperCase());
         yearDateTV.setText(getDateY());
 
+        yearActive = getDateY();
+        yearBefore = yearActive;
+
     }
 
     private void calendarPart(){
@@ -135,10 +140,7 @@ public class CalendarPageActivity extends AppCompatActivity {
             eventCalender.setTypeface(typeface);
         }
 
-        // Set first day of week to Monday, defaults to Monday so calling setFirstDayOfWeek is not necessary
-        // Use constants provided by Java Calendar class
         compactCalendarView.setFirstDayOfWeek(Calendar.MONDAY);
-
         String month = String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).substring(4,7);
 
         int maxLengthYear = Integer.parseInt(String.valueOf(String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).length()));
@@ -191,10 +193,8 @@ public class CalendarPageActivity extends AppCompatActivity {
         monthTV.setText(bulanName);
         yearTV.setText(year);
 
-        // Add event 1 on Sun, 07 Jun 2015 18:20:51 GMT
-        getEventCalender();
+        getEventCalender(yearActive);
 
-        // define a listener to receive callbacks when certain events happen.
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @SuppressLint("InlinedApi")
             @Override
@@ -264,6 +264,13 @@ public class CalendarPageActivity extends AppCompatActivity {
                 yearTV.setText(year);
                 eventCalender.setText("");
 
+                yearActive = year;
+                if(!yearActive.equals(yearBefore)){
+                    yearBefore = yearActive;
+                    compactCalendarView.removeAllEvents();
+                    getEventCalender(year);
+                }
+
             }
         });
 
@@ -285,22 +292,23 @@ public class CalendarPageActivity extends AppCompatActivity {
 
     }
 
-    private void getEventCalender() {
+    private void getEventCalender(String year) {
         RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
         final String url = "https://geloraaksara.co.id/absen-online/api/holiday";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
                         try {
-                            JSONArray data = response.getJSONArray("data");
-
-                            for (int i = 0; i < data.length(); i++) {
-                                JSONObject event = data.getJSONObject(i);
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            JSONArray dataList = data.getJSONArray("data");
+                            for (int i = 0; i < dataList.length(); i++) {
+                                JSONObject event = dataList.getJSONObject(i);
                                 String nama = event.getString("nama");
                                 String tanggal = event.getString("tanggal");
-
                                 @SuppressLint("SimpleDateFormat")
                                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                                 Date date = sdf.parse(tanggal);
@@ -308,7 +316,6 @@ public class CalendarPageActivity extends AppCompatActivity {
                                 Event ev1 = new Event(Color.RED, millis, nama);
                                 compactCalendarView.addEvent(ev1);
                             }
-
                         } catch (JSONException | ParseException e) {
                             e.printStackTrace();
                         }
@@ -316,13 +323,23 @@ public class CalendarPageActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
+                // error
+                Log.d("Error.Response", error.toString());
                 connectionFailed();
             }
-        });
+        }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("tahun", year);
+                params.put("id_perusahaan", sharedPrefManager.getSpIdCor());
+                return params;
+            }
+        };
 
-        requestQueue.add(request);
-        request.setRetryPolicy(new DefaultRetryPolicy(
+        requestQueue.add(postRequest);
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(
                 0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
