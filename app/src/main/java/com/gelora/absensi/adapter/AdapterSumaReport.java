@@ -111,7 +111,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             myViewHolder.pengirimanPart.setVisibility(View.GONE);
             if(!dataReportSuma.getTotalTagihan().equals("null") && !dataReportSuma.getTotalTagihan().equals("") && !dataReportSuma.equals(null)){
                 if(!dataReportSuma.getTotalTagihan().equals("0")){
-                    myViewHolder.f3TotalTagihanTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalPesanan())));
+                    myViewHolder.f3TotalTagihanTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalTagihan())));
                 } else {
                     myViewHolder.f3TotalTagihanTV.setText("Terlihat dicantumkan");
                 }
