@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="17dp"
+            android:layout_marginRight="170dp"
+            android:layout_marginLeft="170dp"
+            android:layout_height="3dp"
+            android:background="#34455A64"
+            android:orientation="horizontal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="sans-serif"
+            android:text="Pilih Nomor Surat Jalan"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#32787878"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="MissingConstraints">
+
+                <LinearLayout
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:paddingTop="15dp"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/no_sj_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        android:orientation="vertical">
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <LinearLayout
+                        android:id="@+id/no_data_part_sj"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="60dp"
+                        android:paddingBottom="35dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="85dp"
+                            android:layout_height="85dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/empty_image"
+                            android:textAlignment="center"
+                            android:textSize="12dp"
+                            android:textStyle="bold"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-8dp"
+                            android:text="Data tidak ditemukan"
+                            android:textAlignment="center"
+                            android:textColor="#E1BB8A"
+                            android:textSize="12dp"
+                            android:textStyle="bold"
+                            tools:ignore="HardcodedText,SpUsage" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Data SJ tidak ditemukan"
+                            android:textAlignment="center"
+                            android:textColor="#ECC28D"
+                            android:textSize="10dp"
+                            tools:ignore="HardcodedText,SpUsage" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/loading_data_part_sj"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="60dp"
+                        android:paddingRight="20dp"
+                        android:paddingBottom="35dp"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:id="@+id/loading_data_sj"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginBottom="5dp"
+                            app:srcCompat="@drawable/loading_sgn_digital"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-8dp"
+                            android:text="Memuat data"
+                            android:textAlignment="center"
+                            android:textColor="#E1BB8A"
+                            android:textSize="12dp"
+                            android:textStyle="bold"
+                            tools:ignore="HardcodedText,SpUsage" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tunggu beberapa saat"
+                            android:textAlignment="center"
+                            android:textColor="#ECC28D"
+                            android:textSize="10dp"
+                            tools:ignore="HardcodedText,SpUsage" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
