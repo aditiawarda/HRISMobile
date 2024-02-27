@@ -102,12 +102,12 @@ import java.util.UUID;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiPart;
+    LinearLayout noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiPart;
     SharedPrefManager sharedPrefManager;
     EditText keteranganKunjunganRealisasiED;
     ExpandableLayout updateRealisasiForm, rescheduleForm;
     RequestQueue requestQueue;
-    TextView countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
+    TextView noSuratJalanTV, countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
     String idReport = "";
     SwipeRefreshLayout refreshLayout;
     SharedPrefAbsen sharedPrefAbsen;
@@ -179,6 +179,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         totalPesananTV = findViewById(R.id.total_pesanan_tv);
         totalPenagihanPart = findViewById(R.id.total_penagihan_part);
         totalPenagihanTV = findViewById(R.id.total_piutang_tv);
+        noSuratJalanPart = findViewById(R.id.no_surat_jalan_part);
+        noSuratJalanTV = findViewById(R.id.no_surat_jalan_tv);
         reschedulePart = findViewById(R.id.reschedule_part);
         rescheduleBTN = findViewById(R.id.reschedule_btn);
         rescheduleForm = findViewById(R.id.reschedule_form);
@@ -1157,7 +1159,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
     private void getData() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://reporting.sumasistem.co.id/api/report_detail_test";
+        final String url = "https://reporting.sumasistem.co.id/api/report_detail";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint({"SetTextI18n", "MissingPermission"})
@@ -1186,6 +1188,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     tglRencanaPart.setVisibility(View.VISIBLE);
                                     totalPesananPart.setVisibility(View.GONE);
                                     totalPenagihanPart.setVisibility(View.GONE);
+                                    noSuratJalanPart.setVisibility(View.GONE);
                                     String tgl_rencana = dataArray.getString("tanggalRencana");
 
                                     String input_date = tgl_rencana;
@@ -1314,6 +1317,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     tglRencanaPart.setVisibility(View.GONE);
                                     totalPesananPart.setVisibility(View.VISIBLE);
                                     totalPenagihanPart.setVisibility(View.GONE);
+                                    noSuratJalanPart.setVisibility(View.GONE);
 
                                     Locale localeID = new Locale("id", "ID");
                                     DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
@@ -1343,6 +1347,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     tglRencanaPart.setVisibility(View.GONE);
                                     totalPesananPart.setVisibility(View.GONE);
                                     totalPenagihanPart.setVisibility(View.VISIBLE);
+                                    noSuratJalanPart.setVisibility(View.GONE);
 
                                     Locale localeID = new Locale("id", "ID");
                                     DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
@@ -1372,6 +1377,10 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     tglRencanaPart.setVisibility(View.GONE);
                                     totalPesananPart.setVisibility(View.GONE);
                                     totalPenagihanPart.setVisibility(View.GONE);
+                                    noSuratJalanPart.setVisibility(View.VISIBLE);
+
+                                    String noSuratJalan = dataArray.getString("noSuratJalan");
+                                    noSuratJalanTV.setText(noSuratJalan);
 
                                     String file = dataArray.getString("file");
                                     viewLampiranBTN.setOnClickListener(new View.OnClickListener() {

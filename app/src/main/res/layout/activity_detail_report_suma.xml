@@ -703,6 +703,56 @@
 
                                     </LinearLayout>
 
+                                    <LinearLayout
+                                        android:id="@+id/no_surat_jalan_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="5dp"
+                                            android:lineSpacingExtra="4dp"
+                                            android:layout_weight=".25"
+                                            android:text="No. SJ"
+                                            android:textColor="#515151"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <LinearLayout
+                                            android:orientation="horizontal"
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".65"
+                                            android:layout_height="wrap_content"
+                                            tools:ignore="TooManyViews">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
+                                                android:text=":  "
+                                                android:textColor="#515151"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <TextView
+                                                android:id="@+id/no_surat_jalan_tv"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:lineSpacingExtra="4dp"
+                                                android:layout_weight=".65"
+                                                android:text="Memuat data..."
+                                                android:textColor="#515151"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
                                 </LinearLayout>
 
                                 <LinearLayout
