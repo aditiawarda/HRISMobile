@@ -115,7 +115,7 @@
                         android:maxLines="1"
                         android:singleLine="true"
                         android:textStyle="bold"
-                        android:text="DOKUMENTASI PROJECT"
+                        android:text="LAMPIRAN"
                         android:textColor="@color/white"
                         android:textSize="15dp"
                         tools:ignore="HardcodedText,SpUsage" />
