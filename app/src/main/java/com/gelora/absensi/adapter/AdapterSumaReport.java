@@ -109,12 +109,26 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             myViewHolder.kunjunganPart.setVisibility(View.GONE);
             myViewHolder.penagihanPart.setVisibility(View.VISIBLE);
             myViewHolder.pengirimanPart.setVisibility(View.GONE);
+            if(!dataReportSuma.getTotalTagihan().equals("null") && !dataReportSuma.getTotalTagihan().equals("") && !dataReportSuma.equals(null)){
+                if(!dataReportSuma.getTotalTagihan().equals("0")){
+                    myViewHolder.f3TotalTagihanTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalPesanan())));
+                } else {
+                    myViewHolder.f3TotalTagihanTV.setText("Terlihat dicantumkan");
+                }
+            } else {
+                myViewHolder.f2TotalPesananTV.setText("Terlihat pada SP Manual");
+            }
             myViewHolder.f3TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
         } else if(dataReportSuma.getTipeLaporan().equals("4")){
             myViewHolder.rencanaKunjunganPart.setVisibility(View.GONE);
             myViewHolder.kunjunganPart.setVisibility(View.GONE);
             myViewHolder.penagihanPart.setVisibility(View.GONE);
             myViewHolder.pengirimanPart.setVisibility(View.VISIBLE);
+            if(String.valueOf(dataReportSuma.getNoSuratJalan()).equals("null")||String.valueOf(dataReportSuma.getNoSuratJalan()).equals("")){
+                myViewHolder.f4NoSJTV.setText("Tidak dicantumkan");
+            } else {
+                myViewHolder.f4NoSJTV.setText(dataReportSuma.getNoSuratJalan());
+            }
             myViewHolder.f4TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
         }
 
@@ -136,7 +150,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView namaPelangganTV, f1StatusRealisasi;
-        TextView f4TanggalLaporanTV, f3TanggalLaporanTV, f3TotalTagihanTV, reportCategoryTV, keteranganTV, f1TanggalRencanaTV, f1TanggalLaporanTV, f2TotalPesananTV, f2TanggalLaporanTV;
+        TextView f4NoSJTV, f4TanggalLaporanTV, f3TanggalLaporanTV, f3TotalTagihanTV, reportCategoryTV, keteranganTV, f1TanggalRencanaTV, f1TanggalLaporanTV, f2TotalPesananTV, f2TanggalLaporanTV;
         LinearLayout pengirimanPart, parentPart, kunjunganPart, rencanaKunjunganPart, penagihanPart;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -153,6 +167,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             f3TotalTagihanTV = itemView.findViewById(R.id.f3_total_tagihan_tv);
             f3TanggalLaporanTV = itemView.findViewById(R.id.f3_tanggal_laporan_tv);
             f4TanggalLaporanTV = itemView.findViewById(R.id.f4_tanggal_laporan_tv);
+            f4NoSJTV = itemView.findViewById(R.id.f4_no_sj_tv);
 
             kunjunganPart = itemView.findViewById(R.id.kunjungan_part);
             rencanaKunjunganPart = itemView.findViewById(R.id.rencana_kunjungan_part);

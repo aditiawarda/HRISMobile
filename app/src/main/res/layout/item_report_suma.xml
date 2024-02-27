@@ -294,14 +294,13 @@
                             android:layout_width="0dp"
                             android:layout_weight=".50"
                             android:layout_height="wrap_content"
-                            android:visibility="gone"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="7dp"
-                                android:text="Total Tagihan"
+                                android:text="Total INV Piutang"
                                 android:textColor="#A1A1A1"
                                 android:textSize="10dp"
                                 android:ellipsize="end"
@@ -377,14 +376,13 @@
                             android:layout_width="0dp"
                             android:layout_weight=".50"
                             android:layout_height="wrap_content"
-                            android:visibility="gone"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="7dp"
-                                android:text="No SP"
+                                android:text="Nomor SJ"
                                 android:textColor="#A1A1A1"
                                 android:textSize="10dp"
                                 android:ellipsize="end"

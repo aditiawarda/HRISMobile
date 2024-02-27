@@ -12,7 +12,9 @@ public class DataReportSuma {
     private String createdAt;
     private String tanggalRencana;
     private String totalPesanan;
+    private String totalTagihan;
     private String idRealisasi;
+    private String noSuratJalan;
 
     public String getId() {
         return id;
@@ -109,4 +111,21 @@ public class DataReportSuma {
     public void setIdRealisasi(String idRealisasi) {
         this.idRealisasi = idRealisasi;
     }
+
+    public String getNoSuratJalan() {
+        return noSuratJalan;
+    }
+
+    public void setNoSuratJalan(String noSuratJalan) {
+        this.noSuratJalan = noSuratJalan;
+    }
+
+    public String getTotalTagihan() {
+        return totalTagihan;
+    }
+
+    public void setTotalTagihan(String totalTagihan) {
+        this.totalTagihan = totalTagihan;
+    }
+
 }
