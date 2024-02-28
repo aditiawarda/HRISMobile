@@ -1286,7 +1286,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         long rencana = date.getTime();
                                         long now = date2.getTime();
 
-                                        if (rencana<=now){
+                                        if (rencana==now){
                                             updateRealisasiPart.setVisibility(View.VISIBLE);
                                         } else {
                                             updateRealisasiPart.setVisibility(View.GONE);
