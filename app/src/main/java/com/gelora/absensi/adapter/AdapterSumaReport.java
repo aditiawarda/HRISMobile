@@ -78,7 +78,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
         }
 
-        myViewHolder.namaSalesTV.setText(sharedPrefManager.getSpNama().toUpperCase());
+        myViewHolder.namaSalesTV.setText(sharedPrefAbsen.getSpSalesActive().toUpperCase());
         myViewHolder.keteranganTV.setText(dataReportSuma.getKeterangan());
         myViewHolder.namaPelangganTV.setText(dataReportSuma.getNamaPelanggan());
 

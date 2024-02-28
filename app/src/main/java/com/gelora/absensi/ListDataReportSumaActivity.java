@@ -2,19 +2,31 @@ package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,12 +36,17 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gelora.absensi.adapter.AdapterKaryawanPengganti;
+import com.gelora.absensi.adapter.AdapterKaryawanSales;
 import com.gelora.absensi.adapter.AdapterSumaReport;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataReportSuma;
+import com.gelora.absensi.model.KaryawanPengganti;
+import com.gelora.absensi.model.KaryawanSales;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.takisoft.datetimepicker.DatePickerDialog;
@@ -42,11 +59,13 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ListDataReportSumaActivity extends AppCompatActivity {
 
     LinearLayout salesChoiceBTN, salesBTN, catBTN, filterBarPart, dateBTN, noDataPartReport, loadingDataPartReport, rencanaKunjunganBTN, penagihanBTN, pengirimanBTN, kunjunganBTN, markRencanaKunjungan, markPenagihan, markPengiriman, markKunjungan, markSemua, semuaBTN, actionBar, backBTN, addBTN, filterCategoryBTN;
-    TextView choiceDateTV, categoryChoiceTV, dateLabel;
+    TextView salesChoiceTV, choiceDateTV, categoryChoiceTV, dateLabel;
     ImageView loadingDataReport;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -57,6 +76,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     private RecyclerView reportRV;
     private DataReportSuma[] dataReportSumas;
     private AdapterSumaReport adapterSumaReport;
+    EditText keywordKaryawanSales;
+    RecyclerView karyawanSalesRV;
+    LinearLayout startAttantionPart, noDataPart, loadingDataPart;
+    ImageView loadingGif;
+    private KaryawanSales[] karyawanSales;
+    private AdapterKaryawanSales adapterKaryawanSales;
 
 
     @SuppressLint("SetTextI18n")
@@ -86,8 +111,15 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         catBTN = findViewById(R.id.cat_btn);
         salesBTN = findViewById(R.id.sales_btn);
         salesChoiceBTN = findViewById(R.id.sales_choice_btn);
+        salesChoiceTV = findViewById(R.id.sales_choice_tv);
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(karyawanSalesBroad, new IntentFilter("karyawan_sales_broad"));
 
         if(sharedPrefManager.getSpNik().equals("0499070507")){
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
+            salesChoiceTV.setText("Pilih Salesman...");
+
             catBTN.setVisibility(View.GONE);
             dateBTN.setVisibility(View.VISIBLE);
             salesBTN.setVisibility(View.VISIBLE);
@@ -98,12 +130,25 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         } else {
             catBTN.setVisibility(View.VISIBLE);
             dateBTN.setVisibility(View.VISIBLE);
-            if(sharedPrefManager.getSpNik().equals("0552260707") || sharedPrefManager.getSpNik().equals("3318060323")){
+            if(sharedPrefManager.getSpNik().equals("0121010900") || sharedPrefManager.getSpNik().equals("0981010210") || sharedPrefManager.getSpNik().equals("0552260707") || sharedPrefManager.getSpNik().equals("3318060323") || sharedPrefManager.getSpIdJabatan().equals("43") || sharedPrefManager.getSpIdJabatan().equals("45") || sharedPrefManager.getSpIdJabatan().equals("47") || sharedPrefManager.getSpIdJabatan().equals("49") || sharedPrefManager.getSpIdJabatan().equals("51") || sharedPrefManager.getSpIdJabatan().equals("53") || sharedPrefManager.getSpIdJabatan().equals("55") || sharedPrefManager.getSpIdJabatan().equals("57")){
+                if(sharedPrefManager.getSpIdJabatan().equals("43") || sharedPrefManager.getSpIdJabatan().equals("45") || sharedPrefManager.getSpIdJabatan().equals("47") || sharedPrefManager.getSpIdJabatan().equals("49") || sharedPrefManager.getSpIdJabatan().equals("51") || sharedPrefManager.getSpIdJabatan().equals("53") || sharedPrefManager.getSpIdJabatan().equals("55") || sharedPrefManager.getSpIdJabatan().equals("57")){ //GL
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, sharedPrefManager.getSpNama());
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, sharedPrefManager.getSpNik());
+                    addBTN.setVisibility(View.VISIBLE);
+                } else { //Asisten Kepala Departemen
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
+                    addBTN.setVisibility(View.GONE);
+                }
+                salesChoiceTV.setText("Pilih Salesman...");
                 salesBTN.setVisibility(View.VISIBLE);
             } else {
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, sharedPrefManager.getSpNama());
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, sharedPrefManager.getSpNik());
+                salesChoiceTV.setText(sharedPrefAbsen.getSpSalesActive());
                 salesBTN.setVisibility(View.GONE);
+                addBTN.setVisibility(View.VISIBLE);
             }
-            addBTN.setVisibility(View.VISIBLE);
             categoryCode = "1";
             dateLabel.setText("Filter Tanggal Rencana :");
             categoryChoiceTV.setText("Rencana Kunjungan");
@@ -161,6 +206,13 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 datePicker();
+            }
+        });
+
+        salesChoiceBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                salesPicker();
             }
         });
 
@@ -272,60 +324,65 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     }
 
     private void getData(String category_code){
-        String url = "https://reporting.sumasistem.co.id/api/suma_report?nik="+sharedPrefManager.getSpNik()+"&"+"tipe_laporan="+category_code+"&"+"tanggal="+dateChoice;
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
-                        try {
-                            String status = response.getString("status");
+        if(sharedPrefAbsen.getSpNikSalesActive().equals("")){
+            reportRV.setVisibility(View.GONE);
+            loadingDataPartReport.setVisibility(View.GONE);
+            noDataPartReport.setVisibility(View.VISIBLE);
+        } else {
+            String url = "https://reporting.sumasistem.co.id/api/suma_report?nik="+sharedPrefAbsen.getSpNikSalesActive()+"&"+"tipe_laporan="+category_code+"&"+"tanggal="+dateChoice;
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                    new Response.Listener<JSONObject>() {
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.e("PaRSE JSON", response + "");
+                            try {
+                                String status = response.getString("status");
 
-                            if(status.equals("Success")){
-                                reportRV.setVisibility(View.VISIBLE);
-                                loadingDataPartReport.setVisibility(View.GONE);
-                                noDataPartReport.setVisibility(View.GONE);
+                                if(status.equals("Success")){
+                                    reportRV.setVisibility(View.VISIBLE);
+                                    loadingDataPartReport.setVisibility(View.GONE);
+                                    noDataPartReport.setVisibility(View.GONE);
 
-                                String data_report = response.getString("data");
-                                GsonBuilder builder = new GsonBuilder();
-                                Gson gson = builder.create();
-                                dataReportSumas = gson.fromJson(data_report, DataReportSuma[].class);
-                                adapterSumaReport = new AdapterSumaReport(dataReportSumas, ListDataReportSumaActivity.this);
-                                reportRV.setAdapter(adapterSumaReport);
-                            } else {
-                                reportRV.setVisibility(View.GONE);
-                                loadingDataPartReport.setVisibility(View.GONE);
-                                noDataPartReport.setVisibility(View.VISIBLE);
+                                    String data_report = response.getString("data");
+                                    GsonBuilder builder = new GsonBuilder();
+                                    Gson gson = builder.create();
+                                    dataReportSumas = gson.fromJson(data_report, DataReportSuma[].class);
+                                    adapterSumaReport = new AdapterSumaReport(dataReportSumas, ListDataReportSumaActivity.this);
+                                    reportRV.setAdapter(adapterSumaReport);
+                                } else {
+                                    reportRV.setVisibility(View.GONE);
+                                    loadingDataPartReport.setVisibility(View.GONE);
+                                    noDataPartReport.setVisibility(View.VISIBLE);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                reportRV.setVisibility(View.GONE);
-                loadingDataPartReport.setVisibility(View.GONE);
-                noDataPartReport.setVisibility(View.VISIBLE);
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                    reportRV.setVisibility(View.GONE);
+                    loadingDataPartReport.setVisibility(View.GONE);
+                    noDataPartReport.setVisibility(View.VISIBLE);
 
-                new KAlertDialog(ListDataReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
-                        .setTitleText("Perhatian")
-                        .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
-                        .setConfirmText("    OK    ")
-                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(KAlertDialog sDialog) {
-                                sDialog.dismiss();
-                            }
-                        })
-                        .show();
-            }
-        });
+                    new KAlertDialog(ListDataReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
+            });
 
-        requestQueue.add(request);
-
+            requestQueue.add(request);
+        }
     }
 
     private void connectionFailed(){
@@ -840,6 +897,178 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         Date date = new Date();
         return dateFormat.format(date);
     }
+
+    private void salesPicker(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(ListDataReportSumaActivity.this).inflate(R.layout.layout_karyawan_sales, bottomSheet, false));
+        keywordKaryawanSales = findViewById(R.id.keyword_user_ed);
+        keywordKaryawanSales.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
+        karyawanSalesRV = findViewById(R.id.karyawan_rv);
+        startAttantionPart = findViewById(R.id.attantion_data_part);
+        noDataPart = findViewById(R.id.no_data_part);
+        loadingDataPart = findViewById(R.id.loading_data_part);
+        loadingGif = findViewById(R.id.loading_data);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_sgn_digital)
+                .into(loadingGif);
+
+        karyawanSalesRV.setLayoutManager(new LinearLayoutManager(this));
+        karyawanSalesRV.setHasFixedSize(true);
+        karyawanSalesRV.setNestedScrollingEnabled(false);
+        karyawanSalesRV.setItemAnimator(new DefaultItemAnimator());
+
+        keywordKaryawanSales.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String keyWordSearch = keywordKaryawanSales.getText().toString();
+
+                startAttantionPart.setVisibility(View.GONE);
+                loadingDataPart.setVisibility(View.VISIBLE);
+                noDataPart.setVisibility(View.GONE);
+                karyawanSalesRV.setVisibility(View.GONE);
+
+                if(!keyWordSearch.equals("")){
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getSales(keyWordSearch);
+                        }
+                    }, 500);
+                }
+            }
+
+        });
+
+        keywordKaryawanSales.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    String keyWordSearch = keywordKaryawanSales.getText().toString();
+                    getSales(keyWordSearch);
+
+                    InputMethodManager imm = (InputMethodManager) ListDataReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    View view = ListDataReportSumaActivity.this.getCurrentFocus();
+                    if (view == null) {
+                        view = new View(ListDataReportSumaActivity.this);
+                    }
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
+    }
+
+    private void getSales(String keyword) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cari_karyawan_sales";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")) {
+                                startAttantionPart.setVisibility(View.GONE);
+                                loadingDataPart.setVisibility(View.GONE);
+                                noDataPart.setVisibility(View.GONE);
+                                karyawanSalesRV.setVisibility(View.VISIBLE);
+
+                                String data_list = data.getString("data");
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                karyawanSales = gson.fromJson(data_list, KaryawanSales[].class);
+                                adapterKaryawanSales = new AdapterKaryawanSales(karyawanSales, ListDataReportSumaActivity.this);
+                                karyawanSalesRV.setAdapter(adapterKaryawanSales);
+                            } else {
+                                startAttantionPart.setVisibility(View.GONE);
+                                loadingDataPart.setVisibility(View.GONE);
+                                noDataPart.setVisibility(View.VISIBLE);
+                                karyawanSalesRV.setVisibility(View.GONE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                        startAttantionPart.setVisibility(View.GONE);
+                        loadingDataPart.setVisibility(View.GONE);
+                        noDataPart.setVisibility(View.VISIBLE);
+                        karyawanSalesRV.setVisibility(View.GONE);
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("requester", sharedPrefManager.getSpIdJabatan());
+                params.put("keyword_sales", keyword);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    public BroadcastReceiver karyawanSalesBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String nikKaryawanSales = intent.getStringExtra("nik_karyawan_sales");
+            String namaKaryawanSales = intent.getStringExtra("nama_karyawan_sales");
+
+            salesChoiceTV.setText(namaKaryawanSales);
+
+            InputMethodManager imm = (InputMethodManager) ListDataReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            View view = ListDataReportSumaActivity.this.getCurrentFocus();
+            if (view == null) {
+                view = new View(ListDataReportSumaActivity.this);
+            }
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+
+                    reportRV.setVisibility(View.GONE);
+                    loadingDataPartReport.setVisibility(View.VISIBLE);
+                    noDataPartReport.setVisibility(View.GONE);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            refreshLayout.setRefreshing(false);
+                            getData(categoryCode);
+                        }
+                    }, 1000);
+                }
+            }, 300);
+        }
+    };
 
     @SuppressLint("SetTextI18n")
     @Override
