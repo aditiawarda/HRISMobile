@@ -110,7 +110,6 @@ public class AllMenuActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -485,7 +484,7 @@ public class AllMenuActivity extends AppCompatActivity {
                     cardPart.setVisibility(View.VISIBLE);
                     sdmPart.setVisibility(View.GONE);
                     projectPart.setVisibility(View.GONE);
-                    if(sharedPrefManager.getSpIdHeadDept().equals("3")||sharedPrefManager.getSpNik().equals("3186150321")){
+                    if(sharedPrefManager.getSpIdHeadDept().equals("3")){
                         reportSumaPart.setVisibility(View.VISIBLE);
                     } else {
                         reportSumaPart.setVisibility(View.GONE);
