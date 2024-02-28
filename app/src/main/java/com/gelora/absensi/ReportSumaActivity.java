@@ -115,6 +115,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -163,7 +164,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     TextView f3CountImageTV, f3DetailLocationTV, f3LabelLampiranTV, f3TotalPiutangTV, f3TeleponPelangganLamaTV, f3NamaPelangganLamaChoiceTV, f3AlamatPelangganLamaTV, f3PicPelangganLamaTV;
     String f3IdPelangganLama = "";
     ImageView f3LoadingDataPiutangImg;
-    EditText f3KeteranganED;
+    EditText f3KeteranganED, f3NominalBayarED;
     RecyclerView f3InvRV;
     private DataInvoicePiutang[] dataInvoicePiutangs;
     private AdapterInvoicePiutang adapterInvoicePiutang;
@@ -309,6 +310,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f3DetailLocationTV = findViewById(R.id.f3_detail_location_tv);
         f3SubmitPesananBTN = findViewById(R.id.f3_submit_data_btn);
         f3CountImageTV = findViewById(R.id.f3_count_image_tv);
+        f3NominalBayarED = findViewById(R.id.f3_nominal_bayar_ed);
 
         f4KeteranganED = findViewById(R.id.f4_keterangan_ed);
         f4DetailPelanggan = findViewById(R.id.f4_detail_pelanggan);

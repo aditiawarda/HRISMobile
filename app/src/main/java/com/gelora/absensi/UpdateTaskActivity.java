@@ -264,7 +264,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
             public void onClick(View v) {
                 new KAlertDialog(UpdateTaskActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Perhatian")
-                        .setContentText("Simpan task baru sekarang?")
+                        .setContentText("Simpan update task sekarang?")
                         .setCancelText("TIDAK")
                         .setConfirmText("   YA   ")
                         .showCancelButton(true)
@@ -897,22 +897,17 @@ public class UpdateTaskActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
-
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 taskNameED.clearFocus();
-
                 String keyWordSearch = keywordKaryawan.getText().toString();
-
                 startAttantionPart.setVisibility(View.GONE);
                 loadingDataPart.setVisibility(View.VISIBLE);
                 noDataPart.setVisibility(View.GONE);
                 karyawanRV.setVisibility(View.GONE);
-
                 if (!keyWordSearch.equals("")) {
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -922,7 +917,6 @@ public class UpdateTaskActivity extends AppCompatActivity {
                     }, 500);
                 }
             }
-
         });
 
     }
@@ -945,7 +939,6 @@ public class UpdateTaskActivity extends AppCompatActivity {
                                 loadingDataPart.setVisibility(View.GONE);
                                 noDataPart.setVisibility(View.GONE);
                                 karyawanRV.setVisibility(View.VISIBLE);
-
                                 String data_list = data.getString("data");
                                 GsonBuilder builder = new GsonBuilder();
                                 Gson gson = builder.create();

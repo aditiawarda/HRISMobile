@@ -45,7 +45,7 @@ import java.util.Date;
 
 public class ListDataReportSumaActivity extends AppCompatActivity {
 
-    LinearLayout catBTN, filterBarPart, dateBTN, noDataPartReport, loadingDataPartReport, rencanaKunjunganBTN, penagihanBTN, pengirimanBTN, kunjunganBTN, markRencanaKunjungan, markPenagihan, markPengiriman, markKunjungan, markSemua, semuaBTN, actionBar, backBTN, addBTN, filterCategoryBTN;
+    LinearLayout salesChoiceBTN, salesBTN, catBTN, filterBarPart, dateBTN, noDataPartReport, loadingDataPartReport, rencanaKunjunganBTN, penagihanBTN, pengirimanBTN, kunjunganBTN, markRencanaKunjungan, markPenagihan, markPengiriman, markKunjungan, markSemua, semuaBTN, actionBar, backBTN, addBTN, filterCategoryBTN;
     TextView choiceDateTV, categoryChoiceTV, dateLabel;
     ImageView loadingDataReport;
     SharedPrefManager sharedPrefManager;
@@ -84,10 +84,13 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         filterBarPart = findViewById(R.id.filter_bar_part);
         dateLabel = findViewById(R.id.date_label);
         catBTN = findViewById(R.id.cat_btn);
+        salesBTN = findViewById(R.id.sales_btn);
+        salesChoiceBTN = findViewById(R.id.sales_choice_btn);
 
         if(sharedPrefManager.getSpNik().equals("0499070507")){
             catBTN.setVisibility(View.GONE);
             dateBTN.setVisibility(View.VISIBLE);
+            salesBTN.setVisibility(View.VISIBLE);
             addBTN.setVisibility(View.GONE);
             categoryCode = "3";
             dateLabel.setText("Filter Tanggal Penagihan :");
@@ -95,6 +98,11 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         } else {
             catBTN.setVisibility(View.VISIBLE);
             dateBTN.setVisibility(View.VISIBLE);
+            if(sharedPrefManager.getSpNik().equals("0552260707") || sharedPrefManager.getSpNik().equals("3318060323")){
+                salesBTN.setVisibility(View.VISIBLE);
+            } else {
+                salesBTN.setVisibility(View.GONE);
+            }
             addBTN.setVisibility(View.VISIBLE);
             categoryCode = "1";
             dateLabel.setText("Filter Tanggal Rencana :");
@@ -859,12 +867,15 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             } else if(categoryCode.equals("2")) {
                 dateLabel.setText("Filter Tanggal :");
                 categoryChoiceTV.setText("Laporan Kunjungan");
+                dateChoice = getDate();
             } else if(categoryCode.equals("3")) {
                 dateLabel.setText("Filter Tanggal :");
                 categoryChoiceTV.setText("Aktivitas Penagihan");
+                dateChoice = getDate();
             } else if(categoryCode.equals("4")) {
                 dateLabel.setText("Filter Tanggal :");
                 categoryChoiceTV.setText("Laporan Pengiriman");
+                dateChoice = getDate();
             }
 
             reportRV.setVisibility(View.GONE);

@@ -770,7 +770,7 @@
                                                     android:textColorHighlight="#FFE1BC"
                                                     android:textColorHint="#595959"
                                                     android:textSize="14dp"
-                                                    tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+                                                    tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,TooManyViews,VisualLintTextFieldSize" />
 
                                                 <LinearLayout
                                                     android:layout_width="match_parent"
@@ -2196,6 +2196,46 @@
                                                     android:layout_marginTop="8dp"
                                                     android:layout_marginBottom="12dp"
                                                     android:background="#3CCFCFCF" />
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:visibility="gone"
+                                                    android:orientation="vertical">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="5dp"
+                                                        android:text="Nominal Bayar (Rp) :"
+                                                        android:textColor="#696969"
+                                                        android:textSize="12dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                    <EditText
+                                                        android:id="@+id/f3_nominal_bayar_ed"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="10dp"
+                                                        android:background="@drawable/shape_input_form"
+                                                        android:drawablePadding="10dp"
+                                                        android:hint=""
+                                                        android:inputType="number"
+                                                        android:maxLength="255"
+                                                        android:minHeight="40dp"
+                                                        android:paddingLeft="20dp"
+                                                        android:paddingRight="20dp"
+                                                        android:paddingTop="10dp"
+                                                        android:paddingBottom="12dp"
+                                                        android:gravity="center|left"
+                                                        android:textColor="#595959"
+                                                        android:textColorHighlight="#FFE1BC"
+                                                        android:textColorHint="#595959"
+                                                        android:textSize="14dp"
+                                                        android:maxLines="3"
+                                                        tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+
+                                                </LinearLayout>
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
