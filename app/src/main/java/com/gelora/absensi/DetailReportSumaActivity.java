@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -102,13 +103,13 @@ import java.util.UUID;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiPart;
+    LinearLayout submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiPart;
     SharedPrefManager sharedPrefManager;
-    EditText keteranganKunjunganRealisasiED;
-    ExpandableLayout updateRealisasiForm, rescheduleForm;
+    EditText keteranganKunjunganRealisasiED, keteranganUpdateED;
+    ExpandableLayout updateRealisasiForm, rescheduleForm, updateForm;
     RequestQueue requestQueue;
-    TextView noSuratJalanTV, countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
-    String idReport = "";
+    TextView noSuratJalanTV, countImageUpdateTV, countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, labelLampTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
+    String tipeLaporan = "", idReport = "";
     SwipeRefreshLayout refreshLayout;
     SharedPrefAbsen sharedPrefAbsen;
     private StatusBarColorManager mStatusBarColorManager;
@@ -126,6 +127,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     private List<String> lampiranImage = new ArrayList<>();
     KAlertDialog pDialog;
     private int i = -1;
+    NestedScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,6 +150,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
         requestQueue = Volley.newRequestQueue(this);
+        scrollView = findViewById(R.id.scrollView);
         reportKategoriTV = findViewById(R.id.report_kategori_tv);
         backBTN = findViewById(R.id.back_btn);
         actionBar = findViewById(R.id.action_bar);
@@ -170,10 +173,13 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         detailLocationRealisasiTV = findViewById(R.id.detail_location_realisasi_tv);
         fotoLampiranRealisasiBTN = findViewById(R.id.foto_lampiran_realisasi_btn);
         viewLampiranRealisasiBTN = findViewById(R.id.view_lampiran_realisasi_btn);
+        viewLampiranUpdateBTN = findViewById(R.id.view_lam_btn);
         labelLampiranTV = findViewById(R.id.label_lampiran_tv);
+        labelLampTV = findViewById(R.id.label_lam_tv);
         submitRealisasiBTN = findViewById(R.id.submit_realisasi_btn);
         realMark = findViewById(R.id.real_mark);
         viewRealisasiBTN = findViewById(R.id.view_realisasi_btn);
+        viewRealisasiPart = findViewById(R.id.view_realisasi_part);
         tanggalBuatTV = findViewById(R.id.tanggal_buat_tv);
         totalPesananPart = findViewById(R.id.total_pesanan_part);
         totalPesananTV = findViewById(R.id.total_pesanan_tv);
@@ -189,6 +195,15 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         submitRescheduleBTN = findViewById(R.id.submit_reschedule_btn);
         keteranganKunjunganRealisasiED = findViewById(R.id.keterangan_kunjungan_ed);
         countImageTV = findViewById(R.id.count_image_tv);
+        countImageUpdateTV = findViewById(R.id.count_img_tv);
+        deletePart = findViewById(R.id.delete_part);
+        deleteBTN = findViewById(R.id.delete_btn);
+        updatePart = findViewById(R.id.update_part);
+        updateForm = findViewById(R.id.update_form);
+        updateBTN = findViewById(R.id.update_btn);
+        keteranganUpdateED = findViewById(R.id.keterangan_ed);
+        fotoLamBTN = findViewById(R.id.foto_lam_btn);
+        submitUpdateBTN = findViewById(R.id.submit_update_btn);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -222,6 +237,26 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             }
         });
 
+        choiceDateBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickerOfDate();
+            }
+        });
+
+        updateBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(updateForm.isExpanded()){
+                    updateForm.collapse();
+                } else {
+                    updateForm.expand();
+                    rescheduleForm.collapse();
+                    updateRealisasiForm.collapse();
+                }
+            }
+        });
+
         rescheduleBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -230,14 +265,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 } else {
                     rescheduleForm.expand();
                     updateRealisasiForm.collapse();
+                    updateForm.collapse();
                 }
-            }
-        });
-
-        choiceDateBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pickerOfDate();
             }
         });
 
@@ -249,6 +278,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 } else {
                     updateRealisasiForm.expand();
                     rescheduleForm.collapse();
+                    updateForm.collapse();
                 }
             }
         });
@@ -261,10 +291,82 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             }
         });
 
+        fotoLamBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dexterCall();
+            }
+        });
+
         fotoLampiranRealisasiBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dexterCall();
+            }
+        });
+
+        submitUpdateBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Simpan perubahan data?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                pDialog = new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1300, 800) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailReportSumaActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailReportSumaActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailReportSumaActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailReportSumaActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailReportSumaActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailReportSumaActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+
+                                    public void onFinish() {
+                                        i = -1;
+                                        submitUpdateData();
+                                    }
+                                }.start();
+                            }
+                        })
+                        .show();
             }
         });
 
@@ -426,6 +528,77 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             }
         });
 
+        deleteBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = "";
+                if(tipeLaporan.equals("1")){
+                    message = "Apakah anda yakin untuk menghapus data rencana kunjungan?";
+                } else {
+                    message = "Apakah anda yakin untuk menghapus data laporan?";
+                }
+                new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText(message)
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                pDialog = new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1300, 800) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailReportSumaActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailReportSumaActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailReportSumaActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailReportSumaActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailReportSumaActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailReportSumaActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+                                    public void onFinish() {
+                                        i = -1;
+                                        deleteData(idReport);
+                                    }
+                                }.start();
+
+                            }
+                        })
+                        .show();
+            }
+        });
+
     }
 
     @Override
@@ -509,6 +682,74 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 }
             }
         });
+
+    }
+
+    private void deleteData(String idReport){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://reporting.sumasistem.co.id/api/nonactive_reporting";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if(status.equals("Success")) {
+                                pDialog.setTitleText("Dihapus")
+                                        .setContentText("Data berhasil dihapus")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                onBackPressed();
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            } else {
+                                pDialog.setTitleText("Gagal")
+                                    .setContentText("Terjadi kesalahan")
+                                    .setConfirmText("    OK    ")
+                                    .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Error.Response", error.toString());
+                        pDialog.setTitleText("Gagal")
+                                .setContentText("Terjadi kesalahan")
+                                .setConfirmText("    OK    ")
+                                .changeAlertType(KAlertDialog.ERROR_TYPE);
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id_report", idReport);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
+
 
     }
 
@@ -756,6 +997,88 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
     }
 
+    private void submitUpdateData(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://reporting.sumasistem.co.id/api/update_reporting";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if(status.equals("Success")) {
+                                String file_name = data.getString("file_name");
+                                if(file_name.equals("No data")){
+                                    scrollView.fullScroll(NestedScrollView.FOCUS_UP);
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            pDialog.setTitleText("Berhasil")
+                                                    .setContentText("Data laporan berhasil diupdate")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                            getData();
+                                                            updateForm.collapse();
+                                                            lampiranImage.clear();
+                                                            fotoLamBTN.setVisibility(View.VISIBLE);
+                                                            viewLampiranUpdateBTN.setVisibility(View.GONE);
+                                                        }
+                                                    })
+                                                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                        }
+                                    }, 500);
+                                } else {
+                                    uploadLampiran(file_name, idReport);
+                                }
+                            } else {
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Error.Response", error.toString());
+                        pDialog.setTitleText("Gagal Terkirim")
+                                .setConfirmText("    OK    ")
+                                .changeAlertType(KAlertDialog.ERROR_TYPE);
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id_report", idReport);
+                params.put("keterangan", keteranganUpdateED.getText().toString());
+                params.put("jumlah_lampiran_update", String.valueOf(lampiranImage.size()));
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
+
+    }
+
     private void submitReschedule(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://reporting.sumasistem.co.id/api/update_reschedule";
@@ -831,6 +1154,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                                 rescheduleForm.collapse();
                                                 choiceDateReschedule = "";
                                                 choiceDateTV.setText("");
+                                                scrollView.fullScroll(NestedScrollView.FOCUS_UP);
                                             }
                                         })
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);
@@ -960,19 +1284,42 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 }
             }
             if(lampiranImage.size()-1==i){
-                pDialog.dismiss();
-                updateRealisasiPart.setVisibility(View.GONE);
-                viewRealisasiBTN.setVisibility(View.VISIBLE);
-                viewRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+                scrollView.fullScroll(NestedScrollView.FOCUS_UP);
+                new Handler().postDelayed(new Runnable() {
                     @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
-                        intent.putExtra("report_id",idReport);
-                        startActivity(intent);
+                    public void run() {
+                        if(tipeLaporan.equals("1")){
+                            pDialog.dismiss();
+                            updateRealisasiPart.setVisibility(View.GONE);
+                            viewRealisasiPart.setVisibility(View.VISIBLE);
+                            viewRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
+                                    intent.putExtra("report_id",idReport);
+                                    startActivity(intent);
+                                }
+                            });
+                            getData();
+                        } else {
+                            pDialog.setTitleText("Berhasil")
+                                    .setContentText("Data laporan berhasil diupdate")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                            getData();
+                                            updateForm.collapse();
+                                            lampiranImage.clear();
+                                            fotoLamBTN.setVisibility(View.VISIBLE);
+                                            viewLampiranUpdateBTN.setVisibility(View.GONE);
+                                        }
+                                    })
+                                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                        }
                     }
-                });
-
-                getData();
+                }, 500);
             }
         }
     }
@@ -1103,22 +1450,46 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                         String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
                         Log.e("PaRSE JSON", a);
 
-                        countImageTV.setText(String.valueOf(lampiranImage.size()));
-                        if(lampiranImage.size()>=2){
-                            fotoLampiranRealisasiBTN.setVisibility(View.GONE);
-                        } else {
-                            fotoLampiranRealisasiBTN.setVisibility(View.VISIBLE);
-                        }
-                        viewLampiranRealisasiBTN.setVisibility(View.VISIBLE);
-                        labelLampiranTV.setText("+ Lampiran Foto/SP");
-                        viewLampiranRealisasiBTN.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
-                                intent.putExtra("data", String.valueOf(lampiranImage));
-                                startActivity(intent);
+                        if(tipeLaporan.equals("1")){
+                            countImageTV.setText(String.valueOf(lampiranImage.size()));
+                            if(lampiranImage.size()>=2){
+                                fotoLampiranRealisasiBTN.setVisibility(View.GONE);
+                            } else {
+                                fotoLampiranRealisasiBTN.setVisibility(View.VISIBLE);
                             }
-                        });
+                            viewLampiranRealisasiBTN.setVisibility(View.VISIBLE);
+                            labelLampiranTV.setText("+ Lampiran Foto/SP");
+                            viewLampiranRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                    intent.putExtra("data", String.valueOf(lampiranImage));
+                                    startActivity(intent);
+                                }
+                            });
+                        } else {
+                            countImageUpdateTV.setText(String.valueOf(lampiranImage.size()));
+                            if(lampiranImage.size()>=2){
+                                fotoLamBTN.setVisibility(View.GONE);
+                                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                                        LinearLayout.LayoutParams.MATCH_PARENT,61
+                                );
+                                layoutParams.setMargins(0, 0, 0, 0);
+                                viewLampiranUpdateBTN.setLayoutParams(layoutParams);
+                            } else {
+                                fotoLamBTN.setVisibility(View.VISIBLE);
+                            }
+                            viewLampiranUpdateBTN.setVisibility(View.VISIBLE);
+                            labelLampTV.setText("Ubah Lampiran Foto/SP");
+                            viewLampiranUpdateBTN.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                    intent.putExtra("data", String.valueOf(lampiranImage));
+                                    startActivity(intent);
+                                }
+                            });
+                        }
 
                     } else {
                         new Handler().postDelayed(new Runnable() {
@@ -1177,12 +1548,13 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 String longitude = dataArray.getString("longitude");
                                 String idSales = dataArray.getString("idSales");
                                 getSales(idSales);
-                                String tipeLaporan = dataArray.getString("tipeLaporan");
+                                tipeLaporan = dataArray.getString("tipeLaporan");
                                 String createdAt = dataArray.getString("createdAt");
 
                                 tanggalBuatTV.setText(createdAt.substring(8,10)+"/"+createdAt.substring(5,7)+"/"+createdAt.substring(0,4)+" "+createdAt.substring(10,16));
 
                                 if(tipeLaporan.equals("1")){
+                                    updatePart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.GONE);
                                     reportKategoriTV.setText("RENCANA KUNJUNGAN");
                                     tglRencanaPart.setVisibility(View.VISIBLE);
@@ -1293,12 +1665,12 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         }
 
                                         realMark.setVisibility(View.GONE);
-                                        viewRealisasiBTN.setVisibility(View.GONE);
+                                        viewRealisasiPart.setVisibility(View.GONE);
                                     } else if(statusRealisasi.equals("1")){
                                         reschedulePart.setVisibility(View.GONE);
                                         updateRealisasiPart.setVisibility(View.GONE);
                                         realMark.setVisibility(View.VISIBLE);
-                                        viewRealisasiBTN.setVisibility(View.VISIBLE);
+                                        viewRealisasiPart.setVisibility(View.VISIBLE);
                                         String realisasi = data.getString("realisasi");
                                         viewRealisasiBTN.setOnClickListener(new View.OnClickListener() {
                                             @Override
@@ -1311,6 +1683,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     }
 
                                 } else if(tipeLaporan.equals("2")){
+                                    updatePart.setVisibility(View.VISIBLE);
                                     updateRealisasiPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     reportKategoriTV.setText("LAPORAN KUNJUNGAN");
@@ -1341,6 +1714,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         }
                                     });
                                 } else if(tipeLaporan.equals("3")){
+                                    updatePart.setVisibility(View.VISIBLE);
                                     updateRealisasiPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     reportKategoriTV.setText("AKTIVITAS PENAGIHAN");
@@ -1371,6 +1745,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         }
                                     });
                                 } else if(tipeLaporan.equals("4")){
+                                    updatePart.setVisibility(View.VISIBLE);
                                     updateRealisasiPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     reportKategoriTV.setText("LAPORAN PENGIRIMAN");
@@ -1402,6 +1777,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 String pic = dataArray.getString("pic");
                                 String no_telp = dataArray.getString("noTelp");
                                 String keterangan = dataArray.getString("keterangan");
+
+                                keteranganUpdateED.setText(keterangan);
                                 namaPelangganTV.setText(namaPelanggan);
 
                                 if(alamat_customer.equals("null") || alamat_customer.equals("")){
