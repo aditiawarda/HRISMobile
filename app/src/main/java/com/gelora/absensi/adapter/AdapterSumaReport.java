@@ -79,7 +79,6 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         }
 
         myViewHolder.namaSalesTV.setText(sharedPrefAbsen.getSpSalesActive().toUpperCase());
-        myViewHolder.keteranganTV.setText(dataReportSuma.getKeterangan());
         myViewHolder.namaPelangganTV.setText(dataReportSuma.getNamaPelanggan());
 
         if(dataReportSuma.getTipeLaporan().equals("1")){
@@ -154,13 +153,12 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView namaSalesTV, namaPelangganTV, f1StatusRealisasi;
-        TextView f4NoSJTV, f4TanggalLaporanTV, f3TanggalLaporanTV, f3TotalTagihanTV, reportCategoryTV, keteranganTV, f1TanggalRencanaTV, f1TanggalLaporanTV, f2TotalPesananTV, f2TanggalLaporanTV;
+        TextView f4NoSJTV, f4TanggalLaporanTV, f3TanggalLaporanTV, f3TotalTagihanTV, reportCategoryTV, f1TanggalRencanaTV, f1TanggalLaporanTV, f2TotalPesananTV, f2TanggalLaporanTV;
         LinearLayout pengirimanPart, parentPart, kunjunganPart, rencanaKunjunganPart, penagihanPart;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parentPart = itemView.findViewById(R.id.parent_part);
             reportCategoryTV = itemView.findViewById(R.id.report_kategori_tv);
-            keteranganTV = itemView.findViewById(R.id.keterangan_report_tv);
             f1StatusRealisasi = itemView.findViewById(R.id.status_realisasi);
             namaPelangganTV = itemView.findViewById(R.id.nama_pelanggan_tv);
             namaSalesTV = itemView.findViewById(R.id.nama_sales_tv);

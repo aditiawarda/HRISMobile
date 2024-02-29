@@ -101,8 +101,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="1.5dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="2dp"
                         android:background="#3CCFCFCF" />
 
                     <TextView
@@ -130,36 +130,10 @@
                         android:maxLines="2"
                         tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:text="Keterangan"
-                        android:textColor="#A1A1A1"
-                        android:textSize="10dp"
-                        android:ellipsize="end"
-                        android:lineSpacingExtra="3dp"
-                        android:maxLines="3"
-                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                    <TextView
-                        android:id="@+id/keterangan_report_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:text="Memuat data..."
-                        android:textColor="#555555"
-                        android:textSize="13dp"
-                        android:ellipsize="end"
-                        android:lineSpacingExtra="3dp"
-                        android:maxLines="2"
-                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="1.5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="2dp"
+                        android:layout_marginTop="6dp"
                         android:background="#3CCFCFCF" />
 
                     <!-- Rencana Kunjungan -->

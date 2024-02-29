@@ -1403,9 +1403,25 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 String no_telp = dataArray.getString("noTelp");
                                 String keterangan = dataArray.getString("keterangan");
                                 namaPelangganTV.setText(namaPelanggan);
-                                alamatPelangganTV.setText(alamat_customer);
-                                picPelangganTV.setText(pic);
-                                teleponPelangganTV.setText(no_telp);
+
+                                if(alamat_customer.equals("null") || alamat_customer.equals("")){
+                                    alamatPelangganTV.setText("Belum diketahui");
+                                } else {
+                                    alamatPelangganTV.setText(alamat_customer);
+                                }
+
+                                if(pic.equals("null")){
+                                    picPelangganTV.setText("Belum diketahui");
+                                } else {
+                                    picPelangganTV.setText(pic);
+                                }
+
+                                if(no_telp.equals("null")){
+                                    teleponPelangganTV.setText("Belum diketahui");
+                                } else {
+                                    teleponPelangganTV.setText(no_telp);
+                                }
+
                                 keteranganTV.setText(keterangan);
 
                                 if(mMap != null && (tipeLaporan.equals("2") || tipeLaporan.equals("3") || tipeLaporan.equals("4"))){

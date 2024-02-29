@@ -783,7 +783,7 @@
                                                 android:textStyle="italic"
                                                 android:layout_gravity="center"
                                                 android:text="Harap pilih jenis pelanggan"
-                                                tools:ignore="HardcodedText,SpUsage" />
+                                                tools:ignore="HardcodedText,SpUsage,TooManyViews" />
 
                                         </LinearLayout>
 
@@ -1303,7 +1303,7 @@
                                                             android:id="@+id/f2_add_product_btn"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
-                                                            android:layout_marginBottom="7dp"
+                                                            android:layout_marginBottom="4dp"
                                                             android:layout_marginTop="15dp"
                                                             android:paddingTop="12dp"
                                                             android:paddingBottom="12dp"

@@ -127,6 +127,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             categoryCode = "3";
             dateLabel.setText("Filter Tanggal Penagihan :");
             categoryChoiceTV.setText("Aktivitas Penagihan");
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "3");
         } else {
             catBTN.setVisibility(View.VISIBLE);
             dateBTN.setVisibility(View.VISIBLE);
@@ -152,6 +153,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             categoryCode = "1";
             dateLabel.setText("Filter Tanggal Rencana :");
             categoryChoiceTV.setText("Rencana Kunjungan");
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "1");
         }
 
         reportRV.setLayoutManager(new LinearLayoutManager(this));
@@ -184,7 +186,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         refreshLayout.setRefreshing(false);
                         getData(categoryCode);
                     }
-                }, 1000);
+                }, 500);
             }
         });
 
@@ -232,7 +234,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             public void run() {
                 getData(categoryCode);
             }
-        }, 1000);
+        }, 500);
 
     }
 
@@ -477,6 +479,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "0");
                 dateLabel.setText("Filter Tanggal :");
                 categoryCode = "0";
                 categoryChoiceTV.setText("Semua");
@@ -516,6 +519,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "1");
                 dateLabel.setText("Filter Tanggal Rencana :");
                 categoryCode = "1";
                 categoryChoiceTV.setText("Rencana Kunjungan");
@@ -554,6 +558,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "2");
                 dateLabel.setText("Filter Tanggal :");
                 categoryCode = "2";
                 categoryChoiceTV.setText("Laporan Kunjungan");
@@ -592,6 +597,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "3");
                 dateLabel.setText("Filter Tanggal :");
                 categoryCode = "3";
                 categoryChoiceTV.setText("Aktivitas Penagihan");
@@ -630,6 +636,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "4");
                 dateLabel.setText("Filter Tanggal :");
                 categoryCode = "4";
                 categoryChoiceTV.setText("Laporan Pengiriman");
@@ -1115,7 +1122,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 public void run() {
                     refreshLayout.setRefreshing(false);
                     getData(categoryCode);
-                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "");
+//                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "");
                 }
             }, 1000);
         }
