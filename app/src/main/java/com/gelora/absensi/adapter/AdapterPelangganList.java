@@ -53,8 +53,6 @@ public class AdapterPelangganList extends RecyclerView.Adapter<AdapterPelangganL
 
         myViewHolder.namaPelangganTV.setText(pelangganList.getNamaPelanggan());
         myViewHolder.alamatPelangganTV.setText(pelangganList.getAlamatPelanggan());
-        myViewHolder.picPelangganTV.setText(pelangganList.getPicPelanggan());
-        myViewHolder.teleponPelangganLamaTV.setText(pelangganList.getTeleponPelanggan());
         myViewHolder.keteranganKunjunganTV.setText(pelangganList.getKeteranganKunjunganPelanggan());
 
         myViewHolder.deleteBTN.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +75,7 @@ public class AdapterPelangganList extends RecyclerView.Adapter<AdapterPelangganL
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView kategoriPelangganTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganLamaTV, keteranganKunjunganTV;
+        TextView kategoriPelangganTV, namaPelangganTV, alamatPelangganTV, keteranganKunjunganTV;
         LinearLayout parentPart, deleteBTN;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,8 +83,6 @@ public class AdapterPelangganList extends RecyclerView.Adapter<AdapterPelangganL
             kategoriPelangganTV = itemView.findViewById(R.id.kategori_pelanggan_tv);
             namaPelangganTV = itemView.findViewById(R.id.nama_pelanggan_tv);
             alamatPelangganTV = itemView.findViewById(R.id.alamat_pelanggan_tv);
-            picPelangganTV = itemView.findViewById(R.id.pic_pelanggan_tv);
-            teleponPelangganLamaTV = itemView.findViewById(R.id.telepon_pelanggan_lama_tv);
             keteranganKunjunganTV = itemView.findViewById(R.id.keterangan_kunjungan_tv);
             deleteBTN = itemView.findViewById(R.id.delete_btn);
         }

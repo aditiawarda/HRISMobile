@@ -99,34 +99,20 @@ public class ImagePickerActivity extends AppCompatActivity {
             builder.setTitle(context.getString(R.string.lbl_set_lampiran));
         } else if (code.equals("suma_report")){
             builder.setTitle(context.getString(R.string.lbl_set_lampiran_suma));
-        } else if (code.equals("suma_report_penagihan")){
-            builder.setTitle(context.getString(R.string.lbl_set_lampiran_suma));
         }
 
-        if(code.equals("suma_report")){
-            // add a list
-            String[] options = {context.getString(R.string.lbl_take_camera_picture)};
-            builder.setItems(options, (dialog, which) -> {
-                switch (which) {
-                    case 0:
-                        listener.onTakeCameraSelected();
-                        break;
-                }
-            });
-        } else {
-            // add a list
-            String[] options = {context.getString(R.string.lbl_take_camera_picture), context.getString(R.string.lbl_choose_from_gallery)};
-            builder.setItems(options, (dialog, which) -> {
-                switch (which) {
-                    case 0:
-                        listener.onTakeCameraSelected();
-                        break;
-                    case 1:
-                        listener.onChooseGallerySelected();
-                        break;
-                }
-            });
-        }
+        // add a list
+        String[] options = {context.getString(R.string.lbl_take_camera_picture), context.getString(R.string.lbl_choose_from_gallery)};
+        builder.setItems(options, (dialog, which) -> {
+            switch (which) {
+                case 0:
+                    listener.onTakeCameraSelected();
+                    break;
+                case 1:
+                    listener.onChooseGallerySelected();
+                    break;
+            }
+        });
 
         // create and show the alert dialog
         AlertDialog dialog = builder.create();

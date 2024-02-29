@@ -299,8 +299,8 @@
                                             android:layout_height="wrap_content"
                                             android:background="@drawable/shape_pengumuman"
                                             android:layout_marginBottom="15dp"
-                                            android:paddingTop="21dp"
-                                            android:paddingBottom="23dp"
+                                            android:paddingTop="19dp"
+                                            android:paddingBottom="13dp"
                                             android:orientation="vertical">
 
                                             <RadioGroup
@@ -344,7 +344,8 @@
 
                                             <LinearLayout
                                                 android:id="@+id/f1_pelanggan_attantion"
-                                                android:layout_marginTop="23dp"
+                                                android:layout_marginTop="17dp"
+                                                android:layout_marginBottom="6dp"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:paddingRight="20dp"
@@ -378,42 +379,6 @@
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_marginTop="5dp"
-                                                    android:layout_marginBottom="5dp"
-                                                    android:text="Kategori Pelanggan :"
-                                                    android:textColor="#696969"
-                                                    android:textSize="12dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="40dp"
-                                                    android:layout_marginBottom="10dp"
-                                                    android:background="@drawable/shape_feel">
-
-                                                    <RelativeLayout
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="40dp"
-                                                        android:orientation="horizontal"
-                                                        android:paddingTop="10dp"
-                                                        android:paddingBottom="10dp">
-
-                                                        <Spinner
-                                                            android:id="@+id/f1_kategori_pelanggan_baru_sp"
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="40dp"
-                                                            android:layout_marginLeft="-10dp"
-                                                            android:background="@drawable/bg_spinner_up"
-                                                            tools:ignore="RtlHardcoded" />
-
-                                                    </RelativeLayout>
-
-                                                </LinearLayout>
-
-                                                <TextView
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="5dp"
                                                     android:layout_marginBottom="5dp"
                                                     android:text="Nama Pelanggan :"
                                                     android:textColor="#696969"
@@ -456,7 +421,6 @@
                                                     android:id="@+id/f1_alamat_pelanggan_baru_ed"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="10dp"
                                                     android:background="@drawable/shape_input_form"
                                                     android:drawablePadding="10dp"
                                                     android:gravity="top"
@@ -475,69 +439,6 @@
                                                     android:textSize="14dp"
                                                     tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
-                                                <TextView
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="5dp"
-                                                    android:text="PIC :"
-                                                    android:textColor="#696969"
-                                                    android:textSize="12dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                <EditText
-                                                    android:id="@+id/f1_pic_pelanggan_baru_ed"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="10dp"
-                                                    android:background="@drawable/shape_input_form"
-                                                    android:drawablePadding="10dp"
-                                                    android:hint=""
-                                                    android:inputType="textCapSentences|textNoSuggestions"
-                                                    android:maxLength="255"
-                                                    android:minHeight="40dp"
-                                                    android:paddingLeft="20dp"
-                                                    android:paddingRight="20dp"
-                                                    android:paddingTop="10dp"
-                                                    android:paddingBottom="12dp"
-                                                    android:gravity="center|left"
-                                                    android:textColor="#595959"
-                                                    android:textColorHighlight="#FFE1BC"
-                                                    android:textColorHint="#595959"
-                                                    android:textSize="14dp"
-                                                    android:maxLines="3"
-                                                    tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
-
-                                                <TextView
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="5dp"
-                                                    android:text="Telepon :"
-                                                    android:textColor="#696969"
-                                                    android:textSize="12dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                <EditText
-                                                    android:id="@+id/f1_telepon_pelanggan_baru_ed"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:background="@drawable/shape_input_form"
-                                                    android:drawablePadding="10dp"
-                                                    android:hint=""
-                                                    android:inputType="number"
-                                                    android:maxLength="255"
-                                                    android:minHeight="40dp"
-                                                    android:paddingLeft="20dp"
-                                                    android:paddingRight="20dp"
-                                                    android:paddingTop="10dp"
-                                                    android:paddingBottom="12dp"
-                                                    android:gravity="center|left"
-                                                    android:textColor="#595959"
-                                                    android:textColorHighlight="#FFE1BC"
-                                                    android:textColorHint="#595959"
-                                                    android:textSize="14dp"
-                                                    android:maxLines="3"
-                                                    tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
-
                                             </LinearLayout>
 
                                             <LinearLayout
@@ -553,7 +454,6 @@
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_marginTop="5dp"
                                                     android:layout_marginBottom="5dp"
                                                     android:text="Nama Pelanggan :"
                                                     android:textColor="#696969"
@@ -659,74 +559,6 @@
 
                                                     </LinearLayout>
 
-                                                    <LinearLayout
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginTop="10dp"
-                                                        android:orientation="vertical"
-                                                        tools:ignore="RtlHardcoded,RtlSymmetry">
-
-                                                        <TextView
-                                                            android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:layout_marginBottom="5dp"
-                                                            android:text="PIC :"
-                                                            android:textColor="#696969"
-                                                            android:textSize="12dp"
-                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                        <TextView
-                                                            android:id="@+id/f1_pic_pelanggan_lama_tv"
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="wrap_content"
-                                                            android:textColor="#555555"
-                                                            android:textSize="13dp"
-                                                            android:lineSpacingExtra="2dp"
-                                                            android:text="Memuat data..."
-                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
-
-                                                        <LinearLayout
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="1.5dp"
-                                                            android:layout_marginTop="12dp"
-                                                            android:background="#3CCFCFCF" />
-
-                                                    </LinearLayout>
-
-                                                    <LinearLayout
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginTop="10dp"
-                                                        android:orientation="vertical"
-                                                        tools:ignore="RtlHardcoded,RtlSymmetry">
-
-                                                        <TextView
-                                                            android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:layout_marginBottom="5dp"
-                                                            android:text="Telepon :"
-                                                            android:textColor="#696969"
-                                                            android:textSize="12dp"
-                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                        <TextView
-                                                            android:id="@+id/f1_telepon_pelanggan_lama_tv"
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="wrap_content"
-                                                            android:textColor="#555555"
-                                                            android:textSize="13dp"
-                                                            android:lineSpacingExtra="2dp"
-                                                            android:text="Memuat data..."
-                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
-
-                                                        <LinearLayout
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="1.5dp"
-                                                            android:layout_marginTop="12dp"
-                                                            android:background="#3CCFCFCF" />
-
-                                                    </LinearLayout>
-
                                                 </LinearLayout>
 
                                             </LinearLayout>
@@ -775,16 +607,16 @@
                                                 <LinearLayout
                                                     android:layout_width="match_parent"
                                                     android:layout_height="1.5dp"
-                                                    android:layout_marginTop="12dp"
-                                                    android:layout_marginBottom="10dp"
+                                                    android:layout_marginTop="8dp"
+                                                    android:layout_marginBottom="6dp"
                                                     android:background="#3CCFCFCF" />
 
                                                 <LinearLayout
                                                     android:id="@+id/f1_add_pelanggan_btn"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="7dp"
-                                                    android:layout_marginTop="15dp"
+                                                    android:layout_marginBottom="13dp"
+                                                    android:layout_marginTop="12dp"
                                                     android:paddingTop="12dp"
                                                     android:paddingBottom="12dp"
                                                     android:background="@drawable/shape_fourth_btn"
@@ -892,8 +724,8 @@
                                         android:layout_height="wrap_content"
                                         android:background="@drawable/shape_pengumuman"
                                         android:layout_marginBottom="15dp"
-                                        android:paddingTop="21dp"
-                                        android:paddingBottom="23dp"
+                                        android:paddingTop="17dp"
+                                        android:paddingBottom="18dp"
                                         android:orientation="vertical">
 
                                         <RadioGroup
@@ -931,13 +763,14 @@
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
-                                            android:layout_marginTop="20dp"
+                                            android:layout_marginTop="17dp"
                                             android:layout_height="1dp"
                                             android:background="#41838383"/>
 
                                         <LinearLayout
                                             android:id="@+id/f2_pelanggan_attantion"
-                                            android:layout_marginTop="23dp"
+                                            android:layout_marginTop="17dp"
+                                            android:layout_marginBottom="6dp"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:orientation="vertical">
@@ -967,42 +800,6 @@
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:text="Kategori Pelanggan :"
-                                                android:textColor="#696969"
-                                                android:textSize="12dp"
-                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="40dp"
-                                                android:layout_marginBottom="10dp"
-                                                android:background="@drawable/shape_feel">
-
-                                                <RelativeLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="40dp"
-                                                    android:orientation="horizontal"
-                                                    android:paddingTop="10dp"
-                                                    android:paddingBottom="10dp">
-
-                                                    <Spinner
-                                                        android:id="@+id/f2_kategori_pelanggan_baru_sp"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="40dp"
-                                                        android:layout_marginLeft="-10dp"
-                                                        android:background="@drawable/bg_spinner_up"
-                                                        tools:ignore="RtlHardcoded" />
-
-                                                </RelativeLayout>
-
-                                            </LinearLayout>
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
                                                 android:layout_marginBottom="5dp"
                                                 android:text="Nama Pelanggan :"
                                                 android:textColor="#696969"
@@ -1064,70 +861,6 @@
                                                 android:textSize="14dp"
                                                 tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginBottom="5dp"
-                                                android:text="PIC :"
-                                                android:textColor="#696969"
-                                                android:textSize="12dp"
-                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                            <EditText
-                                                android:id="@+id/f2_pic_pelanggan_baru_ed"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginBottom="10dp"
-                                                android:background="@drawable/shape_input_form"
-                                                android:drawablePadding="10dp"
-                                                android:hint=""
-                                                android:inputType="textCapSentences|textNoSuggestions"
-                                                android:maxLength="255"
-                                                android:minHeight="40dp"
-                                                android:paddingLeft="20dp"
-                                                android:paddingRight="20dp"
-                                                android:paddingTop="10dp"
-                                                android:paddingBottom="12dp"
-                                                android:gravity="center|left"
-                                                android:textColor="#595959"
-                                                android:textColorHighlight="#FFE1BC"
-                                                android:textColorHint="#595959"
-                                                android:textSize="14dp"
-                                                android:maxLines="3"
-                                                tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginBottom="5dp"
-                                                android:text="Telepon :"
-                                                android:textColor="#696969"
-                                                android:textSize="12dp"
-                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                            <EditText
-                                                android:id="@+id/f2_telepon_pelanggan_baru_ed"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginBottom="10dp"
-                                                android:background="@drawable/shape_input_form"
-                                                android:drawablePadding="10dp"
-                                                android:hint=""
-                                                android:inputType="number"
-                                                android:maxLength="255"
-                                                android:minHeight="40dp"
-                                                android:paddingLeft="20dp"
-                                                android:paddingRight="20dp"
-                                                android:paddingTop="10dp"
-                                                android:paddingBottom="12dp"
-                                                android:gravity="center|left"
-                                                android:textColor="#595959"
-                                                android:textColorHighlight="#FFE1BC"
-                                                android:textColorHint="#595959"
-                                                android:textSize="14dp"
-                                                android:maxLines="3"
-                                                tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
-
                                         </LinearLayout>
 
                                         <LinearLayout
@@ -1143,7 +876,6 @@
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
                                                 android:layout_marginBottom="5dp"
                                                 android:text="Nama Pelanggan :"
                                                 android:textColor="#696969"
