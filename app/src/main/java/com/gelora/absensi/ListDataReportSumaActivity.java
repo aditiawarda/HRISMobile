@@ -1005,7 +1005,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                salesChoiceTV.setText("Semua Data");
+                salesChoiceTV.setText("Semua Sales");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
                 new Handler().postDelayed(new Runnable() {
