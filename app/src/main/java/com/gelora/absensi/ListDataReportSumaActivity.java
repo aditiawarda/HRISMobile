@@ -64,7 +64,7 @@ import java.util.Map;
 
 public class ListDataReportSumaActivity extends AppCompatActivity {
 
-    LinearLayout salesChoiceBTN, salesBTN, catBTN, filterBarPart, dateBTN, noDataPartReport, loadingDataPartReport, rencanaKunjunganBTN, penagihanBTN, pengirimanBTN, kunjunganBTN, markRencanaKunjungan, markPenagihan, markPengiriman, markKunjungan, markSemua, semuaBTN, actionBar, backBTN, addBTN, filterCategoryBTN;
+    LinearLayout attantionReportPart, semuaBTN, salesChoiceBTN, salesBTN, catBTN, filterBarPart, dateBTN, noDataPartReport, loadingDataPartReport, rencanaKunjunganBTN, penagihanBTN, pengirimanBTN, kunjunganBTN, markRencanaKunjungan, markPenagihan, markPengiriman, markKunjungan, markSemua, actionBar, backBTN, addBTN, filterCategoryBTN;
     TextView salesChoiceTV, choiceDateTV, categoryChoiceTV, dateLabel;
     ImageView loadingDataReport;
     SharedPrefManager sharedPrefManager;
@@ -103,6 +103,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         categoryChoiceTV = findViewById(R.id.category_choice_tv);
         loadingDataPartReport = findViewById(R.id.loading_data_part_report);
         noDataPartReport = findViewById(R.id.no_data_part_report);
+        attantionReportPart = findViewById(R.id.attantion_data_part_report);
         reportRV = findViewById(R.id.data_report_rv);
         dateBTN = findViewById(R.id.date_btn);
         choiceDateTV = findViewById(R.id.choice_date_tv);
@@ -177,6 +178,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                attantionReportPart.setVisibility(View.GONE);
                 reportRV.setVisibility(View.GONE);
                 loadingDataPartReport.setVisibility(View.VISIBLE);
                 noDataPartReport.setVisibility(View.GONE);
@@ -329,7 +331,8 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         if(sharedPrefAbsen.getSpNikSalesActive().equals("")){
             reportRV.setVisibility(View.GONE);
             loadingDataPartReport.setVisibility(View.GONE);
-            noDataPartReport.setVisibility(View.VISIBLE);
+            noDataPartReport.setVisibility(View.GONE);
+            attantionReportPart.setVisibility(View.VISIBLE);
         } else {
             String url = "https://reporting.sumasistem.co.id/api/suma_report?nik="+sharedPrefAbsen.getSpNikSalesActive()+"&"+"tipe_laporan="+category_code+"&"+"tanggal="+dateChoice;
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -342,6 +345,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                                 String status = response.getString("status");
 
                                 if(status.equals("Success")){
+                                    attantionReportPart.setVisibility(View.GONE);
                                     reportRV.setVisibility(View.VISIBLE);
                                     loadingDataPartReport.setVisibility(View.GONE);
                                     noDataPartReport.setVisibility(View.GONE);
@@ -353,6 +357,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                                     adapterSumaReport = new AdapterSumaReport(dataReportSumas, ListDataReportSumaActivity.this);
                                     reportRV.setAdapter(adapterSumaReport);
                                 } else {
+                                    attantionReportPart.setVisibility(View.GONE);
                                     reportRV.setVisibility(View.GONE);
                                     loadingDataPartReport.setVisibility(View.GONE);
                                     noDataPartReport.setVisibility(View.VISIBLE);
@@ -365,6 +370,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     error.printStackTrace();
+                    attantionReportPart.setVisibility(View.GONE);
                     reportRV.setVisibility(View.GONE);
                     loadingDataPartReport.setVisibility(View.GONE);
                     noDataPartReport.setVisibility(View.VISIBLE);
@@ -499,6 +505,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     public void run() {
                         bottomSheet.dismissSheet();
 
+                        attantionReportPart.setVisibility(View.GONE);
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
@@ -537,7 +544,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
-
+                        attantionReportPart.setVisibility(View.GONE);
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
@@ -576,7 +583,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
-
+                        attantionReportPart.setVisibility(View.GONE);
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
@@ -616,9 +623,11 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     public void run() {
                         bottomSheet.dismissSheet();
 
+                        attantionReportPart.setVisibility(View.GONE);
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
+
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -655,6 +664,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     public void run() {
                         bottomSheet.dismissSheet();
 
+                        attantionReportPart.setVisibility(View.GONE);
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
@@ -761,6 +771,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
 
                 choiceDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                attantionReportPart.setVisibility(View.GONE);
                 reportRV.setVisibility(View.GONE);
                 loadingDataPartReport.setVisibility(View.VISIBLE);
                 noDataPartReport.setVisibility(View.GONE);
@@ -861,6 +872,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
 
                 choiceDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                attantionReportPart.setVisibility(View.GONE);
                 reportRV.setVisibility(View.GONE);
                 loadingDataPartReport.setVisibility(View.VISIBLE);
                 noDataPartReport.setVisibility(View.GONE);
@@ -907,14 +919,14 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
 
     private void salesPicker(){
         bottomSheet.showWithSheetView(LayoutInflater.from(ListDataReportSumaActivity.this).inflate(R.layout.layout_karyawan_sales, bottomSheet, false));
-        keywordKaryawanSales = findViewById(R.id.keyword_user_ed);
+        keywordKaryawanSales = findViewById(R.id.keyword_user_sales_ed);
         keywordKaryawanSales.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
-        karyawanSalesRV = findViewById(R.id.karyawan_rv);
-        startAttantionPart = findViewById(R.id.attantion_data_part);
-        noDataPart = findViewById(R.id.no_data_part);
-        loadingDataPart = findViewById(R.id.loading_data_part);
-        loadingGif = findViewById(R.id.loading_data);
+        karyawanSalesRV = findViewById(R.id.karyawan_sales_rv);
+        startAttantionPart = findViewById(R.id.attantion_data_sales_part);
+        noDataPart = findViewById(R.id.no_data_sales_part);
+        loadingDataPart = findViewById(R.id.loading_data_sales_part);
+        loadingGif = findViewById(R.id.loading_sales_data);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -1062,6 +1074,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 public void run() {
                     bottomSheet.dismissSheet();
 
+                    attantionReportPart.setVisibility(View.GONE);
                     reportRV.setVisibility(View.GONE);
                     loadingDataPartReport.setVisibility(View.VISIBLE);
                     noDataPartReport.setVisibility(View.GONE);
