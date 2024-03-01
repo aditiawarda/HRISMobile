@@ -1085,6 +1085,9 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("requester", sharedPrefManager.getSpIdJabatan());
+                if(sharedPrefManager.getSpIdJabatan().equals("3")){
+                    params.put("nik", sharedPrefManager.getSpNik());
+                }
                 params.put("keyword_sales", keyword);
                 return params;
             }
