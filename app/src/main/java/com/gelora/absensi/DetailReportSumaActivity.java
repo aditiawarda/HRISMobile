@@ -1553,6 +1553,12 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                 tanggalBuatTV.setText(createdAt.substring(8,10)+"/"+createdAt.substring(5,7)+"/"+createdAt.substring(0,4)+" "+createdAt.substring(10,16));
 
+                                if(idSales.equals(sharedPrefManager.getSpNik())){
+                                    deletePart.setVisibility(View.VISIBLE);
+                                } else {
+                                    deletePart.setVisibility(View.GONE);
+                                }
+
                                 if(tipeLaporan.equals("1")){
                                     updatePart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.GONE);
@@ -1644,7 +1650,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                     String statusRealisasi = dataArray.getString("statusRealisasi");
                                     if(statusRealisasi.equals("0")){
-                                        reschedulePart.setVisibility(View.VISIBLE);
+                                        if(idSales.equals(sharedPrefManager.getSpNik())){
+                                            reschedulePart.setVisibility(View.VISIBLE);
+                                        } else {
+                                            reschedulePart.setVisibility(View.GONE);
+                                        }
                                         @SuppressLint("SimpleDateFormat")
                                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                                         Date date = null;
@@ -1659,7 +1669,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         long now = date2.getTime();
 
                                         if (rencana==now){
-                                            updateRealisasiPart.setVisibility(View.VISIBLE);
+                                            if(idSales.equals(sharedPrefManager.getSpNik())){
+                                                updateRealisasiPart.setVisibility(View.VISIBLE);
+                                            } else {
+                                                updateRealisasiPart.setVisibility(View.GONE);
+                                            }
                                         } else {
                                             updateRealisasiPart.setVisibility(View.GONE);
                                         }
@@ -1683,7 +1697,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     }
 
                                 } else if(tipeLaporan.equals("2")){
-                                    updatePart.setVisibility(View.VISIBLE);
+                                    if(idSales.equals(sharedPrefManager.getSpNik())){
+                                        updatePart.setVisibility(View.VISIBLE);
+                                    } else {
+                                        updatePart.setVisibility(View.GONE);
+                                    }
                                     updateRealisasiPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     reportKategoriTV.setText("LAPORAN KUNJUNGAN");
@@ -1714,7 +1732,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         }
                                     });
                                 } else if(tipeLaporan.equals("3")){
-                                    updatePart.setVisibility(View.VISIBLE);
+                                    if(idSales.equals(sharedPrefManager.getSpNik())){
+                                        updatePart.setVisibility(View.VISIBLE);
+                                    } else {
+                                        updatePart.setVisibility(View.GONE);
+                                    }
                                     updateRealisasiPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     reportKategoriTV.setText("AKTIVITAS PENAGIHAN");
@@ -1745,7 +1767,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         }
                                     });
                                 } else if(tipeLaporan.equals("4")){
-                                    updatePart.setVisibility(View.VISIBLE);
+                                    if(idSales.equals(sharedPrefManager.getSpNik())){
+                                        updatePart.setVisibility(View.VISIBLE);
+                                    } else {
+                                        updatePart.setVisibility(View.GONE);
+                                    }
                                     updateRealisasiPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     reportKategoriTV.setText("LAPORAN PENGIRIMAN");
