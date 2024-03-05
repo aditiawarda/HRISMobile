@@ -61,20 +61,20 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         decimalFormat.setMaximumFractionDigits(0);
 
         if (dataReportSuma.getTipeLaporan().equals("1")) {
-            myViewHolder.reportCategoryTV.setText("Rencana Kunjungan");
+            myViewHolder.reportCategoryTV.setText("Rencana");
             if(!String.valueOf(dataReportSuma.getIdRealisasi()).equals("null")){
                 myViewHolder.f1StatusRealisasi.setVisibility(View.VISIBLE);
             } else {
                 myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
             }
         } else if (dataReportSuma.getTipeLaporan().equals("2")) {
-            myViewHolder.reportCategoryTV.setText("Laporan Kunjungan");
+            myViewHolder.reportCategoryTV.setText("Aktivitas Kunjungan");
             myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
         } else if (dataReportSuma.getTipeLaporan().equals("3")) {
             myViewHolder.reportCategoryTV.setText("Aktivitas Penagihan");
             myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
         } else if (dataReportSuma.getTipeLaporan().equals("4")) {
-            myViewHolder.reportCategoryTV.setText("Laporan Pengiriman");
+            myViewHolder.reportCategoryTV.setText("Aktivitas Pengiriman");
             myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
         }
 

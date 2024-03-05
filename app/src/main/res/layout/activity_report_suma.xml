@@ -367,8 +367,102 @@
                                             </LinearLayout>
 
                                             <LinearLayout
-                                                android:id="@+id/f1_pelanggan_baru"
+                                                android:id="@+id/f1_agenda_option"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:paddingRight="22dp"
+                                                android:paddingLeft="22dp"
                                                 android:layout_marginTop="18dp"
+                                                android:orientation="vertical">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:text="Agenda :"
+                                                    android:textColor="#696969"
+                                                    android:textSize="12dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:background="@drawable/shape_pengumuman"
+                                                    android:paddingTop="15dp"
+                                                    android:paddingBottom="15dp"
+                                                    android:layout_marginBottom="15dp"
+                                                    android:orientation="horizontal"
+                                                    tools:ignore="DisableBaselineAlignment">
+
+                                                    <LinearLayout
+                                                        android:layout_weight=".33"
+                                                        android:layout_width="0dp"
+                                                        android:orientation="vertical"
+                                                        android:gravity="center"
+                                                        android:layout_height="wrap_content">
+
+                                                        <CheckBox
+                                                            android:id="@+id/f1_cb_1"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content" />
+
+                                                        <TextView
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="Promosi"
+                                                            android:textSize="12dp"
+                                                            tools:ignore="HardcodedText,SpUsage" />
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_weight=".33"
+                                                        android:layout_width="0dp"
+                                                        android:orientation="vertical"
+                                                        android:gravity="center"
+                                                        android:layout_height="wrap_content">
+
+                                                        <CheckBox
+                                                            android:id="@+id/f1_cb_2"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content" />
+
+                                                        <TextView
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="Penagihan"
+                                                            android:textSize="12dp"
+                                                            tools:ignore="HardcodedText,SpUsage" />
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_weight=".33"
+                                                        android:layout_width="0dp"
+                                                        android:orientation="vertical"
+                                                        android:gravity="center"
+                                                        android:layout_height="wrap_content">
+
+                                                        <CheckBox
+                                                            android:id="@+id/f1_cb_3"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content" />
+
+                                                        <TextView
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="Pengiriman"
+                                                            android:textSize="12dp"
+                                                            tools:ignore="HardcodedText,SpUsage" />
+
+                                                    </LinearLayout>
+
+                                                </LinearLayout>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/f1_pelanggan_baru"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:visibility="gone"
@@ -443,7 +537,6 @@
 
                                             <LinearLayout
                                                 android:id="@+id/f1_pelanggan_lama"
-                                                android:layout_marginTop="18dp"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:visibility="gone"
@@ -1415,12 +1508,17 @@
                                                     android:layout_height="35dp"
                                                     android:background="@drawable/shape_second_btn"
                                                     android:gravity="center"
-                                                    tools:ignore="RtlHardcoded">
+                                                    android:paddingLeft="10dp"
+                                                    android:paddingRight="10dp"
+                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                     <TextView
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="wrap_content"
                                                         android:textSize="12dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
                                                         android:textColor="@color/white"
                                                         android:text="Check GPS Location"
                                                         tools:ignore="HardcodedText,SpUsage" />
@@ -1435,6 +1533,8 @@
                                                     android:layout_height="35dp"
                                                     android:background="@drawable/shape_btn_edit_permohonan"
                                                     android:gravity="center"
+                                                    android:paddingRight="10dp"
+                                                    android:paddingLeft="10dp"
                                                     tools:ignore="RtlHardcoded">
 
                                                     <TextView
@@ -1442,6 +1542,9 @@
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="wrap_content"
                                                         android:textSize="12dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
                                                         android:textColor="@color/white"
                                                         android:text="+ Lampiran Foto/SP"
                                                         tools:ignore="HardcodedText,SpUsage" />
@@ -2015,12 +2118,17 @@
                                                         android:layout_height="35dp"
                                                         android:background="@drawable/shape_second_btn"
                                                         android:gravity="center"
-                                                        tools:ignore="RtlHardcoded">
+                                                        android:paddingLeft="10dp"
+                                                        android:paddingRight="10dp"
+                                                        tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                         <TextView
                                                             android:layout_width="wrap_content"
                                                             android:layout_height="wrap_content"
                                                             android:textSize="12dp"
+                                                            android:ellipsize="end"
+                                                            android:maxLines="1"
+                                                            android:singleLine="true"
                                                             android:textColor="@color/white"
                                                             android:text="Check GPS Location"
                                                             tools:ignore="HardcodedText,SpUsage" />
@@ -2035,6 +2143,8 @@
                                                         android:layout_height="35dp"
                                                         android:background="@drawable/shape_btn_edit_permohonan"
                                                         android:gravity="center"
+                                                        android:paddingLeft="10dp"
+                                                        android:paddingRight="10dp"
                                                         tools:ignore="RtlHardcoded">
 
                                                         <TextView
@@ -2042,6 +2152,9 @@
                                                             android:layout_width="wrap_content"
                                                             android:layout_height="wrap_content"
                                                             android:textSize="12dp"
+                                                            android:ellipsize="end"
+                                                            android:maxLines="1"
+                                                            android:singleLine="true"
                                                             android:textColor="@color/white"
                                                             android:text="+ Lampiran Foto/SP"
                                                             tools:ignore="HardcodedText,SpUsage" />
@@ -2465,6 +2578,8 @@
                                                 android:layout_weight=".50"
                                                 android:layout_height="35dp"
                                                 android:background="@drawable/shape_second_btn"
+                                                android:paddingLeft="10dp"
+                                                android:paddingRight="10dp"
                                                 android:gravity="center"
                                                 tools:ignore="RtlHardcoded">
 
@@ -2472,6 +2587,9 @@
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:textSize="12dp"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
                                                     android:textColor="@color/white"
                                                     android:text="Check GPS Location"
                                                     tools:ignore="HardcodedText,SpUsage" />
@@ -2486,6 +2604,8 @@
                                                 android:layout_height="35dp"
                                                 android:background="@drawable/shape_btn_edit_permohonan"
                                                 android:gravity="center"
+                                                android:paddingLeft="10dp"
+                                                android:paddingRight="10dp"
                                                 tools:ignore="RtlHardcoded">
 
                                                 <TextView
@@ -2495,6 +2615,9 @@
                                                     android:textSize="12dp"
                                                     android:textColor="@color/white"
                                                     android:text="+ Lampiran Foto/SP"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
                                                     tools:ignore="HardcodedText,SpUsage" />
 
                                             </LinearLayout>

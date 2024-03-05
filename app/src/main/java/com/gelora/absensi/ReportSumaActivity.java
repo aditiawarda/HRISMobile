@@ -43,14 +43,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -115,7 +113,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -134,7 +131,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     LinearLayout viewPermohonanBTN, formPart, successPart, loadingDataPart, loadingDataPartProduk, noDataPart, noDataPartProduk, startAttantionPart, startAttantionPartProduk, pengirimanBTN, kunjunganBTN, penagihanBTN, rencanaKunjunaganBTN, markKunjungan, markPengiriman, markPenagihan, markRencanaKunjungan;
 
     EditText f1KeteranganKunjunganED, f1NamaPelangganBaruED, f1AlamatPelangganBaruED;
-    LinearLayout f1AddPelangganBTN, f1AddPelangganPart, f1ChoiceDateBTN, f1DetailPelanggan, f1NamaPelangganLamaBTN, f1SubmitPesananBTN, f1PelangganAttantionPart, f1PelangganBaruPart, f1PelangganLamaPart;
+    LinearLayout f1AgendaOptionPart, f1AddPelangganBTN, f1AddPelangganPart, f1ChoiceDateBTN, f1DetailPelanggan, f1NamaPelangganLamaBTN, f1SubmitPesananBTN, f1PelangganAttantionPart, f1PelangganBaruPart, f1PelangganLamaPart;
     RadioGroup f1PelangganOption;
     RadioButton f1PelangganOptionBaru, f1PelangganOptionLama;
     String f1DateChoice = "", f1JenisPelanggan = "", f1IdPelangganLama = "";
@@ -143,6 +140,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     JSONArray f1JsonArrayPelanggan = new JSONArray();
     private PelangganList[] pelangganLists;
     private AdapterPelangganList adapterPelangganList;
+    CheckBox f1CB1, f1CB2, f1CB3;
 
     EditText f2KeteranganKunjunganED, keywordED, keywordEDProduk, f2NamaPelangganBaruED, f2AlamatPelangganBaruED;
     LinearLayout f2SubmitPesananBTN, f2GPSLocationBTN, f2ViewLampiranBTN, f2LampiranFotoBTN, f2ProductInputDetailPart, f2AddProductBTN, f2ProductChoiceBTN, f2DetailPesananPart, f2DetailPelanggan, f2NamaPelangganLamaBTN, f2PelangganAttantionPart, f2PelangganBaruPart, f2PelangganLamaPart;
@@ -243,6 +241,10 @@ public class ReportSumaActivity extends AppCompatActivity {
         f1AddPelangganPart = findViewById(R.id.f1_add_pelanggan_part);
         f1AddPelangganBTN = findViewById(R.id.f1_add_pelanggan_btn);
         f1PelangganRV = findViewById(R.id.item_pelanggan_rv);
+        f1AgendaOptionPart = findViewById(R.id.f1_agenda_option);
+        f1CB1 = findViewById(R.id.f1_cb_1);
+        f1CB2 = findViewById(R.id.f1_cb_2);
+        f1CB3 = findViewById(R.id.f1_cb_3);
 
         f2KeteranganKunjunganED = findViewById(R.id.f2_keterangan_kunjungan_ed);
         f2PelangganAttantionPart = findViewById(R.id.f2_pelanggan_attantion);
@@ -373,7 +375,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f1NamaPelangganBaruED.setText("");
                 f1AlamatPelangganBaruED.setText("");
                 f1AddPelangganPart.setVisibility(View.GONE);
+                f1AgendaOptionPart.setVisibility(View.GONE);
                 f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
+                f1CB1.setChecked(false);
+                f1CB2.setChecked(false);
+                f1CB3.setChecked(false);
 
                 f2KeteranganKunjunganED.setText("");
                 f2PelangganOption.clearCheck();
@@ -500,6 +506,10 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1DetailPelanggan.setVisibility(View.GONE);
                     f1AlamatPelangganLamaTV.setText("");
                     f1AddPelangganPart.setVisibility(View.VISIBLE);
+                    f1AgendaOptionPart.setVisibility(View.VISIBLE);
+                    f1CB1.setChecked(false);
+                    f1CB2.setChecked(false);
+                    f1CB3.setChecked(false);
                 } else if (f1PelangganOptionLama.isChecked()) {
                     f1JenisPelanggan = "2";
                     f1PelangganBaruPart.setVisibility(View.GONE);
@@ -508,6 +518,10 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1NamaPelangganBaruED.setText("");
                     f1AlamatPelangganBaruED.setText("");
                     f1AddPelangganPart.setVisibility(View.GONE);
+                    f1AgendaOptionPart.setVisibility(View.VISIBLE);
+                    f1CB1.setChecked(false);
+                    f1CB2.setChecked(false);
+                    f1CB3.setChecked(false);
                 }
             }
         });
@@ -523,8 +537,39 @@ public class ReportSumaActivity extends AppCompatActivity {
             @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})
             @Override
             public void onClick(View v) {
+                String arrayAgenda;
+                if(f1CB1.isChecked()){
+                    if(f1CB2.isChecked()){
+                        if(f1CB3.isChecked()){
+                            arrayAgenda = "[\"1\",\"2\",\"3\"]";
+                        } else {
+                            arrayAgenda = "[\"1\",\"2\"]";
+                        }
+                    } else {
+                        if(f1CB3.isChecked()){
+                            arrayAgenda = "[\"1\",\"3\"]";
+                        } else {
+                            arrayAgenda = "[\"1\"]";
+                        }
+                    }
+                } else {
+                    if(f1CB2.isChecked()){
+                        if(f1CB3.isChecked()){
+                            arrayAgenda = "[\"2\",\"3\"]";
+                        } else {
+                            arrayAgenda = "[\"2\"]";
+                        }
+                    } else {
+                        if(f1CB3.isChecked()){
+                            arrayAgenda = "[\"3\"]";
+                        } else {
+                            arrayAgenda = "[]"; //Kosong
+                        }
+                    }
+                }
+
                 if (f1JenisPelanggan.equals("1")) {
-                    if(!f1NamaPelangganBaruED.getText().toString().equals("") && !f1KeteranganKunjunganED.getText().toString().equals("")){
+                    if(!f1NamaPelangganBaruED.getText().toString().equals("") && !f1KeteranganKunjunganED.getText().toString().equals("") && !arrayAgenda.equals("[]")){
                         JSONObject dataPelangganBaru = new JSONObject();
                         try {
                             dataPelangganBaru.put("idPelanggan", "null");
@@ -532,6 +577,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                             dataPelangganBaru.put("namaPelanggan", f1NamaPelangganBaruED.getText().toString());
                             dataPelangganBaru.put("alamatPelanggan", f1AlamatPelangganBaruED.getText().toString());
                             dataPelangganBaru.put("keteranganKunjunganPelanggan", f1KeteranganKunjunganED.getText().toString());
+                            dataPelangganBaru.put("tipeRencanaLaporan", arrayAgenda);
                             f1JsonArrayPelanggan.put(dataPelangganBaru);
 
                             f1PelangganOption.clearCheck();
@@ -543,6 +589,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                             f1PelangganLamaPart.setVisibility(View.GONE);
                             f1PelangganBaruPart.setVisibility(View.GONE);
                             f1AddPelangganPart.setVisibility(View.GONE);
+                            f1AgendaOptionPart.setVisibility(View.GONE);
 
                             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
                             f1NamaPelangganLamaChoiceTV.setText("");
@@ -566,8 +613,9 @@ public class ReportSumaActivity extends AppCompatActivity {
                                 })
                                 .show();
                     }
-                } else if (f1JenisPelanggan.equals("2")) {
-                    if(!f1IdPelangganLama.equals("") && !f1KeteranganKunjunganED.getText().toString().equals("")){
+                }
+                else if (f1JenisPelanggan.equals("2")) {
+                    if(!f1IdPelangganLama.equals("") && !f1KeteranganKunjunganED.getText().toString().equals("") && !arrayAgenda.equals("[]")){
                         JSONObject dataPelangganLama = new JSONObject();
                         try {
                             dataPelangganLama.put("idPelanggan", f1IdPelangganLama);
@@ -575,6 +623,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                             dataPelangganLama.put("namaPelanggan", f1NamaPelangganLamaChoiceTV.getText().toString());
                             dataPelangganLama.put("alamatPelanggan", f1AlamatPelangganLamaTV.getText().toString());
                             dataPelangganLama.put("keteranganKunjunganPelanggan", f1KeteranganKunjunganED.getText().toString());
+                            dataPelangganLama.put("tipeRencanaLaporan", arrayAgenda);
                             f1JsonArrayPelanggan.put(dataPelangganLama);
 
                             f1PelangganOption.clearCheck();
@@ -587,6 +636,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                             f1PelangganLamaPart.setVisibility(View.GONE);
                             f1PelangganBaruPart.setVisibility(View.GONE);
                             f1AddPelangganPart.setVisibility(View.GONE);
+                            f1AgendaOptionPart.setVisibility(View.GONE);
 
                             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
                             f1NamaPelangganLamaChoiceTV.setText("");
@@ -1331,7 +1381,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         if (categoryReport.equals("1")) {
             categoryReport = "1";
             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport);
-            reportKategoriChoiceTV.setText("Rencana Kunjungan");
+            reportKategoriChoiceTV.setText("Rencana");
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -1357,7 +1407,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1DetailPelanggan.setVisibility(View.GONE);
                     f1AlamatPelangganLamaTV.setText("");
                     f1AddPelangganPart.setVisibility(View.GONE);
+                    f1AgendaOptionPart.setVisibility(View.GONE);
                     f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
+                    f1CB1.setChecked(false);
+                    f1CB2.setChecked(false);
+                    f1CB3.setChecked(false);
 
                     f2KeteranganKunjunganED.setText("");
                     f2PelangganOption.clearCheck();
@@ -1480,7 +1534,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1DetailPelanggan.setVisibility(View.GONE);
                     f1AlamatPelangganLamaTV.setText("");
                     f1AddPelangganPart.setVisibility(View.GONE);
+                    f1AgendaOptionPart.setVisibility(View.GONE);
                     f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
+                    f1CB1.setChecked(false);
+                    f1CB2.setChecked(false);
+                    f1CB3.setChecked(false);
 
                     f2KeteranganKunjunganED.setText("");
                     f2PelangganOption.clearCheck();
@@ -1603,7 +1661,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1DetailPelanggan.setVisibility(View.GONE);
                     f1AlamatPelangganLamaTV.setText("");
                     f1AddPelangganPart.setVisibility(View.GONE);
+                    f1AgendaOptionPart.setVisibility(View.GONE);
                     f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
+                    f1CB1.setChecked(false);
+                    f1CB2.setChecked(false);
+                    f1CB3.setChecked(false);
 
                     f2KeteranganKunjunganED.setText("");
                     f2PelangganOption.clearCheck();
@@ -1726,7 +1788,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1DetailPelanggan.setVisibility(View.GONE);
                     f1AlamatPelangganLamaTV.setText("");
                     f1AddPelangganPart.setVisibility(View.GONE);
+                    f1AgendaOptionPart.setVisibility(View.GONE);
                     f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
+                    f1CB1.setChecked(false);
+                    f1CB2.setChecked(false);
+                    f1CB3.setChecked(false);
 
                     f2KeteranganKunjunganED.setText("");
                     f2PelangganOption.clearCheck();
@@ -1889,7 +1955,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 categoryReport = "1";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport);
-                reportKategoriChoiceTV.setText("Rencana Kunjungan");
+                reportKategoriChoiceTV.setText("Rencana");
                 markRencanaKunjungan.setVisibility(View.VISIBLE);
                 markKunjungan.setVisibility(View.GONE);
                 markPengiriman.setVisibility(View.GONE);
@@ -1924,7 +1990,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1DetailPelanggan.setVisibility(View.GONE);
                         f1AlamatPelangganLamaTV.setText("");
                         f1AddPelangganPart.setVisibility(View.GONE);
+                        f1AgendaOptionPart.setVisibility(View.GONE);
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
+                        f1CB1.setChecked(false);
+                        f1CB2.setChecked(false);
+                        f1CB3.setChecked(false);
 
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
@@ -2025,7 +2095,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 categoryReport = "2";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport);
-                reportKategoriChoiceTV.setText("Laporan Kunjungan");
+                reportKategoriChoiceTV.setText("Aktivitas Kunjungan");
                 markRencanaKunjungan.setVisibility(View.GONE);
                 markKunjungan.setVisibility(View.VISIBLE);
                 markPengiriman.setVisibility(View.GONE);
@@ -2060,7 +2130,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1DetailPelanggan.setVisibility(View.GONE);
                         f1AlamatPelangganLamaTV.setText("");
                         f1AddPelangganPart.setVisibility(View.GONE);
+                        f1AgendaOptionPart.setVisibility(View.GONE);
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
+                        f1CB1.setChecked(false);
+                        f1CB2.setChecked(false);
+                        f1CB3.setChecked(false);
 
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
@@ -2196,7 +2270,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1DetailPelanggan.setVisibility(View.GONE);
                         f1AlamatPelangganLamaTV.setText("");
                         f1AddPelangganPart.setVisibility(View.GONE);
+                        f1AgendaOptionPart.setVisibility(View.GONE);
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
+                        f1CB1.setChecked(false);
+                        f1CB2.setChecked(false);
+                        f1CB3.setChecked(false);
 
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
@@ -2297,7 +2375,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 categoryReport = "4";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport);
-                reportKategoriChoiceTV.setText("Laporan Pengiriman");
+                reportKategoriChoiceTV.setText("Aktivitas Pengiriman");
                 markKunjungan.setVisibility(View.GONE);
                 markPengiriman.setVisibility(View.VISIBLE);
                 markPenagihan.setVisibility(View.GONE);
@@ -2332,7 +2410,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1DetailPelanggan.setVisibility(View.GONE);
                         f1AlamatPelangganLamaTV.setText("");
                         f1AddPelangganPart.setVisibility(View.GONE);
+                        f1AgendaOptionPart.setVisibility(View.GONE);
                         f1JsonArrayPelanggan = clearJSONArray(f1JsonArrayPelanggan);
+                        f1CB1.setChecked(false);
+                        f1CB2.setChecked(false);
+                        f1CB3.setChecked(false);
 
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
@@ -3167,6 +3249,7 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                 f1NamaPelangganLamaChoiceTV.setText(namaPelangganLama);
                 f1AddPelangganPart.setVisibility(View.VISIBLE);
+                f1AgendaOptionPart.setVisibility(View.VISIBLE);
 
                 InputMethodManager imm = (InputMethodManager) ReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
                 View view = ReportSumaActivity.this.getCurrentFocus();

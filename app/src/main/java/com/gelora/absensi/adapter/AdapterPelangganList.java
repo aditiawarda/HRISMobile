@@ -3,11 +3,14 @@ package com.gelora.absensi.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -44,11 +47,28 @@ public class AdapterPelangganList extends RecyclerView.Adapter<AdapterPelangganL
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         final PelangganList pelangganList = data[i];
+        ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(mContext, R.color.colorAccent2));
 
         if(pelangganList.getKategoriPelanggan().equals("1")){
             myViewHolder.kategoriPelangganTV.setText("BARU");
         } else if(pelangganList.getKategoriPelanggan().equals("2")){
             myViewHolder.kategoriPelangganTV.setText("LAMA");
+        }
+
+        String dataAgendainput = pelangganList.getRencanAgenda().replaceAll("\\[|\\]|\"", ""); // Hapus kurung siku dan tanda kutip
+        String[] dataArray = dataAgendainput.split(",");
+
+        for (int x=0; x<dataArray.length; x++){
+            if(dataArray[x].equals("1")){
+                myViewHolder.agendaCB1.setButtonTintList(colorStateList);
+                myViewHolder.agendaCB1.setChecked(true);
+            } else if(dataArray[x].equals("2")){
+                myViewHolder.agendaCB2.setButtonTintList(colorStateList);
+                myViewHolder.agendaCB2.setChecked(true);
+            } else if(dataArray[x].equals("3")){
+                myViewHolder.agendaCB3.setButtonTintList(colorStateList);
+                myViewHolder.agendaCB3.setChecked(true);
+            }
         }
 
         myViewHolder.namaPelangganTV.setText(pelangganList.getNamaPelanggan());
@@ -77,6 +97,7 @@ public class AdapterPelangganList extends RecyclerView.Adapter<AdapterPelangganL
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView kategoriPelangganTV, namaPelangganTV, alamatPelangganTV, keteranganKunjunganTV;
         LinearLayout parentPart, deleteBTN;
+        CheckBox agendaCB1, agendaCB2, agendaCB3;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parentPart = itemView.findViewById(R.id.parent_part);
@@ -85,6 +106,9 @@ public class AdapterPelangganList extends RecyclerView.Adapter<AdapterPelangganL
             alamatPelangganTV = itemView.findViewById(R.id.alamat_pelanggan_tv);
             keteranganKunjunganTV = itemView.findViewById(R.id.keterangan_kunjungan_tv);
             deleteBTN = itemView.findViewById(R.id.delete_btn);
+            agendaCB1 = itemView.findViewById(R.id.agenda_cb_1);
+            agendaCB2 = itemView.findViewById(R.id.agenda_cb_2);
+            agendaCB3 = itemView.findViewById(R.id.agenda_cb_3);
         }
     }
 }

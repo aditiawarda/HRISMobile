@@ -18,6 +18,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.icu.util.Calendar;
@@ -35,10 +36,9 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,7 +67,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -103,10 +102,10 @@ import java.util.UUID;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiPart;
+    LinearLayout submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
     SharedPrefManager sharedPrefManager;
     EditText keteranganKunjunganRealisasiED, keteranganUpdateED;
-    ExpandableLayout updateRealisasiForm, rescheduleForm, updateForm;
+    ExpandableLayout updateRealisasiKunjunganForm, rescheduleForm, updateForm;
     RequestQueue requestQueue;
     TextView noSuratJalanTV, countImageUpdateTV, countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, labelLampTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
     String tipeLaporan = "", idReport = "";
@@ -128,6 +127,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     KAlertDialog pDialog;
     private int i = -1;
     NestedScrollView scrollView;
+    CheckBox agendaCB1, agendaCB2, agendaCB3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,8 +167,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         tglRencanaTV = findViewById(R.id.tgl_rencana_tv);
         viewLampiranBTN = findViewById(R.id.view_lampiran_btn);
         updateRealisasiBTN = findViewById(R.id.update_realisasi_btn);
-        updateRealisasiForm = findViewById(R.id.update_realisasi_form);
-        updateRealisasiPart = findViewById(R.id.update_realisasi_part);
+        updateRealisasiKunjunganForm = findViewById(R.id.update_realisasi_kunjungan_form);
+        updateRealisasiKunjunganPart = findViewById(R.id.update_realisasi_kunjungan_part);
         gpsRealisasiBTN = findViewById(R.id.gps_realisasi_btn);
         detailLocationRealisasiTV = findViewById(R.id.detail_location_realisasi_tv);
         fotoLampiranRealisasiBTN = findViewById(R.id.foto_lampiran_realisasi_btn);
@@ -204,6 +204,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         keteranganUpdateED = findViewById(R.id.keterangan_ed);
         fotoLamBTN = findViewById(R.id.foto_lam_btn);
         submitUpdateBTN = findViewById(R.id.submit_update_btn);
+        agendaCB1 = findViewById(R.id.agenda_cb_1);
+        agendaCB2 = findViewById(R.id.agenda_cb_2);
+        agendaCB3 = findViewById(R.id.agenda_cb_3);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -252,7 +255,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 } else {
                     updateForm.expand();
                     rescheduleForm.collapse();
-                    updateRealisasiForm.collapse();
+                    updateRealisasiKunjunganForm.collapse();
                 }
             }
         });
@@ -264,7 +267,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                     rescheduleForm.collapse();
                 } else {
                     rescheduleForm.expand();
-                    updateRealisasiForm.collapse();
+                    updateRealisasiKunjunganForm.collapse();
                     updateForm.collapse();
                 }
             }
@@ -273,10 +276,10 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         updateRealisasiBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(updateRealisasiForm.isExpanded()){
-                    updateRealisasiForm.collapse();
+                if(updateRealisasiKunjunganForm.isExpanded()){
+                    updateRealisasiKunjunganForm.collapse();
                 } else {
-                    updateRealisasiForm.expand();
+                    updateRealisasiKunjunganForm.expand();
                     rescheduleForm.collapse();
                     updateForm.collapse();
                 }
@@ -533,7 +536,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             public void onClick(View v) {
                 String message = "";
                 if(tipeLaporan.equals("1")){
-                    message = "Apakah anda yakin untuk menghapus data rencana kunjungan?";
+                    message = "Apakah anda yakin untuk menghapus data rencana?";
                 } else {
                     message = "Apakah anda yakin untuk menghapus data laporan?";
                 }
@@ -1144,7 +1147,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                 String tanggal = String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate;
                                 pDialog.setTitleText("Berhasil")
-                                        .setContentText("Tanggal rencana kunjungan berhasil dijadwalkan ulang ke tanggal "+tanggal)
+                                        .setContentText("Tanggal rencana berhasil dijadwalkan ulang ke tanggal "+tanggal)
                                         .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
@@ -1290,7 +1293,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                     public void run() {
                         if(tipeLaporan.equals("1")){
                             pDialog.dismiss();
-                            updateRealisasiPart.setVisibility(View.GONE);
+                            updateRealisasiKunjunganPart.setVisibility(View.GONE);
                             viewRealisasiPart.setVisibility(View.VISIBLE);
                             viewRealisasiBTN.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -1452,7 +1455,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                         if(tipeLaporan.equals("1")){
                             countImageTV.setText(String.valueOf(lampiranImage.size()));
-                            if(lampiranImage.size()>=2){
+                            if(lampiranImage.size()>=3){
                                 fotoLampiranRealisasiBTN.setVisibility(View.GONE);
                             } else {
                                 fotoLampiranRealisasiBTN.setVisibility(View.VISIBLE);
@@ -1469,7 +1472,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                             });
                         } else {
                             countImageUpdateTV.setText(String.valueOf(lampiranImage.size()));
-                            if(lampiranImage.size()>=2){
+                            if(lampiranImage.size()>=3){
                                 fotoLamBTN.setVisibility(View.GONE);
                                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                                         LinearLayout.LayoutParams.MATCH_PARENT,61
@@ -1562,12 +1565,30 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 if(tipeLaporan.equals("1")){
                                     updatePart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.GONE);
-                                    reportKategoriTV.setText("RENCANA KUNJUNGAN");
+                                    reportKategoriTV.setText("RENCANA");
                                     tglRencanaPart.setVisibility(View.VISIBLE);
                                     totalPesananPart.setVisibility(View.GONE);
                                     totalPenagihanPart.setVisibility(View.GONE);
                                     noSuratJalanPart.setVisibility(View.GONE);
                                     String tgl_rencana = dataArray.getString("tanggalRencana");
+                                    String tipeRencanaLaporan = dataArray.getString("tipeRencanaLaporan");
+
+                                    ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(mContext, R.color.colorAccent2));
+                                    String dataAgenda = tipeRencanaLaporan.replaceAll("\\[|\\]|\"", ""); // Hapus kurung siku dan tanda kutip
+                                    String[] dataArrayAgenda = dataAgenda.split(",");
+
+                                    for (int x=0; x<dataArrayAgenda.length; x++){
+                                        if(dataArrayAgenda[x].equals("1")){
+                                            agendaCB1.setButtonTintList(colorStateList);
+                                            agendaCB1.setChecked(true);
+                                        } else if(dataArrayAgenda[x].equals("2")){
+                                            agendaCB2.setButtonTintList(colorStateList);
+                                            agendaCB2.setChecked(true);
+                                        } else if(dataArrayAgenda[x].equals("3")){
+                                            agendaCB3.setButtonTintList(colorStateList);
+                                            agendaCB3.setChecked(true);
+                                        }
+                                    }
 
                                     String input_date = tgl_rencana;
                                     @SuppressLint("SimpleDateFormat")
@@ -1670,19 +1691,19 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                         if (rencana==now){
                                             if(idSales.equals(sharedPrefManager.getSpNik())){
-                                                updateRealisasiPart.setVisibility(View.VISIBLE);
+                                                updateRealisasiKunjunganPart.setVisibility(View.VISIBLE);
                                             } else {
-                                                updateRealisasiPart.setVisibility(View.GONE);
+                                                updateRealisasiKunjunganPart.setVisibility(View.GONE);
                                             }
                                         } else {
-                                            updateRealisasiPart.setVisibility(View.GONE);
+                                            updateRealisasiKunjunganPart.setVisibility(View.GONE);
                                         }
 
                                         realMark.setVisibility(View.GONE);
                                         viewRealisasiPart.setVisibility(View.GONE);
                                     } else if(statusRealisasi.equals("1")){
                                         reschedulePart.setVisibility(View.GONE);
-                                        updateRealisasiPart.setVisibility(View.GONE);
+                                        updateRealisasiKunjunganPart.setVisibility(View.GONE);
                                         realMark.setVisibility(View.VISIBLE);
                                         viewRealisasiPart.setVisibility(View.VISIBLE);
                                         String realisasi = data.getString("realisasi");
@@ -1702,7 +1723,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     } else {
                                         updatePart.setVisibility(View.GONE);
                                     }
-                                    updateRealisasiPart.setVisibility(View.GONE);
+                                    updateRealisasiKunjunganPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     reportKategoriTV.setText("LAPORAN KUNJUNGAN");
                                     tglRencanaPart.setVisibility(View.GONE);
@@ -1737,7 +1758,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     } else {
                                         updatePart.setVisibility(View.GONE);
                                     }
-                                    updateRealisasiPart.setVisibility(View.GONE);
+                                    updateRealisasiKunjunganPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     reportKategoriTV.setText("AKTIVITAS PENAGIHAN");
                                     tglRencanaPart.setVisibility(View.GONE);
@@ -1772,7 +1793,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     } else {
                                         updatePart.setVisibility(View.GONE);
                                     }
-                                    updateRealisasiPart.setVisibility(View.GONE);
+                                    updateRealisasiKunjunganPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     reportKategoriTV.setText("LAPORAN PENGIRIMAN");
                                     tglRencanaPart.setVisibility(View.GONE);

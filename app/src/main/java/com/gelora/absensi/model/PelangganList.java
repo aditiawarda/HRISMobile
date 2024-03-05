@@ -11,6 +11,7 @@ public class PelangganList {
     private String picPelanggan;
     private String teleponPelanggan;
     private String keteranganKunjunganPelanggan;
+    private String tipeRencanaLaporan;
 
     public String getIdPelanggan() {
         return idPelanggan;
@@ -75,4 +76,13 @@ public class PelangganList {
     public void setTipePelanggan(String tipePelanggan) {
         this.tipePelanggan = tipePelanggan;
     }
+
+    public String getRencanAgenda() {
+        return tipeRencanaLaporan;
+    }
+
+    public void setRencanAgenda(String tipeRencanaLaporan) {
+        this.tipeRencanaLaporan = tipeRencanaLaporan;
+    }
+
 }
