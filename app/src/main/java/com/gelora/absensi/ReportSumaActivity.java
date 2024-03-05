@@ -1363,7 +1363,6 @@ public class ReportSumaActivity extends AppCompatActivity {
 
         categoryReport = sharedPrefAbsen.getSpReportCategoryActive();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
-        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NO_SJ, "");
         loadingFormPart.setVisibility(View.VISIBLE);
         attantionNoForm.setVisibility(View.GONE);
@@ -3387,7 +3386,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                                     JSONObject prodctData = new JSONObject();
                                     try {
                                         int grandTotal = 0;
-
                                         for (int i = 0; i < mainData.length(); i++) {
                                             JSONObject dataRecap = new JSONObject();
                                             data = mainData.getJSONObject(i);

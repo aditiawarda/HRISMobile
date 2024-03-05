@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#A6441F</color>
     <color name="colorAccent">#A6441F</color>
     <color name="colorAccent2">#FFBB65</color>
+    <color name="cbDefault">#DBDBDB</color>
     <color name="strokeColorArea">#E6FB3527</color>
     <color name="white">#FFFFFF</color>
     <color name="green">#309A35</color>

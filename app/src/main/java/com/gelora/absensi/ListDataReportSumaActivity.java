@@ -355,9 +355,9 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     private void getData(String category_code){
         String url;
         if(sharedPrefAbsen.getSpNikSalesActive().equals("")){
-            url = "https://reporting.sumasistem.co.id/api/suma_report_mobile?nik=0&"+"tipe_laporan="+category_code+"&"+"tanggal="+dateChoice;
+            url = "https://reporting.sumasistem.co.id/api/suma_report_mobile?nik=0&tipe_laporan="+category_code+"&tanggal="+dateChoice+"&requester="+sharedPrefManager.getSpNik();
         } else {
-            url = "https://reporting.sumasistem.co.id/api/suma_report_mobile?nik="+sharedPrefAbsen.getSpNikSalesActive()+"&"+"tipe_laporan="+category_code+"&"+"tanggal="+dateChoice;
+            url = "https://reporting.sumasistem.co.id/api/suma_report_mobile?nik="+sharedPrefAbsen.getSpNikSalesActive()+"&tipe_laporan="+category_code+"&tanggal="+dateChoice+"&requester="+sharedPrefManager.getSpNik();
         }
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -1197,6 +1197,14 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             }, 1000);
         }
 
+    }
+
+    public void onBackPressed() {
+        if (bottomSheet.isSheetShowing()) {
+            bottomSheet.dismissSheet();
+        } else {
+            super.onBackPressed();
+        }
     }
 
 }

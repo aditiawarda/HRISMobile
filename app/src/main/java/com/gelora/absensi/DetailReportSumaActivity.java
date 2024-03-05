@@ -5,10 +5,15 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.helper.widget.MotionEffect;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.FragmentActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
@@ -17,6 +22,7 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
@@ -36,6 +42,7 @@ import android.os.ResultReceiver;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -50,10 +57,18 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gelora.absensi.adapter.AdapterInvoicePiutang;
+import com.gelora.absensi.adapter.AdapterInvoicePiutangRealisasi;
+import com.gelora.absensi.adapter.AdapterNoSuratJalan;
+import com.gelora.absensi.adapter.AdapterNoSuratJalanRealisasi;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.model.DataInvoicePiutang;
+import com.gelora.absensi.model.DataNoSuratJalan;
 import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
 import com.gelora.absensi.support.StatusBarColorManager;
@@ -76,6 +91,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -87,6 +105,7 @@ import net.cachapa.expandablelayout.ExpandableLayout;
 import net.gotev.uploadservice.MultipartUploadRequest;
 
 import org.aviran.cookiebar2.CookieBar;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -106,12 +125,12 @@ import java.util.UUID;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout noSuratJalanBTN, penagihanLayoutTambahan, pengirimanLayoutTambahan, submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
+    LinearLayout markRealKunjungan, markRealPenagihan, markRealPengiriman, realKunjunganBTN, realPenagihanBTN, realPengirimanBTN, noDataPiutang, loadingDataPiutang, loadingDataPartSj, noDataPartSj, noSuratJalanBTN, penagihanLayoutTambahan, pengirimanLayoutTambahan, submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
     SharedPrefManager sharedPrefManager;
     EditText keteranganKunjunganRealisasiED, keteranganUpdateED;
     ExpandableLayout updateRealisasiKunjunganForm, rescheduleForm, updateForm;
     RequestQueue requestQueue;
-    TextView noSuratJalanChoiceTV, noSuratJalanTV, countImageUpdateTV, countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, labelLampTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
+    TextView agendaLabel, totalInvTV, noSuratJalanChoiceTV, noSuratJalanTV, countImageUpdateTV, countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, labelLampTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
     String tipeLaporan = "", idReport = "";
     SwipeRefreshLayout refreshLayout;
     SharedPrefAbsen sharedPrefAbsen;
@@ -124,7 +143,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     ResultReceiver resultReceiver;
     Context mContext;
     Activity mActivity;
-    String locationNow = "", salesLat = "", salesLong = "", choiceDateReschedule = "";
+    String idPelanggan = "", locationNow = "", salesLat = "", salesLong = "", choiceDateReschedule = "";
     int REQUEST_IMAGE = 100;
     private Uri uri;
     private List<String> lampiranImage = new ArrayList<>();
@@ -134,6 +153,16 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     CheckBox agendaCB1, agendaCB2, agendaCB3;
     CheckBox realisasiCB1, realisasiCB2, realisasiCB3;
     ImageView loadingDataInvImg;
+    BottomSheetLayout bottomSheet;
+    RecyclerView noSjRV;
+    ImageView loadingGifSj;
+    private DataNoSuratJalan[] dataNoSuratJalans;
+    private AdapterNoSuratJalanRealisasi adapterNoSuratJalan;
+    RecyclerView invRV;
+    int totalPesanan = 0;
+    int totalTagihan = 0;
+    private DataInvoicePiutang[] dataInvoicePiutangs;
+    private AdapterInvoicePiutangRealisasi adapterInvoicePiutang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -217,14 +246,22 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         realisasiCB2 = findViewById(R.id.realisasi_cb_2);
         realisasiCB3 = findViewById(R.id.realisasi_cb_3);
         loadingDataInvImg = findViewById(R.id.loading_data_inv_img);
+        noDataPiutang = findViewById(R.id.no_data_inv);
+        loadingDataPiutang = findViewById(R.id.loading_data_inv);
         pengirimanLayoutTambahan = findViewById(R.id.pengiriman_layout_tambahan);
         penagihanLayoutTambahan = findViewById(R.id.penagihan_layout_tambahan);
         noSuratJalanBTN = findViewById(R.id.no_surat_jalan_btn);
         noSuratJalanChoiceTV = findViewById(R.id.no_surat_jalan_choice_tv);
+        bottomSheet = findViewById(R.id.bottom_sheet_layout);
+        totalInvTV = findViewById(R.id.total_inv_tv);
+        invRV = findViewById(R.id.inv_rv);
+        agendaLabel = findViewById(R.id.agenda_label);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
                 .into(loadingDataInvImg);
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(noSuratJalanBroad, new IntentFilter("list_no_sj"));
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -305,12 +342,30 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         });
 
         realisasiCB2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     penagihanLayoutTambahan.setVisibility(View.VISIBLE);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomSheet.dismissSheet();
+                            loadingDataPiutang.setVisibility(View.VISIBLE);
+                            invRV.setVisibility(View.GONE);
+                            noDataPiutang.setVisibility(View.GONE);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    getDataInvoice(idPelanggan);
+                                }
+                            }, 300);
+                        }
+                    }, 300);
                 } else {
                     penagihanLayoutTambahan.setVisibility(View.GONE);
+                    totalInvTV.setText("Rp 0");
+                    totalTagihan = 0;
                 }
             }
         });
@@ -322,6 +377,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                     pengirimanLayoutTambahan.setVisibility(View.VISIBLE);
                 } else {
                     pengirimanLayoutTambahan.setVisibility(View.GONE);
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NO_SJ, "");
                 }
             }
         });
@@ -329,6 +385,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         noSuratJalanBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                suratJalanPicker();
             }
         });
 
@@ -648,6 +705,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             }
         });
 
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NO_SJ, "");
+
     }
 
     @Override
@@ -678,7 +737,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    //bottomSheet.dismissSheet();
+                    bottomSheet.dismissSheet();
                 }
             }, 300);
         }
@@ -1281,6 +1340,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 String idLaporan = data.getString("idLaporan");
                                 String filename = data.getString("file_name");
                                 uploadLampiran(filename, idLaporan);
+                                updateForm.collapse();
+                                rescheduleForm.collapse();
+                                updateRealisasiKunjunganForm.collapse();
                             } else {
                                 pDialog.setTitleText("Gagal Terkirim")
                                         .setConfirmText("    OK    ")
@@ -1312,6 +1374,23 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 params.put("latitude", salesLat);
                 params.put("longitude", salesLong);
                 params.put("keterangan", keteranganKunjunganRealisasiED.getText().toString());
+                if(realisasiCB1.isChecked()){
+                    params.put("kunjungan", "true");
+                } else {
+                    params.put("kunjungan", "false");
+                }
+                if(realisasiCB2.isChecked()){
+                    params.put("penagihan", "true");
+                    params.put("total_tagihan", String.valueOf(totalTagihan));
+                } else {
+                    params.put("penagihan", "false");
+                }
+                if(realisasiCB3.isChecked()){
+                    params.put("pengiriman", "true");
+                    params.put("no_suratjalan", noSuratJalanChoiceTV.getText().toString());
+                } else {
+                    params.put("pengiriman", "false");
+                }
                 params.put("jumlah_lampiran", String.valueOf(lampiranImage.size()));
                 return params;
             }
@@ -1614,6 +1693,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 getSales(idSales);
                                 tipeLaporan = dataArray.getString("tipeLaporan");
                                 String createdAt = dataArray.getString("createdAt");
+                                idPelanggan = dataArray.getString("idPelanggan");
 
                                 tanggalBuatTV.setText(createdAt.substring(8,10)+"/"+createdAt.substring(5,7)+"/"+createdAt.substring(0,4)+" "+createdAt.substring(10,16));
 
@@ -1635,8 +1715,16 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     String tipeRencanaLaporan = dataArray.getString("tipeRencanaLaporan");
 
                                     ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(mContext, R.color.colorAccent2));
+                                    ColorStateList defaultColor = ColorStateList.valueOf(ContextCompat.getColor(mContext, R.color.cbDefault));
                                     String dataAgenda = tipeRencanaLaporan.replaceAll("\\[|\\]|\"", ""); // Hapus kurung siku dan tanda kutip
                                     String[] dataArrayAgenda = dataAgenda.split(",");
+
+                                    agendaCB1.setButtonTintList(defaultColor);
+                                    agendaCB2.setButtonTintList(defaultColor);
+                                    agendaCB3.setButtonTintList(defaultColor);
+                                    agendaCB1.setChecked(false);
+                                    agendaCB2.setChecked(false);
+                                    agendaCB3.setChecked(false);
 
                                     for (int x=0; x<dataArrayAgenda.length; x++){
                                         if(dataArrayAgenda[x].equals("1")){
@@ -1732,6 +1820,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                     String statusRealisasi = dataArray.getString("statusRealisasi");
                                     if(statusRealisasi.equals("0")){
+                                        agendaLabel.setText("Rencana Agenda");
                                         if(idSales.equals(sharedPrefManager.getSpNik())){
                                             reschedulePart.setVisibility(View.VISIBLE);
                                         } else {
@@ -1763,19 +1852,54 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         realMark.setVisibility(View.GONE);
                                         viewRealisasiPart.setVisibility(View.GONE);
                                     } else if(statusRealisasi.equals("1")){
+                                        agendaLabel.setText("Realisasi Agenda");
                                         reschedulePart.setVisibility(View.GONE);
                                         updateRealisasiKunjunganPart.setVisibility(View.GONE);
                                         realMark.setVisibility(View.VISIBLE);
                                         viewRealisasiPart.setVisibility(View.VISIBLE);
-                                        String realisasi = data.getString("realisasi");
-                                        viewRealisasiBTN.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
-                                                intent.putExtra("report_id",realisasi);
-                                                startActivity(intent);
+                                        String jumlah_realisasi = data.getString("jumlah_realisasi");
+
+                                        if(jumlah_realisasi.equals("0")){
+                                            viewRealisasiPart.setVisibility(View.GONE);
+                                        } else {
+                                            if(jumlah_realisasi.equals("1")){
+                                                String realisasi = data.getString("realisasi");
+                                                JSONObject dataRealisasi = new JSONObject(realisasi);
+                                                String id = dataRealisasi.getString("id");
+                                                String tipe = dataRealisasi.getString("tipeLaporan");
+                                                viewRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
+                                                        intent.putExtra("report_id",id);
+                                                        startActivity(intent);
+                                                    }
+                                                });
+                                            } else {
+                                                String realisasi = data.getString("realisasi");
+                                                JSONArray jsonArray = new JSONArray(realisasi);
+                                                int arrayLength = jsonArray.length();
+
+                                                String arrayString = "";
+                                                JSONObject dataListRealisasi = new JSONObject();
+                                                for (int i = 0; i < arrayLength; i++) {
+                                                    dataListRealisasi = jsonArray.getJSONObject(i);
+                                                    String tipeLaporan = dataListRealisasi.getString("tipeLaporan");
+                                                    String id = dataListRealisasi.getString("id");
+                                                    arrayString = arrayString+tipeLaporan+"-"+id+",";
+                                                }
+
+                                                String finalArrayString = arrayString.substring(0,arrayString.length()-1);
+                                                viewRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        realisasiDirect(finalArrayString);
+                                                    }
+                                                });
+
                                             }
-                                        });
+                                        }
+
                                     }
 
                                 } else if(tipeLaporan.equals("2")){
@@ -2258,5 +2382,354 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         Date date = new Date();
         return dateFormat.format(date);
     }
+
+    private void suratJalanPicker() {
+        bottomSheet.showWithSheetView(LayoutInflater.from(DetailReportSumaActivity.this).inflate(R.layout.layout_report_suma_list_no_sj, bottomSheet, false));
+        noSjRV = findViewById(R.id.no_sj_rv);
+        noDataPartSj = findViewById(R.id.no_data_part_sj);
+        loadingDataPartSj = findViewById(R.id.loading_data_part_sj);
+        loadingGifSj = findViewById(R.id.loading_data_sj);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_sgn_digital)
+                .into(loadingGifSj);
+
+        noSjRV.setLayoutManager(new LinearLayoutManager(this));
+        noSjRV.setHasFixedSize(true);
+        noSjRV.setNestedScrollingEnabled(false);
+        noSjRV.setItemAnimator(new DefaultItemAnimator());
+
+        loadingDataPartSj.setVisibility(View.VISIBLE);
+        noDataPartSj.setVisibility(View.GONE);
+        noSjRV.setVisibility(View.GONE);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getNoSJ(idPelanggan);
+            }
+        }, 800);
+    }
+
+    private void realisasiDirect(String arrayRealisasi) {
+        bottomSheet.showWithSheetView(LayoutInflater.from(DetailReportSumaActivity.this).inflate(R.layout.layout_realisasi_list, bottomSheet, false));
+        realKunjunganBTN = findViewById(R.id.real_kunjungan_btn);
+        realPenagihanBTN = findViewById(R.id.real_penagihan_btn);
+        realPengirimanBTN = findViewById(R.id.real_pengiriman_btn);
+        markRealKunjungan = findViewById(R.id.mark_real_kunjungan);
+        markRealPenagihan = findViewById(R.id.mark_real_penagihan);
+        markRealPengiriman = findViewById(R.id.mark_real_pengiriman);
+
+        realKunjunganBTN.setVisibility(View.GONE);
+        realPenagihanBTN.setVisibility(View.GONE);
+        realPengirimanBTN.setVisibility(View.GONE);
+        markRealKunjungan.setVisibility(View.GONE);
+        markRealPenagihan.setVisibility(View.GONE);
+        markRealPengiriman.setVisibility(View.GONE);
+        realKunjunganBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+        realPenagihanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+        realPengirimanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+
+        String[] list = arrayRealisasi.split(",");
+        String tipe, id;
+        for (int i = 0; i < list.length; i++) {
+            tipe = list[i].split("-")[0];
+            id = list[i].split("-")[1];
+            if(tipe.equals("2")){
+                String finalId = id;
+                realKunjunganBTN.setVisibility(View.VISIBLE);
+                realKunjunganBTN.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        realKunjunganBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option_choice));
+                        realPenagihanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realPengirimanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        markRealKunjungan.setVisibility(View.VISIBLE);
+                        markRealPenagihan.setVisibility(View.GONE);
+                        markRealPengiriman.setVisibility(View.GONE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
+                                        intent.putExtra("report_id", finalId);
+                                        startActivity(intent);
+                                    }
+                                }, 200);
+                            }
+                        }, 200);
+                    }
+                });
+            } else if(tipe.equals("3")){
+                String finalId = id;
+                realPenagihanBTN.setVisibility(View.VISIBLE);
+                realPenagihanBTN.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        realKunjunganBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realPenagihanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option_choice));
+                        realPengirimanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        markRealKunjungan.setVisibility(View.GONE);
+                        markRealPenagihan.setVisibility(View.VISIBLE);
+                        markRealPengiriman.setVisibility(View.GONE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
+                                        intent.putExtra("report_id", finalId);
+                                        startActivity(intent);
+                                    }
+                                }, 200);
+                            }
+                        }, 200);
+                    }
+                });
+            } else if(tipe.equals("4")){
+                String finalId = id;
+                realPengirimanBTN.setVisibility(View.VISIBLE);
+                realPengirimanBTN.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        realKunjunganBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realPenagihanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realPengirimanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option_choice));
+                        markRealKunjungan.setVisibility(View.GONE);
+                        markRealPenagihan.setVisibility(View.GONE);
+                        markRealPengiriman.setVisibility(View.VISIBLE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
+                                        intent.putExtra("report_id", finalId);
+                                        startActivity(intent);
+                                    }
+                                }, 200);
+                            }
+                        }, 200);
+                    }
+                });
+            }
+        }
+    }
+
+    private void getNoSJ(String id_pelanggan) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://reporting.sumasistem.co.id/api/get_no_sj";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint({"SetTextI18n", "MissingPermission"})
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                String data_surat_jalan = data.getString("data");
+                                JSONArray jsonArray = new JSONArray(data_surat_jalan);
+                                int arrayLength = jsonArray.length();
+                                if(arrayLength != 0) {
+                                    loadingDataPartSj.setVisibility(View.GONE);
+                                    noDataPartSj.setVisibility(View.GONE);
+                                    noSjRV.setVisibility(View.VISIBLE);
+                                    GsonBuilder builder = new GsonBuilder();
+                                    Gson gson = builder.create();
+                                    dataNoSuratJalans = gson.fromJson(data_surat_jalan, DataNoSuratJalan[].class);
+                                    adapterNoSuratJalan = new AdapterNoSuratJalanRealisasi(dataNoSuratJalans, DetailReportSumaActivity.this);
+                                    noSjRV.setAdapter(adapterNoSuratJalan);
+                                } else {
+                                    loadingDataPartSj.setVisibility(View.GONE);
+                                    noDataPartSj.setVisibility(View.VISIBLE);
+                                    noSjRV.setVisibility(View.GONE);
+                                }
+                            } else {
+                                loadingDataPartSj.setVisibility(View.GONE);
+                                noDataPartSj.setVisibility(View.VISIBLE);
+                                noSjRV.setVisibility(View.GONE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_pelanggan", id_pelanggan);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void getDataInvoice(String id_pelanggan) {
+        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/tagihan_per_invoice?customerId="+id_pelanggan;
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                API_ENDPOINT_CUSTOMER,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle the response
+                        Log.d(MotionEffect.TAG, "Response: " + response.toString());
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            String status = response.getString("status");
+
+                            if (status.equals("200")) {
+                                JSONArray mainData = response.getJSONArray("data");
+                                if(mainData.length() > 0){
+                                    loadingDataPiutang.setVisibility(View.GONE);
+                                    invRV.setVisibility(View.VISIBLE);
+                                    noDataPiutang.setVisibility(View.GONE);
+
+                                    invRV.setLayoutManager(new LinearLayoutManager(DetailReportSumaActivity.this));
+                                    invRV.setHasFixedSize(true);
+                                    invRV.setNestedScrollingEnabled(false);
+                                    invRV.setItemAnimator(new DefaultItemAnimator());
+
+                                    JSONArray jsonArray = new JSONArray();
+                                    JSONObject data = new JSONObject();
+                                    JSONObject prodctData = new JSONObject();
+                                    try {
+                                        int grandTotal = 0;
+
+                                        for (int i = 0; i < mainData.length(); i++) {
+                                            JSONObject dataRecap = new JSONObject();
+                                            data = mainData.getJSONObject(i);
+                                            String nomor_Invoice = data.getString("nomor_Invoice");
+                                            String tanggal_pemesanan = data.getString("tanggal_pemesanan");
+                                            JSONArray product = data.getJSONArray("produk");
+                                            int total = 0;
+                                            for (int j = 0; j < product.length(); j++) {
+                                                prodctData = product.getJSONObject(j);
+                                                total = total + Integer.parseInt(prodctData.getString("total"));
+                                                if((product.length()-1)==j){
+                                                    grandTotal = grandTotal + total;
+                                                    dataRecap.put("noInvoice", nomor_Invoice);
+                                                    dataRecap.put("tglPemesanan", tanggal_pemesanan);
+                                                    dataRecap.put("piutang", total);
+                                                    jsonArray.put(dataRecap);
+                                                }
+                                            }
+                                        }
+
+                                        totalTagihan = grandTotal;
+
+                                        String jsonString = jsonArray.toString();
+                                        GsonBuilder builder = new GsonBuilder();
+                                        Gson gson = builder.create();
+                                        dataInvoicePiutangs = gson.fromJson(jsonString, DataInvoicePiutang[].class);
+                                        adapterInvoicePiutang = new AdapterInvoicePiutangRealisasi(dataInvoicePiutangs, DetailReportSumaActivity.this);
+                                        invRV.setAdapter(adapterInvoicePiutang);
+
+                                        Locale localeID = new Locale("id", "ID");
+                                        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
+                                        decimalFormat.applyPattern("¤ #,##0;-¤ #,##0");
+                                        decimalFormat.setMaximumFractionDigits(0);
+
+                                        totalInvTV.setText(decimalFormat.format(grandTotal));
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                } else {
+                                    loadingDataPiutang.setVisibility(View.GONE);
+                                    invRV.setVisibility(View.GONE);
+                                    noDataPiutang.setVisibility(View.VISIBLE);
+                                }
+
+                            } else {
+                                loadingDataPiutang.setVisibility(View.GONE);
+                                invRV.setVisibility(View.GONE);
+                                noDataPiutang.setVisibility(View.VISIBLE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle the error
+                        Log.e(MotionEffect.TAG, "Volley error: " + error.getMessage());
+                        connectionFailed();
+                    }
+                }) {
+        };
+
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
+    public void onBackPressed() {
+        if (bottomSheet.isSheetShowing()) {
+            bottomSheet.dismissSheet();
+        } else {
+            if(updateForm.isExpanded() || rescheduleForm.isExpanded() || updateRealisasiKunjunganForm.isExpanded()){
+                new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                updateForm.collapse();
+                                rescheduleForm.collapse();
+                                updateRealisasiKunjunganForm.collapse();
+                                onBackPressed();
+                            }
+                        })
+                        .show();
+            } else {
+                super.onBackPressed();
+            }
+
+        }
+
+    }
+
 
 }

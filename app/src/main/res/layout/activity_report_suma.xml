@@ -409,7 +409,7 @@
                                                         <TextView
                                                             android:layout_width="wrap_content"
                                                             android:layout_height="wrap_content"
-                                                            android:text="Promosi"
+                                                            android:text="Kunjungan"
                                                             android:textSize="12dp"
                                                             tools:ignore="HardcodedText,SpUsage" />
 
