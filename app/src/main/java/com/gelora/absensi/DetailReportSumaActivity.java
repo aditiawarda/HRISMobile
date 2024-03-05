@@ -1923,7 +1923,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                     String totalLaporan = dataArray.getString("totalLaporan");
                                     if(totalLaporan.equals("")||totalLaporan.equals("null")||totalLaporan.equals("0")){
-                                        totalPesananTV.setText("Terlihat pada SP Manual");
+                                        totalPesananTV.setText("Tidak dicantumkan");
                                     } else {
                                         totalPesananTV.setText(decimalFormat.format(Integer.parseInt(totalLaporan)));
                                     }
@@ -1958,7 +1958,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                     String totalLaporan = dataArray.getString("totalLaporan");
                                     if(totalLaporan.equals("")||totalLaporan.equals("null")||totalLaporan.equals("0")){
-                                        totalPenagihanTV.setText("Terlihat pada Faktur");
+                                        totalPenagihanTV.setText("Tidak dicantumkan");
                                     } else {
                                         totalPenagihanTV.setText(decimalFormat.format(Integer.parseInt(totalLaporan)));
                                     }
