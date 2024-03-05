@@ -771,7 +771,11 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        getData(categoryCode);
+                        if(categoryCode.equals("1")){
+                            getData(categoryCode);
+                        } else {
+                            getData(subCategoryCode);
+                        }
                     }
                 }, 1000);
 
@@ -872,7 +876,11 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        getData(categoryCode);
+                        if(categoryCode.equals("1")){
+                            getData(categoryCode);
+                        } else {
+                            getData(subCategoryCode);
+                        }
                     }
                 }, 1000);
 
@@ -1006,7 +1014,11 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                getData(categoryCode);
+                                if(categoryCode.equals("1")){
+                                    getData(categoryCode);
+                                } else {
+                                    getData(subCategoryCode);
+                                }
                             }
                         }, 1000);
                     }
@@ -1136,7 +1148,11 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     refreshLayout.setRefreshing(false);
-                    getData(categoryCode);
+                    if(categoryCode.equals("1")){
+                        getData(categoryCode);
+                    } else {
+                        getData(subCategoryCode);
+                    }
                 }
             }, 1000);
         } else {

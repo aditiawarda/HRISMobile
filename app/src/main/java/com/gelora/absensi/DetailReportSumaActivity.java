@@ -14,6 +14,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -105,12 +106,12 @@ import java.util.UUID;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout penagihanLayoutTambahan, pengirimanLayoutTambahan, submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
+    LinearLayout noSuratJalanBTN, penagihanLayoutTambahan, pengirimanLayoutTambahan, submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
     SharedPrefManager sharedPrefManager;
     EditText keteranganKunjunganRealisasiED, keteranganUpdateED;
     ExpandableLayout updateRealisasiKunjunganForm, rescheduleForm, updateForm;
     RequestQueue requestQueue;
-    TextView noSuratJalanTV, countImageUpdateTV, countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, labelLampTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
+    TextView noSuratJalanChoiceTV, noSuratJalanTV, countImageUpdateTV, countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, labelLampTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
     String tipeLaporan = "", idReport = "";
     SwipeRefreshLayout refreshLayout;
     SharedPrefAbsen sharedPrefAbsen;
@@ -218,6 +219,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         loadingDataInvImg = findViewById(R.id.loading_data_inv_img);
         pengirimanLayoutTambahan = findViewById(R.id.pengiriman_layout_tambahan);
         penagihanLayoutTambahan = findViewById(R.id.penagihan_layout_tambahan);
+        noSuratJalanBTN = findViewById(R.id.no_surat_jalan_btn);
+        noSuratJalanChoiceTV = findViewById(R.id.no_surat_jalan_choice_tv);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -320,6 +323,12 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 } else {
                     pengirimanLayoutTambahan.setVisibility(View.GONE);
                 }
+            }
+        });
+
+        noSuratJalanBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
             }
         });
 
@@ -659,6 +668,21 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             userPosition();
         }
     }
+
+    public BroadcastReceiver noSuratJalanBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String no_sj = intent.getStringExtra("no_sj");
+            noSuratJalanChoiceTV.setText(no_sj);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //bottomSheet.dismissSheet();
+                }
+            }, 300);
+        }
+    };
 
     @SuppressLint("MissingPermission")
     private void userPosition() {
