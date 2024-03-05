@@ -37,7 +37,9 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +51,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
@@ -102,7 +105,7 @@ import java.util.UUID;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
+    LinearLayout penagihanLayoutTambahan, pengirimanLayoutTambahan, submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
     SharedPrefManager sharedPrefManager;
     EditText keteranganKunjunganRealisasiED, keteranganUpdateED;
     ExpandableLayout updateRealisasiKunjunganForm, rescheduleForm, updateForm;
@@ -128,6 +131,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     private int i = -1;
     NestedScrollView scrollView;
     CheckBox agendaCB1, agendaCB2, agendaCB3;
+    CheckBox realisasiCB1, realisasiCB2, realisasiCB3;
+    ImageView loadingDataInvImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,6 +212,16 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         agendaCB1 = findViewById(R.id.agenda_cb_1);
         agendaCB2 = findViewById(R.id.agenda_cb_2);
         agendaCB3 = findViewById(R.id.agenda_cb_3);
+        realisasiCB1 = findViewById(R.id.realisasi_cb_1);
+        realisasiCB2 = findViewById(R.id.realisasi_cb_2);
+        realisasiCB3 = findViewById(R.id.realisasi_cb_3);
+        loadingDataInvImg = findViewById(R.id.loading_data_inv_img);
+        pengirimanLayoutTambahan = findViewById(R.id.pengiriman_layout_tambahan);
+        penagihanLayoutTambahan = findViewById(R.id.penagihan_layout_tambahan);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_sgn_digital)
+                .into(loadingDataInvImg);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -282,6 +297,28 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                     updateRealisasiKunjunganForm.expand();
                     rescheduleForm.collapse();
                     updateForm.collapse();
+                }
+            }
+        });
+
+        realisasiCB2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    penagihanLayoutTambahan.setVisibility(View.VISIBLE);
+                } else {
+                    penagihanLayoutTambahan.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        realisasiCB3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    pengirimanLayoutTambahan.setVisibility(View.VISIBLE);
+                } else {
+                    pengirimanLayoutTambahan.setVisibility(View.GONE);
                 }
             }
         });

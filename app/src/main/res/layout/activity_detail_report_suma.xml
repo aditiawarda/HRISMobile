@@ -628,7 +628,7 @@
                                                     android:layout_marginBottom="5dp"
                                                     android:lineSpacingExtra="4dp"
                                                     android:layout_weight=".25"
-                                                    android:text="Realisasi Agenda"
+                                                    android:text="Rencana Agenda"
                                                     android:textColor="#515151"
                                                     android:textSize="12dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -678,7 +678,7 @@
                                                     <TextView
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="wrap_content"
-                                                        android:text="Promosi"
+                                                        android:text="Kunjungan"
                                                         android:textColor="#515151"
                                                         android:textSize="12dp"
                                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -1403,14 +1403,14 @@
                                                             android:layout_height="wrap_content">
 
                                                             <CheckBox
-                                                                android:id="@+id/cb_1"
+                                                                android:id="@+id/realisasi_cb_1"
                                                                 android:layout_width="wrap_content"
                                                                 android:layout_height="wrap_content" />
 
                                                             <TextView
                                                                 android:layout_width="wrap_content"
                                                                 android:layout_height="wrap_content"
-                                                                android:text="Promosi"
+                                                                android:text="Kunjungan"
                                                                 android:textSize="12dp"
                                                                 tools:ignore="HardcodedText,SpUsage" />
 
@@ -1424,7 +1424,7 @@
                                                             android:layout_height="wrap_content">
 
                                                             <CheckBox
-                                                                android:id="@+id/cb_2"
+                                                                android:id="@+id/realisasi_cb_2"
                                                                 android:layout_width="wrap_content"
                                                                 android:layout_height="wrap_content" />
 
@@ -1445,7 +1445,7 @@
                                                             android:layout_height="wrap_content">
 
                                                             <CheckBox
-                                                                android:id="@+id/cb_3"
+                                                                android:id="@+id/realisasi_cb_3"
                                                                 android:layout_width="wrap_content"
                                                                 android:layout_height="wrap_content" />
 
@@ -1462,12 +1462,286 @@
 
                                                 </LinearLayout>
 
+                                                <LinearLayout
+                                                    android:id="@+id/penagihan_layout_tambahan"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:visibility="gone"
+                                                    android:orientation="vertical">
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="1dp"
+                                                        android:layout_marginTop="5dp"
+                                                        android:layout_marginBottom="5dp"
+                                                        android:background="#C4DA795B" />
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="vertical">
+
+                                                        <TextView
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_marginTop="7dp"
+                                                            android:layout_marginBottom="5dp"
+                                                            android:text="List Invoice Tagihan"
+                                                            android:textColor="#696969"
+                                                            android:textSize="12dp"
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                                        <androidx.recyclerview.widget.RecyclerView
+                                                            android:id="@+id/inv_rv"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:visibility="gone"/>
+
+                                                        <LinearLayout
+                                                            android:id="@+id/loading_data_inv"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:gravity="center"
+                                                            android:orientation="vertical"
+                                                            android:paddingLeft="20dp"
+                                                            android:paddingTop="30dp"
+                                                            android:paddingRight="20dp"
+                                                            android:paddingBottom="40dp"
+                                                            android:visibility="visible">
+
+                                                            <ImageView
+                                                                android:id="@+id/loading_data_inv_img"
+                                                                android:layout_width="75dp"
+                                                                android:layout_height="75dp"
+                                                                android:layout_marginBottom="5dp"
+                                                                android:src="@drawable/loading_sgn_digital"
+                                                                tools:ignore="ContentDescription" />
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="-8dp"
+                                                                android:text="Memuat data"
+                                                                android:textAlignment="center"
+                                                                android:textColor="#E1BB8A"
+                                                                android:textSize="12dp"
+                                                                android:textStyle="bold"
+                                                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck,TooManyViews" />
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:text="Tunggu beberapa saat"
+                                                                android:textAlignment="center"
+                                                                android:textColor="#ECC28D"
+                                                                android:textSize="10dp"
+                                                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                                        </LinearLayout>
+
+                                                        <LinearLayout
+                                                            android:id="@+id/no_data_inv"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:gravity="center"
+                                                            android:orientation="vertical"
+                                                            android:paddingLeft="20dp"
+                                                            android:paddingRight="20dp"
+                                                            android:paddingTop="35dp"
+                                                            android:paddingBottom="40dp"
+                                                            android:visibility="gone">
+
+                                                            <LinearLayout
+                                                                android:layout_width="70dp"
+                                                                android:layout_height="70dp"
+                                                                android:layout_marginBottom="5dp"
+                                                                android:background="@drawable/empty_image" />
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="-8dp"
+                                                                android:text="Data tidak tersedia"
+                                                                android:textAlignment="center"
+                                                                android:textColor="#E1BB8A"
+                                                                android:textSize="12dp"
+                                                                android:textStyle="bold"
+                                                                tools:ignore="HardcodedText,SpUsage" />
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:text="Data tagihan tidak tersedia"
+                                                                android:textAlignment="center"
+                                                                android:textColor="#ECC28D"
+                                                                android:textSize="10dp"
+                                                                tools:ignore="HardcodedText,SpUsage" />
+
+                                                        </LinearLayout>
+
+                                                        <LinearLayout
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:orientation="vertical">
+
+                                                            <LinearLayout
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="1.5dp"
+                                                                android:layout_marginTop="15dp"
+                                                                android:layout_marginBottom="5dp"
+                                                                android:background="#3CCFCFCF" />
+
+                                                            <LinearLayout
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="10dp"
+                                                                android:layout_marginBottom="10dp"
+                                                                android:orientation="horizontal"
+                                                                tools:ignore="DisableBaselineAlignment">
+
+                                                                <LinearLayout
+                                                                    android:layout_width="0dp"
+                                                                    android:layout_height="match_parent"
+                                                                    android:layout_marginRight="5dp"
+                                                                    android:gravity="center|left"
+                                                                    android:layout_weight=".50"
+                                                                    android:orientation="vertical"
+                                                                    tools:ignore="RtlHardcoded">
+
+                                                                    <TextView
+                                                                        android:layout_width="wrap_content"
+                                                                        android:layout_height="wrap_content"
+                                                                        android:text="Grand Total Tagihan :"
+                                                                        android:textColor="#696969"
+                                                                        android:textSize="12dp"
+                                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                                </LinearLayout>
+
+                                                                <LinearLayout
+                                                                    android:layout_width="0dp"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_weight=".50"
+                                                                    android:gravity="right|center"
+                                                                    android:orientation="vertical"
+                                                                    tools:ignore="RtlHardcoded">
+
+                                                                    <TextView
+                                                                        android:id="@+id/total_inv_tv"
+                                                                        android:layout_width="wrap_content"
+                                                                        android:layout_height="wrap_content"
+                                                                        android:text="Rp 0"
+                                                                        android:textColor="#B15735"
+                                                                        android:textSize="12dp"
+                                                                        android:textStyle="bold"
+                                                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                                                </LinearLayout>
+
+                                                            </LinearLayout>
+
+                                                        </LinearLayout>
+
+                                                    </LinearLayout>
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:id="@+id/pengiriman_layout_tambahan"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:visibility="gone"
+                                                    android:orientation="vertical">
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="1dp"
+                                                        android:layout_marginTop="5dp"
+                                                        android:background="#C4DA795B" />
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginTop="12dp"
+                                                        android:layout_marginBottom="5dp"
+                                                        android:text="Nomor Surat Jalan (Opsional) :"
+                                                        android:textColor="#696969"
+                                                        android:textSize="12dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                    <LinearLayout
+                                                        android:id="@+id/no_surat_jalan_btn"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="40dp"
+                                                        android:paddingStart="20dp"
+                                                        android:layout_marginBottom="10dp"
+                                                        android:background="@drawable/shape_feel"
+                                                        android:orientation="horizontal"
+                                                        tools:ignore="RtlSymmetry">
+
+                                                        <RelativeLayout
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent">
+
+                                                            <LinearLayout
+                                                                android:layout_marginTop="10dp"
+                                                                android:layout_marginBottom="10dp"
+                                                                android:layout_marginRight="48dp"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="40dp"
+                                                                android:orientation="vertical"
+                                                                android:gravity="center|left"
+                                                                tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                                <TextView
+                                                                    android:id="@+id/no_surat_jalan_choice_tv"
+                                                                    android:layout_width="match_parent"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:textColor="#B15735"
+                                                                    android:textSize="13dp"
+                                                                    android:textStyle="bold"
+                                                                    android:ellipsize="end"
+                                                                    android:maxLines="1"
+                                                                    android:singleLine="true"
+                                                                    android:text=""
+                                                                    tools:ignore="SpUsage" />
+
+                                                            </LinearLayout>
+
+                                                            <LinearLayout
+                                                                android:layout_alignParentRight="true"
+                                                                android:layout_width="40dp"
+                                                                android:layout_height="match_parent"
+                                                                android:background="@drawable/shape_btn"
+                                                                android:gravity="center"
+                                                                tools:ignore="RtlHardcoded">
+
+                                                                <TextView
+                                                                    android:layout_width="25dp"
+                                                                    android:layout_height="25dp"
+                                                                    android:background="@drawable/ic_baseline_down"/>
+
+                                                            </LinearLayout>
+
+                                                        </RelativeLayout>
+
+                                                    </LinearLayout>
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="1dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:background="#C4DA795B" />
+
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_marginTop="5dp"
+                                                    android:layout_marginTop="7dp"
                                                     android:layout_marginBottom="5dp"
-                                                    android:text="Keterangan Kunjungan :"
+                                                    android:text="Keterangan :"
                                                     android:textColor="#696969"
                                                     android:textSize="12dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
