@@ -61,14 +61,14 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         decimalFormat.setMaximumFractionDigits(0);
 
         if (dataReportSuma.getTipeLaporan().equals("1")) {
-            myViewHolder.reportCategoryTV.setText("Rencana");
+            myViewHolder.reportCategoryTV.setText("Rencana Kunjungan");
             if(!String.valueOf(dataReportSuma.getIdRealisasi()).equals("null")){
                 myViewHolder.f1StatusRealisasi.setVisibility(View.VISIBLE);
             } else {
                 myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
             }
         } else if (dataReportSuma.getTipeLaporan().equals("2")) {
-            myViewHolder.reportCategoryTV.setText("Aktivitas Kunjungan");
+            myViewHolder.reportCategoryTV.setText("Aktivitas Promosi");
             myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
         } else if (dataReportSuma.getTipeLaporan().equals("3")) {
             myViewHolder.reportCategoryTV.setText("Aktivitas Penagihan");
@@ -101,10 +101,10 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
                 if(!dataReportSuma.getTotalPesanan().equals("0")){
                     myViewHolder.f2TotalPesananTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalPesanan())));
                 } else {
-                    myViewHolder.f2TotalPesananTV.setText("Terlihat pada SP Manual");
+                    myViewHolder.f2TotalPesananTV.setText("Tidak dicantumkan");
                 }
             } else {
-                myViewHolder.f2TotalPesananTV.setText("Terlihat pada SP Manual");
+                myViewHolder.f2TotalPesananTV.setText("Tidak dicantumkan");
             }
             myViewHolder.f2TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
         } else if(dataReportSuma.getTipeLaporan().equals("3")){
@@ -116,10 +116,10 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
                 if(!dataReportSuma.getTotalTagihan().equals("0")){
                     myViewHolder.f3TotalTagihanTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalTagihan())));
                 } else {
-                    myViewHolder.f3TotalTagihanTV.setText("Terlihat dicantumkan");
+                    myViewHolder.f3TotalTagihanTV.setText("Tidak dicantumkan");
                 }
             } else {
-                myViewHolder.f2TotalPesananTV.setText("Terlihat pada SP Manual");
+                myViewHolder.f2TotalPesananTV.setText("Tidak dicantumkan");
             }
             myViewHolder.f3TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
         } else if(dataReportSuma.getTipeLaporan().equals("4")){
