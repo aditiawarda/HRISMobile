@@ -2236,7 +2236,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     }
                                     updateRealisasiKunjunganPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
-                                    reportKategoriTV.setText("LAPORAN PROMOSI");
+                                    reportKategoriTV.setText("AKTIVITAS PROMOSI");
                                     tglRencanaPart.setVisibility(View.GONE);
                                     totalPesananPart.setVisibility(View.VISIBLE);
                                     totalPenagihanPart.setVisibility(View.GONE);
@@ -2306,7 +2306,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     }
                                     updateRealisasiKunjunganPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
-                                    reportKategoriTV.setText("LAPORAN PENGIRIMAN");
+                                    reportKategoriTV.setText("AKTIVITAS PENGIRIMAN");
                                     tglRencanaPart.setVisibility(View.GONE);
                                     totalPesananPart.setVisibility(View.GONE);
                                     totalPenagihanPart.setVisibility(View.GONE);

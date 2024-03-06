@@ -123,9 +123,9 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Kunjungan"
+                                        android:text="Promosi"
                                         android:textSize="12dp"
-                                        tools:ignore="HardcodedText" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 </LinearLayout>
 
@@ -148,7 +148,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="Penagihan"
                                         android:textSize="12dp"
-                                        tools:ignore="HardcodedText" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 </LinearLayout>
 
@@ -171,7 +171,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="Pengiriman"
                                         android:textSize="12dp"
-                                        tools:ignore="HardcodedText" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 </LinearLayout>
 

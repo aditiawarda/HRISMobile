@@ -1191,12 +1191,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     dateChoice = getDate();
                 } else if(subCategoryCode.equals("3")){
                     dateLabel.setText("Filter Tanggal :");
-                    categoryChoiceTV.setText("Aktivitas");
+                    categoryChoiceTV.setText("Aktivitas Kunjungan");
                     subCategoryChoiceTV.setText("Aktivitas Penagihan");
                     dateChoice = getDate();
                 } else if(subCategoryCode.equals("4")){
                     dateLabel.setText("Filter Tanggal :");
-                    categoryChoiceTV.setText("Aktivitas");
+                    categoryChoiceTV.setText("Aktivitas Kunjungan");
                     subCategoryChoiceTV.setText("Aktivitas Pengiriman");
                     dateChoice = getDate();
                 }
