@@ -1170,9 +1170,20 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
              if(categoryCode.equals("1")) {
                 dateLabel.setText("Filter Tanggal Rencana :");
                 categoryChoiceTV.setText("Rencana Kunjungan");
+
+                reportRV.setVisibility(View.GONE);
+                loadingDataPartReport.setVisibility(View.VISIBLE);
+                noDataPartReport.setVisibility(View.GONE);
+                new Handler().postDelayed(new Runnable() {
+                     @Override
+                     public void run() {
+                         refreshLayout.setRefreshing(false);
+                         getData(categoryCode);
+                     }
+                }, 1000);
             } else {
                 categoryCode = "0";
-                subCategoryCode = sharedPrefAbsen.getSpReportCategoryActive();
+                subCategoryCode = sharedPrefAbsen.getSpReportCategoryActive().substring(sharedPrefAbsen.getSpReportCategoryActive().length()-1,sharedPrefAbsen.getSpReportCategoryActive().length());
                 if(subCategoryCode.equals("2")){
                     dateLabel.setText("Filter Tanggal :");
                     categoryChoiceTV.setText("Aktivitas Kunjungan");
@@ -1189,22 +1200,19 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     subCategoryChoiceTV.setText("Aktivitas Pengiriman");
                     dateChoice = getDate();
                 }
+
+                 reportRV.setVisibility(View.GONE);
+                 loadingDataPartReport.setVisibility(View.VISIBLE);
+                 noDataPartReport.setVisibility(View.GONE);
+                 new Handler().postDelayed(new Runnable() {
+                     @Override
+                     public void run() {
+                         refreshLayout.setRefreshing(false);
+                         getData(subCategoryCode);
+                     }
+                 }, 1000);
             }
 
-            reportRV.setVisibility(View.GONE);
-            loadingDataPartReport.setVisibility(View.VISIBLE);
-            noDataPartReport.setVisibility(View.GONE);
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    refreshLayout.setRefreshing(false);
-                    if(categoryCode.equals("1")){
-                        getData(categoryCode);
-                    } else {
-                        getData(subCategoryCode);
-                    }
-                }
-            }, 1000);
         }
 
     }

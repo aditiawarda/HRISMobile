@@ -708,6 +708,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     f2PromosiPart.setVisibility(View.VISIBLE);
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport+"-2");
                 } else {
                     f2PromosiPart.setVisibility(View.GONE);
                 }
@@ -739,6 +740,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                             }, 100);
                         }
                     }, 300);
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport+"-3");
                 } else {
                     f2PenagihanPart.setVisibility(View.GONE);
                     f2TotalTagihanInvTV.setText("Rp 0");
@@ -752,6 +754,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     f2PengirimanFormPart.setVisibility(View.VISIBLE);
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport+"-4");
                 } else {
                     f2PengirimanFormPart.setVisibility(View.GONE);
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NO_SJ, "");
