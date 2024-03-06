@@ -128,7 +128,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             dateBTN.setVisibility(View.VISIBLE);
             salesBTN.setVisibility(View.VISIBLE);
             addBTN.setVisibility(View.GONE);
-            categoryCode = "1";
+            categoryCode = "0";
             subCategoryCode = "3";
             dateLabel.setText("Filter Tanggal Penagihan :");
             subCategoryChoiceTV.setText("Aktivitas Penagihan");
