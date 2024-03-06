@@ -1699,9 +1699,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 params.put("longitude", salesLong);
                 params.put("keterangan", keteranganKunjunganRealisasiED.getText().toString());
                 if(realisasiCB1.isChecked()){
-                    params.put("kunjungan", "true");
+                    params.put("promosi", "true");
+                    params.put("total_pesanan", String.valueOf(totalPesanan));
+                    params.put("data_produk", listToString(dataProduct));
                 } else {
-                    params.put("kunjungan", "false");
+                    params.put("promosi", "false");
                 }
                 if(realisasiCB2.isChecked()){
                     params.put("penagihan", "true");
@@ -3116,6 +3118,17 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
         }
 
+    }
+
+    private String listToString(List<String> list) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String item : list) {
+            stringBuilder.append(item).append(", ");
+        }
+        if (stringBuilder.length() > 0) {
+            stringBuilder.setLength(stringBuilder.length() - 2);
+        }
+        return stringBuilder.toString();
     }
 
 

@@ -154,7 +154,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     private ProductSuma[] productSumas;
     private AdapterPelangganLama adapterPelangganLama;
     private AdapterProductSuma adapterProductSuma;
-    String f2IdPelangganLama = "", f2JenisPelanggan = "", f2TotalPesanan = "", f2FullDataProduct = "", f2QtyProduct = "", f2IdProduct = "", f2ProductName = "", f2ProductHargaSatuan = "", f2SubTotal = "";
+    String f2IdPelangganLama = "", f2JenisPelanggan = "", f2FullDataProduct = "", f2QtyProduct = "", f2IdProduct = "", f2ProductName = "", f2ProductHargaSatuan = "", f2SubTotal = "";
     CheckBox f2CB1, f2CB2, f2CB3;
     int f2TotalInvTagihan = 0;
     ImageView f2LoadingDataInvImg;
@@ -175,7 +175,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     ImageView loadingForm, loadingGif, loadingGifProduk, successGif;
     String salesLat = "", salesLong = "", categoryReport = "", laporanTerkirim = "", fullBase64String = "";
 
-    int totalLaporan = 0;
+    int f2TotalPesanan = 0;
     private List<String> dataProduct = new ArrayList<>();
     private AdapterProductInputSuma adapterProductInputSuma;
     private static final int INITIAL_REQUEST = 1337;
@@ -363,7 +363,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f2PromosiPart.setVisibility(View.GONE);
                 f2PenagihanPart.setVisibility(View.GONE);
                 f2PengirimanFormPart.setVisibility(View.GONE);
-                f2TotalPesanan = "0";
+                f2TotalPesanan = 0;
                 f2TotalPesananTV.setText("Rp 0");
                 f2TotalInvTagihan = 0;
                 f2TotalTagihanInvTV.setText("Rp 0");
@@ -390,7 +390,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f2SubTotal = "";
                 f2ProductInputDetailPart.setVisibility(View.GONE);
                 f2TotalPesananTV.setText("Rp 0");
-                f2TotalPesanan = "";
                 f2LabelLampiranTV.setText("+ Lampiran Foto/SP");
                 f2ViewLampiranBTN.setVisibility(View.GONE);
                 f2JenisPelanggan = "";
@@ -401,7 +400,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 uri = null;
                 lampiranImage.clear();
                 fullBase64String = "";
-                totalLaporan = 0;
+                f2TotalPesanan = 0;
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -632,7 +631,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2DetailPelanggan.setVisibility(View.GONE);
                     f2AlamatPelangganLamaTV.setText("");
                     f2TotalPesananTV.setText("Rp 0");
-                    f2TotalPesanan = "";
                     f2TotalTagihanInvTV.setText("Rp 0");
                     f2TotalInvTagihan = 0;
                     f2AgendaOptionPart.setVisibility(View.VISIBLE);
@@ -673,7 +671,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2PelangganBaruPart.setVisibility(View.GONE);
                     f2PelangganLamaPart.setVisibility(View.VISIBLE);
                     f2TotalPesananTV.setText("Rp 0");
-                    f2TotalPesanan = "";
+                    f2TotalPesanan = 0;
                     if(f2CB1.isChecked()||f2CB2.isChecked()||f2CB3.isChecked()){
                         f2AgendaOptionPart.setVisibility(View.VISIBLE);
                     } else {
@@ -1261,7 +1259,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2PromosiPart.setVisibility(View.GONE);
                     f2PenagihanPart.setVisibility(View.GONE);
                     f2PengirimanFormPart.setVisibility(View.GONE);
-                    f2TotalPesanan = "0";
+                    f2TotalPesanan = 0;
                     f2TotalPesananTV.setText("Rp 0");
                     f2TotalInvTagihan = 0;
                     f2TotalTagihanInvTV.setText("Rp 0");
@@ -1288,7 +1286,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2SubTotal = "";
                     f2ProductInputDetailPart.setVisibility(View.GONE);
                     f2TotalPesananTV.setText("Rp 0");
-                    f2TotalPesanan = "";
+                    f2TotalPesanan = 0;
                     f2LabelLampiranTV.setText("+ Lampiran Foto/SP");
                     f2ViewLampiranBTN.setVisibility(View.GONE);
 
@@ -1300,7 +1298,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     uri = null;
                     lampiranImage.clear();
                     fullBase64String = "";
-                    totalLaporan = 0;
+                    f2TotalPesanan = 0;
 
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -1369,7 +1367,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2PromosiPart.setVisibility(View.GONE);
                     f2PenagihanPart.setVisibility(View.GONE);
                     f2PengirimanFormPart.setVisibility(View.GONE);
-                    f2TotalPesanan = "0";
+                    f2TotalPesanan = 0;
                     f2TotalPesananTV.setText("Rp 0");
                     f2TotalInvTagihan = 0;
                     f2TotalTagihanInvTV.setText("Rp 0");
@@ -1396,7 +1394,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2SubTotal = "";
                     f2ProductInputDetailPart.setVisibility(View.GONE);
                     f2TotalPesananTV.setText("Rp 0");
-                    f2TotalPesanan = "";
                     f2LabelLampiranTV.setText("+ Lampiran Foto/SP");
                     f2ViewLampiranBTN.setVisibility(View.GONE);
 
@@ -1408,7 +1405,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     uri = null;
                     lampiranImage.clear();
                     fullBase64String = "";
-                    totalLaporan = 0;
+                    f2TotalPesanan = 0;
 
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -1509,7 +1506,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f2PromosiPart.setVisibility(View.GONE);
                         f2PenagihanPart.setVisibility(View.GONE);
                         f2PengirimanFormPart.setVisibility(View.GONE);
-                        f2TotalPesanan = "0";
                         f2TotalPesananTV.setText("Rp 0");
                         f2TotalInvTagihan = 0;
                         f2TotalTagihanInvTV.setText("Rp 0");
@@ -1536,7 +1532,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f2SubTotal = "";
                         f2ProductInputDetailPart.setVisibility(View.GONE);
                         f2TotalPesananTV.setText("Rp 0");
-                        f2TotalPesanan = "";
                         f2LabelLampiranTV.setText("+ Lampiran Foto/SP");
                         f2ViewLampiranBTN.setVisibility(View.GONE);
 
@@ -1548,7 +1543,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         uri = null;
                         lampiranImage.clear();
                         fullBase64String = "";
-                        totalLaporan = 0;
+                        f2TotalPesanan = 0;
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -1626,7 +1621,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f2PromosiPart.setVisibility(View.GONE);
                         f2PenagihanPart.setVisibility(View.GONE);
                         f2PengirimanFormPart.setVisibility(View.GONE);
-                        f2TotalPesanan = "0";
                         f2TotalPesananTV.setText("Rp 0");
                         f2TotalInvTagihan = 0;
                         f2TotalTagihanInvTV.setText("Rp 0");
@@ -1653,7 +1647,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f2SubTotal = "";
                         f2ProductInputDetailPart.setVisibility(View.GONE);
                         f2TotalPesananTV.setText("Rp 0");
-                        f2TotalPesanan = "";
                         f2LabelLampiranTV.setText("+ Lampiran Foto/SP");
                         f2ViewLampiranBTN.setVisibility(View.GONE);
 
@@ -1665,7 +1658,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         uri = null;
                         lampiranImage.clear();
                         fullBase64String = "";
-                        totalLaporan = 0;
+                        f2TotalPesanan = 0;
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -2687,7 +2680,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             String[] arrayData = array[i].split("/");
             jumlah += Integer.parseInt(arrayData[4]);
         }
-        totalLaporan = jumlah;
+        f2TotalPesanan = jumlah;
         f2TotalPesananTV.setText(decimalFormat.format(jumlah));
 
     }
@@ -3069,14 +3062,33 @@ public class ReportSumaActivity extends AppCompatActivity {
                         params.put("id_pelanggan", f2IdPelangganLama);
                     }
 
+                    if(f2CB1.isChecked()){
+                        params.put("promosi", "true");
+                        params.put("total_pesanan", String.valueOf(f2TotalPesanan));
+                        params.put("data_produk", listToString(dataProduct));
+                    } else {
+                        params.put("promosi", "false");
+                    }
+                    if(f2CB2.isChecked()){
+                        params.put("penagihan", "true");
+                        params.put("total_tagihan", String.valueOf(f2TotalInvTagihan));
+                    } else {
+                        params.put("penagihan", "false");
+                    }
+                    if(f2CB3.isChecked()){
+                        params.put("pengiriman", "true");
+                        params.put("no_suratjalan", f2NoSuratJalanChoiceTV.getText().toString());
+                    } else {
+                        params.put("pengiriman", "false");
+                    }
+
                     params.put("nik_sales", sharedPrefManager.getSpNik());
                     params.put("latitude", salesLat);
                     params.put("longitude", salesLong);
                     params.put("created_at", getTimeStamp());
-                    params.put("total_laporan", String.valueOf(totalLaporan));
+                    params.put("total_laporan", String.valueOf(f2TotalPesanan));
                     params.put("jumlah_lampiran", String.valueOf(lampiranImage.size()));
 
-                    params.put("data_produk", listToString(dataProduct));
                 }
 
                 Log.d("Params Cek", params.toString());
@@ -3119,13 +3131,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                 successPart.setVisibility(View.VISIBLE);
                 formPart.setVisibility(View.GONE);
                 pDialog.dismiss();
-                viewPermohonanTV.setText("LIHAT DETAIL LAPORAN");
+                viewPermohonanTV.setText("OK");
                 viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(ReportSumaActivity.this, DetailReportSumaActivity.class);
-                        intent.putExtra("report_id",idReport);
-                        startActivity(intent);
+                        onBackPressed();
                     }
                 });
             }
