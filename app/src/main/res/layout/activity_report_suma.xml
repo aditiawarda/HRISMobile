@@ -409,7 +409,7 @@
                                                         <TextView
                                                             android:layout_width="wrap_content"
                                                             android:layout_height="wrap_content"
-                                                            android:text="Kunjungan"
+                                                            android:text="Promosi"
                                                             android:textSize="12dp"
                                                             tools:ignore="HardcodedText,SpUsage" />
 
@@ -763,44 +763,11 @@
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:id="@+id/kunjungan_form_part"
+                                    android:id="@+id/aktivitas_kunjungan_form_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical"
                                     android:visibility="gone">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:layout_marginBottom="5dp"
-                                        android:text="Keterangan Kunjungan :"
-                                        android:textColor="#696969"
-                                        android:textSize="12dp"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                    <EditText
-                                        android:id="@+id/f2_keterangan_kunjungan_ed"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="10dp"
-                                        android:background="@drawable/shape_input_form"
-                                        android:drawablePadding="10dp"
-                                        android:gravity="top"
-                                        android:hint=""
-                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
-                                        android:lineSpacingExtra="3dp"
-                                        android:maxLength="1000"
-                                        android:minHeight="80dp"
-                                        android:paddingLeft="20dp"
-                                        android:paddingTop="13dp"
-                                        android:paddingRight="20dp"
-                                        android:paddingBottom="13dp"
-                                        android:textColor="#595959"
-                                        android:textColorHighlight="#FFE1BC"
-                                        android:textColorHint="#595959"
-                                        android:textSize="14dp"
-                                        tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -816,7 +783,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:background="@drawable/shape_pengumuman"
-                                        android:layout_marginBottom="15dp"
+                                        android:layout_marginBottom="10dp"
                                         android:paddingTop="17dp"
                                         android:paddingBottom="18dp"
                                         android:orientation="vertical">
@@ -1066,74 +1033,6 @@
                                                         android:text="Memuat data..."
                                                         tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
-                                                    <LinearLayout
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="1.5dp"
-                                                        android:layout_marginTop="12dp"
-                                                        android:background="#3CCFCFCF" />
-
-                                                </LinearLayout>
-
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="10dp"
-                                                    android:orientation="vertical"
-                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
-
-                                                    <TextView
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="5dp"
-                                                        android:text="PIC :"
-                                                        android:textColor="#696969"
-                                                        android:textSize="12dp"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                    <TextView
-                                                        android:id="@+id/f2_pic_pelanggan_lama_tv"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:textColor="#555555"
-                                                        android:textSize="13dp"
-                                                        android:lineSpacingExtra="2dp"
-                                                        android:text="Memuat data..."
-                                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
-
-                                                    <LinearLayout
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="1.5dp"
-                                                        android:layout_marginTop="12dp"
-                                                        android:background="#3CCFCFCF" />
-
-                                                </LinearLayout>
-
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="10dp"
-                                                    android:orientation="vertical"
-                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
-
-                                                    <TextView
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="5dp"
-                                                        android:text="Telepon :"
-                                                        android:textColor="#696969"
-                                                        android:textSize="12dp"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                    <TextView
-                                                        android:id="@+id/f2_telepon_pelanggan_lama_tv"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:textColor="#555555"
-                                                        android:textSize="13dp"
-                                                        android:lineSpacingExtra="2dp"
-                                                        android:text="Memuat data..."
-                                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
-
                                                 </LinearLayout>
 
                                             </LinearLayout>
@@ -1143,21 +1042,132 @@
                                     </LinearLayout>
 
                                     <LinearLayout
-                                        android:id="@+id/f2_detail_pesanan_part"
+                                        android:id="@+id/f2_agenda_option_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
                                         android:visibility="gone"
                                         android:orientation="vertical">
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="Agenda Aktivitas :"
+                                            android:textColor="#696969"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="@drawable/shape_pengumuman"
+                                            android:paddingTop="15dp"
+                                            android:paddingBottom="15dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:orientation="horizontal"
+                                            tools:ignore="DisableBaselineAlignment">
+
+                                            <LinearLayout
+                                                android:layout_weight=".33"
+                                                android:layout_width="0dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center"
+                                                android:layout_height="wrap_content">
+
+                                                <CheckBox
+                                                    android:id="@+id/f2_cb_1"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Promosi"
+                                                    android:textSize="12dp"
+                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_weight=".33"
+                                                android:layout_width="0dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center"
+                                                android:layout_height="wrap_content">
+
+                                                <CheckBox
+                                                    android:id="@+id/f2_cb_2"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Penagihan"
+                                                    android:textSize="12dp"
+                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_weight=".33"
+                                                android:layout_width="0dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center"
+                                                android:layout_height="wrap_content">
+
+                                                <CheckBox
+                                                    android:id="@+id/f2_cb_3"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Pengiriman"
+                                                    android:textSize="12dp"
+                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/f2_promosi_form_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:visibility="gone"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="1dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="13dp"
+                                            android:background="#C4DA795B" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
                                             android:layout_marginTop="3dp"
                                             android:layout_marginBottom="5dp"
-                                            android:text="Rencana Pesanan"
+                                            android:text="Promosi"
                                             android:textColor="#B15735"
-                                            android:textSize="14dp"
+                                            android:textSize="13dp"
                                             android:textStyle="bold"
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="Rencana Pesanan (Opsional) :"
+                                            android:textColor="#696969"
+                                            android:textSize="12dp"
                                             tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                         <androidx.recyclerview.widget.RecyclerView
@@ -1440,9 +1450,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="10dp"
-                                                android:layout_marginBottom="15dp"
-                                                android:paddingLeft="3dp"
-                                                android:paddingRight="3dp"
+                                                android:layout_marginBottom="10dp"
                                                 android:orientation="horizontal"
                                                 tools:ignore="DisableBaselineAlignment">
 
@@ -1460,7 +1468,7 @@
                                                         android:layout_height="wrap_content"
                                                         android:text="Total Estimasi Pesanan :"
                                                         android:textColor="#696969"
-                                                        android:textSize="14dp"
+                                                        android:textSize="13dp"
                                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
@@ -1479,7 +1487,7 @@
                                                         android:layout_height="wrap_content"
                                                         android:text="Rp 0"
                                                         android:textColor="#B15735"
-                                                        android:textSize="15dp"
+                                                        android:textSize="13dp"
                                                         android:textStyle="bold"
                                                         tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
@@ -1487,188 +1495,239 @@
 
                                             </LinearLayout>
 
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/f2_penagihan_form_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:visibility="gone"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="1dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="13dp"
+                                            android:background="#C4DA795B" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="Penagihan"
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="List Invoice Tagihan :"
+                                            android:textColor="#696969"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                        <androidx.recyclerview.widget.RecyclerView
+                                            android:id="@+id/f2_inv_rv"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"/>
+
+                                        <LinearLayout
+                                            android:id="@+id/f2_loading_data_inv"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="vertical"
+                                            android:paddingLeft="20dp"
+                                            android:paddingTop="30dp"
+                                            android:paddingRight="20dp"
+                                            android:paddingBottom="40dp"
+                                            android:visibility="visible">
+
+                                            <ImageView
+                                                android:id="@+id/f2_loading_data_inv_img"
+                                                android:layout_width="75dp"
+                                                android:layout_height="75dp"
+                                                android:layout_marginBottom="5dp"
+                                                app:srcCompat="@drawable/loading_sgn_digital"
+                                                tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="-8dp"
+                                                android:text="Memuat data"
+                                                android:textAlignment="center"
+                                                android:textColor="#E1BB8A"
+                                                android:textSize="12dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck,TooManyViews" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="Tunggu beberapa saat"
+                                                android:textAlignment="center"
+                                                android:textColor="#ECC28D"
+                                                android:textSize="10dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/f2_no_data_inv"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="vertical"
+                                            android:paddingLeft="20dp"
+                                            android:paddingRight="20dp"
+                                            android:paddingTop="35dp"
+                                            android:paddingBottom="40dp"
+                                            android:visibility="gone">
+
+                                            <TextView
+                                                android:layout_width="70dp"
+                                                android:layout_height="70dp"
+                                                android:layout_marginBottom="5dp"
+                                                android:background="@drawable/empty_image"
+                                                android:textAlignment="center"
+                                                android:textSize="12dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="SpUsage" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="-8dp"
+                                                android:text="Data tidak tersedia"
+                                                android:textAlignment="center"
+                                                android:textColor="#E1BB8A"
+                                                android:textSize="12dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="Data tagihan tidak tersedia"
+                                                android:textAlignment="center"
+                                                android:textColor="#ECC28D"
+                                                android:textSize="10dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
                                             <LinearLayout
                                                 android:layout_width="match_parent"
                                                 android:layout_height="1.5dp"
-                                                android:layout_marginTop="8dp"
-                                                android:layout_marginBottom="15dp"
+                                                android:layout_marginTop="15dp"
+                                                android:layout_marginBottom="10dp"
                                                 android:background="#3CCFCFCF" />
 
                                             <LinearLayout
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:layout_marginBottom="15dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
                                                 android:orientation="horizontal"
                                                 tools:ignore="DisableBaselineAlignment">
 
                                                 <LinearLayout
-                                                    android:id="@+id/f2_gps_btn"
                                                     android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_marginRight="5dp"
+                                                    android:gravity="center|left"
                                                     android:layout_weight=".50"
-                                                    android:layout_height="35dp"
-                                                    android:background="@drawable/shape_second_btn"
-                                                    android:gravity="center"
-                                                    android:paddingLeft="10dp"
-                                                    android:paddingRight="10dp"
-                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
+                                                    android:orientation="vertical"
+                                                    tools:ignore="RtlHardcoded">
 
                                                     <TextView
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="wrap_content"
-                                                        android:textSize="12dp"
-                                                        android:ellipsize="end"
-                                                        android:maxLines="1"
-                                                        android:singleLine="true"
-                                                        android:textColor="@color/white"
-                                                        android:text="Check GPS Location"
-                                                        tools:ignore="HardcodedText,SpUsage" />
-
-                                                </LinearLayout>
-
-                                                <LinearLayout
-                                                    android:id="@+id/f2_foto_lampiran_btn"
-                                                    android:layout_width="0dp"
-                                                    android:layout_weight=".50"
-                                                    android:layout_marginLeft="10dp"
-                                                    android:layout_height="35dp"
-                                                    android:background="@drawable/shape_btn_edit_permohonan"
-                                                    android:gravity="center"
-                                                    android:paddingRight="10dp"
-                                                    android:paddingLeft="10dp"
-                                                    tools:ignore="RtlHardcoded">
-
-                                                    <TextView
-                                                        android:id="@+id/f2_label_lampiran_tv"
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:textSize="12dp"
-                                                        android:ellipsize="end"
-                                                        android:maxLines="1"
-                                                        android:singleLine="true"
-                                                        android:textColor="@color/white"
-                                                        android:text="+ Lampiran Foto/SP"
-                                                        tools:ignore="HardcodedText,SpUsage" />
-
-                                                </LinearLayout>
-
-                                                <LinearLayout
-                                                    android:visibility="gone"
-                                                    android:id="@+id/f2_view_lampiran_btn"
-                                                    android:layout_width="wrap_content"
-                                                    android:paddingTop="5dp"
-                                                    android:paddingBottom="5dp"
-                                                    android:paddingRight="7dp"
-                                                    android:paddingLeft="7dp"
-                                                    android:layout_marginLeft="10dp"
-                                                    android:gravity="center"
-                                                    android:background="@drawable/shape_btn_approved"
-                                                    android:layout_height="35dp"
-                                                    android:orientation="horizontal"
-                                                    tools:ignore="RtlHardcoded">
-
-                                                    <TextView
-                                                        android:layout_width="18dp"
-                                                        android:gravity="center"
-                                                        android:background="@drawable/ic_baseline_content_surat"
-                                                        android:layout_height="18dp" />
-
-                                                    <TextView
-                                                        android:id="@+id/f2_count_image_tv"
-                                                        android:layout_width="wrap_content"
-                                                        android:gravity="center"
-                                                        android:layout_height="18dp"
-                                                        android:textStyle="bold"
-                                                        android:textColor="@color/white"
-                                                        android:paddingRight="1dp"
-                                                        android:paddingLeft="3dp"
+                                                        android:text="Grand Total Tagihan :"
+                                                        android:textColor="#696969"
                                                         android:textSize="13dp"
-                                                        android:paddingBottom="1dp"
-                                                        android:text="10"
-                                                        tools:ignore="HardcodedText,SpUsage" />
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight=".50"
+                                                    android:gravity="right|center"
+                                                    android:orientation="vertical"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:id="@+id/f2_total_tagihan_inv_tv"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Rp 0"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="13dp"
+                                                        android:textStyle="bold"
+                                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                                 </LinearLayout>
 
                                             </LinearLayout>
 
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginBottom="5dp"
-                                                android:layout_marginLeft="3dp"
-                                                android:layout_marginRight="3dp"
-                                                android:text="Titik Lokasi Anda :"
-                                                android:textColor="#6E6E6E"
-                                                android:textSize="12dp"
-                                                tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
-
-                                            <TextView
-                                                android:id="@+id/f2_detail_location_tv"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginBottom="10dp"
-                                                android:layout_marginLeft="3dp"
-                                                android:layout_marginRight="3dp"
-                                                android:text="Memuat data..."
-                                                android:textColor="#6E6E6E"
-                                                android:textSize="12dp"
-                                                tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:id="@+id/f2_submit_data_btn"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginBottom="25dp"
-                                            android:layout_marginTop="15dp"
-                                            android:paddingTop="12dp"
-                                            android:paddingBottom="12dp"
-                                            android:background="@drawable/shape_btn"
-                                            android:gravity="center">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:drawableLeft="@drawable/ic_baseline_send_form"
-                                                android:drawablePadding="7dp"
-                                                android:drawableTint="@color/white"
-                                                android:text="SUBMIT"
-                                                android:textColor="@color/white"
-                                                android:textSize="13dp"
-                                                android:textStyle="bold"
-                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
-
                                         </LinearLayout>
 
                                     </LinearLayout>
 
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/penagihan_form_part"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:visibility="gone"
-                                    android:orientation="vertical">
-
                                     <LinearLayout
-                                        android:id="@+id/f3_pelanggan_lama"
+                                        android:id="@+id/f2_pengiriman_form_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:visibility="gone"
                                         android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="1dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="13dp"
+                                            android:background="#C4DA795B" />
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginTop="5dp"
+                                            android:layout_marginTop="3dp"
                                             android:layout_marginBottom="5dp"
-                                            android:text="Nama Pelanggan :"
+                                            android:text="Pengiriman"
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="Nomor Surat Jalan (Opsional) :"
                                             android:textColor="#696969"
                                             android:textSize="12dp"
-                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                         <LinearLayout
-                                            android:id="@+id/f3_nama_pelanggan_lama_btn"
+                                            android:id="@+id/f2_no_surat_jalan_btn"
                                             android:layout_width="match_parent"
                                             android:layout_height="40dp"
                                             android:paddingStart="20dp"
@@ -1692,7 +1751,7 @@
                                                     tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                                     <TextView
-                                                        android:id="@+id/f3_nama_pelanggan_lama_choice_tv"
+                                                        android:id="@+id/f2_no_surat_jalan_choice_tv"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
                                                         android:textColor="#B15735"
@@ -1725,845 +1784,53 @@
 
                                         </LinearLayout>
 
-                                        <LinearLayout
-                                            android:id="@+id/f3_detail_pelanggan"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:visibility="gone"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:text="Detail Pelanggan :"
-                                                android:textColor="#696969"
-                                                android:textSize="12dp"
-                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:background="@drawable/shape_pengumuman"
-                                                android:paddingTop="15dp"
-                                                android:paddingBottom="18dp"
-                                                android:paddingLeft="20dp"
-                                                android:paddingRight="20dp"
-                                                android:orientation="vertical">
-
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="3dp"
-                                                    android:orientation="vertical"
-                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
-
-                                                    <TextView
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="5dp"
-                                                        android:text="Alamat :"
-                                                        android:textColor="#696969"
-                                                        android:textSize="12dp"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                    <TextView
-                                                        android:id="@+id/f3_alamat_pelanggan_lama_tv"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:textColor="#555555"
-                                                        android:textSize="13dp"
-                                                        android:lineSpacingExtra="2dp"
-                                                        android:text="Memuat data..."
-                                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
-
-                                                    <LinearLayout
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="1.5dp"
-                                                        android:layout_marginTop="12dp"
-                                                        android:background="#3CCFCFCF" />
-
-                                                </LinearLayout>
-
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="10dp"
-                                                    android:orientation="vertical"
-                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
-
-                                                    <TextView
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="5dp"
-                                                        android:text="PIC :"
-                                                        android:textColor="#696969"
-                                                        android:textSize="12dp"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                    <TextView
-                                                        android:id="@+id/f3_pic_pelanggan_lama_tv"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:textColor="#555555"
-                                                        android:textSize="13dp"
-                                                        android:lineSpacingExtra="2dp"
-                                                        android:text="Memuat data..."
-                                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
-
-                                                    <LinearLayout
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="1.5dp"
-                                                        android:layout_marginTop="12dp"
-                                                        android:background="#3CCFCFCF" />
-
-                                                </LinearLayout>
-
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="10dp"
-                                                    android:orientation="vertical"
-                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
-
-                                                    <TextView
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="5dp"
-                                                        android:text="Telepon :"
-                                                        android:textColor="#696969"
-                                                        android:textSize="12dp"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                    <TextView
-                                                        android:id="@+id/f3_telepon_pelanggan_lama_tv"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:textColor="#555555"
-                                                        android:textSize="13dp"
-                                                        android:lineSpacingExtra="2dp"
-                                                        android:text="Memuat data..."
-                                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
-
-                                                </LinearLayout>
-
-                                            </LinearLayout>
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:id="@+id/f3_detail_list_inv_part"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:visibility="gone"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="10dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:text="List Invoice Tagihan"
-                                                android:textColor="#B15735"
-                                                android:textSize="14dp"
-                                                android:textStyle="bold"
-                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                                            <androidx.recyclerview.widget.RecyclerView
-                                                android:id="@+id/inv_rv"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:visibility="gone"/>
-
-                                            <LinearLayout
-                                                android:id="@+id/f3_loading_data_piutang"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:gravity="center"
-                                                android:orientation="vertical"
-                                                android:paddingLeft="20dp"
-                                                android:paddingTop="30dp"
-                                                android:paddingRight="20dp"
-                                                android:paddingBottom="40dp"
-                                                android:visibility="visible">
-
-                                                <ImageView
-                                                    android:id="@+id/f3_loading_data_piutang_img"
-                                                    android:layout_width="75dp"
-                                                    android:layout_height="75dp"
-                                                    android:layout_marginBottom="5dp"
-                                                    app:srcCompat="@drawable/loading_sgn_digital"
-                                                    tools:ignore="ContentDescription,ImageContrastCheck" />
-
-                                                <TextView
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="-8dp"
-                                                    android:text="Memuat data"
-                                                    android:textAlignment="center"
-                                                    android:textColor="#E1BB8A"
-                                                    android:textSize="12dp"
-                                                    android:textStyle="bold"
-                                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck,TooManyViews" />
-
-                                                <TextView
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:text="Tunggu beberapa saat"
-                                                    android:textAlignment="center"
-                                                    android:textColor="#ECC28D"
-                                                    android:textSize="10dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:id="@+id/f3_no_data_piutang"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:gravity="center"
-                                                android:orientation="vertical"
-                                                android:paddingLeft="20dp"
-                                                android:paddingRight="20dp"
-                                                android:paddingTop="35dp"
-                                                android:paddingBottom="40dp"
-                                                android:visibility="gone">
-
-                                                <TextView
-                                                    android:layout_width="70dp"
-                                                    android:layout_height="70dp"
-                                                    android:layout_marginBottom="5dp"
-                                                    android:background="@drawable/empty_image"
-                                                    android:textAlignment="center"
-                                                    android:textSize="12dp"
-                                                    android:textStyle="bold"
-                                                    tools:ignore="SpUsage" />
-
-                                                <TextView
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="-8dp"
-                                                    android:text="Data tidak tersedia"
-                                                    android:textAlignment="center"
-                                                    android:textColor="#E1BB8A"
-                                                    android:textSize="12dp"
-                                                    android:textStyle="bold"
-                                                    tools:ignore="HardcodedText,SpUsage" />
-
-                                                <TextView
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:text="Data tagihan tidak tersedia"
-                                                    android:textAlignment="center"
-                                                    android:textColor="#ECC28D"
-                                                    android:textSize="10dp"
-                                                    tools:ignore="HardcodedText,SpUsage" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:orientation="vertical">
-
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="1.5dp"
-                                                    android:layout_marginTop="15dp"
-                                                    android:layout_marginBottom="10dp"
-                                                    android:background="#3CCFCFCF" />
-
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="10dp"
-                                                    android:layout_marginBottom="15dp"
-                                                    android:paddingLeft="3dp"
-                                                    android:paddingRight="3dp"
-                                                    android:orientation="horizontal"
-                                                    tools:ignore="DisableBaselineAlignment">
-
-                                                    <LinearLayout
-                                                        android:layout_width="0dp"
-                                                        android:layout_height="match_parent"
-                                                        android:layout_marginRight="5dp"
-                                                        android:gravity="center|left"
-                                                        android:layout_weight=".50"
-                                                        android:orientation="vertical"
-                                                        tools:ignore="RtlHardcoded">
-
-                                                        <TextView
-                                                            android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:text="Grand Total Tagihan :"
-                                                            android:textColor="#696969"
-                                                            android:textSize="14dp"
-                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                    </LinearLayout>
-
-                                                    <LinearLayout
-                                                        android:layout_width="0dp"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_weight=".50"
-                                                        android:gravity="right|center"
-                                                        android:orientation="vertical"
-                                                        tools:ignore="RtlHardcoded">
-
-                                                        <TextView
-                                                            android:id="@+id/f3_total_piutang_tv"
-                                                            android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:text="Rp 0"
-                                                            android:textColor="#B15735"
-                                                            android:textSize="15dp"
-                                                            android:textStyle="bold"
-                                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                                                    </LinearLayout>
-
-                                                </LinearLayout>
-
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="1.5dp"
-                                                    android:layout_marginTop="8dp"
-                                                    android:layout_marginBottom="12dp"
-                                                    android:background="#3CCFCFCF" />
-
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:visibility="gone"
-                                                    android:orientation="vertical">
-
-                                                    <TextView
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="5dp"
-                                                        android:text="Nominal Bayar (Rp) :"
-                                                        android:textColor="#696969"
-                                                        android:textSize="12dp"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                    <EditText
-                                                        android:id="@+id/f3_nominal_bayar_ed"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="10dp"
-                                                        android:background="@drawable/shape_input_form"
-                                                        android:drawablePadding="10dp"
-                                                        android:hint=""
-                                                        android:inputType="number"
-                                                        android:maxLength="255"
-                                                        android:minHeight="40dp"
-                                                        android:paddingLeft="20dp"
-                                                        android:paddingRight="20dp"
-                                                        android:paddingTop="10dp"
-                                                        android:paddingBottom="12dp"
-                                                        android:gravity="center|left"
-                                                        android:textColor="#595959"
-                                                        android:textColorHighlight="#FFE1BC"
-                                                        android:textColorHint="#595959"
-                                                        android:textSize="14dp"
-                                                        android:maxLines="3"
-                                                        tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
-
-                                                </LinearLayout>
-
-                                                <TextView
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="5dp"
-                                                    android:text="Keterangan :"
-                                                    android:textColor="#696969"
-                                                    android:textSize="12dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                <EditText
-                                                    android:id="@+id/f3_keterangan_ed"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="10dp"
-                                                    android:background="@drawable/shape_input_form"
-                                                    android:drawablePadding="10dp"
-                                                    android:gravity="top"
-                                                    android:hint=""
-                                                    android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
-                                                    android:lineSpacingExtra="3dp"
-                                                    android:maxLength="1000"
-                                                    android:minHeight="80dp"
-                                                    android:paddingLeft="20dp"
-                                                    android:paddingTop="13dp"
-                                                    android:paddingRight="20dp"
-                                                    android:paddingBottom="13dp"
-                                                    android:textColor="#595959"
-                                                    android:textColorHighlight="#FFE1BC"
-                                                    android:textColorHint="#595959"
-                                                    android:textSize="14dp"
-                                                    tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
-
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="15dp"
-                                                    android:orientation="horizontal"
-                                                    tools:ignore="DisableBaselineAlignment">
-
-                                                    <LinearLayout
-                                                        android:id="@+id/f3_gps_btn"
-                                                        android:layout_width="0dp"
-                                                        android:layout_weight=".50"
-                                                        android:layout_height="35dp"
-                                                        android:background="@drawable/shape_second_btn"
-                                                        android:gravity="center"
-                                                        android:paddingLeft="10dp"
-                                                        android:paddingRight="10dp"
-                                                        tools:ignore="RtlHardcoded,RtlSymmetry">
-
-                                                        <TextView
-                                                            android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:textSize="12dp"
-                                                            android:ellipsize="end"
-                                                            android:maxLines="1"
-                                                            android:singleLine="true"
-                                                            android:textColor="@color/white"
-                                                            android:text="Check GPS Location"
-                                                            tools:ignore="HardcodedText,SpUsage" />
-
-                                                    </LinearLayout>
-
-                                                    <LinearLayout
-                                                        android:id="@+id/f3_foto_lampiran_btn"
-                                                        android:layout_width="0dp"
-                                                        android:layout_weight=".50"
-                                                        android:layout_marginLeft="10dp"
-                                                        android:layout_height="35dp"
-                                                        android:background="@drawable/shape_btn_edit_permohonan"
-                                                        android:gravity="center"
-                                                        android:paddingLeft="10dp"
-                                                        android:paddingRight="10dp"
-                                                        tools:ignore="RtlHardcoded">
-
-                                                        <TextView
-                                                            android:id="@+id/f3_label_lampiran_tv"
-                                                            android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:textSize="12dp"
-                                                            android:ellipsize="end"
-                                                            android:maxLines="1"
-                                                            android:singleLine="true"
-                                                            android:textColor="@color/white"
-                                                            android:text="+ Lampiran Foto/SP"
-                                                            tools:ignore="HardcodedText,SpUsage" />
-
-                                                    </LinearLayout>
-
-                                                    <LinearLayout
-                                                        android:visibility="gone"
-                                                        android:id="@+id/f3_view_lampiran_btn"
-                                                        android:layout_width="wrap_content"
-                                                        android:paddingTop="5dp"
-                                                        android:paddingBottom="5dp"
-                                                        android:paddingRight="7dp"
-                                                        android:paddingLeft="7dp"
-                                                        android:layout_marginLeft="10dp"
-                                                        android:gravity="center"
-                                                        android:background="@drawable/shape_btn_approved"
-                                                        android:layout_height="35dp"
-                                                        android:orientation="horizontal"
-                                                        tools:ignore="RtlHardcoded">
-
-                                                        <TextView
-                                                            android:layout_width="18dp"
-                                                            android:gravity="center"
-                                                            android:background="@drawable/ic_baseline_content_surat"
-                                                            android:layout_height="18dp" />
-
-                                                        <TextView
-                                                            android:id="@+id/f3_count_image_tv"
-                                                            android:layout_width="wrap_content"
-                                                            android:gravity="center"
-                                                            android:layout_height="18dp"
-                                                            android:textStyle="bold"
-                                                            android:textColor="@color/white"
-                                                            android:paddingRight="1dp"
-                                                            android:paddingLeft="3dp"
-                                                            android:textSize="13dp"
-                                                            android:paddingBottom="1dp"
-                                                            android:text="10"
-                                                            tools:ignore="HardcodedText,SpUsage" />
-
-                                                    </LinearLayout>
-
-                                                </LinearLayout>
-
-                                                <TextView
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="5dp"
-                                                    android:layout_marginLeft="3dp"
-                                                    android:layout_marginRight="3dp"
-                                                    android:text="Titik Lokasi Anda :"
-                                                    android:textColor="#6E6E6E"
-                                                    android:textSize="12dp"
-                                                    tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
-
-                                                <TextView
-                                                    android:id="@+id/f3_detail_location_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="10dp"
-                                                    android:layout_marginLeft="3dp"
-                                                    android:layout_marginRight="3dp"
-                                                    android:text="Memuat data..."
-                                                    android:textColor="#6E6E6E"
-                                                    android:textSize="12dp"
-                                                    tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:id="@+id/f3_submit_data_btn"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginBottom="25dp"
-                                                android:layout_marginTop="15dp"
-                                                android:paddingTop="12dp"
-                                                android:paddingBottom="12dp"
-                                                android:background="@drawable/shape_btn"
-                                                android:gravity="center">
-
-                                                <TextView
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:drawableLeft="@drawable/ic_baseline_send_form"
-                                                    android:drawablePadding="7dp"
-                                                    android:drawableTint="@color/white"
-                                                    android:text="SUBMIT"
-                                                    android:textColor="@color/white"
-                                                    android:textSize="13dp"
-                                                    android:textStyle="bold"
-                                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
-
-                                            </LinearLayout>
-
-                                        </LinearLayout>
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/pengiriman_form_part"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:visibility="gone"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:layout_marginBottom="5dp"
-                                        android:text="Keterangan :"
-                                        android:textColor="#696969"
-                                        android:textSize="12dp"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                    <EditText
-                                        android:id="@+id/f4_keterangan_ed"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="10dp"
-                                        android:background="@drawable/shape_input_form"
-                                        android:drawablePadding="10dp"
-                                        android:gravity="top"
-                                        android:hint=""
-                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
-                                        android:lineSpacingExtra="3dp"
-                                        android:maxLength="1000"
-                                        android:minHeight="80dp"
-                                        android:paddingLeft="20dp"
-                                        android:paddingTop="13dp"
-                                        android:paddingRight="20dp"
-                                        android:paddingBottom="13dp"
-                                        android:textColor="#595959"
-                                        android:textColorHighlight="#FFE1BC"
-                                        android:textColorHint="#595959"
-                                        android:textSize="14dp"
-                                        tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:layout_marginBottom="5dp"
-                                        android:text="Nama Pelanggan :"
-                                        android:textColor="#696969"
-                                        android:textSize="12dp"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                    <LinearLayout
-                                        android:id="@+id/f4_nama_pelanggan_lama_btn"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="40dp"
-                                        android:paddingStart="20dp"
-                                        android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal"
-                                        tools:ignore="RtlSymmetry">
-
-                                        <RelativeLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent">
-
-                                            <LinearLayout
-                                                android:layout_marginTop="10dp"
-                                                android:layout_marginBottom="10dp"
-                                                android:layout_marginRight="48dp"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="40dp"
-                                                android:orientation="vertical"
-                                                android:gravity="center|left"
-                                                tools:ignore="RelativeOverlap,RtlHardcoded">
-
-                                                <TextView
-                                                    android:id="@+id/f4_nama_pelanggan_lama_choice_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:textColor="#B15735"
-                                                    android:textSize="13dp"
-                                                    android:textStyle="bold"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:text=""
-                                                    tools:ignore="SpUsage" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_alignParentRight="true"
-                                                android:layout_width="40dp"
-                                                android:layout_height="match_parent"
-                                                android:background="@drawable/shape_btn"
-                                                android:gravity="center"
-                                                tools:ignore="RtlHardcoded">
-
-                                                <TextView
-                                                    android:layout_width="25dp"
-                                                    android:layout_height="25dp"
-                                                    android:background="@drawable/ic_baseline_down"/>
-
-                                            </LinearLayout>
-
-                                        </RelativeLayout>
-
                                     </LinearLayout>
 
                                     <LinearLayout
-                                        android:id="@+id/f4_detail_pelanggan"
+                                        android:id="@+id/f2_submit_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:visibility="gone"
                                         android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="1dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="#C4DA795B" />
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
                                             android:layout_marginBottom="5dp"
-                                            android:text="Detail Pelanggan :"
+                                            android:text="Keterangan Kunjungan :"
                                             android:textColor="#696969"
                                             android:textSize="12dp"
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                                        <LinearLayout
+                                        <EditText
+                                            android:id="@+id/f2_keterangan_kunjungan_ed"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:background="@drawable/shape_pengumuman"
-                                            android:paddingTop="15dp"
-                                            android:paddingBottom="18dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_input_form"
+                                            android:drawablePadding="10dp"
+                                            android:gravity="top"
+                                            android:hint=""
+                                            android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                            android:lineSpacingExtra="3dp"
+                                            android:maxLength="1000"
+                                            android:minHeight="80dp"
                                             android:paddingLeft="20dp"
+                                            android:paddingTop="13dp"
                                             android:paddingRight="20dp"
-                                            android:orientation="vertical">
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="3dp"
-                                                android:orientation="vertical"
-                                                tools:ignore="RtlHardcoded,RtlSymmetry">
-
-                                                <TextView
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="5dp"
-                                                    android:text="Alamat :"
-                                                    android:textColor="#696969"
-                                                    android:textSize="12dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                <TextView
-                                                    android:id="@+id/f4_alamat_pelanggan_lama_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:textColor="#555555"
-                                                    android:textSize="13dp"
-                                                    android:lineSpacingExtra="2dp"
-                                                    android:text="Memuat data..."
-                                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
-
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="1.5dp"
-                                                    android:layout_marginTop="12dp"
-                                                    android:background="#3CCFCFCF" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="10dp"
-                                                android:orientation="vertical"
-                                                tools:ignore="RtlHardcoded,RtlSymmetry">
-
-                                                <TextView
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="5dp"
-                                                    android:text="PIC :"
-                                                    android:textColor="#696969"
-                                                    android:textSize="12dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                <TextView
-                                                    android:id="@+id/f4_pic_pelanggan_lama_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:textColor="#555555"
-                                                    android:textSize="13dp"
-                                                    android:lineSpacingExtra="2dp"
-                                                    android:text="Memuat data..."
-                                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
-
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="1.5dp"
-                                                    android:layout_marginTop="12dp"
-                                                    android:background="#3CCFCFCF" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="10dp"
-                                                android:orientation="vertical"
-                                                tools:ignore="RtlHardcoded,RtlSymmetry">
-
-                                                <TextView
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="5dp"
-                                                    android:text="Telepon :"
-                                                    android:textColor="#696969"
-                                                    android:textSize="12dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                <TextView
-                                                    android:id="@+id/f4_telepon_pelanggan_lama_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:textColor="#555555"
-                                                    android:textSize="13dp"
-                                                    android:lineSpacingExtra="2dp"
-                                                    android:text="Memuat data..."
-                                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
-
-                                            </LinearLayout>
-
-                                        </LinearLayout>
-
-                                    </LinearLayout>
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="15dp"
-                                        android:layout_marginBottom="5dp"
-                                        android:text="Nomor Surat Jalan (Opsional) :"
-                                        android:textColor="#696969"
-                                        android:textSize="12dp"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                    <LinearLayout
-                                        android:id="@+id/f4_no_surat_jalan_btn"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="40dp"
-                                        android:paddingStart="20dp"
-                                        android:layout_marginBottom="5dp"
-                                        android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal"
-                                        tools:ignore="RtlSymmetry">
-
-                                        <RelativeLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent">
-
-                                            <LinearLayout
-                                                android:layout_marginTop="10dp"
-                                                android:layout_marginBottom="10dp"
-                                                android:layout_marginRight="48dp"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="40dp"
-                                                android:orientation="vertical"
-                                                android:gravity="center|left"
-                                                tools:ignore="RelativeOverlap,RtlHardcoded">
-
-                                                <TextView
-                                                    android:id="@+id/f4_no_surat_jalan_choice_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:textColor="#B15735"
-                                                    android:textSize="13dp"
-                                                    android:textStyle="bold"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:text=""
-                                                    tools:ignore="SpUsage" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_alignParentRight="true"
-                                                android:layout_width="40dp"
-                                                android:layout_height="match_parent"
-                                                android:background="@drawable/shape_btn"
-                                                android:gravity="center"
-                                                tools:ignore="RtlHardcoded">
-
-                                                <TextView
-                                                    android:layout_width="25dp"
-                                                    android:layout_height="25dp"
-                                                    android:background="@drawable/ic_baseline_down"/>
-
-                                            </LinearLayout>
-
-                                        </RelativeLayout>
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="17dp"
-                                        android:orientation="vertical">
+                                            android:paddingBottom="13dp"
+                                            android:textColor="#595959"
+                                            android:textColorHighlight="#FFE1BC"
+                                            android:textColorHint="#595959"
+                                            android:textSize="14dp"
+                                            tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -2573,15 +1840,15 @@
                                             tools:ignore="DisableBaselineAlignment">
 
                                             <LinearLayout
-                                                android:id="@+id/f4_gps_btn"
+                                                android:id="@+id/f2_gps_btn"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".50"
                                                 android:layout_height="35dp"
                                                 android:background="@drawable/shape_second_btn"
+                                                android:gravity="center"
                                                 android:paddingLeft="10dp"
                                                 android:paddingRight="10dp"
-                                                android:gravity="center"
-                                                tools:ignore="RtlHardcoded">
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
@@ -2597,34 +1864,34 @@
                                             </LinearLayout>
 
                                             <LinearLayout
-                                                android:id="@+id/f4_foto_lampiran_btn"
+                                                android:id="@+id/f2_foto_lampiran_btn"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".50"
                                                 android:layout_marginLeft="10dp"
                                                 android:layout_height="35dp"
                                                 android:background="@drawable/shape_btn_edit_permohonan"
                                                 android:gravity="center"
-                                                android:paddingLeft="10dp"
                                                 android:paddingRight="10dp"
+                                                android:paddingLeft="10dp"
                                                 tools:ignore="RtlHardcoded">
 
                                                 <TextView
-                                                    android:id="@+id/f4_label_lampiran_tv"
+                                                    android:id="@+id/f2_label_lampiran_tv"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:textSize="12dp"
-                                                    android:textColor="@color/white"
-                                                    android:text="+ Lampiran Foto/SP"
                                                     android:ellipsize="end"
                                                     android:maxLines="1"
                                                     android:singleLine="true"
+                                                    android:textColor="@color/white"
+                                                    android:text="+ Lampiran Foto/SP"
                                                     tools:ignore="HardcodedText,SpUsage" />
 
                                             </LinearLayout>
 
                                             <LinearLayout
                                                 android:visibility="gone"
-                                                android:id="@+id/f4_view_lampiran_btn"
+                                                android:id="@+id/f2_view_lampiran_btn"
                                                 android:layout_width="wrap_content"
                                                 android:paddingTop="5dp"
                                                 android:paddingBottom="5dp"
@@ -2644,7 +1911,7 @@
                                                     android:layout_height="18dp" />
 
                                                 <TextView
-                                                    android:id="@+id/f4_count_image_tv"
+                                                    android:id="@+id/f2_count_image_tv"
                                                     android:layout_width="wrap_content"
                                                     android:gravity="center"
                                                     android:layout_height="18dp"
@@ -2673,7 +1940,7 @@
                                             tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
 
                                         <TextView
-                                            android:id="@+id/f4_detail_location_tv"
+                                            android:id="@+id/f2_detail_location_tv"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginBottom="10dp"
@@ -2684,30 +1951,30 @@
                                             android:textSize="12dp"
                                             tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
 
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:id="@+id/f4_submit_data_btn"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="25dp"
-                                        android:layout_marginTop="15dp"
-                                        android:paddingTop="12dp"
-                                        android:paddingBottom="12dp"
-                                        android:background="@drawable/shape_btn"
-                                        android:gravity="center">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
+                                        <LinearLayout
+                                            android:id="@+id/f2_submit_data_btn"
+                                            android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:drawableLeft="@drawable/ic_baseline_send_form"
-                                            android:drawablePadding="7dp"
-                                            android:drawableTint="@color/white"
-                                            android:text="SUBMIT"
-                                            android:textColor="@color/white"
-                                            android:textSize="13dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
+                                            android:layout_marginBottom="25dp"
+                                            android:layout_marginTop="15dp"
+                                            android:paddingTop="12dp"
+                                            android:paddingBottom="12dp"
+                                            android:background="@drawable/shape_btn"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:drawableLeft="@drawable/ic_baseline_send_form"
+                                                android:drawablePadding="7dp"
+                                                android:drawableTint="@color/white"
+                                                android:text="SUBMIT"
+                                                android:textColor="@color/white"
+                                                android:textSize="13dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 

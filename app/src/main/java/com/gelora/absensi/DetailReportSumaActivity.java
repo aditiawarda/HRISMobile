@@ -41,9 +41,13 @@ import android.os.Handler;
 import android.os.ResultReceiver;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -62,13 +66,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
-import com.gelora.absensi.adapter.AdapterInvoicePiutang;
 import com.gelora.absensi.adapter.AdapterInvoicePiutangRealisasi;
-import com.gelora.absensi.adapter.AdapterNoSuratJalan;
 import com.gelora.absensi.adapter.AdapterNoSuratJalanRealisasi;
+import com.gelora.absensi.adapter.AdapterProductInputSuma;
+import com.gelora.absensi.adapter.AdapterProductSumaRealisasi;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataInvoicePiutang;
 import com.gelora.absensi.model.DataNoSuratJalan;
+import com.gelora.absensi.model.ProductSuma;
 import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
 import com.gelora.absensi.support.StatusBarColorManager;
@@ -93,13 +98,15 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.takisoft.datetimepicker.DatePickerDialog;
+import com.travijuu.numberpicker.library.Enums.ActionEnum;
+import com.travijuu.numberpicker.library.Interface.ValueChangedListener;
+import com.travijuu.numberpicker.library.NumberPicker;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -125,13 +132,13 @@ import java.util.UUID;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout markRealKunjungan, markRealPenagihan, markRealPengiriman, realKunjunganBTN, realPenagihanBTN, realPengirimanBTN, noDataPiutang, loadingDataPiutang, loadingDataPartSj, noDataPartSj, noSuratJalanBTN, penagihanLayoutTambahan, pengirimanLayoutTambahan, submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
+    LinearLayout addProductBTN, productInputDetailPart, loadingDataPartProduk, noDataPartProduk, startAttantionPart, startAttantionPartProduk, productChoiceBTN, markRealKunjungan, markRealPenagihan, markRealPengiriman, realKunjunganBTN, realPenagihanBTN, realPengirimanBTN, noDataPiutang, loadingDataPiutang, loadingDataPartSj, noDataPartSj, noSuratJalanBTN, promosiLayoutTambahan, penagihanLayoutTambahan, pengirimanLayoutTambahan, submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
     SharedPrefManager sharedPrefManager;
-    EditText keteranganKunjunganRealisasiED, keteranganUpdateED;
+    EditText keywordEDProduk, keteranganKunjunganRealisasiED, keteranganUpdateED;
     ExpandableLayout updateRealisasiKunjunganForm, rescheduleForm, updateForm;
     RequestQueue requestQueue;
-    TextView agendaLabel, totalInvTV, noSuratJalanChoiceTV, noSuratJalanTV, countImageUpdateTV, countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, labelLampTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
-    String tipeLaporan = "", idReport = "";
+    TextView inputTotalPesananTV, subTotalTV, productHargaSatuanTV, productChoiceTV, agendaLabel, totalInvTV, noSuratJalanChoiceTV, noSuratJalanTV, countImageUpdateTV, countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, labelLampTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
+    String subTotal = "", qtyProduct = "", tipeLaporan = "", idReport = "", idProduct = "", productName = "", productHargaSatuan = "";
     SwipeRefreshLayout refreshLayout;
     SharedPrefAbsen sharedPrefAbsen;
     private StatusBarColorManager mStatusBarColorManager;
@@ -143,7 +150,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     ResultReceiver resultReceiver;
     Context mContext;
     Activity mActivity;
-    String idPelanggan = "", locationNow = "", salesLat = "", salesLong = "", choiceDateReschedule = "";
+    String fullDataProduct = "", idPelanggan = "", locationNow = "", salesLat = "", salesLong = "", choiceDateReschedule = "";
     int REQUEST_IMAGE = 100;
     private Uri uri;
     private List<String> lampiranImage = new ArrayList<>();
@@ -152,7 +159,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     NestedScrollView scrollView;
     CheckBox agendaCB1, agendaCB2, agendaCB3;
     CheckBox realisasiCB1, realisasiCB2, realisasiCB3;
-    ImageView loadingDataInvImg;
+    ImageView loadingGifProduk, loadingDataInvImg;
     BottomSheetLayout bottomSheet;
     RecyclerView noSjRV;
     ImageView loadingGifSj;
@@ -163,6 +170,12 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     int totalTagihan = 0;
     private DataInvoicePiutang[] dataInvoicePiutangs;
     private AdapterInvoicePiutangRealisasi adapterInvoicePiutang;
+    RecyclerView produkRV, listProductInputRV;
+    private ProductSuma[] productSumas;
+    private AdapterProductSumaRealisasi adapterProductSuma;
+    NumberPicker qtyProductPicker;
+    private List<String> dataProduct = new ArrayList<>();
+    private AdapterProductInputSuma adapterProductInputSuma;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,6 +231,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         tanggalBuatTV = findViewById(R.id.tanggal_buat_tv);
         totalPesananPart = findViewById(R.id.total_pesanan_part);
         totalPesananTV = findViewById(R.id.total_pesanan_tv);
+        inputTotalPesananTV = findViewById(R.id.input_total_pesanan_tv);
         totalPenagihanPart = findViewById(R.id.total_penagihan_part);
         totalPenagihanTV = findViewById(R.id.total_piutang_tv);
         noSuratJalanPart = findViewById(R.id.no_surat_jalan_part);
@@ -250,17 +264,34 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         loadingDataPiutang = findViewById(R.id.loading_data_inv);
         pengirimanLayoutTambahan = findViewById(R.id.pengiriman_layout_tambahan);
         penagihanLayoutTambahan = findViewById(R.id.penagihan_layout_tambahan);
+        promosiLayoutTambahan = findViewById(R.id.promosi_layout_tambahan);
         noSuratJalanBTN = findViewById(R.id.no_surat_jalan_btn);
         noSuratJalanChoiceTV = findViewById(R.id.no_surat_jalan_choice_tv);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         totalInvTV = findViewById(R.id.total_inv_tv);
         invRV = findViewById(R.id.inv_rv);
         agendaLabel = findViewById(R.id.agenda_label);
+        productChoiceBTN = findViewById(R.id.product_choice_btn);
+        productChoiceTV = findViewById(R.id.product_choice_tv);
+        productInputDetailPart = findViewById(R.id.product_input_detail_part);
+        qtyProductPicker = findViewById(R.id.qty_product_picker);
+        productHargaSatuanTV = findViewById(R.id.product_harga_satuan_tv);
+        subTotalTV = findViewById(R.id.sub_total_tv);
+        addProductBTN = findViewById(R.id.add_product_btn);
+        listProductInputRV = findViewById(R.id.item_produk_input_rv);
+
+        adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
+        listProductInputRV.setLayoutManager(new LinearLayoutManager(this));
+        listProductInputRV.setAdapter(adapterProductInputSuma);
+        listProductInputRV.setHasFixedSize(true);
+        listProductInputRV.setNestedScrollingEnabled(false);
+        listProductInputRV.setItemAnimator(new DefaultItemAnimator());
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
                 .into(loadingDataInvImg);
 
+        LocalBroadcastManager.getInstance(this).registerReceiver(productSumaBroad, new IntentFilter("product_suma_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(noSuratJalanBroad, new IntentFilter("list_no_sj"));
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
@@ -341,6 +372,17 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             }
         });
 
+        realisasiCB1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    promosiLayoutTambahan.setVisibility(View.VISIBLE);
+                } else {
+                    promosiLayoutTambahan.setVisibility(View.GONE);
+                }
+            }
+        });
+
         realisasiCB2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -378,6 +420,82 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 } else {
                     pengirimanLayoutTambahan.setVisibility(View.GONE);
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NO_SJ, "");
+                }
+            }
+        });
+
+        productChoiceBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                productListBottomSheet();
+            }
+        });
+
+        qtyProductPicker.setValueChangedListener(new ValueChangedListener() {
+            @Override
+            public void valueChanged(int value, ActionEnum action) {
+                qtyProduct = String.valueOf(value);
+                if (productHargaSatuan.equals("")) {
+                    qtyProductPicker.setValue(0);
+                    new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap pilih produk terlebih dahulu")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    Locale localeID = new Locale("id", "ID");
+                    DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
+                    decimalFormat.applyPattern("¤ #,##0;-¤ #,##0");
+                    decimalFormat.setMaximumFractionDigits(0);
+                    subTotalTV.setText(decimalFormat.format(Integer.parseInt(String.valueOf(Integer.parseInt(productHargaSatuan) * value))));
+                    subTotal = String.valueOf(Integer.parseInt(productHargaSatuan) * value);
+                }
+            }
+        });
+
+        addProductBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})
+            @Override
+            public void onClick(View v) {
+                if (idProduct.equals("")) {
+                    qtyProductPicker.setValue(0);
+                    new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap pilih produk terlebih dahulu")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    fullDataProduct = idProduct + "/" + productName + "/" + productHargaSatuan + "/" + qtyProduct + "/" + subTotal;
+                    if (!fullDataProduct.isEmpty() || fullDataProduct.equals("")) {
+                        dataProduct.add(fullDataProduct);
+                        adapterProductInputSuma.notifyDataSetChanged();
+                        productChoiceTV.setText("Pilih produk untuk menambahkan...");
+                        productHargaSatuanTV.setText("Rp 0");
+                        subTotalTV.setText("Rp 0");
+                        qtyProductPicker.setMin(0);
+                        qtyProductPicker.setValue(0);
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PRODUCT_ACTIVE, "");
+                        fullDataProduct = "";
+                        idProduct = "";
+                        productName = "";
+                        productHargaSatuan = "";
+                        qtyProduct = "";
+                        subTotal = "";
+                        productInputDetailPart.setVisibility(View.GONE);
+                        hitungTotalPesanan();
+                    }
                 }
             }
         });
@@ -706,6 +824,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         });
 
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NO_SJ, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PRODUCT_ACTIVE, "");
 
     }
 
@@ -873,6 +992,121 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         postRequest.setRetryPolicy(retryPolicy);
 
+
+    }
+
+    private void productListBottomSheet() {
+        bottomSheet.showWithSheetView(LayoutInflater.from(DetailReportSumaActivity.this).inflate(R.layout.layout_report_suma_list_product, bottomSheet, false));
+        keywordEDProduk = findViewById(R.id.keyword_ed_produk);
+        keywordEDProduk.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
+        produkRV = findViewById(R.id.produk_rv);
+        startAttantionPartProduk = findViewById(R.id.attantion_data_part_produk);
+        noDataPartProduk = findViewById(R.id.no_data_part_produk);
+        loadingDataPartProduk = findViewById(R.id.loading_data_part_produk);
+        loadingGifProduk = findViewById(R.id.loading_data_produk);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_sgn_digital)
+                .into(loadingGifProduk);
+
+        produkRV.setLayoutManager(new LinearLayoutManager(this));
+        produkRV.setHasFixedSize(true);
+        produkRV.setNestedScrollingEnabled(false);
+        produkRV.setItemAnimator(new DefaultItemAnimator());
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getProduct("Semua");
+            }
+        }, 800);
+
+        keywordEDProduk.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                keteranganKunjunganRealisasiED.clearFocus();
+                String keyWordSearch = keywordEDProduk.getText().toString();
+                startAttantionPartProduk.setVisibility(View.GONE);
+                loadingDataPartProduk.setVisibility(View.VISIBLE);
+                noDataPartProduk.setVisibility(View.GONE);
+                produkRV.setVisibility(View.GONE);
+
+                if (!keyWordSearch.equals("")) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getProduct(keyWordSearch);
+                        }
+                    }, 500);
+                }
+            }
+
+        });
+
+    }
+
+    private void getProduct(String keyword) {
+        String wilayah = sharedPrefManager.getSpCabName();
+        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/list_produk?keyword="+keyword+"&wilayah="+wilayah;
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                API_ENDPOINT_CUSTOMER,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle the response
+                        Log.d(MotionEffect.TAG, "Response: " + response.toString());
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            String status = response.getString("status");
+
+                            if (status.equals("Success")) {
+                                startAttantionPartProduk.setVisibility(View.GONE);
+                                loadingDataPartProduk.setVisibility(View.GONE);
+                                noDataPartProduk.setVisibility(View.GONE);
+                                produkRV.setVisibility(View.VISIBLE);
+
+                                String data = response.getString("data");
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                productSumas = gson.fromJson(data, ProductSuma[].class);
+                                adapterProductSuma = new AdapterProductSumaRealisasi(productSumas, DetailReportSumaActivity.this);
+                                produkRV.setAdapter(adapterProductSuma);
+                            } else {
+                                startAttantionPartProduk.setVisibility(View.GONE);
+                                loadingDataPartProduk.setVisibility(View.GONE);
+                                noDataPartProduk.setVisibility(View.VISIBLE);
+                                produkRV.setVisibility(View.GONE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle the error
+                        Log.e(MotionEffect.TAG, "Volley error: " + error.getMessage());
+                        connectionFailed();
+                    }
+                }) {
+        };
+
+        requestQueue.add(jsonObjectRequest);
 
     }
 
@@ -1706,7 +1940,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 if(tipeLaporan.equals("1")){
                                     updatePart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.GONE);
-                                    reportKategoriTV.setText("RENCANA");
+                                    reportKategoriTV.setText("RENCANA KUNJUNGAN");
                                     tglRencanaPart.setVisibility(View.VISIBLE);
                                     totalPesananPart.setVisibility(View.GONE);
                                     totalPenagihanPart.setVisibility(View.GONE);
@@ -1910,7 +2144,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     }
                                     updateRealisasiKunjunganPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
-                                    reportKategoriTV.setText("LAPORAN KUNJUNGAN");
+                                    reportKategoriTV.setText("LAPORAN PROMOSI");
                                     tglRencanaPart.setVisibility(View.GONE);
                                     totalPesananPart.setVisibility(View.VISIBLE);
                                     totalPenagihanPart.setVisibility(View.GONE);
@@ -2589,6 +2823,49 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
     }
 
+    public BroadcastReceiver productSumaBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String id_product = intent.getStringExtra("id_product");
+            String nama_product = intent.getStringExtra("nama_product");
+            String harga_satuan = intent.getStringExtra("harga_satuan");
+
+            Locale localeID = new Locale("id", "ID");
+            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
+            decimalFormat.applyPattern("¤ #,##0;-¤ #,##0");
+            decimalFormat.setMaximumFractionDigits(0);
+
+            productInputDetailPart.setVisibility(View.VISIBLE);
+            idProduct = id_product;
+            productName = nama_product;
+            productHargaSatuan = harga_satuan;
+            qtyProductPicker.setMin(1);
+            qtyProductPicker.setValue(1);
+            qtyProduct = String.valueOf(qtyProductPicker.getValue());
+            subTotal = String.valueOf(qtyProductPicker.getValue() * Integer.parseInt(harga_satuan));
+
+            productChoiceTV.setText(nama_product);
+            productHargaSatuanTV.setText(decimalFormat.format(Integer.parseInt(harga_satuan)));
+            subTotalTV.setText(decimalFormat.format(Integer.parseInt(String.valueOf(qtyProductPicker.getValue() * Integer.parseInt(harga_satuan)))));
+
+            InputMethodManager imm = (InputMethodManager) DetailReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            View view = DetailReportSumaActivity.this.getCurrentFocus();
+            if (view == null) {
+                view = new View(DetailReportSumaActivity.this);
+            }
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            keteranganKunjunganRealisasiED.clearFocus();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                }
+            }, 300);
+        }
+    };
+
     private void getDataInvoice(String id_pelanggan) {
         final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/tagihan_per_invoice?customerId="+id_pelanggan;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -2692,6 +2969,26 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         };
 
         requestQueue.add(jsonObjectRequest);
+
+    }
+
+    private void hitungTotalPesanan() {
+        Locale localeID = new Locale("id", "ID");
+        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
+        decimalFormat.applyPattern("¤ #,##0;-¤ #,##0");
+        decimalFormat.setMaximumFractionDigits(0);
+
+        String[] array = new String[dataProduct.size()];
+        array = dataProduct.toArray(array);
+
+        int jumlah = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            String[] arrayData = array[i].split("/");
+            jumlah += Integer.parseInt(arrayData[4]);
+        }
+        totalPesanan = jumlah;
+        inputTotalPesananTV.setText(decimalFormat.format(jumlah));
 
     }
 
