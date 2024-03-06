@@ -1982,6 +1982,13 @@ public class ReportSumaActivity extends AppCompatActivity {
                             getPelangganLama(keyWordSearch);
                         }
                     }, 500);
+                } else {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getPelangganLama("Semua");
+                        }
+                    }, 500);
                 }
             }
 
@@ -2041,6 +2048,13 @@ public class ReportSumaActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             getPelangganLama(keyWordSearch);
+                        }
+                    }, 500);
+                } else {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getPelangganLama("Semua");
                         }
                     }, 500);
                 }
@@ -2132,6 +2146,13 @@ public class ReportSumaActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             getProduct(keyWordSearch);
+                        }
+                    }, 500);
+                } else {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getProduct("Semua");
                         }
                     }, 500);
                 }

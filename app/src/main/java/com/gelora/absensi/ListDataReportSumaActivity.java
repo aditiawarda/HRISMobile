@@ -974,6 +974,13 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                             getSales(keyWordSearch);
                         }
                     }, 500);
+                } else {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getSales("Semua");
+                        }
+                    }, 500);
                 }
             }
 

@@ -293,16 +293,61 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
         LocalBroadcastManager.getInstance(this).registerReceiver(productSumaBroad, new IntentFilter("product_suma_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(noSuratJalanBroad, new IntentFilter("list_no_sj"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(productDeleteBroad, new IntentFilter("product_delete_broad"));
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onRefresh() {
                 rescheduleForm.collapse();
-                rescheduleForm.collapse();
+                updateForm.collapse();
+                updateRealisasiKunjunganForm.collapse();
                 choiceDateTV.setText("");
                 choiceDateReschedule = "";
                 lampiranImage.clear();
+                keteranganKunjunganRealisasiED.setText("");
+
+                dataProduct.clear();
+                realisasiCB1.setChecked(false);
+                realisasiCB2.setChecked(false);
+                realisasiCB3.setChecked(false);
+                promosiLayoutTambahan.setVisibility(View.GONE);
+                penagihanLayoutTambahan.setVisibility(View.GONE);
+                pengirimanLayoutTambahan.setVisibility(View.GONE);
+                totalPesanan = 0;
+                inputTotalPesananTV.setText("Rp 0");
+                totalTagihan = 0;
+                totalInvTV.setText("Rp 0");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NO_SJ, "");
+                noSuratJalanChoiceTV.setText("");
+
+                adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
+                listProductInputRV.setLayoutManager(new LinearLayoutManager(DetailReportSumaActivity.this));
+                listProductInputRV.setAdapter(adapterProductInputSuma);
+                listProductInputRV.setHasFixedSize(true);
+                listProductInputRV.setNestedScrollingEnabled(false);
+                listProductInputRV.setItemAnimator(new DefaultItemAnimator());
+
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PRODUCT_ACTIVE, "");
+                productChoiceTV.setText("Pilih produk untuk menambahkan...");
+                productHargaSatuanTV.setText("Rp 0");
+                subTotalTV.setText("Rp 0");
+                qtyProductPicker.setMin(0);
+                qtyProductPicker.setValue(0);
+                idProduct = "";
+                productName = "";
+                productHargaSatuan = "";
+                qtyProduct = "";
+                subTotal = "";
+                productInputDetailPart.setVisibility(View.GONE);
+                totalPesananTV.setText("Rp 0");
+                labelLampTV.setText("+ Lampiran Foto/SP");
+                viewLampiranRealisasiBTN.setVisibility(View.GONE);
+
+                uri = null;
+                lampiranImage.clear();
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -847,6 +892,44 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         }
     }
 
+    public BroadcastReceiver productDeleteBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String index = intent.getStringExtra("index");
+
+            new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                    .setTitleText("Perhatian")
+                    .setContentText("Yakin untuk menghapus produk pesanan?")
+                    .setCancelText("TIDAK")
+                    .setConfirmText("   YA   ")
+                    .showCancelButton(true)
+                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(KAlertDialog sDialog) {
+                            sDialog.dismiss();
+                        }
+                    })
+                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(KAlertDialog sDialog) {
+                            sDialog.dismiss();
+                            dataProduct.remove(Integer.parseInt(index));
+
+                            adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
+                            listProductInputRV.setLayoutManager(new LinearLayoutManager(DetailReportSumaActivity.this));
+                            listProductInputRV.setAdapter(adapterProductInputSuma);
+                            listProductInputRV.setHasFixedSize(true);
+                            listProductInputRV.setNestedScrollingEnabled(false);
+                            listProductInputRV.setItemAnimator(new DefaultItemAnimator());
+
+                            hitungTotalPesanan();
+                        }
+                    })
+                    .show();
+        }
+    };
+
     public BroadcastReceiver noSuratJalanBroad = new BroadcastReceiver() {
         @SuppressLint("SetTextI18n")
         @Override
@@ -1045,6 +1128,13 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                         @Override
                         public void run() {
                             getProduct(keyWordSearch);
+                        }
+                    }, 500);
+                } else {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getProduct("Semua");
                         }
                     }, 500);
                 }
