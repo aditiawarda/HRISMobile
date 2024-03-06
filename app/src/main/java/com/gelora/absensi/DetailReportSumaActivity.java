@@ -2085,9 +2085,14 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("id_report", idReport);
+
+                Log.d("cek params: ", params.toString());
+
                 return params;
             }
+
         };
+
 
         requestQueue.add(postRequest);
 
