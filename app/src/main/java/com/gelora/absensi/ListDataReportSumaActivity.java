@@ -1157,11 +1157,10 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    refreshLayout.setRefreshing(false);
                     if(categoryCode.equals("1")){
                         getData(categoryCode);
                     } else {
-                        getData(subCategoryCode);
+                        getData("0");
                     }
                 }
             }, 1000);
@@ -1177,7 +1176,6 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                      @Override
                      public void run() {
-                         refreshLayout.setRefreshing(false);
                          getData(categoryCode);
                      }
                 }, 1000);
@@ -1207,8 +1205,19 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                  new Handler().postDelayed(new Runnable() {
                      @Override
                      public void run() {
-                         refreshLayout.setRefreshing(false);
-                         getData(subCategoryCode);
+                         if(subCategoryChoiceTV.getText().toString().equals("Aktivitas Promosi")){
+                             categoryCode = "0";
+                             subCategoryCode = "2";
+                             getData(subCategoryCode);
+                         } else if(subCategoryChoiceTV.getText().toString().equals("Aktivitas Penagihan")){
+                             categoryCode = "0";
+                             subCategoryCode = "3";
+                             getData(subCategoryCode);
+                         } else if(subCategoryChoiceTV.getText().toString().equals("Aktivitas Pengiriman")){
+                             categoryCode = "0";
+                             subCategoryCode = "4";
+                             getData(subCategoryCode);
+                         }
                      }
                  }, 1000);
             }
