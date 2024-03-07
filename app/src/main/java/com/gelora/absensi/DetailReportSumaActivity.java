@@ -69,6 +69,7 @@ import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterInvoicePiutangRealisasi;
 import com.gelora.absensi.adapter.AdapterNoSuratJalanRealisasi;
 import com.gelora.absensi.adapter.AdapterProductInputSuma;
+import com.gelora.absensi.adapter.AdapterProductInputSumaRealisasi;
 import com.gelora.absensi.adapter.AdapterProductSumaRealisasi;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataInvoicePiutang;
@@ -154,6 +155,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     int REQUEST_IMAGE = 100;
     private Uri uri;
     private List<String> lampiranImage = new ArrayList<>();
+    private List<String> extentionImage = new ArrayList<>();
     KAlertDialog pDialog;
     private int i = -1;
     NestedScrollView scrollView;
@@ -175,7 +177,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     private AdapterProductSumaRealisasi adapterProductSuma;
     NumberPicker qtyProductPicker;
     private List<String> dataProduct = new ArrayList<>();
-    private AdapterProductInputSuma adapterProductInputSuma;
+    private AdapterProductInputSumaRealisasi adapterProductInputSuma;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -280,7 +282,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         addProductBTN = findViewById(R.id.add_product_btn);
         listProductInputRV = findViewById(R.id.item_produk_input_rv);
 
-        adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
+        adapterProductInputSuma = new AdapterProductInputSumaRealisasi(dataProduct);
         listProductInputRV.setLayoutManager(new LinearLayoutManager(this));
         listProductInputRV.setAdapter(adapterProductInputSuma);
         listProductInputRV.setHasFixedSize(true);
@@ -293,7 +295,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
         LocalBroadcastManager.getInstance(this).registerReceiver(productSumaBroad, new IntentFilter("product_suma_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(noSuratJalanBroad, new IntentFilter("list_no_sj"));
-        LocalBroadcastManager.getInstance(this).registerReceiver(productDeleteBroad, new IntentFilter("product_delete_broad"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(productDeleteBroad, new IntentFilter("product_delete_broad_realisasi"));
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -306,6 +308,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 choiceDateTV.setText("");
                 choiceDateReschedule = "";
                 lampiranImage.clear();
+                extentionImage.clear();
                 keteranganKunjunganRealisasiED.setText("");
 
                 dataProduct.clear();
@@ -322,7 +325,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NO_SJ, "");
                 noSuratJalanChoiceTV.setText("");
 
-                adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
+                adapterProductInputSuma = new AdapterProductInputSumaRealisasi(dataProduct);
                 listProductInputRV.setLayoutManager(new LinearLayoutManager(DetailReportSumaActivity.this));
                 listProductInputRV.setAdapter(adapterProductInputSuma);
                 listProductInputRV.setHasFixedSize(true);
@@ -347,6 +350,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                 uri = null;
                 lampiranImage.clear();
+                extentionImage.clear();
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -916,7 +920,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                             sDialog.dismiss();
                             dataProduct.remove(Integer.parseInt(index));
 
-                            adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
+                            adapterProductInputSuma = new AdapterProductInputSumaRealisasi(dataProduct);
                             listProductInputRV.setLayoutManager(new LinearLayoutManager(DetailReportSumaActivity.this));
                             listProductInputRV.setAdapter(adapterProductInputSuma);
                             listProductInputRV.setHasFixedSize(true);
@@ -1718,6 +1722,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                     params.put("pengiriman", "false");
                 }
                 params.put("jumlah_lampiran", String.valueOf(lampiranImage.size()));
+                params.put("extensi_lampiran", listToString(extentionImage));
                 return params;
             }
         };
@@ -1781,6 +1786,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                             getData();
                                             updateForm.collapse();
                                             lampiranImage.clear();
+                                            extentionImage.clear();
                                             fotoLamBTN.setVisibility(View.VISIBLE);
                                             viewLampiranUpdateBTN.setVisibility(View.GONE);
                                         }
@@ -1912,8 +1918,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 String stringUri = String.valueOf(uri);
                 String extension = stringUri.substring(stringUri.lastIndexOf("."));
                 try {
-                    if(extension.equals(".jpg")||extension.equals(".JPG")){
+                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")||extension.equals(".png")||extension.equals(".PNG")){
                         lampiranImage.add(stringUri);
+                        extentionImage.add(extension);
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                         String file_directori = getRealPathFromURIPath(uri, DetailReportSumaActivity.this);
                         String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
@@ -3131,5 +3138,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         return stringBuilder.toString();
     }
 
+    protected void onResume() {
+        super.onResume();
+        permissionLoc();
+    }
 
 }

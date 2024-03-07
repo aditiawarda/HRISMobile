@@ -183,6 +183,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     int REQUEST_IMAGE = 100;
     private Uri uri;
     private List<String> lampiranImage = new ArrayList<>();
+    private List<String> extentionImage = new ArrayList<>();
     KAlertDialog pDialog;
     private int i = -1;
 
@@ -399,6 +400,7 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                 uri = null;
                 lampiranImage.clear();
+                extentionImage.clear();
                 fullBase64String = "";
                 f2TotalPesanan = 0;
 
@@ -1300,6 +1302,7 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                     uri = null;
                     lampiranImage.clear();
+                    extentionImage.clear();
                     fullBase64String = "";
                     f2TotalPesanan = 0;
 
@@ -1407,6 +1410,7 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                     uri = null;
                     lampiranImage.clear();
+                    extentionImage.clear();
                     fullBase64String = "";
                     f2TotalPesanan = 0;
 
@@ -1545,6 +1549,7 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                         uri = null;
                         lampiranImage.clear();
+                        extentionImage.clear();
                         fullBase64String = "";
                         f2TotalPesanan = 0;
 
@@ -1660,6 +1665,7 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                         uri = null;
                         lampiranImage.clear();
+                        extentionImage.clear();
                         fullBase64String = "";
                         f2TotalPesanan = 0;
 
@@ -2914,8 +2920,9 @@ public class ReportSumaActivity extends AppCompatActivity {
                 String stringUri = String.valueOf(uri);
                 String extension = stringUri.substring(stringUri.lastIndexOf("."));
                 try {
-                    if(extension.equals(".jpg")||extension.equals(".JPG")){
+                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")||extension.equals(".png")||extension.equals(".PNG")){
                         lampiranImage.add(stringUri);
+                        extentionImage.add(stringUri);
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                         String file_directori = getRealPathFromURIPath(uri, ReportSumaActivity.this);
                         String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
@@ -3091,6 +3098,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     params.put("created_at", getTimeStamp());
                     params.put("total_laporan", String.valueOf(f2TotalPesanan));
                     params.put("jumlah_lampiran", String.valueOf(lampiranImage.size()));
+                    params.put("extensi_lampiran", listToString(extentionImage));
 
                 }
 
