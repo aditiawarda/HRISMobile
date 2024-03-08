@@ -404,7 +404,7 @@ public class SplashScreen extends AppCompatActivity {
                             String close_btn = data.getString("close_btn");
 
                             if (status.equals("Success")){
-                                String currentVersion = "2.2.3";
+                                String currentVersion = "2.2.4";
                                 if (popup.equals("1") && ((!currentVersion.equals(version) && target.equals("all")) || target.equals(currentVersion))){
                                     refreshPart.animate()
                                             .translationY(refreshPart.getHeight())
