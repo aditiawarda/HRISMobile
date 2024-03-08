@@ -2023,7 +2023,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 String latitude = dataArray.getString("latitude");
                                 String longitude = dataArray.getString("longitude");
                                 String idSales = dataArray.getString("idSales");
-                                getSales(idSales);
+                                getSales(idSales, latitude, longitude);
                                 tipeLaporan = dataArray.getString("tipeLaporan");
                                 String createdAt = dataArray.getString("createdAt");
                                 idPelanggan = dataArray.getString("idPelanggan");
@@ -2374,7 +2374,6 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     float zoomLevel = 17.8f;
                                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPoint, zoomLevel));
                                     mMap.getUiSettings().setCompassEnabled(false);
-                                    mMap.addMarker(new MarkerOptions().position(userPoint).title(sharedPrefManager.getSpNama()).snippet(latitude+","+longitude).icon(BitmapDescriptorFactory.fromResource(R.drawable.location_picker_ic)));
                                     Location location = new Location("dummyProvider");
                                     location.setLatitude(Double.parseDouble(latitude));
                                     location.setLongitude(Double.parseDouble(longitude));
@@ -2426,7 +2425,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
     }
 
-    private void getSales(String nik) {
+    private void getSales(String nik, String latitude, String longitude) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/get_sales";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -2445,6 +2444,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 String NIK = data.getString("NIK");
                                 namaSalesTV.setText(nama);
                                 nikSalesTV.setText(NIK);
+                                if(mMap != null && (tipeLaporan.equals("2") || tipeLaporan.equals("3") || tipeLaporan.equals("4"))){
+                                    mMap.addMarker(new MarkerOptions().position(userPoint).title(nama).snippet(latitude+","+longitude).icon(BitmapDescriptorFactory.fromResource(R.drawable.location_picker_ic)));
+                                }
                             } else {
                                 new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
