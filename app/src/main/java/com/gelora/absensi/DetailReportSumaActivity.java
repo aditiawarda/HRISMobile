@@ -47,6 +47,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -176,7 +177,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     private ProductSuma[] productSumas;
     private AdapterProductSumaRealisasi adapterProductSuma;
     NumberPicker qtyProductPicker;
-    private List<String> dataProduct = new ArrayList<>();
+    private List<String> dataProductRealisasi = new ArrayList<>();
     private AdapterProductInputSumaRealisasi adapterProductInputSuma;
 
     @Override
@@ -282,7 +283,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         addProductBTN = findViewById(R.id.add_product_btn);
         listProductInputRV = findViewById(R.id.item_produk_input_rv);
 
-        adapterProductInputSuma = new AdapterProductInputSumaRealisasi(dataProduct);
+        adapterProductInputSuma = new AdapterProductInputSumaRealisasi(dataProductRealisasi);
         listProductInputRV.setLayoutManager(new LinearLayoutManager(this));
         listProductInputRV.setAdapter(adapterProductInputSuma);
         listProductInputRV.setHasFixedSize(true);
@@ -311,7 +312,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 extentionImage.clear();
                 keteranganKunjunganRealisasiED.setText("");
 
-                dataProduct.clear();
+                dataProductRealisasi.clear();
                 realisasiCB1.setChecked(false);
                 realisasiCB2.setChecked(false);
                 realisasiCB3.setChecked(false);
@@ -325,7 +326,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NO_SJ, "");
                 noSuratJalanChoiceTV.setText("");
 
-                adapterProductInputSuma = new AdapterProductInputSumaRealisasi(dataProduct);
+                adapterProductInputSuma = new AdapterProductInputSumaRealisasi(dataProductRealisasi);
                 listProductInputRV.setLayoutManager(new LinearLayoutManager(DetailReportSumaActivity.this));
                 listProductInputRV.setAdapter(adapterProductInputSuma);
                 listProductInputRV.setHasFixedSize(true);
@@ -528,7 +529,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 } else {
                     fullDataProduct = idProduct + "/" + productName + "/" + productHargaSatuan + "/" + qtyProduct + "/" + subTotal;
                     if (!fullDataProduct.isEmpty() || fullDataProduct.equals("")) {
-                        dataProduct.add(fullDataProduct);
+                        dataProductRealisasi.add(fullDataProduct);
                         adapterProductInputSuma.notifyDataSetChanged();
                         productChoiceTV.setText("Pilih produk untuk menambahkan...");
                         productHargaSatuanTV.setText("Rp 0");
@@ -902,35 +903,40 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         public void onReceive(Context context, Intent intent) {
             String index = intent.getStringExtra("index");
 
-            new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
-                    .setTitleText("Perhatian")
-                    .setContentText("Yakin untuk menghapus produk pesanan?")
-                    .setCancelText("TIDAK")
-                    .setConfirmText("   YA   ")
-                    .showCancelButton(true)
-                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                        }
-                    })
-                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                            dataProduct.remove(Integer.parseInt(index));
+            try {
+                new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Yakin untuk menghapus produk pesanan?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                dataProductRealisasi.remove(Integer.parseInt(index));
 
-                            adapterProductInputSuma = new AdapterProductInputSumaRealisasi(dataProduct);
-                            listProductInputRV.setLayoutManager(new LinearLayoutManager(DetailReportSumaActivity.this));
-                            listProductInputRV.setAdapter(adapterProductInputSuma);
-                            listProductInputRV.setHasFixedSize(true);
-                            listProductInputRV.setNestedScrollingEnabled(false);
-                            listProductInputRV.setItemAnimator(new DefaultItemAnimator());
+                                adapterProductInputSuma = new AdapterProductInputSumaRealisasi(dataProductRealisasi);
+                                listProductInputRV.setLayoutManager(new LinearLayoutManager(DetailReportSumaActivity.this));
+                                listProductInputRV.setAdapter(adapterProductInputSuma);
+                                listProductInputRV.setHasFixedSize(true);
+                                listProductInputRV.setNestedScrollingEnabled(false);
+                                listProductInputRV.setItemAnimator(new DefaultItemAnimator());
 
-                            hitungTotalPesanan();
-                        }
-                    })
-                    .show();
+                                hitungTotalPesanan();
+                            }
+                        })
+                        .show();
+            } catch (WindowManager.BadTokenException e){
+                Log.e("Error", e.toString());
+            }
+
         }
     };
 
@@ -1705,7 +1711,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 if(realisasiCB1.isChecked()){
                     params.put("promosi", "true");
                     params.put("total_pesanan", String.valueOf(totalPesanan));
-                    params.put("data_produk", listToString(dataProduct));
+                    params.put("data_produk", listToString(dataProductRealisasi));
                 } else {
                     params.put("promosi", "false");
                 }
@@ -3079,8 +3085,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         decimalFormat.applyPattern("¤ #,##0;-¤ #,##0");
         decimalFormat.setMaximumFractionDigits(0);
 
-        String[] array = new String[dataProduct.size()];
-        array = dataProduct.toArray(array);
+        String[] array = new String[dataProductRealisasi.size()];
+        array = dataProductRealisasi.toArray(array);
 
         int jumlah = 0;
 

@@ -21,10 +21,10 @@ import java.util.Locale;
 
 public class AdapterProductInputSumaRealisasi extends RecyclerView.Adapter<AdapterProductInputSumaRealisasi.ViewHolder> {
 
-    private List<String> dataProduct;
+    private List<String> dataProductRealisasi;
 
-    public AdapterProductInputSumaRealisasi(List<String> dataProduct) {
-        this.dataProduct = dataProduct;
+    public AdapterProductInputSumaRealisasi(List<String> dataProductRealisasi) {
+        this.dataProductRealisasi = dataProductRealisasi;
     }
 
     @NonNull
@@ -37,7 +37,7 @@ public class AdapterProductInputSumaRealisasi extends RecyclerView.Adapter<Adapt
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         int index = position;
-        String data = dataProduct.get(position);
+        String data = dataProductRealisasi.get(position);
 
         Locale localeID = new Locale("id", "ID");
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
@@ -66,7 +66,7 @@ public class AdapterProductInputSumaRealisasi extends RecyclerView.Adapter<Adapt
 
     @Override
     public int getItemCount() {
-        return dataProduct.size();
+        return dataProductRealisasi.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

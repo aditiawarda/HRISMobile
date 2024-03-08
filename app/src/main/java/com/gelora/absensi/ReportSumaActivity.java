@@ -42,6 +42,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -68,6 +69,7 @@ import com.gelora.absensi.adapter.AdapterNoSuratJalan;
 import com.gelora.absensi.adapter.AdapterPelangganLama;
 import com.gelora.absensi.adapter.AdapterPelangganList;
 import com.gelora.absensi.adapter.AdapterProductInputSuma;
+import com.gelora.absensi.adapter.AdapterProductInputSumaRealisasi;
 import com.gelora.absensi.adapter.AdapterProductSuma;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataInvoicePiutang;
@@ -1459,7 +1461,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 categoryReport = "1";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport);
-                reportKategoriChoiceTV.setText("Rencana");
+                reportKategoriChoiceTV.setText("Rencana Kunjungan");
                 markRencana.setVisibility(View.VISIBLE);
                 markAktivitas.setVisibility(View.GONE);
                 rencanaBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
@@ -2579,35 +2581,40 @@ public class ReportSumaActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String index = intent.getStringExtra("index");
 
-            new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
-                    .setTitleText("Perhatian")
-                    .setContentText("Yakin untuk menghapus produk pesanan?")
-                    .setCancelText("TIDAK")
-                    .setConfirmText("   YA   ")
-                    .showCancelButton(true)
-                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                        }
-                    })
-                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                            dataProduct.remove(Integer.parseInt(index));
+            try {
+                new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Yakin untuk menghapus produk pesanan?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                dataProduct.remove(Integer.parseInt(index));
 
-                            adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
-                            f2ListProductInputRV.setLayoutManager(new LinearLayoutManager(ReportSumaActivity.this));
-                            f2ListProductInputRV.setAdapter(adapterProductInputSuma);
-                            f2ListProductInputRV.setHasFixedSize(true);
-                            f2ListProductInputRV.setNestedScrollingEnabled(false);
-                            f2ListProductInputRV.setItemAnimator(new DefaultItemAnimator());
+                                adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
+                                f2ListProductInputRV.setLayoutManager(new LinearLayoutManager(ReportSumaActivity.this));
+                                f2ListProductInputRV.setAdapter(adapterProductInputSuma);
+                                f2ListProductInputRV.setHasFixedSize(true);
+                                f2ListProductInputRV.setNestedScrollingEnabled(false);
+                                f2ListProductInputRV.setItemAnimator(new DefaultItemAnimator());
 
-                            f2HitungTotalPesanan();
-                        }
-                    })
-                    .show();
+                                f2HitungTotalPesanan();
+                            }
+                        })
+                        .show();
+            } catch (WindowManager.BadTokenException e){
+                Log.e("Error", e.toString());
+            }
+
         }
     };
 
