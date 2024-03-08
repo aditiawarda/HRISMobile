@@ -3140,7 +3140,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
     protected void onResume() {
         super.onResume();
-        permissionLoc();
+        getData();
     }
 
 }
