@@ -146,7 +146,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 } else { //Asisten Kepala Departemen
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
-                    addBTN.setVisibility(View.GONE);
+                    addBTN.setVisibility(View.VISIBLE);
                     float density = getResources().getDisplayMetrics().density;
                     contentPart.setPadding((int)(20*density),(int)(20*density),(int)(20*density),(int)(20*density));
                 }
