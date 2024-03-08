@@ -2423,6 +2423,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("id_report", idReport);
+                params.put("from", "android");
                 return params;
             }
         };
