@@ -28,6 +28,7 @@ import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.icu.util.Calendar;
 import android.location.Address;
 import android.location.Geocoder;
@@ -69,7 +70,6 @@ import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterInvoicePiutangRealisasi;
 import com.gelora.absensi.adapter.AdapterNoSuratJalanRealisasi;
-import com.gelora.absensi.adapter.AdapterProductInputSuma;
 import com.gelora.absensi.adapter.AdapterProductInputSumaRealisasi;
 import com.gelora.absensi.adapter.AdapterProductSumaRealisasi;
 import com.gelora.absensi.kalert.KAlertDialog;
@@ -118,6 +118,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -179,6 +181,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     NumberPicker qtyProductPicker;
     private List<String> dataProductRealisasi = new ArrayList<>();
     private AdapterProductInputSumaRealisasi adapterProductInputSuma;
+    private boolean isFirstRun = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,6 +190,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        isFirstRun = false;
 
         resultReceiver = new DetailReportSumaActivity.AddressResultReceiver(new Handler());
         mContext = getBaseContext();
@@ -1925,7 +1929,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 String stringUri = String.valueOf(uri);
                 String extension = stringUri.substring(stringUri.lastIndexOf("."));
                 try {
-                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")||extension.equals(".png")||extension.equals(".PNG")){
+                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")){
                         lampiranImage.add(stringUri);
                         extentionImage.add(extension);
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
@@ -1973,7 +1977,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 }
                             });
                         }
-
+                    } else if(extension.equals(".png")||extension.equals(".PNG")){
+                        String pngImagePath = FilePathimage.getPath(this, uri);
+                        new ConvertImageTask().execute(pngImagePath);
                     } else {
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -3150,7 +3156,103 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
     protected void onResume() {
         super.onResume();
-        getData();
+        if (!isFirstRun) {
+            getData();
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class ConvertImageTask extends AsyncTask<String, Void, Uri> {
+        @Override
+        protected Uri doInBackground(String... params) {
+            String imagePath = params[0];
+            try {
+                return convertPNGtoJPEG(imagePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        protected void onPostExecute(Uri resultUri) {
+            if (resultUri != null) {
+                uri = resultUri;
+                String stringUri = String.valueOf(uri);
+                String extension = stringUri.substring(stringUri.lastIndexOf("."));
+                lampiranImage.add(stringUri);
+                extentionImage.add(extension);
+
+                if(tipeLaporan.equals("1")){
+                    countImageTV.setText(String.valueOf(lampiranImage.size()));
+                    if(lampiranImage.size()>=3){
+                        fotoLampiranRealisasiBTN.setVisibility(View.GONE);
+                    } else {
+                        fotoLampiranRealisasiBTN.setVisibility(View.VISIBLE);
+                    }
+                    viewLampiranRealisasiBTN.setVisibility(View.VISIBLE);
+                    labelLampiranTV.setText("+ Lampiran Foto/SP");
+                    viewLampiranRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                            intent.putExtra("data", String.valueOf(lampiranImage));
+                            startActivity(intent);
+                        }
+                    });
+                } else {
+                    countImageUpdateTV.setText(String.valueOf(lampiranImage.size()));
+                    if(lampiranImage.size()>=3){
+                        fotoLamBTN.setVisibility(View.GONE);
+                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,61
+                        );
+                        layoutParams.setMargins(0, 0, 0, 0);
+                        viewLampiranUpdateBTN.setLayoutParams(layoutParams);
+                    } else {
+                        fotoLamBTN.setVisibility(View.VISIBLE);
+                    }
+                    viewLampiranUpdateBTN.setVisibility(View.VISIBLE);
+                    labelLampTV.setText("Ubah Lampiran Foto/SP");
+                    viewLampiranUpdateBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                            intent.putExtra("data", String.valueOf(lampiranImage));
+                            startActivity(intent);
+                        }
+                    });
+                }
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Terjadi kesalahan")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                }, 800);
+            }
+        }
+
+        private Uri convertPNGtoJPEG(String inputFilePath) throws IOException {
+            Bitmap pngImage = BitmapFactory.decodeFile(inputFilePath);
+            File jpgFile = new File(getExternalFilesDir(null), "output.jpg");
+            FileOutputStream out = new FileOutputStream(jpgFile);
+            pngImage.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+            return Uri.fromFile(jpgFile);
+        }
     }
 
 }

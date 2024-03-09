@@ -24,6 +24,7 @@ import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.icu.util.Calendar;
 import android.location.Address;
 import android.location.Geocoder;
@@ -110,8 +111,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DateFormat;
@@ -2935,17 +2941,17 @@ public class ReportSumaActivity extends AppCompatActivity {
                 String stringUri = String.valueOf(uri);
                 String extension = stringUri.substring(stringUri.lastIndexOf("."));
                 try {
-                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")||extension.equals(".png")||extension.equals(".PNG")){
+                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")) {
                         lampiranImage.add(stringUri);
-                        extentionImage.add(stringUri);
+                        extentionImage.add(extension);
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                         String file_directori = getRealPathFromURIPath(uri, ReportSumaActivity.this);
-                        String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
+                        String a = "File Directory : " + file_directori + " URI: " + String.valueOf(uri);
                         Log.e("PaRSE JSON", a);
 
-                        if(categoryReport.equals("0")){
+                        if (categoryReport.equals("0")) {
                             f2CountImageTV.setText(String.valueOf(lampiranImage.size()));
-                            if(lampiranImage.size()>=3){
+                            if (lampiranImage.size() >= 3) {
                                 f2LampiranFotoBTN.setVisibility(View.GONE);
                             } else {
                                 f2LampiranFotoBTN.setVisibility(View.VISIBLE);
@@ -2963,6 +2969,9 @@ public class ReportSumaActivity extends AppCompatActivity {
                         }
                         uriToBase64(uri);
 
+                    } else if(extension.equals(".png")||extension.equals(".PNG")){
+                        String pngImagePath = FilePathimage.getPath(this, uri);
+                        new ConvertImageTask().execute(pngImagePath);
                     } else {
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -3294,6 +3303,79 @@ public class ReportSumaActivity extends AppCompatActivity {
             jsonArray.remove(0);
         }
         return jsonArray;
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class ConvertImageTask extends AsyncTask<String, Void, Uri> {
+        @Override
+        protected Uri doInBackground(String... params) {
+            String imagePath = params[0];
+            try {
+                return convertPNGtoJPEG(imagePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        protected void onPostExecute(Uri resultUri) {
+            if (resultUri != null) {
+                uri = resultUri;
+                String stringUri = String.valueOf(uri);
+                String extension = stringUri.substring(stringUri.lastIndexOf("."));
+                lampiranImage.add(stringUri);
+                extentionImage.add(extension);
+
+                if (categoryReport.equals("0")) {
+                    f2CountImageTV.setText(String.valueOf(lampiranImage.size()));
+                    if (lampiranImage.size() >= 3) {
+                        f2LampiranFotoBTN.setVisibility(View.GONE);
+                    } else {
+                        f2LampiranFotoBTN.setVisibility(View.VISIBLE);
+                    }
+                    f2ViewLampiranBTN.setVisibility(View.VISIBLE);
+                    f2LabelLampiranTV.setText("+ Lampiran Foto/SP");
+                    f2ViewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(ReportSumaActivity.this, ViewImageSliderActivity.class);
+                            intent.putExtra("data", String.valueOf(lampiranImage));
+                            startActivity(intent);
+                        }
+                    });
+                }
+                uriToBase64(uri);
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Terjadi kesalahan")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                }, 800);
+            }
+        }
+
+        private Uri convertPNGtoJPEG(String inputFilePath) throws IOException {
+            Bitmap pngImage = BitmapFactory.decodeFile(inputFilePath);
+            File jpgFile = new File(getExternalFilesDir(null), "output.jpg");
+            FileOutputStream out = new FileOutputStream(jpgFile);
+            pngImage.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+            return Uri.fromFile(jpgFile);
+        }
     }
 
 }
