@@ -1634,6 +1634,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("id_report", idReport);
                 params.put("tanggal_rencana", choiceDateReschedule);
+                Log.d("cek Payload: ", params.toString());
+
                 return params;
             }
         };
@@ -1716,7 +1718,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                     params.put("pengiriman", "false");
                 }
                 params.put("jumlah_lampiran", String.valueOf(lampiranImage.size()));
+                Log.d("Cek Payload Realisasi", params.toString());
                 return params;
+
             }
         };
 
@@ -2410,7 +2414,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("id_report", idReport);
 
-                Log.d("cek params: ", params.toString());
+                Log.d("cek payload: ", params.toString());
 
                 return params;
             }
