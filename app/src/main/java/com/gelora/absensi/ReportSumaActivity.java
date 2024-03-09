@@ -2289,7 +2289,8 @@ public class ReportSumaActivity extends AppCompatActivity {
 
     private void getProduct(String keyword) {
         String wilayah = sharedPrefManager.getSpCabName();
-        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/list_produk?keyword="+keyword+"&wilayah="+wilayah;
+        String idSales = sharedPrefManager.getSpNik();
+        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/list_produk?keyword="+keyword+"&wilayah="+wilayah+"&id_sales="+idSales;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -2611,7 +2612,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                             }
                         })
                         .show();
-            } catch (WindowManager.BadTokenException e){
+            }
+            catch (WindowManager.BadTokenException e){
                 Log.e("Error", e.toString());
             }
 
@@ -2639,29 +2641,35 @@ public class ReportSumaActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String key = intent.getStringExtra("nama_pelanggan");
 
-            new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
-                    .setTitleText("Perhatian")
-                    .setContentText("Yakin untuk menghapus pelanggan?")
-                    .setCancelText("TIDAK")
-                    .setConfirmText("   YA   ")
-                    .showCancelButton(true)
-                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                        }
-                    })
-                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                            String valueToRemove = key;
-                            JSONArray modifiedArray = removeElementsByValue(f1JsonArrayPelanggan, valueToRemove);
-                            f1JsonArrayPelanggan = modifiedArray;
-                            updateListPelanggan(f1JsonArrayPelanggan.toString());
-                        }
-                    })
-                    .show();
+            try {
+                new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Yakin untuk menghapus pelanggan?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                String valueToRemove = key;
+                                JSONArray modifiedArray = removeElementsByValue(f1JsonArrayPelanggan, valueToRemove);
+                                f1JsonArrayPelanggan = modifiedArray;
+                                updateListPelanggan(f1JsonArrayPelanggan.toString());
+                            }
+                        })
+                        .show();
+            }
+            catch (WindowManager.BadTokenException e){
+                Log.e("Error", e.toString());
+            }
+
         }
     };
 

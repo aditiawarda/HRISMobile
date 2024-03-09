@@ -1156,7 +1156,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
     private void getProduct(String keyword) {
         String wilayah = sharedPrefManager.getSpCabName();
-        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/list_produk?keyword="+keyword+"&wilayah="+wilayah;
+        String idSales = sharedPrefManager.getSpNik();
+        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/list_produk?keyword="+keyword+"&wilayah="+wilayah+"&id_sales="+idSales;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
