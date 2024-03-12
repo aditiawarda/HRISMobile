@@ -70,7 +70,6 @@ import com.gelora.absensi.adapter.AdapterNoSuratJalan;
 import com.gelora.absensi.adapter.AdapterPelangganLama;
 import com.gelora.absensi.adapter.AdapterPelangganList;
 import com.gelora.absensi.adapter.AdapterProductInputSuma;
-import com.gelora.absensi.adapter.AdapterProductInputSumaRealisasi;
 import com.gelora.absensi.adapter.AdapterProductSuma;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataInvoicePiutang;
