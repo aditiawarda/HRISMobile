@@ -783,7 +783,33 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         }
                                         public void onFinish() {
                                             i = -1;
-                                            submitRealisasi();
+                                            if (isDeveloperModeEnabled()){
+                                                pDialog.dismiss();
+                                                new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                                        .setTitleText("Perhatian")
+                                                        .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
+                                                        .setCancelText(" TUTUP ")
+                                                        .setConfirmText("SETTING")
+                                                        .showCancelButton(true)
+                                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                            @Override
+                                                            public void onClick(KAlertDialog sDialog) {
+                                                                sDialog.dismiss();
+                                                            }
+                                                        })
+                                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                            @Override
+                                                            public void onClick(KAlertDialog sDialog) {
+                                                                sDialog.dismiss();
+                                                                startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
+                                                            }
+                                                        })
+                                                        .show();
+
+                                            }
+                                            else {
+                                                submitRealisasi();
+                                            }
                                         }
                                     }.start();
                                 }
@@ -3253,6 +3279,14 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             out.close();
             return Uri.fromFile(jpgFile);
         }
+    }
+
+    public boolean isDeveloperModeEnabled(){
+        if (Integer.valueOf(android.os.Build.VERSION.SDK) >= 17) {
+            return android.provider.Settings.Secure.getInt(DetailReportSumaActivity.this.getApplicationContext().getContentResolver(),
+                    android.provider.Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0) != 0;
+        }
+        return false;
     }
 
 }

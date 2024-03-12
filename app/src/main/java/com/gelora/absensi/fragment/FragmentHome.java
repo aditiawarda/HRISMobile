@@ -333,7 +333,7 @@ public class FragmentHome extends Fragment {
                 if(sharedPrefManager.getSpIdCor().equals("1")){
                     new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Anda akan terhubung dengan Bagian HRD")
+                            .setContentText("Anda akan terhubung dengan Bagian Administrasi HRD")
                             .setCancelText("    BATAL    ")
                             .setConfirmText("  LANJUT  ")
                             .showCancelButton(true)
@@ -359,7 +359,7 @@ public class FragmentHome extends Fragment {
                 } else if(sharedPrefManager.getSpIdCor().equals("3")){
                     new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Anda akan terhubung dengan Bagian IT/EDP")
+                            .setContentText("Anda akan terhubung dengan Bagian Administrasi IT/EDP")
                             .setCancelText("    BATAL    ")
                             .setConfirmText("  LANJUT  ")
                             .showCancelButton(true)
