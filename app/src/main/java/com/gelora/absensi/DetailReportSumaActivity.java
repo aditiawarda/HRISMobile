@@ -1446,6 +1446,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     }
 
     private void submitUpdateData(){
+        Log.d("CON", "submitUpdateData");
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://reporting.sumasistem.co.id/api/update_reporting";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -1515,6 +1516,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 params.put("id_report", idReport);
                 params.put("keterangan", keteranganUpdateED.getText().toString());
                 params.put("jumlah_lampiran_update", String.valueOf(lampiranImage.size()));
+                Log.d("Cek Payload UPDATE: ", params.toString());
                 return params;
             }
         };
@@ -1650,6 +1652,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     }
 
     private void submitRealisasi(){
+        Log.d("CON", "submitRealisasi");
         RequestQueue requestQueue = Volley.newRequestQueue(this);
             final String url = "https://reporting.sumasistem.co.id/api/update_realisasi";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,

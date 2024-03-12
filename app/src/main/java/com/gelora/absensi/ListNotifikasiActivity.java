@@ -332,6 +332,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                 params.put("id_bagian", sharedPrefManager.getSpIdDept());
                 params.put("id_jabatan", sharedPrefManager.getSpIdJabatan());
                 params.put("NIK", sharedPrefManager.getSpNik());
+                Log.d("cek payload list izin", params.toString());
                 return params;
             }
         };

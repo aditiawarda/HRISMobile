@@ -366,6 +366,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.e("PaRSE JSON", response + "");
+                        Log.d("url: ", url);
                         try {
                             String status = response.getString("status");
 
