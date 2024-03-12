@@ -19,7 +19,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -78,6 +80,8 @@ import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -4192,7 +4196,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                 String stringUri = String.valueOf(uri);
                 String extension = stringUri.substring(stringUri.lastIndexOf("."));
                 try {
-                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")||extension.equals(".png")||extension.equals(".PNG")){
+                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")){
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                         String file_directori = getRealPathFromURIPath(uri, EditPermohonanCutiActivity.this);
                         String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
@@ -4222,6 +4226,9 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                             }
                         });
 
+                    } else if(extension.equals(".png")||extension.equals(".PNG")){
+                        String pngImagePath = FilePathimage.getPath(this, uri);
+                        new ConvertImageTask().execute(pngImagePath);
                     } else {
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -4460,6 +4467,89 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class ConvertImageTask extends AsyncTask<String, Void, Uri> {
+        @Override
+        protected Uri doInBackground(String... params) {
+            String imagePath = params[0];
+            try {
+                return convertPNGtoJPEG(imagePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        protected void onPostExecute(Uri resultUri) {
+            if (resultUri != null) {
+                uri = resultUri;
+                String stringUri = String.valueOf(uri);
+                String extension = stringUri.substring(stringUri.lastIndexOf("."));
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                    String file_directori = getRealPathFromURIPath(uri, EditPermohonanCutiActivity.this);
+                    String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
+                    Log.e("PaRSE JSON", a);
+                    markUpload.setVisibility(View.VISIBLE);
+                    viewUploadBTN.setVisibility(View.VISIBLE);
+                    statusUploadTV.setText("Berhasil diunggah");
+                    labelUnggahTV.setText("Ganti");
+                    uploadStatus = "1";
+                    gantiLampiran = "1";
+                    removeLampiranStatus = "0";
+
+                    if(tipeCuti.equals("1")){
+                        removeLampiranBTN.setVisibility(View.VISIBLE);
+                    } else if(tipeCuti.equals("2")){
+                        removeLampiranBTN.setVisibility(View.GONE);
+                    }
+
+                    viewUploadBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(EditPermohonanCutiActivity.this, ViewImageActivity.class);
+                            intent.putExtra("url", String.valueOf(uri));
+                            intent.putExtra("kode", "form");
+                            intent.putExtra("jenis_form", "cuti");
+                            startActivity(intent);
+                        }
+                    });
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        new KAlertDialog(EditPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Terjadi kesalahan")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                }, 800);
+            }
+        }
+
+        private Uri convertPNGtoJPEG(String inputFilePath) throws IOException {
+            Bitmap pngImage = BitmapFactory.decodeFile(inputFilePath);
+            File jpgFile = new File(getExternalFilesDir(null), "output.jpg");
+            FileOutputStream out = new FileOutputStream(jpgFile);
+            pngImage.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+            return Uri.fromFile(jpgFile);
+        }
     }
 
     @Override
