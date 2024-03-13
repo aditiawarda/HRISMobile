@@ -29,6 +29,7 @@ import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.icu.util.Calendar;
 import android.location.Address;
 import android.location.Geocoder;
@@ -47,12 +48,15 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -72,10 +76,14 @@ import com.gelora.absensi.adapter.AdapterInvoicePiutangRealisasi;
 import com.gelora.absensi.adapter.AdapterNoSuratJalanRealisasi;
 import com.gelora.absensi.adapter.AdapterProductInputSumaRealisasi;
 import com.gelora.absensi.adapter.AdapterProductSumaRealisasi;
+import com.gelora.absensi.adapter.AdapterReportComment;
+import com.gelora.absensi.adapter.AdapterSumaReport;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataInvoicePiutang;
 import com.gelora.absensi.model.DataNoSuratJalan;
+import com.gelora.absensi.model.DataReportSuma;
 import com.gelora.absensi.model.ProductSuma;
+import com.gelora.absensi.model.ReportComment;
 import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
 import com.gelora.absensi.support.StatusBarColorManager;
@@ -136,12 +144,12 @@ import java.util.UUID;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout addProductBTN, productInputDetailPart, loadingDataPartProduk, noDataPartProduk, startAttantionPart, startAttantionPartProduk, productChoiceBTN, markRealKunjungan, markRealPenagihan, markRealPengiriman, realKunjunganBTN, realPenagihanBTN, realPengirimanBTN, noDataPiutang, loadingDataPiutang, loadingDataPartSj, noDataPartSj, noSuratJalanBTN, promosiLayoutTambahan, penagihanLayoutTambahan, pengirimanLayoutTambahan, submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
+    LinearLayout noDataComment, commentLoading, commentSendBTNPart, addProductBTN, productInputDetailPart, loadingDataPartProduk, noDataPartProduk, startAttantionPart, startAttantionPartProduk, productChoiceBTN, markRealKunjungan, markRealPenagihan, markRealPengiriman, realKunjunganBTN, realPenagihanBTN, realPengirimanBTN, noDataPiutang, loadingDataPiutang, loadingDataPartSj, noDataPartSj, noSuratJalanBTN, promosiLayoutTambahan, penagihanLayoutTambahan, pengirimanLayoutTambahan, submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
     SharedPrefManager sharedPrefManager;
-    EditText keywordEDProduk, keteranganKunjunganRealisasiED, keteranganUpdateED;
+    EditText commentED, keywordEDProduk, keteranganKunjunganRealisasiED, keteranganUpdateED;
     ExpandableLayout updateRealisasiKunjunganForm, rescheduleForm, updateForm;
     RequestQueue requestQueue;
-    TextView inputTotalPesananTV, subTotalTV, productHargaSatuanTV, productChoiceTV, agendaLabel, totalInvTV, noSuratJalanChoiceTV, noSuratJalanTV, countImageUpdateTV, countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, labelLampTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
+    TextView jumlahKomenTV, inputTotalPesananTV, subTotalTV, productHargaSatuanTV, productChoiceTV, agendaLabel, totalInvTV, noSuratJalanChoiceTV, noSuratJalanTV, countImageUpdateTV, countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, labelLampTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
     String subTotal = "", qtyProduct = "", tipeLaporan = "", idReport = "", idProduct = "", productName = "", productHargaSatuan = "";
     SwipeRefreshLayout refreshLayout;
     SharedPrefAbsen sharedPrefAbsen;
@@ -170,19 +178,23 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     ImageView loadingGifSj;
     private DataNoSuratJalan[] dataNoSuratJalans;
     private AdapterNoSuratJalanRealisasi adapterNoSuratJalan;
+    private AdapterReportComment adapterReportComment;
     RecyclerView invRV;
     int totalPesanan = 0;
     int totalTagihan = 0;
     private DataInvoicePiutang[] dataInvoicePiutangs;
     private AdapterInvoicePiutangRealisasi adapterInvoicePiutang;
-    RecyclerView produkRV, listProductInputRV;
+    RecyclerView produkRV, listProductInputRV, commentRV;
     private ProductSuma[] productSumas;
+    private ReportComment[] reportComments;
     private AdapterProductSumaRealisasi adapterProductSuma;
     NumberPicker qtyProductPicker;
     private List<String> dataProductRealisasi = new ArrayList<>();
     private AdapterProductInputSumaRealisasi adapterProductInputSuma;
     private boolean isFirstRun = true;
+    ImageButton commentSendBTN;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -286,6 +298,18 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         subTotalTV = findViewById(R.id.sub_total_tv);
         addProductBTN = findViewById(R.id.add_product_btn);
         listProductInputRV = findViewById(R.id.item_produk_input_rv);
+        commentED = findViewById(R.id.comment_ed);
+        commentSendBTN = findViewById(R.id.comment_send_btn);
+        commentSendBTNPart = findViewById(R.id.comment_send_btn_part);
+        commentLoading = findViewById(R.id.comment_loading);
+        commentRV = findViewById(R.id.comment_rv);
+        noDataComment = findViewById(R.id.no_data_comment);
+        jumlahKomenTV = findViewById(R.id.jumlah_komen_tv);
+
+        commentRV.setLayoutManager(new LinearLayoutManager(DetailReportSumaActivity.this));
+        commentRV.setHasFixedSize(true);
+        commentRV.setNestedScrollingEnabled(false);
+        commentRV.setItemAnimator(new DefaultItemAnimator());
 
         adapterProductInputSuma = new AdapterProductInputSumaRealisasi(dataProductRealisasi);
         listProductInputRV.setLayoutManager(new LinearLayoutManager(this));
@@ -900,6 +924,62 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                             }
                         })
                         .show();
+            }
+        });
+
+        commentED.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollView.post(() -> scrollView.fullScroll(NestedScrollView.FOCUS_DOWN));
+                    }
+                }, 1000);
+
+                return false;
+            }
+        });
+
+//        commentED.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//            }
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//            }
+//            @Override
+//            public void afterTextChanged(Editable s) {
+////                if(!commentED.getText().toString().equals("")){
+////                    commentLoading.setVisibility(View.GONE);
+////                    commentSendBTNPart.setVisibility(View.VISIBLE);
+////                } else {
+////                    commentLoading.setVisibility(View.GONE);
+////                    commentSendBTNPart.setVisibility(View.GONE);
+////                }
+////                new Handler().postDelayed(new Runnable() {
+////                    @Override
+////                    public void run() {
+////                        scrollView.post(() -> scrollView.fullScroll(NestedScrollView.FOCUS_DOWN));
+////                    }
+////                }, 1000);
+//            }
+//
+//        });
+
+        commentSendBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String comment = commentED.getText().toString();
+                commentED.setText("");
+                commentLoading.setVisibility(View.VISIBLE);
+                commentSendBTNPart.setVisibility(View.GONE);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        sendComment(comment);
+                    }
+                }, 1000);
             }
         });
 
@@ -2067,6 +2147,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 String createdAt = dataArray.getString("createdAt");
                                 idPelanggan = dataArray.getString("idPelanggan");
 
+                                getComment(idReport);
+
                                 tanggalBuatTV.setText(createdAt.substring(8,10)+"/"+createdAt.substring(5,7)+"/"+createdAt.substring(0,4)+" "+createdAt.substring(10,16));
 
                                 if(idSales.equals(sharedPrefManager.getSpNik())){
@@ -2465,6 +2547,49 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
     }
 
+    private void getComment(String id_report){
+        String url = "https://reporting.sumasistem.co.id/api/get_report_comment?id_report="+id_report;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String status = response.getString("status");
+                            if(status.equals("Success")){
+                                String jumlah = response.getString("jumlah");
+                                if(Integer.parseInt(jumlah) > 0){
+                                    jumlahKomenTV.setText(jumlah+" Komentar");
+                                    commentRV.setVisibility(View.VISIBLE);
+                                    noDataComment.setVisibility(View.GONE);
+                                    String data_comment = response.getString("data");
+                                    GsonBuilder builder = new GsonBuilder();
+                                    Gson gson = builder.create();
+                                    reportComments = gson.fromJson(data_comment, ReportComment[].class);
+                                    adapterReportComment = new AdapterReportComment(reportComments, DetailReportSumaActivity.this);
+                                    commentRV.setAdapter(adapterReportComment);
+                                } else {
+                                    jumlahKomenTV.setText("Komentar");
+                                    commentRV.setVisibility(View.GONE);
+                                    noDataComment.setVisibility(View.VISIBLE);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
     private void getSales(String nik, String latitude, String longitude) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/get_sales";
@@ -2522,6 +2647,70 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("nik", nik);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void sendComment(String comment) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://reporting.sumasistem.co.id/api/insert_report_comment";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint({"SetTextI18n", "MissingPermission"})
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                getComment(idReport);
+                                commentLoading.setVisibility(View.GONE);
+                                commentSendBTNPart.setVisibility(View.GONE);
+                            } else {
+                                new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Terjadi kesalahan")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_report", idReport);
+                params.put("nik", sharedPrefManager.getSpNik());
+                params.put("comment", comment);
+                params.put("created_at", getTimeStamp());
                 return params;
             }
         };
@@ -3287,6 +3476,13 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                     android.provider.Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0) != 0;
         }
         return false;
+    }
+
+    private String getTimeStamp() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
 }
