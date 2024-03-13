@@ -37,7 +37,7 @@ import java.util.Map;
 
 public class AllMenuActivity extends AppCompatActivity {
 
-    LinearLayout menuReportSumaBTN, menuReport2SumaBTN, reportSumaPart2, reportSumaPart, menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
+    LinearLayout menuReportSumaBTN, menuReport3SumaBTN, menuReport2SumaBTN, reportSumaPart3, reportSumaPart2, reportSumaPart, menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
     LinearLayout actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
     TextView countNotifGMTV, countNotifClearanceTV, countNotifPenilaianTV;
     SharedPrefManager sharedPrefManager;
@@ -90,8 +90,10 @@ public class AllMenuActivity extends AppCompatActivity {
         projectPart = findViewById(R.id.project_part);
         reportSumaPart = findViewById(R.id.report_suma_part);
         reportSumaPart2 = findViewById(R.id.report_suma_part_2);
+        reportSumaPart3 = findViewById(R.id.report_suma_part_3);
         menuReportSumaBTN = findViewById(R.id.menu_report_suma_btn);
         menuReport2SumaBTN = findViewById(R.id.menu_report_2_suma_btn);
+        menuReport3SumaBTN = findViewById(R.id.menu_report_3_suma_btn);
         menuProjectBTN = findViewById(R.id.menu_project_btn);
         countNotificationPenilaian = findViewById(R.id.count_notification_penilaian);
         countNotifPenilaianTV = findViewById(R.id.count_notif_penilaian_tv);
@@ -387,6 +389,15 @@ public class AllMenuActivity extends AppCompatActivity {
             }
         });
 
+        menuReport3SumaBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllMenuActivity.this, ListDataReportSumaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         roleMenu();
 
     }
@@ -455,6 +466,7 @@ public class AllMenuActivity extends AppCompatActivity {
                 idCardPartSub.setVisibility(View.VISIBLE);
                 projectPartSub.setVisibility(View.GONE);
                 pengaduanPartSub.setVisibility(View.VISIBLE);
+                reportSumaPart3.setVisibility(View.GONE);
 
             } else {
                 if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")){ //Admin
@@ -473,6 +485,7 @@ public class AllMenuActivity extends AppCompatActivity {
                     idCardPartSub.setVisibility(View.VISIBLE);
                     projectPartSub.setVisibility(View.GONE);
                     pengaduanPartSub.setVisibility(View.VISIBLE);
+                    reportSumaPart3.setVisibility(View.GONE);
                     menuSdmBTN.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -496,6 +509,7 @@ public class AllMenuActivity extends AppCompatActivity {
                     idCardPartSub.setVisibility(View.GONE);
                     projectPartSub.setVisibility(View.VISIBLE);
                     pengaduanPartSub.setVisibility(View.VISIBLE);
+                    reportSumaPart3.setVisibility(View.GONE);
                 }
 
             }
@@ -509,8 +523,8 @@ public class AllMenuActivity extends AppCompatActivity {
 
             cutiPart.setVisibility(View.GONE);
             pengaduanPart.setVisibility(View.VISIBLE);
-            if(sharedPrefManager.getSpIdCor().equals("1")){ //PKL dan Freelance
-                if(sharedPrefManager.getSpIdJabatan().equals("29")||sharedPrefManager.getSpIdJabatan().equals("31")){
+            if(sharedPrefManager.getSpIdCor().equals("1")){
+                if(sharedPrefManager.getSpIdJabatan().equals("29")||sharedPrefManager.getSpIdJabatan().equals("31")){ //PKL dan Freelance
                     clearancePart.setVisibility(View.GONE);
                     calendarPart.setVisibility(View.VISIBLE);
 
@@ -519,7 +533,7 @@ public class AllMenuActivity extends AppCompatActivity {
                     idCardPartSub.setVisibility(View.GONE);
                     projectPartSub.setVisibility(View.GONE);
                     pengaduanPartSub.setVisibility(View.GONE);
-                } else {
+                } else { //Harian
                     clearancePart.setVisibility(View.VISIBLE);
                     calendarPart.setVisibility(View.GONE);
 
@@ -528,6 +542,11 @@ public class AllMenuActivity extends AppCompatActivity {
                     idCardPartSub.setVisibility(View.GONE);
                     projectPartSub.setVisibility(View.GONE);
                     pengaduanPartSub.setVisibility(View.GONE);
+                    if(sharedPrefManager.getSpIdHeadDept().equals("3")){
+                        reportSumaPart3.setVisibility(View.VISIBLE);
+                    } else {
+                        reportSumaPart3.setVisibility(View.GONE);
+                    }
                 }
                 messengerPart.setVisibility(View.VISIBLE);
                 newsPart.setVisibility(View.GONE);

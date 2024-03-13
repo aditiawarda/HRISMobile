@@ -24,6 +24,7 @@ import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.icu.util.Calendar;
 import android.location.Address;
 import android.location.Geocoder;
@@ -42,6 +43,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -68,6 +70,7 @@ import com.gelora.absensi.adapter.AdapterNoSuratJalan;
 import com.gelora.absensi.adapter.AdapterPelangganLama;
 import com.gelora.absensi.adapter.AdapterPelangganList;
 import com.gelora.absensi.adapter.AdapterProductInputSuma;
+import com.gelora.absensi.adapter.AdapterProductInputSumaRealisasi;
 import com.gelora.absensi.adapter.AdapterProductSuma;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataInvoicePiutang;
@@ -108,8 +111,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DateFormat;
@@ -154,7 +162,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     private ProductSuma[] productSumas;
     private AdapterPelangganLama adapterPelangganLama;
     private AdapterProductSuma adapterProductSuma;
-    String f2IdPelangganLama = "", f2JenisPelanggan = "", f2TotalPesanan = "", f2FullDataProduct = "", f2QtyProduct = "", f2IdProduct = "", f2ProductName = "", f2ProductHargaSatuan = "", f2SubTotal = "";
+    String f2IdPelangganLama = "", f2JenisPelanggan = "", f2FullDataProduct = "", f2QtyProduct = "", f2IdProduct = "", f2ProductName = "", f2ProductHargaSatuan = "", f2SubTotal = "";
     CheckBox f2CB1, f2CB2, f2CB3;
     int f2TotalInvTagihan = 0;
     ImageView f2LoadingDataInvImg;
@@ -175,7 +183,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     ImageView loadingForm, loadingGif, loadingGifProduk, successGif;
     String salesLat = "", salesLong = "", categoryReport = "", laporanTerkirim = "", fullBase64String = "";
 
-    int totalLaporan = 0;
+    int f2TotalPesanan = 0;
     private List<String> dataProduct = new ArrayList<>();
     private AdapterProductInputSuma adapterProductInputSuma;
     private static final int INITIAL_REQUEST = 1337;
@@ -183,6 +191,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     int REQUEST_IMAGE = 100;
     private Uri uri;
     private List<String> lampiranImage = new ArrayList<>();
+    private List<String> extentionImage = new ArrayList<>();
     KAlertDialog pDialog;
     private int i = -1;
 
@@ -363,7 +372,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f2PromosiPart.setVisibility(View.GONE);
                 f2PenagihanPart.setVisibility(View.GONE);
                 f2PengirimanFormPart.setVisibility(View.GONE);
-                f2TotalPesanan = "0";
+                f2TotalPesanan = 0;
                 f2TotalPesananTV.setText("Rp 0");
                 f2TotalInvTagihan = 0;
                 f2TotalTagihanInvTV.setText("Rp 0");
@@ -390,7 +399,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f2SubTotal = "";
                 f2ProductInputDetailPart.setVisibility(View.GONE);
                 f2TotalPesananTV.setText("Rp 0");
-                f2TotalPesanan = "";
                 f2LabelLampiranTV.setText("+ Lampiran Foto/SP");
                 f2ViewLampiranBTN.setVisibility(View.GONE);
                 f2JenisPelanggan = "";
@@ -400,8 +408,9 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                 uri = null;
                 lampiranImage.clear();
+                extentionImage.clear();
                 fullBase64String = "";
-                totalLaporan = 0;
+                f2TotalPesanan = 0;
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -632,7 +641,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2DetailPelanggan.setVisibility(View.GONE);
                     f2AlamatPelangganLamaTV.setText("");
                     f2TotalPesananTV.setText("Rp 0");
-                    f2TotalPesanan = "";
                     f2TotalTagihanInvTV.setText("Rp 0");
                     f2TotalInvTagihan = 0;
                     f2AgendaOptionPart.setVisibility(View.VISIBLE);
@@ -673,7 +681,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2PelangganBaruPart.setVisibility(View.GONE);
                     f2PelangganLamaPart.setVisibility(View.VISIBLE);
                     f2TotalPesananTV.setText("Rp 0");
-                    f2TotalPesanan = "";
+                    f2TotalPesanan = 0;
                     if(f2CB1.isChecked()||f2CB2.isChecked()||f2CB3.isChecked()){
                         f2AgendaOptionPart.setVisibility(View.VISIBLE);
                     } else {
@@ -710,6 +718,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     f2PromosiPart.setVisibility(View.VISIBLE);
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport+"-2");
                 } else {
                     f2PromosiPart.setVisibility(View.GONE);
                 }
@@ -741,6 +750,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                             }, 100);
                         }
                     }, 300);
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport+"-3");
                 } else {
                     f2PenagihanPart.setVisibility(View.GONE);
                     f2TotalTagihanInvTV.setText("Rp 0");
@@ -754,6 +764,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     f2PengirimanFormPart.setVisibility(View.VISIBLE);
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport+"-4");
                 } else {
                     f2PengirimanFormPart.setVisibility(View.GONE);
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NO_SJ, "");
@@ -1261,7 +1272,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2PromosiPart.setVisibility(View.GONE);
                     f2PenagihanPart.setVisibility(View.GONE);
                     f2PengirimanFormPart.setVisibility(View.GONE);
-                    f2TotalPesanan = "0";
+                    f2TotalPesanan = 0;
                     f2TotalPesananTV.setText("Rp 0");
                     f2TotalInvTagihan = 0;
                     f2TotalTagihanInvTV.setText("Rp 0");
@@ -1288,7 +1299,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2SubTotal = "";
                     f2ProductInputDetailPart.setVisibility(View.GONE);
                     f2TotalPesananTV.setText("Rp 0");
-                    f2TotalPesanan = "";
+                    f2TotalPesanan = 0;
                     f2LabelLampiranTV.setText("+ Lampiran Foto/SP");
                     f2ViewLampiranBTN.setVisibility(View.GONE);
 
@@ -1299,8 +1310,9 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                     uri = null;
                     lampiranImage.clear();
+                    extentionImage.clear();
                     fullBase64String = "";
-                    totalLaporan = 0;
+                    f2TotalPesanan = 0;
 
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -1369,7 +1381,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2PromosiPart.setVisibility(View.GONE);
                     f2PenagihanPart.setVisibility(View.GONE);
                     f2PengirimanFormPart.setVisibility(View.GONE);
-                    f2TotalPesanan = "0";
+                    f2TotalPesanan = 0;
                     f2TotalPesananTV.setText("Rp 0");
                     f2TotalInvTagihan = 0;
                     f2TotalTagihanInvTV.setText("Rp 0");
@@ -1396,7 +1408,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2SubTotal = "";
                     f2ProductInputDetailPart.setVisibility(View.GONE);
                     f2TotalPesananTV.setText("Rp 0");
-                    f2TotalPesanan = "";
                     f2LabelLampiranTV.setText("+ Lampiran Foto/SP");
                     f2ViewLampiranBTN.setVisibility(View.GONE);
 
@@ -1407,8 +1418,9 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                     uri = null;
                     lampiranImage.clear();
+                    extentionImage.clear();
                     fullBase64String = "";
-                    totalLaporan = 0;
+                    f2TotalPesanan = 0;
 
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -1455,7 +1467,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 categoryReport = "1";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport);
-                reportKategoriChoiceTV.setText("Rencana");
+                reportKategoriChoiceTV.setText("Rencana Kunjungan");
                 markRencana.setVisibility(View.VISIBLE);
                 markAktivitas.setVisibility(View.GONE);
                 rencanaBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
@@ -1509,7 +1521,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f2PromosiPart.setVisibility(View.GONE);
                         f2PenagihanPart.setVisibility(View.GONE);
                         f2PengirimanFormPart.setVisibility(View.GONE);
-                        f2TotalPesanan = "0";
                         f2TotalPesananTV.setText("Rp 0");
                         f2TotalInvTagihan = 0;
                         f2TotalTagihanInvTV.setText("Rp 0");
@@ -1536,7 +1547,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f2SubTotal = "";
                         f2ProductInputDetailPart.setVisibility(View.GONE);
                         f2TotalPesananTV.setText("Rp 0");
-                        f2TotalPesanan = "";
                         f2LabelLampiranTV.setText("+ Lampiran Foto/SP");
                         f2ViewLampiranBTN.setVisibility(View.GONE);
 
@@ -1547,8 +1557,9 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                         uri = null;
                         lampiranImage.clear();
+                        extentionImage.clear();
                         fullBase64String = "";
-                        totalLaporan = 0;
+                        f2TotalPesanan = 0;
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -1626,7 +1637,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f2PromosiPart.setVisibility(View.GONE);
                         f2PenagihanPart.setVisibility(View.GONE);
                         f2PengirimanFormPart.setVisibility(View.GONE);
-                        f2TotalPesanan = "0";
                         f2TotalPesananTV.setText("Rp 0");
                         f2TotalInvTagihan = 0;
                         f2TotalTagihanInvTV.setText("Rp 0");
@@ -1653,7 +1663,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f2SubTotal = "";
                         f2ProductInputDetailPart.setVisibility(View.GONE);
                         f2TotalPesananTV.setText("Rp 0");
-                        f2TotalPesanan = "";
                         f2LabelLampiranTV.setText("+ Lampiran Foto/SP");
                         f2ViewLampiranBTN.setVisibility(View.GONE);
 
@@ -1664,8 +1673,9 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                         uri = null;
                         lampiranImage.clear();
+                        extentionImage.clear();
                         fullBase64String = "";
-                        totalLaporan = 0;
+                        f2TotalPesanan = 0;
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -2285,8 +2295,8 @@ public class ReportSumaActivity extends AppCompatActivity {
 
     private void getProduct(String keyword) {
         String wilayah = sharedPrefManager.getSpCabName();
-        String nikSales = sharedPrefManager.getSpNik();
-        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/list_produk?keyword="+keyword+"&wilayah="+wilayah+"&id_sales="+nikSales;
+        String idSales = sharedPrefManager.getSpNik();
+        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/list_produk?keyword="+keyword+"&wilayah="+wilayah+"&id_sales="+idSales;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -2424,7 +2434,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     };
 
     private void getDataInvoice(String id_pelanggan) {
-        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/tagihan_per_invoice?customerId=    "+id_pelanggan;
+        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/tagihan_per_invoice?customerId="+id_pelanggan;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -2578,35 +2588,41 @@ public class ReportSumaActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String index = intent.getStringExtra("index");
 
-            new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
-                    .setTitleText("Perhatian")
-                    .setContentText("Yakin untuk menghapus produk pesanan?")
-                    .setCancelText("TIDAK")
-                    .setConfirmText("   YA   ")
-                    .showCancelButton(true)
-                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                        }
-                    })
-                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                            dataProduct.remove(Integer.parseInt(index));
+            try {
+                new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Yakin untuk menghapus produk pesanan?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                dataProduct.remove(Integer.parseInt(index));
 
-                            adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
-                            f2ListProductInputRV.setLayoutManager(new LinearLayoutManager(ReportSumaActivity.this));
-                            f2ListProductInputRV.setAdapter(adapterProductInputSuma);
-                            f2ListProductInputRV.setHasFixedSize(true);
-                            f2ListProductInputRV.setNestedScrollingEnabled(false);
-                            f2ListProductInputRV.setItemAnimator(new DefaultItemAnimator());
+                                adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
+                                f2ListProductInputRV.setLayoutManager(new LinearLayoutManager(ReportSumaActivity.this));
+                                f2ListProductInputRV.setAdapter(adapterProductInputSuma);
+                                f2ListProductInputRV.setHasFixedSize(true);
+                                f2ListProductInputRV.setNestedScrollingEnabled(false);
+                                f2ListProductInputRV.setItemAnimator(new DefaultItemAnimator());
 
-                            f2HitungTotalPesanan();
-                        }
-                    })
-                    .show();
+                                f2HitungTotalPesanan();
+                            }
+                        })
+                        .show();
+            }
+            catch (WindowManager.BadTokenException e){
+                Log.e("Error", e.toString());
+            }
+
         }
     };
 
@@ -2631,29 +2647,35 @@ public class ReportSumaActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String key = intent.getStringExtra("nama_pelanggan");
 
-            new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
-                    .setTitleText("Perhatian")
-                    .setContentText("Yakin untuk menghapus pelanggan?")
-                    .setCancelText("TIDAK")
-                    .setConfirmText("   YA   ")
-                    .showCancelButton(true)
-                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                        }
-                    })
-                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                            String valueToRemove = key;
-                            JSONArray modifiedArray = removeElementsByValue(f1JsonArrayPelanggan, valueToRemove);
-                            f1JsonArrayPelanggan = modifiedArray;
-                            updateListPelanggan(f1JsonArrayPelanggan.toString());
-                        }
-                    })
-                    .show();
+            try {
+                new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Yakin untuk menghapus pelanggan?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                String valueToRemove = key;
+                                JSONArray modifiedArray = removeElementsByValue(f1JsonArrayPelanggan, valueToRemove);
+                                f1JsonArrayPelanggan = modifiedArray;
+                                updateListPelanggan(f1JsonArrayPelanggan.toString());
+                            }
+                        })
+                        .show();
+            }
+            catch (WindowManager.BadTokenException e){
+                Log.e("Error", e.toString());
+            }
+
         }
     };
 
@@ -2688,7 +2710,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             String[] arrayData = array[i].split("/");
             jumlah += Integer.parseInt(arrayData[4]);
         }
-        totalLaporan = jumlah;
+        f2TotalPesanan = jumlah;
         f2TotalPesananTV.setText(decimalFormat.format(jumlah));
 
     }
@@ -2919,16 +2941,17 @@ public class ReportSumaActivity extends AppCompatActivity {
                 String stringUri = String.valueOf(uri);
                 String extension = stringUri.substring(stringUri.lastIndexOf("."));
                 try {
-                    if(extension.equals(".jpg")||extension.equals(".JPG")){
+                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")) {
                         lampiranImage.add(stringUri);
+                        extentionImage.add(extension);
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                         String file_directori = getRealPathFromURIPath(uri, ReportSumaActivity.this);
-                        String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
+                        String a = "File Directory : " + file_directori + " URI: " + String.valueOf(uri);
                         Log.e("PaRSE JSON", a);
 
-                        if(categoryReport.equals("0")){
+                        if (categoryReport.equals("0")) {
                             f2CountImageTV.setText(String.valueOf(lampiranImage.size()));
-                            if(lampiranImage.size()>=3){
+                            if (lampiranImage.size() >= 3) {
                                 f2LampiranFotoBTN.setVisibility(View.GONE);
                             } else {
                                 f2LampiranFotoBTN.setVisibility(View.VISIBLE);
@@ -2946,6 +2969,9 @@ public class ReportSumaActivity extends AppCompatActivity {
                         }
                         uriToBase64(uri);
 
+                    } else if(extension.equals(".png")||extension.equals(".PNG")){
+                        String pngImagePath = FilePathimage.getPath(this, uri);
+                        new ConvertImageTask().execute(pngImagePath);
                     } else {
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -3070,14 +3096,34 @@ public class ReportSumaActivity extends AppCompatActivity {
                         params.put("id_pelanggan", f2IdPelangganLama);
                     }
 
+                    if(f2CB1.isChecked()){
+                        params.put("promosi", "true");
+                        params.put("total_pesanan", String.valueOf(f2TotalPesanan));
+                        params.put("data_produk", listToString(dataProduct));
+                    } else {
+                        params.put("promosi", "false");
+                    }
+                    if(f2CB2.isChecked()){
+                        params.put("penagihan", "true");
+                        params.put("total_tagihan", String.valueOf(f2TotalInvTagihan));
+                    } else {
+                        params.put("penagihan", "false");
+                    }
+                    if(f2CB3.isChecked()){
+                        params.put("pengiriman", "true");
+                        params.put("no_suratjalan", f2NoSuratJalanChoiceTV.getText().toString());
+                    } else {
+                        params.put("pengiriman", "false");
+                    }
+
                     params.put("nik_sales", sharedPrefManager.getSpNik());
                     params.put("latitude", salesLat);
                     params.put("longitude", salesLong);
                     params.put("created_at", getTimeStamp());
-                    params.put("total_laporan", String.valueOf(totalLaporan));
+                    params.put("total_laporan", String.valueOf(f2TotalPesanan));
                     params.put("jumlah_lampiran", String.valueOf(lampiranImage.size()));
+                    params.put("extensi_lampiran", listToString(extentionImage));
 
-                    params.put("data_produk", listToString(dataProduct));
                 }
 
                 Log.d("Params Cek", params.toString());
@@ -3120,13 +3166,11 @@ public class ReportSumaActivity extends AppCompatActivity {
                 successPart.setVisibility(View.VISIBLE);
                 formPart.setVisibility(View.GONE);
                 pDialog.dismiss();
-                viewPermohonanTV.setText("LIHAT DETAIL LAPORAN");
+                viewPermohonanTV.setText("OK");
                 viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(ReportSumaActivity.this, DetailReportSumaActivity.class);
-                        intent.putExtra("report_id",idReport);
-                        startActivity(intent);
+                        onBackPressed();
                     }
                 });
             }
@@ -3259,6 +3303,79 @@ public class ReportSumaActivity extends AppCompatActivity {
             jsonArray.remove(0);
         }
         return jsonArray;
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class ConvertImageTask extends AsyncTask<String, Void, Uri> {
+        @Override
+        protected Uri doInBackground(String... params) {
+            String imagePath = params[0];
+            try {
+                return convertPNGtoJPEG(imagePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        protected void onPostExecute(Uri resultUri) {
+            if (resultUri != null) {
+                uri = resultUri;
+                String stringUri = String.valueOf(uri);
+                String extension = stringUri.substring(stringUri.lastIndexOf("."));
+                lampiranImage.add(stringUri);
+                extentionImage.add(extension);
+
+                if (categoryReport.equals("0")) {
+                    f2CountImageTV.setText(String.valueOf(lampiranImage.size()));
+                    if (lampiranImage.size() >= 3) {
+                        f2LampiranFotoBTN.setVisibility(View.GONE);
+                    } else {
+                        f2LampiranFotoBTN.setVisibility(View.VISIBLE);
+                    }
+                    f2ViewLampiranBTN.setVisibility(View.VISIBLE);
+                    f2LabelLampiranTV.setText("+ Lampiran Foto/SP");
+                    f2ViewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(ReportSumaActivity.this, ViewImageSliderActivity.class);
+                            intent.putExtra("data", String.valueOf(lampiranImage));
+                            startActivity(intent);
+                        }
+                    });
+                }
+                uriToBase64(uri);
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Terjadi kesalahan")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                }, 800);
+            }
+        }
+
+        private Uri convertPNGtoJPEG(String inputFilePath) throws IOException {
+            Bitmap pngImage = BitmapFactory.decodeFile(inputFilePath);
+            File jpgFile = new File(getExternalFilesDir(null), "output.jpg");
+            FileOutputStream out = new FileOutputStream(jpgFile);
+            pngImage.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+            return Uri.fromFile(jpgFile);
+        }
     }
 
 }

@@ -28,6 +28,7 @@ import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.icu.util.Calendar;
 import android.location.Address;
 import android.location.Geocoder;
@@ -47,6 +48,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -68,7 +70,7 @@ import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterInvoicePiutangRealisasi;
 import com.gelora.absensi.adapter.AdapterNoSuratJalanRealisasi;
-import com.gelora.absensi.adapter.AdapterProductInputSuma;
+import com.gelora.absensi.adapter.AdapterProductInputSumaRealisasi;
 import com.gelora.absensi.adapter.AdapterProductSumaRealisasi;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataInvoicePiutang;
@@ -116,6 +118,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -154,6 +158,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     int REQUEST_IMAGE = 100;
     private Uri uri;
     private List<String> lampiranImage = new ArrayList<>();
+    private List<String> extentionImage = new ArrayList<>();
     KAlertDialog pDialog;
     private int i = -1;
     NestedScrollView scrollView;
@@ -174,8 +179,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     private ProductSuma[] productSumas;
     private AdapterProductSumaRealisasi adapterProductSuma;
     NumberPicker qtyProductPicker;
-    private List<String> dataProduct = new ArrayList<>();
-    private AdapterProductInputSuma adapterProductInputSuma;
+    private List<String> dataProductRealisasi = new ArrayList<>();
+    private AdapterProductInputSumaRealisasi adapterProductInputSuma;
+    private boolean isFirstRun = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,6 +190,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        isFirstRun = false;
 
         resultReceiver = new DetailReportSumaActivity.AddressResultReceiver(new Handler());
         mContext = getBaseContext();
@@ -280,7 +287,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         addProductBTN = findViewById(R.id.add_product_btn);
         listProductInputRV = findViewById(R.id.item_produk_input_rv);
 
-        adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
+        adapterProductInputSuma = new AdapterProductInputSumaRealisasi(dataProductRealisasi);
         listProductInputRV.setLayoutManager(new LinearLayoutManager(this));
         listProductInputRV.setAdapter(adapterProductInputSuma);
         listProductInputRV.setHasFixedSize(true);
@@ -293,7 +300,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
         LocalBroadcastManager.getInstance(this).registerReceiver(productSumaBroad, new IntentFilter("product_suma_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(noSuratJalanBroad, new IntentFilter("list_no_sj"));
-        LocalBroadcastManager.getInstance(this).registerReceiver(productDeleteBroad, new IntentFilter("product_delete_broad"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(productDeleteBroad, new IntentFilter("product_delete_broad_realisasi"));
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -306,9 +313,10 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 choiceDateTV.setText("");
                 choiceDateReschedule = "";
                 lampiranImage.clear();
+                extentionImage.clear();
                 keteranganKunjunganRealisasiED.setText("");
 
-                dataProduct.clear();
+                dataProductRealisasi.clear();
                 realisasiCB1.setChecked(false);
                 realisasiCB2.setChecked(false);
                 realisasiCB3.setChecked(false);
@@ -322,7 +330,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NO_SJ, "");
                 noSuratJalanChoiceTV.setText("");
 
-                adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
+                adapterProductInputSuma = new AdapterProductInputSumaRealisasi(dataProductRealisasi);
                 listProductInputRV.setLayoutManager(new LinearLayoutManager(DetailReportSumaActivity.this));
                 listProductInputRV.setAdapter(adapterProductInputSuma);
                 listProductInputRV.setHasFixedSize(true);
@@ -347,6 +355,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                 uri = null;
                 lampiranImage.clear();
+                extentionImage.clear();
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -524,7 +533,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 } else {
                     fullDataProduct = idProduct + "/" + productName + "/" + productHargaSatuan + "/" + qtyProduct + "/" + subTotal;
                     if (!fullDataProduct.isEmpty() || fullDataProduct.equals("")) {
-                        dataProduct.add(fullDataProduct);
+                        dataProductRealisasi.add(fullDataProduct);
                         adapterProductInputSuma.notifyDataSetChanged();
                         productChoiceTV.setText("Pilih produk untuk menambahkan...");
                         productHargaSatuanTV.setText("Rp 0");
@@ -898,35 +907,40 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         public void onReceive(Context context, Intent intent) {
             String index = intent.getStringExtra("index");
 
-            new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
-                    .setTitleText("Perhatian")
-                    .setContentText("Yakin untuk menghapus produk pesanan?")
-                    .setCancelText("TIDAK")
-                    .setConfirmText("   YA   ")
-                    .showCancelButton(true)
-                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                        }
-                    })
-                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                            dataProduct.remove(Integer.parseInt(index));
+            try {
+                new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Yakin untuk menghapus produk pesanan?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                dataProductRealisasi.remove(Integer.parseInt(index));
 
-                            adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
-                            listProductInputRV.setLayoutManager(new LinearLayoutManager(DetailReportSumaActivity.this));
-                            listProductInputRV.setAdapter(adapterProductInputSuma);
-                            listProductInputRV.setHasFixedSize(true);
-                            listProductInputRV.setNestedScrollingEnabled(false);
-                            listProductInputRV.setItemAnimator(new DefaultItemAnimator());
+                                adapterProductInputSuma = new AdapterProductInputSumaRealisasi(dataProductRealisasi);
+                                listProductInputRV.setLayoutManager(new LinearLayoutManager(DetailReportSumaActivity.this));
+                                listProductInputRV.setAdapter(adapterProductInputSuma);
+                                listProductInputRV.setHasFixedSize(true);
+                                listProductInputRV.setNestedScrollingEnabled(false);
+                                listProductInputRV.setItemAnimator(new DefaultItemAnimator());
 
-                            hitungTotalPesanan();
-                        }
-                    })
-                    .show();
+                                hitungTotalPesanan();
+                            }
+                        })
+                        .show();
+            } catch (WindowManager.BadTokenException e){
+                Log.e("Error", e.toString());
+            }
+
         }
     };
 
@@ -1146,8 +1160,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
     private void getProduct(String keyword) {
         String wilayah = sharedPrefManager.getSpCabName();
-        String nikSales = sharedPrefManager.getSpNik();
-        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/list_produk?keyword="+keyword+"&wilayah="+wilayah+"&id_sales="+nikSales;
+        String idSales = sharedPrefManager.getSpNik();
+        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/list_produk?keyword="+keyword+"&wilayah="+wilayah+"&id_sales="+idSales;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -1446,7 +1460,6 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     }
 
     private void submitUpdateData(){
-        Log.d("CON", "submitUpdateData");
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://reporting.sumasistem.co.id/api/update_reporting";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -1516,7 +1529,6 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 params.put("id_report", idReport);
                 params.put("keterangan", keteranganUpdateED.getText().toString());
                 params.put("jumlah_lampiran_update", String.valueOf(lampiranImage.size()));
-                Log.d("Cek Payload UPDATE: ", params.toString());
                 return params;
             }
         };
@@ -1637,8 +1649,6 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("id_report", idReport);
                 params.put("tanggal_rencana", choiceDateReschedule);
-                Log.d("cek Payload: ", params.toString());
-
                 return params;
             }
         };
@@ -1652,9 +1662,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     }
 
     private void submitRealisasi(){
-        Log.d("CON", "submitRealisasi");
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-            final String url = "https://reporting.sumasistem.co.id/api/update_realisasi";
+        final String url = "https://reporting.sumasistem.co.id/api/update_realisasi";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1705,9 +1714,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 params.put("longitude", salesLong);
                 params.put("keterangan", keteranganKunjunganRealisasiED.getText().toString());
                 if(realisasiCB1.isChecked()){
-                    params.put("kunjungan", "true");
+                    params.put("promosi", "true");
+                    params.put("total_pesanan", String.valueOf(totalPesanan));
+                    params.put("data_produk", listToString(dataProductRealisasi));
                 } else {
-                    params.put("kunjungan", "false");
+                    params.put("promosi", "false");
                 }
                 if(realisasiCB2.isChecked()){
                     params.put("penagihan", "true");
@@ -1722,9 +1733,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                     params.put("pengiriman", "false");
                 }
                 params.put("jumlah_lampiran", String.valueOf(lampiranImage.size()));
+                params.put("extensi_lampiran", listToString(extentionImage));
                 Log.d("Cek Payload Realisasi", params.toString());
                 return params;
-
             }
         };
 
@@ -1787,6 +1798,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                             getData();
                                             updateForm.collapse();
                                             lampiranImage.clear();
+                                            extentionImage.clear();
                                             fotoLamBTN.setVisibility(View.VISIBLE);
                                             viewLampiranUpdateBTN.setVisibility(View.GONE);
                                         }
@@ -1918,8 +1930,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 String stringUri = String.valueOf(uri);
                 String extension = stringUri.substring(stringUri.lastIndexOf("."));
                 try {
-                    if(extension.equals(".jpg")||extension.equals(".JPG")){
+                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")){
                         lampiranImage.add(stringUri);
+                        extentionImage.add(extension);
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                         String file_directori = getRealPathFromURIPath(uri, DetailReportSumaActivity.this);
                         String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
@@ -1965,7 +1978,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 }
                             });
                         }
-
+                    } else if(extension.equals(".png")||extension.equals(".PNG")){
+                        String pngImagePath = FilePathimage.getPath(this, uri);
+                        new ConvertImageTask().execute(pngImagePath);
                     } else {
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -2022,7 +2037,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 String latitude = dataArray.getString("latitude");
                                 String longitude = dataArray.getString("longitude");
                                 String idSales = dataArray.getString("idSales");
-                                getSales(idSales);
+                                getSales(idSales, latitude, longitude);
                                 tipeLaporan = dataArray.getString("tipeLaporan");
                                 String createdAt = dataArray.getString("createdAt");
                                 idPelanggan = dataArray.getString("idPelanggan");
@@ -2242,7 +2257,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     }
                                     updateRealisasiKunjunganPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
-                                    reportKategoriTV.setText("LAPORAN PROMOSI");
+                                    reportKategoriTV.setText("AKTIVITAS PROMOSI");
                                     tglRencanaPart.setVisibility(View.GONE);
                                     totalPesananPart.setVisibility(View.VISIBLE);
                                     totalPenagihanPart.setVisibility(View.GONE);
@@ -2312,7 +2327,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     }
                                     updateRealisasiKunjunganPart.setVisibility(View.GONE);
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
-                                    reportKategoriTV.setText("LAPORAN PENGIRIMAN");
+                                    reportKategoriTV.setText("AKTIVITAS PENGIRIMAN");
                                     tglRencanaPart.setVisibility(View.GONE);
                                     totalPesananPart.setVisibility(View.GONE);
                                     totalPenagihanPart.setVisibility(View.GONE);
@@ -2373,7 +2388,6 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     float zoomLevel = 17.8f;
                                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPoint, zoomLevel));
                                     mMap.getUiSettings().setCompassEnabled(false);
-                                    mMap.addMarker(new MarkerOptions().position(userPoint).title(sharedPrefManager.getSpNama()).snippet(latitude+","+longitude).icon(BitmapDescriptorFactory.fromResource(R.drawable.location_picker_ic)));
                                     Location location = new Location("dummyProvider");
                                     location.setLatitude(Double.parseDouble(latitude));
                                     location.setLongitude(Double.parseDouble(longitude));
@@ -2417,20 +2431,19 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("id_report", idReport);
+                params.put("from", "android");
 
                 Log.d("cek payload: ", params.toString());
 
                 return params;
             }
-
         };
-
 
         requestQueue.add(postRequest);
 
     }
 
-    private void getSales(String nik) {
+    private void getSales(String nik, String latitude, String longitude) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/get_sales";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -2449,6 +2462,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 String NIK = data.getString("NIK");
                                 namaSalesTV.setText(nama);
                                 nikSalesTV.setText(NIK);
+                                if(mMap != null && (tipeLaporan.equals("2") || tipeLaporan.equals("3") || tipeLaporan.equals("4"))){
+                                    mMap.addMarker(new MarkerOptions().position(userPoint).title(nama).snippet(latitude+","+longitude).icon(BitmapDescriptorFactory.fromResource(R.drawable.location_picker_ic)));
+                                }
                             } else {
                                 new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
@@ -3081,8 +3097,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         decimalFormat.applyPattern("¤ #,##0;-¤ #,##0");
         decimalFormat.setMaximumFractionDigits(0);
 
-        String[] array = new String[dataProduct.size()];
-        array = dataProduct.toArray(array);
+        String[] array = new String[dataProductRealisasi.size()];
+        array = dataProductRealisasi.toArray(array);
 
         int jumlah = 0;
 
@@ -3131,5 +3147,116 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
     }
 
+    private String listToString(List<String> list) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String item : list) {
+            stringBuilder.append(item).append(", ");
+        }
+        if (stringBuilder.length() > 0) {
+            stringBuilder.setLength(stringBuilder.length() - 2);
+        }
+        return stringBuilder.toString();
+    }
+
+    protected void onResume() {
+        super.onResume();
+        if (!isFirstRun) {
+            getData();
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class ConvertImageTask extends AsyncTask<String, Void, Uri> {
+        @Override
+        protected Uri doInBackground(String... params) {
+            String imagePath = params[0];
+            try {
+                return convertPNGtoJPEG(imagePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        protected void onPostExecute(Uri resultUri) {
+            if (resultUri != null) {
+                uri = resultUri;
+                String stringUri = String.valueOf(uri);
+                String extension = stringUri.substring(stringUri.lastIndexOf("."));
+                lampiranImage.add(stringUri);
+                extentionImage.add(extension);
+
+                if(tipeLaporan.equals("1")){
+                    countImageTV.setText(String.valueOf(lampiranImage.size()));
+                    if(lampiranImage.size()>=3){
+                        fotoLampiranRealisasiBTN.setVisibility(View.GONE);
+                    } else {
+                        fotoLampiranRealisasiBTN.setVisibility(View.VISIBLE);
+                    }
+                    viewLampiranRealisasiBTN.setVisibility(View.VISIBLE);
+                    labelLampiranTV.setText("+ Lampiran Foto/SP");
+                    viewLampiranRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                            intent.putExtra("data", String.valueOf(lampiranImage));
+                            startActivity(intent);
+                        }
+                    });
+                } else {
+                    countImageUpdateTV.setText(String.valueOf(lampiranImage.size()));
+                    if(lampiranImage.size()>=3){
+                        fotoLamBTN.setVisibility(View.GONE);
+                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,61
+                        );
+                        layoutParams.setMargins(0, 0, 0, 0);
+                        viewLampiranUpdateBTN.setLayoutParams(layoutParams);
+                    } else {
+                        fotoLamBTN.setVisibility(View.VISIBLE);
+                    }
+                    viewLampiranUpdateBTN.setVisibility(View.VISIBLE);
+                    labelLampTV.setText("Ubah Lampiran Foto/SP");
+                    viewLampiranUpdateBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                            intent.putExtra("data", String.valueOf(lampiranImage));
+                            startActivity(intent);
+                        }
+                    });
+                }
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Terjadi kesalahan")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                }, 800);
+            }
+        }
+
+        private Uri convertPNGtoJPEG(String inputFilePath) throws IOException {
+            Bitmap pngImage = BitmapFactory.decodeFile(inputFilePath);
+            File jpgFile = new File(getExternalFilesDir(null), "output.jpg");
+            FileOutputStream out = new FileOutputStream(jpgFile);
+            pngImage.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+            return Uri.fromFile(jpgFile);
+        }
+    }
 
 }

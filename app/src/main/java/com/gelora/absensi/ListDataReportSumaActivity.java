@@ -128,7 +128,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             dateBTN.setVisibility(View.VISIBLE);
             salesBTN.setVisibility(View.VISIBLE);
             addBTN.setVisibility(View.GONE);
-            categoryCode = "1";
+            categoryCode = "0";
             subCategoryCode = "3";
             dateLabel.setText("Filter Tanggal Penagihan :");
             subCategoryChoiceTV.setText("Aktivitas Penagihan");
@@ -146,7 +146,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 } else { //Asisten Kepala Departemen
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
-                    addBTN.setVisibility(View.GONE);
+                    addBTN.setVisibility(View.VISIBLE);
                     float density = getResources().getDisplayMetrics().density;
                     contentPart.setPadding((int)(20*density),(int)(20*density),(int)(20*density),(int)(20*density));
                 }
@@ -1158,11 +1158,10 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    refreshLayout.setRefreshing(false);
                     if(categoryCode.equals("1")){
                         getData(categoryCode);
                     } else {
-                        getData(subCategoryCode);
+                        getData("0");
                     }
                 }
             }, 1000);
@@ -1171,9 +1170,19 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
              if(categoryCode.equals("1")) {
                 dateLabel.setText("Filter Tanggal Rencana :");
                 categoryChoiceTV.setText("Rencana Kunjungan");
+
+                reportRV.setVisibility(View.GONE);
+                loadingDataPartReport.setVisibility(View.VISIBLE);
+                noDataPartReport.setVisibility(View.GONE);
+                new Handler().postDelayed(new Runnable() {
+                     @Override
+                     public void run() {
+                         getData(categoryCode);
+                     }
+                }, 1000);
             } else {
                 categoryCode = "0";
-                subCategoryCode = sharedPrefAbsen.getSpReportCategoryActive();
+                subCategoryCode = sharedPrefAbsen.getSpReportCategoryActive().substring(sharedPrefAbsen.getSpReportCategoryActive().length()-1,sharedPrefAbsen.getSpReportCategoryActive().length());
                 if(subCategoryCode.equals("2")){
                     dateLabel.setText("Filter Tanggal :");
                     categoryChoiceTV.setText("Aktivitas Kunjungan");
@@ -1181,31 +1190,39 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     dateChoice = getDate();
                 } else if(subCategoryCode.equals("3")){
                     dateLabel.setText("Filter Tanggal :");
-                    categoryChoiceTV.setText("Aktivitas");
+                    categoryChoiceTV.setText("Aktivitas Kunjungan");
                     subCategoryChoiceTV.setText("Aktivitas Penagihan");
                     dateChoice = getDate();
                 } else if(subCategoryCode.equals("4")){
                     dateLabel.setText("Filter Tanggal :");
-                    categoryChoiceTV.setText("Aktivitas");
+                    categoryChoiceTV.setText("Aktivitas Kunjungan");
                     subCategoryChoiceTV.setText("Aktivitas Pengiriman");
                     dateChoice = getDate();
                 }
+
+                 reportRV.setVisibility(View.GONE);
+                 loadingDataPartReport.setVisibility(View.VISIBLE);
+                 noDataPartReport.setVisibility(View.GONE);
+                 new Handler().postDelayed(new Runnable() {
+                     @Override
+                     public void run() {
+                         if(subCategoryChoiceTV.getText().toString().equals("Aktivitas Promosi")){
+                             categoryCode = "0";
+                             subCategoryCode = "2";
+                             getData(subCategoryCode);
+                         } else if(subCategoryChoiceTV.getText().toString().equals("Aktivitas Penagihan")){
+                             categoryCode = "0";
+                             subCategoryCode = "3";
+                             getData(subCategoryCode);
+                         } else if(subCategoryChoiceTV.getText().toString().equals("Aktivitas Pengiriman")){
+                             categoryCode = "0";
+                             subCategoryCode = "4";
+                             getData(subCategoryCode);
+                         }
+                     }
+                 }, 1000);
             }
 
-            reportRV.setVisibility(View.GONE);
-            loadingDataPartReport.setVisibility(View.VISIBLE);
-            noDataPartReport.setVisibility(View.GONE);
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    refreshLayout.setRefreshing(false);
-                    if(categoryCode.equals("1")){
-                        getData(categoryCode);
-                    } else {
-                        getData(subCategoryCode);
-                    }
-                }
-            }, 1000);
         }
 
     }
