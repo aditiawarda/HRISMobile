@@ -7,7 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -47,9 +49,11 @@ import com.gelora.absensi.InfoPengalamanDanPelatihanActivity;
 import com.gelora.absensi.InfoPersonalActivity;
 import com.gelora.absensi.LoginActivity;
 import com.gelora.absensi.R;
+import com.gelora.absensi.ReportSumaActivity;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.ViewImageActivity;
+import com.gelora.absensi.ViewImageSliderActivity;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
@@ -70,6 +74,8 @@ import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -574,7 +580,7 @@ public class FragmentProfile extends Fragment {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "2.2.7"; //harus disesuaikan
+                                String currentVersion = "2.2.9"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateAppBTN.setVisibility(View.VISIBLE);
                                     updateAppBTN.setOnClickListener(new View.OnClickListener() {
@@ -740,12 +746,15 @@ public class FragmentProfile extends Fragment {
                 String stringUri = String.valueOf(uri);
                 String extension = stringUri.substring(stringUri.lastIndexOf("."));
                 try {
-                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")||extension.equals(".png")||extension.equals(".PNG")){
+                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")) {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(mActivity.getContentResolver(), uri);
                         String file_directori = getRealPathFromURIPath(uri, mActivity);
-                        String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
+                        String a = "File Directory : " + file_directori + " URI: " + String.valueOf(uri);
                         Log.e("PaRSE JSON", a);
                         uploadMultipart();
+                    } else if(extension.equals(".png")||extension.equals(".PNG")){
+                        String pngImagePath = FilePathimage.getPath(getContext(), uri);
+                        new ConvertImageTask().execute(pngImagePath);
                     } else {
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -969,6 +978,66 @@ public class FragmentProfile extends Fragment {
         startActivity(intent);
         mActivity.finish();
         mActivity.finishAffinity();
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class ConvertImageTask extends AsyncTask<String, Void, Uri> {
+        @Override
+        protected Uri doInBackground(String... params) {
+            String imagePath = params[0];
+            try {
+                return convertPNGtoJPEG(imagePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        protected void onPostExecute(Uri resultUri) {
+            if (resultUri != null) {
+                uri = resultUri;
+                String stringUri = String.valueOf(uri);
+                String extension = stringUri.substring(stringUri.lastIndexOf("."));
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(mActivity.getContentResolver(), uri);
+                    String file_directori = getRealPathFromURIPath(uri, mActivity);
+                    String a = "File Directory : " + file_directori + " URI: " + String.valueOf(uri);
+                    Log.e("PaRSE JSON", a);
+                    uploadMultipart();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        new KAlertDialog(getContext(), KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Terjadi kesalahan")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                }, 800);
+            }
+        }
+
+        private Uri convertPNGtoJPEG(String inputFilePath) throws IOException {
+            Bitmap pngImage = BitmapFactory.decodeFile(inputFilePath);
+            File jpgFile = new File(mContext.getExternalFilesDir(null), "output.jpg");
+            FileOutputStream out = new FileOutputStream(jpgFile);
+            pngImage.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+            return Uri.fromFile(jpgFile);
+        }
     }
 
     @Override

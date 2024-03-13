@@ -35,6 +35,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.VibrationEffect;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Editable;
@@ -70,7 +71,6 @@ import com.gelora.absensi.adapter.AdapterNoSuratJalan;
 import com.gelora.absensi.adapter.AdapterPelangganLama;
 import com.gelora.absensi.adapter.AdapterPelangganList;
 import com.gelora.absensi.adapter.AdapterProductInputSuma;
-import com.gelora.absensi.adapter.AdapterProductInputSumaRealisasi;
 import com.gelora.absensi.adapter.AdapterProductSuma;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataInvoicePiutang;
@@ -181,7 +181,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     BottomSheetLayout bottomSheet;
     ImageView loadingForm, loadingGif, loadingGifProduk, successGif;
-    String salesLat = "", salesLong = "", categoryReport = "", laporanTerkirim = "", fullBase64String = "";
+    String devModCheck = "", salesLat = "", salesLong = "", categoryReport = "", laporanTerkirim = "", fullBase64String = "";
 
     int f2TotalPesanan = 0;
     private List<String> dataProduct = new ArrayList<>();
@@ -942,15 +942,41 @@ public class ReportSumaActivity extends AppCompatActivity {
                                         }
                                         public void onFinish() {
                                             i = -1;
-                                            submitLaporan();
-                                            Log.d("Data Customer : ", f1JsonArrayPelanggan.toString());
+                                            if (isDeveloperModeEnabled()){
+                                                pDialog.dismiss();
+                                                new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                                        .setTitleText("Perhatian")
+                                                        .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
+                                                        .setCancelText(" TUTUP ")
+                                                        .setConfirmText("SETTING")
+                                                        .showCancelButton(true)
+                                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                            @Override
+                                                            public void onClick(KAlertDialog sDialog) {
+                                                                sDialog.dismiss();
+                                                            }
+                                                        })
+                                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                            @Override
+                                                            public void onClick(KAlertDialog sDialog) {
+                                                                sDialog.dismiss();
+                                                                startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
+                                                            }
+                                                        })
+                                                        .show();
+
+                                            }
+                                            else {
+                                                submitLaporan();
+                                            }
                                         }
                                     }.start();
 
                                 }
                             })
                             .show();
-                } else {
+                }
+                else {
                     new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
                             .setContentText("Harap isi semua data!")
@@ -1071,7 +1097,33 @@ public class ReportSumaActivity extends AppCompatActivity {
                                                     }
                                                     public void onFinish() {
                                                         i = -1;
-                                                        submitLaporan();
+                                                        if (isDeveloperModeEnabled()){
+                                                            pDialog.dismiss();
+                                                            new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                    .setTitleText("Perhatian")
+                                                                    .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
+                                                                    .setCancelText(" TUTUP ")
+                                                                    .setConfirmText("SETTING")
+                                                                    .showCancelButton(true)
+                                                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                        }
+                                                                    })
+                                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                            startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
+                                                                        }
+                                                                    })
+                                                                    .show();
+
+                                                        }
+                                                        else {
+                                                            submitLaporan();
+                                                        }
                                                     }
                                                 }.start();
 
@@ -1174,7 +1226,34 @@ public class ReportSumaActivity extends AppCompatActivity {
                                                     }
                                                     public void onFinish() {
                                                         i = -1;
-                                                        submitLaporan();
+                                                        if (isDeveloperModeEnabled()){
+                                                            pDialog.dismiss();
+                                                            new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                    .setTitleText("Perhatian")
+                                                                    .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
+                                                                    .setCancelText(" TUTUP ")
+                                                                    .setConfirmText("SETTING")
+                                                                    .showCancelButton(true)
+                                                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                        }
+                                                                    })
+                                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                            startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
+                                                                        }
+                                                                    })
+                                                                    .show();
+
+                                                        }
+                                                        else {
+                                                            submitLaporan();
+                                                            Log.d("Data Customer : ", f1JsonArrayPelanggan.toString());
+                                                        }
                                                     }
                                                 }.start();
 
@@ -3376,6 +3455,14 @@ public class ReportSumaActivity extends AppCompatActivity {
             out.close();
             return Uri.fromFile(jpgFile);
         }
+    }
+
+    public boolean isDeveloperModeEnabled(){
+        if (Integer.valueOf(android.os.Build.VERSION.SDK) >= 17) {
+            return android.provider.Settings.Secure.getInt(ReportSumaActivity.this.getApplicationContext().getContentResolver(),
+                    android.provider.Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0) != 0;
+        }
+        return false;
     }
 
 }
