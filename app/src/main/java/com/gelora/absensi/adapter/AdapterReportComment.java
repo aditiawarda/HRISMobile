@@ -70,17 +70,31 @@ public class AdapterReportComment extends RecyclerView.Adapter<AdapterReportComm
         myViewHolder.komentarTV.setText(reportComment.getKomentar());
         myViewHolder.waktuKomentarTV.setText(reportComment.getCreatedAt());
 
-        if (reportComment.getCreatedAt().substring(0,7).equals(getDate().substring(0,7))){
-            int selisih_hari = Integer.parseInt(getDate().substring(8,10))-Integer.parseInt(reportComment.getCreatedAt().substring(8,10));
+        if (reportComment.getCreatedAt().substring(0,7).equals(getTimeStamp().substring(0,7))){
+            int selisih_hari = Integer.parseInt(getTimeStamp().substring(8,10))-Integer.parseInt(reportComment.getCreatedAt().substring(8,10));
             if(selisih_hari==0){
-                myViewHolder.waktuKomentarTV.setText("Hari ini");
+                if(Integer.parseInt(reportComment.getCreatedAt().substring(11,13)) == Integer.parseInt(getTimeStamp().substring(11,13))){
+                    if(Integer.parseInt(reportComment.getCreatedAt().substring(14,16)) == Integer.parseInt(getTimeStamp().substring(14,16))){
+                        myViewHolder.waktuKomentarTV.setText("Baru saja");
+                    } else {
+                        int selisih_menit = Integer.parseInt(getTimeStamp().substring(14,16))-Integer.parseInt(reportComment.getCreatedAt().substring(14,16));
+                        myViewHolder.waktuKomentarTV.setText(String.valueOf(selisih_menit)+" menit yang lalu");
+                    }
+                } else {
+                    int selisih_jam = Integer.parseInt(getTimeStamp().substring(11,13))-Integer.parseInt(reportComment.getCreatedAt().substring(11,13));
+                    if(selisih_jam <= 5){
+                        myViewHolder.waktuKomentarTV.setText(String.valueOf(selisih_jam)+" jam yang lalu");
+                    } else {
+                        myViewHolder.waktuKomentarTV.setText("Hari ini, "+reportComment.getCreatedAt().substring(11,13)+":"+reportComment.getCreatedAt().substring(14,16));
+                    }
+                }
             } else if (selisih_hari==1) {
-                myViewHolder.waktuKomentarTV.setText("Kemarin");
+                myViewHolder.waktuKomentarTV.setText("Kemarin, "+reportComment.getCreatedAt().substring(11,13)+":"+reportComment.getCreatedAt().substring(14,16));
             } else {
-                myViewHolder.waktuKomentarTV.setText(reportComment.getCreatedAt().substring(8,10)+"/"+reportComment.getCreatedAt().substring(5,7)+"/"+reportComment.getCreatedAt().substring(2,4));
+                myViewHolder.waktuKomentarTV.setText(reportComment.getCreatedAt().substring(8,10)+"/"+reportComment.getCreatedAt().substring(5,7)+"/"+reportComment.getCreatedAt().substring(2,4)+" "+reportComment.getCreatedAt().substring(11,13)+":"+reportComment.getCreatedAt().substring(14,16));
             }
         } else {
-            myViewHolder.waktuKomentarTV.setText(reportComment.getCreatedAt().substring(8,10)+"/"+reportComment.getCreatedAt().substring(5,7)+"/"+reportComment.getCreatedAt().substring(2,4));
+            myViewHolder.waktuKomentarTV.setText(reportComment.getCreatedAt().substring(8,10)+"/"+reportComment.getCreatedAt().substring(5,7)+"/"+reportComment.getCreatedAt().substring(2,4)+" "+reportComment.getCreatedAt().substring(11,13)+":"+reportComment.getCreatedAt().substring(14,16));
         }
 
     }
@@ -102,9 +116,9 @@ public class AdapterReportComment extends RecyclerView.Adapter<AdapterReportComm
         }
     }
 
-    private String getDate() {
+    private String getTimeStamp() {
         @SuppressLint("SimpleDateFormat")
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
     }

@@ -52,7 +52,7 @@
                 android:singleLine="true"
                 android:text="Memuat data... | Memuat data..."
                 android:textColor="#C16D02"
-                android:textSize="13dp"
+                android:textSize="12dp"
                 tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
             <TextView
