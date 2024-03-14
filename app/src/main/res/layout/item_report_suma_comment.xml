@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        tools:ignore="RtlHardcoded">
+
+        <RelativeLayout
+            android:layout_width="35dp"
+            android:layout_height="35dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/default_profile"
+                app:civ_border_color="#BDBDBD"
+                app:civ_border_width="0.8dp"
+                tools:ignore="ImageContrastCheck" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/komentator_profile_pict"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/default_profile"
+                app:civ_border_color="#BDBDBD"
+                app:civ_border_width="0.8dp"
+                tools:ignore="ImageContrastCheck" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/komentator_nama_jabatan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="Memuat data... | Memuat data..."
+                android:textColor="#C16D02"
+                android:textSize="12dp"
+                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+            <TextView
+                android:id="@+id/komentator_komentar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:lineSpacingExtra="2dp"
+                android:text="Memuat data.."
+                android:textColor="#424242"
+                android:textSize="13dp"
+                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+            <TextView
+                android:id="@+id/komentator_waktu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="Memuat data..."
+                android:textColor="#979797"
+                android:textSize="9dp"
+                android:layout_marginTop="3dp"
+                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
