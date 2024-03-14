@@ -2,6 +2,7 @@ package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.util.Pair;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,6 +31,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -45,6 +47,8 @@ import com.gelora.absensi.adapter.AdapterSumaReport;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataReportSuma;
 import com.gelora.absensi.model.KaryawanSales;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.takisoft.datetimepicker.DatePickerDialog;
@@ -58,6 +62,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class ListDataReportSumaActivity extends AppCompatActivity {
@@ -70,7 +75,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
     BottomSheetLayout bottomSheet;
-    String categoryCode = "", subCategoryCode = "", dateChoice = getDate();
+    String categoryCode = "", subCategoryCode = "", dateStartChoice = getDate(), dateEndChoice = getDate();
     private RecyclerView reportRV;
     private DataReportSuma[] dataReportSumas;
     private AdapterSumaReport adapterSumaReport;
@@ -116,6 +121,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         contentPart = findViewById(R.id.content_part);
         subCategoryChoiceTV = findViewById(R.id.sub_category_choice_tv);
 
+        MaterialDatePicker materialDatePicker = MaterialDatePicker.Builder.dateRangePicker().setSelection(Pair.create(MaterialDatePicker.todayInUtcMilliseconds(),MaterialDatePicker.todayInUtcMilliseconds())).build();
         LocalBroadcastManager.getInstance(this).registerReceiver(karyawanSalesBroad, new IntentFilter("karyawan_sales_broad"));
 
         if(sharedPrefManager.getSpNik().equals("0499070507")){ //Pa Dawud
@@ -147,8 +153,6 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
                     addBTN.setVisibility(View.VISIBLE);
-                    float density = getResources().getDisplayMetrics().density;
-                    contentPart.setPadding((int)(20*density),(int)(20*density),(int)(20*density),(int)(20*density));
                 }
                 salesChoiceTV.setText("Semua Sales");
                 salesBTN.setVisibility(View.VISIBLE);
@@ -229,7 +233,43 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         dateBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                datePicker();
+                //datePicker();
+                materialDatePicker.show(getSupportFragmentManager(), "Tag_picker");
+                materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+                    @Override
+                    public void onPositiveButtonClick(Object selection) {
+                        long startDate = ((Pair<Long, Long>) selection).first;
+                        long endDate = ((Pair<Long, Long>) selection).second;
+                        Date date1 = new Date(startDate);
+                        Date date2 = new Date(endDate);
+                        @SuppressLint("SimpleDateFormat")
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        @SuppressLint("SimpleDateFormat")
+                        SimpleDateFormat sdf_show = new SimpleDateFormat("dd/MM/yyyy");
+                        String tanggalMulai = sdf.format(date1);
+                        String tanggalMulaiShow = sdf_show.format(date1);
+                        String tanggalAkhir = sdf.format(date2);
+                        String tanggalAkhirShow = sdf_show.format(date2);
+                        choiceDateTV.setText(tanggalMulaiShow+"  -  "+tanggalAkhirShow);
+                        dateStartChoice = tanggalMulai;
+                        dateEndChoice = tanggalAkhir;
+
+                        attantionReportPart.setVisibility(View.GONE);
+                        reportRV.setVisibility(View.GONE);
+                        loadingDataPartReport.setVisibility(View.VISIBLE);
+                        noDataPartReport.setVisibility(View.GONE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(categoryCode.equals("1")){
+                                    getData(categoryCode);
+                                } else {
+                                    getData(subCategoryCode);
+                                }
+                            }
+                        }, 1000);
+                    }
+                });
             }
         });
 
@@ -267,97 +307,34 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void getDateNow(){
-        dateChoice = getDate();
-        String input_date = dateChoice;
+        dateStartChoice = getDate();
+        dateEndChoice = getDate();
+
         @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-        Date dt1= null;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat sdf_show = new SimpleDateFormat("dd/MM/yyyy");
+
         try {
-            dt1 = format1.parse(input_date);
+            Date start = sdf.parse(dateStartChoice);
+            Date end = sdf.parse(dateEndChoice);
+            String tanggalMulai = sdf.format(start);
+            String tanggalMulaiShow = sdf_show.format(start);
+            String tanggalAkhir = sdf.format(end);
+            String tanggalAkhirShow = sdf_show.format(end);
+            choiceDateTV.setText(tanggalMulaiShow+"  -  "+tanggalAkhirShow);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        @SuppressLint("SimpleDateFormat")
-        DateFormat format2 = new SimpleDateFormat("EEE");
-        @SuppressLint("SimpleDateFormat")
-        DateFormat getweek = new SimpleDateFormat("W");
-        String finalDay = format2.format(dt1);
-        String week = getweek.format(dt1);
-        String hariName = "";
-
-        if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
-            hariName = "Senin";
-        } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
-            hariName = "Selasa";
-        } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
-            hariName = "Rabu";
-        } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
-            hariName = "Kamis";
-        } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
-            hariName = "Jumat";
-        } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
-            hariName = "Sabtu";
-        } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
-            hariName = "Minggu";
-        }
-
-        String dayDate = input_date.substring(8,10);
-        String yearDate = input_date.substring(0,4);
-        String bulanValue = input_date.substring(5,7);
-        String bulanName;
-
-        switch (bulanValue) {
-            case "01":
-                bulanName = "Januari";
-                break;
-            case "02":
-                bulanName = "Februari";
-                break;
-            case "03":
-                bulanName = "Maret";
-                break;
-            case "04":
-                bulanName = "April";
-                break;
-            case "05":
-                bulanName = "Mei";
-                break;
-            case "06":
-                bulanName = "Juni";
-                break;
-            case "07":
-                bulanName = "Juli";
-                break;
-            case "08":
-                bulanName = "Agustus";
-                break;
-            case "09":
-                bulanName = "September";
-                break;
-            case "10":
-                bulanName = "Oktober";
-                break;
-            case "11":
-                bulanName = "November";
-                break;
-            case "12":
-                bulanName = "Desember";
-                break;
-            default:
-                bulanName = "Not found!";
-                break;
-        }
-
-        choiceDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
     }
 
     private void getData(String category_code){
         String url;
         if(sharedPrefAbsen.getSpNikSalesActive().equals("")){
-            url = "https://reporting.sumasistem.co.id/api/suma_report_mobile?nik=0&tipe_laporan="+category_code+"&tanggal="+dateChoice+"&requester="+sharedPrefManager.getSpNik();
+            url = "https://reporting.sumasistem.co.id/api/suma_report_list?nik=0&tipe_laporan="+category_code+"&tanggal_mulai="+dateStartChoice+"&tanggal_akhir="+dateEndChoice+"&requester="+sharedPrefManager.getSpNik();
         } else {
-            url = "https://reporting.sumasistem.co.id/api/suma_report_mobile?nik="+sharedPrefAbsen.getSpNikSalesActive()+"&tipe_laporan="+category_code+"&tanggal="+dateChoice+"&requester="+sharedPrefManager.getSpNik();
+            url = "https://reporting.sumasistem.co.id/api/suma_report_list?nik="+sharedPrefAbsen.getSpNikSalesActive()+"&tipe_laporan="+category_code+"&tanggal_mulai="+dateStartChoice+"&tanggal_akhir="+dateEndChoice+"&requester="+sharedPrefManager.getSpNik();
         }
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -686,9 +663,9 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
             DatePickerDialog dpd = new DatePickerDialog(ListDataReportSumaActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
 
-                dateChoice = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+                dateStartChoice = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 
-                String input_date = dateChoice;
+                String input_date = dateStartChoice;
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 Date dt1= null;
                 try {
@@ -791,9 +768,9 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
             DatePickerDialog dpd = new DatePickerDialog(ListDataReportSumaActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
 
-                dateChoice = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+                dateStartChoice = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 
-                String input_date = dateChoice;
+                String input_date = dateStartChoice;
                 SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
                 Date dt1= null;
                 try {
@@ -1186,17 +1163,20 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     dateLabel.setText("Filter Tanggal :");
                     categoryChoiceTV.setText("Aktivitas Kunjungan");
                     subCategoryChoiceTV.setText("Aktivitas Promosi");
-                    dateChoice = getDate();
+                    dateStartChoice = getDate();
+                    dateEndChoice = getDate();
                 } else if(subCategoryCode.equals("3")){
                     dateLabel.setText("Filter Tanggal :");
                     categoryChoiceTV.setText("Aktivitas Kunjungan");
                     subCategoryChoiceTV.setText("Aktivitas Penagihan");
-                    dateChoice = getDate();
+                    dateStartChoice = getDate();
+                    dateEndChoice = getDate();
                 } else if(subCategoryCode.equals("4")){
                     dateLabel.setText("Filter Tanggal :");
                     categoryChoiceTV.setText("Aktivitas Kunjungan");
                     subCategoryChoiceTV.setText("Aktivitas Pengiriman");
-                    dateChoice = getDate();
+                    dateStartChoice = getDate();
+                    dateEndChoice = getDate();
                 }
 
                  reportRV.setVisibility(View.GONE);

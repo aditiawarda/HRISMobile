@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -9,6 +9,7 @@
         <item name="windowNoTitle">true</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q"> false </item>
         <item name="android:fontFamily">@font/roboto</item>
+        <item name="materialCalendarFullscreenTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar</item>
     </style>
 
     <style name="alert_dialog_light" parent="android:Theme.Dialog">
@@ -66,6 +67,16 @@
         <item name="headerFontColorNormal">#85FFFFFF</item>
         <item name="headerTitleColor">#fff</item>
         <item name="dialogActionButtonColor">@color/colorAccent</item>
+    </style>
+
+    <style name="materialCalendarFullscreenTheme" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="colorPrimary">#A6441F</item>
+        <item name="colorPrimaryVariant">#FBC02D</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">#FFBB65</item>
+        <item name="colorSecondaryVariant">#A6441F</item>
+        <item name="colorOnSecondary">#E6FB3527</item>
+        <item name="android:statusBarColor" tools:targetApi="1">?attr/colorPrimaryVariant</item>
     </style>
 
 </resources>
