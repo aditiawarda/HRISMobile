@@ -52,7 +52,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="5dp"
-                                    android:text="Filter Kategori :"
+                                    android:text="Kategori :"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -129,7 +129,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
                                     android:layout_marginBottom="5dp"
-                                    android:text="Filter Sub Kategori :"
+                                    android:text="Sub Kategori :"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -207,7 +207,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
                                     android:layout_marginBottom="5dp"
-                                    android:text="Filter Tanggal Rencana :"
+                                    android:text="Tanggal Rencana :"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
