@@ -40,6 +40,7 @@ import com.gelora.absensi.FaqActivity;
 import com.gelora.absensi.HistoryActivity;
 import com.gelora.absensi.HistoryCutiIzinActivity;
 import com.gelora.absensi.HumanResourceActivity;
+import com.gelora.absensi.ListDataReportSumaActivity;
 import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.ListNotifikasiFingerscanActivity;
 import com.gelora.absensi.MonitoringAbsensiBagianActivity;
@@ -72,7 +73,7 @@ public class FragmentInfo extends Fragment {
 
     TextView bagianNameTvEc, descContactHRDTV, titlePage, dateNowTV, countNotifFingerTV, countNotifIzinTV;
     ExpandableLayout aboutAppField, privacyPolicyField, contactServiceField;
-    LinearLayout projectPart, ecBTN, menuPermohonanPart, headerPart, helpDeskIT, helpDeskHRD, newsPart, sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
+    LinearLayout reportSalesPart, projectPart, ecBTN, menuPermohonanPart, headerPart, helpDeskIT, helpDeskHRD, newsPart, sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
     TextView labelNotificationIzin, bagianNameTVSDM, historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     ImageView hrisLogo, notifFiturLoading, sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     SwipeRefreshLayout refreshLayout;
@@ -166,6 +167,7 @@ public class FragmentInfo extends Fragment {
         menuPermohonanPart = view.findViewById(R.id.menu_permohonan_part);
         bagianNameTvEc = view.findViewById(R.id.bagian_name_tv_ec);
         projectPart = view.findViewById(R.id.project_part);
+        reportSalesPart = view.findViewById(R.id.report_sales_part);
 
         selectMonth = getBulanTahun();
         dateNowTV.setText(getDate().substring(8,10)+"/"+getDate().substring(5,7)+"/"+getDate().substring(0,4));
@@ -799,6 +801,18 @@ public class FragmentInfo extends Fragment {
 
                                 if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
                                     projectPart.setVisibility(View.VISIBLE);
+                                    if(sharedPrefManager.getSpIdJabatan().equals("8")){
+                                        reportSalesPart.setVisibility(View.VISIBLE);
+                                        reportSalesPart.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Intent intent = new Intent(mContext, ListDataReportSumaActivity.class);
+                                                startActivity(intent);
+                                            }
+                                        });
+                                    } else {
+                                        reportSalesPart.setVisibility(View.GONE);
+                                    }
                                     projectPart.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -822,6 +836,7 @@ public class FragmentInfo extends Fragment {
                                     }
                                 } else {
                                     projectPart.setVisibility(View.GONE);
+                                    reportSalesPart.setVisibility(View.GONE);
                                     newsPart.setVisibility(View.GONE);
                                 }
 

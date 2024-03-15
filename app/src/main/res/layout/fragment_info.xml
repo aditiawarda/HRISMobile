@@ -1438,6 +1438,74 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/report_sales_part"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginBottom="15dp"
+                                android:background="@drawable/shape_project_form"
+                                android:gravity="center"
+                                android:visibility="gone"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    tools:ignore="UselessParent">
+
+                                    <LinearLayout
+                                        android:layout_width="70dp"
+                                        android:layout_height="75dp"
+                                        android:layout_marginTop="-5dp"
+                                        android:layout_marginRight="20dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginBottom="-60dp"
+                                        android:background="@drawable/shape_ornament_pm_info"
+                                        android:text=""
+                                        android:textStyle="bold"
+                                        tools:ignore="RtlHardcoded" />
+
+                                    <LinearLayout
+                                        android:layout_width="153dp"
+                                        android:layout_height="63dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginRight="25dp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="-20dp"
+                                        android:background="@drawable/project_info_ic"
+                                        android:text=""
+                                        android:textStyle="bold"
+                                        tools:ignore="RtlHardcoded" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="19.5dp"
+                                            android:layout_marginTop="15dp"
+                                            android:layout_marginRight="110dp"
+                                            android:ellipsize="end"
+                                            android:letterSpacing="0.05"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="PROJECT MANAGEMENT"
+                                            android:textColor="#FFF3F1"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:id="@+id/news_part"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -1644,7 +1712,7 @@
                                                 android:layout_marginBottom="5dp"
                                                 android:fontFamily="@font/roboto"
                                                 android:lineSpacingExtra="2dp"
-                                                android:text="Versi yang saat ini anda gunakan adalah versi 2.3.1"
+                                                android:text="Versi yang saat ini anda gunakan adalah versi 2.3.2"
                                                 android:textColor="@color/text_color"
                                                 android:textSize="13dp"
                                                 tools:ignore="HardcodedText,SpUsage" />
