@@ -30,7 +30,7 @@
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/roboto"
-            android:text="Pilih Kategori"
+            android:text="Pilih Sub Kategori"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16dp"
             android:textStyle="bold"
