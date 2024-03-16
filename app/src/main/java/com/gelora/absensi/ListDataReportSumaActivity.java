@@ -124,7 +124,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         MaterialDatePicker materialDatePicker = MaterialDatePicker.Builder.dateRangePicker().setSelection(Pair.create(MaterialDatePicker.todayInUtcMilliseconds(),MaterialDatePicker.todayInUtcMilliseconds())).build();
         LocalBroadcastManager.getInstance(this).registerReceiver(karyawanSalesBroad, new IntentFilter("karyawan_sales_broad"));
 
-        if(sharedPrefManager.getSpNik().equals("0499070507")){ //Pa Dawud
+        if(sharedPrefManager.getSpNik().equals("0499070507") || sharedPrefManager.getSpNik().equals("1405020311") || sharedPrefManager.getSpNik().equals("3321130323") || sharedPrefManager.getSpNik().equals("3320130323")){ //Pa Dawud, Panda, Marpon, Daniel
             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
             salesChoiceTV.setText("Semua Sales");
@@ -144,7 +144,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         } else {
             catBTN.setVisibility(View.VISIBLE);
             dateBTN.setVisibility(View.VISIBLE);
-            if(sharedPrefManager.getSpNik().equals("0121010900") || sharedPrefManager.getSpNik().equals("0981010210") || sharedPrefManager.getSpNik().equals("0552260707") || sharedPrefManager.getSpNik().equals("3318060323") || sharedPrefManager.getSpIdJabatan().equals("43") || sharedPrefManager.getSpIdJabatan().equals("45") || sharedPrefManager.getSpIdJabatan().equals("47") || sharedPrefManager.getSpIdJabatan().equals("49") || sharedPrefManager.getSpIdJabatan().equals("51") || sharedPrefManager.getSpIdJabatan().equals("53") || sharedPrefManager.getSpIdJabatan().equals("55") || sharedPrefManager.getSpIdJabatan().equals("57")){ //Pimpinan Marketing dan GL
+            if(sharedPrefManager.getSpNik().equals("2151010115") || sharedPrefManager.getSpNik().equals("0121010900") || sharedPrefManager.getSpNik().equals("0981010210") || sharedPrefManager.getSpNik().equals("0552260707") || sharedPrefManager.getSpNik().equals("3318060323") || sharedPrefManager.getSpIdJabatan().equals("43") || sharedPrefManager.getSpIdJabatan().equals("45") || sharedPrefManager.getSpIdJabatan().equals("47") || sharedPrefManager.getSpIdJabatan().equals("49") || sharedPrefManager.getSpIdJabatan().equals("51") || sharedPrefManager.getSpIdJabatan().equals("53") || sharedPrefManager.getSpIdJabatan().equals("55") || sharedPrefManager.getSpIdJabatan().equals("57")){ //Pimpinan Marketing dan GL
                 if(sharedPrefManager.getSpIdJabatan().equals("43") || sharedPrefManager.getSpIdJabatan().equals("45") || sharedPrefManager.getSpIdJabatan().equals("47") || sharedPrefManager.getSpIdJabatan().equals("49") || sharedPrefManager.getSpIdJabatan().equals("51") || sharedPrefManager.getSpIdJabatan().equals("53") || sharedPrefManager.getSpIdJabatan().equals("55") || sharedPrefManager.getSpIdJabatan().equals("57")){ //GL
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, sharedPrefManager.getSpNama());
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, sharedPrefManager.getSpNik());
