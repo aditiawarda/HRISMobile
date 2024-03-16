@@ -455,7 +455,7 @@ public class AllMenuActivity extends AppCompatActivity {
                 sdmPart.setVisibility(View.VISIBLE);
                 projectPart.setVisibility(View.VISIBLE);
                 reportSumaPart.setVisibility(View.GONE);
-                if(sharedPrefManager.getSpIdHeadDept().equals("3")||sharedPrefManager.getSpNik().equals("0981010210")||sharedPrefManager.getSpNik().equals("0121010900")||sharedPrefManager.getSpNik().equals("0499070507")){
+                if(sharedPrefManager.getSpIdHeadDept().equals("3")||sharedPrefManager.getSpNik().equals("0981010210")||sharedPrefManager.getSpNik().equals("0121010900")||sharedPrefManager.getSpNik().equals("0499070507")||sharedPrefManager.getSpNik().equals("1504060711")){
                     reportSumaPart2.setVisibility(View.VISIBLE);
                 } else {
                     reportSumaPart2.setVisibility(View.GONE);
