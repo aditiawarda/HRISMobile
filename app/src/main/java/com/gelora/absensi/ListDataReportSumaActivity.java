@@ -124,51 +124,49 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         MaterialDatePicker materialDatePicker = MaterialDatePicker.Builder.dateRangePicker().setSelection(Pair.create(MaterialDatePicker.todayInUtcMilliseconds(),MaterialDatePicker.todayInUtcMilliseconds())).build();
         LocalBroadcastManager.getInstance(this).registerReceiver(karyawanSalesBroad, new IntentFilter("karyawan_sales_broad"));
 
-        if(sharedPrefManager.getSpNik().equals("0499070507") || sharedPrefManager.getSpNik().equals("1405020311") || sharedPrefManager.getSpNik().equals("3321130323") || sharedPrefManager.getSpNik().equals("3320130323")){ //Pa Dawud, Panda, Marpon, Daniel
-            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
-            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
-            salesChoiceTV.setText("Semua Sales");
-
-            catBTN.setVisibility(View.GONE);
-            subCatBTN.setVisibility(View.GONE);
-            dateBTN.setVisibility(View.VISIBLE);
-            salesBTN.setVisibility(View.VISIBLE);
-            addBTN.setVisibility(View.GONE);
-            categoryCode = "0";
-            subCategoryCode = "3";
-            dateLabel.setText("Tanggal Penagihan :");
-            subCategoryChoiceTV.setText("Aktivitas Penagihan");
-            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "3");
-            float density = getResources().getDisplayMetrics().density;
-            contentPart.setPadding((int)(20*density),(int)(20*density),(int)(20*density),(int)(20*density));
-        } else {
-            catBTN.setVisibility(View.VISIBLE);
-            dateBTN.setVisibility(View.VISIBLE);
-            if(sharedPrefManager.getSpNik().equals("2151010115") || sharedPrefManager.getSpNik().equals("0121010900") || sharedPrefManager.getSpNik().equals("0981010210") || sharedPrefManager.getSpNik().equals("0552260707") || sharedPrefManager.getSpNik().equals("3318060323") || sharedPrefManager.getSpIdJabatan().equals("43") || sharedPrefManager.getSpIdJabatan().equals("45") || sharedPrefManager.getSpIdJabatan().equals("47") || sharedPrefManager.getSpIdJabatan().equals("49") || sharedPrefManager.getSpIdJabatan().equals("51") || sharedPrefManager.getSpIdJabatan().equals("53") || sharedPrefManager.getSpIdJabatan().equals("55") || sharedPrefManager.getSpIdJabatan().equals("57")){ //Pimpinan Marketing dan GL
-                if(sharedPrefManager.getSpIdJabatan().equals("43") || sharedPrefManager.getSpIdJabatan().equals("45") || sharedPrefManager.getSpIdJabatan().equals("47") || sharedPrefManager.getSpIdJabatan().equals("49") || sharedPrefManager.getSpIdJabatan().equals("51") || sharedPrefManager.getSpIdJabatan().equals("53") || sharedPrefManager.getSpIdJabatan().equals("55") || sharedPrefManager.getSpIdJabatan().equals("57")){ //GL
-                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, sharedPrefManager.getSpNama());
-                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, sharedPrefManager.getSpNik());
-                    addBTN.setVisibility(View.VISIBLE);
-                } else { //Asisten Kepala Departemen
-                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
-                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
-                    addBTN.setVisibility(View.VISIBLE);
-                }
-                salesChoiceTV.setText("Semua Sales");
-                salesBTN.setVisibility(View.VISIBLE);
-            } else {
+        catBTN.setVisibility(View.VISIBLE);
+        dateBTN.setVisibility(View.VISIBLE);
+        if(sharedPrefManager.getSpNik().equals("2151010115")         // Ibu Deborah
+                || sharedPrefManager.getSpNik().equals("1504060711") // Ibu There
+                || sharedPrefManager.getSpNik().equals("0121010900") // Bapak Nurcahyo
+                || sharedPrefManager.getSpNik().equals("0981010210") // Ibu Ranti
+                || sharedPrefManager.getSpNik().equals("0552260707") // Ibu Dina
+                || sharedPrefManager.getSpNik().equals("3318060323") // Bapak Dominggus
+                || sharedPrefManager.getSpNik().equals("0499070507") // Bapak Dawud
+                || sharedPrefManager.getSpNik().equals("1405020311") // Bapak Panda
+                || sharedPrefManager.getSpNik().equals("3321130323") // Bapak Marpon
+                || sharedPrefManager.getSpNik().equals("3320130323") // Bapak Daniel
+                || sharedPrefManager.getSpIdJabatan().equals("43")   // GL Suma 1
+                || sharedPrefManager.getSpIdJabatan().equals("45")   // GL Suma 2
+                || sharedPrefManager.getSpIdJabatan().equals("47")   // GL Suma 3
+                || sharedPrefManager.getSpIdJabatan().equals("49")   // GL Suma Semarang
+                || sharedPrefManager.getSpIdJabatan().equals("51")   // GL Suma Bandung
+                || sharedPrefManager.getSpIdJabatan().equals("53")   // GL Suma Surabaya
+                || sharedPrefManager.getSpIdJabatan().equals("55")   // GL Suma Purwakarta
+                || sharedPrefManager.getSpIdJabatan().equals("57")){ // GL AE
+            if(sharedPrefManager.getSpIdJabatan().equals("43") || sharedPrefManager.getSpIdJabatan().equals("45") || sharedPrefManager.getSpIdJabatan().equals("47") || sharedPrefManager.getSpIdJabatan().equals("49") || sharedPrefManager.getSpIdJabatan().equals("51") || sharedPrefManager.getSpIdJabatan().equals("53") || sharedPrefManager.getSpIdJabatan().equals("55") || sharedPrefManager.getSpIdJabatan().equals("57")){ //GL
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, sharedPrefManager.getSpNama());
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, sharedPrefManager.getSpNik());
-                salesChoiceTV.setText(sharedPrefAbsen.getSpSalesActive());
-                salesBTN.setVisibility(View.GONE);
+                addBTN.setVisibility(View.VISIBLE);
+            } else { // Management
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
                 addBTN.setVisibility(View.VISIBLE);
             }
-            categoryCode = "1";
-            dateLabel.setText("Tanggal Rencana :");
-            categoryChoiceTV.setText("Rencana Kunjungan");
-            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "1");
-            subCatBTN.setVisibility(View.GONE);
+            salesChoiceTV.setText("Semua Sales");
+            salesBTN.setVisibility(View.VISIBLE);
+        } else {
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, sharedPrefManager.getSpNama());
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, sharedPrefManager.getSpNik());
+            salesChoiceTV.setText(sharedPrefAbsen.getSpSalesActive());
+            salesBTN.setVisibility(View.GONE);
+            addBTN.setVisibility(View.VISIBLE);
         }
+        categoryCode = "1";
+        dateLabel.setText("Tanggal Rencana :");
+        categoryChoiceTV.setText("Rencana Kunjungan");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "1");
+        subCatBTN.setVisibility(View.GONE);
 
         reportRV.setLayoutManager(new LinearLayoutManager(this));
         reportRV.setHasFixedSize(true);

@@ -927,20 +927,6 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             }
         });
 
-//        commentED.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        scrollView.post(() -> scrollView.fullScroll(NestedScrollView.FOCUS_DOWN));
-//                    }
-//                }, 1000);
-//
-//                return false;
-//            }
-//        });
-
         commentED.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -1629,6 +1615,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 params.put("id_report", idReport);
                 params.put("keterangan", keteranganUpdateED.getText().toString());
                 params.put("jumlah_lampiran_update", String.valueOf(lampiranImage.size()));
+                params.put("extensi_lampiran", listToString(extentionImage));
                 return params;
             }
         };
