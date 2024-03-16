@@ -1444,7 +1444,7 @@
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginRight="20dp"
                                 android:layout_marginBottom="15dp"
-                                android:background="@drawable/shape_project_form"
+                                android:background="@drawable/shape_daily_report_menu_info"
                                 android:gravity="center"
                                 android:visibility="gone"
                                 android:orientation="vertical">
@@ -1461,19 +1461,19 @@
                                         android:layout_marginRight="20dp"
                                         android:layout_alignParentRight="true"
                                         android:layout_marginBottom="-60dp"
-                                        android:background="@drawable/shape_ornament_pm_info"
+                                        android:background="@drawable/shape_ornament_dr_info"
                                         android:text=""
                                         android:textStyle="bold"
                                         tools:ignore="RtlHardcoded" />
 
                                     <LinearLayout
                                         android:layout_width="153dp"
-                                        android:layout_height="63dp"
+                                        android:layout_height="56dp"
                                         android:layout_alignParentRight="true"
                                         android:layout_marginRight="25dp"
                                         android:layout_marginTop="5dp"
-                                        android:layout_marginBottom="-20dp"
-                                        android:background="@drawable/project_info_ic"
+                                        android:layout_marginBottom="-12dp"
+                                        android:background="@drawable/daily_report_info_ic"
                                         android:text=""
                                         android:textStyle="bold"
                                         tools:ignore="RtlHardcoded" />
@@ -1493,7 +1493,7 @@
                                             android:letterSpacing="0.05"
                                             android:maxLines="1"
                                             android:singleLine="true"
-                                            android:text="PROJECT MANAGEMENT"
+                                            android:text="DAILY REPORT SALESMAN"
                                             android:textColor="#FFF3F1"
                                             android:textSize="13dp"
                                             android:textStyle="bold"

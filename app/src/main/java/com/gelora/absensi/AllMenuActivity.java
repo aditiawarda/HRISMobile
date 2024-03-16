@@ -497,7 +497,7 @@ public class AllMenuActivity extends AppCompatActivity {
                     cardPart.setVisibility(View.VISIBLE);
                     sdmPart.setVisibility(View.GONE);
                     projectPart.setVisibility(View.GONE);
-                    if(sharedPrefManager.getSpIdHeadDept().equals("3")){
+                    if(sharedPrefManager.getSpIdHeadDept().equals("3") || sharedPrefManager.getSpNik().equals("1405020311") || sharedPrefManager.getSpNik().equals("3321130323") || sharedPrefManager.getSpNik().equals("3320130323")){
                         reportSumaPart.setVisibility(View.VISIBLE);
                     } else {
                         reportSumaPart.setVisibility(View.GONE);

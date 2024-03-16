@@ -124,7 +124,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         MaterialDatePicker materialDatePicker = MaterialDatePicker.Builder.dateRangePicker().setSelection(Pair.create(MaterialDatePicker.todayInUtcMilliseconds(),MaterialDatePicker.todayInUtcMilliseconds())).build();
         LocalBroadcastManager.getInstance(this).registerReceiver(karyawanSalesBroad, new IntentFilter("karyawan_sales_broad"));
 
-        if(sharedPrefManager.getSpNik().equals("0499070507")){ //Pa Dawud
+        if(sharedPrefManager.getSpNik().equals("0499070507") || sharedPrefManager.getSpNik().equals("1405020311") || sharedPrefManager.getSpNik().equals("3321130323") || sharedPrefManager.getSpNik().equals("3320130323")){ //Pa Dawud, Panda, Marpon, Daniel
             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
             salesChoiceTV.setText("Semua Sales");
