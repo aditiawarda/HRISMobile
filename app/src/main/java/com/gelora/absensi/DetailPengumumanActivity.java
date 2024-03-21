@@ -100,7 +100,7 @@ public class DetailPengumumanActivity extends AppCompatActivity {
 
     private void getData() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_detail_pengumuman";
+        final String url = "https://hrisgelora.co.id/api/get_detail_pengumuman";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -132,17 +132,17 @@ public class DetailPengumumanActivity extends AppCompatActivity {
                                     imagePart.setVisibility(View.GONE);
                                 } else {
                                     imagePart.setVisibility(View.VISIBLE);
-                                    Picasso.get().load("https://geloraaksara.co.id/absen-online/assets/img/pengumuman/"+pengumuman_image).networkPolicy(NetworkPolicy.NO_CACHE)
+                                    Picasso.get().load("https://hrisgelora.co.id/assets/img/pengumuman/"+pengumuman_image).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
                                             .into(imagePengumuman);
 
-                                    // Glide.with(getApplicationContext()).load("https://geloraaksara.co.id/absen-online/assets/img/pengumuman/"+pengumuman_image).into(imagePengumuman);
+                                    // Glide.with(getApplicationContext()).load("https://hrisgelora.co.id/assets/img/pengumuman/"+pengumuman_image).into(imagePengumuman);
 
                                     imageView.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
                                             Intent intent = new Intent(DetailPengumumanActivity.this, ViewImageActivity.class);
-                                            intent.putExtra("url", "https://geloraaksara.co.id/absen-online/assets/img/pengumuman/"+pengumuman_image);
+                                            intent.putExtra("url", "https://hrisgelora.co.id/assets/img/pengumuman/"+pengumuman_image);
                                             intent.putExtra("kode", "pengumuman");
                                             startActivity(intent);
                                         }
@@ -152,7 +152,7 @@ public class DetailPengumumanActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(View v) {
                                             Intent intent = new Intent(DetailPengumumanActivity.this, ViewImageActivity.class);
-                                            intent.putExtra("url", "https://geloraaksara.co.id/absen-online/assets/img/pengumuman/"+pengumuman_image);
+                                            intent.putExtra("url", "https://hrisgelora.co.id/assets/img/pengumuman/"+pengumuman_image);
                                             intent.putExtra("kode", "pengumuman");
                                             startActivity(intent);
                                         }

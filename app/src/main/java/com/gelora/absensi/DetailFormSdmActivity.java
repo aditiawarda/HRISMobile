@@ -135,7 +135,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         warningPenilaian = findViewById(R.id.warning_penilaian);
 
         idData = getIntent().getExtras().getString("id_data");
-        urlDownload = "https://geloraaksara.co.id/absen-online/absen/pdf_formulir_sdm/"+idData;
+        urlDownload = "https://hrisgelora.co.id/absen/pdf_formulir_sdm/"+idData;
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -335,7 +335,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
     private void getData() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_detail_form_sdm";
+        final String url = "https://hrisgelora.co.id/api/get_detail_form_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -443,7 +443,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     tglPemenuhan1TV.setText(tgl_pemenuhan.substring(8,10)+"/"+tgl_pemenuhan.substring(5,7)+"/"+tgl_pemenuhan.substring(0,4));
 
                                     if(status_approve_kabag.equals("1")){
-                                        String url_ttd_kabag = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kabag;
+                                        String url_ttd_kabag = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kabag;
                                         Picasso.get().load(url_ttd_kabag).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                 .into(ttdPemohon);
@@ -451,7 +451,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
 
                                         if(status_approve_kadept.equals("1")){
-                                            String url_ttd_kadept = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kadept;
+                                            String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
                                             Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
                                                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                     .into(ttdKadept);
@@ -459,7 +459,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
 
                                             if(status_approve_direktur.equals("1")){
-                                                String url_ttd_direksi = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_direktur;
+                                                String url_ttd_direksi = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_direktur;
                                                 Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
                                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                         .into(ttdDireksi);
@@ -467,7 +467,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
 
                                                 if(status_approve_hrd.equals("1")){
-                                                    String url_ttd_penerima = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_penerima;
+                                                    String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
                                                     Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
                                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                             .into(ttdPenerima);
@@ -567,7 +567,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     }
 
                                     if(status_approve_kabag.equals("1")){
-                                        String url_ttd_kabag = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kabag;
+                                        String url_ttd_kabag = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kabag;
                                         Picasso.get().load(url_ttd_kabag).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                 .into(ttdPemohon);
@@ -575,7 +575,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
 
                                         if(status_approve_kadept.equals("1")){
-                                            String url_ttd_kadept = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kadept;
+                                            String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
                                             Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
                                                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                     .into(ttdKadept);
@@ -584,7 +584,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
                                             if(keterangan.equals("2")){
                                                 if(status_approve_direktur.equals("1")){
-                                                    String url_ttd_direksi = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_direktur;
+                                                    String url_ttd_direksi = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_direktur;
                                                     Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
                                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                             .into(ttdDireksi);
@@ -592,7 +592,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                     tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
 
                                                     if(status_approve_hrd.equals("1")){
-                                                        String url_ttd_penerima = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_penerima;
+                                                        String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
                                                         Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
                                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                                 .into(ttdPenerima);
@@ -611,7 +611,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 }
                                             } else if(keterangan.equals("3")||keterangan.equals("4")){
                                                 if(status_approve_hrd.equals("1")){
-                                                    String url_ttd_penerima = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_penerima;
+                                                    String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
                                                     Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
                                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                             .into(ttdPenerima);
@@ -740,7 +740,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     tglPemenuhan2TV.setText(tgl_pemenuhan.substring(8,10)+"/"+tgl_pemenuhan.substring(5,7)+"/"+tgl_pemenuhan.substring(0,4));
 
                                     if(status_approve_kabag.equals("1")){
-                                        String url_ttd_kabag = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kabag;
+                                        String url_ttd_kabag = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kabag;
                                         Picasso.get().load(url_ttd_kabag).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                 .into(ttdPemohon);
@@ -748,7 +748,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
 
                                         if(status_approve_kadept.equals("1")){
-                                            String url_ttd_kadept = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kadept;
+                                            String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
                                             Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
                                                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                     .into(ttdKadept);
@@ -756,7 +756,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
 
                                             if(status_approve_hrd.equals("1")){
-                                                String url_ttd_penerima = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_penerima;
+                                                String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
                                                 Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
                                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                         .into(ttdPenerima);
@@ -872,7 +872,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     }
 
                                     if(status_approve_kabag.equals("1")){
-                                        String url_ttd_kabag = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kabag;
+                                        String url_ttd_kabag = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kabag;
                                         Picasso.get().load(url_ttd_kabag).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                 .into(ttdPemohon);
@@ -880,7 +880,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
 
                                         if(status_approve_kadept.equals("1")){
-                                            String url_ttd_kadept = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kadept;
+                                            String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
                                             Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
                                                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                     .into(ttdKadept);
@@ -888,7 +888,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
 
                                             if(status_approve_hrd.equals("1")){
-                                                String url_ttd_penerima = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_penerima;
+                                                String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
                                                 Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
                                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                         .into(ttdPenerima);
@@ -974,7 +974,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
     private void cekPenilaianKaryawan(String nik, String nama, String id_bagian, String id_departemen, String id_form, String status_approve_kabag){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_data_penilaian_karyawan";
+        final String url = "https://hrisgelora.co.id/api/cek_data_penilaian_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -1054,7 +1054,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
     private void checkSignature(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1068,7 +1068,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
                             if (status.equals("Available")){
                                 String signature = data.getString("data");
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 updateApproved();
                             } else {
                                 pDialog.setTitleText("Perhatian")
@@ -1125,7 +1125,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
     private void updateApproved(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/update_approve_kadept_form_sdm";
+        final String url = "https://hrisgelora.co.id/api/update_approve_kadept_form_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1182,7 +1182,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
     private void rejectFunc(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/update_reject_kadept_form_sdm";
+        final String url = "https://hrisgelora.co.id/api/update_reject_kadept_form_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

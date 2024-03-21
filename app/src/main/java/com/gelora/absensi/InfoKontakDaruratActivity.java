@@ -129,7 +129,7 @@ public class InfoKontakDaruratActivity extends AppCompatActivity {
 
     private void getDataKontak() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/list_kontak_darurat";
+        final String url = "https://hrisgelora.co.id/api/list_kontak_darurat";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -275,7 +275,7 @@ public class InfoKontakDaruratActivity extends AppCompatActivity {
 
     private void deleteKontak(String id_kontak) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/delete_kontak_darurat";
+        final String url = "https://hrisgelora.co.id/api/delete_kontak_darurat";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

@@ -234,7 +234,7 @@ public class FullMapsActivity extends FragmentActivity implements OnMapReadyCall
     }
 
     private void getLocation() {
-        String url = "https://geloraaksara.co.id/absen-online/api/lokasi";
+        String url = "https://hrisgelora.co.id/api/lokasi";
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>()

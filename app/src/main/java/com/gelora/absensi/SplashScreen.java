@@ -361,7 +361,7 @@ public class SplashScreen extends AppCompatActivity {
 
     public void versionCheck(){
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/version_app";
+        final String url = "https://hrisgelora.co.id/api/version_app";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

@@ -48,7 +48,7 @@ public class AdapterListDataPenilaianSDM extends RecyclerView.Adapter<AdapterLis
         final DataPenilaianSDM dataPenilaianSDM = data[i];
 
         if(dataPenilaianSDM.getAvatar()!=null && !dataPenilaianSDM.getAvatar().equals("null")){
-            Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/"+dataPenilaianSDM.getAvatar()).networkPolicy(NetworkPolicy.NO_CACHE)
+            Picasso.get().load("https://hrisgelora.co.id/upload/avatar/"+dataPenilaianSDM.getAvatar()).networkPolicy(NetworkPolicy.NO_CACHE)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                     .resize(100, 100)
                     .into(myViewHolder.profileImage);

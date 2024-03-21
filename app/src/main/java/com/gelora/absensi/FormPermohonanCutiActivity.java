@@ -2635,7 +2635,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
     private void getDataKaryawanDetail() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan_personal";
+        final String url = "https://hrisgelora.co.id/api/data_karyawan_personal";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -2715,7 +2715,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
     private void checkSignature(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -2729,7 +2729,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
                             if (status.equals("Available")){
                                 String signature = data.getString("data");
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 submitCuti();
                             } else {
                                 pDialog.setTitleText("Perhatian")
@@ -2787,7 +2787,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
     private void submitCuti(){
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cuti_input";
+        final String url = "https://hrisgelora.co.id/api/cuti_input";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -2904,7 +2904,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     }
 
     public void uploadLampiran() {
-        String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_lampiran_cuti";
+        String UPLOAD_URL = "https://hrisgelora.co.id/api/upload_lampiran_cuti";
         String path1 = FilePathimage.getPath(this, uri);
         if (path1 == null) {
             Toast.makeText(this, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
@@ -3026,7 +3026,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
     private void getDataKaryawanPengganti(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cari_karyawan_pengganti";
+        final String url = "https://hrisgelora.co.id/api/cari_karyawan_pengganti";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -3095,7 +3095,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
     private void getkategoriCuti() {
         RequestQueue requestQueue = Volley.newRequestQueue(FormPermohonanCutiActivity.this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cuti_kategori";
+        final String url = "https://hrisgelora.co.id/api/cuti_kategori";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -4059,7 +4059,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
     private void dayCalculate(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/total_hari";
+        final String url = "https://hrisgelora.co.id/api/total_hari";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

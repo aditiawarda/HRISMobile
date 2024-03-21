@@ -1039,7 +1039,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
 
     private void getDataKaryawan(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cari_karyawan_penilaian";
+        final String url = "https://hrisgelora.co.id/api/cari_karyawan_penilaian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -1107,7 +1107,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
     }
 
     private void checkSignature(){
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1121,7 +1121,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
 
                             if (status.equals("Available")){
                                 String signature = data.getString("data");
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 submitPenilaian();
                             } else {
                                 pDialog.setTitleText("Perhatian")
@@ -1185,7 +1185,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
 
     private void submitPenilaian(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/penilaian_sdm_input";
+        final String url = "https://hrisgelora.co.id/api/penilaian_sdm_input";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

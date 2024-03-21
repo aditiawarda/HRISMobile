@@ -247,7 +247,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
     private void getDataKaryawanDetail() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan_personal";
+        final String url = "https://hrisgelora.co.id/api/data_karyawan_personal";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1710,7 +1710,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
     private void dayCalculate(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/total_hari";
+        final String url = "https://hrisgelora.co.id/api/total_hari";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1770,7 +1770,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
     private void submitIzin(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/izin_input";
+        final String url = "https://hrisgelora.co.id/api/izin_input";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1888,7 +1888,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
     private void checkSignature(){
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1902,7 +1902,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
                             if (status.equals("Available")){
                                 String signature = data.getString("data");
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 submitIzin();
                             } else {
                                 pDialog.setTitleText("Perhatian")
@@ -2244,7 +2244,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
     }
 
     public void uploadSuratSakit() {
-        String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_surat_sakit";
+        String UPLOAD_URL = "https://hrisgelora.co.id/api/upload_surat_sakit";
         String path1 = FilePathimage.getPath(this, uri);
         if (path1 == null) {
             Toast.makeText(this, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();

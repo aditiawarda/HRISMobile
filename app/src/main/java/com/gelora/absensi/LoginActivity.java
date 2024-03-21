@@ -348,7 +348,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginFunction(final String nik, final String password) {
-        String postUrl = "https://geloraaksara.co.id/absen-online/api/login_absen";
+        String postUrl = "https://hrisgelora.co.id/api/login_absen";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JSONObject postData = new JSONObject();
         try {
@@ -453,7 +453,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginTestUser() {
-        String postUrl = "https://geloraaksara.co.id/absen-online/api/login_absen";
+        String postUrl = "https://hrisgelora.co.id/api/login_absen";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JSONObject postData = new JSONObject();
         try {
@@ -531,7 +531,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void checkDevice(String nik, String password, String device_id) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/check_device_id";
+        final String url = "https://hrisgelora.co.id/api/check_device_id";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -595,7 +595,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void getContactIT() {
         RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_contact_it";
+        final String url = "https://hrisgelora.co.id/api/get_contact_it";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")
@@ -660,7 +660,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void getStatusCheckDivice() {
         RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
-        final String url = "https://geloraaksara.co.id/absen-online/api/check_perangkat";
+        final String url = "https://hrisgelora.co.id/api/check_perangkat";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")

@@ -356,7 +356,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
     }
 
     private void getStatus() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/task_status";
+        final String url = "https://hrisgelora.co.id/api/task_status";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")
@@ -1530,7 +1530,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
 
     private void getAllUser(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_all_data_user_by_keyword";
+        final String url = "https://hrisgelora.co.id/api/get_all_data_user_by_keyword";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -1594,7 +1594,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
     }
 
     private void submitData() {
-        String URL = "https://geloraaksara.co.id/absen-online/api/create_task_timeline";
+        String URL = "https://hrisgelora.co.id/api/create_task_timeline";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JSONObject requestBody = new JSONObject();
 

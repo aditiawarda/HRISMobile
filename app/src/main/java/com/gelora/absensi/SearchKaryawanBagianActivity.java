@@ -578,7 +578,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
 
     private void getDataAbsensiUser(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/search_karyawan_bagian";
+        final String url = "https://hrisgelora.co.id/api/search_karyawan_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -689,7 +689,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
 
     private void getListBagian() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_list_bagian";
+        final String url = "https://hrisgelora.co.id/api/get_list_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

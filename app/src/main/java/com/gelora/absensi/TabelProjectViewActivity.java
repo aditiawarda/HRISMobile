@@ -149,7 +149,7 @@ public class TabelProjectViewActivity extends AppCompatActivity {
 
     private void getDetailProject22(String project_id) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_project_detail";
+        final String url = "https://hrisgelora.co.id/api/get_project_detail";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -222,7 +222,7 @@ public class TabelProjectViewActivity extends AppCompatActivity {
 
     private void getDetailProject(String project_id) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_project_detail";
+        final String url = "https://hrisgelora.co.id/api/get_project_detail";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

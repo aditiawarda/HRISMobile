@@ -168,7 +168,7 @@ public class DetailKeluargaActivity extends AppCompatActivity {
 
     private void deleteData(String id_data) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/delete_data_keluarga";
+        final String url = "https://hrisgelora.co.id/api/delete_data_keluarga";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -234,7 +234,7 @@ public class DetailKeluargaActivity extends AppCompatActivity {
 
     private void getData() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/data_detail_keluarga";
+        final String url = "https://hrisgelora.co.id/api/data_detail_keluarga";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

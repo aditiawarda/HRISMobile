@@ -3220,7 +3220,7 @@ public class ReportSumaActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void uploadLampiran(String filename, String idReport) {
-        String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_lampiran";
+        String UPLOAD_URL = "https://hrisgelora.co.id/api/upload_lampiran";
         String cleanString = filename.substring(1, filename.length() - 1);
         String[] parts = cleanString.split(",");
 

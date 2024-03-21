@@ -565,7 +565,7 @@ public class AllMenuActivity extends AppCompatActivity {
             }
         }
 
-        final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan";
+        final String url = "https://hrisgelora.co.id/api/data_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -728,7 +728,7 @@ public class AllMenuActivity extends AppCompatActivity {
     }
 
     private void getCountMessageYet() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_message_yet_read";
+        final String url = "https://hrisgelora.co.id/api/get_message_yet_read";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -778,7 +778,7 @@ public class AllMenuActivity extends AppCompatActivity {
     }
 
     private void getWaitingConfirm(){
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_waiting_data";
+        final String url = "https://hrisgelora.co.id/api/get_waiting_data";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -830,7 +830,7 @@ public class AllMenuActivity extends AppCompatActivity {
 
     private void getContact() {
         if(sharedPrefManager.getSpIdCor().equals("1")){
-            final String url = "https://geloraaksara.co.id/absen-online/api/get_contact";
+            final String url = "https://hrisgelora.co.id/api/get_contact";
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                     new Response.Listener<JSONObject>() {
                         @SuppressLint("SetTextI18n")
@@ -885,7 +885,7 @@ public class AllMenuActivity extends AppCompatActivity {
             requestQueue.add(request);
 
         } else if(sharedPrefManager.getSpIdCor().equals("3")){
-            final String url = "https://geloraaksara.co.id/absen-online/api/get_contact_erlass";
+            final String url = "https://hrisgelora.co.id/api/get_contact_erlass";
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                     new Response.Listener<JSONObject>() {
                         @SuppressLint("SetTextI18n")
