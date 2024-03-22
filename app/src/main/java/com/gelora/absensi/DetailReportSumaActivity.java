@@ -2163,13 +2163,13 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     agendaCB3.setChecked(false);
 
                                     for (int x=0; x<dataArrayAgenda.length; x++){
-                                        if(dataArrayAgenda[x].equals("1")){
+                                        if(dataArrayAgenda[x].equals("2")){
                                             agendaCB1.setButtonTintList(colorStateList);
                                             agendaCB1.setChecked(true);
-                                        } else if(dataArrayAgenda[x].equals("2")){
+                                        } else if(dataArrayAgenda[x].equals("3")){
                                             agendaCB2.setButtonTintList(colorStateList);
                                             agendaCB2.setChecked(true);
-                                        } else if(dataArrayAgenda[x].equals("3")){
+                                        } else if(dataArrayAgenda[x].equals("4")){
                                             agendaCB3.setButtonTintList(colorStateList);
                                             agendaCB3.setChecked(true);
                                         }

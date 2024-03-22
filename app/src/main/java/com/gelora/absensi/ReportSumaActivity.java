@@ -499,27 +499,27 @@ public class ReportSumaActivity extends AppCompatActivity {
                 if(f1CB1.isChecked()){
                     if(f1CB2.isChecked()){
                         if(f1CB3.isChecked()){
-                            arrayAgenda = "[\"1\",\"2\",\"3\"]";
+                            arrayAgenda = "[\"2\",\"3\",\"4\"]";
                         } else {
-                            arrayAgenda = "[\"1\",\"2\"]";
+                            arrayAgenda = "[\"2\",\"3\"]";
                         }
                     } else {
                         if(f1CB3.isChecked()){
-                            arrayAgenda = "[\"1\",\"3\"]";
+                            arrayAgenda = "[\"2\",\"4\"]";
                         } else {
-                            arrayAgenda = "[\"1\"]";
+                            arrayAgenda = "[\"2\"]";
                         }
                     }
                 } else {
                     if(f1CB2.isChecked()){
                         if(f1CB3.isChecked()){
-                            arrayAgenda = "[\"2\",\"3\"]";
+                            arrayAgenda = "[\"3\",\"4\"]";
                         } else {
-                            arrayAgenda = "[\"2\"]";
+                            arrayAgenda = "[\"3\"]";
                         }
                     } else {
                         if(f1CB3.isChecked()){
-                            arrayAgenda = "[\"3\"]";
+                            arrayAgenda = "[\"4\"]";
                         } else {
                             arrayAgenda = "[]"; //Kosong
                         }
@@ -1000,27 +1000,27 @@ public class ReportSumaActivity extends AppCompatActivity {
                 if(f2CB1.isChecked()){
                     if(f2CB2.isChecked()){
                         if(f2CB3.isChecked()){
-                            arrayAgenda = "[\"1\",\"2\",\"3\"]";
+                            arrayAgenda = "[\"2\",\"3\",\"4\"]";
                         } else {
-                            arrayAgenda = "[\"1\",\"2\"]";
+                            arrayAgenda = "[\"2\",\"3\"]";
                         }
                     } else {
                         if(f2CB3.isChecked()){
-                            arrayAgenda = "[\"1\",\"3\"]";
+                            arrayAgenda = "[\"2\",\"4\"]";
                         } else {
-                            arrayAgenda = "[\"1\"]";
+                            arrayAgenda = "[\"2\"]";
                         }
                     }
                 } else {
                     if(f2CB2.isChecked()){
                         if(f2CB3.isChecked()){
-                            arrayAgenda = "[\"2\",\"3\"]";
+                            arrayAgenda = "[\"3\",\"4\"]";
                         } else {
-                            arrayAgenda = "[\"2\"]";
+                            arrayAgenda = "[\"3\"]";
                         }
                     } else {
                         if(f2CB3.isChecked()){
-                            arrayAgenda = "[\"3\"]";
+                            arrayAgenda = "[\"4\"]";
                         } else {
                             arrayAgenda = "[]"; //Kosong
                         }
