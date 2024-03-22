@@ -55,7 +55,7 @@ import java.util.Map;
 
 public class DetailProjectActivity extends AppCompatActivity {
 
-    LinearLayout tabelBTN, actionBar, backBTN, loadingDataPart, noDataPart, addBTN;
+    LinearLayout dokumentasiBTN, tabelBTN, actionBar, backBTN, loadingDataPart, noDataPart, addBTN;
     TextView projectNameTV, startDateTV, endDateTV, projectLeaderTV, dokumentasiProjectBTN;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -89,6 +89,7 @@ public class DetailProjectActivity extends AppCompatActivity {
         endDateTV = findViewById(R.id.end_date_tv);
         projectLeaderTV = findViewById(R.id.project_leader_tv);
         dokumentasiProjectBTN = findViewById(R.id.dokumentasi_project_btn);
+        dokumentasiBTN = findViewById(R.id.dokumentasi_btn);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
