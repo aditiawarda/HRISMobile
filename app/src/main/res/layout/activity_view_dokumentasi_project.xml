@@ -44,14 +44,54 @@
             app:sliderIndicatorAnimationDuration="600"
             app:sliderIndicatorEnabled="true"
             app:sliderIndicatorGravity="center_horizontal|bottom"
-            app:sliderIndicatorMarginBottom="50dp"
+            app:sliderIndicatorMarginBottom="35dp"
             app:sliderIndicatorOrientation="horizontal"
             app:sliderIndicatorPadding="3dp"
             app:sliderIndicatorRadius="2.5dp"
             app:sliderIndicatorSelectedColor="@color/colorAccent2"
             app:sliderIndicatorUnselectedColor="#FFF"
             app:sliderScrollTimeInSec="2"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints,VisualLintBounds" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/no_data_dokumentasi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="35dp"
+        android:paddingBottom="35dp">
+
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/empty_image" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            android:text="Dokumentasi kosong"
+            android:textAlignment="center"
+            android:textColor="#E1BB8A"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,SpUsage" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data dokumentasi tidak tersedia"
+            android:textAlignment="center"
+            android:textColor="#ECC28D"
+            android:textSize="10dp"
+            tools:ignore="HardcodedText,SpUsage" />
 
     </LinearLayout>
 
@@ -108,17 +148,17 @@
 
                     <TextView
                         android:id="@+id/title_page"
-                        android:gravity="right"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
+                        android:gravity="right"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textStyle="bold"
                         android:text="DOKUMENTASI PROJECT"
                         android:textColor="@color/white"
                         android:textSize="15dp"
-                        tools:ignore="HardcodedText,SpUsage" />
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -127,5 +167,39 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:gravity="bottom|right"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="RtlHardcoded">
+
+        <LinearLayout
+            android:id="@+id/add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+            <LinearLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/shape_new_btn">
+
+                <TextView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/ic_baseline_new_chat"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

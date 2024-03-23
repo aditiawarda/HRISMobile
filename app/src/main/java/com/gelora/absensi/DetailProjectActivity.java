@@ -127,10 +127,11 @@ public class DetailProjectActivity extends AppCompatActivity {
             }
         });
 
-        dokumentasiProjectBTN.setOnClickListener(new View.OnClickListener() {
+        dokumentasiBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetailProjectActivity.this, ViewDokumentasiProjectActivity.class);
+                intent.putExtra("id_project",projectId);
                 startActivity(intent);
             }
         });

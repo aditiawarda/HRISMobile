@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -54,8 +56,13 @@ public class AdapterDokumentasiProject extends SliderViewAdapter<AdapterDokument
 
         Glide.with(viewHolder.itemView)
                 .load(image.getImageUrl())
-                .centerCrop()
                 .into(viewHolder.image);
+        viewHolder.deleteBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "Data", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -68,10 +75,12 @@ public class AdapterDokumentasiProject extends SliderViewAdapter<AdapterDokument
 
         View itemView;
         private PhotoView image;
+        LinearLayout deleteBTN;
 
         public SliderAdapterVH(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image_dokumentasi);
+            deleteBTN = itemView.findViewById(R.id.delete_image_btn);
             this.itemView = itemView;
         }
     }
