@@ -55,7 +55,7 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         final TaskData taskData = data[i];
 
-        if(taskData.getPic().equals("") || taskData.getPic().equals(" ") || taskData.getPic().equals("null")){
+        if(taskData.getPic().equals("") || taskData.getPic().equals(" ") || taskData.getPic().equals("null") || taskData.getPic().equals("-")){
             myViewHolder.picTV.setText("Tidak Diketahui");
         } else {
             myViewHolder.picTV.setText(taskData.getPic().substring(11, taskData.getPic().length()));
@@ -66,8 +66,18 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
         if(taskData.getDate().equals("")){
             myViewHolder.targetDateTV.setText("00/00/0000");
         } else {
-            String targetDate = taskData.getDate().substring(8,10)+"/"+taskData.getDate().substring(5,7)+"/"+taskData.getDate().substring(0,4);
-            myViewHolder.targetDateTV.setText(targetDate);
+            char format1 = '-';
+            char format2 = '/';
+
+            if (isCharacterInString(taskData.getDate(), format1)) {
+                String targetDate = taskData.getDate().substring(8,10)+"/"+taskData.getDate().substring(5,7)+"/"+taskData.getDate().substring(0,4);
+                myViewHolder.targetDateTV.setText(targetDate);
+            } else if (isCharacterInString(taskData.getDate(), format2)) {
+                String[] tgl_target = taskData.getDate().split("/");
+                String targetDate = tgl_target[1]+"/"+tgl_target[0]+"/"+tgl_target[2];
+                myViewHolder.targetDateTV.setText(targetDate);
+            }
+
         }
 
         if(taskData.getStatus().equals("5")){
@@ -233,6 +243,10 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
             startDateTV = itemView.findViewById(R.id.start_date_tv);
             endDateTV = itemView.findViewById(R.id.end_date_tv);
         }
+    }
+
+    private boolean isCharacterInString(String string, char character) {
+        return string.indexOf(character) != -1;
     }
 
     private String getDate() {

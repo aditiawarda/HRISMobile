@@ -1,6 +1,7 @@
 package com.gelora.absensi.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.bumptech.glide.Glide;
 import com.gelora.absensi.R;
@@ -60,7 +62,9 @@ public class AdapterDokumentasiProject extends SliderViewAdapter<AdapterDokument
         viewHolder.deleteBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "Data", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent("remove_dokumentasi");
+                intent.putExtra("url",image.getImageUrl());
+                LocalBroadcastManager.getInstance(v.getContext()).sendBroadcast(intent);
             }
         });
 

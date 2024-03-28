@@ -4,12 +4,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,6 +27,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -103,6 +108,8 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
         loadingData = findViewById(R.id.loading_part);
 
         projectId = getIntent().getExtras().getString("id_project");
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(removeImage, new IntentFilter("remove_dokumentasi"));
 
         sliderView = findViewById(R.id.imageSlider);
         adapterDokumentasiProject = new AdapterDokumentasiProject(dataDokumentasiProjects);
@@ -209,6 +216,79 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
 
     }
 
+    public BroadcastReceiver removeImage = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String url = intent.getStringExtra("url");
+
+            try {
+                new KAlertDialog(ViewDokumentasiProjectActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Yakin untuk menghapus foto dokumentasi?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                pDialog = new KAlertDialog(ViewDokumentasiProjectActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1300, 800) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (ViewDokumentasiProjectActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (ViewDokumentasiProjectActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (ViewDokumentasiProjectActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (ViewDokumentasiProjectActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (ViewDokumentasiProjectActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (ViewDokumentasiProjectActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+                                    public void onFinish() {
+                                        i = -1;
+                                        removeImage(url);
+                                    }
+                                }.start();
+                            }
+                        })
+                        .show();
+            }
+            catch (WindowManager.BadTokenException e){
+                Log.e("Error", e.toString());
+            }
+
+        }
+    };
+
     private String getDate() {
         @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -233,6 +313,7 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
                                 JSONArray dataimage = data.getJSONArray("data");
                                 loadingData.setVisibility(View.GONE);
                                 noDataDokumentasi.setVisibility(View.GONE);
+                                sliderView.setVisibility(View.VISIBLE);
 
                                 for (int i = 0; i < dataimage.length(); i++) {
                                     JSONObject image = dataimage.getJSONObject(i);
@@ -246,6 +327,7 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
                             } else {
                                 loadingData.setVisibility(View.GONE);
                                 noDataDokumentasi.setVisibility(View.VISIBLE);
+                                sliderView.setVisibility(View.GONE);
                             }
 
                         } catch (JSONException e) {
@@ -265,6 +347,65 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("id_project", projectId);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void removeImage(String imageUrl) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/remove_project_documentation";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")) {
+                                pDialog.setTitleText("Berhasil")
+                                        .setContentText("Foto berhasil dihapus")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                dataDokumentasiProjects.clear();
+                                                getDokumentasi();
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+
+                            } else {
+                                pDialog.setTitleText("Gagal Dihapus")
+                                        .setContentText("Terjadi kesalahan")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("url", imageUrl);
                 return params;
             }
         };

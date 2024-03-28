@@ -87,7 +87,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
     KAlertDialog pDialog;
     private int i = -1;
     int persentasePregressNumber = 0, persentasePregressNumberBefore = 0;
-    String actualStartDate = "", actualEndDate = "", statusIdTaskBefore = "", statusIdTask = "", projectId = "", picNik = "", picName = "", targetDate = "", startDate = "", startDatePar = "", endDate = "", endDatePar = "", actualStartDatePar = "", actualEndDatePar = "";
+    String actualStartDate = "", actualEndDate = "", statusIdTaskBefore = "", statusIdTask = "", projectId = "", picNik = "", picName = "", targetDate = "", targetDatePar = "", startDate = "", startDatePar = "", endDate = "", endDatePar = "", actualStartDatePar = "", actualEndDatePar = "";
     EditText keywordKaryawan;
     private RecyclerView karyawanRV, statusTaskRV;
     private KaryawanAll[] karyawanAlls;
@@ -150,6 +150,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
                 picNik = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PROJECT, "");
                 targetDate = "";
+                targetDatePar = "";
                 targetDateTV.setText("");
                 startDate = "";
                 startDatePar = "";
@@ -528,6 +529,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
         DatePickerDialog dpd = new DatePickerDialog(FormInputTaskActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
 
             targetDate = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+            targetDatePar = String.format("%02d", month + 1)+"/"+String.format("%02d", dayOfMonth)+"/"+String.format("%d", year);
 
             String input_date = targetDate;
             SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -1627,7 +1629,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
             requestBody.put("id_project", projectId);
             requestBody.put("taskname", taskNameED.getText().toString());
             requestBody.put("pic", picNik+"-"+picName);
-            requestBody.put("date", targetDate);
+            requestBody.put("date", targetDatePar);
             requestBody.put("status", statusIdTask);
             requestBody.put("timeline", startDatePar+" - "+endDatePar);
             requestBody.put("scheduleTimeline", startDatePar+" - "+endDatePar);
@@ -1778,6 +1780,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
                                 picNik = "";
                                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PROJECT, "");
                                 targetDate = "";
+                                targetDatePar = "";
                                 targetDateTV.setText("");
                                 startDate = "";
                                 startDatePar = "";

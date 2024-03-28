@@ -92,7 +92,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
 
     // After
     int persentasePregressNumber = 0, persentasePregressNumberBefore = 0;
-    String statusIdTaskBeforeBARU = "", statusIdTaskBARU = "", projectIdBARU = "", picNikBARU = "", picNameBARU = "", targetDateBARU = "", startDateBARU = "", startDateParBARU = "", endDateBARU = "", endDateParBARU = "";
+    String statusIdTaskBeforeBARU = "", statusIdTaskBARU = "", projectIdBARU = "", picNikBARU = "", picNameBARU = "", targetDateBARU = "", targetDateBARUPar = "", startDateBARU = "", startDateParBARU = "", endDateBARU = "", endDateParBARU = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,6 +168,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
                 picNikBARU = "";
                 picNameBARU = "";
                 targetDateBARU = "";
+                targetDateBARUPar = "";
                 startDateBARU = "";
                 startDateParBARU = "";
                 endDateBARU = "";
@@ -491,7 +492,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
             if(targetDateBARU.equals("")||targetDateBARU.equals(dateTarget)){
                 requestBody.put("date", dateTarget);
             } else {
-                requestBody.put("date", targetDateBARU);
+                requestBody.put("date", targetDateBARUPar);
             }
 
             if(statusIdTaskBARU.equals("")||statusIdTaskBARU.equals(statusTask)){
@@ -678,15 +679,34 @@ public class UpdateTaskActivity extends AppCompatActivity {
 
     }
 
+    private boolean isCharacterInString(String string, char character) {
+        return string.indexOf(character) != -1;
+    }
+
     @SuppressLint("SetTextI18n")
     private void applyData(){
         taskNameED.setText(taskName);
 
-        String[] namaPIC = picTask.split("-");
-        picTV.setText(namaPIC[1]);
-        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PROJECT, namaPIC[0]);
+        if(picTask.equals(" ") || picTask.equals("") || picTask.equals("-")){
+            picTV.setText("Belum ditentukan");
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PROJECT, "");
+        } else {
+            String[] namaPIC = picTask.split("-");
+            picTV.setText(namaPIC[1]);
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PROJECT, namaPIC[0]);
+        }
 
-        String input_date = dateTarget;
+        char fmt1 = '-';
+        char fmt2 = '/';
+        String input_date = "";
+
+        if (isCharacterInString(dateTarget, fmt1)) {
+            input_date = dateTarget;
+        } else if (isCharacterInString(dateTarget, fmt2)) {
+            String[] tgl_target = dateTarget.split("/");
+            input_date = tgl_target[2]+"-"+tgl_target[0]+"-"+tgl_target[1];
+        }
+
         @SuppressLint("SimpleDateFormat") SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         Date dt1= null;
         try {
@@ -1266,15 +1286,27 @@ public class UpdateTaskActivity extends AppCompatActivity {
             m = Integer.parseInt(targetDateBARU.substring(5,7));
             d = Integer.parseInt(targetDateBARU.substring(8,10));
         } else {
-            y = Integer.parseInt(dateTarget.substring(0,4));
-            m = Integer.parseInt(dateTarget.substring(5,7));
-            d = Integer.parseInt(dateTarget.substring(8,10));
+            char fmt1 = '-';
+            char fmt2 = '/';
+            String date = "";
+
+            if (isCharacterInString(dateTarget, fmt1)) {
+                date = dateTarget;
+            } else if (isCharacterInString(dateTarget, fmt2)) {
+                String[] tgl_target = dateTarget.split("/");
+                date = tgl_target[2]+"-"+tgl_target[0]+"-"+tgl_target[1];
+            }
+
+            y = Integer.parseInt(date.substring(0,4));
+            m = Integer.parseInt(date.substring(5,7));
+            d = Integer.parseInt(date.substring(8,10));
         }
 
         @SuppressLint({"DefaultLocale", "SetTextI18n"})
         DatePickerDialog dpd = new DatePickerDialog(UpdateTaskActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
 
             targetDateBARU = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+            targetDateBARUPar = String.format("%02d", month + 1)+"/"+String.format("%02d", dayOfMonth)+"/"+String.format("%d", year);
 
             String input_date = targetDateBARU;
             SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
