@@ -77,7 +77,6 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
                 String targetDate = tgl_target[1]+"/"+tgl_target[0]+"/"+tgl_target[2];
                 myViewHolder.targetDateTV.setText(targetDate);
             }
-
         }
 
         if(taskData.getStatus().equals("5")){
