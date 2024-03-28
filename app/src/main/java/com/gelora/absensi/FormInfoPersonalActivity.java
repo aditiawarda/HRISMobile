@@ -1087,66 +1087,73 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
 
     @SuppressLint("SimpleDateFormat")
     private void bornDate(){
-            int y = Integer.parseInt(getDateY());
-            int m = Integer.parseInt(getDateM());
-            int d = Integer.parseInt(getDateD());
+        int y, m, d;
+        if(!tanggalLAhir.equals("")){
+            y = Integer.parseInt(tanggalLAhir.substring(0,4));
+            m = Integer.parseInt(tanggalLAhir.substring(5,7));
+            d = Integer.parseInt(tanggalLAhir.substring(8,10));
+        } else {
+            y = Integer.parseInt(getDateY());
+            m = Integer.parseInt(getDateM());
+            d = Integer.parseInt(getDateD());
+        }
 
-            @SuppressLint({"DefaultLocale", "SetTextI18n"})
-            DatePickerDialog dpd = new DatePickerDialog(FormInfoPersonalActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
+        @SuppressLint({"DefaultLocale", "SetTextI18n"})
+        DatePickerDialog dpd = new DatePickerDialog(FormInfoPersonalActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
 
-                tanggalLAhir = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+            tanggalLAhir = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 
-                String dayDate = tanggalLAhir.substring(8,10);
-                String yearDate = tanggalLAhir.substring(0,4);
-                String bulanValue = tanggalLAhir.substring(5,7);
-                String bulanName;
+            String dayDate = tanggalLAhir.substring(8,10);
+            String yearDate = tanggalLAhir.substring(0,4);
+            String bulanValue = tanggalLAhir.substring(5,7);
+            String bulanName;
 
-                switch (bulanValue) {
-                    case "01":
-                        bulanName = "Januari";
-                        break;
-                    case "02":
-                        bulanName = "Februari";
-                        break;
-                    case "03":
-                        bulanName = "Maret";
-                        break;
-                    case "04":
-                        bulanName = "April";
-                        break;
-                    case "05":
-                        bulanName = "Mei";
-                        break;
-                    case "06":
-                        bulanName = "Juni";
-                        break;
-                    case "07":
-                        bulanName = "Juli";
-                        break;
-                    case "08":
-                        bulanName = "Agustus";
-                        break;
-                    case "09":
-                        bulanName = "September";
-                        break;
-                    case "10":
-                        bulanName = "Oktober";
-                        break;
-                    case "11":
-                        bulanName = "November";
-                        break;
-                    case "12":
-                        bulanName = "Desember";
-                        break;
-                    default:
-                        bulanName = "Not found!";
-                        break;
-                }
+            switch (bulanValue) {
+                case "01":
+                    bulanName = "Januari";
+                    break;
+                case "02":
+                    bulanName = "Februari";
+                    break;
+                case "03":
+                    bulanName = "Maret";
+                    break;
+                case "04":
+                    bulanName = "April";
+                    break;
+                case "05":
+                    bulanName = "Mei";
+                    break;
+                case "06":
+                    bulanName = "Juni";
+                    break;
+                case "07":
+                    bulanName = "Juli";
+                    break;
+                case "08":
+                    bulanName = "Agustus";
+                    break;
+                case "09":
+                    bulanName = "September";
+                    break;
+                case "10":
+                    bulanName = "Oktober";
+                    break;
+                case "11":
+                    bulanName = "November";
+                    break;
+                case "12":
+                    bulanName = "Desember";
+                    break;
+                default:
+                    bulanName = "Not found!";
+                    break;
+            }
 
-                tanggalLahirPilihTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+            tanggalLahirPilihTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
-            }, y,m-1,d);
-            dpd.show();
+        }, y,m-1,d);
+        dpd.show();
 
     }
 

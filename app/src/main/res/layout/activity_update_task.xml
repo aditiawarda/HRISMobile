@@ -379,7 +379,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="3dp"
                                         android:layout_marginBottom="5dp"
-                                        android:text="Timeline :"
+                                        android:text="Jadwal :"
                                         android:textColor="#696969"
                                         android:textSize="12dp"
                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -392,7 +392,7 @@
                                         android:paddingTop="8dp"
                                         android:paddingRight="15dp"
                                         android:paddingBottom="10dp"
-                                        android:layout_marginBottom="15dp"
+                                        android:layout_marginBottom="10dp"
                                         android:orientation="vertical"
                                         tools:ignore="RtlHardcoded">
 
@@ -521,6 +521,166 @@
                                                 </LinearLayout>
 
                                             </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/actual_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="Aktualisasi :"
+                                            android:textColor="#696969"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="@drawable/shape_input_form"
+                                            android:paddingLeft="15dp"
+                                            android:paddingTop="8dp"
+                                            android:paddingRight="15dp"
+                                            android:paddingBottom="10dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:orientation="vertical"
+                                            tools:ignore="RtlHardcoded">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="Tanggal Mulai :"
+                                                android:textColor="#696969"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <LinearLayout
+                                                android:id="@+id/actual_start_date_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="40dp"
+                                                android:paddingStart="20dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:background="@drawable/shape_feel"
+                                                android:orientation="horizontal"
+                                                tools:ignore="RtlSymmetry">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+
+                                                    <LinearLayout
+                                                        android:layout_marginTop="10dp"
+                                                        android:layout_marginBottom="10dp"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="40dp"
+                                                        android:orientation="vertical"
+                                                        android:gravity="center|left"
+                                                        tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                        <TextView
+                                                            android:id="@+id/actual_start_date_tv"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:textColor="#B15735"
+                                                            android:textSize="13dp"
+                                                            android:textStyle="bold"
+                                                            android:text=""
+                                                            tools:ignore="SpUsage" />
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_alignParentRight="true"
+                                                        android:layout_width="40dp"
+                                                        android:layout_height="match_parent"
+                                                        android:background="@drawable/shape_btn"
+                                                        android:gravity="center"
+                                                        tools:ignore="RtlHardcoded">
+
+                                                        <TextView
+                                                            android:layout_width="25dp"
+                                                            android:layout_height="25dp"
+                                                            android:background="@drawable/ic_baseline_date_mulai"/>
+
+                                                    </LinearLayout>
+
+                                                </RelativeLayout>
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="Tanggal Akhir :"
+                                                android:textColor="#696969"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <LinearLayout
+                                                android:id="@+id/actual_end_date_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="40dp"
+                                                android:paddingStart="20dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:background="@drawable/shape_feel"
+                                                android:orientation="horizontal"
+                                                tools:ignore="RtlSymmetry">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+
+                                                    <LinearLayout
+                                                        android:layout_marginTop="10dp"
+                                                        android:layout_marginBottom="10dp"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="40dp"
+                                                        android:orientation="vertical"
+                                                        android:gravity="center|left"
+                                                        tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                        <TextView
+                                                            android:id="@+id/actual_end_date_tv"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:textColor="#B15735"
+                                                            android:textSize="13dp"
+                                                            android:textStyle="bold"
+                                                            android:text=""
+                                                            tools:ignore="SpUsage" />
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_alignParentRight="true"
+                                                        android:layout_width="40dp"
+                                                        android:layout_height="match_parent"
+                                                        android:background="@drawable/shape_btn"
+                                                        android:gravity="center"
+                                                        tools:ignore="RtlHardcoded">
+
+                                                        <TextView
+                                                            android:layout_width="25dp"
+                                                            android:layout_height="25dp"
+                                                            android:background="@drawable/ic_baseline_date_akhir"/>
+
+                                                    </LinearLayout>
+
+                                                </RelativeLayout>
+
+                                            </LinearLayout>
 
                                         </LinearLayout>
 

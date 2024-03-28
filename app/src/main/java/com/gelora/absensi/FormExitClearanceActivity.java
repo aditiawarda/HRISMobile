@@ -818,9 +818,16 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
     @SuppressLint("SimpleDateFormat")
     private void resignDate(){
-        int y = Integer.parseInt(getDateY());
-        int m = Integer.parseInt(getDateM());
-        int d = Integer.parseInt(getDateD());
+        int y, m, d;
+        if(!tanggalResign.equals("")){
+            y = Integer.parseInt(tanggalResign.substring(0,4));
+            m = Integer.parseInt(tanggalResign.substring(5,7));
+            d = Integer.parseInt(tanggalResign.substring(8,10));
+        } else {
+            y = Integer.parseInt(getDateY());
+            m = Integer.parseInt(getDateM());
+            d = Integer.parseInt(getDateD());
+        }
 
         @SuppressLint({"DefaultLocale", "SetTextI18n"})
         DatePickerDialog dpd = new DatePickerDialog(FormExitClearanceActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {

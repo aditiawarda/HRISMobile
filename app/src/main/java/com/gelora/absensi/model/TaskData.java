@@ -7,6 +7,8 @@ public class TaskData {
     private String date;
     private String status;
     private String timeline;
+    private String scheduleTimeline;
+    private String actualTimeline;
     private String progress;
 
     public String getTaskname() {
@@ -47,6 +49,22 @@ public class TaskData {
 
     public void setTimeline(String timeline) {
         this.timeline = timeline;
+    }
+
+    public String getScheduleTimeline() {
+        return scheduleTimeline;
+    }
+
+    public void setScheduleTimeline(String scheduleTimeline) {
+        this.scheduleTimeline = scheduleTimeline;
+    }
+
+    public String getActualTimeline() {
+        return actualTimeline;
+    }
+
+    public void setActualTimeline(String actualTimeline) {
+        this.actualTimeline = actualTimeline;
     }
 
     public String getProgress() {

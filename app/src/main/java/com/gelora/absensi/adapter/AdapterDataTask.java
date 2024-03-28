@@ -78,10 +78,11 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
             myViewHolder.statusTV.setText("Waiting Approval");
         } else if(taskData.getStatus().equals("2")){
             myViewHolder.statusTV.setText("On Progress");
-        } else if(taskData.getStatus().equals("1")){
-            myViewHolder.statusTV.setText("Waiting");
+        // } else if(taskData.getStatus().equals("1")){
+        //    myViewHolder.statusTV.setText("Waiting");
         } else if(taskData.getStatus().equals("0")){
-            myViewHolder.statusTV.setText("To Do");
+            myViewHolder.statusTV.setText("On Planning");
+            // myViewHolder.statusTV.setText("To Do");
         } else {
             myViewHolder.statusTV.setText("Undefined");
         }
@@ -104,11 +105,11 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
 
         // ProgressBar Part
 
-        myViewHolder.startDateTV.setText(taskData.getTimeline().substring(3,5)+"/"+taskData.getTimeline().substring(0,2)+"/"+taskData.getTimeline().substring(6,10));
-        myViewHolder.endDateTV.setText(taskData.getTimeline().substring(16,18)+"/"+taskData.getTimeline().substring(13,15)+"/"+taskData.getTimeline().substring(19,23));
+        myViewHolder.startDateTV.setText(taskData.getScheduleTimeline().substring(3,5)+"/"+taskData.getScheduleTimeline().substring(0,2)+"/"+taskData.getScheduleTimeline().substring(6,10));
+        myViewHolder.endDateTV.setText(taskData.getScheduleTimeline().substring(16,18)+"/"+taskData.getScheduleTimeline().substring(13,15)+"/"+taskData.getScheduleTimeline().substring(19,23));
 
-        String startDateString = taskData.getTimeline().substring(6,10)+"-"+taskData.getTimeline().substring(0,2)+"-"+taskData.getTimeline().substring(3,5);
-        String endDateString = taskData.getTimeline().substring(19,23)+"-"+taskData.getTimeline().substring(13,15)+"-"+taskData.getTimeline().substring(16,18);
+        String startDateString = taskData.getScheduleTimeline().substring(6,10)+"-"+taskData.getScheduleTimeline().substring(0,2)+"-"+taskData.getScheduleTimeline().substring(3,5);
+        String endDateString = taskData.getScheduleTimeline().substring(19,23)+"-"+taskData.getScheduleTimeline().substring(13,15)+"-"+taskData.getScheduleTimeline().substring(16,18);
 
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -195,7 +196,10 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
                 intent.putExtra("pic",taskData.getPic());
                 intent.putExtra("date",taskData.getDate());
                 intent.putExtra("status",taskData.getStatus());
-                intent.putExtra("timeline",taskData.getTimeline());
+                intent.putExtra("scheduleTimeline",taskData.getScheduleTimeline());
+                if(taskData.getStatus().equals("5")){
+                    intent.putExtra("actualTimeline",taskData.getActualTimeline());
+                }
                 if(taskData.getProgress().equals("")||taskData.getProgress().equals(" ")||taskData.getProgress().equals("null")||taskData.getProgress() == null){
                     intent.putExtra("progress","0");
                 } else {
