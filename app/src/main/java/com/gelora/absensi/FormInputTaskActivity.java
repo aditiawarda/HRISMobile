@@ -76,7 +76,7 @@ import java.util.Map;
 public class FormInputTaskActivity extends AppCompatActivity {
 
     LinearLayout actualStartDateBTN, actualEndDateBTN, actualPart, statusBTN, startDateBTN, endDateBTN, actionBar, backBTN, submitBTN, picBTN, startAttantionPart, noDataPart, loadingDataPart, targetDateBTN;
-    TextView actualEndDateTV, actualStartDateTV, picTV, targetDateTV, startDateTV, endDateTV, statusTV, persentaseProgressTV;
+    TextView actualDurationTV, actualEndDateTV, actualStartDateTV, picTV, targetDateTV, startDateTV, endDateTV, statusTV, persentaseProgressTV;
     ImageView loadingGif;
     EditText taskNameED;
     SharedPrefManager sharedPrefManager;
@@ -127,6 +127,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
         actualEndDateTV = findViewById(R.id.actual_end_date_tv);
         persentaseProgress = findViewById(R.id.persentase_progress);
         persentaseProgressTV = findViewById(R.id.persentase_progress_tv);
+        actualDurationTV = findViewById(R.id.actual_duration_tv);
 
         projectId = getIntent().getExtras().getString("id_project");
 
@@ -168,15 +169,16 @@ public class FormInputTaskActivity extends AppCompatActivity {
                 statusIdTask = "";
                 statusIdTaskBefore = "";
                 statusTV.setText("");
+                actualDurationTV.setText("Pilih tanggal...");
                 persentasePregressNumber = 0;
                 persentasePregressNumberBefore = 0;
                 persentaseProgress.setProgress(0);
                 persentaseProgressTV.setText("0%");
+                actualPart.setVisibility(View.GONE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
-
                     }
                 }, 500);
             }
@@ -1155,7 +1157,9 @@ public class FormInputTaskActivity extends AppCompatActivity {
 
                     actualStartDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                    countDuration(actualStartDate, actualEndDate);
                 } else {
+                    actualDurationTV.setText("-");
                     actualStartDateTV.setText("Pilih Kembali !");
                     actualStartDate = "";
 
@@ -1252,7 +1256,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
                 }
 
                 actualStartDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
-
+                actualDurationTV.setText("-");
             }
 
         }, y,m-1,d);
@@ -1370,7 +1374,9 @@ public class FormInputTaskActivity extends AppCompatActivity {
 
                     actualEndDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                    countDuration(actualStartDate, actualEndDate);
                 } else {
+                    actualDurationTV.setText("-");
                     actualEndDateTV.setText("Pilih Kembali !");
                     actualEndDate = "";
 
@@ -1467,11 +1473,69 @@ public class FormInputTaskActivity extends AppCompatActivity {
                 }
 
                 actualEndDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
-
+                actualDurationTV.setText("-");
             }
 
         }, y,m-1,d);
         dpd.show();
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void countDuration(String start, String end){
+        String startDateString = start;
+        String endDateString = end;
+
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = null;
+        Date date2 = null;
+        try {
+            date1 = format.parse(endDateString);
+            date2 = format.parse(startDateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long waktu1 = date1.getTime();
+        long waktu2 = date2.getTime();
+        long selisih_waktu = waktu1 - waktu2;
+
+        long diffDays = (selisih_waktu / (24 * 60 * 60 * 1000)) + 1;
+
+        long years = (diffDays / 365);
+        long months = (diffDays - (years * 365)) / 30;
+        long days = (diffDays - ((years * 365) + (months * 30)));
+
+        // Print the resulting duration
+        if (years == 0){
+            if(months == 0){
+                if(days == 0){
+                    actualDurationTV.setText("-");
+                } else {
+                    actualDurationTV.setText(days +" Hari");
+                }
+            } else {
+                if(days == 0){
+                    actualDurationTV.setText(months + " Bulan");
+                } else {
+                    actualDurationTV.setText(months + " Bulan " + days + " Hari");
+                }
+            }
+        } else {
+            if(months == 0){
+                if(days == 0){
+                    actualDurationTV.setText(years + " Tahun");
+                } else {
+                    actualDurationTV.setText(years + " Tahun " + days + " Hari");
+                }
+            } else {
+                if(days == 0){
+                    actualDurationTV.setText(years + " Tahun " + months + " Bulan");
+                } else {
+                    actualDurationTV.setText(years + " Tahun " + months + " Bulan " + days + " Hari");
+                }
+            }
+        }
 
     }
 

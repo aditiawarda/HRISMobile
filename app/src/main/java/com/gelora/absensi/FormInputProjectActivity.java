@@ -1257,7 +1257,10 @@ public class FormInputProjectActivity extends AppCompatActivity {
                                     sDialog.dismiss();
                                     categoryChoice = "";
                                     nikProjectLeader = "";
+                                    starDateChoice = "";
+                                    endDateChoice = "";
                                     projectNameED.setText("");
+                                    projectDescED.setText("");
                                     onBackPressed();
                                 }
                             })
