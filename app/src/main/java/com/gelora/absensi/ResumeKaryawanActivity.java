@@ -152,7 +152,7 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
 
     private void getData() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_resume";
+        final String url = "https://hrisgelora.co.id/api/get_resume";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -231,12 +231,12 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                 }
 
                                 if(avatar!=null && !avatar.equals("") && !avatar.equals("null")){
-                                    Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar).networkPolicy(NetworkPolicy.NO_CACHE)
+                                    Picasso.get().load("https://hrisgelora.co.id/upload/avatar/"+avatar).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
                                             .resize(150, 150)
                                             .into(profileImage);
                                 } else {
-                                    Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/default_profile.jpg").networkPolicy(NetworkPolicy.NO_CACHE)
+                                    Picasso.get().load("https://hrisgelora.co.id/upload/avatar/default_profile.jpg").networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
                                             .resize(150, 150)
                                             .into(profileImage);
@@ -255,9 +255,9 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                     public void onClick(View v) {
                                         Intent intent = new Intent(ResumeKaryawanActivity.this, ViewImageActivity.class);
                                         if(avatar!=null && !avatar.equals("")){
-                                            intent.putExtra("url","https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar);
+                                            intent.putExtra("url","https://hrisgelora.co.id/upload/avatar/"+avatar);
                                         } else {
-                                            intent.putExtra("url","https://geloraaksara.co.id/absen-online/upload/avatar/default_profile.jpg");
+                                            intent.putExtra("url","https://hrisgelora.co.id/upload/avatar/default_profile.jpg");
                                         }
                                         intent.putExtra("kode","profile");
                                         startActivity(intent);

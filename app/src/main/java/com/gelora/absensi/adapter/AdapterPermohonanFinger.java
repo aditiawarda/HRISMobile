@@ -77,12 +77,12 @@ public class AdapterPermohonanFinger extends RecyclerView.Adapter<AdapterPermoho
         }
 
         if(listPermohonanFingerscan.getAvatar()!=null){
-            Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/"+listPermohonanFingerscan.getAvatar()).networkPolicy(NetworkPolicy.NO_CACHE)
+            Picasso.get().load("https://hrisgelora.co.id/upload/avatar/"+listPermohonanFingerscan.getAvatar()).networkPolicy(NetworkPolicy.NO_CACHE)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                     .resize(80, 80)
                     .into(myViewHolder.profileImage);
         } else {
-            Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/default_profile.jpg").networkPolicy(NetworkPolicy.NO_CACHE)
+            Picasso.get().load("https://hrisgelora.co.id/upload/avatar/default_profile.jpg").networkPolicy(NetworkPolicy.NO_CACHE)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                     .resize(80, 80)
                     .into(myViewHolder.profileImage);

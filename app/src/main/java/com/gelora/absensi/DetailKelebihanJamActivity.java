@@ -215,7 +215,7 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
 
     private void getDetailKelebihanJam() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/total_kelebihan_jam";
+        final String url = "https://hrisgelora.co.id/api/total_kelebihan_jam";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

@@ -188,7 +188,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void activeCheck() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/check_active_user";
+        final String url = "https://hrisgelora.co.id/api/check_active_user";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -269,7 +269,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void deviceIdFunction() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/check_device_id";
+        final String url = "https://hrisgelora.co.id/api/check_device_id";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -387,7 +387,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void checkNotification() {
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/check_notification_info";
+        final String url = "https://hrisgelora.co.id/api/check_notification_info";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -528,7 +528,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void checkDataUser() {
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_kelengkapan_data_info_user";
+        final String url = "https://hrisgelora.co.id/api/cek_kelengkapan_data_info_user";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

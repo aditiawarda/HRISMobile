@@ -71,7 +71,7 @@ public class VisiMisiActivity extends AppCompatActivity {
     }
 
     private void getVisiMisi() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_visi_misi";
+        final String url = "https://hrisgelora.co.id/api/get_visi_misi";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")

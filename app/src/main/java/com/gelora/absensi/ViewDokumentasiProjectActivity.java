@@ -145,7 +145,7 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
     }
 
     private void tambahDokumentasi() {
-        String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/add_project_documentation";
+        String UPLOAD_URL = "https://hrisgelora.co.id/api/add_project_documentation";
         String path1 = FilePathimage.getPath(ViewDokumentasiProjectActivity.this, uri);
         if (path1 == null) {
             Toast.makeText(getBaseContext(), "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
@@ -298,7 +298,7 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
 
     private void getDokumentasi() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/project_documentation";
+        final String url = "https://hrisgelora.co.id/api/project_documentation";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -357,7 +357,7 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
 
     private void removeImage(String imageUrl) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/remove_project_documentation";
+        final String url = "https://hrisgelora.co.id/api/remove_project_documentation";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

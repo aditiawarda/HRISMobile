@@ -683,7 +683,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void getAction() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/aksi_absen";
+        final String url = "https://hrisgelora.co.id/api/aksi_absen";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -755,7 +755,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void getLocation() {
-        String url = "https://geloraaksara.co.id/absen-online/api/lokasi";
+        String url = "https://hrisgelora.co.id/api/lokasi";
         JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>()
                 {
@@ -1008,7 +1008,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void getStatusAbsenBagian() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/status_absen_bagian";
+        final String url = "https://hrisgelora.co.id/api/status_absen_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -1061,7 +1061,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void getShiftAbsenBagian() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/shift_absen_bagian";
+        final String url = "https://hrisgelora.co.id/api/shift_absen_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -1381,7 +1381,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             checkin_point = absenPoint.getText().toString();
         }
 
-        final String url = "https://geloraaksara.co.id/absen-online/api/checkin";
+        final String url = "https://hrisgelora.co.id/api/checkin";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -1476,7 +1476,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void checkIzin(){
-        final String url = "https://geloraaksara.co.id/absen-online/api/check_izin";
+        final String url = "https://hrisgelora.co.id/api/check_izin";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1544,7 +1544,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void editIzin() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/edit_izin";
+        final String url = "https://hrisgelora.co.id/api/edit_izin";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -1635,7 +1635,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void checkLayoff(){
-        final String url = "https://geloraaksara.co.id/absen-online/api/check_layoff";
+        final String url = "https://hrisgelora.co.id/api/check_layoff";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1695,7 +1695,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void actionLayoff(){
-        final String url = "https://geloraaksara.co.id/absen-online/api/layoff";
+        final String url = "https://hrisgelora.co.id/api/layoff";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1756,7 +1756,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void checkAbsen(){
-        final String url = "https://geloraaksara.co.id/absen-online/api/check_absen";
+        final String url = "https://hrisgelora.co.id/api/check_absen";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -3574,7 +3574,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void detailAbsen(String id_status, String id_shift){
-        final String url = "https://geloraaksara.co.id/absen-online/api/detail_absen";
+        final String url = "https://hrisgelora.co.id/api/detail_absen";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -3671,7 +3671,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             checkout_point = absenPoint.getText().toString();
         }
 
-        final String url = "https://geloraaksara.co.id/absen-online/api/checkout";
+        final String url = "https://hrisgelora.co.id/api/checkout";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -3805,7 +3805,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void checkoutRecord(String id_checkout){
-        final String url = "https://geloraaksara.co.id/absen-online/api/checkout_record";
+        final String url = "https://hrisgelora.co.id/api/checkout_record";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -4484,7 +4484,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void checkLibur(String date) {
-        final String url = "https://geloraaksara.co.id/absen-online/api/checking_libur";
+        final String url = "https://hrisgelora.co.id/api/checking_libur";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -4541,7 +4541,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void checkWarning() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/absensi_page_personalization";
+        final String url = "https://hrisgelora.co.id/api/absensi_page_personalization";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -4620,7 +4620,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void deviceIdFunction() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/check_device_id";
+        final String url = "https://hrisgelora.co.id/api/check_device_id";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -4703,7 +4703,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void checkTime() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/server_time";
+        final String url = "https://hrisgelora.co.id/api/server_time";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -4800,7 +4800,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void getDataAbsensi() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/data_record_absensi";
+        final String url = "https://hrisgelora.co.id/api/data_record_absensi";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -4974,7 +4974,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void devModeOnDetection(){
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/user_devmode_detection";
+        final String url = "https://hrisgelora.co.id/api/user_devmode_detection";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

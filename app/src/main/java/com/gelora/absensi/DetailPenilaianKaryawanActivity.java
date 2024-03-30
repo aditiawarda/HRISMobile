@@ -133,7 +133,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
         rejMark = findViewById(R.id.rej_mark);
 
         idPenilaian = getIntent().getExtras().getString("id_penilaian");
-        file_url = "https://geloraaksara.co.id/absen-online/absen/download_pdf_penilaian_karyawan/"+idPenilaian;
+        file_url = "https://hrisgelora.co.id/absen/download_pdf_penilaian_karyawan/"+idPenilaian;
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -333,7 +333,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
 
     private void getData() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_detail_penilaian_karyawan";
+        final String url = "https://hrisgelora.co.id/api/get_detail_penilaian_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -511,7 +511,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                     String yearDatePenilai = tgl_approve_kabag.substring(0, 10).substring(0,4);
                                     String monthDatePenilai = tgl_approve_kabag.substring(0, 10).substring(5,7);
                                     tglPenilai.setText(dayDatePenilai+"/"+monthDatePenilai+"/"+yearDatePenilai);
-                                    String url_ttd_penilai = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_approver_kabag;
+                                    String url_ttd_penilai = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_approver_kabag;
 
                                     Picasso.get().load(url_ttd_penilai).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -524,7 +524,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                         String yearDateAtasanPenilai = tgl_approve_kadept.substring(0, 10).substring(0,4);
                                         String monthDateAtasanPenilai = tgl_approve_kadept.substring(0, 10).substring(5,7);
                                         tglAtasanPenilai.setText(dayDateAtasanPenilai+"/"+monthDateAtasanPenilai+"/"+yearDateAtasanPenilai);
-                                        String url_ttd_atasan_penilai = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_approver_kadept;
+                                        String url_ttd_atasan_penilai = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_approver_kadept;
 
                                         Picasso.get().load(url_ttd_atasan_penilai).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -596,7 +596,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
 
     private void checkSignature(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -610,7 +610,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
 
                             if (status.equals("Available")){
                                 String signature = data.getString("data");
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 updateConfirm();
                             } else {
                                 pDialog.setTitleText("Perhatian")
@@ -667,7 +667,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
 
     private void updateConfirm(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/update_confirm_penilaian_sdm";
+        final String url = "https://hrisgelora.co.id/api/update_confirm_penilaian_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -724,7 +724,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
 
     private void rejectFunc(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/update_reject_penilaian_sdm";
+        final String url = "https://hrisgelora.co.id/api/update_reject_penilaian_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

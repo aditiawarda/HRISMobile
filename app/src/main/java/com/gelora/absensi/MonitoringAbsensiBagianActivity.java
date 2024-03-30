@@ -367,7 +367,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
 
     private void getKehadiranBagian() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/monitoring_bagian";
+        final String url = "https://hrisgelora.co.id/api/monitoring_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -756,7 +756,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
 
     private void getListBagian() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_list_bagian";
+        final String url = "https://hrisgelora.co.id/api/get_list_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

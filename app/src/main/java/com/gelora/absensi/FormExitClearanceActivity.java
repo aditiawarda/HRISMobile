@@ -1072,7 +1072,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
     private void getDataKaryawanDetail() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan_personal";
+        final String url = "https://hrisgelora.co.id/api/data_karyawan_personal";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1178,7 +1178,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
     private void submitRecord(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/exit_clearance_core_upload";
+        final String url = "https://hrisgelora.co.id/api/exit_clearance_core_upload";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1283,7 +1283,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
     private void uploadNullValue(String id_record, String serah_terima, String urutan_st){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/exit_clearance_bull";
+        final String url = "https://hrisgelora.co.id/api/exit_clearance_bull";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1331,13 +1331,13 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
     @SuppressLint("SdCardPath")
     public void uploadDocuments(String id_record) {
-        String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_lampiran_serah_terima_exit_c";
+        String UPLOAD_URL = "https://hrisgelora.co.id/api/upload_lampiran_serah_terima_exit_c";
         Uri[] arrayFile = {st1UriFile, st2UriFile, st3UriFile, st4UriFile, st5UriFile, st6UriFile};
 
         viewBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_clearance_form/"+id_record;
+                String file_url = "https://hrisgelora.co.id/absen/pdf_clearance_form/"+id_record;
                 new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Perhatian")
                         .setContentText("Unduh File?")
@@ -1459,7 +1459,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
     private void checkSignature(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1473,7 +1473,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
                             if (status.equals("Available")){
                                 String signature = data.getString("data");
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 submitRecord();
                             } else {
                                 if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")){

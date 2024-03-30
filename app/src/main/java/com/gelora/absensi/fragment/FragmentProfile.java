@@ -291,7 +291,7 @@ public class FragmentProfile extends Fragment {
             nonGapSgnBTN.setVisibility(View.GONE);
         }
 
-        final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan";
+        final String url = "https://hrisgelora.co.id/api/data_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -356,7 +356,7 @@ public class FragmentProfile extends Fragment {
                                 if(!avatar.equals("default_profile.jpg") && !avatar.equals("null")){
                                     uploadFileImage.setVisibility(View.GONE);
                                     editFileImage.setVisibility(View.VISIBLE);
-                                    String avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
+                                    String avatarPath = "https://hrisgelora.co.id/upload/avatar/"+avatar;
                                     Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
                                             .resize(130, 130)
@@ -446,7 +446,7 @@ public class FragmentProfile extends Fragment {
                                     if(avatar.equals("default_profile.jpg")){
                                         uploadFileImage.setVisibility(View.VISIBLE);
                                         editFileImage.setVisibility(View.GONE);
-                                        String avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
+                                        String avatarPath = "https://hrisgelora.co.id/upload/avatar/"+avatar;
                                         Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                 .resize(130, 130)
@@ -567,7 +567,7 @@ public class FragmentProfile extends Fragment {
     }
 
     private void checkVersion() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/version_app";
+        final String url = "https://hrisgelora.co.id/api/version_app";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")
@@ -781,7 +781,7 @@ public class FragmentProfile extends Fragment {
     }
 
     public void uploadMultipart() {
-        String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/update_profilepic";
+        String UPLOAD_URL = "https://hrisgelora.co.id/api/update_profilepic";
         String path1 = FilePathimage.getPath(mContext, uri);
         if (path1 == null) {
             Toast.makeText(mContext, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
@@ -850,7 +850,7 @@ public class FragmentProfile extends Fragment {
     }
 
     private void removePic() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/remove_pic";
+        final String url = "https://hrisgelora.co.id/api/remove_pic";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

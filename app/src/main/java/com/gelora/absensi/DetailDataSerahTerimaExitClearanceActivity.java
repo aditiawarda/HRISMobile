@@ -277,7 +277,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
 
     private void getData(String id) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_st_exit_clearance";
+        final String url = "https://hrisgelora.co.id/api/get_st_exit_clearance";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -354,7 +354,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                                             Intent intent = new Intent(DetailDataSerahTerimaExitClearanceActivity.this, PdfViewerActivity.class);
                                             intent.putExtra("initialisasi", "detail");
                                             intent.putExtra("kode_st", urutan_st);
-                                            intent.putExtra("uri", "https://geloraaksara.co.id/absen-online/upload/exit_clearance/"+lampiran);
+                                            intent.putExtra("uri", "https://hrisgelora.co.id/upload/exit_clearance/"+lampiran);
                                             startActivity(intent);
                                         }
                                     });
@@ -584,7 +584,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
 
     private void getApprovedData(String id) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_ec_approved_data";
+        final String url = "https://hrisgelora.co.id/api/get_ec_approved_data";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -637,7 +637,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
 
     private void checkSignature(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -651,7 +651,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
 
                             if (status.equals("Available")){
                                 String signature = data.getString("data");
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 updateApproved();
                             } else {
                                 pDialog.setTitleText("Perhatian")
@@ -708,7 +708,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
 
     private void updateApproved(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/approval_st_exit_clearance";
+        final String url = "https://hrisgelora.co.id/api/approval_st_exit_clearance";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

@@ -158,7 +158,7 @@ public class ProjectViewActivity extends AppCompatActivity {
     }
 
     private void getAccess(){
-        final String url = "https://geloraaksara.co.id/absen-online/api/project_additional_access";
+        final String url = "https://hrisgelora.co.id/api/project_additional_access";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -325,7 +325,7 @@ public class ProjectViewActivity extends AppCompatActivity {
     }
 
     private void getProjectCategory() {
-        final String API_ENDPOINT_CATEGORY = "https://geloraaksara.co.id/absen-online/api/get_project_category";
+        final String API_ENDPOINT_CATEGORY = "https://hrisgelora.co.id/api/get_project_category";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -437,7 +437,7 @@ public class ProjectViewActivity extends AppCompatActivity {
 
     private void getProjectAll() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_project_all";
+        final String url = "https://hrisgelora.co.id/api/get_project_all";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -571,7 +571,7 @@ public class ProjectViewActivity extends AppCompatActivity {
 
     private void getProject(String category_id) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_project_by_category";
+        final String url = "https://hrisgelora.co.id/api/get_project_by_category";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

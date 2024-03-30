@@ -324,7 +324,7 @@ public class PersonalChatActivity extends AppCompatActivity {
 
     private void getContactIT() {
         RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_contact_it";
+        final String url = "https://hrisgelora.co.id/api/get_contact_it";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")
@@ -401,7 +401,7 @@ public class PersonalChatActivity extends AppCompatActivity {
 
     private void getChatMate() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_chat_mate";
+        final String url = "https://hrisgelora.co.id/api/get_chat_mate";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -469,7 +469,7 @@ public class PersonalChatActivity extends AppCompatActivity {
 
     private void sendChat() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/send_chat";
+        final String url = "https://hrisgelora.co.id/api/send_chat";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -521,7 +521,7 @@ public class PersonalChatActivity extends AppCompatActivity {
 
     private void getChat() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_personal_chat";
+        final String url = "https://hrisgelora.co.id/api/get_personal_chat";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -587,7 +587,7 @@ public class PersonalChatActivity extends AppCompatActivity {
 
     private void removeChatFunction(String id_chat) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/remove_chat";
+        final String url = "https://hrisgelora.co.id/api/remove_chat";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -630,7 +630,7 @@ public class PersonalChatActivity extends AppCompatActivity {
 
     private void endChatFunction() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/end_chat";
+        final String url = "https://hrisgelora.co.id/api/end_chat";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

@@ -581,7 +581,7 @@ public class FragmentHome extends Fragment {
         }
 
         //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
-        final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan";
+        final String url = "https://hrisgelora.co.id/api/data_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -668,13 +668,13 @@ public class FragmentHome extends Fragment {
                                 }
 
                                 if(!avatar.equals("default_profile.jpg")){
-                                    String avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
+                                    String avatarPath = "https://hrisgelora.co.id/upload/avatar/"+avatar;
                                     Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                                         .resize(120, 120)
                                         .into(avatarUser);
                                 } else {
-                                    String avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
+                                    String avatarPath = "https://hrisgelora.co.id/upload/avatar/"+avatar;
                                     Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                                         .resize(120, 120)
@@ -982,7 +982,7 @@ public class FragmentHome extends Fragment {
 
     private void getDataPengumumanNew() {
         //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
-        final String url = "https://geloraaksara.co.id/absen-online/api/list_data_pengumuman_new";
+        final String url = "https://hrisgelora.co.id/api/list_data_pengumuman_new";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -1361,7 +1361,7 @@ public class FragmentHome extends Fragment {
                                 mainWeather.setText(desc_idn);
                                 loadingProgressBarCuaca.setVisibility(View.GONE);
                                 weatherIcon.setVisibility(View.VISIBLE);
-                                String url = "https://geloraaksara.co.id/absen-online/upload/weather_icon/vector/"+icon+".png";
+                                String url = "https://hrisgelora.co.id/upload/weather_icon/vector/"+icon+".png";
                                 String weatherMain = desc_idn;
 
                                 Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
@@ -1454,7 +1454,7 @@ public class FragmentHome extends Fragment {
 
     private void getCountMessageYet() {
         //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_message_yet_read";
+        final String url = "https://hrisgelora.co.id/api/get_message_yet_read";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -1707,7 +1707,7 @@ public class FragmentHome extends Fragment {
     private void getContact() {
         //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         if(sharedPrefManager.getSpIdCor().equals("1")){
-            final String url = "https://geloraaksara.co.id/absen-online/api/get_contact";
+            final String url = "https://hrisgelora.co.id/api/get_contact";
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                     new Response.Listener<JSONObject>() {
                         @SuppressLint("SetTextI18n")
@@ -1762,7 +1762,7 @@ public class FragmentHome extends Fragment {
             requestQueue.add(request);
 
         } else if(sharedPrefManager.getSpIdCor().equals("3")){
-            final String url = "https://geloraaksara.co.id/absen-online/api/get_contact_erlass";
+            final String url = "https://hrisgelora.co.id/api/get_contact_erlass";
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                     new Response.Listener<JSONObject>() {
                         @SuppressLint("SetTextI18n")
@@ -1965,7 +1965,7 @@ public class FragmentHome extends Fragment {
 
     private void getWaitingConfirm(){
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_waiting_data";
+        final String url = "https://hrisgelora.co.id/api/get_waiting_data";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -2017,7 +2017,7 @@ public class FragmentHome extends Fragment {
 
     private void getCountPersonalNotif(){
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/count_notif_yet_read";
+        final String url = "https://hrisgelora.co.id/api/count_notif_yet_read";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

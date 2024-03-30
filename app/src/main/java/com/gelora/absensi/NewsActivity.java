@@ -1180,7 +1180,7 @@ public class NewsActivity extends AppCompatActivity {
 
     private void newsVisitor() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/news_visitor";
+        final String url = "https://hrisgelora.co.id/api/news_visitor";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

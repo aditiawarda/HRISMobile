@@ -1723,7 +1723,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
     @SuppressLint("SetTextI18n")
     public void uploadLampiran(String filename, String idReport) {
-        String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_lampiran";
+        String UPLOAD_URL = "https://hrisgelora.co.id/api/upload_lampiran";
         String cleanString = filename.substring(1, filename.length() - 1);
         String[] parts = cleanString.split(",");
 
@@ -2461,7 +2461,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
     private void getSales(String nik, String latitude, String longitude) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_sales";
+        final String url = "https://hrisgelora.co.id/api/get_sales";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint({"SetTextI18n", "MissingPermission"})

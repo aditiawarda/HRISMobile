@@ -611,7 +611,7 @@ public class FragmentInfo extends Fragment {
 
     private void getDataAbsensi() {
         //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
-        final String url = "https://geloraaksara.co.id/absen-online/api/total_hadir";
+        final String url = "https://hrisgelora.co.id/api/total_hadir";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -764,7 +764,7 @@ public class FragmentInfo extends Fragment {
             ecBTN.setVisibility(View.GONE);
         }
 
-        final String url = "https://geloraaksara.co.id/absen-online/api/personalization";
+        final String url = "https://hrisgelora.co.id/api/personalization";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1010,7 +1010,7 @@ public class FragmentInfo extends Fragment {
 
     private void checkNotification() {
         //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
-        final String url = "https://geloraaksara.co.id/absen-online/api/check_notification_info";
+        final String url = "https://hrisgelora.co.id/api/check_notification_info";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -1081,7 +1081,7 @@ public class FragmentInfo extends Fragment {
 
     private void getContact() {
         if(sharedPrefManager.getSpIdCor().equals("1")){
-            final String url = "https://geloraaksara.co.id/absen-online/api/get_contact";
+            final String url = "https://hrisgelora.co.id/api/get_contact";
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                     new Response.Listener<JSONObject>() {
                         @SuppressLint("SetTextI18n")
@@ -1130,7 +1130,7 @@ public class FragmentInfo extends Fragment {
             requestQueue.add(request);
 
         } else if(sharedPrefManager.getSpIdCor().equals("3")){
-            final String url = "https://geloraaksara.co.id/absen-online/api/get_contact_erlass";
+            final String url = "https://hrisgelora.co.id/api/get_contact_erlass";
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                     new Response.Listener<JSONObject>() {
                         @SuppressLint("SetTextI18n")

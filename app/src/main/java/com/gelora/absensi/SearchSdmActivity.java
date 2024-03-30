@@ -265,7 +265,7 @@ public class SearchSdmActivity extends AppCompatActivity {
         }
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_bagian";
+        final String url = "https://hrisgelora.co.id/api/get_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -321,7 +321,7 @@ public class SearchSdmActivity extends AppCompatActivity {
 
     private void getListBagian() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_list_bagian";
+        final String url = "https://hrisgelora.co.id/api/get_list_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -380,7 +380,7 @@ public class SearchSdmActivity extends AppCompatActivity {
 
     private void getDataSDM(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/list_sdm_search";
+        final String url = "https://hrisgelora.co.id/api/list_sdm_search";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

@@ -68,7 +68,7 @@ public class DeviceWarningActivity extends AppCompatActivity {
 
     private void getContactIT() {
         RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_contact_it";
+        final String url = "https://hrisgelora.co.id/api/get_contact_it";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")

@@ -222,7 +222,7 @@ public class DetailTerlambatActivity extends AppCompatActivity {
 
     private void getDetailTerlambat() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/total_terlambat";
+        final String url = "https://hrisgelora.co.id/api/total_terlambat";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
