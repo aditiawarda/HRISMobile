@@ -71,7 +71,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
 
     LinearLayout actualStartDateBTN, actualEndDateBTN, actualPart, deleteBTN, submitBTN, endDateBTN, startDateBTN, loadingDataPart, noDataPart, startAttantionPart, actionBar, backBTN, picBTN, targetDateBTN, statusBTN;
     EditText taskNameED, keywordKaryawan;
-    TextView actualEndDateTV, actualStartDateTV, picTV, targetTV, statusTV, startDateTV, endDateTV, persentaseProgressTV;
+    TextView actualDurationTV, actualEndDateTV, actualStartDateTV, picTV, targetTV, statusTV, startDateTV, endDateTV, persentaseProgressTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -124,6 +124,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
         actualEndDateBTN = findViewById(R.id.actual_end_date_btn);
         actualStartDateTV = findViewById(R.id.actual_start_date_tv);
         actualEndDateTV = findViewById(R.id.actual_end_date_tv);
+        actualDurationTV = findViewById(R.id.actual_duration_tv);
         submitBTN = findViewById(R.id.submit_btn);
         deleteBTN = findViewById(R.id.delete_btn);
 
@@ -1133,10 +1134,69 @@ public class UpdateTaskActivity extends AppCompatActivity {
 
             actualEndDateTV.setText(hariName5+", "+String.valueOf(Integer.parseInt(dayDate5))+" "+bulanName5+" "+yearDate5);
 
+            countDuration(actualStartDate, actualEndDate);
           }
 
         persentaseProgress.setProgress(Math.round(Float.parseFloat(progressTask)));
         persentaseProgressTV.setText(String.valueOf(Math.round(Float.parseFloat(progressTask)))+"%");
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void countDuration(String start, String end){
+        String startDateString = start;
+        String endDateString = end;
+
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = null;
+        Date date2 = null;
+        try {
+            date1 = format.parse(endDateString);
+            date2 = format.parse(startDateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long waktu1 = date1.getTime();
+        long waktu2 = date2.getTime();
+        long selisih_waktu = waktu1 - waktu2;
+
+        long diffDays = (selisih_waktu / (24 * 60 * 60 * 1000)) + 1;
+
+        long years = (diffDays / 365);
+        long months = (diffDays - (years * 365)) / 30;
+        long days = (diffDays - ((years * 365) + (months * 30)));
+
+        // Print the resulting duration
+        if (years == 0){
+            if(months == 0){
+                if(days == 0){
+                    actualDurationTV.setText("-");
+                } else {
+                    actualDurationTV.setText(days +" Hari");
+                }
+            } else {
+                if(days == 0){
+                    actualDurationTV.setText(months + " Bulan");
+                } else {
+                    actualDurationTV.setText(months + " Bulan " + days + " Hari");
+                }
+            }
+        } else {
+            if(months == 0){
+                if(days == 0){
+                    actualDurationTV.setText(years + " Tahun");
+                } else {
+                    actualDurationTV.setText(years + " Tahun " + days + " Hari");
+                }
+            } else {
+                if(days == 0){
+                    actualDurationTV.setText(years + " Tahun " + months + " Bulan");
+                } else {
+                    actualDurationTV.setText(years + " Tahun " + months + " Bulan " + days + " Hari");
+                }
+            }
+        }
 
     }
 
@@ -2034,7 +2094,9 @@ public class UpdateTaskActivity extends AppCompatActivity {
 
                     actualStartDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                    countDuration(actualStartDate, actualEndDate);
                 } else {
+                    actualDurationTV.setText("-");
                     actualStartDateTV.setText("Pilih Kembali !");
                     actualStartDate = "";
 
@@ -2131,7 +2193,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
                 }
 
                 actualStartDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
-
+                actualDurationTV.setText("-");
             }
 
         }, y,m-1,d);
@@ -2248,7 +2310,9 @@ public class UpdateTaskActivity extends AppCompatActivity {
 
                     actualEndDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                    countDuration(actualStartDate, actualEndDate);
                 } else {
+                    actualDurationTV.setText("-");
                     actualEndDateTV.setText("Pilih Kembali !");
                     actualEndDate = "";
 
@@ -2345,7 +2409,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
                 }
 
                 actualEndDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
-
+                actualDurationTV.setText("-");
             }
 
         }, y,m-1,d);
