@@ -69,9 +69,6 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
 import com.takisoft.datetimepicker.DatePickerDialog;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -3994,7 +3991,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         String UPLOAD_URL = "https://hrisgelora.co.id/api/upload_lampiran_cuti";
         String path1 = FilePathimage.getPath(this, uri);
         if (path1 == null) {
-            Toast.makeText(this, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please move your .jpg file to internal storage and retry", Toast.LENGTH_LONG).show();
         } else {
             try {
                 permohonanTerkirim = "1";

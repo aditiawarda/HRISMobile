@@ -141,7 +141,7 @@
                                                 android:layout_weight=".25"
                                                 android:text="Nama"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="14dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TooDeepLayout" />
 
                                             <LinearLayout
@@ -157,7 +157,7 @@
                                                     android:lineSpacingExtra="4dp"
                                                     android:text=":  "
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
@@ -169,7 +169,7 @@
                                                     android:layout_weight=".65"
                                                     android:text="Memuat data..."
                                                     android:textColor="#B15735"
-                                                    android:textSize="13dp"
+                                                    android:textSize="14dp"
                                                     android:textStyle="bold"
                                                     tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
 
@@ -190,7 +190,7 @@
                                                 android:layout_weight=".25"
                                                 android:text="Alamat"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="14dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             <LinearLayout
@@ -206,7 +206,7 @@
                                                     android:lineSpacingExtra="4dp"
                                                     android:text=":  "
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
@@ -218,7 +218,7 @@
                                                     android:layout_weight=".65"
                                                     android:text="Memuat data..."
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
 
                                             </LinearLayout>
@@ -238,7 +238,7 @@
                                                 android:layout_weight=".25"
                                                 android:text="PIC"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="14dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             <LinearLayout
@@ -253,7 +253,7 @@
                                                     android:layout_marginBottom="5dp"
                                                     android:text=":  "
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
@@ -264,7 +264,7 @@
                                                     android:layout_weight=".65"
                                                     android:text="Memuat data..."
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
 
                                             </LinearLayout>
@@ -283,7 +283,7 @@
                                                 android:layout_weight=".25"
                                                 android:text="Telepon"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="14dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             <LinearLayout
@@ -299,7 +299,7 @@
                                                     android:lineSpacingExtra="4dp"
                                                     android:text=":  "
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
@@ -311,7 +311,7 @@
                                                     android:layout_weight=".65"
                                                     android:text="Memuat data..."
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
 
                                             </LinearLayout>
@@ -355,7 +355,7 @@
                                                 android:layout_weight=".25"
                                                 android:text="Nama"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="14dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             <LinearLayout
@@ -371,7 +371,7 @@
                                                     android:lineSpacingExtra="4dp"
                                                     android:text=":  "
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
@@ -383,7 +383,7 @@
                                                     android:layout_weight=".65"
                                                     android:text="Memuat data..."
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
 
                                             </LinearLayout>
@@ -403,7 +403,7 @@
                                                 android:layout_weight=".25"
                                                 android:text="NIK"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="14dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             <LinearLayout
@@ -419,7 +419,7 @@
                                                     android:lineSpacingExtra="4dp"
                                                     android:text=":  "
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
@@ -431,7 +431,7 @@
                                                     android:layout_weight=".65"
                                                     android:text="Memuat data..."
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
 
                                             </LinearLayout>
@@ -475,7 +475,7 @@
                                                     android:layout_weight=".25"
                                                     android:text="Detail Titik"
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <LinearLayout
@@ -491,7 +491,7 @@
                                                         android:lineSpacingExtra="4dp"
                                                         android:text=":  "
                                                         android:textColor="#515151"
-                                                        android:textSize="12dp"
+                                                        android:textSize="14dp"
                                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                     <TextView
@@ -503,7 +503,7 @@
                                                         android:layout_weight=".65"
                                                         android:text="Memuat data..."
                                                         android:textColor="#515151"
-                                                        android:textSize="12dp"
+                                                        android:textSize="14dp"
                                                         tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
@@ -525,7 +525,7 @@
                                                 android:layout_weight=".25"
                                                 android:text="Keterangan"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="14dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             <LinearLayout
@@ -541,7 +541,7 @@
                                                     android:lineSpacingExtra="4dp"
                                                     android:text=":  "
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
@@ -553,7 +553,7 @@
                                                     android:layout_weight=".65"
                                                     android:text="Memuat data..."
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
 
                                             </LinearLayout>
@@ -579,7 +579,7 @@
                                                     android:layout_weight=".25"
                                                     android:text="Tgl. Rencana"
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <LinearLayout
@@ -595,7 +595,7 @@
                                                         android:lineSpacingExtra="4dp"
                                                         android:text=":  "
                                                         android:textColor="#515151"
-                                                        android:textSize="12dp"
+                                                        android:textSize="14dp"
                                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                     <TextView
@@ -607,7 +607,7 @@
                                                         android:layout_weight=".65"
                                                         android:text="Memuat data..."
                                                         android:textColor="#515151"
-                                                        android:textSize="12dp"
+                                                        android:textSize="14dp"
                                                         tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
@@ -632,9 +632,9 @@
                                                         android:layout_marginBottom="5dp"
                                                         android:lineSpacingExtra="4dp"
                                                         android:layout_weight=".25"
-                                                        android:text="Rencana Agenda"
+                                                        android:text="Renc. Agenda"
                                                         android:textColor="#515151"
-                                                        android:textSize="12dp"
+                                                        android:textSize="14dp"
                                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                     <LinearLayout
@@ -650,7 +650,7 @@
                                                             android:lineSpacingExtra="4dp"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="12dp"
+                                                            android:textSize="14dp"
                                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                     </LinearLayout>
@@ -661,8 +661,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:orientation="horizontal"
-                                                    android:layout_marginTop="10dp"
-                                                    android:layout_marginBottom="15dp"
+                                                    android:layout_marginTop="15dp"
+                                                    android:layout_marginBottom="20dp"
                                                     tools:ignore="DisableBaselineAlignment">
 
                                                     <LinearLayout
@@ -684,7 +684,7 @@
                                                             android:layout_height="wrap_content"
                                                             android:text="Promosi"
                                                             android:textColor="#515151"
-                                                            android:textSize="12dp"
+                                                            android:textSize="14dp"
                                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                     </LinearLayout>
@@ -708,7 +708,7 @@
                                                             android:layout_height="wrap_content"
                                                             android:text="Penagihan"
                                                             android:textColor="#515151"
-                                                            android:textSize="12dp"
+                                                            android:textSize="14dp"
                                                             tools:ignore="HardcodedText,SpUsage,TooManyViews,TextSizeCheck" />
 
                                                     </LinearLayout>
@@ -732,7 +732,7 @@
                                                             android:layout_height="wrap_content"
                                                             android:text="Pengiriman"
                                                             android:textColor="#515151"
-                                                            android:textSize="12dp"
+                                                            android:textSize="14dp"
                                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                     </LinearLayout>
@@ -757,7 +757,7 @@
                                                 android:layout_weight=".25"
                                                 android:text="Renc. Pesanan"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="14dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             <LinearLayout
@@ -773,7 +773,7 @@
                                                     android:lineSpacingExtra="4dp"
                                                     android:text=":  "
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
@@ -785,7 +785,7 @@
                                                     android:layout_weight=".65"
                                                     android:text="Memuat data..."
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
 
                                             </LinearLayout>
@@ -856,7 +856,7 @@
                                                 android:layout_weight=".25"
                                                 android:text="Nomor SJ"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp"
+                                                android:textSize="14dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             <LinearLayout
@@ -873,7 +873,7 @@
                                                     android:lineSpacingExtra="4dp"
                                                     android:text=":  "
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
@@ -885,7 +885,7 @@
                                                     android:layout_weight=".65"
                                                     android:text="Memuat data..."
                                                     android:textColor="#515151"
-                                                    android:textSize="12dp"
+                                                    android:textSize="14dp"
                                                     tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
 
                                             </LinearLayout>
@@ -2455,7 +2455,7 @@
                                         android:singleLine="true"
                                         android:text="Komentar"
                                         android:textColor="#0288D1"
-                                        android:textSize="13dp"
+                                        android:textSize="14dp"
                                         android:layout_marginLeft="20dp"
                                         android:layout_marginRight="20dp"
                                         android:layout_marginTop="10dp"

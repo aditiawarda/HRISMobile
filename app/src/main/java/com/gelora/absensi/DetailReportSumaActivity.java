@@ -2143,7 +2143,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                     String statusRealisasi = dataArray.getString("statusRealisasi");
                                     if(statusRealisasi.equals("0")){
-                                        agendaLabel.setText("Rencana Agenda");
+                                        agendaLabel.setText("Rencana");
                                         if(idSales.equals(sharedPrefManager.getSpNik())){
                                             reschedulePart.setVisibility(View.VISIBLE);
                                         } else {
@@ -2175,7 +2175,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         realMark.setVisibility(View.GONE);
                                         viewRealisasiPart.setVisibility(View.GONE);
                                     } else if(statusRealisasi.equals("1")){
-                                        agendaLabel.setText("Realisasi Agenda");
+                                        agendaLabel.setText("Realisasi");
                                         reschedulePart.setVisibility(View.GONE);
                                         updateRealisasiKunjunganPart.setVisibility(View.GONE);
                                         realMark.setVisibility(View.VISIBLE);

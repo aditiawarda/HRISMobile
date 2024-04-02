@@ -80,7 +80,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#4E4E4E"/>
+                android:background="#7A7A7A"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -91,7 +91,7 @@
                 <LinearLayout
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="#4E4E4E"/>
+                    android:background="#7A7A7A"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -108,9 +108,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Taks"
-                        android:textColor="#4E4E4E"
-                        android:textSize="13dp"
+                        android:textColor="#7E4024"
+                        android:textSize="12dp"
                         android:ellipsize="end"
+                        android:textStyle="bold"
                         android:lineSpacingExtra="3dp"
                         tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
 
@@ -119,7 +120,7 @@
                 <LinearLayout
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="#4E4E4E"/>
+                    android:background="#7A7A7A"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -138,9 +139,10 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Start"
-                        android:textColor="#4E4E4E"
-                        android:textSize="13dp"
+                        android:textColor="#7E4024"
+                        android:textSize="12dp"
                         android:ellipsize="end"
+                        android:textStyle="bold"
                         android:lineSpacingExtra="3dp"
                         tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
 
@@ -149,7 +151,7 @@
                 <LinearLayout
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="#4E4E4E"/>
+                    android:background="#7A7A7A"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -168,9 +170,10 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Finish"
-                        android:textColor="#4E4E4E"
-                        android:textSize="13dp"
+                        android:textColor="#7E4024"
+                        android:textSize="12dp"
                         android:ellipsize="end"
+                        android:textStyle="bold"
                         android:lineSpacingExtra="3dp"
                         tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
 
@@ -179,7 +182,7 @@
                 <LinearLayout
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="#4E4E4E"/>
+                    android:background="#7A7A7A"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -198,8 +201,9 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Status"
-                        android:textColor="#4E4E4E"
-                        android:textSize="13dp"
+                        android:textColor="#7E4024"
+                        android:textStyle="bold"
+                        android:textSize="12dp"
                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                 </LinearLayout>
@@ -207,7 +211,7 @@
                 <LinearLayout
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="#4E4E4E"/>
+                    android:background="#7A7A7A"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -226,8 +230,9 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Progress"
-                        android:textColor="#4E4E4E"
-                        android:textSize="13dp"
+                        android:textColor="#7E4024"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                 </LinearLayout>
@@ -235,14 +240,14 @@
                 <LinearLayout
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="#4E4E4E"/>
+                    android:background="#7A7A7A"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#4E4E4E"/>
+                android:background="#7A7A7A"/>
 
         </LinearLayout>
 
@@ -264,7 +269,7 @@
             <LinearLayout
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#4E4E4E"/>
+                android:background="#7A7A7A"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -317,14 +322,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#4E4E4E"/>
+                    android:background="#7A7A7A"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#4E4E4E"/>
+                android:background="#7A7A7A"/>
 
         </LinearLayout>
 

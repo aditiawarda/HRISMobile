@@ -69,6 +69,7 @@ import com.squareup.picasso.Picasso;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 import net.gotev.uploadservice.MultipartUploadRequest;
+import net.gotev.uploadservice.UploadNotificationConfig;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -77,6 +78,10 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -580,7 +585,7 @@ public class FragmentProfile extends Fragment {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "2.3.6"; //harus disesuaikan
+                                String currentVersion = "2.3.7"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateAppBTN.setVisibility(View.VISIBLE);
                                     updateAppBTN.setOnClickListener(new View.OnClickListener() {
@@ -784,7 +789,7 @@ public class FragmentProfile extends Fragment {
         String UPLOAD_URL = "https://hrisgelora.co.id/api/update_profilepic";
         String path1 = FilePathimage.getPath(mContext, uri);
         if (path1 == null) {
-            Toast.makeText(mContext, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, "Please move your .jpg file to internal storage and retry", Toast.LENGTH_LONG).show();
         } else {
             try {
                 String uploadId = UUID.randomUUID().toString();

@@ -148,11 +148,11 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
         String UPLOAD_URL = "https://hrisgelora.co.id/api/add_project_documentation";
         String path1 = FilePathimage.getPath(ViewDokumentasiProjectActivity.this, uri);
         if (path1 == null) {
-            Toast.makeText(getBaseContext(), "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "Please move your .jpg file to internal storage and retry", Toast.LENGTH_LONG).show();
         } else {
             try {
                 String uploadId = UUID.randomUUID().toString();
-                new MultipartUploadRequest(ViewDokumentasiProjectActivity.this, uploadId, UPLOAD_URL)
+                new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
                         .addFileToUpload(path1, "file") //Adding file
                         .addParameter("id_project", projectId)
                         .addParameter("current_time", String.valueOf(System.currentTimeMillis()))

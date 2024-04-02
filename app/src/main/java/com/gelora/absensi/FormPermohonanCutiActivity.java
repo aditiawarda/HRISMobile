@@ -2907,7 +2907,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         String UPLOAD_URL = "https://hrisgelora.co.id/api/upload_lampiran_cuti";
         String path1 = FilePathimage.getPath(this, uri);
         if (path1 == null) {
-            Toast.makeText(this, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please move your .jpg file to internal storage and retry", Toast.LENGTH_LONG).show();
         } else {
             try {
                 permohonanTerkirim = "1";

@@ -33,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Header;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -58,6 +59,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -1849,7 +1851,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         String UPLOAD_URL = "https://hrisgelora.co.id/api/upload_surat_sakit";
         String path1 = FilePathimage.getPath(this, uri);
         if (path1 == null) {
-            Toast.makeText(this, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please move your .jpg file to internal storage and retry", Toast.LENGTH_LONG).show();
         } else {
             try {
                 permohonanTerkirim = "1";
@@ -1865,8 +1867,8 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     .addParameter("current_time", getDate().substring(0,4)+getDate().substring(5,7)+getDate().substring(8,10))//Adding text parameter to the request
                     .setMaxRetries(1)
                     .startUpload();
-
-            } catch (Exception exc) {
+            }
+            catch (Exception exc) {
                 Log.e("PaRSE JSON", "Oke");
                 pDialog.dismiss();
             }
