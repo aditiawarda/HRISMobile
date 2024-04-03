@@ -26,6 +26,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
@@ -40,7 +41,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.ComingSoonActivity;
-import com.gelora.absensi.DigitalCardActivity;
 import com.gelora.absensi.DigitalSignatureActivity;
 import com.gelora.absensi.InfoKeluargaActivity;
 import com.gelora.absensi.InfoKontakDaruratActivity;
@@ -49,11 +49,9 @@ import com.gelora.absensi.InfoPengalamanDanPelatihanActivity;
 import com.gelora.absensi.InfoPersonalActivity;
 import com.gelora.absensi.LoginActivity;
 import com.gelora.absensi.R;
-import com.gelora.absensi.ReportSumaActivity;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.ViewImageActivity;
-import com.gelora.absensi.ViewImageSliderActivity;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
@@ -69,7 +67,6 @@ import com.squareup.picasso.Picasso;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 import net.gotev.uploadservice.MultipartUploadRequest;
-import net.gotev.uploadservice.UploadNotificationConfig;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -78,10 +75,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -788,9 +781,12 @@ public class FragmentProfile extends Fragment {
     public void uploadMultipart() {
         String UPLOAD_URL = "https://hrisgelora.co.id/api/update_profilepic";
         String path1 = FilePathimage.getPath(mContext, uri);
+        File file = new File(path1);
+
         if (path1 == null) {
             Toast.makeText(mContext, "Please move your .jpg file to internal storage and retry", Toast.LENGTH_LONG).show();
-        } else {
+        }
+        else {
             try {
                 String uploadId = UUID.randomUUID().toString();
                 new MultipartUploadRequest(mContext, uploadId, UPLOAD_URL)

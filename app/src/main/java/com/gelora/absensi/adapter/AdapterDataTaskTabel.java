@@ -51,8 +51,10 @@ public class AdapterDataTaskTabel extends RecyclerView.Adapter<AdapterDataTaskTa
         final TaskData taskData = data[i];
 
         myViewHolder.taskTV.setText(taskData.getTaskname());
-        myViewHolder.startDateTV.setText(taskData.getScheduleTimeline().substring(3,5)+"/"+taskData.getScheduleTimeline().substring(0,2)+"/"+taskData.getScheduleTimeline().substring(6,10));
-        myViewHolder.endDateTV.setText(taskData.getScheduleTimeline().substring(16,18)+"/"+taskData.getScheduleTimeline().substring(13,15)+"/"+taskData.getScheduleTimeline().substring(19,23));
+        if(taskData.getScheduleTimeline()!=null){
+            myViewHolder.startDateTV.setText(taskData.getScheduleTimeline().substring(3,5)+"/"+taskData.getScheduleTimeline().substring(0,2)+"/"+taskData.getScheduleTimeline().substring(6,10));
+            myViewHolder.endDateTV.setText(taskData.getScheduleTimeline().substring(16,18)+"/"+taskData.getScheduleTimeline().substring(13,15)+"/"+taskData.getScheduleTimeline().substring(19,23));
+        }
 
         if(taskData.getStatus().equals("5")){
             myViewHolder.statusTV.setText("Done");
