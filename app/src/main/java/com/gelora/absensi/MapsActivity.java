@@ -2235,7 +2235,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             } else if (statusAction.equals("checkout")){
                 checkPulang();
                 if (statusPulangCepat.equals("aktif")){
-                    pesanCheckout = "Apakah anda yakin check out lebih cepat?";
+                    pesanCheckout = "Apakah anda yakin untuk melakukan check out lebih cepat?";
                 } else {
                     if (namaStatusAbsen.equals("WFH") || namaStatusAbsen.equals("Pjd") || namaStatusAbsen.equals("KLL")) {
                         if (!datangShiftAbsen.equals("") && !pulangShiftAbsen.equals("")){
@@ -2787,7 +2787,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 } else if (statusAction.equals("checkout")){
                     checkPulang();
                     if (statusPulangCepat.equals("aktif")){
-                        pesanCheckout = "Apakah anda yakin check out lebih cepat?";
+                        pesanCheckout = "Apakah anda yakin untuk melakukan check out lebih cepat?";
                     } else {
                         if (namaStatusAbsen.equals("WFH") || namaStatusAbsen.equals("Pjd") || namaStatusAbsen.equals("KLL")) {
                             if (!datangShiftAbsen.equals("") && !pulangShiftAbsen.equals("")){
