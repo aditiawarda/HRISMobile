@@ -140,7 +140,8 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
             }
         });
 
-        getDokumentasi();
+        dataDokumentasiProjects.clear();
+        getDokumentasi("first");
 
     }
 
@@ -202,12 +203,17 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
                         }
                     }
                     public void onFinish() {
-                        i = -1;
-                        pDialog.setTitleText("Berhasil diunggah")
-                                .setConfirmText("    OK    ")
-                                .changeAlertType(KAlertDialog.SUCCESS_TYPE);
-                        dataDokumentasiProjects.clear();
-                        getDokumentasi();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                i = -1;
+                                pDialog.setTitleText("Berhasil diunggah")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                dataDokumentasiProjects.clear();
+                                getDokumentasi("last");
+                            }
+                        }, 3000);
                     }
                 }.start();
 
@@ -296,7 +302,7 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
         return dateFormat.format(date);
     }
 
-    private void getDokumentasi() {
+    private void getDokumentasi(String position) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://hrisgelora.co.id/api/project_documentation";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -322,6 +328,11 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
                                     dataImage.setImageUrl(dataImageDokumentasi);
                                     dataDokumentasiProjects.add(dataImage);
                                     adapterDokumentasiProject.renewItems(dataDokumentasiProjects);
+                                }
+
+                                if(position.equals("last")){
+                                    int lastIndex = adapterDokumentasiProject.getCount() - 1;
+                                    sliderView.setCurrentPagePosition(lastIndex);
                                 }
 
                             } else {
@@ -377,7 +388,7 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
                                             public void onClick(KAlertDialog sDialog) {
                                                 sDialog.dismiss();
                                                 dataDokumentasiProjects.clear();
-                                                getDokumentasi();
+                                                getDokumentasi("last");
                                             }
                                         })
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);

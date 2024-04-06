@@ -31,9 +31,9 @@
     <string name="profile">Profil</string>
 
     <string-array name="kategori_pelanggan_options">
-      <item>Option 1</item>
-      <item>Option 2</item>
-      <item>Option 3</item>
+        <item>Option 1</item>
+        <item>Option 2</item>
+        <item>Option 3</item>
     </string-array>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -214,7 +214,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="30dp"
-                                    android:layout_marginRight="20dp"
+                                    android:layout_marginRight="30dp"
                                     android:layout_marginBottom="20dp"
                                     android:foreground="@drawable/shape_logout_effect"
                                     android:gravity="center|left"
@@ -243,23 +243,32 @@
 
                                 </LinearLayout>
 
-                                <TextView
-                                    android:id="@+id/test_btn"
+                                <LinearLayout
+                                    android:id="@+id/forgot_password_btn"
+                                    android:layout_alignParentRight="true"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
                                     android:layout_marginLeft="30dp"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="30dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:drawableLeft="@drawable/ic_baseline_person"
-                                    android:drawablePadding="5dp"
-                                    android:text="Test User Login"
-                                    android:textColor="@color/white"
-                                    android:textSize="15dp"
-                                    android:textStyle="bold"
-                                    android:visibility="gone"
-                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,UseCompatTextViewDrawableXml" />
+                                    android:layout_marginBottom="20dp"
+                                    android:foreground="@drawable/shape_logout_effect"
+                                    android:gravity="center|left"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="7dp"
+                                    android:paddingTop="3dp"
+                                    android:paddingRight="5dp"
+                                    android:paddingBottom="3dp"
+                                    tools:ignore="RtlHardcoded,UnusedAttribute">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Lupa Password?"
+                                        android:textColor="@color/white"
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
+
+                                </LinearLayout>
 
                             </RelativeLayout>
 
