@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -33,6 +34,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     LinearLayout backBTN, submitBTN;
     EditText nikED;
     String deviceID;
+    ProgressBar loadingProgress;
 
     @SuppressLint("HardwareIds")
     @Override
@@ -43,6 +45,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         backBTN = findViewById(R.id.back_btn);
         submitBTN = findViewById(R.id.submit_btn);
         nikED = findViewById(R.id.nikED);
+        loadingProgress = findViewById(R.id.loading_progress);
 
         deviceID = String.valueOf(Settings.Secure.getString(ForgotPasswordActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID)).toUpperCase();
 
@@ -56,21 +59,29 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(nikED.getText().toString().equals("")){
-                    new KAlertDialog(ForgotPasswordActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Harap masukkan nik anda")
-                            .setConfirmText("    OK    ")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
-                } else {
-                    checkDevice(nikED.getText().toString(),deviceID);
-                }
+                loadingProgress.setVisibility(View.VISIBLE);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(nikED.getText().toString().equals("")){
+                            loadingProgress.setVisibility(View.GONE);
+                            new KAlertDialog(ForgotPasswordActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Harap masukkan nik anda")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        }
+                        else {
+                            checkDevice(nikED.getText().toString(),deviceID);
+                        }
+                    }
+                }, 800);
             }
         });
 
@@ -86,15 +97,21 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                         // response
                         try {
                             Log.d("Success.Response", response.toString());
-
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
-
                             if (status.equals("Success")){
                                 Intent intent = new Intent(ForgotPasswordActivity.this, EmailShowActivity.class);
                                 intent.putExtra("nik", nik);
                                 startActivity(intent);
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        loadingProgress.setVisibility(View.GONE);
+                                    }
+                                }, 500);
+                                finish();
                             } else if (status.equals("Warning")){
+                                loadingProgress.setVisibility(View.GONE);
                                 new KAlertDialog(ForgotPasswordActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("NIK tidak terdaftar!")
@@ -107,10 +124,28 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                 intent.putExtra("nik", nik);
                                 intent.putExtra("atas_nama", atas_nama);
                                 startActivity(intent);
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        loadingProgress.setVisibility(View.GONE);
+                                    }
+                                }, 500);
                             }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            loadingProgress.setVisibility(View.GONE);
+                            new KAlertDialog(ForgotPasswordActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Terjadi kesalahan")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
                         }
                     }
                 },
@@ -120,6 +155,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
+                        loadingProgress.setVisibility(View.GONE);
                         connectionFailed();
                     }
                 }

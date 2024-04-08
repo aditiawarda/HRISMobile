@@ -55,6 +55,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ForgotPasswordVerificationActivity"
+            android:exported="false" />
+        <activity
             android:name=".EmailShowActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
