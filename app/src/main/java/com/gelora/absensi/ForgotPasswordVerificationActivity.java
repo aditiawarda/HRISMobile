@@ -7,11 +7,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -20,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.chaos.view.PinView;
 import com.gelora.absensi.kalert.KAlertDialog;
 
 import org.aviran.cookiebar2.CookieBar;
@@ -35,10 +39,12 @@ import java.util.Map;
 public class ForgotPasswordVerificationActivity extends AppCompatActivity {
 
     LinearLayout backBTN, resendOTP;
+    PinView otpForm;
     private TextView countdownTV;
     private CountDownTimer countDownTimer;
     ProgressBar loadingResending;
     String nik, email, otp, expired;
+    Boolean timeOut = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,7 @@ public class ForgotPasswordVerificationActivity extends AppCompatActivity {
 
         backBTN = findViewById(R.id.back_btn);
         countdownTV = findViewById(R.id.countdown_tv);
+        otpForm = findViewById(R.id.otp_form);
         loadingResending = findViewById(R.id.loading_resending);
         resendOTP = findViewById(R.id.resend_otp);
 
@@ -72,6 +79,39 @@ public class ForgotPasswordVerificationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        otpForm.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Tindakan yang akan diambil setelah pengguna selesai memasukkan PIN
+                if (s.length() == otpForm.getItemCount()) {
+                    String pin = s.toString();
+                    if(pin.equals(otp)){
+                        if (!timeOut){
+                            Toast.makeText(ForgotPasswordVerificationActivity.this, "PIN: " + pin, Toast.LENGTH_SHORT).show();
+                        } else {
+                            new KAlertDialog(ForgotPasswordVerificationActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("OTP yang anda masukkan kadaluarsa, silakan kirim ulang OTP")
+                                    .setConfirmText("    OK    ")
+                                    .show();
+                        }
+                    } else {
+                        new KAlertDialog(ForgotPasswordVerificationActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("OTP yang anda masukkan salah")
+                                .setConfirmText("    OK    ")
+                                .show();
+                    }
+                }
             }
         });
 
@@ -106,12 +146,13 @@ public class ForgotPasswordVerificationActivity extends AppCompatActivity {
             public void onFinish() {
                 // Countdown selesai, lakukan tindakan sesuai kebutuhan
                 countdownTV.setText("Waktu habis!");
+                timeOut = true;
             }
         }.start();
     }
 
     private void sendOTPtoEmail(String nik, String email) {
-        int MY_SOCKET_TIMEOUT_MS = 60000;
+        int MY_SOCKET_TIMEOUT_MS = 180000;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://hrisgelora.co.id/api/reset_password";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,

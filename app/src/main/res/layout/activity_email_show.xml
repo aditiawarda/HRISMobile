@@ -277,45 +277,6 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="30dp"
-                        android:layout_marginBottom="20dp"
-                        android:gravity="center"
-                        android:visibility="gone"
-                        android:orientation="horizontal">
-
-                        <com.chaos.view.PinView
-                            android:id="@+id/otp_form"
-                            style="@style/PinWidget.PinView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:cursorVisible="true"
-                            android:padding="5dp"
-                            android:hint="----"
-                            android:inputType="number"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColorHint="#63FFFFFF"
-                            app:cursorColor="@color/white"
-                            app:cursorWidth="2dp"
-                            app:hideLineWhenFilled="false"
-                            app:itemCount="4"
-                            app:itemHeight="48dp"
-                            app:itemRadius="12dp"
-                            app:itemSpacing="8dp"
-                            app:itemWidth="48dp"
-                            app:lineColor="@color/white"
-                            app:lineWidth="1.8dp"
-                            app:viewType="rectangle"
-                            tools:ignore="HardcodedText" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 

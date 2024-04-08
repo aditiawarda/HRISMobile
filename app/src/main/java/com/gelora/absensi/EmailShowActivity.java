@@ -206,7 +206,7 @@ public class EmailShowActivity extends AppCompatActivity {
     }
 
     private void sendOTPtoEmail(String nik, String email) {
-        int MY_SOCKET_TIMEOUT_MS = 60000;
+        int MY_SOCKET_TIMEOUT_MS = 180000;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://hrisgelora.co.id/api/reset_password";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
