@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -138,6 +139,11 @@ public class ForgotPasswordVerificationActivity extends AppCompatActivity {
                 // Update TextView dengan sisa waktu
                 @SuppressLint("DefaultLocale")
                 String countdownFormatted = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+                float textSizeInDp = 18;
+                float scale = getResources().getDisplayMetrics().density;
+                int textSizeInPixels = (int) (textSizeInDp * scale + 0.5f);
+
+                countdownTV.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeInPixels);
                 countdownTV.setText(countdownFormatted);
             }
 
@@ -145,7 +151,13 @@ public class ForgotPasswordVerificationActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 // Countdown selesai, lakukan tindakan sesuai kebutuhan
-                countdownTV.setText("Waktu habis!");
+                countdownTV.setText("WAKTU HABIS");
+                countdownTV.setTextSize(20);
+
+                float textSizeInDp = 16;
+                float scale = getResources().getDisplayMetrics().density;
+                int textSizeInPixels = (int) (textSizeInDp * scale + 0.5f);
+                countdownTV.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeInPixels);
                 timeOut = true;
             }
         }.start();
