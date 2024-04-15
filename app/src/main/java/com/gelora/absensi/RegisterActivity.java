@@ -758,8 +758,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         };
 
-        //requestQueue.add(postRequest);
-
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(this);
             requestQueue.add(postRequest);
@@ -777,15 +775,12 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        // Banner.make(rootview, RegisterActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
-
         CookieBar.build(RegisterActivity.this)
                 .setCustomView(R.layout.layout_custom_cookie)
                 .setEnableAutoDismiss(true)
                 .setSwipeToDismiss(false)
                 .setCookiePosition(Gravity.TOP)
                 .show();
-
     }
 
     @Override

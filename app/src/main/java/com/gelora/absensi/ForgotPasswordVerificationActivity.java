@@ -3,6 +3,7 @@ package com.gelora.absensi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -12,6 +13,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.chaos.view.PinView;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.support.StatusBarColorManager;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -92,12 +95,11 @@ public class ForgotPasswordVerificationActivity extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                // Tindakan yang akan diambil setelah pengguna selesai memasukkan PIN
                 if (s.length() == otpForm.getItemCount()) {
                     String pin = s.toString();
                     if(pin.equals(otp)){
                         if (!timeOut){
-                            Toast.makeText(ForgotPasswordVerificationActivity.this, "PIN: " + pin, Toast.LENGTH_SHORT).show();
+                            checkOTP(nik, otp);
                         } else {
                             new KAlertDialog(ForgotPasswordVerificationActivity.this, KAlertDialog.ERROR_TYPE)
                                     .setTitleText("Perhatian")
@@ -239,6 +241,83 @@ public class ForgotPasswordVerificationActivity extends AppCompatActivity {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("nik", nik);
                 params.put("email", email);
+                return params;
+            }
+        };
+
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(
+                MY_SOCKET_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(postRequest);
+
+    }
+
+    private void checkOTP(String nik, String otp) {
+        int MY_SOCKET_TIMEOUT_MS = 180000;
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://hrisgelora.co.id/api/check_otp_reset_password";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                                Intent intent = new Intent(ForgotPasswordVerificationActivity.this, NewPasswordActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else if(status.equals("Failed 1")) {
+                                new KAlertDialog(ForgotPasswordVerificationActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("OTP yang anda masukkan salah")
+                                        .setConfirmText("    OK    ")
+                                        .show();
+                            } else if(status.equals("Failed 2")) {
+                                new KAlertDialog(ForgotPasswordVerificationActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("OTP sudah digunakan")
+                                        .setConfirmText("    OK    ")
+                                        .show();
+                            } else if(status.equals("Failed 3")) {
+                                new KAlertDialog(ForgotPasswordVerificationActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Terjadi kesalahan")
+                                        .setConfirmText("    OK    ")
+                                        .show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            new KAlertDialog(ForgotPasswordVerificationActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Terjadi kesalahan")
+                                    .setConfirmText("    OK    ")
+                                    .show();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("nik", nik);
+                params.put("otp", otp);
                 return params;
             }
         };
