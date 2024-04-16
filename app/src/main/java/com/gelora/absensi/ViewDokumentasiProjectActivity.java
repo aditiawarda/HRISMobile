@@ -328,11 +328,16 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
                                     dataImage.setImageUrl(dataImageDokumentasi);
                                     dataDokumentasiProjects.add(dataImage);
                                     adapterDokumentasiProject.renewItems(dataDokumentasiProjects);
-                                }
 
-                                if(position.equals("last")){
-                                    int lastIndex = adapterDokumentasiProject.getCount() - 1;
-                                    sliderView.setCurrentPagePosition(lastIndex);
+                                    if (i == dataimage.length() - 1) {
+                                        if(position.equals("last")){
+                                            int lastIndex = adapterDokumentasiProject.getCount() - 1;
+                                            sliderView.setCurrentPagePosition(lastIndex);
+                                        } else {
+                                            sliderView.setCurrentPagePosition(1);
+                                        }
+                                    }
+
                                 }
 
                             } else {
