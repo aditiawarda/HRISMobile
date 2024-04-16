@@ -320,15 +320,18 @@ public class NewPasswordActivity extends AppCompatActivity {
                             String status = data.getString("status");
 
                             if(status.equals("Success")){
-                                Intent intent = new Intent(NewPasswordActivity.this, LoginActivity.class);
+                                String nama = data.getString("nama");
+                                Intent intent = new Intent(NewPasswordActivity.this, SuccessNewPasswordActivity.class);
+                                intent.putExtra("nama_karyawan", nama);
+                                intent.putExtra("nik_karyawan", nik);
                                 startActivity(intent);
-                                Toast.makeText(NewPasswordActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         loadingProgressBar.setVisibility(View.GONE);
                                     }
                                 }, 500);
+                                finish();
                             } else {
                                 loadingProgressBar.setVisibility(View.GONE);
                                 new KAlertDialog(NewPasswordActivity.this, KAlertDialog.ERROR_TYPE)

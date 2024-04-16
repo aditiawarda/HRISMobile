@@ -55,6 +55,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".SuccessNewPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".NewPasswordActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

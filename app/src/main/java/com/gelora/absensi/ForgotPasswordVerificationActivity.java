@@ -270,6 +270,7 @@ public class ForgotPasswordVerificationActivity extends AppCompatActivity {
                                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                                 Intent intent = new Intent(ForgotPasswordVerificationActivity.this, NewPasswordActivity.class);
+                                intent.putExtra("nik", nik);
                                 startActivity(intent);
                                 finish();
                             } else if(status.equals("Failed 1")) {
