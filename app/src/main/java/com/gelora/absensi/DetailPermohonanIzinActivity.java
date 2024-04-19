@@ -1053,15 +1053,15 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                         cancelPermohonanBTN.setVisibility(View.GONE);
                                         editPermohonanBTN.setVisibility(View.GONE);
                                         if(nik_approver_hrd.equals("null") || nik_approver_hrd.equals("") || nik_approver_hrd.equals(null)){
-                                            String updated_at = detail.getString("updated_at");
-                                            tanggalApproveHRDTV.setText(updated_at.substring(8,10)+"/"+updated_at.substring(5,7)+"/"+updated_at.substring(2,4));
+                                            String timestamp_approve_hrd = detail.getString("timestamp_approve_hrd");
+                                            tanggalApproveHRDTV.setText(timestamp_approve_hrd.substring(8,10)+"/"+timestamp_approve_hrd.substring(5,7)+"/"+timestamp_approve_hrd.substring(2,4));
                                             acceptedMark.setVisibility(View.VISIBLE);
                                             rejectedMark.setVisibility(View.GONE);
                                             appoveStatusHRD.setVisibility(View.VISIBLE);
                                             ttdHRD.setVisibility(View.GONE);
                                         } else {
-                                            String updated_at = detail.getString("updated_at");
-                                            tanggalApproveHRDTV.setText(updated_at.substring(8,10)+"/"+updated_at.substring(5,7)+"/"+updated_at.substring(2,4));
+                                            String timestamp_approve_hrd = detail.getString("timestamp_approve_hrd");
+                                            tanggalApproveHRDTV.setText(timestamp_approve_hrd.substring(8,10)+"/"+timestamp_approve_hrd.substring(5,7)+"/"+timestamp_approve_hrd.substring(2,4));
                                             acceptedMark.setVisibility(View.VISIBLE);
                                             rejectedMark.setVisibility(View.GONE);
                                             appoveStatusHRD.setVisibility(View.GONE);
