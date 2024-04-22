@@ -450,7 +450,7 @@ public class AllMenuActivity extends AppCompatActivity {
             messengerPart.setVisibility(View.VISIBLE);
             newsPart.setVisibility(View.GONE);
 
-            if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("41") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){ //Kabag Kadep
+            if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("41") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1305291110"))){ //Kabag Kadep
                 cardPart.setVisibility(View.GONE);
                 sdmPart.setVisibility(View.VISIBLE);
                 projectPart.setVisibility(View.VISIBLE);
