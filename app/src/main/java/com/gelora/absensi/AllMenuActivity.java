@@ -37,7 +37,7 @@ import java.util.Map;
 
 public class AllMenuActivity extends AppCompatActivity {
 
-    LinearLayout menuReportSumaBTN, menuReport3SumaBTN, menuReport2SumaBTN, reportSumaPart3, reportSumaPart2, reportSumaPart, menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
+    LinearLayout menuMakanLemburBTN, menuMakanLembur2BTN, menuMakanLembur3BTN, makanLemburPart, makanLemburPart2, makanLemburPart3, menuReportSumaBTN, menuReport3SumaBTN, menuReport2SumaBTN, reportSumaPart3, reportSumaPart2, reportSumaPart, menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
     LinearLayout actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
     TextView countNotifGMTV, countNotifClearanceTV, countNotifPenilaianTV;
     SharedPrefManager sharedPrefManager;
@@ -95,6 +95,12 @@ public class AllMenuActivity extends AppCompatActivity {
         menuReport2SumaBTN = findViewById(R.id.menu_report_2_suma_btn);
         menuReport3SumaBTN = findViewById(R.id.menu_report_3_suma_btn);
         menuProjectBTN = findViewById(R.id.menu_project_btn);
+        makanLemburPart = findViewById(R.id.makan_lembur_part);
+        makanLemburPart2 = findViewById(R.id.makan_lembur_part_2);
+        makanLemburPart3 = findViewById(R.id.makan_lembur_part_3);
+        menuMakanLemburBTN = findViewById(R.id.makan_lembur_btn);
+        menuMakanLembur2BTN = findViewById(R.id.makan_lembur_btn_2);
+        menuMakanLembur3BTN = findViewById(R.id.makan_lembur_btn_3);
         countNotificationPenilaian = findViewById(R.id.count_notification_penilaian);
         countNotifPenilaianTV = findViewById(R.id.count_notif_penilaian_tv);
         countNotificationClearancePart = findViewById(R.id.count_notification_clearance);
@@ -397,6 +403,29 @@ public class AllMenuActivity extends AppCompatActivity {
             }
         });
 
+        menuMakanLemburBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        menuMakanLembur2BTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        menuMakanLembur3BTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                startActivity(intent);
+            }
+        });
 
         roleMenu();
 
@@ -457,10 +486,15 @@ public class AllMenuActivity extends AppCompatActivity {
                 reportSumaPart.setVisibility(View.GONE);
                 if(sharedPrefManager.getSpIdHeadDept().equals("3")||sharedPrefManager.getSpNik().equals("0981010210")||sharedPrefManager.getSpNik().equals("0121010900")||sharedPrefManager.getSpNik().equals("0499070507")||sharedPrefManager.getSpNik().equals("1504060711")){
                     reportSumaPart2.setVisibility(View.VISIBLE);
+                    makanLemburPart2.setVisibility(View.GONE);
+                    makanLemburPart.setVisibility(View.VISIBLE);
                 } else {
                     reportSumaPart2.setVisibility(View.GONE);
+                    makanLemburPart2.setVisibility(View.VISIBLE);
+                    makanLemburPart.setVisibility(View.GONE);
                 }
 
+                makanLemburPart3.setVisibility(View.GONE);
                 newsPartSub.setVisibility(View.VISIBLE);
                 calendarPartSub.setVisibility(View.VISIBLE);
                 idCardPartSub.setVisibility(View.VISIBLE);
@@ -476,10 +510,15 @@ public class AllMenuActivity extends AppCompatActivity {
                     reportSumaPart.setVisibility(View.GONE);
                     if(sharedPrefManager.getSpIdHeadDept().equals("3")){
                         reportSumaPart2.setVisibility(View.VISIBLE);
+                        makanLemburPart2.setVisibility(View.GONE);
+                        makanLemburPart.setVisibility(View.VISIBLE);
                     } else {
                         reportSumaPart2.setVisibility(View.GONE);
+                        makanLemburPart2.setVisibility(View.VISIBLE);
+                        makanLemburPart.setVisibility(View.GONE);
                     }
 
+                    makanLemburPart3.setVisibility(View.GONE);
                     newsPartSub.setVisibility(View.VISIBLE);
                     calendarPartSub.setVisibility(View.VISIBLE);
                     idCardPartSub.setVisibility(View.VISIBLE);
@@ -493,7 +532,8 @@ public class AllMenuActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                     });
-                } else { //Other
+                }
+                else { //Other
                     cardPart.setVisibility(View.VISIBLE);
                     sdmPart.setVisibility(View.GONE);
                     projectPart.setVisibility(View.GONE);
@@ -514,7 +554,8 @@ public class AllMenuActivity extends AppCompatActivity {
 
             }
 
-        } else {
+        }
+        else {
             cardPart.setVisibility(View.VISIBLE);
             sdmPart.setVisibility(View.GONE);
             projectPart.setVisibility(View.GONE);
