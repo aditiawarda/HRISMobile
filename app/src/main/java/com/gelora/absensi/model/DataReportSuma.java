@@ -16,6 +16,7 @@ public class DataReportSuma {
     private String idRealisasi;
     private String noSuratJalan;
     private String namaKaryawan;
+    private String nmJabatan;
 
     public String getId() {
         return id;
@@ -137,4 +138,11 @@ public class DataReportSuma {
         this.namaKaryawan = namaKaryawan;
     }
 
+    public String getNmJabatan() {
+        return nmJabatan;
+    }
+
+    public void setNmJabatan(String nmJabatan) {
+        this.nmJabatan = nmJabatan;
+    }
 }
