@@ -1181,6 +1181,10 @@ public class FormInputProjectActivity extends AppCompatActivity {
 
         requestQueue.add(jsonObjectRequest);
 
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        jsonObjectRequest.setRetryPolicy(retryPolicy);
+
     }
 
     private String getDate() {
