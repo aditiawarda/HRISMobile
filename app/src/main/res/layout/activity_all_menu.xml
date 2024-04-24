@@ -884,6 +884,45 @@
 
                                         </LinearLayout>
 
+                                        <LinearLayout
+                                            android:id="@+id/project_part_3"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_project_btn_3"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_3"
+                                                android:orientation="vertical"
+                                                android:padding="10dp"
+                                                tools:ignore="TooManyViews">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_project"
+                                                    tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="2"
+                                                android:text="Project"
+                                                android:textColor="#515151"
+                                                android:textSize="10dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        </LinearLayout>
+
                                     </LinearLayout>
 
                                     <LinearLayout

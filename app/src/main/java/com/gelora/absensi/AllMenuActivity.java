@@ -37,7 +37,7 @@ import java.util.Map;
 
 public class AllMenuActivity extends AppCompatActivity {
 
-    LinearLayout menuMakanLemburBTN, menuMakanLembur2BTN, menuMakanLembur3BTN, makanLemburPart, makanLemburPart2, makanLemburPart3, menuReportSumaBTN, menuReport3SumaBTN, menuReport2SumaBTN, reportSumaPart3, reportSumaPart2, reportSumaPart, menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
+    LinearLayout projectPart3, menuProjectBTN3, menuMakanLemburBTN, menuMakanLembur2BTN, menuMakanLembur3BTN, makanLemburPart, makanLemburPart2, makanLemburPart3, menuReportSumaBTN, menuReport3SumaBTN, menuReport2SumaBTN, reportSumaPart3, reportSumaPart2, reportSumaPart, menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
     LinearLayout actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
     TextView countNotifGMTV, countNotifClearanceTV, countNotifPenilaianTV;
     SharedPrefManager sharedPrefManager;
@@ -88,6 +88,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuCalendarBTNSub = findViewById(R.id.menu_calendar_btn_sub);
         menuPengaduanBTNSub = findViewById(R.id.menu_pengaduan_btn_sub);
         projectPart = findViewById(R.id.project_part);
+        projectPart3 = findViewById(R.id.project_part_3);
         reportSumaPart = findViewById(R.id.report_suma_part);
         reportSumaPart2 = findViewById(R.id.report_suma_part_2);
         reportSumaPart3 = findViewById(R.id.report_suma_part_3);
@@ -95,6 +96,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuReport2SumaBTN = findViewById(R.id.menu_report_2_suma_btn);
         menuReport3SumaBTN = findViewById(R.id.menu_report_3_suma_btn);
         menuProjectBTN = findViewById(R.id.menu_project_btn);
+        menuProjectBTN3 = findViewById(R.id.menu_project_btn_3);
         makanLemburPart = findViewById(R.id.makan_lembur_part);
         makanLemburPart2 = findViewById(R.id.makan_lembur_part_2);
         makanLemburPart3 = findViewById(R.id.makan_lembur_part_3);
@@ -379,6 +381,20 @@ public class AllMenuActivity extends AppCompatActivity {
             }
         });
 
+        menuProjectBTN3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllMenuActivity.this, ProjectViewActivity.class);
+                startActivity(intent);
+                // if(sharedPrefManager.getSpPassword().equals("")){
+                //     Intent intent = new Intent(AllMenuActivity.this, PasswordRequestActivity.class);
+                //     startActivity(intent);
+                // } else {
+                //    getTokenAccess();
+                // }
+            }
+        });
+
         menuReportSumaBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -581,12 +597,15 @@ public class AllMenuActivity extends AppCompatActivity {
                     newsPartSub.setVisibility(View.VISIBLE);
                     calendarPartSub.setVisibility(View.VISIBLE);
                     idCardPartSub.setVisibility(View.GONE);
-                    projectPartSub.setVisibility(View.GONE);
                     pengaduanPartSub.setVisibility(View.GONE);
                     if(sharedPrefManager.getSpIdHeadDept().equals("3")){
                         reportSumaPart3.setVisibility(View.VISIBLE);
+                        projectPart3.setVisibility(View.GONE);
+                        projectPartSub.setVisibility(View.VISIBLE);
                     } else {
                         reportSumaPart3.setVisibility(View.GONE);
+                        projectPart3.setVisibility(View.VISIBLE);
+                        projectPartSub.setVisibility(View.GONE);
                     }
                 }
                 messengerPart.setVisibility(View.VISIBLE);
