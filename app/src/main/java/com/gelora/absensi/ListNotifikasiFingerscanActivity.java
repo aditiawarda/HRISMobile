@@ -46,7 +46,6 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     LinearLayout backBTN, actionBar;
     LinearLayout mainPart, optionPart, countPartIn, countPartMe, permohonanMasukPart, permohonanSayaPart, notifyInBTN, notifySayaBTN, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2;
-    ImageView loadingImage,loadingImage2;
     View rootview;
     TextView countNotifMasuk, countNotifSaya;
 
@@ -65,8 +64,6 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
         noDataPart2 = findViewById(R.id.no_data_part_2);
         loadingDataPart = findViewById(R.id.loading_data_part);
         loadingDataPart2 = findViewById(R.id.loading_data_part_2);
-        loadingImage = findViewById(R.id.loading_data_img);
-        loadingImage2 = findViewById(R.id.loading_data_img_2);
         notifyInBTN = findViewById(R.id.notify_in_btn);
         notifySayaBTN = findViewById(R.id.notify_out_btn);
         permohonanMasukPart = findViewById(R.id.permohonan_masuk);
@@ -78,14 +75,6 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
         optionPart = findViewById(R.id.option_part);
         mainPart = findViewById(R.id.main_part);
         actionBar = findViewById(R.id.action_bar);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingImage);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingImage2);
 
         dataNotifikasiRV.setLayoutManager(new LinearLayoutManager(this));
         dataNotifikasiRV.setHasFixedSize(true);

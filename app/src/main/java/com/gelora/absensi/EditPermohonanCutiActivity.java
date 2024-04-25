@@ -94,7 +94,6 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
     LinearLayout actionBar, infoCutiPart, removeLampiranBTN, submitBTN, loadingDataPart, noDataPart, startAttantionPart, penggantiSelamaCutiBTN, tipeCutiBTN, viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, backBTN, dariTanggalPicker, sampaiTanggalPicker;
     TextView notejumlahHari, jumlahHariTV, labelUnggahTV, statusUploadTV, noHpTV, alamatSelamaCutiTV, penggantiSelamaCutiTV, jenisCutiTV, tipeCutiTV, sampaiTanggalTV, dariTanggalTV, totalCutiDiambilTV, tahunCutiDiambilTV, sisaCutiTV, namaKaryawanTV, jabatanKaryawanTV, detailKaryawanTV, tglMulaiKerjaTV, nikKaryawanTV, statusKaryawanTV;
     EditText alasanTV, keywordKaryawanPengganti;
-    ImageView loadingGif;
     BottomSheetLayout bottomSheet;
     String removeLampiranStatus = "0", gantiLampiran = "", permohonanTerkirim = "0", uploadStatus = "", idRecord, dateChoiceMulai = "", dateChoiceAkhir = "", idCuti = "";
     String lampiranWajibAtauTidak = "", statusLampiran = "", tipeCuti = "", sisaCutiSementara = "", totalCutiDiambil = "", idIzin = "", hp = "", alamat = "", alasanCuti = "", pengganti = "", kategoriCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
@@ -3396,11 +3395,6 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         startAttantionPart = findViewById(R.id.attantion_data_part);
         noDataPart = findViewById(R.id.no_data_part);
         loadingDataPart = findViewById(R.id.loading_data_part);
-        loadingGif = findViewById(R.id.loading_data);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingGif);
 
         karyawanPenggantiRV.setLayoutManager(new LinearLayoutManager(this));
         karyawanPenggantiRV.setHasFixedSize(true);

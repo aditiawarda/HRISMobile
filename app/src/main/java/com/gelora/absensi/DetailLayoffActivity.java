@@ -42,7 +42,7 @@ import java.util.Map;
 public class DetailLayoffActivity extends AppCompatActivity {
 
     LinearLayout actionBar, attantionPart, monthBTN, emptyDataLayoff, loadingLayoffPart, backBTN;
-    ImageView bulanLoading, layoffLoading, loadingDataLayoff;
+    ImageView bulanLoading, layoffLoading;
     TextView messageLayoff, dataBulan, dataTahun, dataLayoff, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -68,7 +68,6 @@ public class DetailLayoffActivity extends AppCompatActivity {
         bulanLoading = findViewById(R.id.bulan_loading);
         layoffLoading = findViewById(R.id.layoff_detail_loading);
         dataLayoff = findViewById(R.id.data_layoff_detail);
-        loadingDataLayoff = findViewById(R.id.loading_data_layoff_detail);
         loadingLayoffPart = findViewById(R.id.loading_data_part_layoff_detail);
         emptyDataLayoff = findViewById(R.id.no_data_part_layoff_detail);
         monthBTN = findViewById(R.id.month_btn);
@@ -92,10 +91,6 @@ public class DetailLayoffActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
                 .into(layoffLoading);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataLayoff);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override

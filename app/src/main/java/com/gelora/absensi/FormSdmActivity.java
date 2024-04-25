@@ -125,7 +125,6 @@ public class FormSdmActivity extends AppCompatActivity {
     //Form 2 3 4
     LinearLayout f2OptionSubPart, f2DurasiKontrakPart, f2KomponenGajiDisableMode, f2NamaKaryawanDisableMode, f2UnitBisnisDisableMode, f2NamaKaryawanPart, f2UnitBisnisPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
     LinearLayout f2StartDatePart, f2EndDatePart, f2KomponenGajiDisableModeLama, f2UnitBisnisDisableModeLama, f2NamaKaryawanLamaPart, f2UnitBisnisLamaPart, f2StartAttantionKaryawanLamaPart, f2NoDataKaryawanLamaPart, f2loadingDataKaryawanLamaPart;
-    ImageView f2loadingGif, f2loadingLamaGif;
     TextView f2LabelPoint, f2KomponenGajiDisableModeTV, f2NamaKaryawanDisableModeTV, f2UnitBisnisDisableModeLamaTV, f2UnitBisnisDisableModeTV, f2NamaKaryawanTV, f2UnitBisnisTV, f2DepartemenTV, f2BagianTV, f2JabatanTV;
     TextView f2DurasiKontrak, f2StartDatePilih, f2EndDatePilih, f2KomponenGajiDisableModeLamaTV, f2NamaKaryawanLamaTV, f2UnitBisnisLamaTV, f2DepartemenLamaTV, f2BagianLamaTV, f2JabatanLamaTV;
     EditText f2keywordKaryawanBaru, f2KomponenGajiTV;
@@ -144,7 +143,6 @@ public class FormSdmActivity extends AppCompatActivity {
     //Form 5 6
     LinearLayout f3GolonganLamaPart, f3OptionSubPart, f4UnitBisnisDisableMode, f3JabatanBaruDetailDisableMode, f3JabatanLamaDetailDisableMode, f3KomponenGajiPart, f3NamaKaryawanDisableMode, f3TglDibutuhkanPart, f3TglPemenuhanPart, f3TglPengangkatanJabatanBaruPart, f3NamaKaryawanPart, f3UnitBisnisPart, f3DepartemenPart, f3BagianPart, f3JabatanPart, f3DepartemenLamaPart, f3BagianLamaPart, f3JabatanLamaPart, f3StartAttantionKaryawanBaruPart, f3NoDataKaryawanBaruPart, f3loadingDataKaryawanBaruPart;
     LinearLayout f3GolonganPart, f3KomponenGajiDisableModeLama, f3JabatanDisableModeLama, f3BagianDisableModeLama, f3DepartemenDisableModeLama, f3UnitBisnisDisableModeLama, f3JabatanBaruDetailPart, f3TglPengangkatanJabatanLamaPart, f3JabatanLamaDetailPart, f3NamaKaryawanLamaPart, f3UnitBisnisLamaPart, f3StartAttantionKaryawanLamaPart, f3NoDataKaryawanLamaPart, f3loadingDataKaryawanLamaPart;
-    ImageView f3loadingGif, f3loadingLamaGif;
     EditText f3AlasanPengangkatanTV;
     TextView f3GolonganDisableModeLamaTV, f3LabelPoint, f3JabatanBaruDetailDisableModeTV, f3JabatanLamaDetailDisableModeTV, f3KomponenGajiPilihTV, f3NamaKaryawanDisableModeTV, f3KomponenGajiDisableModeLamaTV, f3JabatanDisableModeLamaTV, f3TglDibutuhkanTV, f3TglPemenuhanTV, f3TglPengangkatanJabatanBaruTV, f3JabatanBaruDetailTV, f3TglPengangkatanJabatanLamaTV, f3JabatanLamaDetailTV, f3NamaKaryawanTV, f3UnitBisnisTV, f3DepartemenTV, f3BagianTV, f3JabatanTV;
     TextView f3GolonganDisableModeTV, f4UnitBisnisDisableModeTV, f3BagianDisableModeLamaTV, f3DepartemenDisableModeLamaTV, f3UnitBisnisDisableModeLamaTV, f3NamaKaryawanLamaTV, f3UnitBisnisLamaTV, f3DepartemenLamaTV, f3BagianLamaTV, f3JabatanLamaTV;
@@ -191,7 +189,6 @@ public class FormSdmActivity extends AppCompatActivity {
     //Form 7
     LinearLayout f4KomponenGajiDisableMode, f4NamaKaryawanPart, f4UnitBisnisPart, f4StartAttantionKaryawanBaruPart, f4NoDataKaryawanBaruPart, f4loadingDataKaryawanBaruPart;
     LinearLayout f4KomponenGajiDisableModeLama, f4UnitBisnisDisableModeLama, f4NamaKaryawanLamaPart, f4UnitBisnisLamaPart, f4StartAttantionKaryawanLamaPart, f4NoDataKaryawanLamaPart, f4loadingDataKaryawanLamaPart;
-    ImageView f4loadingGif, f4loadingLamaGif;
     TextView f4KomponenGajiDisableModeTV, f4NamaKaryawanTV, f4UnitBisnisTV, f4DepartemenTV, f4BagianTV, f4JabatanTV;
     TextView f4KomponenGajiDisableModeLamaTV, f4UnitBisnisDisableModeLamaTV, f4NamaKaryawanLamaTV, f4UnitBisnisLamaTV, f4DepartemenLamaTV, f4BagianLamaTV, f4JabatanLamaTV;
     EditText f4keywordKaryawanBaru, f4KomponenGajiTV;
@@ -207,7 +204,6 @@ public class FormSdmActivity extends AppCompatActivity {
     RadioGroup f4VerifPersetujuanGroup;
     RadioButton f4OptionYa, f4OptionTidak;
 
-    ImageView loadingForm;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -241,7 +237,6 @@ public class FormSdmActivity extends AppCompatActivity {
         warningNoForm = findViewById(R.id.warning_no_form);
         attantionNoForm = findViewById(R.id.attantion_no_form);
         loadingFormPart = findViewById(R.id.loading_form_part);
-        loadingForm = findViewById(R.id.loading_form);
         formPart = findViewById(R.id.form_part);
         successPart = findViewById(R.id.success_submit);
         successGif = findViewById(R.id.success_gif);
@@ -418,10 +413,6 @@ public class FormSdmActivity extends AppCompatActivity {
 
         f4KomponenGajiTV.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         f4KomponenGajiLamaTV.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingForm);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
@@ -5337,11 +5328,6 @@ public class FormSdmActivity extends AppCompatActivity {
         f2StartAttantionKaryawanBaruPart = findViewById(R.id.attantion_data_part);
         f2NoDataKaryawanBaruPart = findViewById(R.id.no_data_part);
         f2loadingDataKaryawanBaruPart = findViewById(R.id.loading_data_part);
-        f2loadingGif = findViewById(R.id.loading_data);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(f2loadingGif);
 
         f2KaryawanBaruRV.setLayoutManager(new LinearLayoutManager(this));
         f2KaryawanBaruRV.setHasFixedSize(true);
@@ -5609,11 +5595,6 @@ public class FormSdmActivity extends AppCompatActivity {
         f2StartAttantionKaryawanLamaPart = findViewById(R.id.attantion_data_part);
         f2NoDataKaryawanLamaPart = findViewById(R.id.no_data_part);
         f2loadingDataKaryawanLamaPart = findViewById(R.id.loading_data_part);
-        f2loadingLamaGif = findViewById(R.id.loading_data);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(f2loadingLamaGif);
 
         f2KaryawanLamaRV.setLayoutManager(new LinearLayoutManager(this));
         f2KaryawanLamaRV.setHasFixedSize(true);
@@ -6031,11 +6012,6 @@ public class FormSdmActivity extends AppCompatActivity {
         f3StartAttantionKaryawanBaruPart = findViewById(R.id.attantion_data_part);
         f3NoDataKaryawanBaruPart = findViewById(R.id.no_data_part);
         f3loadingDataKaryawanBaruPart = findViewById(R.id.loading_data_part);
-        f3loadingGif = findViewById(R.id.loading_data);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(f3loadingGif);
 
         f3KaryawanBaruRV.setLayoutManager(new LinearLayoutManager(this));
         f3KaryawanBaruRV.setHasFixedSize(true);
@@ -6582,11 +6558,6 @@ public class FormSdmActivity extends AppCompatActivity {
         f3StartAttantionKaryawanLamaPart = findViewById(R.id.attantion_data_part);
         f3NoDataKaryawanLamaPart = findViewById(R.id.no_data_part);
         f3loadingDataKaryawanLamaPart = findViewById(R.id.loading_data_part);
-        f3loadingLamaGif = findViewById(R.id.loading_data);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(f3loadingLamaGif);
 
         f3KaryawanLamaRV.setLayoutManager(new LinearLayoutManager(this));
         f3KaryawanLamaRV.setHasFixedSize(true);
@@ -7472,11 +7443,6 @@ public class FormSdmActivity extends AppCompatActivity {
         f4StartAttantionKaryawanBaruPart = findViewById(R.id.attantion_data_part);
         f4NoDataKaryawanBaruPart = findViewById(R.id.no_data_part);
         f4loadingDataKaryawanBaruPart = findViewById(R.id.loading_data_part);
-        f4loadingGif = findViewById(R.id.loading_data);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(f4loadingGif);
 
         f4KaryawanBaruRV.setLayoutManager(new LinearLayoutManager(this));
         f4KaryawanBaruRV.setHasFixedSize(true);
@@ -7747,11 +7713,6 @@ public class FormSdmActivity extends AppCompatActivity {
         f4StartAttantionKaryawanLamaPart = findViewById(R.id.attantion_data_part);
         f4NoDataKaryawanLamaPart = findViewById(R.id.no_data_part);
         f4loadingDataKaryawanLamaPart = findViewById(R.id.loading_data_part);
-        f4loadingLamaGif = findViewById(R.id.loading_data);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(f4loadingLamaGif);
 
         f4KaryawanLamaRV.setLayoutManager(new LinearLayoutManager(this));
         f4KaryawanLamaRV.setHasFixedSize(true);

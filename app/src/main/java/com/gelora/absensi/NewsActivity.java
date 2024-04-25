@@ -44,7 +44,6 @@ public class NewsActivity extends AppCompatActivity {
     LinearLayout sourceLabelPart, actionBar, categoryBTN, emptyDataNews, loadingNewsPart, backBTN;
     LinearLayout cat1BTN, cat2BTN, cat3BTN, cat4BTN, cat5BTN, cat6BTN, cat7BTN, cat8BTN, cat9BTN, cat10BTN, cat11BTN, cat12BTN;
     LinearLayout markCat1BTN, markCat2BTN, markCat3BTN, markCat4BTN, markCat5BTN, markCat6BTN, markCat7BTN, markCat8BTN, markCat9BTN, markCat10BTN, markCat11BTN, markCat12BTN;
-    ImageView loadingDataNews;
     TextView categoryChoiceTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -69,7 +68,6 @@ public class NewsActivity extends AppCompatActivity {
         backBTN = findViewById(R.id.back_btn);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         categoryChoiceTV = findViewById(R.id.category_choice_tv);
-        loadingDataNews = findViewById(R.id.loading_data_news);
         loadingNewsPart = findViewById(R.id.loading_data_part_news);
         emptyDataNews = findViewById(R.id.no_data_part_news);
         actionBar = findViewById(R.id.action_bar);
@@ -112,10 +110,6 @@ public class NewsActivity extends AppCompatActivity {
             categoryNewsLabel = "Dunia";
         }
         categoryChoiceTV.setText(categoryNewsLabel);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataNews);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override

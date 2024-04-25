@@ -39,7 +39,6 @@ import java.util.Map;
 public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
 
     LinearLayout addBTN, noDataPengalamanPart, noDataPelatihanPart, loadingDataPelatihanPart, backBTN, pengalamanBTN, pelatihanBTN, infoPengalaman, infoPelatihan, loadingDataPengalamanPart;
-    ImageView loadingDataPelatihanImg, loadingDataPengalamanImg;
     SwipeRefreshLayout refreshLayout;
     String posisi = "pengalaman";
     SharedPrefManager sharedPrefManager;
@@ -66,8 +65,6 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
         loadingDataPelatihanPart = findViewById(R.id.loading_data_pelatihan_part);
         noDataPengalamanPart = findViewById(R.id.no_data_pengalaman_part);
         noDataPelatihanPart = findViewById(R.id.no_data_pelatihan_part);
-        loadingDataPengalamanImg = findViewById(R.id.loading_data_pengalaman_img);
-        loadingDataPelatihanImg = findViewById(R.id.loading_data_pelatihan_img);
         addBTN = findViewById(R.id.add_btn);
         dataPengalamanRV = findViewById(R.id.data_pengalaman_rv);
         dataPelatihanRV = findViewById(R.id.data_pelatihan_rv);
@@ -81,14 +78,6 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
         dataPelatihanRV.setHasFixedSize(true);
         dataPelatihanRV.setNestedScrollingEnabled(false);
         dataPelatihanRV.setItemAnimator(new DefaultItemAnimator());
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataPengalamanImg);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataPelatihanImg);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

@@ -71,7 +71,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
     LinearLayout viewDetailBTN, formPart, successPart, startDateBTN, endDateBTN, actionBar, backBTN, choiceCategoryBTN, submitBTN, projectLeaderBTN, startAttantionPart, noDataPart, loadingDataPart;
     TextView projectNameTV, categoryChoiceTV, projectLeaderTV, startDateTV, endDateTV;
     EditText projectNameED, projectDescED;
-    ImageView loadingGif, successGif;
+    ImageView successGif;
     MultiAutoCompleteTextView picMultyTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -306,11 +306,6 @@ public class FormInputProjectActivity extends AppCompatActivity {
         startAttantionPart = findViewById(R.id.attantion_data_part);
         noDataPart = findViewById(R.id.no_data_part);
         loadingDataPart = findViewById(R.id.loading_data_part);
-        loadingGif = findViewById(R.id.loading_data);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingGif);
 
         karyawanRV.setLayoutManager(new LinearLayoutManager(this));
         karyawanRV.setHasFixedSize(true);

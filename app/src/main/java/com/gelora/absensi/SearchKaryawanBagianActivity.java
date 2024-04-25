@@ -65,7 +65,6 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
     LinearLayout actionBar, choiceBagianBTN, attantionPart, choiceDateBTN, backBTN, loadingDataPart, emptyDataPart;
     EditText keywordUserED;
     SharedPrefManager sharedPrefManager;
-    ImageView loadingData;
     SwipeRefreshLayout refreshLayout;
     BottomSheetLayout bottomSheet;
     View rootview;
@@ -94,7 +93,6 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
         keywordUserED = findViewById(R.id.keyword_user_ed);
         loadingDataPart = findViewById(R.id.loading_data_part);
         emptyDataPart = findViewById(R.id.no_data_part);
-        loadingData = findViewById(R.id.loading_data);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         attantionPart = findViewById(R.id.attantion_part);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
@@ -108,10 +106,6 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
         bagianChoiceTV.setText(kdBagianChoice);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(bagianBroad, new IntentFilter("bagian_broad"));
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingData);
 
         keywordUserED.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         showSoftKeyboard(keywordUserED);

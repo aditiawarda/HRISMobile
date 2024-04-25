@@ -1552,13 +1552,13 @@
                                             android:paddingBottom="40dp"
                                             android:visibility="visible">
 
-                                            <ImageView
-                                                android:id="@+id/f2_loading_data_inv_img"
-                                                android:layout_width="75dp"
-                                                android:layout_height="75dp"
-                                                android:layout_marginBottom="5dp"
-                                                app:srcCompat="@drawable/loading_sgn_digital"
-                                                tools:ignore="ContentDescription,ImageContrastCheck" />
+                                            <ProgressBar
+                                                android:layout_width="42dp"
+                                                android:layout_height="42dp"
+                                                android:indeterminateTint="@color/colorAccent2"
+                                                android:layout_marginTop="15dp"
+                                                android:layout_marginBottom="22dp"
+                                                tools:ignore="RtlHardcoded" />
 
                                             <TextView
                                                 android:layout_width="match_parent"
@@ -2034,13 +2034,13 @@
                                     android:paddingBottom="35dp"
                                     android:visibility="visible">
 
-                                    <ImageView
-                                        android:id="@+id/loading_form"
-                                        android:layout_width="80dp"
-                                        android:layout_height="80dp"
-                                        android:layout_marginBottom="5dp"
-                                        app:srcCompat="@drawable/loading_sgn_digital"
-                                        tools:ignore="ContentDescription,ImageContrastCheck" />
+                                    <ProgressBar
+                                        android:layout_width="45dp"
+                                        android:layout_height="45dp"
+                                        android:indeterminateTint="@color/colorAccent2"
+                                        android:layout_marginTop="15dp"
+                                        android:layout_marginBottom="25dp"
+                                        tools:ignore="RtlHardcoded" />
 
                                     <TextView
                                         android:layout_width="match_parent"

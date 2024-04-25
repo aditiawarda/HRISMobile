@@ -53,7 +53,6 @@ import java.util.Map;
 public class SearchSdmActivity extends AppCompatActivity {
 
     LinearLayout backBTN, choiceBagianBTN, actionBar, loadingDataPart, emptyDataPart, attantionPart;
-    ImageView loadingData;
     EditText keywordUserED;
     TextView bagianChoiceTV;
     BottomSheetLayout bottomSheet;
@@ -85,7 +84,6 @@ public class SearchSdmActivity extends AppCompatActivity {
         keywordUserED = findViewById(R.id.keyword_user_ed);
 
         loadingDataPart = findViewById(R.id.loading_data_part);
-        loadingData = findViewById(R.id.loading_data);
         emptyDataPart = findViewById(R.id.no_data_part);
         attantionPart = findViewById(R.id.attantion_part);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
@@ -98,10 +96,6 @@ public class SearchSdmActivity extends AppCompatActivity {
         dataSdmRV.setItemAnimator(new DefaultItemAnimator());
 
         keywordUserED.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingData);
 
         showSoftKeyboard(keywordUserED);
         LocalBroadcastManager.getInstance(this).registerReceiver(bagianBroad, new IntentFilter("bagian_broad"));

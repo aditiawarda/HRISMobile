@@ -49,7 +49,7 @@ public class DigitalSignatureActivity extends AppCompatActivity {
     private int i = -1;
     Uri destinationUri;
     KAlertDialog pDialog;
-    ImageView signatureIMG,loadingSignature;
+    ImageView signatureIMG;
     String kodeString = "";
     View rootview;
 
@@ -69,16 +69,11 @@ public class DigitalSignatureActivity extends AppCompatActivity {
         showSignaturePart = findViewById(R.id.show_signature_part);
         creatSignaturePart = findViewById(R.id.creat_signature_part);
         loadingPart = findViewById(R.id.loading_part);
-        loadingSignature = findViewById(R.id.loading_sgn_img);
         cancelBTN = findViewById(R.id.cancel_btn);
         redPen = findViewById(R.id.pen_red);
         bluePen = findViewById(R.id.pen_blue);
         blackPen = findViewById(R.id.pen_black);
         actionBar = findViewById(R.id.action_bar);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingSignature);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 

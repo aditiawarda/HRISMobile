@@ -67,7 +67,6 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
 
     LinearLayout subCatBTN, attantionReportPart, salesChoiceBTN, salesBTN, catBTN, filterBarPart, dateBTN, noDataPartReport, loadingDataPartReport, rencanaBTN, aktivitasBTN, penagihanBTN, pengirimanBTN, promosiBTN, markRencana, markAktivitas, markPenagihan, markPengiriman, markKunjungan, actionBar, backBTN, addBTN, filterCategoryBTN, filterSubCategoryBTN;
     TextView semuaDataBTN, salesChoiceTV, choiceDateTV, categoryChoiceTV, subCategoryChoiceTV, dateLabel;
-    ImageView loadingDataReport;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -80,7 +79,6 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     EditText keywordKaryawanSales;
     RecyclerView karyawanSalesRV;
     LinearLayout contentPart, startAttantionPart, noDataPart, loadingDataPart;
-    ImageView loadingGif;
     private KaryawanSales[] karyawanSales;
     private AdapterKaryawanSales adapterKaryawanSales;
 
@@ -98,7 +96,6 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         backBTN = findViewById(R.id.back_btn);
         actionBar = findViewById(R.id.action_bar);
         addBTN = findViewById(R.id.add_btn);
-        loadingDataReport = findViewById(R.id.loading_data_report);
         filterCategoryBTN = findViewById(R.id.filter_category_btn);
         filterSubCategoryBTN = findViewById(R.id.filter_sub_category_btn);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
@@ -170,10 +167,6 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         reportRV.setHasFixedSize(true);
         reportRV.setNestedScrollingEnabled(false);
         reportRV.setItemAnimator(new DefaultItemAnimator());
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataReport);
 
         getDateNow();
 
@@ -343,17 +336,23 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                             String status = response.getString("status");
 
                             if(status.equals("Success")){
-                                attantionReportPart.setVisibility(View.GONE);
-                                reportRV.setVisibility(View.VISIBLE);
-                                loadingDataPartReport.setVisibility(View.GONE);
-                                noDataPartReport.setVisibility(View.GONE);
-
                                 String data_report = response.getString("data");
                                 GsonBuilder builder = new GsonBuilder();
                                 Gson gson = builder.create();
                                 dataReportSumas = gson.fromJson(data_report, DataReportSuma[].class);
                                 adapterSumaReport = new AdapterSumaReport(dataReportSumas, ListDataReportSumaActivity.this);
                                 reportRV.setAdapter(adapterSumaReport);
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        attantionReportPart.setVisibility(View.GONE);
+                                        reportRV.setVisibility(View.VISIBLE);
+                                        loadingDataPartReport.setVisibility(View.GONE);
+                                        noDataPartReport.setVisibility(View.GONE);
+                                    }
+                                }, 1500);
+
                             } else {
                                 attantionReportPart.setVisibility(View.GONE);
                                 reportRV.setVisibility(View.GONE);
@@ -903,12 +902,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         startAttantionPart = findViewById(R.id.attantion_data_sales_part);
         noDataPart = findViewById(R.id.no_data_sales_part);
         loadingDataPart = findViewById(R.id.loading_data_sales_part);
-        loadingGif = findViewById(R.id.loading_sales_data);
         semuaDataBTN = findViewById(R.id.semua_data_btn);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingGif);
 
         karyawanSalesRV.setLayoutManager(new LinearLayoutManager(this));
         karyawanSalesRV.setHasFixedSize(true);

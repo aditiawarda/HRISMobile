@@ -39,7 +39,6 @@ public class HumanResourceActivity extends AppCompatActivity {
 
     LinearLayout listSdmPart, countNotificationSDM, searchOtherPart, backBTN, formSdmBTN, penilaianSdmBTN, loadingDataPart, noDataPart, countNotificationPenilaian;
     TextView titleSDM, dataSelengkapnyaBTN, searchOtherBTN, countNotifPenilaianTV, countNotifSdmTV;
-    ImageView loadingDataRecord;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
 
@@ -58,7 +57,6 @@ public class HumanResourceActivity extends AppCompatActivity {
         backBTN = findViewById(R.id.back_btn);
         formSdmBTN = findViewById(R.id.form_sdm_btn);
         penilaianSdmBTN = findViewById(R.id.penilaian_sdm_btn);
-        loadingDataRecord = findViewById(R.id.loading_data);
         loadingDataPart = findViewById(R.id.loading_data_part);
         noDataPart = findViewById(R.id.no_data_part);
         titleSDM = findViewById(R.id.title_sdm);
@@ -77,10 +75,6 @@ public class HumanResourceActivity extends AppCompatActivity {
         dataListKaryawanRV.setHasFixedSize(true);
         dataListKaryawanRV.setNestedScrollingEnabled(false);
         dataListKaryawanRV.setItemAnimator(new DefaultItemAnimator());
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataRecord);
 
         String list_sdm_visibity = getIntent().getExtras().getString("list_sdm_visibity");
 

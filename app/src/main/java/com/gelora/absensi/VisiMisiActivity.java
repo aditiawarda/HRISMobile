@@ -32,7 +32,6 @@ public class VisiMisiActivity extends AppCompatActivity {
 
     LinearLayout actionBar, backBTN, mainContent, loadingContent;
     TextView visiTV, misiTV;
-    ImageView loadingImg;
     RequestQueue requestQueue;
 
     @Override
@@ -47,11 +46,6 @@ public class VisiMisiActivity extends AppCompatActivity {
         misiTV = findViewById(R.id.misi_tv);
         mainContent = findViewById(R.id.main_content);
         loadingContent = findViewById(R.id.loading_part);
-        loadingImg = findViewById(R.id.loading_img);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingImg);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -93,7 +93,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     TextView notejumlahHari, jumlahHariTV, messageSuccessTV, statusUploadTV, labelUnggahTV, tipeCutiTV, namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, penggantiSelamaCutiTV, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
     String lampiranWajibAtauTidak = "", uploadStatus = "", statusLampiran = "", tipeCuti = "", sisaCutiSementara = "", totalCutiDiambil = "", tahunCutiDiambil = "", idIzin = "", hp = "", alamat = "", alasanCuti = "", pengganti = "", dateChoiceMulai = "", kategoriCuti = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
-    ImageView loadingGif, successGif;
+    ImageView successGif;
     EditText keywordKaryawanPengganti, alasanTV, alamatSelamaCutiTV, noHpTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -2953,11 +2953,6 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         startAttantionPart = findViewById(R.id.attantion_data_part);
         noDataPart = findViewById(R.id.no_data_part);
         loadingDataPart = findViewById(R.id.loading_data_part);
-        loadingGif = findViewById(R.id.loading_data);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingGif);
 
         karyawanPenggantiRV.setLayoutManager(new LinearLayoutManager(this));
         karyawanPenggantiRV.setHasFixedSize(true);

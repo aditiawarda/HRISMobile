@@ -147,7 +147,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:lineSpacingExtra="2dp"
-                            android:text="Untuk mengatasi permasalahan seperti pada poin nomor 1, pastikan lokasi/GPS pada perangkat anda aktif seperti pada gambar di bawah ini :"
+                            android:text="Untuk mengatasi permasalahan seperti pada poin nomor 1, pastikan lokasi/GPS pada perangkat anda aktif seperti pada gambar dibawah ini :"
                             android:textColor="@color/text_color"
                             android:textSize="14dp"
                             tools:ignore="HardcodedText,SpUsage" />
@@ -180,7 +180,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             android:lineSpacingExtra="2dp"
-                            android:text="Untuk mengatasi permsalahan seperti pada poin nomor 2, pastikan saat pertama memasang serta menjalankan aplikasi, izin akses lokasi diizinkan, seperti pada gambar di bawah ini :"
+                            android:text="Untuk mengatasi permsalahan seperti pada poin nomor 2, pastikan saat pertama memasang serta menjalankan aplikasi, izin akses lokasi diizinkan, seperti pada gambar dibawah ini :"
                             android:textColor="@color/text_color"
                             android:textSize="14dp"
                             tools:ignore="HardcodedText,SpUsage" />
@@ -309,7 +309,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:lineSpacingExtra="2dp"
-                            android:text="Untuk melakukan perintah seperti pada poin 2 di atas dapat dilakukan seperti pada gambar di bawah ini :"
+                            android:text="Untuk melakukan perintah seperti pada poin 2 di atas dapat dilakukan seperti pada gambar dibawah ini :"
                             android:textColor="@color/text_color"
                             android:textSize="14dp"
                             tools:ignore="HardcodedText,SpUsage" />
@@ -503,7 +503,7 @@
                                     android:layout_marginLeft="-10dp"
                                     android:layout_weight=".90"
                                     android:lineSpacingExtra="2dp"
-                                    android:text="Jika tampilan halaman seperti pada gambar di bawah ini, permohonan izin/sakit anda telah berhasil terkirim."
+                                    android:text="Jika tampilan halaman seperti pada gambar dibawah ini, permohonan izin/sakit anda telah berhasil terkirim."
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp"
                                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
@@ -677,7 +677,7 @@
                                     android:layout_marginLeft="-10dp"
                                     android:layout_weight=".90"
                                     android:lineSpacingExtra="2dp"
-                                    android:text="Jika tampilan halaman seperti pada gambar di bawah ini, permohonan cuti anda telah berhasil terkirim."
+                                    android:text="Jika tampilan halaman seperti pada gambar dibawah ini, permohonan cuti anda telah berhasil terkirim."
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp"
                                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
@@ -841,7 +841,7 @@
                                     android:layout_marginLeft="-10dp"
                                     android:layout_weight=".90"
                                     android:lineSpacingExtra="2dp"
-                                    android:text="Jika tampilan halaman seperti pada gambar di bawah ini, permohonan fingerscan/form keterangan tidak absen anda telah berhasil terkirim."
+                                    android:text="Jika tampilan halaman seperti pada gambar dibawah ini, permohonan fingerscan/form keterangan tidak absen anda telah berhasil terkirim."
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp"
                                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
@@ -883,7 +883,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:lineSpacingExtra="2dp"
-                            android:text="Pergantian perangkat dapat dilakukan dengan cara menghubungi bagian IT/EDP untuk melakukan reset id perangkat. Karyawan juga dapat menghubungi IT/EDP jika menemukan warning di perangkat yang baru pada saat login seperti pada gambar di bawah ini."
+                            android:text="Pergantian perangkat dapat dilakukan dengan cara menghubungi bagian IT/EDP untuk melakukan reset id perangkat. Karyawan juga dapat menghubungi IT/EDP jika menemukan warning di perangkat yang baru pada saat login seperti pada gambar dibawah ini."
                             android:textColor="@color/text_color"
                             android:textSize="14dp"
                             tools:ignore="HardcodedText,SpUsage" />
@@ -921,7 +921,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:lineSpacingExtra="2dp"
-                            android:text="Jika karyawan terkendala lupa password atau ingin mengganti password. Karyawan dapat menghubungi IT/EDP untuk dilakukan proses reset password, untuk selanjutnya karyawan diharuskan registrasi ulang dengan password yang baru, seperti pada langkah-langkah di bawah ini :"
+                            android:text="Jika karyawan terkendala lupa password atau ingin mengganti password. Karyawan dapat mengikuti langkah-langkah dibawah ini :"
                             android:textColor="@color/text_color"
                             android:textSize="14dp"
                             tools:ignore="HardcodedText,SpUsage" />
@@ -953,7 +953,7 @@
                                     android:layout_marginLeft="-10dp"
                                     android:layout_weight=".90"
                                     android:lineSpacingExtra="2dp"
-                                    android:text="Pilih menu registrasi pada halaman login."
+                                    android:text="Pilih menu &quot;Lupa Password?&quot; pada halaman login."
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp"
                                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
@@ -997,7 +997,7 @@
                                     android:layout_marginLeft="-10dp"
                                     android:layout_weight=".90"
                                     android:lineSpacingExtra="2dp"
-                                    android:text="Berikut adalah tampilan halaman form registrasi akun HRIS Mobile, selanjutnya isi semua data pastikan tidak ada yang terlewat termasuk password yang baru, setelah itu tekan tombol daftar."
+                                    android:text="Masukkan NIK/id karyawan anda lalu tekan tombol submit."
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp"
                                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
@@ -1041,7 +1041,7 @@
                                     android:layout_marginLeft="-10dp"
                                     android:layout_weight=".90"
                                     android:lineSpacingExtra="2dp"
-                                    android:text="Jika tampilan halaman seperti pada gambar di bawah ini, proses registrasi anda telah berhasil, selanjutnya anda bisa melakukan login dengan password yang baru."
+                                    android:text="Jika sebelumnya anda telah menambahkan email pada profil anda, email akan otomatis tampil, jika belum, anda diminta untuk input alamat email anda. Setelah itu tekan tombol kirim OTP"
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp"
                                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
@@ -1060,6 +1060,138 @@
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
                                     android:src="@drawable/faq_password_3"
+                                    tools:ignore="ContentDescription" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".10"
+                                    android:text="4."
+                                    android:lineSpacingExtra="2dp"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="-10dp"
+                                    android:layout_weight=".90"
+                                    android:lineSpacingExtra="2dp"
+                                    android:text="Periksa email anda untuk mengetahui kode OTP, dan masukkan dikolom kode OTP seperti pada gambar berikut."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="15dp"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_password_4"
+                                    tools:ignore="ContentDescription" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".10"
+                                    android:text="5."
+                                    android:lineSpacingExtra="2dp"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="-10dp"
+                                    android:layout_weight=".90"
+                                    android:lineSpacingExtra="2dp"
+                                    android:text="Jika kode OTP sesuai selanjutnya anda diminta untuk memasukan password baru anda dan setelah itu tekan tombol submit."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="15dp"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_password_5"
+                                    tools:ignore="ContentDescription" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".10"
+                                    android:text="6."
+                                    android:lineSpacingExtra="2dp"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="-10dp"
+                                    android:layout_weight=".90"
+                                    android:lineSpacingExtra="2dp"
+                                    android:text="Password baru anda telah siap digunakan."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="15dp"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_password_6"
                                     tools:ignore="ContentDescription" />
 
                             </LinearLayout>
@@ -1203,7 +1335,7 @@
                                     android:layout_marginLeft="-10dp"
                                     android:layout_weight=".90"
                                     android:lineSpacingExtra="2dp"
-                                    android:text="Setelah menekan tombol simpan maka tanda tangan digtal akan tersimpan dan tampilan halaman akan seperti pada gambar di bawah ini. Jika karyawan ingin mengganti tanda tangan digital, karyawan dapat menekan tombol ubah tanda tangan dan ulangi step 2"
+                                    android:text="Setelah menekan tombol simpan maka tanda tangan digtal akan tersimpan dan tampilan halaman akan seperti pada gambar dibawah ini. Jika karyawan ingin mengganti tanda tangan digital, karyawan dapat menekan tombol ubah tanda tangan dan ulangi step 2"
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp"
                                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />

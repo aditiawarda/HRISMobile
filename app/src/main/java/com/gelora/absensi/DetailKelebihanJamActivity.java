@@ -42,7 +42,7 @@ import java.util.Map;
 public class DetailKelebihanJamActivity extends AppCompatActivity {
 
     LinearLayout actionBar, attantionPart, monthBTN, emptyDataKelebihanJam, loadingKelebihanJamPart, backBTN;
-    ImageView bulanLoading, kelebihanJamLoading, loadingDataKelebihanJam;
+    ImageView bulanLoading, kelebihanJamLoading;
     TextView messageKelebihanJam, dataBulan, dataTahun, dataKelebihanJam, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -68,7 +68,6 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
         bulanLoading = findViewById(R.id.bulan_loading);
         kelebihanJamLoading = findViewById(R.id.data_kelebihan_jam_loading);
         dataKelebihanJam = findViewById(R.id.data_kelebihan_jam_detail);
-        loadingDataKelebihanJam = findViewById(R.id.loading_data_kelebihan_jam);
         loadingKelebihanJamPart = findViewById(R.id.loading_data_part_kelebihan_jam);
         emptyDataKelebihanJam = findViewById(R.id.no_data_part_kelebihan_jam);
         monthBTN = findViewById(R.id.month_btn);
@@ -92,10 +91,6 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
                 .into(kelebihanJamLoading);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataKelebihanJam);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override

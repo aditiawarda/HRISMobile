@@ -49,7 +49,6 @@ public class HistoryActivity extends AppCompatActivity {
     BottomSheetLayout bottomSheet;
     String dateChoiceForHistory;
     SwipeRefreshLayout refreshLayout;
-    ImageView loadingData;
     View rootview;
 
     private RecyclerView historyAbsenRV;
@@ -78,7 +77,6 @@ public class HistoryActivity extends AppCompatActivity {
         attantionPart = findViewById(R.id.attantion_part);
         noDataPart = findViewById(R.id.no_data_part);
         loadingPart = findViewById(R.id.loading_data_part);
-        loadingData = findViewById(R.id.loading_data);
         rootview = findViewById(android.R.id.content);
         noConnectPart = findViewById(R.id.no_connect_part);
         dateCheckinTV = findViewById(R.id.date_checkin_tv);
@@ -88,10 +86,6 @@ public class HistoryActivity extends AppCompatActivity {
         shiftTime = findViewById(R.id.shift_time);
         actionBar = findViewById(R.id.action_bar);
         nameOfUser.setText(sharedPrefManager.getSpNama().toUpperCase());
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingData);
 
         historyAbsenRV = findViewById(R.id.history_absen_rv);
 

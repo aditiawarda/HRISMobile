@@ -42,7 +42,7 @@ import java.util.Map;
 public class DetailPulangCepatActivity extends AppCompatActivity {
 
     LinearLayout actionBar, attantionPart, monthBTN, emptyDataPulangCepat, loadingPulangCepatPart, backBTN;
-    ImageView bulanLoading, pulangCepatLoading, loadingDataPulangCepat;
+    ImageView bulanLoading, pulangCepatLoading;
     TextView messagePulangCepat, dataBulan, dataTahun, dataPulangCepat, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -68,7 +68,6 @@ public class DetailPulangCepatActivity extends AppCompatActivity {
         bulanLoading = findViewById(R.id.bulan_loading);
         pulangCepatLoading = findViewById(R.id.data_pulang_cepat_loading);
         dataPulangCepat = findViewById(R.id.data_pulang_cepat_detail);
-        loadingDataPulangCepat = findViewById(R.id.loading_data_pulang_cepat);
         loadingPulangCepatPart = findViewById(R.id.loading_data_part_pulang_cepat);
         emptyDataPulangCepat = findViewById(R.id.no_data_part_pulang_cepat);
         monthBTN = findViewById(R.id.month_btn);
@@ -92,10 +91,6 @@ public class DetailPulangCepatActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
                 .into(pulangCepatLoading);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataPulangCepat);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -140,7 +140,7 @@ public class ForgotPasswordVerificationActivity extends AppCompatActivity {
 
                 // Update TextView dengan sisa waktu
                 @SuppressLint("DefaultLocale")
-                String countdownFormatted = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+                String countdownFormatted = String.format("%02d:%02d", minutes, seconds);
                 float textSizeInDp = 18;
                 float scale = getResources().getDisplayMetrics().density;
                 int textSizeInPixels = (int) (textSizeInDp * scale + 0.5f);

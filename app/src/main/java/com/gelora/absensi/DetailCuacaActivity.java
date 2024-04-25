@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.StatusBarColorManager;
@@ -22,7 +23,7 @@ import com.squareup.picasso.Picasso;
 public class DetailCuacaActivity extends AppCompatActivity {
 
     private StatusBarColorManager mStatusBarColorManager;
-    String urlIcon = "", mainWaether = "", temp = "", feel_like = "", location;
+    String urlIcon = "", mainWaether = "", temp = "", feel_like = "", location = "";
     LinearLayout backBTN, moreBTN;
     TextView mainWeatherTV, weatherTempTV, feelsLikeTempTV, locationTV;
     ProgressBar loadingProgressBar;

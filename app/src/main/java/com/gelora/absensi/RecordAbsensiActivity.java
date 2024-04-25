@@ -42,7 +42,6 @@ import java.util.Map;
 public class RecordAbsensiActivity extends AppCompatActivity {
 
     LinearLayout actionBar, backBTN, loadingRecordPart, noDataPart, bulanBTN;
-    ImageView loadingDataRecord;
     TextView bulanPilihTV;
     String selectMonth = "";
     SharedPrefManager sharedPrefManager;
@@ -60,7 +59,6 @@ public class RecordAbsensiActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
-        loadingDataRecord = findViewById(R.id.loading_data);
         loadingRecordPart = findViewById(R.id.loading_data_part);
         noDataPart = findViewById(R.id.no_data_part);
         bulanBTN = findViewById(R.id.bulan_btn);
@@ -73,10 +71,6 @@ public class RecordAbsensiActivity extends AppCompatActivity {
         dataAbsensiRV.setHasFixedSize(true);
         dataAbsensiRV.setNestedScrollingEnabled(false);
         dataAbsensiRV.setItemAnimator(new DefaultItemAnimator());
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataRecord);
 
         selectMonth = getMonth();
 
@@ -272,9 +266,14 @@ public class RecordAbsensiActivity extends AppCompatActivity {
                                     adapterDataAbsensi = new AdapterDataAbsensiMore(dataAbsensis, RecordAbsensiActivity.this);
                                     dataAbsensiRV.setAdapter(adapterDataAbsensi);
                                 } else {
-                                    loadingRecordPart.setVisibility(View.GONE);
-                                    dataAbsensiRV.setVisibility(View.GONE);
-                                    noDataPart.setVisibility(View.VISIBLE);
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            loadingRecordPart.setVisibility(View.GONE);
+                                            dataAbsensiRV.setVisibility(View.GONE);
+                                            noDataPart.setVisibility(View.VISIBLE);
+                                        }
+                                    }, 1000);
                                 }
                             }
 

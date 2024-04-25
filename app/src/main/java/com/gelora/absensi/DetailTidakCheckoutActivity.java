@@ -42,7 +42,7 @@ import java.util.Map;
 public class DetailTidakCheckoutActivity extends AppCompatActivity {
 
     LinearLayout actionBar, attantionPart, markerWarningNocheckout, monthBTN, emptyDataNoCheckout, loadingNoCheckoutPart, backBTN;
-    ImageView notificationWarningNoCheckoutDetail, bulanLoading, noCheckoutLoading, loadingDataNoCheckout;
+    ImageView notificationWarningNoCheckoutDetail, bulanLoading, noCheckoutLoading;
     TextView messageNoCheckout, dataBulan, dataTahun, dataNoCheckout, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -68,7 +68,6 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
         bulanLoading = findViewById(R.id.bulan_loading);
         noCheckoutLoading = findViewById(R.id.nocheckout_loading);
         dataNoCheckout = findViewById(R.id.data_nocheckout);
-        loadingDataNoCheckout = findViewById(R.id.loading_data_nocheckout);
         loadingNoCheckoutPart = findViewById(R.id.loading_data_part_nocheckout);
         emptyDataNoCheckout = findViewById(R.id.no_data_part_nocheckout);
         monthBTN = findViewById(R.id.month_btn);
@@ -94,10 +93,6 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
                 .into(noCheckoutLoading);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataNoCheckout);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.ic_warning_notification_gif)

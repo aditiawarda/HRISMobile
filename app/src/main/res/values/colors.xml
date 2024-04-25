@@ -16,19 +16,14 @@
     <color name="colorGradien4">#E1693C</color>
     <color name="colorGradien5">#E1693C</color>
     <color name="colorGradien6">#E1693C</color>
-
     <color name="float_transparent">#00000000</color>
     <color name="button_text_color">#FFFFFF</color>
     <color name="error_stroke_color">#F27474</color>
-<!--    <color name="success_stroke_color">#A5DC86</color>-->
     <color name="success_stroke_color">#11CC00</color>
     <color name="trans_success_stroke_color">#33A5DC86</color>
     <color name="warning_stroke_color">#F8BB86</color>
     <color name="text_color">#616161</color>
-<!--    <color name="text_color">#474747</color>-->
-
     <color name="default_inactive">#78909c</color>
-
     <color name="color1">#FF541E</color>
     <color name="color2">#D32F2F</color>
     <color name="color3">#7141E4</color>
@@ -36,5 +31,4 @@
     <color name="color5">#388E3C</color>
     <color name="color6">#FFC400</color>
     <color name="color7">#E4DEC9</color>
-
 </resources>

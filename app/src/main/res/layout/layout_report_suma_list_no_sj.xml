@@ -124,13 +124,13 @@
                         android:paddingBottom="35dp"
                         android:visibility="visible">
 
-                        <ImageView
-                            android:id="@+id/loading_data_sj"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:layout_marginBottom="5dp"
-                            app:srcCompat="@drawable/loading_sgn_digital"
-                            tools:ignore="ContentDescription" />
+                        <ProgressBar
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:indeterminateTint="@color/colorAccent2"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="25dp"
+                            tools:ignore="RtlHardcoded" />
 
                         <TextView
                             android:layout_width="match_parent"

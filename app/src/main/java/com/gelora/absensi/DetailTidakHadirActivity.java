@@ -44,7 +44,7 @@ import java.util.Map;
 public class DetailTidakHadirActivity extends AppCompatActivity {
 
     LinearLayout actionBar, attantionPart,attantionPartIzin, markerWarningAlpha, monthBTN, emptyDataIzin, emptyDataAlpa, loadingIzinPart, loadingAlpaPart, backBTN;
-    ImageView notificationWarningAlphaDetail, bulanLoading, tidakHadirLoading, loadingDataIzin, loadingDataAlpa;
+    ImageView notificationWarningAlphaDetail, bulanLoading, tidakHadirLoading;
     TextView messageAlpha, messageIzin, dataTotalIzin, dataTotalAlpa, dataBulan, dataTahun, dataTidakHadir, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -76,8 +76,6 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
         dataTotalAlpa = findViewById(R.id.total_data_alpa);
         bulanLoading = findViewById(R.id.bulan_loading);
         tidakHadirLoading = findViewById(R.id.tidak_hadir_loading);
-        loadingDataAlpa = findViewById(R.id.loading_data_alpa);
-        loadingDataIzin = findViewById(R.id.loading_data_izin);
         loadingIzinPart = findViewById(R.id.loading_data_part_izin);
         loadingAlpaPart = findViewById(R.id.loading_data_part_alpa);
         emptyDataAlpa = findViewById(R.id.no_data_part_alpa);
@@ -113,14 +111,6 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
                 .into(tidakHadirLoading);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataIzin);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataAlpa);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.ic_warning_notification_gif_main)
