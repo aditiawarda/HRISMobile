@@ -33,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Header;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -58,6 +59,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -131,7 +133,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
         if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10")){
             messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada bagian HRD untuk persetujuan.");
-        } else if(sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
+        } else if(sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1305291110"))){
             messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada Kepala Departemen untuk persetujuan.");
         } else {
             messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada Supervisor untuk persetujuan.");
@@ -247,7 +249,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
     private void getDataKaryawanDetail() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan_personal";
+        final String url = "https://hrisgelora.co.id/api/data_karyawan_personal";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1312,7 +1314,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
     private void dayCalculate(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/total_hari";
+        final String url = "https://hrisgelora.co.id/api/total_hari";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1372,7 +1374,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
     private void submitIzin(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/izin_input";
+        final String url = "https://hrisgelora.co.id/api/izin_input";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1490,7 +1492,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
     private void checkSignature(){
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1504,7 +1506,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
                             if (status.equals("Available")){
                                 String signature = data.getString("data");
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 submitIzin();
                             } else {
                                 pDialog.setTitleText("Perhatian")
@@ -1846,10 +1848,10 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
     }
 
     public void uploadSuratSakit() {
-        String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_surat_sakit";
+        String UPLOAD_URL = "https://hrisgelora.co.id/api/upload_surat_sakit";
         String path1 = FilePathimage.getPath(this, uri);
         if (path1 == null) {
-            Toast.makeText(this, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please move your .jpg file to internal storage and retry", Toast.LENGTH_LONG).show();
         } else {
             try {
                 permohonanTerkirim = "1";
@@ -1865,8 +1867,8 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     .addParameter("current_time", getDate().substring(0,4)+getDate().substring(5,7)+getDate().substring(8,10))//Adding text parameter to the request
                     .setMaxRetries(1)
                     .startUpload();
-
-            } catch (Exception exc) {
+            }
+            catch (Exception exc) {
                 Log.e("PaRSE JSON", "Oke");
                 pDialog.dismiss();
             }

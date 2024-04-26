@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
 import com.squareup.picasso.MemoryPolicy;
@@ -16,8 +17,7 @@ import com.squareup.picasso.Picasso;
 
 public class ViewImageActivity extends AppCompatActivity {
 
-    private ImageView mainImage;
-    LinearLayout actionBar, backBTN,loadingPart;
+    LinearLayout actionBar, backBTN, loadingPart, noDataImage;
     TextView titlePageTV;
     PhotoView photoView;
 
@@ -26,12 +26,12 @@ public class ViewImageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_image);
-        mainImage = findViewById(R.id.main_image);
         backBTN = findViewById(R.id.back_btn);
         titlePageTV = findViewById(R.id.title_page);
         loadingPart = findViewById(R.id.loading_part);
         actionBar = findViewById(R.id.action_bar);
         photoView = findViewById(R.id.photo_view);
+        noDataImage = findViewById(R.id.no_data_image);
 
         String url = getIntent().getExtras().getString("url");
         String kode = getIntent().getExtras().getString("kode");
@@ -63,9 +63,18 @@ public class ViewImageActivity extends AppCompatActivity {
             String jenis_detail = getIntent().getExtras().getString("jenis_detail");
             if(jenis_detail.equals("izin")){
                 titlePageTV.setText("SURAT SAKIT");
-                Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
-                        .memoryPolicy(MemoryPolicy.NO_CACHE)
-                        .into(photoView);
+                if(url.equals("https://hrisgelora.co.id/upload/surat_sakit/null")) {
+                    noDataImage.setVisibility(View.VISIBLE);
+                    loadingPart.setVisibility(View.GONE);
+                    photoView.setVisibility(View.GONE);
+                } else {
+                    noDataImage.setVisibility(View.GONE);
+                    loadingPart.setVisibility(View.GONE);
+                    photoView.setVisibility(View.VISIBLE);
+                    Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
+                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                            .into(photoView);
+                }
             } else if(jenis_detail.equals("cuti")){
                 titlePageTV.setText("LAMPIRAN CUTI");
                 Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)

@@ -51,8 +51,10 @@ public class AdapterDataTaskTabel extends RecyclerView.Adapter<AdapterDataTaskTa
         final TaskData taskData = data[i];
 
         myViewHolder.taskTV.setText(taskData.getTaskname());
-        myViewHolder.startDateTV.setText(taskData.getTimeline().substring(3,5)+"/"+taskData.getTimeline().substring(0,2)+"/"+taskData.getTimeline().substring(6,10));
-        myViewHolder.endDateTV.setText(taskData.getTimeline().substring(16,18)+"/"+taskData.getTimeline().substring(13,15)+"/"+taskData.getTimeline().substring(19,23));
+        if(taskData.getScheduleTimeline()!=null){
+            myViewHolder.startDateTV.setText(taskData.getScheduleTimeline().substring(3,5)+"/"+taskData.getScheduleTimeline().substring(0,2)+"/"+taskData.getScheduleTimeline().substring(6,10));
+            myViewHolder.endDateTV.setText(taskData.getScheduleTimeline().substring(16,18)+"/"+taskData.getScheduleTimeline().substring(13,15)+"/"+taskData.getScheduleTimeline().substring(19,23));
+        }
 
         if(taskData.getStatus().equals("5")){
             myViewHolder.statusTV.setText("Done");
@@ -70,7 +72,7 @@ public class AdapterDataTaskTabel extends RecyclerView.Adapter<AdapterDataTaskTa
             myViewHolder.statusTV.setText("Waiting");
             myViewHolder.statusPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_25_50));
         } else if(taskData.getStatus().equals("0")){
-            myViewHolder.statusTV.setText("To Do");
+            myViewHolder.statusTV.setText("On Planning");
             myViewHolder.statusPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_25_50));
         } else {
             myViewHolder.statusTV.setText("Undefined");
@@ -83,6 +85,22 @@ public class AdapterDataTaskTabel extends RecyclerView.Adapter<AdapterDataTaskTa
             myViewHolder.progressTV.setText(taskData.getProgress()+"%");
         }
 
+        float persentase = (float) Integer.parseInt(taskData.getProgress());
+
+        LinearLayout.LayoutParams layoutParamsProgress = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,0.0f);
+        LinearLayout.LayoutParams layoutParamsLeft = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,0.10f);
+
+        float weightProgress = (float) Math.round(persentase) / 100.0f;
+        float weightLeft = (float) (100 - Math.round(persentase)) / 100.0f;
+
+        layoutParamsProgress.weight = weightProgress;
+        layoutParamsLeft.weight = weightLeft;
+
+        myViewHolder.progressBarLine.setLayoutParams(layoutParamsProgress);
+        myViewHolder.leftBarLine.setLayoutParams(layoutParamsLeft);
+
+        // End ProgressBar Part
+
     }
 
     @Override
@@ -92,7 +110,7 @@ public class AdapterDataTaskTabel extends RecyclerView.Adapter<AdapterDataTaskTa
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView taskTV, statusTV, progressTV, startDateTV, endDateTV;
-        LinearLayout statusPart;
+        LinearLayout statusPart, progressBarLine, leftBarLine;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             taskTV = itemView.findViewById(R.id.task_tv);
@@ -101,6 +119,8 @@ public class AdapterDataTaskTabel extends RecyclerView.Adapter<AdapterDataTaskTa
             startDateTV = itemView.findViewById(R.id.start_date_tv);
             endDateTV = itemView.findViewById(R.id.end_date_tv);
             statusPart = itemView.findViewById(R.id.status_part);
+            progressBarLine = itemView.findViewById(R.id.progress_bar_line);
+            leftBarLine = itemView.findViewById(R.id.left_bar_line);
         }
     }
 

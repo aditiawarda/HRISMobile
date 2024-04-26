@@ -116,7 +116,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
         kode = getIntent().getExtras().getString("kode");
         idPermohonan = getIntent().getExtras().getString("id_permohonan");
 
-        file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_finger/"+idPermohonan;
+        file_url = "https://hrisgelora.co.id/absen/pdf_form_finger/"+idPermohonan;
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -475,7 +475,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
     private void getDataDetailPermohonan() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_permohonan_fingerscan_detail";
+        final String url = "https://hrisgelora.co.id/api/get_permohonan_fingerscan_detail";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -525,7 +525,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
                                 alasanTV.setText(alasan.replaceAll("\\s+$", ""));
 
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_pemohon;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_pemohon;
 
                                 Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -558,7 +558,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     String ttd_approver = detail.getString("ttd_approver");
                                     String jabatan_approver = detail.getString("jabatan_approver");
 
-                                    String url_approver = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_approver;
+                                    String url_approver = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_approver;
 
                                     Picasso.get().load(url_approver).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -592,7 +592,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                         String timestamp_approve_hrd = detail.getString("timestamp_approve_hrd");
                                         String ttd_approver_hrd = detail.getString("ttd_approver_hrd");
 
-                                        String url_approver_hrd = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_approver_hrd;
+                                        String url_approver_hrd = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_approver_hrd;
 
                                         Picasso.get().load(url_approver_hrd).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -889,7 +889,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
     private void actionRead() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/read_notif_finger";
+        final String url = "https://hrisgelora.co.id/api/read_notif_finger";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -930,7 +930,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
     private void checkSignature(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -944,7 +944,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
                             if (status.equals("Available")){
                                 String signature = data.getString("data");
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 approvedAction();
                             } else {
                                 pDialog.setTitleText("Perhatian")
@@ -1002,7 +1002,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
     private void recheckSignature(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1052,7 +1052,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
     private void approvedAction(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/approve_action_finger";
+        final String url = "https://hrisgelora.co.id/api/approve_action_finger";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1121,7 +1121,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
     private void rejectedAction(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/reject_action_finger";
+        final String url = "https://hrisgelora.co.id/api/reject_action_finger";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1186,7 +1186,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
     private void cancelPermohonan(String id){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cancel_finger";
+        final String url = "https://hrisgelora.co.id/api/cancel_finger";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

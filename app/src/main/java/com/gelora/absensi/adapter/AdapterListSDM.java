@@ -46,7 +46,7 @@ public class AdapterListSDM extends RecyclerView.Adapter<AdapterListSDM.MyViewHo
         final HumanResource humanResource = data[i];
 
         if(humanResource.getAvatar()!=null){
-            Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/"+humanResource.getAvatar()).networkPolicy(NetworkPolicy.NO_CACHE)
+            Picasso.get().load("https://hrisgelora.co.id/upload/avatar/"+humanResource.getAvatar()).networkPolicy(NetworkPolicy.NO_CACHE)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                     .resize(100, 100)
                     .into(myViewHolder.profileImage);

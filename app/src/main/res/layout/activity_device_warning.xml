@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Anda terdeteksi login bukan pada perangkat pribadi anda, harap gunakan HRIS Mobile Gelora di perangkat pribadi anda."
+                android:text="Anda terdeteksi login bukan pada perangkat yang terdaftar atas nama anda, harap gunakan HRIS Mobile Gelora di perangkat pribadi anda yang terdaftar."
                 android:textColor="@color/white"
                 android:textSize="16dp"
                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />

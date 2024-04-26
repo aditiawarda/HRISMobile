@@ -3745,7 +3745,7 @@ public class FormSdmActivity extends AppCompatActivity {
     }
     private void f1GetUnitBisnis() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bisnis";
+        final String url = "https://hrisgelora.co.id/api/get_unit_bisnis";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -3837,7 +3837,7 @@ public class FormSdmActivity extends AppCompatActivity {
     }
     private void f1GetDepartemen() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_departemen";
+        final String url = "https://hrisgelora.co.id/api/get_unit_departemen";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -3931,7 +3931,7 @@ public class FormSdmActivity extends AppCompatActivity {
     }
     private void f1GetBagian() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bagian";
+        final String url = "https://hrisgelora.co.id/api/get_unit_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -4019,7 +4019,7 @@ public class FormSdmActivity extends AppCompatActivity {
     }
     private void f1GetJabatan() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_jabatan";
+        final String url = "https://hrisgelora.co.id/api/get_unit_jabatan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -4109,7 +4109,7 @@ public class FormSdmActivity extends AppCompatActivity {
     }
     private void f1GetKomponenGaji() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_komponen_gaji";
+        final String url = "https://hrisgelora.co.id/api/get_komponen_gaji";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -4194,7 +4194,7 @@ public class FormSdmActivity extends AppCompatActivity {
     }
     private void f3GetKomponenGaji() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_komponen_gaji";
+        final String url = "https://hrisgelora.co.id/api/get_komponen_gaji";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -4746,7 +4746,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f1SendData(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/input_formulir_sdm";
+        final String url = "https://hrisgelora.co.id/api/input_formulir_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -5403,7 +5403,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f2GetDataKaryawanBaru(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cari_karyawan_sdm";
+        final String url = "https://hrisgelora.co.id/api/cari_karyawan_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -5535,7 +5535,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f2GetUnitBisnis() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bisnis";
+        final String url = "https://hrisgelora.co.id/api/get_unit_bisnis";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -5675,7 +5675,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f2GetDataKaryawanLama(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cari_karyawan_sdm";
+        final String url = "https://hrisgelora.co.id/api/cari_karyawan_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -5844,7 +5844,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f2GetUnitBisnisLama() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bisnis";
+        final String url = "https://hrisgelora.co.id/api/get_unit_bisnis";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -5910,7 +5910,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f2SendData(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/input_formulir_sdm";
+        final String url = "https://hrisgelora.co.id/api/input_formulir_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -6097,7 +6097,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f3GetDataKaryawanBaru(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cari_karyawan_sdm";
+        final String url = "https://hrisgelora.co.id/api/cari_karyawan_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -6221,7 +6221,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f3GetUnitBisnis() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bisnis";
+        final String url = "https://hrisgelora.co.id/api/get_unit_bisnis";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -6316,7 +6316,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f3GetDepartemen() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_departemen";
+        final String url = "https://hrisgelora.co.id/api/get_unit_departemen";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -6413,7 +6413,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f3GetBagian() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bagian";
+        final String url = "https://hrisgelora.co.id/api/get_unit_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -6504,7 +6504,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f3GetJabatan() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_jabatan";
+        final String url = "https://hrisgelora.co.id/api/get_unit_jabatan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -6648,7 +6648,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f3GetDataKaryawanLama(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cari_karyawan_sdm";
+        final String url = "https://hrisgelora.co.id/api/cari_karyawan_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -6813,7 +6813,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f3GetUnitBisnisLama() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bisnis";
+        final String url = "https://hrisgelora.co.id/api/get_unit_bisnis";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -6908,7 +6908,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f3GetDepartemenLama() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_departemen";
+        final String url = "https://hrisgelora.co.id/api/get_unit_departemen";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -7005,7 +7005,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f3GetBagianLama() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bagian";
+        final String url = "https://hrisgelora.co.id/api/get_unit_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -7096,7 +7096,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f3GetJabatanLama() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_jabatan";
+        final String url = "https://hrisgelora.co.id/api/get_unit_jabatan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -7188,7 +7188,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f3GetJabatanLamaDetail() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_jabatan";
+        final String url = "https://hrisgelora.co.id/api/get_unit_jabatan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -7279,7 +7279,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f3GetJabatanBaruDetail() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_jabatan";
+        final String url = "https://hrisgelora.co.id/api/get_unit_jabatan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -7346,7 +7346,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f3SendData(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/input_formulir_sdm";
+        final String url = "https://hrisgelora.co.id/api/input_formulir_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -7538,7 +7538,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f4GetDataKaryawanBaru(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cari_karyawan_sdm";
+        final String url = "https://hrisgelora.co.id/api/cari_karyawan_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -7673,7 +7673,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f4GetUnitBisnis() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bisnis";
+        final String url = "https://hrisgelora.co.id/api/get_unit_bisnis";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -7813,7 +7813,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f4GetDataKaryawanLama(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cari_karyawan_sdm";
+        final String url = "https://hrisgelora.co.id/api/cari_karyawan_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -7948,7 +7948,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f4GetUnitBisnisLama() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bisnis";
+        final String url = "https://hrisgelora.co.id/api/get_unit_bisnis";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -8015,7 +8015,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void f4SendData(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/input_formulir_sdm";
+        final String url = "https://hrisgelora.co.id/api/input_formulir_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -8113,7 +8113,7 @@ public class FormSdmActivity extends AppCompatActivity {
     //Form 7
 
     private void checkSignature(){
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -8127,7 +8127,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                             if (status.equals("Available")){
                                 String signature = data.getString("data");
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 if(kodeKeterangan.equals("1")){
                                     f1SendData();
                                 } else  if(kodeKeterangan.equals("2")||kodeKeterangan.equals("3")||kodeKeterangan.equals("4")){
@@ -8239,7 +8239,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     private void getBagianDepartemen() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_bagian_departemen";
+        final String url = "https://hrisgelora.co.id/api/get_bagian_departemen";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

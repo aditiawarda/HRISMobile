@@ -361,7 +361,7 @@ public class SplashScreen extends AppCompatActivity {
 
     public void versionCheck(){
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/version_app";
+        final String url = "https://hrisgelora.co.id/api/version_app";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -404,7 +404,7 @@ public class SplashScreen extends AppCompatActivity {
                             String close_btn = data.getString("close_btn");
 
                             if (status.equals("Success")){
-                                String currentVersion = "2.3.1";
+                                String currentVersion = "2.3.9";
                                 if (popup.equals("1") && ((!currentVersion.equals(version) && target.equals("all")) || target.equals(currentVersion))){
                                     refreshPart.animate()
                                             .translationY(refreshPart.getHeight())

@@ -223,7 +223,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
 
     private void getDataHitoryCuti() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_cuti_history";
+        final String url = "https://hrisgelora.co.id/api/get_cuti_history";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

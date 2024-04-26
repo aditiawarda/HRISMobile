@@ -119,7 +119,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
-        file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_cuti/"+idIzinRecord;
+        file_url = "https://hrisgelora.co.id/absen/pdf_form_cuti/"+idIzinRecord;
 
         catatanAtasanTV.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
@@ -440,7 +440,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
     private void cancelPermohonan(String id){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cancel_cuti";
+        final String url = "https://hrisgelora.co.id/api/cancel_cuti";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -508,7 +508,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
     private void checkSignature(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -522,7 +522,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
                             if (status.equals("Available")){
                                 String signature = data.getString("data");
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 approvedAction();
                             } else {
                                 pDialog.setTitleText("Perhatian")
@@ -580,7 +580,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
     private void getDataDetailPermohonan() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_permohonan_cuti_detail";
+        final String url = "https://hrisgelora.co.id/api/get_permohonan_cuti_detail";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -633,7 +633,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                 if(!lampiran.equals("null") && !lampiran.equals("") && !lampiran.equals(null)){
                                     lampiranTV.setText("Terlampir  ");
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
-                                    String url_lampiran = "https://geloraaksara.co.id/absen-online/upload/lampiran_cuti/"+lampiran;
+                                    String url_lampiran = "https://hrisgelora.co.id/upload/lampiran_cuti/"+lampiran;
 
                                     viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -743,7 +743,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
                                 tglPengajuanTV.setText("JAKARTA,  "+Integer.parseInt(dayDatePengajuan) +" "+bulanNamePengajuan+" "+yearDatePengajuan);
 
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+digital_signature;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+digital_signature;
 
                                 Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -752,7 +752,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                 karyawanPenggantiTV.setText(karyawan_pengganti);
 
                                 if (kode.equals("form")){
-                                    if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("33") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
+                                    if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("33") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1305291110"))){
                                         String nik_approver = detail.getString("nik_approver");
                                         String approver = detail.getString("approver");
                                         String signature_approver = detail.getString("signature_approver");
@@ -760,7 +760,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
                                         nikApprover = nik_approver;
 
-                                        String url_approver_1 = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver;
+                                        String url_approver_1 = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver;
 
                                         Picasso.get().load(url_approver_1).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -782,7 +782,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             String approver_kadept = detail.getString("approver_kadept");
                                             String signature_approver_kadept = detail.getString("signature_approver_kadept");
 
-                                            String url_approver_2 = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_kadept;
+                                            String url_approver_2 = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver_kadept;
 
                                             Picasso.get().load(url_approver_2).networkPolicy(NetworkPolicy.NO_CACHE)
                                                     .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -803,7 +803,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 String approver_hrd = detail.getString("approver_hrd");
                                                 String signature_approver_hrd = detail.getString("signature_approver_hrd");
 
-                                                String url_approver_hrd = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_kadept;
+                                                String url_approver_hrd = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver_kadept;
 
                                                 Picasso.get().load(url_approver_hrd).networkPolicy(NetworkPolicy.NO_CACHE)
                                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -865,7 +865,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                 else {
                                     if (NIK.equals(sharedPrefManager.getSpNik())){
                                         actionRead();
-                                        if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")|| sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("33") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
+                                        if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")|| sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("33") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1305291110"))){
                                             String nik_approver = detail.getString("nik_approver");
                                             String approver = detail.getString("approver");
                                             String signature_approver = detail.getString("signature_approver");
@@ -873,7 +873,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
                                             nikApprover = nik_approver;
 
-                                            String url_approver_1 = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver;
+                                            String url_approver_1 = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver;
 
                                             Picasso.get().load(url_approver_1).networkPolicy(NetworkPolicy.NO_CACHE)
                                                     .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -895,7 +895,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 String approver_kadept = detail.getString("approver_kadept");
                                                 String signature_approver_kadept = detail.getString("signature_approver_kadept");
 
-                                                String url_approver_2 = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_kadept;
+                                                String url_approver_2 = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver_kadept;
 
                                                 Picasso.get().load(url_approver_2).networkPolicy(NetworkPolicy.NO_CACHE)
                                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -918,7 +918,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     String approver_hrd = detail.getString("approver_hrd");
                                                     String signature_approver_hrd = detail.getString("signature_approver_hrd");
 
-                                                    String url_approver_hrd = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_hrd;
+                                                    String url_approver_hrd = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver_hrd;
 
                                                     Picasso.get().load(url_approver_hrd).networkPolicy(NetworkPolicy.NO_CACHE)
                                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -984,7 +984,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
                                                 nikApprover = nik_approver;
 
-                                                String url_approver_1 = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver;
+                                                String url_approver_1 = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver;
 
                                                 Picasso.get().load(url_approver_1).networkPolicy(NetworkPolicy.NO_CACHE)
                                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -1006,7 +1006,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     String approver_kadept = detail.getString("approver_kadept");
                                                     String signature_approver_kadept = detail.getString("signature_approver_kadept");
 
-                                                    String url_approver_2 = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_kadept;
+                                                    String url_approver_2 = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver_kadept;
 
                                                     Picasso.get().load(url_approver_2).networkPolicy(NetworkPolicy.NO_CACHE)
                                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -1027,7 +1027,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                         String approver_hrd = detail.getString("approver_hrd");
                                                         String signature_approver_hrd = detail.getString("signature_approver_hrd");
 
-                                                        String url_approver_hrd = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_hrd;
+                                                        String url_approver_hrd = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver_hrd;
 
                                                         Picasso.get().load(url_approver_hrd).networkPolicy(NetworkPolicy.NO_CACHE)
                                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -1122,7 +1122,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
                                             nikApprover = nik_approver;
 
-                                            String url_approver_1 = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver;
+                                            String url_approver_1 = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver;
 
                                             Picasso.get().load(url_approver_1).networkPolicy(NetworkPolicy.NO_CACHE)
                                                     .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -1142,7 +1142,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 String approver_kadept = detail.getString("approver_kadept");
                                                 String signature_approver_kadept = detail.getString("signature_approver_kadept");
 
-                                                String url_approver_2 = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_kadept;
+                                                String url_approver_2 = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver_kadept;
 
                                                 Picasso.get().load(url_approver_2).networkPolicy(NetworkPolicy.NO_CACHE)
                                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -1163,7 +1163,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     String approver_hrd = detail.getString("approver_hrd");
                                                     String signature_approver_hrd = detail.getString("signature_approver_hrd");
 
-                                                    String url_approver_hrd = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_hrd;
+                                                    String url_approver_hrd = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver_hrd;
 
                                                     Picasso.get().load(url_approver_hrd).networkPolicy(NetworkPolicy.NO_CACHE)
                                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -1278,7 +1278,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
     private void actionRead() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/read_notif_izin";
+        final String url = "https://hrisgelora.co.id/api/read_notif_izin";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1331,7 +1331,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
     private void recheckSignature(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1380,7 +1380,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
     private void approvedAction(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/approve_action_cuti";
+        final String url = "https://hrisgelora.co.id/api/approve_action_cuti";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1431,7 +1431,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                 params.put("timestamp_approve", getTimeStamp());
                 params.put("updated_at", getTimeStamp());
 
-                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
+                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1305291110"))){
                     if(!nikApprover.equals("null") && nikApprover.equals(sharedPrefManager.getSpNik())){
                         params.put("action", "kadep");
                     } else {
@@ -1455,7 +1455,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
     private void rejectedAction(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/reject_action_cuti";
+        final String url = "https://hrisgelora.co.id/api/reject_action_cuti";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1506,7 +1506,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                 params.put("timestamp_approve", getTimeStamp());
                 params.put("updated_at", getTimeStamp());
 
-                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
+                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1305291110"))){
                     if(!nikApprover.equals("null") && nikApprover.equals(sharedPrefManager.getSpNik())){
                         params.put("action", "kadep");
                     } else {

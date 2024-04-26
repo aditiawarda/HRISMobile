@@ -260,12 +260,12 @@ public class SearchSdmActivity extends AppCompatActivity {
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_BAGIAN, bagianPilih);
         if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")){
             choiceBagianBTN.setVisibility(View.VISIBLE);
-        } else if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
+        } else if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1305291110"))){
             choiceBagianBTN.setVisibility(View.GONE);
         }
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_bagian";
+        final String url = "https://hrisgelora.co.id/api/get_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -321,7 +321,7 @@ public class SearchSdmActivity extends AppCompatActivity {
 
     private void getListBagian() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_list_bagian";
+        final String url = "https://hrisgelora.co.id/api/get_list_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -380,7 +380,7 @@ public class SearchSdmActivity extends AppCompatActivity {
 
     private void getDataSDM(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/list_sdm_search";
+        final String url = "https://hrisgelora.co.id/api/list_sdm_search";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

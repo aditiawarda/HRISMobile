@@ -354,7 +354,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
 
     private void getAllUser(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_all_data_user_by_keyword";
+        final String url = "https://hrisgelora.co.id/api/get_all_data_user_by_keyword";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -965,7 +965,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
     }
 
     private void getProjectCategory() {
-        final String API_ENDPOINT_CATEGORY = "https://geloraaksara.co.id/absen-online/api/get_project_category";
+        final String API_ENDPOINT_CATEGORY = "https://hrisgelora.co.id/api/get_project_category";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -1099,7 +1099,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
     }
 
     private void submitData() {
-        String URL = "https://geloraaksara.co.id/absen-online/api/create_project_timeline";
+        String URL = "https://hrisgelora.co.id/api/create_project_timeline";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JSONObject requestBody = new JSONObject();
 
@@ -1181,6 +1181,10 @@ public class FormInputProjectActivity extends AppCompatActivity {
 
         requestQueue.add(jsonObjectRequest);
 
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        jsonObjectRequest.setRetryPolicy(retryPolicy);
+
     }
 
     private String getDate() {
@@ -1257,7 +1261,10 @@ public class FormInputProjectActivity extends AppCompatActivity {
                                     sDialog.dismiss();
                                     categoryChoice = "";
                                     nikProjectLeader = "";
+                                    starDateChoice = "";
+                                    endDateChoice = "";
                                     projectNameED.setText("");
+                                    projectDescED.setText("");
                                     onBackPressed();
                                 }
                             })

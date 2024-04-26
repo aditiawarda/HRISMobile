@@ -49,17 +49,17 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
 
     private StatusBarColorManager mStatusBarColorManager;
-    LinearLayout registerBTN, connectBTN, closeBTN, contactServiceBTN, loginBTN, showPasswordBTN;
+    LinearLayout forgotPasswordBTN, registerBTN, connectBTN, closeBTN, contactServiceBTN, loginBTN, showPasswordBTN;
     EditText nikED, passwordED;
     SharedPrefManager sharedPrefManager;
-    TextView showPassword, testBTN, icPerson, icPassword;
+    TextView showPassword, icPerson, icPassword;
     String statusCheck = "", deviceID, visibilityPassword = "hide";
     BottomSheetLayout bottomSheet, bottomSheetCS;
     SwipeRefreshLayout refreshLayout;
     ProgressBar loadingProgressBar;
     View rootview;
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint({"ClickableViewAccessibility", "HardwareIds"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,8 +82,7 @@ public class LoginActivity extends AppCompatActivity {
         loadingProgressBar = findViewById(R.id.loadingProgressBar);
         icPerson = findViewById(R.id.ic_person);
         icPassword = findViewById(R.id.ic_password);
-
-        testBTN = findViewById(R.id.test_btn);
+        forgotPasswordBTN = findViewById(R.id.forgot_password_btn);
 
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
@@ -122,13 +121,6 @@ public class LoginActivity extends AppCompatActivity {
                         getStatusCheckDivice();
                     }
                 }, 1000);
-            }
-        });
-
-        testBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               loginTestUser();
             }
         });
 
@@ -258,6 +250,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        forgotPasswordBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
         loginBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -348,7 +348,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginFunction(final String nik, final String password) {
-        String postUrl = "https://geloraaksara.co.id/absen-online/api/login_absen";
+        String postUrl = "https://hrisgelora.co.id/api/login_absen";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JSONObject postData = new JSONObject();
         try {
@@ -452,86 +452,9 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void loginTestUser() {
-        String postUrl = "https://geloraaksara.co.id/absen-online/api/login_absen";
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JSONObject postData = new JSONObject();
-        try {
-            postData.put("nik", "0000011");
-            postData.put("password", "gapprint");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, postUrl, postData, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    String status = response.getString("status");
-                    if(status.equals("Success")){
-                        JSONObject jsonArray = response.getJSONObject("data_user");
-                        String nikUser = jsonArray.getString("NIK");
-                        String namaUser = jsonArray.getString("NmKaryawan");
-                        String idCor = jsonArray.getString("id_perusahaan");
-                        String idCab = jsonArray.getString("IdCab");
-                        String idHeadDept = jsonArray.getString("IdHeadDept");
-                        String idDept = jsonArray.getString("IdDept");
-                        String idJabatan = jsonArray.getString("IdJabatan");
-                        String statusUser = jsonArray.getString("StatusUser");
-                        String statusAktif = jsonArray.getString("status_aktif");
-
-                        sharedPrefManager.saveSPString(SharedPrefManager.SP_NIK, nikUser);
-                        sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, namaUser);
-                        sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_COR, idCor);
-                        sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_CAB, idCab);
-                        sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_HEAD_DEPT, idHeadDept);
-                        sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_DEPT, idDept);
-                        sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_JABATAN, idJabatan);
-                        sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_USER, statusUser);
-                        sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_AKTIF, statusAktif);
-                        sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
-                        sharedPrefManager.saveSPString(SharedPrefManager.SP_HALAMAN, "1");
-
-                        Intent intent = new Intent(LoginActivity.this, MapsActivity.class);
-                        startActivity(intent);
-                        finish();
-
-                    } else {
-                        loadingProgressBar.setVisibility(View.GONE);
-                        new KAlertDialog(LoginActivity.this, KAlertDialog.ERROR_TYPE)
-                                .setTitleText("Perhatian")
-                                .setContentText(status+"!")
-                                .setConfirmText("    OK    ")
-                                .show();
-
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                System.out.println(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                loadingProgressBar.setVisibility(View.GONE);
-                connectionFailed();
-            }
-        });
-
-        if (requestQueue == null) {
-            requestQueue = Volley.newRequestQueue(this);
-            requestQueue.add(jsonObjectRequest);
-        } else {
-            requestQueue.add(jsonObjectRequest);
-        }
-
-    }
-
     private void checkDevice(String nik, String password, String device_id) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/check_device_id";
+        final String url = "https://hrisgelora.co.id/api/check_device_id";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -595,7 +518,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void getContactIT() {
         RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_contact_it";
+        final String url = "https://hrisgelora.co.id/api/get_contact_it";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")
@@ -660,7 +583,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void getStatusCheckDivice() {
         RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
-        final String url = "https://geloraaksara.co.id/absen-online/api/check_perangkat";
+        final String url = "https://hrisgelora.co.id/api/check_perangkat";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")

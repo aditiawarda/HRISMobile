@@ -140,19 +140,20 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
             }
         });
 
-        getDokumentasi();
+        dataDokumentasiProjects.clear();
+        getDokumentasi("first");
 
     }
 
     private void tambahDokumentasi() {
-        String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/add_project_documentation";
+        String UPLOAD_URL = "https://hrisgelora.co.id/api/add_project_documentation";
         String path1 = FilePathimage.getPath(ViewDokumentasiProjectActivity.this, uri);
         if (path1 == null) {
-            Toast.makeText(getBaseContext(), "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "Please move your .jpg file to internal storage and retry", Toast.LENGTH_LONG).show();
         } else {
             try {
                 String uploadId = UUID.randomUUID().toString();
-                new MultipartUploadRequest(ViewDokumentasiProjectActivity.this, uploadId, UPLOAD_URL)
+                new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
                         .addFileToUpload(path1, "file") //Adding file
                         .addParameter("id_project", projectId)
                         .addParameter("current_time", String.valueOf(System.currentTimeMillis()))
@@ -202,12 +203,17 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
                         }
                     }
                     public void onFinish() {
-                        i = -1;
-                        pDialog.setTitleText("Berhasil diunggah")
-                                .setConfirmText("    OK    ")
-                                .changeAlertType(KAlertDialog.SUCCESS_TYPE);
-                        dataDokumentasiProjects.clear();
-                        getDokumentasi();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                i = -1;
+                                pDialog.setTitleText("Berhasil diunggah")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                dataDokumentasiProjects.clear();
+                                getDokumentasi("last");
+                            }
+                        }, 3000);
                     }
                 }.start();
 
@@ -296,9 +302,9 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
         return dateFormat.format(date);
     }
 
-    private void getDokumentasi() {
+    private void getDokumentasi(String position) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/project_documentation";
+        final String url = "https://hrisgelora.co.id/api/project_documentation";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -322,6 +328,16 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
                                     dataImage.setImageUrl(dataImageDokumentasi);
                                     dataDokumentasiProjects.add(dataImage);
                                     adapterDokumentasiProject.renewItems(dataDokumentasiProjects);
+
+                                    if (i == dataimage.length() - 1) {
+                                        if(position.equals("last")){
+                                            int lastIndex = adapterDokumentasiProject.getCount() - 1;
+                                            sliderView.setCurrentPagePosition(lastIndex);
+                                        } else {
+                                            sliderView.setCurrentPagePosition(1);
+                                        }
+                                    }
+
                                 }
 
                             } else {
@@ -357,7 +373,7 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
 
     private void removeImage(String imageUrl) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/remove_project_documentation";
+        final String url = "https://hrisgelora.co.id/api/remove_project_documentation";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -377,7 +393,7 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
                                             public void onClick(KAlertDialog sDialog) {
                                                 sDialog.dismiss();
                                                 dataDokumentasiProjects.clear();
-                                                getDokumentasi();
+                                                getDokumentasi("last");
                                             }
                                         })
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);

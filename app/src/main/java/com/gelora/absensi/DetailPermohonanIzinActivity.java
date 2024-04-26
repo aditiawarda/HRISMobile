@@ -131,7 +131,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
-        file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_izin/"+idIzinRecord;
+        file_url = "https://hrisgelora.co.id/absen/pdf_form_izin/"+idIzinRecord;
 
         if (sharedPrefManager.getSpIdCor().equals("1")){
             kopGap.setVisibility(View.VISIBLE);
@@ -472,7 +472,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     private void cancelPermohonan(String id){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cancel_izin";
+        final String url = "https://hrisgelora.co.id/api/cancel_izin";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -540,7 +540,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     private void checkSignature(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -554,7 +554,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
                             if (status.equals("Available")){
                                 String signature = data.getString("data");
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 approvedAction();
                             } else {
                                 pDialog.setTitleText("Perhatian")
@@ -612,7 +612,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     private void recheckSignature(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -662,7 +662,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     private void approvedAction(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/approve_action_izin";
+        final String url = "https://hrisgelora.co.id/api/approve_action_izin";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -722,7 +722,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     private void rejectedAction(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/reject_action_izin";
+        final String url = "https://hrisgelora.co.id/api/reject_action_izin";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -782,7 +782,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     private void getDataDetailPermohonan() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_permohonan_izin_detail";
+        final String url = "https://hrisgelora.co.id/api/get_permohonan_izin_detail";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -815,7 +815,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                 if(tipe_izin.equals("5")){
                                     notedTV.setVisibility(View.INVISIBLE);
                                     String foto_surat_sakit = detail.getString("foto_surat_sakit");
-                                    String url_surat_sakit = "https://geloraaksara.co.id/absen-online/upload/surat_sakit/"+foto_surat_sakit;
+                                    String url_surat_sakit = "https://hrisgelora.co.id/upload/surat_sakit/"+foto_surat_sakit;
                                     viewSuratSakitBTN.setVisibility(View.VISIBLE);
                                     viewSuratSakitBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -993,7 +993,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
                                 tglPermohonanTV.setText("JAKARTA, "+ Integer.parseInt(dayDatePermohonan) +" "+bulanNamePermohonan+" "+yearDatePermohonan);
 
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+digital_signature;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+digital_signature;
 
                                 Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -1022,7 +1022,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                     String signature_approver = detail.getString("signature_approver");
                                     String timestamp_approve = detail.getString("timestamp_approve");
 
-                                    String url_approver = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver;
+                                    String url_approver = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver;
 
                                     Picasso.get().load(url_approver).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -1053,15 +1053,15 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                         cancelPermohonanBTN.setVisibility(View.GONE);
                                         editPermohonanBTN.setVisibility(View.GONE);
                                         if(nik_approver_hrd.equals("null") || nik_approver_hrd.equals("") || nik_approver_hrd.equals(null)){
-                                            String updated_at = detail.getString("updated_at");
-                                            tanggalApproveHRDTV.setText(updated_at.substring(8,10)+"/"+updated_at.substring(5,7)+"/"+updated_at.substring(2,4));
+                                            String timestamp_approve_hrd = detail.getString("timestamp_approve_hrd");
+                                            tanggalApproveHRDTV.setText(timestamp_approve_hrd.substring(8,10)+"/"+timestamp_approve_hrd.substring(5,7)+"/"+timestamp_approve_hrd.substring(2,4));
                                             acceptedMark.setVisibility(View.VISIBLE);
                                             rejectedMark.setVisibility(View.GONE);
                                             appoveStatusHRD.setVisibility(View.VISIBLE);
                                             ttdHRD.setVisibility(View.GONE);
                                         } else {
-                                            String updated_at = detail.getString("updated_at");
-                                            tanggalApproveHRDTV.setText(updated_at.substring(8,10)+"/"+updated_at.substring(5,7)+"/"+updated_at.substring(2,4));
+                                            String timestamp_approve_hrd = detail.getString("timestamp_approve_hrd");
+                                            tanggalApproveHRDTV.setText(timestamp_approve_hrd.substring(8,10)+"/"+timestamp_approve_hrd.substring(5,7)+"/"+timestamp_approve_hrd.substring(2,4));
                                             acceptedMark.setVisibility(View.VISIBLE);
                                             rejectedMark.setVisibility(View.GONE);
                                             appoveStatusHRD.setVisibility(View.GONE);
@@ -1069,7 +1069,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                             approverHrdTV.setVisibility(View.VISIBLE);
 
                                             String signature_approver_hrd = detail.getString("signature_approver_hrd");
-                                            String url_approver_hrd = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_hrd;
+                                            String url_approver_hrd = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver_hrd;
 
                                             Picasso.get().load(url_approver_hrd).networkPolicy(NetworkPolicy.NO_CACHE)
                                                     .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -1226,7 +1226,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     private void actionRead() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/read_notif_izin";
+        final String url = "https://hrisgelora.co.id/api/read_notif_izin";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

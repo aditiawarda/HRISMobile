@@ -292,7 +292,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         if (sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) {
             pageTitle.setText("KEHADIRAN DEPARTEMEN");
             choiceBagianBTN.setVisibility(View.VISIBLE);
-        } else if (sharedPrefManager.getSpIdJabatan().equals("11") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))) {
+        } else if (sharedPrefManager.getSpIdJabatan().equals("11") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1305291110"))) {
             pageTitle.setText("KEHADIRAN BAGIAN");
             choiceBagianBTN.setVisibility(View.GONE);
         }
@@ -367,7 +367,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
 
     private void getKehadiranBagian() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/monitoring_bagian";
+        final String url = "https://hrisgelora.co.id/api/monitoring_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -383,7 +383,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                                 if (sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("33")){
                                     namaBagian.setText(data.getString("desc_departemen"));
                                     jumlahKaryawanTV.setText(data.getString("jumlah_karyawan_dept"));
-                                } else if (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))) {
+                                } else if (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1305291110"))) {
                                     namaBagian.setText(data.getString("nama_bagian"));
                                     jumlahKaryawanTV.setText(data.getString("jumlah_karyawan"));
                                 } else if (sharedPrefManager.getSpNik().equals("E1004")) {
@@ -756,7 +756,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
 
     private void getListBagian() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_list_bagian";
+        final String url = "https://hrisgelora.co.id/api/get_list_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

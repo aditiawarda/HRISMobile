@@ -35,6 +35,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -76,7 +77,7 @@ import java.util.Map;
 public class FormInputTaskActivity extends AppCompatActivity {
 
     LinearLayout actualStartDateBTN, actualEndDateBTN, actualPart, statusBTN, startDateBTN, endDateBTN, actionBar, backBTN, submitBTN, picBTN, startAttantionPart, noDataPart, loadingDataPart, targetDateBTN;
-    TextView actualEndDateTV, actualStartDateTV, picTV, targetDateTV, startDateTV, endDateTV, statusTV, persentaseProgressTV;
+    TextView actualDurationTV, actualEndDateTV, actualStartDateTV, picTV, targetDateTV, startDateTV, endDateTV, statusTV, persentaseProgressTV;
     ImageView loadingGif;
     EditText taskNameED;
     SharedPrefManager sharedPrefManager;
@@ -127,6 +128,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
         actualEndDateTV = findViewById(R.id.actual_end_date_tv);
         persentaseProgress = findViewById(R.id.persentase_progress);
         persentaseProgressTV = findViewById(R.id.persentase_progress_tv);
+        actualDurationTV = findViewById(R.id.actual_duration_tv);
 
         projectId = getIntent().getExtras().getString("id_project");
 
@@ -168,15 +170,16 @@ public class FormInputTaskActivity extends AppCompatActivity {
                 statusIdTask = "";
                 statusIdTaskBefore = "";
                 statusTV.setText("");
+                actualDurationTV.setText("Pilih tanggal...");
                 persentasePregressNumber = 0;
                 persentasePregressNumberBefore = 0;
                 persentaseProgress.setProgress(0);
                 persentaseProgressTV.setText("0%");
+                actualPart.setVisibility(View.GONE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
-
                     }
                 }, 500);
             }
@@ -422,7 +425,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
     }
 
     private void getStatus() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/task_status";
+        final String url = "https://hrisgelora.co.id/api/task_status";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")
@@ -1155,7 +1158,9 @@ public class FormInputTaskActivity extends AppCompatActivity {
 
                     actualStartDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                    countDuration(actualStartDate, actualEndDate);
                 } else {
+                    actualDurationTV.setText("-");
                     actualStartDateTV.setText("Pilih Kembali !");
                     actualStartDate = "";
 
@@ -1252,7 +1257,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
                 }
 
                 actualStartDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
-
+                actualDurationTV.setText("-");
             }
 
         }, y,m-1,d);
@@ -1370,7 +1375,9 @@ public class FormInputTaskActivity extends AppCompatActivity {
 
                     actualEndDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                    countDuration(actualStartDate, actualEndDate);
                 } else {
+                    actualDurationTV.setText("-");
                     actualEndDateTV.setText("Pilih Kembali !");
                     actualEndDate = "";
 
@@ -1467,11 +1474,69 @@ public class FormInputTaskActivity extends AppCompatActivity {
                 }
 
                 actualEndDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
-
+                actualDurationTV.setText("-");
             }
 
         }, y,m-1,d);
         dpd.show();
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void countDuration(String start, String end){
+        String startDateString = start;
+        String endDateString = end;
+
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = null;
+        Date date2 = null;
+        try {
+            date1 = format.parse(endDateString);
+            date2 = format.parse(startDateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long waktu1 = date1.getTime();
+        long waktu2 = date2.getTime();
+        long selisih_waktu = waktu1 - waktu2;
+
+        long diffDays = (selisih_waktu / (24 * 60 * 60 * 1000)) + 1;
+
+        long years = (diffDays / 365);
+        long months = (diffDays - (years * 365)) / 30;
+        long days = (diffDays - ((years * 365) + (months * 30)));
+
+        // Print the resulting duration
+        if (years == 0){
+            if(months == 0){
+                if(days == 0){
+                    actualDurationTV.setText("-");
+                } else {
+                    actualDurationTV.setText(days +" Hari");
+                }
+            } else {
+                if(days == 0){
+                    actualDurationTV.setText(months + " Bulan");
+                } else {
+                    actualDurationTV.setText(months + " Bulan " + days + " Hari");
+                }
+            }
+        } else {
+            if(months == 0){
+                if(days == 0){
+                    actualDurationTV.setText(years + " Tahun");
+                } else {
+                    actualDurationTV.setText(years + " Tahun " + days + " Hari");
+                }
+            } else {
+                if(days == 0){
+                    actualDurationTV.setText(years + " Tahun " + months + " Bulan");
+                } else {
+                    actualDurationTV.setText(years + " Tahun " + months + " Bulan " + days + " Hari");
+                }
+            }
+        }
 
     }
 
@@ -1557,7 +1622,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
 
     private void getAllUser(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_all_data_user_by_keyword";
+        final String url = "https://hrisgelora.co.id/api/get_all_data_user_by_keyword";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -1621,7 +1686,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
     }
 
     private void submitData() {
-        String URL = "https://geloraaksara.co.id/absen-online/api/create_task_timeline";
+        String URL = "https://hrisgelora.co.id/api/create_task_timeline";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JSONObject requestBody = new JSONObject();
 
@@ -1710,6 +1775,10 @@ public class FormInputTaskActivity extends AppCompatActivity {
                 });
 
         requestQueue.add(jsonObjectRequest);
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        jsonObjectRequest.setRetryPolicy(retryPolicy);
 
     }
 

@@ -18,7 +18,7 @@
             <LinearLayout
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#4E4E4E"/>
+                android:background="#7A7A7A"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:text="Nama Data Taks"
                     android:textColor="#C16D02"
-                    android:textSize="13dp"
+                    android:textSize="12dp"
                     android:ellipsize="end"
                     android:lineSpacingExtra="3dp"
                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
@@ -46,7 +46,7 @@
             <LinearLayout
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#4E4E4E"/>
+                android:background="#7A7A7A"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -65,8 +65,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="00/00/0000"
-                    android:textColor="#7A7A7A"
-                    android:textSize="13dp"
+                    android:textColor="#087BBA"
+                    android:textSize="12dp"
                     android:ellipsize="end"
                     android:lineSpacingExtra="3dp"
                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
@@ -76,7 +76,7 @@
             <LinearLayout
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#4E4E4E"/>
+                android:background="#7A7A7A"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -95,8 +95,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="00/00/0000"
-                    android:textColor="#7A7A7A"
-                    android:textSize="13dp"
+                    android:textColor="#EF1D1D"
+                    android:textSize="12dp"
                     android:ellipsize="end"
                     android:lineSpacingExtra="3dp"
                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
@@ -107,7 +107,7 @@
             <LinearLayout
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#4E4E4E"/>
+                android:background="#7A7A7A"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -127,6 +127,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:paddingBottom="1.5dp"
+                    android:paddingTop="1dp"
                     tools:ignore="UselessParent">
 
                     <TextView
@@ -136,7 +138,7 @@
                         android:gravity="center"
                         android:text="Status"
                         android:textColor="@color/white"
-                        android:textSize="11dp"
+                        android:textSize="10dp"
                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                 </LinearLayout>
@@ -146,7 +148,7 @@
             <LinearLayout
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#4E4E4E"/>
+                android:background="#7A7A7A"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -154,13 +156,12 @@
                 android:layout_height="match_parent"
                 android:paddingRight="5dp"
                 android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
                 android:orientation="vertical"
                 android:gravity="center">
 
                 <LinearLayout
-
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -174,25 +175,62 @@
                         android:gravity="center"
                         android:text="100%"
                         android:textStyle="bold"
-                        android:textColor="@color/color1"
-                        android:textSize="13dp"
+                        android:textColor="@color/colorGradien"
+                        android:textSize="11dp"
                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                 </LinearLayout>
+
+                <RelativeLayout
+                    android:background="@drawable/shape_taks_progress_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
+
+                        <LinearLayout
+                            android:id="@+id/progress_bar_line"
+                            android:background="@drawable/shape_taks_progress_2"
+                            android:layout_width="0dp"
+                            android:layout_weight=".50"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/left_bar_line"
+                            android:layout_width="0dp"
+                            android:layout_weight=".50"
+                            android:layout_height="match_parent"
+                            tools:ignore="UselessLeaf"
+                            android:orientation="horizontal">
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="1dp"
+                android:layout_marginRight="-0.6dp"
                 android:layout_height="match_parent"
-                android:background="#4E4E4E"/>
+                android:background="#7A7A7A"
+                tools:ignore="RtlHardcoded" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#4E4E4E"/>
+            android:background="#7A7A7A"/>
 
     </LinearLayout>
 

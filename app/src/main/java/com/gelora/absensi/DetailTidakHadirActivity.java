@@ -262,7 +262,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
 
     private void getDataTidakHadir() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/total_tidak_hadir";
+        final String url = "https://hrisgelora.co.id/api/total_tidak_hadir";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -330,7 +330,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
 
     private void getDetailTidakHadir() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/detail_tidak_hadir";
+        final String url = "https://hrisgelora.co.id/api/detail_tidak_hadir";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

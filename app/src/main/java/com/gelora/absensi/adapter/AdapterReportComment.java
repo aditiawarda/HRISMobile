@@ -55,12 +55,12 @@ public class AdapterReportComment extends RecyclerView.Adapter<AdapterReportComm
         final ReportComment reportComment = data[i];
 
         if(reportComment.getFoto()!=null){
-            Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/"+reportComment.getFoto()).networkPolicy(NetworkPolicy.NO_CACHE)
+            Picasso.get().load("https://hrisgelora.co.id/upload/avatar/"+reportComment.getFoto()).networkPolicy(NetworkPolicy.NO_CACHE)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                     .resize(80, 80)
                     .into(myViewHolder.profilePict);
         } else {
-            Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/default_profile.jpg").networkPolicy(NetworkPolicy.NO_CACHE)
+            Picasso.get().load("https://hrisgelora.co.id/upload/avatar/default_profile.jpg").networkPolicy(NetworkPolicy.NO_CACHE)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                     .resize(80, 80)
                     .into(myViewHolder.profilePict);

@@ -395,7 +395,7 @@ public class HistoryActivity extends AppCompatActivity {
 
     private void lastAbsenHistory(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/last_history_absen";
+        final String url = "https://hrisgelora.co.id/api/last_history_absen";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -604,7 +604,7 @@ public class HistoryActivity extends AppCompatActivity {
 
     private void getHistoryAbsensi() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/history_absen";
+        final String url = "https://hrisgelora.co.id/api/history_absen";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

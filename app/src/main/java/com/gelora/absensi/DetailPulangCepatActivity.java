@@ -214,7 +214,7 @@ public class DetailPulangCepatActivity extends AppCompatActivity {
 
     private void getDetailPulangCepat() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/total_pulang_cepat";
+        final String url = "https://hrisgelora.co.id/api/total_pulang_cepat";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

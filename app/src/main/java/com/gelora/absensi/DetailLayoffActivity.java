@@ -215,7 +215,7 @@ public class DetailLayoffActivity extends AppCompatActivity {
 
     private void getDetailLayoff() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/total_layoff";
+        final String url = "https://hrisgelora.co.id/api/total_layoff";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

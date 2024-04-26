@@ -144,7 +144,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
         downloadBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_clearance_form/"+idData;
+                String file_url = "https://hrisgelora.co.id/absen/pdf_clearance_form/"+idData;
                 new KAlertDialog(DetailDataExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Perhatian")
                         .setContentText("Unduh File?")
@@ -246,7 +246,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
 
     private void getData() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_my_exit_clearance";
+        final String url = "https://hrisgelora.co.id/api/get_my_exit_clearance";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -415,7 +415,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                     Intent intent = new Intent(DetailDataExitClearanceActivity.this, PdfViewerActivity.class);
                                                     intent.putExtra("initialisasi", "detail");
                                                     intent.putExtra("kode_st", urutan_st);
-                                                    intent.putExtra("uri", "https://geloraaksara.co.id/absen-online/upload/exit_clearance/"+lampiran);
+                                                    intent.putExtra("uri", "https://hrisgelora.co.id/upload/exit_clearance/"+lampiran);
                                                     startActivity(intent);
                                                 }
                                             });
@@ -463,7 +463,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                     Intent intent = new Intent(DetailDataExitClearanceActivity.this, PdfViewerActivity.class);
                                                     intent.putExtra("initialisasi", "detail");
                                                     intent.putExtra("kode_st", urutan_st);
-                                                    intent.putExtra("uri", "https://geloraaksara.co.id/absen-online/upload/exit_clearance/"+lampiran);
+                                                    intent.putExtra("uri", "https://hrisgelora.co.id/upload/exit_clearance/"+lampiran);
                                                     startActivity(intent);
                                                 }
                                             });
@@ -511,7 +511,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                     Intent intent = new Intent(DetailDataExitClearanceActivity.this, PdfViewerActivity.class);
                                                     intent.putExtra("initialisasi", "detail");
                                                     intent.putExtra("kode_st", urutan_st);
-                                                    intent.putExtra("uri", "https://geloraaksara.co.id/absen-online/upload/exit_clearance/"+lampiran);
+                                                    intent.putExtra("uri", "https://hrisgelora.co.id/upload/exit_clearance/"+lampiran);
                                                     startActivity(intent);
                                                 }
                                             });
@@ -559,7 +559,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                     Intent intent = new Intent(DetailDataExitClearanceActivity.this, PdfViewerActivity.class);
                                                     intent.putExtra("initialisasi", "detail");
                                                     intent.putExtra("kode_st", urutan_st);
-                                                    intent.putExtra("uri", "https://geloraaksara.co.id/absen-online/upload/exit_clearance/"+lampiran);
+                                                    intent.putExtra("uri", "https://hrisgelora.co.id/upload/exit_clearance/"+lampiran);
                                                     startActivity(intent);
                                                 }
                                             });
@@ -607,7 +607,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                     Intent intent = new Intent(DetailDataExitClearanceActivity.this, PdfViewerActivity.class);
                                                     intent.putExtra("initialisasi", "detail");
                                                     intent.putExtra("kode_st", urutan_st);
-                                                    intent.putExtra("uri", "https://geloraaksara.co.id/absen-online/upload/exit_clearance/"+lampiran);
+                                                    intent.putExtra("uri", "https://hrisgelora.co.id/upload/exit_clearance/"+lampiran);
                                                     startActivity(intent);
                                                 }
                                             });
@@ -655,7 +655,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                     Intent intent = new Intent(DetailDataExitClearanceActivity.this, PdfViewerActivity.class);
                                                     intent.putExtra("initialisasi", "detail");
                                                     intent.putExtra("kode_st", urutan_st);
-                                                    intent.putExtra("uri", "https://geloraaksara.co.id/absen-online/upload/exit_clearance/"+lampiran);
+                                                    intent.putExtra("uri", "https://hrisgelora.co.id/upload/exit_clearance/"+lampiran);
                                                     startActivity(intent);
                                                 }
                                             });
@@ -741,7 +741,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
 
     private void cancelPermohonan(String id){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cancel_exit_clearance";
+        final String url = "https://hrisgelora.co.id/api/cancel_exit_clearance";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")

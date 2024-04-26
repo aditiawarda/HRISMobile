@@ -8,22 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.DetailPermohonanFingerscanActivity;
 import com.gelora.absensi.DetailReportSumaActivity;
-import com.gelora.absensi.FormPermohonanCutiActivity;
 import com.gelora.absensi.ListDataReportSumaActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataReportSuma;
-import com.gelora.absensi.model.KategoriIzin;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -79,6 +73,22 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         }
 
         myViewHolder.namaSalesTV.setText(dataReportSuma.getNamaKaryawan());
+
+        if(dataReportSuma.getNmJabatan().equals("Group Leader Suma 1") || dataReportSuma.getNmJabatan().equals("Salesman Suma 1")){
+            myViewHolder.regionTV.setText("Jakarta 1");
+        } else if(dataReportSuma.getNmJabatan().equals("Group Leader Suma 2") || dataReportSuma.getNmJabatan().equals("Salesman Suma 2")){
+            myViewHolder.regionTV.setText("Jakarta 2");
+        } else if(dataReportSuma.getNmJabatan().equals("Group Leader Suma 3") || dataReportSuma.getNmJabatan().equals("Salesman Suma 3")){
+            myViewHolder.regionTV.setText("Jakarta 3");
+        } else if(dataReportSuma.getNmJabatan().equals("Group Leader AE") || dataReportSuma.getNmJabatan().equals("Staff AE")){
+            myViewHolder.regionTV.setText("Account Executive");
+        } else {
+            String[] jabatan = dataReportSuma.getNmJabatan().split("\\s+");
+            String region = jabatan[jabatan.length - 1];
+
+            myViewHolder.regionTV.setText(region);
+        }
+
         myViewHolder.namaPelangganTV.setText(dataReportSuma.getNamaPelanggan());
 
         if(dataReportSuma.getTipeLaporan().equals("1")){
@@ -152,7 +162,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView namaSalesTV, namaPelangganTV, f1StatusRealisasi;
+        TextView namaSalesTV, namaPelangganTV, f1StatusRealisasi, regionTV;
         TextView f4NoSJTV, f4TanggalLaporanTV, f3TanggalLaporanTV, f3TotalTagihanTV, reportCategoryTV, f1TanggalRencanaTV, f1TanggalLaporanTV, f2TotalPesananTV, f2TanggalLaporanTV;
         LinearLayout pengirimanPart, parentPart, kunjunganPart, rencanaKunjunganPart, penagihanPart;
         public MyViewHolder(@NonNull View itemView) {
@@ -162,6 +172,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             f1StatusRealisasi = itemView.findViewById(R.id.status_realisasi);
             namaPelangganTV = itemView.findViewById(R.id.nama_pelanggan_tv);
             namaSalesTV = itemView.findViewById(R.id.nama_sales_tv);
+            regionTV = itemView.findViewById(R.id.jabatan_tv);
 
             f1TanggalRencanaTV = itemView.findViewById(R.id.f1_tgl_kunjungan_tv);
             f1TanggalLaporanTV = itemView.findViewById(R.id.f1_tanggal_laporan_tv);

@@ -3563,7 +3563,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
     private void getKeterangan() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_keterangan_form_finger";
+        final String url = "https://hrisgelora.co.id/api/get_keterangan_form_finger";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -3630,7 +3630,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
     private void getDataKaryawanDetail() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan_personal";
+        final String url = "https://hrisgelora.co.id/api/data_karyawan_personal";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -3684,7 +3684,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
     private void getShift() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_shift_form_finger";
+        final String url = "https://hrisgelora.co.id/api/get_shift_form_finger";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -3750,7 +3750,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
     private void checkSignature(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -3764,7 +3764,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
                             if (status.equals("Available")){
                                 String signature = data.getString("data");
-                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 submitPermohonan();
                             } else {
                                 pDialog.setTitleText("Perhatian")
@@ -3822,7 +3822,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
     private void submitPermohonan(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/proses_finger";
+        final String url = "https://hrisgelora.co.id/api/proses_finger";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -4738,7 +4738,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
     private void getStatusAbsenBagian() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/status_absen_bagian_form_finger";
+        final String url = "https://hrisgelora.co.id/api/status_absen_bagian_form_finger";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -4788,7 +4788,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
     private void getShiftAbsenBagian() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/shift_absen_bagian_form_finger";
+        final String url = "https://hrisgelora.co.id/api/shift_absen_bagian_form_finger";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -4839,7 +4839,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
     private void getTitikAbsensi() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_lokasi_absen";
+        final String url = "https://hrisgelora.co.id/api/get_lokasi_absen";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

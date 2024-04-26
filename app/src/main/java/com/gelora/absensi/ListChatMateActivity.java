@@ -105,7 +105,7 @@ public class ListChatMateActivity extends AppCompatActivity {
 
     private void getListChatMate() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_list_chatmate";
+        final String url = "https://hrisgelora.co.id/api/get_list_chatmate";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -261,7 +261,7 @@ public class ListChatMateActivity extends AppCompatActivity {
 
     private void endChatFunction(String nikRekan) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/end_chat";
+        final String url = "https://hrisgelora.co.id/api/end_chat";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

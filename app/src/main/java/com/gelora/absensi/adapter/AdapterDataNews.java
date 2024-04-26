@@ -175,7 +175,7 @@ public class AdapterDataNews extends RecyclerView.Adapter<AdapterDataNews.MyView
         int acak = (int)(Math.random()*(max-min+1)+min);
 
         if(String.valueOf(dataNews.getImage_url()).equals("null")){
-            Picasso.get().load("https://geloraaksara.co.id/absen-online/assets/img/news_no_img/"+String.valueOf(acak)+".jpg").networkPolicy(NetworkPolicy.NO_CACHE)
+            Picasso.get().load("https://hrisgelora.co.id/assets/img/news_no_img/"+String.valueOf(acak)+".jpg").networkPolicy(NetworkPolicy.NO_CACHE)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                     .resize(150, 150)
                     .into(myViewHolder.imgNews);

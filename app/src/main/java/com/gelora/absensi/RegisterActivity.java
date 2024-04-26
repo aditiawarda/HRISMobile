@@ -631,7 +631,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void getNamaKaryawan(String nik){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/nama_karyawan";
+        final String url = "https://hrisgelora.co.id/api/nama_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -701,7 +701,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void registerFunction(String nik,String password) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/register_akun";
+        final String url = "https://hrisgelora.co.id/api/register_akun";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -758,8 +758,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         };
 
-        //requestQueue.add(postRequest);
-
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(this);
             requestQueue.add(postRequest);
@@ -777,15 +775,12 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        // Banner.make(rootview, RegisterActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
-
         CookieBar.build(RegisterActivity.this)
                 .setCustomView(R.layout.layout_custom_cookie)
                 .setEnableAutoDismiss(true)
                 .setSwipeToDismiss(false)
                 .setCookiePosition(Gravity.TOP)
                 .show();
-
     }
 
     @Override
@@ -799,7 +794,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void getContactIT() {
         RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_contact_it";
+        final String url = "https://hrisgelora.co.id/api/get_contact_it";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")

@@ -26,6 +26,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
@@ -40,7 +41,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.ComingSoonActivity;
-import com.gelora.absensi.DigitalCardActivity;
 import com.gelora.absensi.DigitalSignatureActivity;
 import com.gelora.absensi.InfoKeluargaActivity;
 import com.gelora.absensi.InfoKontakDaruratActivity;
@@ -49,11 +49,9 @@ import com.gelora.absensi.InfoPengalamanDanPelatihanActivity;
 import com.gelora.absensi.InfoPersonalActivity;
 import com.gelora.absensi.LoginActivity;
 import com.gelora.absensi.R;
-import com.gelora.absensi.ReportSumaActivity;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.ViewImageActivity;
-import com.gelora.absensi.ViewImageSliderActivity;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
@@ -291,7 +289,7 @@ public class FragmentProfile extends Fragment {
             nonGapSgnBTN.setVisibility(View.GONE);
         }
 
-        final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan";
+        final String url = "https://hrisgelora.co.id/api/data_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -356,7 +354,7 @@ public class FragmentProfile extends Fragment {
                                 if(!avatar.equals("default_profile.jpg") && !avatar.equals("null")){
                                     uploadFileImage.setVisibility(View.GONE);
                                     editFileImage.setVisibility(View.VISIBLE);
-                                    String avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
+                                    String avatarPath = "https://hrisgelora.co.id/upload/avatar/"+avatar;
                                     Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
                                             .resize(130, 130)
@@ -446,7 +444,7 @@ public class FragmentProfile extends Fragment {
                                     if(avatar.equals("default_profile.jpg")){
                                         uploadFileImage.setVisibility(View.VISIBLE);
                                         editFileImage.setVisibility(View.GONE);
-                                        String avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
+                                        String avatarPath = "https://hrisgelora.co.id/upload/avatar/"+avatar;
                                         Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                 .resize(130, 130)
@@ -567,7 +565,7 @@ public class FragmentProfile extends Fragment {
     }
 
     private void checkVersion() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/version_app";
+        final String url = "https://hrisgelora.co.id/api/version_app";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")
@@ -580,7 +578,7 @@ public class FragmentProfile extends Fragment {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "2.3.5"; //harus disesuaikan
+                                String currentVersion = "2.3.9"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateAppBTN.setVisibility(View.VISIBLE);
                                     updateAppBTN.setOnClickListener(new View.OnClickListener() {
@@ -781,11 +779,14 @@ public class FragmentProfile extends Fragment {
     }
 
     public void uploadMultipart() {
-        String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/update_profilepic";
+        String UPLOAD_URL = "https://hrisgelora.co.id/api/update_profilepic";
         String path1 = FilePathimage.getPath(mContext, uri);
+        File file = new File(path1);
+
         if (path1 == null) {
-            Toast.makeText(mContext, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
-        } else {
+            Toast.makeText(mContext, "Please move your .jpg file to internal storage and retry", Toast.LENGTH_LONG).show();
+        }
+        else {
             try {
                 String uploadId = UUID.randomUUID().toString();
                 new MultipartUploadRequest(mContext, uploadId, UPLOAD_URL)
@@ -850,7 +851,7 @@ public class FragmentProfile extends Fragment {
     }
 
     private void removePic() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/remove_pic";
+        final String url = "https://hrisgelora.co.id/api/remove_pic";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
