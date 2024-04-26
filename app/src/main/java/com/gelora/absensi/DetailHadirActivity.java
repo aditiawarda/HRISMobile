@@ -42,7 +42,7 @@ import java.util.Map;
 public class DetailHadirActivity extends AppCompatActivity {
 
     LinearLayout actionBar, attantionPart, monthBTN, emptyDataHadir, loadingHadirPart, backBTN;
-    ImageView bulanLoading, hadirLoading, loadingDataHadir;
+    ImageView bulanLoading, hadirLoading;
     TextView messageHadir, dataBulan, dataTahun, dataHadir, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -68,7 +68,6 @@ public class DetailHadirActivity extends AppCompatActivity {
         bulanLoading = findViewById(R.id.bulan_loading);
         hadirLoading = findViewById(R.id.hadir_loading);
         dataHadir = findViewById(R.id.data_hadir);
-        loadingDataHadir = findViewById(R.id.loading_data_hadir);
         loadingHadirPart = findViewById(R.id.loading_data_part_hadir);
         emptyDataHadir = findViewById(R.id.no_data_part_hadir);
         monthBTN = findViewById(R.id.month_btn);
@@ -92,10 +91,6 @@ public class DetailHadirActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
                 .into(hadirLoading);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataHadir);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -37,7 +37,6 @@ import java.util.Map;
 public class DataFormSdmActivity extends AppCompatActivity {
 
     LinearLayout addBTN, backBTN, loadingDataPart, noDataPart, countWaitingBTN;
-    ImageView loadingData;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     TextView countWaitingTV;
@@ -57,7 +56,6 @@ public class DataFormSdmActivity extends AppCompatActivity {
         addBTN = findViewById(R.id.add_btn);
 
         loadingDataPart = findViewById(R.id.loading_data_part);
-        loadingData = findViewById(R.id.loading_data);
         noDataPart = findViewById(R.id.no_data_part);
         countWaitingBTN = findViewById(R.id.count_waiting_btn);
         countWaitingTV = findViewById(R.id.count_waiting_tv);
@@ -67,10 +65,6 @@ public class DataFormSdmActivity extends AppCompatActivity {
         dataFormSDMRV.setHasFixedSize(true);
         dataFormSDMRV.setNestedScrollingEnabled(false);
         dataFormSDMRV.setItemAnimator(new DefaultItemAnimator());
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingData);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

@@ -62,7 +62,6 @@ public class DetailProjectActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
     String projectId = "", AUTH_TOKEN = "";
-    ImageView loadingDataTask;
     private RecyclerView taskRV;
     private TaskData[] taskData;
     private AdapterDataTask adapterDataTask;
@@ -78,7 +77,6 @@ public class DetailProjectActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         actionBar = findViewById(R.id.action_bar);
-        loadingDataTask = findViewById(R.id.loading_data_task);
         loadingDataPart = findViewById(R.id.loading_data_part_task);
         noDataPart = findViewById(R.id.no_data_part_task);
         taskRV = findViewById(R.id.data_task_rv);
@@ -90,10 +88,6 @@ public class DetailProjectActivity extends AppCompatActivity {
         projectLeaderTV = findViewById(R.id.project_leader_tv);
         dokumentasiProjectBTN = findViewById(R.id.dokumentasi_project_btn);
         dokumentasiBTN = findViewById(R.id.dokumentasi_btn);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataTask);
 
         AUTH_TOKEN = sharedPrefManager.getSpTokenTimeline();
         projectId = getIntent().getExtras().getString("id_project");

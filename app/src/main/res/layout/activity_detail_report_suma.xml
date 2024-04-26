@@ -1888,14 +1888,6 @@
                                                                 android:paddingBottom="40dp"
                                                                 android:visibility="visible">
 
-                                                                <ImageView
-                                                                    android:id="@+id/loading_data_inv_img"
-                                                                    android:layout_width="75dp"
-                                                                    android:layout_height="75dp"
-                                                                    android:layout_marginBottom="5dp"
-                                                                    android:src="@drawable/loading_sgn_digital"
-                                                                    tools:ignore="ContentDescription" />
-
                                                                 <TextView
                                                                     android:layout_width="match_parent"
                                                                     android:layout_height="wrap_content"

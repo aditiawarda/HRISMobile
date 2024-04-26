@@ -122,7 +122,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng userPoint;
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
-    ImageView loadingDataRecord, weatherIconPart, onlineGif, warningGif;
+    ImageView weatherIconPart, onlineGif, warningGif;
     TextView warningLabelIzin, warningLabelLayoff, backArrow, backHome, viewMoreBTN, titleRecordTV, userTV, markTitleShift, markTitleStatus, descStatusPart, layoffDesc, descStart, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, detailAbsenTV, dateCurrentAbsensiTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, hTime, mTime, sTime, absenPoint, statusAbsenChoiceTV, shiftAbsenChoiceTV;
     LinearLayout attantionLayoffPart, viewMorePart, mapBTN, noDataPart, loadingRecordPart, backBTN, reminderCongrat, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
@@ -160,7 +160,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "2.3.9";
+    String appVersion = "2.4.0";
     private StatusBarColorManager mStatusBarColorManager;
 
     private RecyclerView dataAbsensiRV;
@@ -252,7 +252,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         mRipplePulseLayoutInside = findViewById(R.id.layout_ripplepulse);
         mRipplePulseLayoutOutside = findViewById(R.id.layout_ripplepulse_2);
-        loadingDataRecord = findViewById(R.id.loading_data);
         loadingRecordPart = findViewById(R.id.loading_data_part);
         noDataPart = findViewById(R.id.no_data_part);
         titleRecordTV = findViewById(R.id.title_record_tv);
@@ -269,10 +268,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         dataAbsensiRV.setHasFixedSize(true);
         dataAbsensiRV.setNestedScrollingEnabled(false);
         dataAbsensiRV.setItemAnimator(new DefaultItemAnimator());
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataRecord);
 
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);

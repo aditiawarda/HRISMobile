@@ -78,7 +78,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="Mulai percakapan dengan tap tombol tambah di bawah"
+                                android:text="Mulai percakapan dengan tap tombol tambah dibawah"
                                 android:textAlignment="center"
                                 android:textColor="#D18C7C"
                                 android:textSize="11dp"
@@ -97,13 +97,13 @@
                             android:paddingRight="20dp"
                             android:paddingBottom="35dp">
 
-                            <ImageView
-                                android:id="@+id/loading_data"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_marginBottom="5dp"
-                                app:srcCompat="@drawable/loading_sgn_digital"
-                                tools:ignore="ContentDescription,ImageContrastCheck" />
+                            <ProgressBar
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:indeterminateTint="@color/colorAccent2"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="25dp"
+                                tools:ignore="RtlHardcoded" />
 
                             <TextView
                                 android:layout_width="match_parent"

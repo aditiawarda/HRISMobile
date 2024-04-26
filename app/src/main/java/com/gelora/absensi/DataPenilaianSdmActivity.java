@@ -38,7 +38,6 @@ import java.util.Map;
 public class DataPenilaianSdmActivity extends AppCompatActivity {
 
     LinearLayout areaPart, addBTN, backBTN, loadingDataPart, noDataPart, countWaitingBTN, addBtnPart;
-    ImageView loadingData;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     TextView countWaitingTV;
@@ -58,7 +57,6 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
         addBTN = findViewById(R.id.add_btn);
         dataPenilaianSDMRV = findViewById(R.id.list_penilaian_sdm_rv);
         loadingDataPart = findViewById(R.id.loading_data_part);
-        loadingData = findViewById(R.id.loading_data);
         noDataPart = findViewById(R.id.no_data_part);
         countWaitingBTN = findViewById(R.id.count_waiting_btn);
         countWaitingTV = findViewById(R.id.count_waiting_tv);
@@ -69,10 +67,6 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
         dataPenilaianSDMRV.setHasFixedSize(true);
         dataPenilaianSDMRV.setNestedScrollingEnabled(false);
         dataPenilaianSDMRV.setItemAnimator(new DefaultItemAnimator());
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingData);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

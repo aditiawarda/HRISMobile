@@ -57,7 +57,6 @@ public class ProjectViewActivity extends AppCompatActivity {
 
     LinearLayout actionBar, backBTN, choiceCategoryBTN, noDataPart, loadingPart, addBTN, allBTN, markAll;
     TextView categoryChoiceTV;
-    ImageView loadingDataProject;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -84,7 +83,6 @@ public class ProjectViewActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         actionBar = findViewById(R.id.action_bar);
-        loadingDataProject = findViewById(R.id.loading_data_project);
         choiceCategoryBTN = findViewById(R.id.choice_category);
         categoryChoiceTV = findViewById(R.id.category_choice_tv);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
@@ -98,10 +96,6 @@ public class ProjectViewActivity extends AppCompatActivity {
         projectRV.setHasFixedSize(true);
         projectRV.setNestedScrollingEnabled(false);
         projectRV.setItemAnimator(new DefaultItemAnimator());
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataProject);
 
         AUTH_TOKEN = sharedPrefManager.getSpTokenTimeline();
 

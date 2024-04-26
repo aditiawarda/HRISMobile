@@ -48,7 +48,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
     RelativeLayout periodeDataPart;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
-    ImageView loadingDataPenambahanCuti, diambilLoading, sisaLoading, periodeLoading, loadingDataCutiBersama, loadingDataCuti, loadingDataIzin;
+    ImageView diambilLoading, sisaLoading, periodeLoading;
     View rootview;
 
     private RecyclerView dataHistoryCutiRV;
@@ -80,10 +80,6 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
         diambilLoading = findViewById(R.id.sisa_loading);
         sisaLoading = findViewById(R.id.diambil_loading);
         periodeLoading = findViewById(R.id.periode_loading);
-        loadingDataCuti = findViewById(R.id.loading_data_cuti);
-        loadingDataCutiBersama = findViewById(R.id.loading_data_cuti_bersama);
-        loadingDataPenambahanCuti = findViewById(R.id.loading_data_penambahan_cuti);
-        loadingDataIzin = findViewById(R.id.loading_data_izin);
         loadingDataPartCuti = findViewById(R.id.loading_data_part_cuti);
         loadingDataPartCutiBersama = findViewById(R.id.loading_data_part_cuti_bersama);
         loadingDataPartIzin = findViewById(R.id.loading_data_part_izin);
@@ -142,22 +138,6 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
                 .into(sisaLoading);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataIzin);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataCuti);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataCutiBersama);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataPenambahanCuti);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override

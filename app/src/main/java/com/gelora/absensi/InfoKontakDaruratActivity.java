@@ -44,7 +44,6 @@ import java.util.Map;
 public class InfoKontakDaruratActivity extends AppCompatActivity {
 
     LinearLayout actionBar, backBTN, noDataPart, loadingDataPart, addBTN;
-    ImageView loadingData;
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
 
@@ -64,7 +63,6 @@ public class InfoKontakDaruratActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         loadingDataPart = findViewById(R.id.loading_data_part);
-        loadingData = findViewById(R.id.loading_data);
         noDataPart = findViewById(R.id.no_data_part);
         addBTN = findViewById(R.id.add_btn);
         actionBar = findViewById(R.id.action_bar);
@@ -75,10 +73,6 @@ public class InfoKontakDaruratActivity extends AppCompatActivity {
         listKontakRV.setHasFixedSize(true);
         listKontakRV.setNestedScrollingEnabled(false);
         listKontakRV.setItemAnimator(new DefaultItemAnimator());
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingData);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(deleteKontak, new IntentFilter("delete_kontak"));
 

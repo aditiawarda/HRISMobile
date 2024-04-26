@@ -129,14 +129,14 @@ public class FragmentHome extends Fragment {
     LinearLayout visiMisiBTN, countNotificationClearancePart, clearancePart, calendarPart, weatherBTN, newsPart, countNotificationPersonalPart, personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLainnyaBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN, menuClearanceBTN;
     TextView countNotifClearanceTV, countNotificationPersonalTV, countNotifPenilaianTV, nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
     ProgressBar loadingProgressBarCuaca;
-    ImageView avatarUser, weatherIcon, loadingData;
+    ImageView avatarUser, weatherIcon;
     RelativeLayout dataCuaca, dataCuacaEmpty;
 
     MediaPlayer musicUlangTahun;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
-    String currentDay = "", refeatConfeti = "1", locationNow = "" , musicPlay = "off", otoritorEC = "", listSDM = "0";
+    String currentDay = "", refeatConfeti = "1", locationNow = "", musicPlay = "off", otoritorEC = "", listSDM = "0";
     ResultReceiver resultReceiver;
     Context mContext;
     Activity mActivity;
@@ -207,8 +207,7 @@ public class FragmentHome extends Fragment {
         weatherTemp = view.findViewById(R.id.weather_temp);
         feelsLikeTemp = view.findViewById(R.id.feels_like_temp);
         currentAddress = view.findViewById(R.id.current_address);
-        loadingDataPart = view.findViewById(R.id.loading_data_part);
-        loadingData = view.findViewById(R.id.loading_data);
+        loadingDataPart = view.findViewById(R.id.loading_data_part);;
         noDataPart = view.findViewById(R.id.no_data_part);
         pengumumanSelengkapnyaBTN = view.findViewById(R.id.pengumuman_selengkapnya_btn);
         chatBTN = view.findViewById(R.id.chat_btn);
@@ -246,10 +245,6 @@ public class FragmentHome extends Fragment {
         listPengumumanNewRV.setHasFixedSize(true);
         listPengumumanNewRV.setNestedScrollingEnabled(false);
         listPengumumanNewRV.setItemAnimator(new DefaultItemAnimator());
-
-        Glide.with(mContext)
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingData);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -1380,7 +1375,7 @@ public class FragmentHome extends Fragment {
                                         intent.putExtra("main_weather", weatherMain);
                                         intent.putExtra("temp", String.valueOf(Math.round(convertFromKelvinToCelsius(f))));
                                         intent.putExtra("feel_like", String.valueOf(Math.round(convertFromKelvinToCelsius(f2))));
-                                        intent.putExtra("location", locationNow);
+                                        intent.putExtra("location", currentAddress.getText().toString());
                                         startActivity(intent);
                                     }
                                 });

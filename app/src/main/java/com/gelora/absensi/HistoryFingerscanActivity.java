@@ -43,7 +43,7 @@ public class HistoryFingerscanActivity extends AppCompatActivity {
 
     LinearLayout actionBar, backBTN, monthBTN, attantionPart, loadingDataPart, emptyDataPart;
     TextView nameUserTV, dataBulan, dataTahun, dataFinger;
-    ImageView bulanLoading, fingerLoading, loadingData;
+    ImageView bulanLoading, fingerLoading;
     String bulanPilih;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -69,7 +69,6 @@ public class HistoryFingerscanActivity extends AppCompatActivity {
         dataFinger = findViewById(R.id.data_finger);
         attantionPart = findViewById(R.id.attantion_part_finger);
         loadingDataPart = findViewById(R.id.loading_data_part);
-        loadingData = findViewById(R.id.loading_data);
         emptyDataPart = findViewById(R.id.no_data_part);
         actionBar = findViewById(R.id.action_bar);
 
@@ -85,10 +84,6 @@ public class HistoryFingerscanActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
                 .into(bulanLoading);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingData);
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override

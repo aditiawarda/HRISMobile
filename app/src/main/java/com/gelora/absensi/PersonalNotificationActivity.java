@@ -35,7 +35,6 @@ import java.util.Map;
 public class PersonalNotificationActivity extends AppCompatActivity {
 
     LinearLayout actionBar, noDataPart, loadingDataPart, backBTN;
-    ImageView loadingImage;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -56,17 +55,12 @@ public class PersonalNotificationActivity extends AppCompatActivity {
         actionBar = findViewById(R.id.action_bar);
         noDataPart = findViewById(R.id.no_data_part);
         loadingDataPart = findViewById(R.id.loading_data_part);
-        loadingImage = findViewById(R.id.loading_data);
         dataNotifikasiPersonalRV = findViewById(R.id.list_personal_notif_rv);
 
         dataNotifikasiPersonalRV.setLayoutManager(new LinearLayoutManager(this));
         dataNotifikasiPersonalRV.setHasFixedSize(true);
         dataNotifikasiPersonalRV.setNestedScrollingEnabled(false);
         dataNotifikasiPersonalRV.setItemAnimator(new DefaultItemAnimator());
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingImage);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override

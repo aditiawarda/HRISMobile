@@ -58,7 +58,6 @@ import java.util.Map;
 public class ExitClearanceActivity extends AppCompatActivity {
 
     SharedPrefManager sharedPrefManager;
-    ImageView loadingDataImg, loadingDataImg2, loadingGif;
     LinearLayout startAttantionPart, countNotificationInPart, backBTN, mainPart, actionBar, addBTN, dataInBTN, dataOutBTN, optionPart, dataMasukPart, dataKeluarPart, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2;
     SwipeRefreshLayout refreshLayout;
     TextView countNotificationInTV;
@@ -87,8 +86,6 @@ public class ExitClearanceActivity extends AppCompatActivity {
         noDataPart2 = findViewById(R.id.no_data_part_2);
         loadingDataPart = findViewById(R.id.loading_data_part);
         loadingDataPart2 = findViewById(R.id.loading_data_part_2);
-        loadingDataImg = findViewById(R.id.loading_data_img);
-        loadingDataImg2 = findViewById(R.id.loading_data_img_2);
         optionPart = findViewById(R.id.option_part);
         dataInBTN = findViewById(R.id.data_in_btn);
         dataOutBTN = findViewById(R.id.data_out_btn);
@@ -101,14 +98,6 @@ public class ExitClearanceActivity extends AppCompatActivity {
 
         dataOutRV = findViewById(R.id.data_out_rv);
         dataInRV = findViewById(R.id.data_in_rv);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataImg);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataImg2);
 
         dataOutRV.setLayoutManager(new LinearLayoutManager(this));
         dataOutRV.setHasFixedSize(true);
@@ -274,11 +263,6 @@ public class ExitClearanceActivity extends AppCompatActivity {
         startAttantionPart = findViewById(R.id.attantion_data_part);
         noDataPart = findViewById(R.id.no_data_part);
         loadingDataPart = findViewById(R.id.loading_data_part);
-        loadingGif = findViewById(R.id.loading_data);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingGif);
 
         karyawanRV.setLayoutManager(new LinearLayoutManager(this));
         karyawanRV.setHasFixedSize(true);

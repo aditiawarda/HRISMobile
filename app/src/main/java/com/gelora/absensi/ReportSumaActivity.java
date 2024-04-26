@@ -165,12 +165,10 @@ public class ReportSumaActivity extends AppCompatActivity {
     String f2IdPelangganLama = "", f2JenisPelanggan = "", f2FullDataProduct = "", f2QtyProduct = "", f2IdProduct = "", f2ProductName = "", f2ProductHargaSatuan = "", f2SubTotal = "";
     CheckBox f2CB1, f2CB2, f2CB3;
     int f2TotalInvTagihan = 0;
-    ImageView f2LoadingDataInvImg;
     RecyclerView f2InvRV;
     private DataInvoicePiutang[] dataInvoicePiutangs;
     private AdapterInvoicePiutang adapterInvoicePiutang;
     RecyclerView f2NoSjRV;
-    ImageView f2LoadingGifSj;
     private DataNoSuratJalan[] dataNoSuratJalans;
     private AdapterNoSuratJalan adapterNoSuratJalan;
 
@@ -180,7 +178,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
     BottomSheetLayout bottomSheet;
-    ImageView loadingForm, loadingGif, loadingGifProduk, successGif;
+    ImageView successGif;
     String devModCheck = "", salesLat = "", salesLong = "", categoryReport = "", laporanTerkirim = "", fullBase64String = "";
 
     int f2TotalPesanan = 0;
@@ -213,7 +211,6 @@ public class ReportSumaActivity extends AppCompatActivity {
         aktivitasKunjunganFormPart = findViewById(R.id.aktivitas_kunjungan_form_part);
         attantionNoForm = findViewById(R.id.attantion_no_form);
         loadingFormPart = findViewById(R.id.loading_form_part);
-        loadingForm = findViewById(R.id.loading_form);
         namaKaryawanTV = findViewById(R.id.nama_karyawan_tv);
         nikKaryawanTV = findViewById(R.id.nik_karyawan_tv);
         formPart = findViewById(R.id.form_part);
@@ -262,7 +259,6 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2PromosiPart = findViewById(R.id.f2_promosi_form_part);
         f2PenagihanPart = findViewById(R.id.f2_penagihan_form_part);
         f2PengirimanFormPart = findViewById(R.id.f2_pengiriman_form_part);
-        f2LoadingDataInvImg = findViewById(R.id.f2_loading_data_inv_img);
         f2LoadingDataInv = findViewById(R.id.f2_loading_data_inv);
         f2NoDataInv = findViewById(R.id.f2_no_data_inv);
         f2InvRV = findViewById(R.id.f2_inv_rv);
@@ -300,16 +296,8 @@ public class ReportSumaActivity extends AppCompatActivity {
         salesPosition();
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingForm);
-
-        Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
                 .into(successGif);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(f2LoadingDataInvImg);
 
         namaKaryawanTV.setText(sharedPrefManager.getSpNama());
         nikKaryawanTV.setText(sharedPrefManager.getSpNik());
@@ -1914,11 +1902,6 @@ public class ReportSumaActivity extends AppCompatActivity {
         startAttantionPart = findViewById(R.id.attantion_data_part);
         noDataPart = findViewById(R.id.no_data_part);
         loadingDataPart = findViewById(R.id.loading_data_part);
-        loadingGif = findViewById(R.id.loading_data);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingGif);
 
         pelangganRV.setLayoutManager(new LinearLayoutManager(this));
         pelangganRV.setHasFixedSize(true);
@@ -1982,11 +1965,6 @@ public class ReportSumaActivity extends AppCompatActivity {
         startAttantionPart = findViewById(R.id.attantion_data_part);
         noDataPart = findViewById(R.id.no_data_part);
         loadingDataPart = findViewById(R.id.loading_data_part);
-        loadingGif = findViewById(R.id.loading_data);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingGif);
 
         pelangganRV.setLayoutManager(new LinearLayoutManager(this));
         pelangganRV.setHasFixedSize(true);
@@ -2046,11 +2024,6 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2NoSjRV = findViewById(R.id.no_sj_rv);
         f2NoDataPartSj = findViewById(R.id.no_data_part_sj);
         f2LoadingDataPartSj = findViewById(R.id.loading_data_part_sj);
-        f2LoadingGifSj = findViewById(R.id.loading_data_sj);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(f2LoadingGifSj);
 
         f2NoSjRV.setLayoutManager(new LinearLayoutManager(this));
         f2NoSjRV.setHasFixedSize(true);
@@ -2082,11 +2055,6 @@ public class ReportSumaActivity extends AppCompatActivity {
         startAttantionPartProduk = findViewById(R.id.attantion_data_part_produk);
         noDataPartProduk = findViewById(R.id.no_data_part_produk);
         loadingDataPartProduk = findViewById(R.id.loading_data_part_produk);
-        loadingGifProduk = findViewById(R.id.loading_data_produk);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingGifProduk);
 
         produkRV.setLayoutManager(new LinearLayoutManager(this));
         produkRV.setHasFixedSize(true);

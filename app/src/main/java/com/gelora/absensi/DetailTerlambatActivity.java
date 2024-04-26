@@ -42,7 +42,7 @@ import java.util.Map;
 public class DetailTerlambatActivity extends AppCompatActivity {
 
     LinearLayout actionBar, attantionPart, markerWarningLate, monthBTN, emptyDataLate, loadingLatePart, backBTN;
-    ImageView notificationWarningLateDetail, bulanLoading, lateLoading, loadingDataLate;
+    ImageView notificationWarningLateDetail, bulanLoading, lateLoading;
     TextView messageLate, dataBulan, dataTahun, dataLate, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -68,7 +68,6 @@ public class DetailTerlambatActivity extends AppCompatActivity {
         bulanLoading = findViewById(R.id.bulan_loading);
         lateLoading = findViewById(R.id.late_loading);
         dataLate = findViewById(R.id.data_late);
-        loadingDataLate = findViewById(R.id.loading_data_late);
         loadingLatePart = findViewById(R.id.loading_data_part_telat);
         emptyDataLate = findViewById(R.id.no_data_part_late);
         monthBTN = findViewById(R.id.month_btn);
@@ -94,10 +93,6 @@ public class DetailTerlambatActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
                 .into(lateLoading);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataLate);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.ic_warning_notification_gif)

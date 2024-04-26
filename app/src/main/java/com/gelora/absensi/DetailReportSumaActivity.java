@@ -172,10 +172,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     NestedScrollView scrollView;
     CheckBox agendaCB1, agendaCB2, agendaCB3;
     CheckBox realisasiCB1, realisasiCB2, realisasiCB3;
-    ImageView loadingGifProduk, loadingDataInvImg;
     BottomSheetLayout bottomSheet;
     RecyclerView noSjRV;
-    ImageView loadingGifSj;
     private DataNoSuratJalan[] dataNoSuratJalans;
     private AdapterNoSuratJalanRealisasi adapterNoSuratJalan;
     private AdapterReportComment adapterReportComment;
@@ -278,7 +276,6 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         realisasiCB1 = findViewById(R.id.realisasi_cb_1);
         realisasiCB2 = findViewById(R.id.realisasi_cb_2);
         realisasiCB3 = findViewById(R.id.realisasi_cb_3);
-        loadingDataInvImg = findViewById(R.id.loading_data_inv_img);
         noDataPiutang = findViewById(R.id.no_data_inv);
         loadingDataPiutang = findViewById(R.id.loading_data_inv);
         pengirimanLayoutTambahan = findViewById(R.id.pengiriman_layout_tambahan);
@@ -317,10 +314,6 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         listProductInputRV.setHasFixedSize(true);
         listProductInputRV.setNestedScrollingEnabled(false);
         listProductInputRV.setItemAnimator(new DefaultItemAnimator());
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataInvImg);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(productSumaBroad, new IntentFilter("product_suma_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(noSuratJalanBroad, new IntentFilter("list_no_sj"));
@@ -1187,11 +1180,6 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         startAttantionPartProduk = findViewById(R.id.attantion_data_part_produk);
         noDataPartProduk = findViewById(R.id.no_data_part_produk);
         loadingDataPartProduk = findViewById(R.id.loading_data_part_produk);
-        loadingGifProduk = findViewById(R.id.loading_data_produk);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingGifProduk);
 
         produkRV.setLayoutManager(new LinearLayoutManager(this));
         produkRV.setHasFixedSize(true);
@@ -2821,11 +2809,6 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         noSjRV = findViewById(R.id.no_sj_rv);
         noDataPartSj = findViewById(R.id.no_data_part_sj);
         loadingDataPartSj = findViewById(R.id.loading_data_part_sj);
-        loadingGifSj = findViewById(R.id.loading_data_sj);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingGifSj);
 
         noSjRV.setLayoutManager(new LinearLayoutManager(this));
         noSjRV.setHasFixedSize(true);

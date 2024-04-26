@@ -35,7 +35,6 @@ import java.util.Map;
 public class ListAllPengumumanActivity extends AppCompatActivity {
 
     LinearLayout actionBar, backBTN, noDataPart, loadingDataPart;
-    ImageView loadingData;
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
 
@@ -52,7 +51,6 @@ public class ListAllPengumumanActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         loadingDataPart = findViewById(R.id.loading_data_part);
-        loadingData = findViewById(R.id.loading_data);
         noDataPart = findViewById(R.id.no_data_part);
         actionBar = findViewById(R.id.action_bar);
 
@@ -62,10 +60,6 @@ public class ListAllPengumumanActivity extends AppCompatActivity {
         listPengumumanRV.setHasFixedSize(true);
         listPengumumanRV.setNestedScrollingEnabled(false);
         listPengumumanRV.setItemAnimator(new DefaultItemAnimator());
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingData);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override

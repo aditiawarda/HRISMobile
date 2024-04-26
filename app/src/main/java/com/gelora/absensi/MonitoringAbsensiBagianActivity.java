@@ -57,7 +57,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
     String currentDay = "", dateChoiceForHistory, idBagianChoice = "", kdBagianChoice = "";
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    ImageView dataTidakHadirLoading, dataHadirLoading, loadingDataKehadiranBagian, loadingDataKetidakhadiranBagian;
+    ImageView dataTidakHadirLoading, dataHadirLoading;
     SwipeRefreshLayout refreshLayout;
     BottomSheetLayout bottomSheet;
     LinearLayout actionBar, attantionPart, seacrhKaryawanBTN, indikatorHadirBTN, indikatorTidakHadirBTN, hadirBTN, tidakHadirBTN, hadirPart, tidakHadirPart, backBTN, loadingDataKehadiranPart, loadingDataKetidakhadiranPart, choiceDateBTN, choiceBagianBTN, noDataHadirBagian, noDataTidakHadirBagian;
@@ -93,7 +93,6 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         loadingDataKehadiranPart = findViewById(R.id.loading_data_kehadiran_bagian_part);
-        loadingDataKehadiranBagian = findViewById(R.id.loading_data_kehadiran_bagian);
         choiceDateBTN = findViewById(R.id.choice_date);
         noDataHadirBagian = findViewById(R.id.no_data_hadir_bagian);
         hadirBTN = findViewById(R.id.hadir_button);
@@ -102,7 +101,6 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         tidakHadirPart = findViewById(R.id.ketidakhadiran_part);
         indikatorHadirBTN = findViewById(R.id.indicator_hadir);
         indikatorTidakHadirBTN = findViewById(R.id.indicator_tidak_hadir);
-        loadingDataKetidakhadiranBagian = findViewById(R.id.loading_data_ketidakhadiran_bagian);
         loadingDataKetidakhadiranPart = findViewById(R.id.loading_data_ketidakhadiran_bagian_part);
         noDataTidakHadirBagian = findViewById(R.id.no_data_tidak_hadir_bagian);
         indHadir = findViewById(R.id.ind_hadir);
@@ -128,14 +126,6 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
                 .into(dataTidakHadirLoading);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataKehadiranBagian);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingDataKetidakhadiranBagian);
 
         dataKehadiranBagianRV = findViewById(R.id.data_kehadiran_bagian_rv);
         dataKeTidakhadiranBagianRV = findViewById(R.id.data_ketidakhadiran_bagian_rv);

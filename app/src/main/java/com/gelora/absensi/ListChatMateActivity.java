@@ -47,7 +47,6 @@ public class ListChatMateActivity extends AppCompatActivity {
     private AdapterListChatMate adapterListChatMate;
     SharedPrefManager sharedPrefManager;
     LinearLayout backBTN, noDataPart, loadingPart, actionBar;
-    ImageView loadingImage;
     LinearLayout newChatBTN;
     KAlertDialog pDialog;
     private int i = -1;
@@ -62,16 +61,11 @@ public class ListChatMateActivity extends AppCompatActivity {
         backBTN = findViewById(R.id.back_btn);
         noDataPart = findViewById(R.id.no_data_part);
         loadingPart = findViewById(R.id.loading_data_part);
-        loadingImage = findViewById(R.id.loading_data);
         newChatBTN = findViewById(R.id.new_chat_btn);
         actionBar = findViewById(R.id.action_bar);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(endChat,
                 new IntentFilter("end_chat"));
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingImage);
 
         listChatRV.setLayoutManager(new LinearLayoutManager(this));
         listChatRV.setHasFixedSize(true);

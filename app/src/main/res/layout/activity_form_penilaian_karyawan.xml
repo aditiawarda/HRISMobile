@@ -345,7 +345,7 @@
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginLeft="3dp"
                                                     android:lineSpacingExtra="2.5dp"
-                                                    android:text="Di bawah rata-rata"
+                                                    android:text="Dibawah rata-rata"
                                                     android:textColor="#494949"
                                                     android:textSize="14dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />

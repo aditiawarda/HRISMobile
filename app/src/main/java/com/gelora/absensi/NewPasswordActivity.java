@@ -46,7 +46,7 @@ public class NewPasswordActivity extends AppCompatActivity {
 
     EditText passwordED, repasswordED;
     TextView showPassword, matchPassword, indicatorMatchPass;
-    LinearLayout registerBTN;
+    LinearLayout registerBTN, backBTN;
     String statusPass = "hide", nik;
     ProgressBar loadingProgressBar;
 
@@ -55,6 +55,7 @@ public class NewPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_password);
 
+        backBTN = findViewById(R.id.back_btn);
         passwordED = findViewById(R.id.passwordED);
         repasswordED = findViewById(R.id.repasswordED);
         showPassword = findViewById(R.id.show_password_register);
@@ -66,6 +67,13 @@ public class NewPasswordActivity extends AppCompatActivity {
         nik = getIntent().getExtras().getString("nik");
 
         loadingProgressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#A6441F"),android.graphics.PorterDuff.Mode.MULTIPLY);
+
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         passwordED.addTextChangedListener(new TextWatcher() {
             @Override
