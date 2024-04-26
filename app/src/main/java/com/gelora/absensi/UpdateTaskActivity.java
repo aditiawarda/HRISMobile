@@ -32,6 +32,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -505,11 +506,15 @@ public class UpdateTaskActivity extends AppCompatActivity {
                 if(endDateBARU.equals("")||endDateBARU.equals(endDate)){
                     requestBody.put("schedule", timelineTask);
                 } else {
-                    requestBody.put("schedule", startDate+" - "+endDateParBARU);
+                    String[] parts = startDate.split("-");
+                    String startDateSend = parts[1]+"/"+ parts[2]+"/"+parts[0];
+                    requestBody.put("schedule", startDateSend+" - "+endDateParBARU);
                 }
             } else {
                 if(endDateBARU.equals("")||endDateBARU.equals(endDate)){
-                    requestBody.put("schedule", startDateParBARU+" - "+endDate);
+                    String[] parts = endDate.split("-");
+                    String endDateSend = parts[1]+"/"+ parts[2]+"/"+parts[0];
+                    requestBody.put("schedule", startDateParBARU+" - "+endDateSend);
                 } else {
                     requestBody.put("schedule", startDateParBARU+" - "+endDateParBARU);
                 }

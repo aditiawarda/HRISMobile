@@ -11,8 +11,8 @@ android {
         applicationId "com.gelora.absensi"
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 140
-        versionName "2.4.0"
+        versionCode 141
+        versionName "2.4.1"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
