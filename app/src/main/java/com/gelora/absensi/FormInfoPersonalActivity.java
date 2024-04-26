@@ -683,62 +683,66 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         markMale = findViewById(R.id.mark_male);
         markFemale = findViewById(R.id.mark_female);
 
-        if (genderChoice.equals("male")){
-            maleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
-            femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
-            markMale.setVisibility(View.VISIBLE);
-            markFemale.setVisibility(View.GONE);
-        } else if (genderChoice.equals("female")){
-            maleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
-            femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
-            markMale.setVisibility(View.GONE);
-            markFemale.setVisibility(View.VISIBLE);
-        } else {
-            maleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
-            femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
-            markMale.setVisibility(View.GONE);
-            markFemale.setVisibility(View.GONE);
-        }
-
-        maleBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                markMale.setVisibility(View.VISIBLE);
-                markFemale.setVisibility(View.GONE);
+        try {
+            if (genderChoice.equals("male")){
                 maleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
                 femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
-                genderChoice = "male";
-                genderPilihTV.setText("Laki-Laki");
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
-                    }
-                }, 300);
-            }
-        });
-
-        femaleBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                markMale.setVisibility(View.GONE);
-                markFemale.setVisibility(View.VISIBLE);
+                markMale.setVisibility(View.VISIBLE);
+                markFemale.setVisibility(View.GONE);
+            } else if (genderChoice.equals("female")){
                 maleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
                 femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
-                genderChoice = "female";
-                genderPilihTV.setText("Perempuan");
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
-                    }
-                }, 300);
+                markMale.setVisibility(View.GONE);
+                markFemale.setVisibility(View.VISIBLE);
+            } else {
+                maleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                markMale.setVisibility(View.GONE);
+                markFemale.setVisibility(View.GONE);
             }
-        });
+
+            maleBTN.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onClick(View v) {
+                    markMale.setVisibility(View.VISIBLE);
+                    markFemale.setVisibility(View.GONE);
+                    maleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+                    femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                    genderChoice = "male";
+                    genderPilihTV.setText("Laki-Laki");
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomSheet.dismissSheet();
+                        }
+                    }, 300);
+                }
+            });
+
+            femaleBTN.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onClick(View v) {
+                    markMale.setVisibility(View.GONE);
+                    markFemale.setVisibility(View.VISIBLE);
+                    maleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                    femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+                    genderChoice = "female";
+                    genderPilihTV.setText("Perempuan");
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomSheet.dismissSheet();
+                        }
+                    }, 300);
+                }
+            });
+        } catch (NullPointerException e){
+            Log.e("PaRSE JSON", e.toString());
+        }
 
     }
 
