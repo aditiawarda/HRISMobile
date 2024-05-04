@@ -520,7 +520,7 @@
                                 android:gravity="center"
                                 android:orientation="vertical"
                                 android:paddingLeft="20dp"
-                                android:paddingTop="40dp"
+                                android:paddingTop="35dp"
                                 android:paddingRight="20dp"
                                 android:paddingBottom="35dp">
 
@@ -742,7 +742,7 @@
                                 android:gravity="center"
                                 android:orientation="vertical"
                                 android:paddingLeft="20dp"
-                                android:paddingTop="40dp"
+                                android:paddingTop="35dp"
                                 android:paddingRight="20dp"
                                 android:paddingBottom="35dp">
 
@@ -763,7 +763,7 @@
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
                                     android:textStyle="bold"
-                                    tools:ignore="HardcodedText,SpUsage,TooManyViews" />
+                                    tools:ignore="HardcodedText,SpUsage,TooManyViews,TextSizeCheck,TextContrastCheck" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -772,7 +772,7 @@
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
                                     android:textSize="10dp"
-                                    tools:ignore="HardcodedText,SpUsage" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                             </LinearLayout>
 
@@ -825,7 +825,7 @@
                                                 android:textColor="@color/colorPrimaryDark"
                                                 android:textSize="14dp"
                                                 android:textStyle="bold"
-                                                tools:ignore="HardcodedText,SpUsage" />
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             <TextView
                                                 android:layout_width="match_parent"
@@ -838,7 +838,7 @@
                                                 android:textColor="@color/colorPrimaryDark"
                                                 android:textSize="10dp"
                                                 android:textStyle="italic"
-                                                tools:ignore="HardcodedText,SpUsage" />
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -925,7 +925,7 @@
                                 android:gravity="center"
                                 android:orientation="vertical"
                                 android:paddingLeft="20dp"
-                                android:paddingTop="40dp"
+                                android:paddingTop="35dp"
                                 android:paddingRight="20dp"
                                 android:paddingBottom="35dp">
 
@@ -946,7 +946,7 @@
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
                                     android:textStyle="bold"
-                                    tools:ignore="HardcodedText,SpUsage" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -955,7 +955,7 @@
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
                                     android:textSize="10dp"
-                                    tools:ignore="HardcodedText,SpUsage" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck,TextContrastCheck" />
 
                             </LinearLayout>
 
@@ -1009,7 +1009,7 @@
                                                 android:textColor="@color/colorPrimaryDark"
                                                 android:textSize="14dp"
                                                 android:textStyle="bold"
-                                                tools:ignore="HardcodedText,SpUsage" />
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             <TextView
                                                 android:layout_width="match_parent"
@@ -1022,7 +1022,7 @@
                                                 android:textColor="@color/colorPrimaryDark"
                                                 android:textSize="10dp"
                                                 android:textStyle="italic"
-                                                tools:ignore="HardcodedText,SpUsage" />
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -1109,7 +1109,7 @@
                                 android:gravity="center"
                                 android:orientation="vertical"
                                 android:paddingLeft="20dp"
-                                android:paddingTop="40dp"
+                                android:paddingTop="35dp"
                                 android:paddingRight="20dp"
                                 android:paddingBottom="35dp">
 
@@ -1130,7 +1130,7 @@
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
                                     android:textStyle="bold"
-                                    tools:ignore="HardcodedText,SpUsage" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -1139,7 +1139,7 @@
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
                                     android:textSize="10dp"
-                                    tools:ignore="HardcodedText,SpUsage" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                             </LinearLayout>
 

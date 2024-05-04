@@ -352,7 +352,7 @@
                                 android:gravity="center"
                                 android:orientation="vertical"
                                 android:paddingLeft="20dp"
-                                android:paddingTop="40dp"
+                                android:paddingTop="35dp"
                                 android:paddingRight="20dp"
                                 android:paddingBottom="35dp">
 
@@ -593,7 +593,7 @@
                                 android:gravity="center"
                                 android:orientation="vertical"
                                 android:paddingLeft="20dp"
-                                android:paddingTop="40dp"
+                                android:paddingTop="35dp"
                                 android:paddingRight="20dp"
                                 android:paddingBottom="35dp">
 
