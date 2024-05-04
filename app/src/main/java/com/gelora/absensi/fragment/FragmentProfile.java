@@ -578,7 +578,7 @@ public class FragmentProfile extends Fragment {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "2.4.2"; //harus disesuaikan
+                                String currentVersion = "2.4.3"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateAppBTN.setVisibility(View.VISIBLE);
                                     updateAppBTN.setOnClickListener(new View.OnClickListener() {
