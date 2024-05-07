@@ -284,7 +284,7 @@ public class SplashScreen extends AppCompatActivity {
             public void onSuccess(Location location) {
 
                 if (location != null) {
-                    Log.e("TAG", "GPS is on" + String.valueOf(location));
+                    Log.d("TAG", "GPS is on " + String.valueOf(location));
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -316,7 +316,7 @@ public class SplashScreen extends AppCompatActivity {
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
         if (location != null) {
-            Log.e("TAG", "GPS is on" + String.valueOf(location));
+            Log.d("TAG", "GPS is on " + String.valueOf(location));
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -342,7 +342,7 @@ public class SplashScreen extends AppCompatActivity {
                         // GPS location can be null if GPS is switched off
                         if (location != null) {
                             onLocationChanged(location);
-                            Log.e("TAG", "GPS is on" + String.valueOf(location));
+                            Log.d("TAG", "GPS is on " + String.valueOf(location));
                         }  else {
                             gpsEnableAction();
                         }
@@ -404,7 +404,7 @@ public class SplashScreen extends AppCompatActivity {
                             String close_btn = data.getString("close_btn");
 
                             if (status.equals("Success")){
-                                String currentVersion = "2.4.3";
+                                String currentVersion = "2.4.4";
                                 if (popup.equals("1") && ((!currentVersion.equals(version) && target.equals("all")) || target.equals(currentVersion))){
                                     refreshPart.animate()
                                             .translationY(refreshPart.getHeight())

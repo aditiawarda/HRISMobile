@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -249,7 +250,9 @@ public class ImagePickerActivity extends AppCompatActivity {
         // applying UI theme
         options.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         options.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-        options.setActiveWidgetColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        options.setLogoColor(ContextCompat.getColor(this, R.color.white));
+        options.setToolbarWidgetColor(ContextCompat.getColor(this, R.color.white));
+        options.setRootViewBackgroundColor(ContextCompat.getColor(this, R.color.image_crop));
         options.setToolbarTitle("Atur Gambar");
 
         if (lockAspectRatio)

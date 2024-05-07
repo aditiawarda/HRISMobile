@@ -169,7 +169,7 @@ public class LocationPickerActivity extends FragmentActivity implements OnMapRea
             public void onSuccess(Location location) {
                 // GPS location can be null if GPS is switched off
                 if (location != null) {
-                    Log.e("TAG", "GPS is on" + String.valueOf(location));
+                    Log.d("TAG", "GPS is on " + String.valueOf(location));
                     if(mMap != null){
                         mMap.setMyLocationEnabled(false);
                         mMap.getUiSettings().setMyLocationButtonEnabled(false);

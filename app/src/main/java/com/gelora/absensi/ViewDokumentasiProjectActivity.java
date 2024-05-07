@@ -333,8 +333,6 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
                                         if(position.equals("last")){
                                             int lastIndex = adapterDokumentasiProject.getCount() - 1;
                                             sliderView.setCurrentPagePosition(lastIndex);
-                                        } else {
-                                            sliderView.setCurrentPagePosition(1);
                                         }
                                     }
 
