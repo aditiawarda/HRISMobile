@@ -324,8 +324,10 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
                                 for (int i = 0; i < dataimage.length(); i++) {
                                     JSONObject image = dataimage.getJSONObject(i);
                                     String dataImageDokumentasi = image.getString("image_url");
+                                    String createdAt = image.getString("created_at");
                                     DataDokumentasiProject dataImage = new DataDokumentasiProject();
                                     dataImage.setImageUrl(dataImageDokumentasi);
+                                    dataImage.setCreatedAt(createdAt);
                                     dataDokumentasiProjects.add(dataImage);
                                     adapterDokumentasiProject.renewItems(dataDokumentasiProjects);
 
