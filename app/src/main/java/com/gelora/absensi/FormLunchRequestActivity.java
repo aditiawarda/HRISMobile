@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,15 +16,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -32,6 +35,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterUnitBagian2;
 import com.gelora.absensi.adapter.AdapterUnitBagianLunchRequest;
@@ -68,8 +72,10 @@ public class FormLunchRequestActivity extends AppCompatActivity {
     LinearLayout removeBTN4, addBTN4;
     EditText jumlahTV4;
 
-    LinearLayout submitBTN, backBTN, bagianBTN, dateBTN;
+    SwipeRefreshLayout refreshLayout;
+    LinearLayout submitBTN, backBTN, bagianBTN, dateBTN, formPart, successPart, rebackBTN, actionBar;
     TextView bagianPilihTV, tanggalPilihTV;
+    ImageView successGif;
 
     private RecyclerView bagianRV;
     AdapterUnitBagianLunchRequest adapterUnitBagianLunchRequest;
@@ -78,7 +84,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     int siang1 = 0, siang2 = 0, sore = 0, malam = 0;
-    String permohonanTerkirim = "0", tanggal = "";
+    String permohonanTerkirim = "0", tanggal = "", bagianRL = "";
+    KAlertDialog pDialog;
+    private int i = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +95,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
 
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
+        refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
 
         removeBTN1 = findViewById(R.id.remove_1_btn);
         addBTN1 = findViewById(R.id.add_1_btn);
@@ -111,9 +120,52 @@ public class FormLunchRequestActivity extends AppCompatActivity {
         dateBTN = findViewById(R.id.date_btn);
         tanggalPilihTV = findViewById(R.id.date_pilih_tv);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
+        formPart = findViewById(R.id.form_part);
+        successPart = findViewById(R.id.success_submit);
+        successGif = findViewById(R.id.success_gif);
+        rebackBTN = findViewById(R.id.reback_btn);
+        actionBar = findViewById(R.id.action_bar);
+
+        bagianRL = getIntent().getExtras().getString("bagianRL");
+        bagianPilihTV.setText(bagianRL);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.success_ic)
+                .into(successGif);
 
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_BAGIAN_RL, "");
         LocalBroadcastManager.getInstance(this).registerReceiver(bagianBroadRL, new IntentFilter("bagian_broad_rl"));
+
+        refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                bagianPilihTV.setText(bagianRL);
+                siang1 = 0;
+                siang2 = 0;
+                sore = 0;
+                malam = 0;
+                tanggal = "";
+                tanggalPilihTV.setText("");
+                jumlahTV1.setText("0");
+                jumlahTV2.setText("0");
+                jumlahTV3.setText("0");
+                jumlahTV4.setText("0");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                    }
+                }, 500);
+            }
+        });
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +178,13 @@ public class FormLunchRequestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 choiceBagian();
+            }
+        });
+
+        rebackBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 
@@ -466,12 +525,65 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                                     })
                                     .show();
                         } else {
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    sendData();
-                                }
-                            }, 1);
+                            new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.WARNING_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Kirim permohonan sekarang?")
+                                    .setCancelText("TIDAK")
+                                    .setConfirmText("   YA   ")
+                                    .showCancelButton(true)
+                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                            pDialog = new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                            pDialog.show();
+                                            pDialog.setCancelable(false);
+                                            new CountDownTimer(1300, 800) {
+                                                public void onTick(long millisUntilFinished) {
+                                                    i++;
+                                                    switch (i) {
+                                                        case 0:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormLunchRequestActivity.this, R.color.colorGradien));
+                                                            break;
+                                                        case 1:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormLunchRequestActivity.this, R.color.colorGradien2));
+                                                            break;
+                                                        case 2:
+                                                        case 6:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormLunchRequestActivity.this, R.color.colorGradien3));
+                                                            break;
+                                                        case 3:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormLunchRequestActivity.this, R.color.colorGradien4));
+                                                            break;
+                                                        case 4:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormLunchRequestActivity.this, R.color.colorGradien5));
+                                                            break;
+                                                        case 5:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormLunchRequestActivity.this, R.color.colorGradien6));
+                                                            break;
+                                                    }
+                                                }
+                                                public void onFinish() {
+                                                    i = -1;
+                                                    sendData();
+                                                }
+                                            }.start();
+
+                                        }
+                                    })
+                                    .show();
                         }
                     }
 
@@ -740,6 +852,10 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                                     malam = 0;
                                     tanggal = "";
                                     bagianPilihTV.setText("");
+                                    jumlahTV1.setText("0");
+                                    jumlahTV2.setText("0");
+                                    jumlahTV3.setText("0");
+                                    jumlahTV4.setText("0");
                                     onBackPressed();
                                 }
                             })
@@ -770,21 +886,33 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
-                                Toast.makeText(FormLunchRequestActivity.this, "Terkirim", Toast.LENGTH_SHORT).show();
-//                                pDialog.dismiss();
-//                                successPart.setVisibility(View.VISIBLE);
-//                                formPart.setVisibility(View.GONE);
+                                pDialog.dismiss();
+                                successPart.setVisibility(View.VISIBLE);
+                                formPart.setVisibility(View.GONE);
+                                siang1 = 0;
+                                siang2 = 0;
+                                sore = 0;
+                                malam = 0;
+                                tanggal = "";
+                                bagianPilihTV.setText("");
+                                jumlahTV1.setText("0");
+                                jumlahTV2.setText("0");
+                                jumlahTV3.setText("0");
+                                jumlahTV4.setText("0");
                             } else if(status.equals("Available")){
-                                Toast.makeText(FormLunchRequestActivity.this, "Sudah tersedia", Toast.LENGTH_SHORT).show();
-
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Tersimpan")
+                                        .setContentText("Terjadi kesalahan saat mengirim data")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else {
-                                Toast.makeText(FormLunchRequestActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
-//                                successPart.setVisibility(View.GONE);
-//                                formPart.setVisibility(View.VISIBLE);
-//                                pDialog.setTitleText("Gagal Tersimpan")
-//                                        .setContentText("Terjadi kesalahan saat mengirim data")
-//                                        .setConfirmText("    OK    ")
-//                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Tersimpan")
+                                        .setContentText("Terjadi kesalahan saat mengirim data")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
                             }
 
                         } catch (JSONException e) {
@@ -798,8 +926,8 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-//                        successPart.setVisibility(View.GONE);
-//                        formPart.setVisibility(View.VISIBLE);
+                        successPart.setVisibility(View.GONE);
+                        formPart.setVisibility(View.VISIBLE);
                         connectionFailed();
                     }
                 }
@@ -815,6 +943,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 params.put("siang_s", String.valueOf(siang2));
                 params.put("sore", String.valueOf(sore));
                 params.put("malam", String.valueOf(malam));
+                params.put("requester", sharedPrefManager.getSpNik());
 
                 return params;
             }

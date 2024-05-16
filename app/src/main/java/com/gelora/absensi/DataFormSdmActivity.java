@@ -36,7 +36,7 @@ import java.util.Map;
 
 public class DataFormSdmActivity extends AppCompatActivity {
 
-    LinearLayout addBTN, backBTN, loadingDataPart, noDataPart, countWaitingBTN;
+    LinearLayout addBTN, backBTN, loadingDataPart, noDataPart, countWaitingBTN, actionBar;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     TextView countWaitingTV;
@@ -54,6 +54,7 @@ public class DataFormSdmActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         addBTN = findViewById(R.id.add_btn);
+        actionBar = findViewById(R.id.action_bar);
 
         loadingDataPart = findViewById(R.id.loading_data_part);
         noDataPart = findViewById(R.id.no_data_part);
@@ -81,6 +82,12 @@ public class DataFormSdmActivity extends AppCompatActivity {
                         getData();
                     }
                 }, 800);
+            }
+        });
+
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
             }
         });
 

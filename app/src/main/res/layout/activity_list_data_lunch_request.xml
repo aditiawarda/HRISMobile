@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DataFormSdmActivity">
+    tools:context=".ListDataLunchRequestActivity">
 
     <RelativeLayout
         android:background="@color/white"
@@ -240,7 +241,7 @@
                                 android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:text="DATA FORM SDM"
+                                android:text="PERMOHONAN MAKAN KARYAWAN"
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
