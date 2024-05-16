@@ -59,9 +59,9 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#9570f0"));
             myViewHolder.point3.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("4")){
-            if(dataFormSDM.getSub_keterangan().equals("1")){
+            if(String.valueOf(dataFormSDM.getSub_keterangan()).equals("1")){
                 myViewHolder.keteranganTV.setText("PENSIUN");
-            } else if(dataFormSDM.getSub_keterangan().equals("2")){
+            } else if(String.valueOf(dataFormSDM.getSub_keterangan()).equals("2")){
                 myViewHolder.keteranganTV.setText("PHK");
             } else {
                 myViewHolder.keteranganTV.setText("PENSIUN/PHK");
@@ -70,9 +70,9 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#e85588"));
             myViewHolder.point4.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("5")){
-            if(dataFormSDM.getSub_keterangan().equals("1")){
+            if(String.valueOf(dataFormSDM.getSub_keterangan()).equals("1")){
                 myViewHolder.keteranganTV.setText("PROMOSI");
-            } else if(dataFormSDM.getSub_keterangan().equals("2")){
+            } else if(String.valueOf(dataFormSDM.getSub_keterangan()).equals("2")){
                 myViewHolder.keteranganTV.setText("MUTASI");
             } else {
                 myViewHolder.keteranganTV.setText("PROMOSI/MUTASI");

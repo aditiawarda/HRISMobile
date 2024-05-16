@@ -422,7 +422,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuMakanLemburBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, FormLunchRequestActivity.class);
                 startActivity(intent);
             }
         });
@@ -430,7 +430,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuMakanLembur2BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, FormLunchRequestActivity.class);
                 startActivity(intent);
             }
         });
@@ -438,7 +438,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuMakanLembur3BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, FormLunchRequestActivity.class);
                 startActivity(intent);
             }
         });

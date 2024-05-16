@@ -26,10 +26,8 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -37,7 +35,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterExitClearanceIn;
 import com.gelora.absensi.adapter.AdapterExitClearanceOut;
@@ -58,6 +55,7 @@ import java.util.Map;
 public class ExitClearanceActivity extends AppCompatActivity {
 
     SharedPrefManager sharedPrefManager;
+    SharedPrefAbsen sharedPrefAbsen;
     LinearLayout startAttantionPart, countNotificationInPart, backBTN, mainPart, actionBar, addBTN, dataInBTN, dataOutBTN, optionPart, dataMasukPart, dataKeluarPart, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2;
     SwipeRefreshLayout refreshLayout;
     TextView countNotificationInTV;
@@ -78,6 +76,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_exit_clearance);
 
         sharedPrefManager = new SharedPrefManager(this);
+        sharedPrefAbsen = new SharedPrefAbsen(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         countNotificationInPart = findViewById(R.id.count_notification_in);
@@ -325,7 +324,15 @@ public class ExitClearanceActivity extends AppCompatActivity {
         @SuppressLint("SetTextI18n")
         @Override
         public void onReceive(Context context, Intent intent) {
-            bottomSheet.dismissSheet();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                }
+            }, 300);
+
         }
     };
 

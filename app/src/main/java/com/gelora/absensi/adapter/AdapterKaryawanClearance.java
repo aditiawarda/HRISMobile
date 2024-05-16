@@ -3,6 +3,7 @@ package com.gelora.absensi.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,29 +49,29 @@ public class AdapterKaryawanClearance extends RecyclerView.Adapter<AdapterKaryaw
         myViewHolder.karyawanNik.setText(karyawanClearance.getNIK());
         myViewHolder.karyawanDesc.setText(karyawanClearance.getJabatan()+" | "+karyawanClearance.getBagian()+" | "+karyawanClearance.getDepartemen());
 
-        if (sharedPrefAbsen.getSpIdKaryawanPengganti().equals(karyawanClearance.getNIK())) {
-            myViewHolder.markStatus.setVisibility(View.VISIBLE);
-            myViewHolder.parentPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_option_choice));
-        } else {
-            myViewHolder.markStatus.setVisibility(View.GONE);
-            myViewHolder.parentPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_option));
-        }
-
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
-                notifyDataSetChanged();
+                myViewHolder.markStatus.setVisibility(View.VISIBLE);
+                myViewHolder.parentPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_option_choice));
+
                 Intent intent_broad = new Intent("karyawan_broad");
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent_broad);
 
-                Intent intent = new Intent(mContext, FormExitClearanceActivity.class);
-                intent.putExtra("nik", karyawanClearance.getNIK());
-                intent.putExtra("nama", karyawanClearance.getNama());
-                intent.putExtra("id_bagian", karyawanClearance.getId_bagian());
-                intent.putExtra("id_dept", karyawanClearance.getId_departemen());
-                intent.putExtra("id_jabatan", karyawanClearance.getId_jabatan());
-                mContext.startActivity(intent);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(mContext, FormExitClearanceActivity.class);
+                        intent.putExtra("nik", karyawanClearance.getNIK());
+                        intent.putExtra("nama", karyawanClearance.getNama());
+                        intent.putExtra("id_bagian", karyawanClearance.getId_bagian());
+                        intent.putExtra("id_dept", karyawanClearance.getId_departemen());
+                        intent.putExtra("id_jabatan", karyawanClearance.getId_jabatan());
+                        mContext.startActivity(intent);
+                    }
+                }, 600);
+
             }
 
         });

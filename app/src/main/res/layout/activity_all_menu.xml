@@ -1144,7 +1144,7 @@
                                                 android:ellipsize="end"
                                                 android:maxLines="2"
                                                 android:gravity="center"
-                                                android:text="Makan Lembur"
+                                                android:text="Lunch Request"
                                                 android:textColor="#515151"
                                                 android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -1232,7 +1232,7 @@
                                                 android:ellipsize="end"
                                                 android:maxLines="2"
                                                 android:gravity="center"
-                                                android:text="Makan Lembur"
+                                                android:text="Lunch Request"
                                                 android:textColor="#515151"
                                                 android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -1282,7 +1282,7 @@
                                                 android:ellipsize="end"
                                                 android:maxLines="2"
                                                 android:gravity="center"
-                                                android:text="Makan Lembur"
+                                                android:text="Lunch Request"
                                                 android:textColor="#515151"
                                                 android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -1322,7 +1322,7 @@
                         android:layout_marginTop="-2dp"
                         android:layout_marginRight="-2dp"
                         android:layout_marginLeft="-2dp"
-                        android:background="@drawable/shape_bar_profile_notify"
+                        android:background="@drawable/shape_bar_chat"
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
                         tools:ignore="UselessParent">

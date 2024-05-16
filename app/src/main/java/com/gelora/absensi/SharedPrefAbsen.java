@@ -61,8 +61,9 @@ public class SharedPrefAbsen {
     public static final String SP_PRODUCT_ACTIVE = "spProductActive";
     public static final String SP_REPORT_CATEGORY_ACTIVE = "spReportCategoryActive";
     public static final String SP_NO_SJ = "spNoSJ";
-    public static final String SP_SALES_ACTIVE= "spSalesActive";
-    public static final String SP_NIK_SALES_ACTIVE= "spNikSalesActive";
+    public static final String SP_SALES_ACTIVE = "spSalesActive";
+    public static final String SP_NIK_SALES_ACTIVE = "spNikSalesActive";
+    public static final String SP_BAGIAN_RL = "spBagianRL";
 
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
@@ -310,6 +311,10 @@ public class SharedPrefAbsen {
 
     public String getSpNikSalesActive(){
         return sp.getString(SP_NIK_SALES_ACTIVE, "");
+    }
+
+    public String getSpBagianRl(){
+        return sp.getString(SP_BAGIAN_RL, "");
     }
 
 }

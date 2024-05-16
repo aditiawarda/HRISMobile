@@ -25,7 +25,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 import com.squareup.picasso.MemoryPolicy;
