@@ -906,6 +906,13 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                                         .setContentText("Permohonan makan karyawan pada tanggal yang dipilih telah diajukan sebelumnya")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            } else if(status.equals("Time Out")){
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Perhatian")
+                                        .setContentText("Permohonan makan karyawan telah ditutup untuk hari ini")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else {
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);

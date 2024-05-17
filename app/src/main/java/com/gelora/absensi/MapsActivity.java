@@ -160,7 +160,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "2.4.4";
+    String appVersion = "2.4.5";
     private StatusBarColorManager mStatusBarColorManager;
 
     private RecyclerView dataAbsensiRV;
