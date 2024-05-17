@@ -909,8 +909,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                             } else if(status.equals("Time Out")){
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
+                                String time_close = data.getString("time_close");
                                 pDialog.setTitleText("Perhatian")
-                                        .setContentText("Permohonan makan karyawan telah ditutup untuk hari ini")
+                                        .setContentText("Permohonan makan karyawan telah ditutup pada pukul "+time_close)
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else {
