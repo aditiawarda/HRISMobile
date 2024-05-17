@@ -5,14 +5,14 @@ apply plugin: 'com.google.firebase.crashlytics'
 android {
     namespace = "com.gelora.absensi"
     compileSdkVersion 34
-    buildToolsVersion "33.0.1"
+    buildToolsVersion "34.0.0"
 
     defaultConfig {
         applicationId "com.gelora.absensi"
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 143
-        versionName "2.4.3"
+        versionCode 144
+        versionName "2.4.4"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -45,34 +45,35 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.gms:play-services-maps:18.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.material:material:1.12.0'
     implementation 'com.google.ar.sceneform:sceneform-base:1.17.1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'androidx.activity:activity:1.8.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'com.android.volley:volley:1.2.1'
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
     implementation 'com.flipboard:bottomsheet-core:1.5.3'
     implementation 'androidx.recyclerview:recyclerview:1.3.2'
-    implementation 'com.google.code.gson:gson:2.10'
+    implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'com.pnikosis:materialish-progress:1.7'
-    implementation 'com.google.android.gms:play-services-location:21.0.1' //In Check Update
+    implementation 'com.google.android.gms:play-services-location:21.2.0' //In Check Update
     implementation 'com.takisoft.datetimepicker:datetimepicker:1.0.3'
     implementation 'com.github.shasin89:NotificationBanner:1.1.5'
     implementation 'com.github.Mahfa:DayNightSwitch:1.5'
-    implementation platform('com.google.firebase:firebase-bom:29.2.0')
+    implementation platform('com.google.firebase:firebase-bom:33.0.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation "androidx.core:core-ktx:1.9.0" //In Check Update
+    implementation "androidx.core:core-ktx:1.13.1" //In Check Update
     implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
     implementation "com.karumi:dexter:5.0.0"
     implementation 'net.gotev:uploadservice:2.1'
-    implementation 'com.github.yalantis:ucrop:2.2.2'
+    implementation 'com.github.yalantis:ucrop:2.2.9'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'de.hdodenhof:circleimageview:3.1.0'

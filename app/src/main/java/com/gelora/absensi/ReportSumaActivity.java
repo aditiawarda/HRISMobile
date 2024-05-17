@@ -2659,7 +2659,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onSuccess(Location location) {
                 // GPS location can be null if GPS is switched off
                 if (location != null) {
-                    Log.e("TAG", "GPS is on" + String.valueOf(location));
+                    Log.d("TAG", "GPS is on " + String.valueOf(location));
                     salesLat = String.valueOf(location.getLatitude());
                     salesLong = String.valueOf(location.getLongitude());
 

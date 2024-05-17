@@ -1202,7 +1202,7 @@ public class FragmentHome extends Fragment {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
+                        Log.d("PaRSE JSON", response + "");
                         JSONArray data = null;
                         try {
                             data = response.getJSONArray("weather");
@@ -1708,7 +1708,7 @@ public class FragmentHome extends Fragment {
                         @SuppressLint("SetTextI18n")
                         @Override
                         public void onResponse(JSONObject response) {
-                            Log.e("PaRSE JSON", response + "");
+                            Log.d("PaRSE JSON", response + "");
                             try {
                                 String bagian = response.getString("bagian");
                                 String nama = response.getString("nama");
@@ -1763,7 +1763,7 @@ public class FragmentHome extends Fragment {
                         @SuppressLint("SetTextI18n")
                         @Override
                         public void onResponse(JSONObject response) {
-                            Log.e("PaRSE JSON", response + "");
+                            Log.d("PaRSE JSON", response + "");
                             try {
                                 String bagian = response.getString("bagian");
                                 String nama = response.getString("nama");

@@ -1,5 +1,6 @@
 package com.gelora.absensi.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -52,9 +54,12 @@ public class AdapterDokumentasiProject extends SliderViewAdapter<AdapterDokument
         return new SliderAdapterVH(inflate);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(AdapterDokumentasiProject.SliderAdapterVH viewHolder, final int position) {
         DataDokumentasiProject image = mSliderItems.get(position);
+
+        viewHolder.timeUploadTV.setText("Update : "+image.getCreatedAt()+" WIB");
 
         Glide.with(viewHolder.itemView)
                 .load(image.getImageUrl())
@@ -80,11 +85,13 @@ public class AdapterDokumentasiProject extends SliderViewAdapter<AdapterDokument
         View itemView;
         private PhotoView image;
         LinearLayout deleteBTN;
+        TextView timeUploadTV;
 
         public SliderAdapterVH(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image_dokumentasi);
             deleteBTN = itemView.findViewById(R.id.delete_image_btn);
+            timeUploadTV = itemView.findViewById(R.id.time_upload);
             this.itemView = itemView;
         }
     }

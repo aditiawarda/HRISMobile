@@ -160,7 +160,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "2.4.3";
+    String appVersion = "2.4.4";
     private StatusBarColorManager mStatusBarColorManager;
 
     private RecyclerView dataAbsensiRV;
@@ -555,7 +555,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onSuccess(Location location) {
                 // GPS location can be null if GPS is switched off
                 if (location != null) {
-                    Log.e("TAG", "GPS is on" + String.valueOf(location));
+                    Log.d("TAG", "GPS is on " + String.valueOf(location));
                     if(mMap != null){
                         mMap.setMyLocationEnabled(true);
                         mMap.getUiSettings().setMyLocationButtonEnabled(false);
@@ -591,7 +591,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
         if (location != null) {
-            Log.e("TAG", "GPS is on" + String.valueOf(location));
+            Log.d("TAG", "GPS is on " + String.valueOf(location));
             userLat = location.getLatitude();
             userLong = location.getLongitude();
 
@@ -642,7 +642,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //    @Override
         //    public void onSuccess(Location location) {
         //        if (location != null) {
-        //            Log.e("TAG", "GPS is on" + String.valueOf(location));
+        //            Log.e("TAG", "GPS is on " + String.valueOf(location));
         //            mMap.setMyLocationEnabled(true);
         //            mMap.getUiSettings().setMyLocationButtonEnabled(false);
         //            float zoomLevel = 18.0f; //This goes up to 21

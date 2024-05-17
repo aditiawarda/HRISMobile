@@ -4637,43 +4637,48 @@ public class FormFingerscanActivity extends AppCompatActivity {
         timepicker = findViewById(R.id.timepicker);
         closeBTN = findViewById(R.id.close_btn);
         okBTN = findViewById(R.id.ok_btn);
-        timepicker.setIs24HourView(true);
-        timepicker.isInEditMode();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            int h = Integer.parseInt(getTimeH());
-            int m = Integer.parseInt(getTimeM());
-            timepicker.setHour(h);
-            timepicker.setMinute(m);
+        try {
+            timepicker.setIs24HourView(true);
+            timepicker.isInEditMode();
 
-            closeBTN.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    bottomSheet.dismissSheet();
-                }
-            });
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                int h = Integer.parseInt(getTimeH());
+                int m = Integer.parseInt(getTimeM());
+                timepicker.setHour(h);
+                timepicker.setMinute(m);
 
-            okBTN.setOnClickListener(new View.OnClickListener() {
-                @SuppressLint("SetTextI18n")
-                @Override
-                public void onClick(View v) {
-                    if(String.valueOf(timepicker.getHour()).length()==1){
-                        if(String.valueOf(timepicker.getMinute()).length()==1){
-                            checkJam("0"+String.valueOf(timepicker.getHour())+":0"+String.valueOf(timepicker.getMinute())+":00");
-                        } else {
-                            checkJam("0"+String.valueOf(timepicker.getHour())+":"+String.valueOf(timepicker.getMinute())+":00");
-                        }
-                    } else {
-                        if(String.valueOf(timepicker.getMinute()).length()==1){
-                            checkJam(String.valueOf(timepicker.getHour())+":0"+String.valueOf(timepicker.getMinute())+":00");
-                        } else {
-                            checkJam(String.valueOf(timepicker.getHour())+":"+String.valueOf(timepicker.getMinute())+":00");
-                        }
+                closeBTN.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        bottomSheet.dismissSheet();
                     }
-                    bottomSheet.dismissSheet();
-                }
-            });
+                });
 
+                okBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onClick(View v) {
+                        if(String.valueOf(timepicker.getHour()).length()==1){
+                            if(String.valueOf(timepicker.getMinute()).length()==1){
+                                checkJam("0"+String.valueOf(timepicker.getHour())+":0"+String.valueOf(timepicker.getMinute())+":00");
+                            } else {
+                                checkJam("0"+String.valueOf(timepicker.getHour())+":"+String.valueOf(timepicker.getMinute())+":00");
+                            }
+                        } else {
+                            if(String.valueOf(timepicker.getMinute()).length()==1){
+                                checkJam(String.valueOf(timepicker.getHour())+":0"+String.valueOf(timepicker.getMinute())+":00");
+                            } else {
+                                checkJam(String.valueOf(timepicker.getHour())+":"+String.valueOf(timepicker.getMinute())+":00");
+                            }
+                        }
+                        bottomSheet.dismissSheet();
+                    }
+                });
+
+            }
+        } catch (NullPointerException e){
+            Log.e("Error", e.toString());
         }
 
     }

@@ -10,7 +10,50 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,ImageContrastCheck,ImageContrastCheck" />
+
+    <LinearLayout
+        android:gravity="top|left"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="RtlHardcoded">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="25dp"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:background="@drawable/shape_date_doc_project"
+            tools:ignore="UselessParent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center"
+                android:paddingLeft="20dp"
+                android:orientation="vertical"
+                tools:ignore="RtlSymmetry">
+
+                <TextView
+                    android:id="@+id/time_upload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Update : 00/00/00 00:00"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
+                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck,TextContrastCheck" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:gravity="top|right"

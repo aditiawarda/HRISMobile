@@ -24,6 +24,7 @@
     <color name="warning_stroke_color">#F8BB86</color>
     <color name="text_color">#616161</color>
     <color name="default_inactive">#78909c</color>
+    <color name="image_crop">#BCBCBC</color>
     <color name="color1">#FF541E</color>
     <color name="color2">#D32F2F</color>
     <color name="color3">#7141E4</color>

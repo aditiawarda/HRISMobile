@@ -422,7 +422,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuMakanLemburBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ListDataLunchRequestActivity.class);
                 startActivity(intent);
             }
         });
@@ -430,7 +430,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuMakanLembur2BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ListDataLunchRequestActivity.class);
                 startActivity(intent);
             }
         });
@@ -438,7 +438,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuMakanLembur3BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ListDataLunchRequestActivity.class);
                 startActivity(intent);
             }
         });
@@ -559,6 +559,12 @@ public class AllMenuActivity extends AppCompatActivity {
                         reportSumaPart.setVisibility(View.GONE);
                     }
                     reportSumaPart2.setVisibility(View.GONE);
+
+                    if(sharedPrefManager.getSpNik().equals("3186150321") || sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("57") || sharedPrefManager.getSpIdDept().equals("81")){
+                        makanLemburPart3.setVisibility(View.VISIBLE);
+                    } else {
+                        makanLemburPart3.setVisibility(View.GONE);
+                    }
 
                     newsPartSub.setVisibility(View.VISIBLE);
                     calendarPartSub.setVisibility(View.VISIBLE);

@@ -571,14 +571,14 @@ public class FragmentProfile extends Fragment {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
+                        Log.d("PaRSE JSON", response + "");
                         try {
                             String status = response.getString("status");
                             String version = response.getString("version");
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "2.4.3"; //harus disesuaikan
+                                String currentVersion = "2.4.4"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateAppBTN.setVisibility(View.VISIBLE);
                                     updateAppBTN.setOnClickListener(new View.OnClickListener() {
@@ -748,7 +748,7 @@ public class FragmentProfile extends Fragment {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(mActivity.getContentResolver(), uri);
                         String file_directori = getRealPathFromURIPath(uri, mActivity);
                         String a = "File Directory : " + file_directori + " URI: " + String.valueOf(uri);
-                        Log.e("PaRSE JSON", a);
+                        Log.d("PaRSE JSON", a);
                         uploadMultipart();
                     } else if(extension.equals(".png")||extension.equals(".PNG")){
                         String pngImagePath = FilePathimage.getPath(getContext(), uri);
@@ -795,7 +795,7 @@ public class FragmentProfile extends Fragment {
                         .setMaxRetries(1)
                         .startUpload();
             } catch (Exception exc) {
-                Log.e("PaRSE JSON", "Oke");
+                Log.e("Error : ", exc.toString());
             }
         }
 
@@ -1005,7 +1005,7 @@ public class FragmentProfile extends Fragment {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(mActivity.getContentResolver(), uri);
                     String file_directori = getRealPathFromURIPath(uri, mActivity);
                     String a = "File Directory : " + file_directori + " URI: " + String.valueOf(uri);
-                    Log.e("PaRSE JSON", a);
+                    Log.d("PaRSE JSON", a);
                     uploadMultipart();
                 } catch (IOException e) {
                     throw new RuntimeException(e);

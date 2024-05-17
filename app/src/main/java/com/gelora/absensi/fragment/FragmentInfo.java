@@ -1087,7 +1087,7 @@ public class FragmentInfo extends Fragment {
                         @SuppressLint("SetTextI18n")
                         @Override
                         public void onResponse(JSONObject response) {
-                            Log.e("PaRSE JSON", response + "");
+                            Log.d("PaRSE JSON", response + "");
                             try {
                                 String bagian = response.getString("bagian");
                                 String nama = response.getString("nama");
@@ -1136,7 +1136,7 @@ public class FragmentInfo extends Fragment {
                         @SuppressLint("SetTextI18n")
                         @Override
                         public void onResponse(JSONObject response) {
-                            Log.e("PaRSE JSON", response + "");
+                            Log.d("PaRSE JSON", response + "");
                             try {
                                 String bagian = response.getString("bagian");
                                 String nama = response.getString("nama");

@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:id="@+id/expandable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="15dp"
+        android:background="@drawable/shape_bg_expand_absensi_field"
+        app:el_duration="300"
+        app:el_expanded="false">
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="DisableBaselineAlignment,VisualLintBounds">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".50"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Oleh :"
+                        android:textColor="#A1A1A1"
+                        android:textSize="10dp"
+                        android:ellipsize="end"
+                        android:lineSpacingExtra="3dp"
+                        android:maxLines="3"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                    <TextView
+                        android:id="@+id/requester_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Aditia Warda"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12dp"
+                        android:ellipsize="end"
+                        android:lineSpacingExtra="3dp"
+                        android:maxLines="3"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".50"
+                    android:gravity="right"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    tools:ignore="RtlHardcoded">
+
+                    <TextView
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Waktu Pengajuan"
+                        android:textColor="#A1A1A1"
+                        android:textSize="10dp"
+                        android:ellipsize="end"
+                        android:lineSpacingExtra="3dp"
+                        android:maxLines="3"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                    <TextView
+                        android:id="@+id/created_at_tv"
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="00/00/0000 00:00:00"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12dp"
+                        android:ellipsize="end"
+                        android:lineSpacingExtra="3dp"
+                        android:maxLines="3"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3.5dp"
+                    android:layout_weight=".25"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    tools:ignore="RtlHardcoded">
+
+                    <LinearLayout
+                        android:background="@drawable/shape_nilai_label"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="15dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SIANG K"
+                            android:textColor="#FFFFFF"
+                            android:textSize="9dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:background="@drawable/shape_nilai"
+                        android:paddingRight="8dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_marginTop="-12dp"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/jumlah_1_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#020202"
+                            android:textSize="12dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3.5dp"
+                    android:layout_marginRight="3.5dp"
+                    android:layout_weight=".25"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    tools:ignore="RtlHardcoded">
+
+                    <LinearLayout
+                        android:background="@drawable/shape_nilai_label"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="15dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SIANG S"
+                            android:textColor="#FFFFFF"
+                            android:textSize="9dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:background="@drawable/shape_nilai"
+                        android:paddingRight="8dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_marginTop="-12dp"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/jumlah_2_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#020202"
+                            android:textSize="12dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3.5dp"
+                    android:layout_marginRight="3.5dp"
+                    android:layout_weight=".25"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    tools:ignore="RtlHardcoded">
+
+                    <LinearLayout
+                        android:background="@drawable/shape_nilai_label"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="15dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SORE"
+                            android:textColor="#FFFFFF"
+                            android:textSize="9dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:background="@drawable/shape_nilai"
+                        android:paddingRight="8dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_marginTop="-12dp"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/jumlah_3_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#020202"
+                            android:textSize="12dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3.5dp"
+                    android:layout_weight=".25"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    tools:ignore="RtlHardcoded">
+
+                    <LinearLayout
+                        android:background="@drawable/shape_nilai_label"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="15dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MALAM"
+                            android:textColor="#FFFFFF"
+                            android:textSize="9dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:background="@drawable/shape_nilai"
+                        android:paddingRight="8dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_marginTop="-12dp"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/jumlah_4_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#020202"
+                            android:textSize="12dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </net.cachapa.expandablelayout.ExpandableLayout>
+
+    <LinearLayout
+        android:id="@+id/expand_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/shape_bg_expand_absensi"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-30dp"
+                android:layout_marginBottom="-15dp"
+                android:gravity="right"
+                android:orientation="vertical"
+                tools:ignore="RtlHardcoded,VisualLintBounds">
+
+                <LinearLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/shape_ornament_absensi_record" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="18dp"
+                android:paddingBottom="18dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|center"
+                    android:orientation="horizontal"
+                    tools:ignore="RtlHardcoded">
+
+                    <TextView
+                        android:id="@+id/tgl_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="left"
+                        android:maxLines="2"
+                        android:text="15 MEI 2024"
+                        android:textColor="#9E3C1D"
+                        android:textSize="12dp"
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/bagian_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:maxLines="1"
+                    android:paddingTop="1dp"
+                    android:singleLine="true"
+                    android:text="EDP"
+                    android:textColor="#9C9C9C"
+                    android:textSize="12dp"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="-17dp"
+                android:layout_marginBottom="-50dp"
+                android:background="@drawable/shape_ornament_absensi_record"
+                tools:ignore="VisualLintBounds" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
