@@ -921,7 +921,6 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
