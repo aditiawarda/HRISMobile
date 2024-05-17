@@ -88,7 +88,7 @@
                             </LinearLayout>
 
                             <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/list_form_sdm_rv"
+                                android:id="@+id/list_data_rv"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -136,7 +136,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Data pengisian form SDM tidak tersedia"
+                                    android:text="Data permohonan makan tidak tersedia"
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
                                     android:textSize="10dp"

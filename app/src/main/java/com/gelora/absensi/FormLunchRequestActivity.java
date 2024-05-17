@@ -902,8 +902,8 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                             } else if(status.equals("Available")){
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
-                                pDialog.setTitleText("Gagal Tersimpan")
-                                        .setContentText("Terjadi kesalahan saat mengirim data")
+                                pDialog.setTitleText("Perhatian")
+                                        .setContentText("Permohonan makan karyawan pada tanggal yang dipilih telah diajukan sebelumnya")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else {
