@@ -7,10 +7,10 @@ public class DataListLunchRequest {
     private String tanggal;
     private String bagian;
     private String nama_requester;
-    private String siang_k;
-    private String siang_s;
-    private String sore;
-    private String malam;
+    private String pusat_siang_k;
+    private String pusat_siang_s;
+    private String pusat_sore;
+    private String pusat_malam;
     private String created_at;
 
     public String getId() {
@@ -45,36 +45,36 @@ public class DataListLunchRequest {
         this.nama_requester = nama_requester;
     }
 
-    public String getSiang_k() {
-        return siang_k;
+    public String getPusat_siang_k() {
+        return pusat_siang_k;
     }
 
-    public void setSiang_k(String siang_k) {
-        this.siang_k = siang_k;
+    public void setPusat_siang_k(String pusat_siang_k) {
+        this.pusat_siang_k = pusat_siang_k;
     }
 
-    public String getSiang_s() {
-        return siang_s;
+    public String getPusat_siang_s() {
+        return pusat_siang_s;
     }
 
-    public void setSiang_s(String siang_s) {
-        this.siang_s = siang_s;
+    public void setPusat_siang_s(String pusat_siang_s) {
+        this.pusat_siang_s = pusat_siang_s;
     }
 
-    public String getSore() {
-        return sore;
+    public String getPusat_sore() {
+        return pusat_sore;
     }
 
-    public void setSore(String sore) {
-        this.sore = sore;
+    public void setPusat_sore(String pusat_sore) {
+        this.pusat_sore = pusat_sore;
     }
 
-    public String getMalam() {
-        return malam;
+    public String getPusat_malam() {
+        return pusat_malam;
     }
 
-    public void setMalam(String malam) {
-        this.malam = malam;
+    public void setPusat_malam(String pusat_malam) {
+        this.pusat_malam = pusat_malam;
     }
 
     public String getCreated_at() {

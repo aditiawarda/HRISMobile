@@ -575,7 +575,6 @@ public class FragmentHome extends Fragment {
             sdmPart.setVisibility(View.GONE);
         }
 
-        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://hrisgelora.co.id/api/data_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -845,9 +844,11 @@ public class FragmentHome extends Fragment {
                                         chatBTN.setVisibility(View.VISIBLE);
                                     } else {
                                         chatBTN.setVisibility(View.GONE);
+                                        countNotificationMessage.setVisibility(View.GONE);
                                     }
                                 } else {
                                     chatBTN.setVisibility(View.GONE);
+                                    countNotificationMessage.setVisibility(View.GONE);
                                     personalNotifBTN.setVisibility(View.INVISIBLE);
                                     countNotificationPersonalPart.setVisibility(View.INVISIBLE);
                                 }
@@ -860,7 +861,7 @@ public class FragmentHome extends Fragment {
                                 }
 
                                 getCurrentLocation(weather_key);
-                                getDataPengumumanNew();
+                                getDataPengumumanNew(chat_room);
                                 getCountPersonalNotif();
 
                                 if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1305291110"))){
@@ -975,8 +976,7 @@ public class FragmentHome extends Fragment {
 
     }
 
-    private void getDataPengumumanNew() {
-        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+    private void getDataPengumumanNew(String chat_room) {
         final String url = "https://hrisgelora.co.id/api/list_data_pengumuman_new";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -1007,7 +1007,9 @@ public class FragmentHome extends Fragment {
                                     listPengumumanNewRV.setAdapter(adapterListPengumunanNew);
                                 }
 
-                                getCountMessageYet();
+                                if(sharedPrefManager.getSpIdCor().equals("1") && chat_room.equals("1")){
+                                    getCountMessageYet();
+                                }
 
                             }
 
@@ -1448,7 +1450,6 @@ public class FragmentHome extends Fragment {
     }
 
     private void getCountMessageYet() {
-        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://hrisgelora.co.id/api/get_message_yet_read";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -1504,7 +1505,6 @@ public class FragmentHome extends Fragment {
                                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                                             vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
                                         } else {
-                                            //deprecated in API 26
                                             vibrate.vibrate(500);
                                         }
                                     } else {
@@ -1540,11 +1540,9 @@ public class FragmentHome extends Fragment {
                                                 e.printStackTrace();
                                             }
 
-                                            // Vibrate for 500 milliseconds
                                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                                                 vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
                                             } else {
-                                                //deprecated in API 26
                                                 vibrate.vibrate(500);
                                             }
                                         }

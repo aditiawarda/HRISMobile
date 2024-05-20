@@ -93,10 +93,10 @@ public class AdapterLunchRequest extends RecyclerView.Adapter<AdapterLunchReques
         myViewHolder.bagianTV.setText(dataList.getBagian());
         myViewHolder.requesterTV.setText(dataList.getNama_requester());
         myViewHolder.createdAtTV.setText(dataList.getCreated_at());
-        myViewHolder.jumlah1TV.setText(dataList.getSiang_k());
-        myViewHolder.jumlah2TV.setText(dataList.getSiang_s());
-        myViewHolder.jumlah3TV.setText(dataList.getSore());
-        myViewHolder.jumlah4TV.setText(dataList.getMalam());
+        myViewHolder.jumlah1TV.setText(dataList.getPusat_siang_k());
+        myViewHolder.jumlah2TV.setText(dataList.getPusat_siang_s());
+        myViewHolder.jumlah3TV.setText(dataList.getPusat_sore());
+        myViewHolder.jumlah4TV.setText(dataList.getPusat_malam());
 
         myViewHolder.expandBTN.setOnClickListener(new View.OnClickListener() {
             @Override

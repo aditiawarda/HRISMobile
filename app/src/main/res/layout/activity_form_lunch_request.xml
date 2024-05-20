@@ -88,7 +88,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:drawablePadding="5dp"
-                                                android:text="PERMOHONAN MAKAN"
+                                                android:text="AJUAN MAKAN"
                                                 android:textColor="@color/white"
                                                 android:textSize="13dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
@@ -253,328 +253,625 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="3dp"
-                                        android:layout_marginBottom="5dp"
-                                        android:text="SIANG SATPAM K :"
-                                        android:textColor="#696969"
-                                        android:textSize="12dp"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                        android:ellipsize="end"
+                                        android:gravity="left"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text="PUSAT"
+                                        android:textColor="#E37146"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:textSize="15dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="40dp"
-                                        android:layout_marginBottom="10dp"
-                                        android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal"
-                                        tools:ignore="RtlSymmetry">
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
 
-                                        <RelativeLayout
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="SIANG K :"
+                                            android:textColor="#696969"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <LinearLayout
                                             android:layout_width="match_parent"
-                                            android:layout_height="match_parent">
+                                            android:layout_height="40dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
 
-                                            <LinearLayout
-                                                android:id="@+id/remove_1_btn"
-                                                android:layout_alignParentLeft="true"
-                                                android:layout_width="40dp"
-                                                android:layout_height="match_parent"
-                                                android:background="@drawable/shape_btn"
-                                                android:gravity="center"
-                                                tools:ignore="RtlHardcoded">
-
-                                                <TextView
-                                                    android:layout_width="25dp"
-                                                    android:layout_height="25dp"
-                                                    android:background="@drawable/ic_baseline_remove"/>
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
+                                            <RelativeLayout
                                                 android:layout_width="match_parent"
-                                                android:layout_marginStart="50dp"
-                                                android:layout_marginEnd="50dp"
-                                                android:layout_height="match_parent"
-                                                android:orientation="vertical"
-                                                android:gravity="center|left"
-                                                tools:ignore="RelativeOverlap,RtlHardcoded">
+                                                android:layout_height="match_parent">
 
-                                                <EditText
-                                                    android:id="@+id/jumlah_1_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
+                                                <LinearLayout
+                                                    android:id="@+id/remove_1_btn"
+                                                    android:layout_alignParentLeft="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
                                                     android:gravity="center"
-                                                    android:inputType="number"
-                                                    android:text="0"
-                                                    android:textColor="#B15735"
-                                                    android:textSize="19dp"
-                                                    android:textStyle="bold"
-                                                    android:background="@null"
-                                                    tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
+                                                    tools:ignore="RtlHardcoded">
 
-                                            </LinearLayout>
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_remove"/>
 
-                                            <LinearLayout
-                                                android:id="@+id/add_1_btn"
-                                                android:layout_alignParentRight="true"
-                                                android:layout_width="40dp"
-                                                android:layout_height="match_parent"
-                                                android:background="@drawable/shape_btn"
-                                                android:gravity="center"
-                                                tools:ignore="RtlHardcoded">
+                                                </LinearLayout>
 
-                                                <TextView
-                                                    android:layout_width="25dp"
-                                                    android:layout_height="25dp"
-                                                    android:background="@drawable/ic_baseline_add"/>
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_marginStart="50dp"
+                                                    android:layout_marginEnd="50dp"
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RelativeOverlap,RtlHardcoded">
 
-                                            </LinearLayout>
+                                                    <EditText
+                                                        android:id="@+id/jumlah_1_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:gravity="center"
+                                                        android:inputType="number"
+                                                        android:text="0"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="19dp"
+                                                        android:textStyle="bold"
+                                                        android:background="@null"
+                                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
 
-                                        </RelativeLayout>
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:id="@+id/add_1_btn"
+                                                    android:layout_alignParentRight="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_add"/>
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="SIANG S :"
+                                            android:textColor="#696969"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+
+                                                <LinearLayout
+                                                    android:id="@+id/remove_2_btn"
+                                                    android:layout_alignParentLeft="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_remove"/>
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_marginStart="50dp"
+                                                    android:layout_marginEnd="50dp"
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                    <EditText
+                                                        android:id="@+id/jumlah_2_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:gravity="center"
+                                                        android:inputType="number"
+                                                        android:text="0"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="19dp"
+                                                        android:textStyle="bold"
+                                                        android:background="@null"
+                                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:id="@+id/add_2_btn"
+                                                    android:layout_alignParentRight="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_add"/>
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="SORE 17:00 :"
+                                            android:textColor="#696969"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+
+                                                <LinearLayout
+                                                    android:id="@+id/remove_3_btn"
+                                                    android:layout_alignParentLeft="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_remove"/>
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_marginStart="50dp"
+                                                    android:layout_marginEnd="50dp"
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                    <EditText
+                                                        android:id="@+id/jumlah_3_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:gravity="center"
+                                                        android:inputType="number"
+                                                        android:text="0"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="19dp"
+                                                        android:textStyle="bold"
+                                                        android:background="@null"
+                                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:id="@+id/add_3_btn"
+                                                    android:layout_alignParentRight="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_add"/>
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="MALAM 23:00 :"
+                                            android:textColor="#696969"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+
+                                                <LinearLayout
+                                                    android:id="@+id/remove_4_btn"
+                                                    android:layout_alignParentLeft="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_remove"/>
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_marginStart="50dp"
+                                                    android:layout_marginEnd="50dp"
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                    <EditText
+                                                        android:id="@+id/jumlah_4_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:gravity="center"
+                                                        android:inputType="number"
+                                                        android:text="0"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="19dp"
+                                                        android:textStyle="bold"
+                                                        android:background="@null"
+                                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:id="@+id/add_4_btn"
+                                                    android:layout_alignParentRight="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_add"/>
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:background="#D5D5D5"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="13dp"/>
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="3dp"
-                                        android:layout_marginBottom="5dp"
-                                        android:text="SIANG SATPAM S :"
-                                        android:textColor="#696969"
-                                        android:textSize="12dp"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                        android:ellipsize="end"
+                                        android:gravity="left"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text="GAPPRINT"
+                                        android:textColor="#E37146"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:textSize="15dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="40dp"
-                                        android:layout_marginBottom="10dp"
-                                        android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal"
-                                        tools:ignore="RtlSymmetry">
-
-                                        <RelativeLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent">
-
-                                            <LinearLayout
-                                                android:id="@+id/remove_2_btn"
-                                                android:layout_alignParentLeft="true"
-                                                android:layout_width="40dp"
-                                                android:layout_height="match_parent"
-                                                android:background="@drawable/shape_btn"
-                                                android:gravity="center"
-                                                tools:ignore="RtlHardcoded">
-
-                                                <TextView
-                                                    android:layout_width="25dp"
-                                                    android:layout_height="25dp"
-                                                    android:background="@drawable/ic_baseline_remove"/>
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_marginStart="50dp"
-                                                android:layout_marginEnd="50dp"
-                                                android:layout_height="match_parent"
-                                                android:orientation="vertical"
-                                                android:gravity="center|left"
-                                                tools:ignore="RelativeOverlap,RtlHardcoded">
-
-                                                <EditText
-                                                    android:id="@+id/jumlah_2_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:gravity="center"
-                                                    android:inputType="number"
-                                                    android:text="0"
-                                                    android:textColor="#B15735"
-                                                    android:textSize="19dp"
-                                                    android:textStyle="bold"
-                                                    android:background="@null"
-                                                    tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:id="@+id/add_2_btn"
-                                                android:layout_alignParentRight="true"
-                                                android:layout_width="40dp"
-                                                android:layout_height="match_parent"
-                                                android:background="@drawable/shape_btn"
-                                                android:gravity="center"
-                                                tools:ignore="RtlHardcoded">
-
-                                                <TextView
-                                                    android:layout_width="25dp"
-                                                    android:layout_height="25dp"
-                                                    android:background="@drawable/ic_baseline_add"/>
-
-                                            </LinearLayout>
-
-                                        </RelativeLayout>
-
-                                    </LinearLayout>
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="3dp"
-                                        android:layout_marginBottom="5dp"
-                                        android:text="SORE 17:00 FINIA :"
-                                        android:textColor="#696969"
-                                        android:textSize="12dp"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                        android:orientation="vertical">
 
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="40dp"
-                                        android:layout_marginBottom="10dp"
-                                        android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal"
-                                        tools:ignore="RtlSymmetry">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="SIANG :"
+                                            android:textColor="#696969"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                                        <RelativeLayout
+                                        <LinearLayout
                                             android:layout_width="match_parent"
-                                            android:layout_height="match_parent">
+                                            android:layout_height="40dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
 
-                                            <LinearLayout
-                                                android:id="@+id/remove_3_btn"
-                                                android:layout_alignParentLeft="true"
-                                                android:layout_width="40dp"
-                                                android:layout_height="match_parent"
-                                                android:background="@drawable/shape_btn"
-                                                android:gravity="center"
-                                                tools:ignore="RtlHardcoded">
-
-                                                <TextView
-                                                    android:layout_width="25dp"
-                                                    android:layout_height="25dp"
-                                                    android:background="@drawable/ic_baseline_remove"/>
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
+                                            <RelativeLayout
                                                 android:layout_width="match_parent"
-                                                android:layout_marginStart="50dp"
-                                                android:layout_marginEnd="50dp"
-                                                android:layout_height="match_parent"
-                                                android:orientation="vertical"
-                                                android:gravity="center|left"
-                                                tools:ignore="RelativeOverlap,RtlHardcoded">
+                                                android:layout_height="match_parent">
 
-                                                <EditText
-                                                    android:id="@+id/jumlah_3_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
+                                                <LinearLayout
+                                                    android:id="@+id/remove_5_btn"
+                                                    android:layout_alignParentLeft="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
                                                     android:gravity="center"
-                                                    android:inputType="number"
-                                                    android:text="0"
-                                                    android:textColor="#B15735"
-                                                    android:textSize="19dp"
-                                                    android:textStyle="bold"
-                                                    android:background="@null"
-                                                    tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
+                                                    tools:ignore="RtlHardcoded">
 
-                                            </LinearLayout>
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_remove"/>
 
-                                            <LinearLayout
-                                                android:id="@+id/add_3_btn"
-                                                android:layout_alignParentRight="true"
-                                                android:layout_width="40dp"
-                                                android:layout_height="match_parent"
-                                                android:background="@drawable/shape_btn"
-                                                android:gravity="center"
-                                                tools:ignore="RtlHardcoded">
+                                                </LinearLayout>
 
-                                                <TextView
-                                                    android:layout_width="25dp"
-                                                    android:layout_height="25dp"
-                                                    android:background="@drawable/ic_baseline_add"/>
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_marginStart="50dp"
+                                                    android:layout_marginEnd="50dp"
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RelativeOverlap,RtlHardcoded">
 
-                                            </LinearLayout>
+                                                    <EditText
+                                                        android:id="@+id/jumlah_5_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:gravity="center"
+                                                        android:inputType="number"
+                                                        android:text="0"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="19dp"
+                                                        android:textStyle="bold"
+                                                        android:background="@null"
+                                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
 
-                                        </RelativeLayout>
+                                                </LinearLayout>
 
-                                    </LinearLayout>
+                                                <LinearLayout
+                                                    android:id="@+id/add_5_btn"
+                                                    android:layout_alignParentRight="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded,TooManyViews">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="3dp"
-                                        android:layout_marginBottom="5dp"
-                                        android:text="MALAM 23:00 ONRIK :"
-                                        android:textColor="#696969"
-                                        android:textSize="12dp"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_add"/>
 
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="40dp"
-                                        android:layout_marginBottom="10dp"
-                                        android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal"
-                                        tools:ignore="RtlSymmetry">
+                                                </LinearLayout>
 
-                                        <RelativeLayout
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="SORE :"
+                                            android:textColor="#696969"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <LinearLayout
                                             android:layout_width="match_parent"
-                                            android:layout_height="match_parent">
+                                            android:layout_height="40dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
 
-                                            <LinearLayout
-                                                android:id="@+id/remove_4_btn"
-                                                android:layout_alignParentLeft="true"
-                                                android:layout_width="40dp"
-                                                android:layout_height="match_parent"
-                                                android:background="@drawable/shape_btn"
-                                                android:gravity="center"
-                                                tools:ignore="RtlHardcoded">
-
-                                                <TextView
-                                                    android:layout_width="25dp"
-                                                    android:layout_height="25dp"
-                                                    android:background="@drawable/ic_baseline_remove"/>
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
+                                            <RelativeLayout
                                                 android:layout_width="match_parent"
-                                                android:layout_marginStart="50dp"
-                                                android:layout_marginEnd="50dp"
-                                                android:layout_height="match_parent"
-                                                android:orientation="vertical"
-                                                android:gravity="center|left"
-                                                tools:ignore="RelativeOverlap,RtlHardcoded">
+                                                android:layout_height="match_parent">
 
-                                                <EditText
-                                                    android:id="@+id/jumlah_4_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
+                                                <LinearLayout
+                                                    android:id="@+id/remove_6_btn"
+                                                    android:layout_alignParentLeft="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
                                                     android:gravity="center"
-                                                    android:inputType="number"
-                                                    android:text="0"
-                                                    android:textColor="#B15735"
-                                                    android:textSize="19dp"
-                                                    android:textStyle="bold"
-                                                    android:background="@null"
-                                                    tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
+                                                    tools:ignore="RtlHardcoded">
 
-                                            </LinearLayout>
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_remove"/>
 
-                                            <LinearLayout
-                                                android:id="@+id/add_4_btn"
-                                                android:layout_alignParentRight="true"
-                                                android:layout_width="40dp"
-                                                android:layout_height="match_parent"
-                                                android:background="@drawable/shape_btn"
-                                                android:gravity="center"
-                                                tools:ignore="RtlHardcoded">
+                                                </LinearLayout>
 
-                                                <TextView
-                                                    android:layout_width="25dp"
-                                                    android:layout_height="25dp"
-                                                    android:background="@drawable/ic_baseline_add"/>
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_marginStart="50dp"
+                                                    android:layout_marginEnd="50dp"
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RelativeOverlap,RtlHardcoded">
 
-                                            </LinearLayout>
+                                                    <EditText
+                                                        android:id="@+id/jumlah_6_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:gravity="center"
+                                                        android:inputType="number"
+                                                        android:text="0"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="19dp"
+                                                        android:textStyle="bold"
+                                                        android:background="@null"
+                                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
 
-                                        </RelativeLayout>
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:id="@+id/add_6_btn"
+                                                    android:layout_alignParentRight="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_add"/>
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="MALAM :"
+                                            android:textColor="#696969"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+
+                                                <LinearLayout
+                                                    android:id="@+id/remove_7_btn"
+                                                    android:layout_alignParentLeft="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_remove"/>
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_marginStart="50dp"
+                                                    android:layout_marginEnd="50dp"
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                    <EditText
+                                                        android:id="@+id/jumlah_7_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:gravity="center"
+                                                        android:inputType="number"
+                                                        android:text="0"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="19dp"
+                                                        android:textStyle="bold"
+                                                        android:background="@null"
+                                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:id="@+id/add_7_btn"
+                                                    android:layout_alignParentRight="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_add"/>
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
@@ -585,7 +882,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="20dp"
-                                    android:layout_marginTop="15dp"
+                                    android:layout_marginTop="20dp"
                                     android:paddingTop="12dp"
                                     android:paddingBottom="12dp"
                                     android:background="@drawable/shape_btn"
@@ -644,7 +941,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="15dp"
-                                            android:text="Data permohonan makan karyawan yang anda ajukan telah terkirim."
+                                            android:text="Data ajuan makan karyawan yang anda ajukan telah terkirim."
                                             android:textAlignment="center"
                                             android:textColor="@color/white"
                                             android:textSize="13dp"
@@ -745,7 +1042,7 @@
                                 android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:text="FORM PERMOHONAN MAKAN"
+                                android:text="FORM AJUAN MAKAN"
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"

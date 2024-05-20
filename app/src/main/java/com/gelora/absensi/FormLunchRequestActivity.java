@@ -37,11 +37,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
-import com.gelora.absensi.adapter.AdapterUnitBagian2;
 import com.gelora.absensi.adapter.AdapterUnitBagianLunchRequest;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.BagianLunchRequest;
-import com.gelora.absensi.model.UnitBagian;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.takisoft.datetimepicker.DatePickerDialog;
@@ -56,7 +54,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class FormLunchRequestActivity extends AppCompatActivity {
 
@@ -83,7 +80,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    int siang1 = 0, siang2 = 0, sore = 0, malam = 0;
+    int pusat_siang1 = 0, pusat_siang2 = 0, pusat_sore = 0, pusat_malam = 0;
     String permohonanTerkirim = "0", tanggal = "", bagianRL = "";
     KAlertDialog pDialog;
     private int i = -1;
@@ -142,10 +139,10 @@ public class FormLunchRequestActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 bagianPilihTV.setText(bagianRL);
-                siang1 = 0;
-                siang2 = 0;
-                sore = 0;
-                malam = 0;
+                pusat_siang1 = 0;
+                pusat_siang2 = 0;
+                pusat_sore = 0;
+                pusat_malam = 0;
                 tanggal = "";
                 tanggalPilihTV.setText("");
                 jumlahTV1.setText("0");
@@ -213,11 +210,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() == 0) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
-                    jumlahTV1.clearFocus();
-                    jumlahTV1.setText("0");
-                    siang1 = 0;
+                    pusat_siang1 = 0;
+                } else {
+                    pusat_siang1 = Integer.parseInt(jumlahTV1.getText().toString());
                 }
             }
         });
@@ -234,11 +229,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() == 0) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
-                    jumlahTV2.clearFocus();
-                    jumlahTV2.setText("0");
-                    siang2 = 0;
+                    pusat_siang2 = 0;
+                } else {
+                    pusat_siang2 = Integer.parseInt(jumlahTV2.getText().toString());
                 }
             }
         });
@@ -255,11 +248,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() == 0) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
-                    jumlahTV3.clearFocus();
-                    jumlahTV3.setText("0");
-                    sore = 0;
+                    pusat_sore = 0;
+                } else {
+                    pusat_sore = Integer.parseInt(jumlahTV3.getText().toString());
                 }
             }
         });
@@ -276,11 +267,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() == 0) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
-                    jumlahTV4.clearFocus();
-                    jumlahTV4.setText("0");
-                    malam = 0;
+                    pusat_malam = 0;
+                } else {
+                    pusat_malam = Integer.parseInt(jumlahTV4.getText().toString());
                 }
             }
         });
@@ -310,14 +299,14 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV4.clearFocus();
                 if(jumlahTV1.getText().toString().isEmpty()){
                     jumlahTV1.setText(String.valueOf(0));
-                    siang1 = 0;
+                    pusat_siang1 = 0;
                 } else if(Integer.parseInt(jumlahTV1.getText().toString()) == 0){
                     jumlahTV1.setText(String.valueOf(0));
-                    siang1 = 0;
+                    pusat_siang1 = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV1.getText().toString()) - 1;
                     jumlahTV1.setText(String.valueOf(newValue));
-                    siang1 = newValue;
+                    pusat_siang1 = newValue;
                 }
             }
         });
@@ -333,11 +322,11 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV4.clearFocus();
                 if(jumlahTV1.getText().toString().isEmpty()){
                     jumlahTV1.setText(String.valueOf(0));
-                    siang1 = 0;
+                    pusat_siang1 = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV1.getText().toString()) + 1;
                     jumlahTV1.setText(String.valueOf(newValue));
-                    siang1 = newValue;
+                    pusat_siang1 = newValue;
                 }
             }
         });
@@ -353,14 +342,14 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV4.clearFocus();
                 if(jumlahTV2.getText().toString().isEmpty()){
                     jumlahTV2.setText(String.valueOf(0));
-                    siang2 = 0;
+                    pusat_siang2 = 0;
                 } else if(Integer.parseInt(jumlahTV2.getText().toString()) == 0){
                     jumlahTV2.setText(String.valueOf(0));
-                    siang2 = 0;
+                    pusat_siang2 = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV2.getText().toString()) - 1;
                     jumlahTV2.setText(String.valueOf(newValue));
-                    siang2 = newValue;
+                    pusat_siang2 = newValue;
                 }
             }
         });
@@ -376,11 +365,11 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV4.clearFocus();
                 if(jumlahTV2.getText().toString().isEmpty()){
                     jumlahTV2.setText(String.valueOf(0));
-                    siang2 = 0;
+                    pusat_siang2 = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV2.getText().toString()) + 1;
                     jumlahTV2.setText(String.valueOf(newValue));
-                    siang2 = newValue;
+                    pusat_siang2 = newValue;
                 }
             }
         });
@@ -396,14 +385,14 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV4.clearFocus();
                 if(jumlahTV3.getText().toString().isEmpty()){
                     jumlahTV3.setText(String.valueOf(0));
-                    sore = 0;
+                    pusat_sore = 0;
                 } else if(Integer.parseInt(jumlahTV3.getText().toString()) == 0){
                     jumlahTV3.setText(String.valueOf(0));
-                    sore = 0;
+                    pusat_sore = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV3.getText().toString()) - 1;
                     jumlahTV3.setText(String.valueOf(newValue));
-                    sore = newValue;
+                    pusat_sore = newValue;
                 }
             }
         });
@@ -419,11 +408,11 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV4.clearFocus();
                 if(jumlahTV3.getText().toString().isEmpty()){
                     jumlahTV3.setText(String.valueOf(0));
-                    sore = 0;
+                    pusat_sore = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV3.getText().toString()) + 1;
                     jumlahTV3.setText(String.valueOf(newValue));
-                    sore = newValue;
+                    pusat_sore = newValue;
                 }
             }
         });
@@ -439,14 +428,14 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV4.clearFocus();
                 if(jumlahTV4.getText().toString().isEmpty()){
                     jumlahTV4.setText(String.valueOf(0));
-                    malam = 0;
+                    pusat_malam = 0;
                 } else if(Integer.parseInt(jumlahTV4.getText().toString()) == 0){
                     jumlahTV4.setText(String.valueOf(0));
-                    malam = 0;
+                    pusat_malam = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV4.getText().toString()) - 1;
                     jumlahTV4.setText(String.valueOf(newValue));
-                    malam = newValue;
+                    pusat_malam = newValue;
                 }
             }
         });
@@ -462,11 +451,11 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV4.clearFocus();
                 if(jumlahTV4.getText().toString().isEmpty()){
                     jumlahTV4.setText(String.valueOf(0));
-                    malam = 0;
+                    pusat_malam = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV4.getText().toString()) + 1;
                     jumlahTV4.setText(String.valueOf(newValue));
-                    malam = newValue;
+                    pusat_malam = newValue;
                 }
             }
         });
@@ -481,15 +470,15 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
 
-                jumlahTV1.setText(String.valueOf(Integer.parseInt(jumlahTV1.getText().toString())));
-                jumlahTV2.setText(String.valueOf(Integer.parseInt(jumlahTV2.getText().toString())));
-                jumlahTV3.setText(String.valueOf(Integer.parseInt(jumlahTV3.getText().toString())));
-                jumlahTV4.setText(String.valueOf(Integer.parseInt(jumlahTV4.getText().toString())));
+                jumlahTV1.setText(String.valueOf(pusat_siang1));
+                jumlahTV2.setText(String.valueOf(pusat_siang2));
+                jumlahTV3.setText(String.valueOf(pusat_sore));
+                jumlahTV4.setText(String.valueOf(pusat_malam));
 
                 if(bagianPilihTV.getText().toString().isEmpty()){
                     new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Harap isi pilih bagian")
+                            .setContentText("Harap pilih bagian")
                             .setConfirmText("    OK    ")
                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                 @Override
@@ -502,7 +491,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                     if(tanggal.isEmpty()){
                         new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
-                                .setContentText("Harap isi pilih tanggal")
+                                .setContentText("Harap pilih tanggal")
                                 .setConfirmText("    OK    ")
                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override
@@ -512,7 +501,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                                 })
                                 .show();
                     } else {
-                        if(Integer.parseInt(jumlahTV1.getText().toString())==0 && Integer.parseInt(jumlahTV2.getText().toString())==0 && Integer.parseInt(jumlahTV3.getText().toString())==0 && Integer.parseInt(jumlahTV4.getText().toString())==0){
+                        if(pusat_siang1 ==0 && pusat_siang2 ==0 && pusat_sore ==0 && pusat_malam ==0){
                             new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.ERROR_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Harap isi jumlah permohonan")
@@ -823,7 +812,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (siang1!=0 || siang2!=0 || sore!=0 || malam!=0 || !bagianPilihTV.getText().toString().isEmpty() || !tanggal.isEmpty()){
+        if (pusat_siang1 !=0 || pusat_siang2 !=0 || pusat_sore !=0 || pusat_malam !=0 || !bagianPilihTV.getText().toString().isEmpty() || !tanggal.isEmpty()){
             if(bottomSheet.isSheetShowing()){
                 bottomSheet.dismissSheet();
             } else {
@@ -846,10 +835,10 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(KAlertDialog sDialog) {
                                     sDialog.dismiss();
-                                    siang1 = 0;
-                                    siang2 = 0;
-                                    sore = 0;
-                                    malam = 0;
+                                    pusat_siang1 = 0;
+                                    pusat_siang2 = 0;
+                                    pusat_sore = 0;
+                                    pusat_malam = 0;
                                     tanggal = "";
                                     bagianPilihTV.setText("");
                                     jumlahTV1.setText("0");
@@ -889,10 +878,10 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                                 pDialog.dismiss();
                                 successPart.setVisibility(View.VISIBLE);
                                 formPart.setVisibility(View.GONE);
-                                siang1 = 0;
-                                siang2 = 0;
-                                sore = 0;
-                                malam = 0;
+                                pusat_siang1 = 0;
+                                pusat_siang2 = 0;
+                                pusat_sore = 0;
+                                pusat_malam = 0;
                                 tanggal = "";
                                 bagianPilihTV.setText("");
                                 jumlahTV1.setText("0");
@@ -903,7 +892,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
                                 pDialog.setTitleText("Perhatian")
-                                        .setContentText("Permohonan makan karyawan pada tanggal yang dipilih telah diajukan sebelumnya")
+                                        .setContentText("Ajuan makan karyawan pada tanggal yang dipilih telah diajukan sebelumnya")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else if(status.equals("Time Out")){
@@ -911,7 +900,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                                 formPart.setVisibility(View.VISIBLE);
                                 String time_close = data.getString("time_close");
                                 pDialog.setTitleText("Perhatian")
-                                        .setContentText("Permohonan makan karyawan telah ditutup pada pukul "+time_close)
+                                        .setContentText("Pengajuan makan karyawan paling lambat H-1 untuk tanggal yang dipilih")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else {
@@ -946,10 +935,10 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("tanggal", tanggal);
                 params.put("bagian", bagianPilihTV.getText().toString());
-                params.put("siang_k", String.valueOf(siang1));
-                params.put("siang_s", String.valueOf(siang2));
-                params.put("sore", String.valueOf(sore));
-                params.put("malam", String.valueOf(malam));
+                params.put("pusat_siang_k", String.valueOf(pusat_siang1));
+                params.put("pusat_siang_s", String.valueOf(pusat_siang2));
+                params.put("pusat_sore", String.valueOf(pusat_sore));
+                params.put("pusat_malam", String.valueOf(pusat_malam));
                 params.put("requester", sharedPrefManager.getSpNik());
 
                 return params;
