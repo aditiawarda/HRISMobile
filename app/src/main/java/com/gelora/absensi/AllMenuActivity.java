@@ -560,7 +560,7 @@ public class AllMenuActivity extends AppCompatActivity {
                     }
                     reportSumaPart2.setVisibility(View.GONE);
 
-                    if(sharedPrefManager.getSpNik().equals("3186150321") || sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("57") || sharedPrefManager.getSpIdDept().equals("81")){
+                    if(sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("57") || sharedPrefManager.getSpIdDept().equals("81")){
                         makanLemburPart3.setVisibility(View.VISIBLE);
                     } else {
                         makanLemburPart3.setVisibility(View.GONE);
