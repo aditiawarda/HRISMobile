@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -149,7 +150,7 @@ public class RecordAbsensiActivity extends AppCompatActivity {
                                     bulan = "10";
                                     bulanName = "Oktober";
                                 } else {
-                                    bulan = String.valueOf(month);
+                                    bulan = String.valueOf(month+1);
                                     if (month==10){
                                         bulanName = "November";
                                     } else if(month==11){
