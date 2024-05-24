@@ -97,6 +97,9 @@ public class AdapterLunchRequest extends RecyclerView.Adapter<AdapterLunchReques
         myViewHolder.jumlah2TV.setText(dataList.getPusat_siang_s());
         myViewHolder.jumlah3TV.setText(dataList.getPusat_sore());
         myViewHolder.jumlah4TV.setText(dataList.getPusat_malam());
+        myViewHolder.jumlah5TV.setText(dataList.getGapprint_siang());
+        myViewHolder.jumlah6TV.setText(dataList.getGapprint_sore());
+        myViewHolder.jumlah7TV.setText(dataList.getGapprint_malam());
 
         myViewHolder.expandBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +122,7 @@ public class AdapterLunchRequest extends RecyclerView.Adapter<AdapterLunchReques
     public class MyViewHolder extends RecyclerView.ViewHolder {
         LinearLayout expandBTN;
         ExpandableLayout expandableLayout;
-        TextView tglTV, bagianTV, requesterTV, createdAtTV, jumlah1TV, jumlah2TV, jumlah3TV, jumlah4TV;
+        TextView tglTV, bagianTV, requesterTV, createdAtTV, jumlah1TV, jumlah2TV, jumlah3TV, jumlah4TV, jumlah5TV, jumlah6TV, jumlah7TV;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             expandBTN = itemView.findViewById(R.id.expand_btn);
@@ -132,6 +135,9 @@ public class AdapterLunchRequest extends RecyclerView.Adapter<AdapterLunchReques
             jumlah2TV = itemView.findViewById(R.id.jumlah_2_tv);
             jumlah3TV = itemView.findViewById(R.id.jumlah_3_tv);
             jumlah4TV = itemView.findViewById(R.id.jumlah_4_tv);
+            jumlah5TV = itemView.findViewById(R.id.jumlah_5_tv);
+            jumlah6TV = itemView.findViewById(R.id.jumlah_6_tv);
+            jumlah7TV = itemView.findViewById(R.id.jumlah_7_tv);
         }
     }
 

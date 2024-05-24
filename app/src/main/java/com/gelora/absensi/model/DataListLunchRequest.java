@@ -11,6 +11,9 @@ public class DataListLunchRequest {
     private String pusat_siang_s;
     private String pusat_sore;
     private String pusat_malam;
+    private String gapprint_siang;
+    private String gapprint_sore;
+    private String gapprint_malam;
     private String created_at;
 
     public String getId() {
@@ -85,4 +88,27 @@ public class DataListLunchRequest {
         this.created_at = created_at;
     }
 
+    public String getGapprint_siang() {
+        return gapprint_siang;
+    }
+
+    public void setGapprint_siang(String gapprint_siang) {
+        this.gapprint_siang = gapprint_siang;
+    }
+
+    public String getGapprint_sore() {
+        return gapprint_sore;
+    }
+
+    public void setGapprint_sore(String gapprint_sore) {
+        this.gapprint_sore = gapprint_sore;
+    }
+
+    public String getGapprint_malam() {
+        return gapprint_malam;
+    }
+
+    public void setGapprint_malam(String gapprint_malam) {
+        this.gapprint_malam = gapprint_malam;
+    }
 }

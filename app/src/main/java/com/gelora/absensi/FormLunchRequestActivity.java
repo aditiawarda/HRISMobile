@@ -69,6 +69,15 @@ public class FormLunchRequestActivity extends AppCompatActivity {
     LinearLayout removeBTN4, addBTN4;
     EditText jumlahTV4;
 
+    LinearLayout removeBTN5, addBTN5;
+    EditText jumlahTV5;
+
+    LinearLayout removeBTN6, addBTN6;
+    EditText jumlahTV6;
+
+    LinearLayout removeBTN7, addBTN7;
+    EditText jumlahTV7;
+
     SwipeRefreshLayout refreshLayout;
     LinearLayout submitBTN, backBTN, bagianBTN, dateBTN, formPart, successPart, rebackBTN, actionBar;
     TextView bagianPilihTV, tanggalPilihTV;
@@ -81,6 +90,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     int pusat_siang1 = 0, pusat_siang2 = 0, pusat_sore = 0, pusat_malam = 0;
+    int gapprint_siang = 0, gapprint_sore = 0, gapprint_malam = 0;
     String permohonanTerkirim = "0", tanggal = "", bagianRL = "";
     KAlertDialog pDialog;
     private int i = -1;
@@ -109,6 +119,18 @@ public class FormLunchRequestActivity extends AppCompatActivity {
         removeBTN4 = findViewById(R.id.remove_4_btn);
         addBTN4 = findViewById(R.id.add_4_btn);
         jumlahTV4 = findViewById(R.id.jumlah_4_tv);
+
+        removeBTN5 = findViewById(R.id.remove_5_btn);
+        addBTN5 = findViewById(R.id.add_5_btn);
+        jumlahTV5 = findViewById(R.id.jumlah_5_tv);
+
+        removeBTN6 = findViewById(R.id.remove_6_btn);
+        addBTN6 = findViewById(R.id.add_6_btn);
+        jumlahTV6 = findViewById(R.id.jumlah_6_tv);
+
+        removeBTN7 = findViewById(R.id.remove_7_btn);
+        addBTN7 = findViewById(R.id.add_7_btn);
+        jumlahTV7 = findViewById(R.id.jumlah_7_tv);
 
         submitBTN = findViewById(R.id.submit_btn);
         backBTN = findViewById(R.id.back_btn);
@@ -143,12 +165,17 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 pusat_siang2 = 0;
                 pusat_sore = 0;
                 pusat_malam = 0;
+                gapprint_siang = 0;
+                gapprint_sore = 0;
+                gapprint_malam = 0;
                 tanggal = "";
                 tanggalPilihTV.setText("");
                 jumlahTV1.setText("0");
                 jumlahTV2.setText("0");
                 jumlahTV3.setText("0");
-                jumlahTV4.setText("0");
+                jumlahTV5.setText("0");
+                jumlahTV6.setText("0");
+                jumlahTV7.setText("0");
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -194,6 +221,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 choiceDate();
             }
         });
@@ -274,7 +304,64 @@ public class FormLunchRequestActivity extends AppCompatActivity {
             }
         });
 
-        jumlahTV4.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        jumlahTV5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No action needed
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // No action needed
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 0) {
+                    gapprint_siang = 0;
+                } else {
+                    gapprint_siang = Integer.parseInt(jumlahTV5.getText().toString());
+                }
+            }
+        });
+
+        jumlahTV6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No action needed
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // No action needed
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 0) {
+                    gapprint_sore = 0;
+                } else {
+                    gapprint_sore = Integer.parseInt(jumlahTV6.getText().toString());
+                }
+            }
+        });
+
+        jumlahTV7.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No action needed
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // No action needed
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 0) {
+                    gapprint_malam = 0;
+                } else {
+                    gapprint_malam = Integer.parseInt(jumlahTV7.getText().toString());
+                }
+            }
+        });
+
+        jumlahTV7.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -283,6 +370,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
 
                 return false;
             }
@@ -297,6 +387,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV1.getText().toString().isEmpty()){
                     jumlahTV1.setText(String.valueOf(0));
                     pusat_siang1 = 0;
@@ -320,6 +413,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV1.getText().toString().isEmpty()){
                     jumlahTV1.setText(String.valueOf(0));
                     pusat_siang1 = 0;
@@ -340,6 +436,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV2.getText().toString().isEmpty()){
                     jumlahTV2.setText(String.valueOf(0));
                     pusat_siang2 = 0;
@@ -363,6 +462,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV2.getText().toString().isEmpty()){
                     jumlahTV2.setText(String.valueOf(0));
                     pusat_siang2 = 0;
@@ -383,6 +485,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV3.getText().toString().isEmpty()){
                     jumlahTV3.setText(String.valueOf(0));
                     pusat_sore = 0;
@@ -406,6 +511,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV3.getText().toString().isEmpty()){
                     jumlahTV3.setText(String.valueOf(0));
                     pusat_sore = 0;
@@ -426,6 +534,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV4.getText().toString().isEmpty()){
                     jumlahTV4.setText(String.valueOf(0));
                     pusat_malam = 0;
@@ -449,6 +560,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV4.getText().toString().isEmpty()){
                     jumlahTV4.setText(String.valueOf(0));
                     pusat_malam = 0;
@@ -456,6 +570,153 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                     int newValue = Integer.parseInt(jumlahTV4.getText().toString()) + 1;
                     jumlahTV4.setText(String.valueOf(newValue));
                     pusat_malam = newValue;
+                }
+            }
+        });
+
+        removeBTN5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                jumlahTV1.clearFocus();
+                jumlahTV2.clearFocus();
+                jumlahTV3.clearFocus();
+                jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
+                if(jumlahTV5.getText().toString().isEmpty()){
+                    jumlahTV5.setText(String.valueOf(0));
+                    gapprint_siang = 0;
+                } else if(Integer.parseInt(jumlahTV5.getText().toString()) == 0){
+                    jumlahTV5.setText(String.valueOf(0));
+                    gapprint_siang = 0;
+                } else {
+                    int newValue = Integer.parseInt(jumlahTV5.getText().toString()) - 1;
+                    jumlahTV5.setText(String.valueOf(newValue));
+                    gapprint_siang = newValue;
+                }
+            }
+        });
+
+        addBTN5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                jumlahTV1.clearFocus();
+                jumlahTV2.clearFocus();
+                jumlahTV3.clearFocus();
+                jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
+                if(jumlahTV5.getText().toString().isEmpty()){
+                    jumlahTV5.setText(String.valueOf(0));
+                    gapprint_siang = 0;
+                } else {
+                    int newValue = Integer.parseInt(jumlahTV5.getText().toString()) + 1;
+                    jumlahTV5.setText(String.valueOf(newValue));
+                    gapprint_siang = newValue;
+                }
+            }
+        });
+
+        removeBTN6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                jumlahTV1.clearFocus();
+                jumlahTV2.clearFocus();
+                jumlahTV3.clearFocus();
+                jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
+                if(jumlahTV6.getText().toString().isEmpty()){
+                    jumlahTV6.setText(String.valueOf(0));
+                    gapprint_sore = 0;
+                } else if(Integer.parseInt(jumlahTV6.getText().toString()) == 0){
+                    jumlahTV6.setText(String.valueOf(0));
+                    gapprint_sore = 0;
+                } else {
+                    int newValue = Integer.parseInt(jumlahTV6.getText().toString()) - 1;
+                    jumlahTV6.setText(String.valueOf(newValue));
+                    gapprint_sore = newValue;
+                }
+            }
+        });
+
+        addBTN6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                jumlahTV1.clearFocus();
+                jumlahTV2.clearFocus();
+                jumlahTV3.clearFocus();
+                jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
+                if(jumlahTV6.getText().toString().isEmpty()){
+                    jumlahTV6.setText(String.valueOf(0));
+                    gapprint_sore = 0;
+                } else {
+                    int newValue = Integer.parseInt(jumlahTV6.getText().toString()) + 1;
+                    jumlahTV6.setText(String.valueOf(newValue));
+                    gapprint_sore = newValue;
+                }
+            }
+        });
+
+        removeBTN7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                jumlahTV1.clearFocus();
+                jumlahTV2.clearFocus();
+                jumlahTV3.clearFocus();
+                jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
+                if(jumlahTV7.getText().toString().isEmpty()){
+                    jumlahTV7.setText(String.valueOf(0));
+                    gapprint_malam = 0;
+                } else if(Integer.parseInt(jumlahTV7.getText().toString()) == 0){
+                    jumlahTV7.setText(String.valueOf(0));
+                    gapprint_malam = 0;
+                } else {
+                    int newValue = Integer.parseInt(jumlahTV7.getText().toString()) - 1;
+                    jumlahTV7.setText(String.valueOf(newValue));
+                    gapprint_malam = newValue;
+                }
+            }
+        });
+
+        addBTN7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                jumlahTV1.clearFocus();
+                jumlahTV2.clearFocus();
+                jumlahTV3.clearFocus();
+                jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
+                if(jumlahTV7.getText().toString().isEmpty()){
+                    jumlahTV7.setText(String.valueOf(0));
+                    gapprint_sore = 0;
+                } else {
+                    int newValue = Integer.parseInt(jumlahTV7.getText().toString()) + 1;
+                    jumlahTV7.setText(String.valueOf(newValue));
+                    gapprint_malam = newValue;
                 }
             }
         });
@@ -469,11 +730,17 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
 
                 jumlahTV1.setText(String.valueOf(pusat_siang1));
                 jumlahTV2.setText(String.valueOf(pusat_siang2));
                 jumlahTV3.setText(String.valueOf(pusat_sore));
                 jumlahTV4.setText(String.valueOf(pusat_malam));
+                jumlahTV5.setText(String.valueOf(gapprint_siang));
+                jumlahTV6.setText(String.valueOf(gapprint_sore));
+                jumlahTV7.setText(String.valueOf(gapprint_malam));
 
                 if(bagianPilihTV.getText().toString().isEmpty()){
                     new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.ERROR_TYPE)
@@ -501,7 +768,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                                 })
                                 .show();
                     } else {
-                        if(pusat_siang1 ==0 && pusat_siang2 ==0 && pusat_sore ==0 && pusat_malam ==0){
+                        if(pusat_siang1 ==0 && pusat_siang2 ==0 && pusat_sore ==0 && pusat_malam ==0 && gapprint_siang ==0 && gapprint_sore ==0  && gapprint_malam ==0){
                             new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.ERROR_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Harap isi jumlah permohonan")
@@ -812,7 +1079,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (pusat_siang1 !=0 || pusat_siang2 !=0 || pusat_sore !=0 || pusat_malam !=0 || !bagianPilihTV.getText().toString().isEmpty() || !tanggal.isEmpty()){
+        if (pusat_siang1 !=0 || pusat_siang2 !=0 || pusat_sore !=0 || pusat_malam !=0 || gapprint_siang !=0 || gapprint_sore !=0 || gapprint_malam !=0 || !bagianPilihTV.getText().toString().isEmpty() || !tanggal.isEmpty()){
             if(bottomSheet.isSheetShowing()){
                 bottomSheet.dismissSheet();
             } else {
@@ -839,12 +1106,18 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                                     pusat_siang2 = 0;
                                     pusat_sore = 0;
                                     pusat_malam = 0;
+                                    gapprint_siang = 0;
+                                    gapprint_sore = 0;
+                                    gapprint_malam = 0;
                                     tanggal = "";
                                     bagianPilihTV.setText("");
                                     jumlahTV1.setText("0");
                                     jumlahTV2.setText("0");
                                     jumlahTV3.setText("0");
                                     jumlahTV4.setText("0");
+                                    jumlahTV5.setText("0");
+                                    jumlahTV6.setText("0");
+                                    jumlahTV7.setText("0");
                                     onBackPressed();
                                 }
                             })
@@ -882,12 +1155,18 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                                 pusat_siang2 = 0;
                                 pusat_sore = 0;
                                 pusat_malam = 0;
+                                gapprint_siang = 0;
+                                gapprint_sore = 0;
+                                gapprint_malam = 0;
                                 tanggal = "";
                                 bagianPilihTV.setText("");
                                 jumlahTV1.setText("0");
                                 jumlahTV2.setText("0");
                                 jumlahTV3.setText("0");
                                 jumlahTV4.setText("0");
+                                jumlahTV5.setText("0");
+                                jumlahTV6.setText("0");
+                                jumlahTV7.setText("0");
                             } else if(status.equals("Available")){
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
@@ -939,6 +1218,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 params.put("pusat_siang_s", String.valueOf(pusat_siang2));
                 params.put("pusat_sore", String.valueOf(pusat_sore));
                 params.put("pusat_malam", String.valueOf(pusat_malam));
+                params.put("gapprint_siang", String.valueOf(gapprint_siang));
+                params.put("gapprint_sore", String.valueOf(gapprint_sore));
+                params.put("gapprint_malam", String.valueOf(gapprint_malam));
                 params.put("requester", sharedPrefManager.getSpNik());
 
                 return params;
