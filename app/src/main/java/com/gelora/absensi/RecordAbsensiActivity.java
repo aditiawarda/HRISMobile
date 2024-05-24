@@ -149,13 +149,12 @@ public class RecordAbsensiActivity extends AppCompatActivity {
                                 } else if (month==9){
                                     bulan = "10";
                                     bulanName = "Oktober";
-                                } else {
-                                    bulan = String.valueOf(month+1);
-                                    if (month==10){
-                                        bulanName = "November";
-                                    } else if(month==11){
-                                        bulanName = "Desember";
-                                    }
+                                } else if (month==10){
+                                    bulan = "11";
+                                    bulanName = "November";
+                                } else if (month==11){
+                                    bulan = "12";
+                                    bulanName = "Desember";
                                 }
 
                                 selectMonth = String.valueOf(year)+"-"+bulan;
