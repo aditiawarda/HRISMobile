@@ -38,7 +38,7 @@ public class AdapterUnitBagianLunchRequest extends RecyclerView.Adapter<AdapterU
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         sharedPrefAbsen = new SharedPrefAbsen(mContext);
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_unit_bagian,viewGroup,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_bagian_lunch,viewGroup,false);
         return new MyViewHolder(view);
     }
 
@@ -49,13 +49,12 @@ public class AdapterUnitBagianLunchRequest extends RecyclerView.Adapter<AdapterU
 
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
             Typeface typeface = ResourcesCompat.getFont(mContext, R.font.roboto);
-            myViewHolder.bagianName.setTypeface(typeface);
+            myViewHolder.descBagian.setTypeface(typeface);
         }
 
-        myViewHolder.bagianName.setText(dataBagian.getKdDept());
         myViewHolder.descBagian.setText(dataBagian.getNmDept());
 
-        if (sharedPrefAbsen.getSpBagianRl().equals(dataBagian.getIdDept())) {
+        if (sharedPrefAbsen.getSpBagianRl().equals(dataBagian.getNmDept())) {
             myViewHolder.markStatus.setVisibility(View.VISIBLE);
             myViewHolder.statusParent.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_option_choice));
         } else {
@@ -75,7 +74,7 @@ public class AdapterUnitBagianLunchRequest extends RecyclerView.Adapter<AdapterU
                 intent.putExtra("nama_bagian",dataBagian.getNmDept());
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_BAGIAN_RL, dataBagian.getIdDept());
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_BAGIAN_RL, dataBagian.getNmDept());
 
             }
 
@@ -89,13 +88,12 @@ public class AdapterUnitBagianLunchRequest extends RecyclerView.Adapter<AdapterU
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView bagianName, descBagian;
+        TextView descBagian;
         LinearLayout statusParent, markStatus;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             statusParent = itemView.findViewById(R.id.unit_bagian_part);
             markStatus = itemView.findViewById(R.id.mark_status);
-            bagianName = itemView.findViewById(R.id.nama_unit_bagian);
             descBagian = itemView.findViewById(R.id.desc_unit_bagian);
         }
     }

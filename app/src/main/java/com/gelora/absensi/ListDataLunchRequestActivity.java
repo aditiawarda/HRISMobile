@@ -73,26 +73,7 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
         listDataRV.setNestedScrollingEnabled(false);
         listDataRV.setItemAnimator(new DefaultItemAnimator());
 
-        if (sharedPrefManager.getSpIdHeadDept().equals("5")) {
-            if (sharedPrefManager.getSpIdDept().equals("21")) {
-                bagianRL = "Satpam";
-                getData();
-            } else {
-                bagianRL = "HRD";
-                getData();
-            }
-        } else if (sharedPrefManager.getSpIdHeadDept().equals("3")) {
-            bagianRL = "Marketing";
-            getData();
-        } else if (sharedPrefManager.getSpIdHeadDept().equals("4")) {
-            bagianRL = "Akunting";
-            getData();
-        } else if (sharedPrefManager.getSpIdHeadDept().equals("2")) {
-            bagianRL = "EDP";
-            getData();
-        } else {
-            getBagian();
-        }
+        getBagian();
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -154,6 +135,7 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
 
                             if(status.equals("Success")){
                                 bagianRL = data.getString("bagian");
+                                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_BAGIAN_RL, bagianRL);
                                 getData();
                             } else {
                                 new KAlertDialog(ListDataLunchRequestActivity.this, KAlertDialog.ERROR_TYPE)

@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -152,7 +153,6 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 .load(R.drawable.success_ic)
                 .into(successGif);
 
-        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_BAGIAN_RL, "");
         LocalBroadcastManager.getInstance(this).registerReceiver(bagianBroadRL, new IntentFilter("bagian_broad_rl"));
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
