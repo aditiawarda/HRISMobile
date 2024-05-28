@@ -121,8 +121,6 @@ public class AdapterLunchRequest extends RecyclerView.Adapter<AdapterLunchReques
             }
         });
 
-        Toast.makeText(mContext,  sharedPrefAbsen.getSpLunchRequestTimeout(), Toast.LENGTH_SHORT).show();
-
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;

@@ -701,7 +701,7 @@
                                                 android:text="SIANG :"
                                                 android:textColor="#696969"
                                                 android:textSize="12dp"
-                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TooManyViews" />
 
                                             <LinearLayout
                                                 android:layout_width="match_parent"
