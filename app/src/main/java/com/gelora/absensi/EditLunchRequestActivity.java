@@ -26,6 +26,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
@@ -65,14 +66,14 @@ public class EditLunchRequestActivity extends AppCompatActivity {
     LinearLayout removeBTN7, addBTN7;
     EditText jumlahTV7;
 
-    TextView bagianTV, tanggalTV, submitLabelTV;
+    TextView bagianTV, tanggalTV, submitLabelTV, warningTV;
     LinearLayout rebackBTN, formPart, successPart, closePart, inputPart, soreMalamPart1, soreMalamPart2, siangPart1, siangPart2, backBTN, submitBTN, actionBar;
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     ImageView successGif;
 
-    String idPermohonan = "";
+    String idPermohonan = "", timeOutRequest = "12:00:00";
     int pusat_siang1 = 0, pusat_siang2 = 0, pusat_sore = 0, pusat_malam = 0;
     int gapprint_siang = 0, gapprint_sore = 0, gapprint_malam = 0;
     KAlertDialog pDialog;
@@ -131,6 +132,7 @@ public class EditLunchRequestActivity extends AppCompatActivity {
         formPart = findViewById(R.id.form_part);
         successPart = findViewById(R.id.success_submit);
         successGif = findViewById(R.id.success_gif);
+        warningTV = findViewById(R.id.warning_tv);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
@@ -138,14 +140,14 @@ public class EditLunchRequestActivity extends AppCompatActivity {
 
         idPermohonan = getIntent().getExtras().getString("id");
 
-        getData();
+        getTimeOut();
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-               getData();
+                getTimeOut();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -678,6 +680,38 @@ public class EditLunchRequestActivity extends AppCompatActivity {
         });
     }
 
+    private void getTimeOut() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+        final String url = "https://hrisgelora.co.id/api/get_lunch_request_timeout";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String status = response.getString("status");
+                            String time = response.getString("time");
+                            timeOutRequest = time;
+                            warningTV.setText("Pengajuan makan siang karyawan harus diajukan paling lambat H-1 dari tanggal yang dipilih, sedangkan untuk pengajuan makan sore dan malam paling lambat pukul "+time.substring(0,5)+" WIB pada tanggal yang dipilih.");
+
+                            getData();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                connectionFailed();
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
     private void getData() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://hrisgelora.co.id/api/get_detail_lunch_request";
@@ -702,7 +736,6 @@ public class EditLunchRequestActivity extends AppCompatActivity {
                                 String gapprint_siang = data.getString("gapprint_siang");
                                 String gapprint_sore = data.getString("gapprint_sore");
                                 String gapprint_malam = data.getString("gapprint_malam");
-                                String timeOutRequest = data.getString("timeout");
 
                                 bagianTV.setText(bagian);
 

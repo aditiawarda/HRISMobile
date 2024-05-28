@@ -1,5 +1,6 @@
 package com.gelora.absensi;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,6 +24,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.adapter.AdapterDataAbsensiMore;
@@ -136,7 +138,8 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
                             if(status.equals("Success")){
                                 bagianRL = data.getString("bagian");
                                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_BAGIAN_RL, bagianRL);
-                                getData();
+
+                                getTimeOut();
                             } else {
                                 new KAlertDialog(ListDataLunchRequestActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
@@ -182,6 +185,37 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         postRequest.setRetryPolicy(retryPolicy);
         requestQueue.add(postRequest);
+
+    }
+
+    private void getTimeOut() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+        final String url = "https://hrisgelora.co.id/api/get_lunch_request_timeout";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String status = response.getString("status");
+                            String time = response.getString("time");
+                            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_LUNCH_REQUEST_TIMEOUT, time);
+
+                            getData();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                connectionFailed();
+            }
+        });
+
+        requestQueue.add(request);
 
     }
 

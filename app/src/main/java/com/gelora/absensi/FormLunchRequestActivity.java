@@ -81,7 +81,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refreshLayout;
     LinearLayout closePart, inputPart, soreMalamPart1, soreMalamPart2, siangPart1, siangPart2, submitBTN, backBTN, bagianBTN, dateBTN, formPart, successPart, rebackBTN, actionBar;
-    TextView bagianPilihTV, tanggalPilihTV, submitLabelTV;
+    TextView bagianPilihTV, tanggalPilihTV, submitLabelTV, warningTV;
     ImageView successGif;
 
     private RecyclerView bagianRV;
@@ -92,7 +92,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
     SharedPrefAbsen sharedPrefAbsen;
     int pusat_siang1 = 0, pusat_siang2 = 0, pusat_sore = 0, pusat_malam = 0;
     int gapprint_siang = 0, gapprint_sore = 0, gapprint_malam = 0;
-    String permohonanTerkirim = "0", tanggal = "", bagianRL = "", timeOutRequest = "12:00:00";
+    String tanggal = "", bagianRL = "", timeOutRequest = "12:00:00";
     KAlertDialog pDialog;
     private int i = -1;
 
@@ -152,6 +152,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
         inputPart = findViewById(R.id.input_part);
         closePart = findViewById(R.id.close_part);
         submitLabelTV = findViewById(R.id.submit_label);
+        warningTV = findViewById(R.id.warning_tv);
 
         bagianRL = getIntent().getExtras().getString("bagianRL");
         bagianPilihTV.setText(bagianRL);
@@ -1207,46 +1208,42 @@ public class FormLunchRequestActivity extends AppCompatActivity {
             if(bottomSheet.isSheetShowing()){
                 bottomSheet.dismissSheet();
             } else {
-                if (permohonanTerkirim.equals("1")){
-                    super.onBackPressed();
-                } else {
-                    new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.WARNING_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
-                            .setCancelText("TIDAK")
-                            .setConfirmText("   YA   ")
-                            .showCancelButton(true)
-                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                    pusat_siang1 = 0;
-                                    pusat_siang2 = 0;
-                                    pusat_sore = 0;
-                                    pusat_malam = 0;
-                                    gapprint_siang = 0;
-                                    gapprint_sore = 0;
-                                    gapprint_malam = 0;
-                                    tanggal = "";
-                                    bagianPilihTV.setText("");
-                                    jumlahTV1.setText("0");
-                                    jumlahTV2.setText("0");
-                                    jumlahTV3.setText("0");
-                                    jumlahTV4.setText("0");
-                                    jumlahTV5.setText("0");
-                                    jumlahTV6.setText("0");
-                                    jumlahTV7.setText("0");
-                                    onBackPressed();
-                                }
-                            })
-                            .show();
-                }
+                new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                pusat_siang1 = 0;
+                                pusat_siang2 = 0;
+                                pusat_sore = 0;
+                                pusat_malam = 0;
+                                gapprint_siang = 0;
+                                gapprint_sore = 0;
+                                gapprint_malam = 0;
+                                tanggal = "";
+                                bagianPilihTV.setText("");
+                                jumlahTV1.setText("0");
+                                jumlahTV2.setText("0");
+                                jumlahTV3.setText("0");
+                                jumlahTV4.setText("0");
+                                jumlahTV5.setText("0");
+                                jumlahTV6.setText("0");
+                                jumlahTV7.setText("0");
+                                onBackPressed();
+                            }
+                        })
+                        .show();
             }
         } else {
             if(bottomSheet.isSheetShowing()){
@@ -1380,6 +1377,8 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                             String status = response.getString("status");
                             String time = response.getString("time");
                             timeOutRequest = time;
+
+                            warningTV.setText("Pengajuan makan siang karyawan harus diajukan paling lambat H-1 dari tanggal yang dipilih, sedangkan untuk pengajuan makan sore dan malam paling lambat pukul "+time.substring(0,5)+" WIB pada tanggal yang dipilih.");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
