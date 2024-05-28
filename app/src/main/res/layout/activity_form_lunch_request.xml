@@ -245,6 +245,40 @@
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_attantion"
+                                        android:orientation="vertical"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="15dp"
+                                        android:paddingRight="15dp"
+                                        android:paddingBottom="17dp"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Perhatian :"
+                                            android:textColor="#C68D46"
+                                            android:textSize="12dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="7dp"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:text="Pengajuan makan siang karyawan harus diajukan paling lambat H-1 dari tanggal yang dipilih, sedangkan untuk pengajuan makan sore dan malam paling lambat pukul 12.00 (siang) pada tanggal yang dipilih."
+                                            android:textColor="#C68D46"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
                                         android:layout_height="1dp"
                                         android:background="#D5D5D5"
                                         android:layout_marginTop="10dp"
@@ -1021,7 +1055,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="15dp"
-                                            android:text="Data ajuan makan karyawan yang anda ajukan telah terkirim."
+                                            android:text="Data pengajuan makan karyawan yang anda ajukan telah berhasil terkirim."
                                             android:textAlignment="center"
                                             android:textColor="@color/white"
                                             android:textSize="13dp"

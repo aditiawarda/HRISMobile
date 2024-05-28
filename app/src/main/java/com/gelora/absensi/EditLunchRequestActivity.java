@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.gelora.absensi.kalert.KAlertDialog;
 
 import org.aviran.cookiebar2.CookieBar;
@@ -68,6 +70,7 @@ public class EditLunchRequestActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
+    ImageView successGif;
 
     String idPermohonan = "";
     int pusat_siang1 = 0, pusat_siang2 = 0, pusat_sore = 0, pusat_malam = 0;
@@ -127,6 +130,11 @@ public class EditLunchRequestActivity extends AppCompatActivity {
         tanggalTV = findViewById(R.id.date_tv);
         formPart = findViewById(R.id.form_part);
         successPart = findViewById(R.id.success_submit);
+        successGif = findViewById(R.id.success_gif);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.success_ic)
+                .into(successGif);
 
         idPermohonan = getIntent().getExtras().getString("id");
 
@@ -909,7 +917,7 @@ public class EditLunchRequestActivity extends AppCompatActivity {
 
         new KAlertDialog(EditLunchRequestActivity.this, KAlertDialog.WARNING_TYPE)
                 .setTitleText("Perhatian")
-                .setContentText("Kirim permohonan sekarang?")
+                .setContentText("Kirim perubahan data sekarang?")
                 .setCancelText("TIDAK")
                 .setConfirmText("   YA   ")
                 .showCancelButton(true)
