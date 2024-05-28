@@ -1177,9 +1177,16 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                             } else if(status.equals("Time Out")){
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
-                                String time_close = data.getString("time_close");
                                 pDialog.setTitleText("Perhatian")
                                         .setContentText("Pengajuan makan karyawan paling lambat H-1 untuk tanggal yang dipilih")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            } else if(status.equals("Time Out in Same Day")){
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                String time_close = data.getString("time_close");
+                                pDialog.setTitleText("Perhatian")
+                                        .setContentText("Pengajuan makan karyawan paling pukul "+time_close+" WIB")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else {
