@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".FormLunchRequestActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".EditLunchRequestActivity">
 
     <RelativeLayout
         android:background="@color/white"
@@ -124,12 +124,11 @@
                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <LinearLayout
-                                        android:id="@+id/bagian_btn"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:paddingStart="20dp"
                                         android:layout_marginBottom="10dp"
-                                        android:background="@drawable/shape_feel"
+                                        android:background="@drawable/shape_feel_disable"
                                         android:orientation="horizontal"
                                         tools:ignore="RtlSymmetry">
 
@@ -148,7 +147,7 @@
                                                 tools:ignore="RtlHardcoded">
 
                                                 <TextView
-                                                    android:id="@+id/bagian_pilih_tv"
+                                                    android:id="@+id/bagian_tv"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:textColor="#B15735"
@@ -157,21 +156,6 @@
                                                     android:singleLine="true"
                                                     android:textStyle="bold"
                                                     android:text=""/>
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_alignParentRight="true"
-                                                android:layout_width="40dp"
-                                                android:layout_height="match_parent"
-                                                android:background="@drawable/shape_btn"
-                                                android:gravity="center"
-                                                tools:ignore="RtlHardcoded">
-
-                                                <TextView
-                                                    android:layout_width="25dp"
-                                                    android:layout_height="25dp"
-                                                    android:background="@drawable/ic_baseline_bagian"/>
 
                                             </LinearLayout>
 
@@ -190,12 +174,11 @@
                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <LinearLayout
-                                        android:id="@+id/date_btn"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:paddingStart="20dp"
                                         android:layout_marginBottom="10dp"
-                                        android:background="@drawable/shape_feel"
+                                        android:background="@drawable/shape_feel_disable"
                                         android:orientation="horizontal"
                                         tools:ignore="RtlSymmetry">
 
@@ -213,29 +196,14 @@
                                                 tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                                 <TextView
-                                                    android:id="@+id/date_pilih_tv"
+                                                    android:id="@+id/date_tv"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
+                                                    android:text=""
                                                     android:textColor="#B15735"
                                                     android:textSize="13dp"
                                                     android:textStyle="bold"
-                                                    android:text=""
                                                     tools:ignore="SpUsage" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_alignParentRight="true"
-                                                android:layout_width="40dp"
-                                                android:layout_height="match_parent"
-                                                android:background="@drawable/shape_btn"
-                                                android:gravity="center"
-                                                tools:ignore="RtlHardcoded">
-
-                                                <TextView
-                                                    android:layout_width="25dp"
-                                                    android:layout_height="25dp"
-                                                    android:background="@drawable/ic_baseline_date"/>
 
                                             </LinearLayout>
 
@@ -1021,7 +989,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="15dp"
-                                            android:text="Data ajuan makan karyawan yang anda ajukan telah terkirim."
+                                            android:text="Perubahan data ajuan makan karyawan yang anda ajukan telah terkirim."
                                             android:textAlignment="center"
                                             android:textColor="@color/white"
                                             android:textSize="13dp"
@@ -1122,7 +1090,7 @@
                                 android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:text="FORM AJUAN MAKAN"
+                                android:text="EDIT AJUAN MAKAN"
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"

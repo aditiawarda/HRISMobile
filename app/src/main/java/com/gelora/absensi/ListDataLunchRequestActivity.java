@@ -277,6 +277,7 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
         loadingDataPart.setVisibility(View.VISIBLE);
         noDataPart.setVisibility(View.GONE);
         listDataRV.setVisibility(View.GONE);
+        getBagian();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

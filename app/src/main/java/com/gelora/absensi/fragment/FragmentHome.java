@@ -129,7 +129,7 @@ public class FragmentHome extends Fragment {
     LinearLayout visiMisiBTN, countNotificationClearancePart, clearancePart, calendarPart, weatherBTN, newsPart, countNotificationPersonalPart, personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLainnyaBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN, menuClearanceBTN;
     TextView countNotifClearanceTV, countNotificationPersonalTV, countNotifPenilaianTV, nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
     ProgressBar loadingProgressBarCuaca;
-    ImageView avatarUser, weatherIcon;
+    ImageView avatarUser, weatherIcon, updateIcGif;
     RelativeLayout dataCuaca, dataCuacaEmpty;
 
     MediaPlayer musicUlangTahun;
@@ -239,12 +239,17 @@ public class FragmentHome extends Fragment {
         calendarPart = view.findViewById(R.id.calendar_part);
         countNotificationClearancePart = view.findViewById(R.id.count_notification_clearance);
         countNotifClearanceTV = view.findViewById(R.id.count_notif_clearance_tv);
+        updateIcGif = view.findViewById(R.id.upadate_ic_gif);
 
         listPengumumanNewRV = view.findViewById(R.id.list_pengumuman_rv);
         listPengumumanNewRV.setLayoutManager(new LinearLayoutManager(mContext));
         listPengumumanNewRV.setHasFixedSize(true);
         listPengumumanNewRV.setNestedScrollingEnabled(false);
         listPengumumanNewRV.setItemAnimator(new DefaultItemAnimator());
+
+        Glide.with(mContext)
+                .load(R.drawable.update_ic)
+                .into(updateIcGif);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
