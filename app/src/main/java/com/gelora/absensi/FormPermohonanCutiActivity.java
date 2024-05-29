@@ -2935,12 +2935,15 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         bottomSheet.showWithSheetView(LayoutInflater.from(FormPermohonanCutiActivity.this).inflate(R.layout.layout_kategori_cuti, bottomSheet, false));
         kategoriCutiRV = findViewById(R.id.kategori_cuti_rv);
 
-        kategoriCutiRV.setLayoutManager(new LinearLayoutManager(this));
-        kategoriCutiRV.setHasFixedSize(true);
-        kategoriCutiRV.setNestedScrollingEnabled(false);
-        kategoriCutiRV.setItemAnimator(new DefaultItemAnimator());
-
-        getkategoriCuti();
+        try {
+            kategoriCutiRV.setLayoutManager(new LinearLayoutManager(this));
+            kategoriCutiRV.setHasFixedSize(true);
+            kategoriCutiRV.setNestedScrollingEnabled(false);
+            kategoriCutiRV.setItemAnimator(new DefaultItemAnimator());
+            getkategoriCuti();
+        } catch (NullPointerException e){
+            Log.e("Error", e.toString());
+        }
 
     }
 
