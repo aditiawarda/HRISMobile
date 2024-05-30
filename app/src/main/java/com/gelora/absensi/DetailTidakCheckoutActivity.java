@@ -52,6 +52,7 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
     private RecyclerView dataNoCheckoutRV;
     private DataNoCheckout[] dataNoCheckouts;
     private AdapterDataNoCheckout adapterDataNoCheckout;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +123,7 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
                 markerWarningNocheckout.setVisibility(View.GONE);
                 attantionPart.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -188,7 +189,7 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
                                 markerWarningNocheckout.setVisibility(View.GONE);
                                 attantionPart.setVisibility(View.GONE);
 
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         getDetailNoCheckout();
@@ -304,8 +305,6 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        // Banner.make(rootview, DetailTidakCheckoutActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
-
         CookieBar.build(DetailTidakCheckoutActivity.this)
                 .setTitle("Perhatian")
                 .setMessage("Koneksi anda terputus!")
@@ -323,6 +322,12 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

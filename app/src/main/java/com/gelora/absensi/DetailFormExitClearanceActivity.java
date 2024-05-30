@@ -14,6 +14,7 @@ public class DetailFormExitClearanceActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
     String idData;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +38,7 @@ public class DetailFormExitClearanceActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -56,4 +56,11 @@ public class DetailFormExitClearanceActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
+    }
+
 }

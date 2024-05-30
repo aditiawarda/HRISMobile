@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,7 +20,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterPermohonanFinger;
 import com.gelora.absensi.adapter.AdapterPermohonanFingerSaya;
 import com.gelora.absensi.model.ListPermohonanFingerscan;
@@ -48,6 +46,7 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
     LinearLayout mainPart, optionPart, countPartIn, countPartMe, permohonanMasukPart, permohonanSayaPart, notifyInBTN, notifySayaBTN, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2;
     View rootview;
     TextView countNotifMasuk, countNotifSaya;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +101,7 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
                 noDataPart2.setVisibility(View.GONE);
                 dataNotifikasiRV.setVisibility(View.GONE);
                 dataNotifikasi2RV.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -133,7 +132,8 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
                 noDataPart2.setVisibility(View.GONE);
                 dataNotifikasiRV.setVisibility(View.GONE);
                 dataNotifikasi2RV.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -158,7 +158,7 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
                 noDataPart2.setVisibility(View.GONE);
                 dataNotifikasiRV.setVisibility(View.GONE);
                 dataNotifikasi2RV.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -331,7 +331,7 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
         noDataPart2.setVisibility(View.GONE);
         dataNotifikasiRV.setVisibility(View.GONE);
         dataNotifikasi2RV.setVisibility(View.GONE);
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 refreshLayout.setRefreshing(false);
@@ -350,6 +350,12 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

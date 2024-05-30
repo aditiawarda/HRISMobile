@@ -101,6 +101,7 @@ public class FragmentProfile extends Fragment {
     int REQUEST_IMAGE = 100;
     private Uri uri;
     private int i = -1;
+    private Handler handler = new Handler();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -149,8 +150,9 @@ public class FragmentProfile extends Fragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                checkVersion();
                 avatarSetting.collapse();
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -242,7 +244,7 @@ public class FragmentProfile extends Fragment {
                                 sDialog.dismiss();
                                 loadingProgressBarLogout.setVisibility(View.VISIBLE);
 
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         logoutFunction();
@@ -263,7 +265,6 @@ public class FragmentProfile extends Fragment {
 
         nameOfUser.setText(sharedPrefManager.getSpNama());
         nikTV.setText(sharedPrefManager.getSpNik());
-        getDataKaryawan();
 
         return view;
     }
@@ -383,7 +384,7 @@ public class FragmentProfile extends Fragment {
                                         @Override
                                         public void onClick(View v) {
                                             avatarSetting.collapse();
-                                            new Handler().postDelayed(new Runnable() {
+                                            handler.postDelayed(new Runnable() {
                                                 @Override
                                                 public void run() {
                                                     Intent intent = new Intent(mContext, ViewImageActivity.class);
@@ -399,7 +400,7 @@ public class FragmentProfile extends Fragment {
                                         @Override
                                         public void onClick(View v) {
                                             avatarSetting.collapse();
-                                            new Handler().postDelayed(new Runnable() {
+                                            handler.postDelayed(new Runnable() {
                                                 @Override
                                                 public void run() {
                                                     dexterCall();
@@ -412,7 +413,7 @@ public class FragmentProfile extends Fragment {
                                         @Override
                                         public void onClick(View v) {
                                             avatarSetting.collapse();
-                                            new Handler().postDelayed(new Runnable() {
+                                            handler.postDelayed(new Runnable() {
                                                 @Override
                                                 public void run() {
                                                     new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
@@ -473,7 +474,7 @@ public class FragmentProfile extends Fragment {
                                             @Override
                                             public void onClick(View v) {
                                                 avatarSetting.collapse();
-                                                new Handler().postDelayed(new Runnable() {
+                                                handler.postDelayed(new Runnable() {
                                                     @Override
                                                     public void run() {
                                                         dexterCall();
@@ -509,7 +510,7 @@ public class FragmentProfile extends Fragment {
                                             @Override
                                             public void onClick(View v) {
                                                 avatarSetting.collapse();
-                                                new Handler().postDelayed(new Runnable() {
+                                                handler.postDelayed(new Runnable() {
                                                     @Override
                                                     public void run() {
                                                         dexterCall();
@@ -527,8 +528,6 @@ public class FragmentProfile extends Fragment {
                                 } else {
                                     logoutPart.setVisibility(View.GONE);
                                 }
-
-                                checkVersion();
 
                             }
 
@@ -578,7 +577,7 @@ public class FragmentProfile extends Fragment {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "2.5.0"; //harus disesuaikan
+                                String currentVersion = "2.5.1"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateAppBTN.setVisibility(View.VISIBLE);
                                     updateAppBTN.setOnClickListener(new View.OnClickListener() {
@@ -754,7 +753,7 @@ public class FragmentProfile extends Fragment {
                         String pngImagePath = FilePathimage.getPath(getContext(), uri);
                         new ConvertImageTask().execute(pngImagePath);
                     } else {
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 new KAlertDialog(mContext, KAlertDialog.ERROR_TYPE)
@@ -799,7 +798,7 @@ public class FragmentProfile extends Fragment {
             }
         }
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 final KAlertDialog pDialog = new KAlertDialog(mContext, KAlertDialog.PROGRESS_TYPE)
@@ -845,7 +844,6 @@ public class FragmentProfile extends Fragment {
                         getDataKaryawan();
                     }
                 }.start();
-
             }
         }, 1);
     }
@@ -1011,7 +1009,7 @@ public class FragmentProfile extends Fragment {
                     throw new RuntimeException(e);
                 }
             } else {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         new KAlertDialog(getContext(), KAlertDialog.ERROR_TYPE)
@@ -1046,7 +1044,14 @@ public class FragmentProfile extends Fragment {
         super.onResume();
         requestQueue = Volley.newRequestQueue(mContext);
         avatarSetting.collapse();
+        checkVersion();
         getDataKaryawan();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

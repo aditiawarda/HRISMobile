@@ -82,6 +82,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
     int REQUEST_IMAGE = 100;
     private Uri uri;
     RequestQueue requestQueue;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +127,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -486,7 +487,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
                     dayCalculate();
                 }
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -510,7 +511,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
                     dayCalculate();
                 }
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1103,7 +1104,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
                         String pngImagePath = FilePathimage.getPath(this, uri);
                         new ConvertImageTask().execute(pngImagePath);
                     } else {
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 new KAlertDialog(EditPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
@@ -2013,7 +2014,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
                     throw new RuntimeException(e);
                 }
             } else {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         new KAlertDialog(EditPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
@@ -2085,6 +2086,12 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
                 super.onBackPressed();
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

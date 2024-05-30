@@ -69,6 +69,7 @@ public class HomeActivity extends AppCompatActivity {
     String profile = "0", notif = "0", warningPerangkat = "", deviceID = "", beforeLayout = "0", nowLayout = "0", temp = "0";
     KAlertDialog pDialog;
     private final int i = -1;
+    private Handler handler = new Handler();
 
     @SuppressLint("HardwareIds")
     @Override
@@ -119,8 +120,6 @@ public class HomeActivity extends AppCompatActivity {
                 }
             });
 
-            checkLogin();
-
         } else {
             setContentView(R.layout.activity_home);
 
@@ -147,7 +146,7 @@ public class HomeActivity extends AppCompatActivity {
                 public void onPageSelected(int i) {
                     bubbleNavigation.setCurrentActiveItem(i);
                     beforeLayout = temp;
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             nowLayout = String.valueOf(i);
@@ -180,8 +179,6 @@ public class HomeActivity extends AppCompatActivity {
             Glide.with(getApplicationContext())
                     .load(R.drawable.mark_notif_info)
                     .into(profileMark);
-
-            checkLogin();
 
         }
 
@@ -1083,6 +1080,12 @@ public class HomeActivity extends AppCompatActivity {
         super.onResume();
         requestQueue = Volley.newRequestQueue(this);
         checkLogin();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

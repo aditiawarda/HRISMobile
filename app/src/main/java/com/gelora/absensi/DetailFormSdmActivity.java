@@ -50,6 +50,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
     String idData = "", urlDownload = "";
     KAlertDialog pDialog;
     private int i = -1;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +149,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 getData();
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -1254,6 +1255,12 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         super.onResume();
         penilaianBTN.setVisibility(View.GONE);
         getData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

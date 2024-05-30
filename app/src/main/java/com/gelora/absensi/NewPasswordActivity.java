@@ -16,7 +16,6 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -24,7 +23,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,7 +31,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.support.StatusBarColorManager;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -49,6 +46,7 @@ public class NewPasswordActivity extends AppCompatActivity {
     LinearLayout registerBTN, backBTN;
     String statusPass = "hide", nik;
     ProgressBar loadingProgressBar;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -333,7 +331,8 @@ public class NewPasswordActivity extends AppCompatActivity {
                                 intent.putExtra("nama_karyawan", nama);
                                 intent.putExtra("nik_karyawan", nik);
                                 startActivity(intent);
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
+                                    @SuppressLint("SetTextI18n")
                                     @Override
                                     public void run() {
                                         loadingProgressBar.setVisibility(View.GONE);
@@ -401,6 +400,12 @@ public class NewPasswordActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

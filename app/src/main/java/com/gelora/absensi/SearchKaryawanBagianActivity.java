@@ -24,7 +24,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,7 +33,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterBagianSearch;
 import com.gelora.absensi.adapter.AdapterKehadiranBagianSearch;
@@ -78,6 +76,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
     private RecyclerView bagianRV;
     private Bagian[] bagians;
     private AdapterBagianSearch adapterBagian;
+    private Handler handler = new Handler();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -134,7 +133,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
                 emptyDataPart.setVisibility(View.GONE);
                 dataAbsensiKaryawanRV.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -188,12 +187,13 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
                 emptyDataPart.setVisibility(View.GONE);
                 dataAbsensiKaryawanRV.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         getDataAbsensiUser(keyWordSearch);
                     }
                 }, 500);
+
             }
 
         });
@@ -246,7 +246,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
             emptyDataPart.setVisibility(View.GONE);
             dataAbsensiKaryawanRV.setVisibility(View.GONE);
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -464,7 +464,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
             emptyDataPart.setVisibility(View.GONE);
             dataAbsensiKaryawanRV.setVisibility(View.GONE);
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     getDataAbsensiUser(keyWordSearch);
@@ -647,8 +647,6 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        // Banner.make(rootview, SearchKaryawanBagianActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
-
         CookieBar.build(SearchKaryawanBagianActivity.this)
                 .setTitle("Perhatian")
                 .setMessage("Koneksi anda terputus!")
@@ -658,6 +656,12 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

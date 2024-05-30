@@ -95,6 +95,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
     private AdapterAllKaryawanPIC adapterAllKaryawan;
     private AdapterStatusTask adapterStatusTask;
     IndicatorSeekBar persentaseProgress;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,7 +176,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
                 persentaseProgress.setProgress(0);
                 persentaseProgressTV.setText("0%");
                 actualPart.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -505,7 +506,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             taskNameED.clearFocus();
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -1556,7 +1557,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             taskNameED.clearFocus();
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -1601,7 +1602,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
                 karyawanRV.setVisibility(View.GONE);
 
                 if (!keyWordSearch.equals("")) {
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getAllUser(keyWordSearch);
@@ -1870,6 +1871,12 @@ public class FormInputTaskActivity extends AppCompatActivity {
                 super.onBackPressed();
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

@@ -24,7 +24,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,7 +33,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterBagianSearchSDM;
 import com.gelora.absensi.adapter.AdapterListSDMSearch;
@@ -68,6 +66,7 @@ public class SearchSdmActivity extends AppCompatActivity {
     private RecyclerView bagianRV;
     private Bagian[] bagians;
     private AdapterBagianSearchSDM adapterBagian;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +120,7 @@ public class SearchSdmActivity extends AppCompatActivity {
 
                 keywordUserED.setText("");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -134,6 +133,7 @@ public class SearchSdmActivity extends AppCompatActivity {
                         checkUser();
                     }
                 }, 1000);
+
             }
         });
 
@@ -173,7 +173,7 @@ public class SearchSdmActivity extends AppCompatActivity {
                 emptyDataPart.setVisibility(View.GONE);
                 dataSdmRV.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         if(!keyWordSearch.equals("") && !keyWordSearch.equals(" ")){
@@ -186,6 +186,7 @@ public class SearchSdmActivity extends AppCompatActivity {
                         }
                     }
                 }, 1000);
+
             }
 
         });
@@ -231,7 +232,7 @@ public class SearchSdmActivity extends AppCompatActivity {
 
             keyWordSearch = keywordUserED.getText().toString();
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -455,6 +456,12 @@ public class SearchSdmActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

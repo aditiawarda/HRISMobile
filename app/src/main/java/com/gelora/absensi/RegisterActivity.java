@@ -57,6 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     ProgressBar loadingProgressBar;
     View rootview;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void run() {
@@ -108,7 +109,6 @@ public class RegisterActivity extends AppCompatActivity {
                         nikED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
                         passwordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
                         repasswordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
-
                     }
                 }, 1000);
             }
@@ -855,6 +855,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         requestQueue.add(request);
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

@@ -11,19 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -32,11 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
-import com.gelora.absensi.adapter.AdapterDataProject;
 import com.gelora.absensi.adapter.AdapterDataTask;
-import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.model.ProjectData;
 import com.gelora.absensi.model.TaskData;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -65,6 +56,7 @@ public class DetailProjectActivity extends AppCompatActivity {
     private RecyclerView taskRV;
     private TaskData[] taskData;
     private AdapterDataTask adapterDataTask;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +103,7 @@ public class DetailProjectActivity extends AppCompatActivity {
                 taskRV.setVisibility(View.GONE);
                 loadingDataPart.setVisibility(View.VISIBLE);
                 noDataPart.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -458,6 +450,12 @@ public class DetailProjectActivity extends AppCompatActivity {
         getDetailProject(projectId);
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PROJECT, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, "");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

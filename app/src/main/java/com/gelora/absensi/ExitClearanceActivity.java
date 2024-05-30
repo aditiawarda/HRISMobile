@@ -69,6 +69,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
     private ListDataExitClearanceIn[] listDataExitClearanceIns;
     private AdapterExitClearanceIn adapterExitClearanceIn;
     private AdapterKaryawanClearance adapterKaryawanClearance;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +129,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
                 noDataPart2.setVisibility(View.GONE);
                 dataInRV.setVisibility(View.GONE);
                 dataOutRV.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -177,7 +178,8 @@ public class ExitClearanceActivity extends AppCompatActivity {
                 noDataPart2.setVisibility(View.GONE);
                 dataInRV.setVisibility(View.GONE);
                 dataOutRV.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -203,7 +205,8 @@ public class ExitClearanceActivity extends AppCompatActivity {
                 noDataPart2.setVisibility(View.GONE);
                 dataInRV.setVisibility(View.GONE);
                 dataOutRV.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -287,7 +290,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
                 karyawanRV.setVisibility(View.GONE);
 
                 if(!keyWordSearch.equals("")){
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getDataKaryawan(keyWordSearch);
@@ -326,13 +329,12 @@ public class ExitClearanceActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
                 }
             }, 300);
-
         }
     };
 
@@ -556,7 +558,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
         noDataPart2.setVisibility(View.GONE);
         dataInRV.setVisibility(View.GONE);
         dataOutRV.setVisibility(View.GONE);
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 refreshLayout.setRefreshing(false);
@@ -585,6 +587,12 @@ public class ExitClearanceActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

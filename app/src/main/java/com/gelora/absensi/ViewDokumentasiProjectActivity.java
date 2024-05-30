@@ -37,18 +37,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.gelora.absensi.R;
-import com.gelora.absensi.SharedPrefAbsen;
-import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.adapter.AdapterDokumentasiProject;
-import com.gelora.absensi.adapter.AdapterPulangCepat;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataDokumentasiProject;
-import com.gelora.absensi.model.DataPulangCepat;
 import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -92,6 +85,7 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
     String projectId = "";
     KAlertDialog pDialog;
     private int i = -1;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,7 +158,7 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
             }
         }
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 final KAlertDialog pDialog = new KAlertDialog(ViewDokumentasiProjectActivity.this, KAlertDialog.PROGRESS_TYPE)
@@ -203,7 +197,7 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
                         }
                     }
                     public void onFinish() {
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 i = -1;
@@ -562,7 +556,7 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
                         String pngImagePath = FilePathimage.getPath(this, uri);
                         new ConvertImageTask().execute(pngImagePath);
                     } else {
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 new KAlertDialog(ViewDokumentasiProjectActivity.this, KAlertDialog.ERROR_TYPE)
@@ -610,7 +604,7 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
                 tambahDokumentasi();
 
             } else {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         new KAlertDialog(ViewDokumentasiProjectActivity.this, KAlertDialog.ERROR_TYPE)
@@ -638,6 +632,12 @@ public class ViewDokumentasiProjectActivity extends AppCompatActivity {
             out.close();
             return Uri.fromFile(jpgFile);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

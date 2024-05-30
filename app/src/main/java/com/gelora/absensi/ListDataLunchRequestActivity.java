@@ -7,13 +7,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,13 +22,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.gelora.absensi.adapter.AdapterDataAbsensiMore;
 import com.gelora.absensi.adapter.AdapterLunchRequest;
-import com.gelora.absensi.adapter.AdapterStatusAbsen;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataListLunchRequest;
-import com.gelora.absensi.model.DataRecordAbsensi;
-import com.gelora.absensi.model.StatusAbsen;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -54,6 +45,7 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
     private DataListLunchRequest[] dataListLunchRequests;
     private AdapterLunchRequest adapterLunchRequest;
     SwipeRefreshLayout refreshLayout;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +77,7 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
                 loadingDataPart.setVisibility(View.VISIBLE);
                 noDataPart.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -246,7 +238,7 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
                                     adapterLunchRequest = new AdapterLunchRequest(dataListLunchRequests, ListDataLunchRequestActivity.this);
                                     listDataRV.setAdapter(adapterLunchRequest);
                                 } else {
-                                    new Handler().postDelayed(new Runnable() {
+                                    handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
                                             loadingDataPart.setVisibility(View.GONE);
@@ -312,12 +304,18 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
         noDataPart.setVisibility(View.GONE);
         listDataRV.setVisibility(View.GONE);
         getBagian();
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 getData();
             }
         }, 500);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

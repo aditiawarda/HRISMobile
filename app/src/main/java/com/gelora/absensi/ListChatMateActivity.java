@@ -17,7 +17,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.volley.Request;
@@ -26,7 +25,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterListChatMate;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.ListChatMate;
@@ -50,6 +48,7 @@ public class ListChatMateActivity extends AppCompatActivity {
     LinearLayout newChatBTN;
     KAlertDialog pDialog;
     private int i = -1;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +111,7 @@ public class ListChatMateActivity extends AppCompatActivity {
                             String status = data.getString("status");
                             if (status.equals("Success")) {
 
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         noDataPart.setVisibility(View.GONE);
@@ -321,6 +320,12 @@ public class ListChatMateActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getListChatMate();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

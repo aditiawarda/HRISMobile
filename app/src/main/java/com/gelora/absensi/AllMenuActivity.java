@@ -45,6 +45,7 @@ public class AllMenuActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
     String otoritorEC = "", listSDM = "";
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +121,8 @@ public class AllMenuActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -196,7 +198,8 @@ public class AllMenuActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(KAlertDialog sDialog) {
                                     sDialog.dismiss();
-                                    new Handler().postDelayed(new Runnable() {
+                                    handler.postDelayed(new Runnable() {
+                                        @SuppressLint("SetTextI18n")
                                         @Override
                                         public void run() {
                                             getContact();
@@ -222,7 +225,8 @@ public class AllMenuActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(KAlertDialog sDialog) {
                                     sDialog.dismiss();
-                                    new Handler().postDelayed(new Runnable() {
+                                    handler.postDelayed(new Runnable() {
+                                        @SuppressLint("SetTextI18n")
                                         @Override
                                         public void run() {
                                             getContact();
@@ -254,7 +258,8 @@ public class AllMenuActivity extends AppCompatActivity {
                             @Override
                             public void onClick(KAlertDialog sDialog) {
                                 sDialog.dismiss();
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
+                                    @SuppressLint("SetTextI18n")
                                     @Override
                                     public void run() {
                                         getContact();
@@ -569,7 +574,7 @@ public class AllMenuActivity extends AppCompatActivity {
                     cardPart.setVisibility(View.VISIBLE);
                     sdmPart.setVisibility(View.GONE);
                     projectPart.setVisibility(View.GONE);
-                    if((sharedPrefManager.getSpIdHeadDept().equals("3") || sharedPrefManager.getSpNik().equals("1405020311") || sharedPrefManager.getSpNik().equals("3321130323") || sharedPrefManager.getSpNik().equals("3320130323")) && sharedPrefManager.getSpIdCor().equals("1") && (sharedPrefManager.getSpIdCab().equals("1") || sharedPrefManager.getSpIdCab().equals("0"))){
+                    if((sharedPrefManager.getSpIdHeadDept().equals("3") || sharedPrefManager.getSpNik().equals("1405020311") || sharedPrefManager.getSpNik().equals("3321130323") || sharedPrefManager.getSpNik().equals("3320130323"))){
                         reportSumaPart.setVisibility(View.VISIBLE);
                     } else {
                         reportSumaPart.setVisibility(View.GONE);
@@ -1096,6 +1101,12 @@ public class AllMenuActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

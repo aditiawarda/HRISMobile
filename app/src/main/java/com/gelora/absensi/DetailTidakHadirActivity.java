@@ -58,6 +58,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
     private RecyclerView dataAlpaRV;
     private DataAlpa[] dataAlpas;
     private AdapterDataAlpa adapterDataAlpa;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +149,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                 dataTotalIzin.setText("");
                 dataTotalAlpa.setText("");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -218,7 +219,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                                 dataTotalIzin.setText("");
                                 dataTotalAlpa.setText("");
 
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         getDataTidakHadir();
@@ -272,7 +273,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                                 dataTahun.setText(tahun);
                                 dataTidakHadir.setText(total_tidak_hadir);
 
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         bulanLoading.setVisibility(View.GONE);
@@ -425,6 +426,12 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

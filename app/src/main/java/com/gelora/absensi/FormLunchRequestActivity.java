@@ -95,6 +95,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
     String tanggal = "", bagianRL = "", timeOutRequest = "12:00:00";
     KAlertDialog pDialog;
     private int i = -1;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,7 +187,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV5.setText("0");
                 jumlahTV6.setText("0");
                 jumlahTV7.setText("0");
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -922,7 +923,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 }
             }
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -1551,6 +1552,12 @@ public class FormLunchRequestActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

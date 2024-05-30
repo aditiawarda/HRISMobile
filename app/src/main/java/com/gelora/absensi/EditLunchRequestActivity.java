@@ -2,7 +2,6 @@ package com.gelora.absensi;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -78,6 +77,8 @@ public class EditLunchRequestActivity extends AppCompatActivity {
     int gapprint_siang = 0, gapprint_sore = 0, gapprint_malam = 0;
     KAlertDialog pDialog;
     private int i = -1;
+    private Handler handler = new Handler();
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +149,7 @@ public class EditLunchRequestActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 getTimeOut();
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -1104,6 +1105,12 @@ public class EditLunchRequestActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

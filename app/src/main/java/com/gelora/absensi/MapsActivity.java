@@ -63,6 +63,8 @@ import com.gelora.absensi.adapter.AdapterDataAbsensi;
 import com.gelora.absensi.adapter.AdapterShiftAbsen;
 import com.gelora.absensi.adapter.AdapterStatusAbsen;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.model.CheckPoint;
+import com.gelora.absensi.model.DataDokumentasiProject;
 import com.gelora.absensi.model.DataRecordAbsensi;
 import com.gelora.absensi.model.ShiftAbsen;
 import com.gelora.absensi.model.StatusAbsen;
@@ -106,9 +108,11 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import android.provider.Settings.Secure;
 import android.widget.Toast;
@@ -160,12 +164,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "2.5.0";
+    String appVersion = "2.5.1";
     private StatusBarColorManager mStatusBarColorManager;
 
     private RecyclerView dataAbsensiRV;
     private DataRecordAbsensi[] dataAbsensis;
     private AdapterDataAbsensi adapterDataAbsensi;
+    private Handler handler = new Handler();
+    List<CheckPoint> checkPoints = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -321,7 +327,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -519,11 +525,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        checkLogin();
-        getCurrentDay();
-        timeLive();
-        checkIzin();
-        checkWarning();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
 
@@ -548,12 +549,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @SuppressLint("MissingPermission")
     private void userPosition() {
-        // Get last known recent location using new Google Play Services SDK (v11+)
         FusedLocationProviderClient locationClient = LocationServices.getFusedLocationProviderClient(this);
         locationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                // GPS location can be null if GPS is switched off
                 if (location != null) {
                     Log.d("TAG", "GPS is on " + String.valueOf(location));
                     if(mMap != null){
@@ -585,9 +584,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void onLocationChanged(Location location) {
-        // New location has now been determined
         String msg = "Updated Location: " + Double.toString(location.getLatitude()) + "," + Double.toString(location.getLongitude());
-        // You can now create a LatLng Object for use with maps
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
         if (location != null) {
@@ -608,8 +605,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (location != null) {
             userPoint = new LatLng(userLat, userLong);
             if (zoomAction.equals("0")){
-                // User position camera
-                float zoomLevel = 17.8f; //This goes up to 21
+                float zoomLevel = 17.8f;
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPoint, zoomLevel));
                 mMap.getUiSettings().setCompassEnabled(false);
             }
@@ -618,57 +614,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    // Trigger new location updates at interval
     @SuppressLint("MissingPermission")
     protected void startLocationUpdates() {
-        // Create the location request to start receiving updates
         mLocationRequest = new LocationRequest();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(UPDATE_INTERVAL);
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
 
-        // Create LocationSettingsRequest object using location request
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
         builder.addLocationRequest(mLocationRequest);
         LocationSettingsRequest locationSettingsRequest = builder.build();
 
-        // Check whether location settings are satisfied
-        // https://developers.google.com/android/reference/com/google/android/gms/location/SettingsClient
         SettingsClient settingsClient = LocationServices.getSettingsClient(this);
         settingsClient.checkLocationSettings(locationSettingsRequest);
 
-        // Last location
-        // getFusedLocationProviderClient(this).getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-        //    @Override
-        //    public void onSuccess(Location location) {
-        //        if (location != null) {
-        //            Log.e("TAG", "GPS is on " + String.valueOf(location));
-        //            mMap.setMyLocationEnabled(true);
-        //            mMap.getUiSettings().setMyLocationButtonEnabled(false);
-        //            float zoomLevel = 18.0f; //This goes up to 21
-        //            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        //            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
-        //            mMap.getUiSettings().setCompassEnabled(false);
-        //            onLocationChanged(location);
-        //        }  else {
-        //            gpsEnableAction();
-        //        }
-        //    }
-        //}).addOnFailureListener(new OnFailureListener() {
-        //    @Override
-        //    public void onFailure(@NonNull Exception e) {
-        //        Log.d("MapsActivity", "Error trying to get last GPS location");
-        //        e.printStackTrace();
-        //        gpsEnableAction();
-        //    }
-        //});
-
-        // Realtime location
-        // new Google API SDK v11 uses getFusedLocationProviderClient(this)
         getFusedLocationProviderClient(this).requestLocationUpdates(mLocationRequest, new LocationCallback() {
                     @Override
                     public void onLocationResult(LocationResult locationResult) {
-                        // do work here
                         if(statusLooping.equals("on") && connectionStatus=="success"){
                             onLocationChanged(locationResult.getLastLocation());
                         }
@@ -677,75 +639,51 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Looper.myLooper());
     }
 
-    private void getAction() {
-        final String url = "https://hrisgelora.co.id/api/aksi_absen";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        JSONObject data = null;
-                        try {
-                            Log.d("Success.Response", response.toString());
-                            data = new JSONObject(response);
+    private void getAction(){
+        connectionFailed.setVisibility(View.GONE);
+        connectionSuccess.setVisibility(View.VISIBLE);
 
-                            connectionFailed.setVisibility(View.GONE);
-                            connectionSuccess.setVisibility(View.VISIBLE);
+        String point = "", status = "";
+        double km = 40000.0 / 360.0;
+        for (int i = 0; i < checkPoints.size(); i++) {
+            String id = checkPoints.get(i).getId();
+            double user_lat = userLat;
+            double user_lang = userLong;
+            double lat = Double.parseDouble(checkPoints.get(i).getLatitude());
+            double lang = Double.parseDouble(checkPoints.get(i).getLongitude());
+            double radius = Double.parseDouble(checkPoints.get(i).getRadius()) / 1000.0; // Konversi ke kilometer jika perlu
 
-                            String point = data.getString("gedung");
-                            String status = data.getString("status");
+            double kx = Math.cos(Math.PI * user_lat / 180.0) * km;
+            double dy = Math.abs(user_lat - lat) * km;
+            double dx = Math.abs(user_lang - lang) * kx;
+            boolean fixloc = Math.sqrt(dx * dx + dy * dy) <= radius;
 
-                            if (status.equals("didalam radius")){
-                                mRipplePulseLayoutInside.startRippleAnimation();
-                                mRipplePulseLayoutOutside.stopRippleAnimation();
-                                insideRadius();
-
-                                absenPoint.setText(point);
-                                absenPoint.setTextColor(Color.parseColor("#309A35"));
-                                radiusZone = "inside";
-
-                            } else {
-                                mRipplePulseLayoutOutside.startRippleAnimation();
-                                mRipplePulseLayoutInside.stopRippleAnimation();
-                                outsideRadius();
-
-                                absenPoint.setText("DI LUAR JANGKAUAN");
-                                absenPoint.setTextColor(Color.parseColor("#B83633"));
-                                radiusZone = "outside";
-                            }
-
-                            if(!idShiftAbsen.equals("")||!idCheckin.equals("")){
-                                actionButton();
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
-                        Log.d("Error.Response", error.toString());
-                        connectionFailed();
-                    }
-                }
-        )
-        {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("latitude_u", String.valueOf(userLat));
-                params.put("longitude_u", String.valueOf(userLong));
-                return params;
+            if (fixloc) {
+                status = "inside";
+                point = checkPoints.get(i).getNama();
+                break;
             }
-        };
+        }
 
-        requestQueue.add(postRequest);
+        if(status.equals("inside")){
+            mRipplePulseLayoutInside.startRippleAnimation();
+            mRipplePulseLayoutOutside.stopRippleAnimation();
+            insideRadius();
+            absenPoint.setText(point);
+            absenPoint.setTextColor(Color.parseColor("#309A35"));
+            radiusZone = "inside";
+        } else {
+            mRipplePulseLayoutOutside.startRippleAnimation();
+            mRipplePulseLayoutInside.stopRippleAnimation();
+            outsideRadius();
+            absenPoint.setText("DI LUAR JANGKAUAN");
+            absenPoint.setTextColor(Color.parseColor("#B83633"));
+            radiusZone = "outside";
+        }
+
+        if(!idShiftAbsen.equals("")||!idCheckin.equals("")){
+            actionButton();
+        }
 
     }
 
@@ -760,7 +698,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         // display response
                         Log.d("Response", response.toString());
                         try {
-
+                            checkPoints.clear();
                             connectionFailed.setVisibility(View.GONE);
                             connectionSuccess.setVisibility(View.VISIBLE);
 
@@ -768,6 +706,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                             for (int i = 0; i < data.length(); i++) {
                                 JSONObject location = data.getJSONObject(i);
+                                String id = location.getString("id");
+                                String nama = location.getString("nama");
                                 String latitude = location.getString("latitude");
                                 String longitude = location.getString("longitude");
                                 String radius = location.getString("radius");
@@ -780,6 +720,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 circleOptions.strokeWidth(3);
                                 circleOptions.strokeColor(Color.parseColor("#E6FB3527"));
                                 mMap.addCircle(circleOptions);
+
+                                CheckPoint dataPoint = new CheckPoint();
+                                dataPoint.setId(id);
+                                dataPoint.setNama(nama);
+                                dataPoint.setLatitude(latitude);
+                                dataPoint.setLongitude(longitude);
+                                dataPoint.setRadius(radius);
+                                checkPoints.add(dataPoint);
                             }
 
                         } catch (JSONException e){
@@ -894,15 +842,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void timeLive() {
-        hTime.setText(getTimeH());
-        mTime.setText(getTimeM());
-        sTime.setText(getTimeS());
-        new Handler().postDelayed(new Runnable() {
+        handler.post(new Runnable() {
             @Override
             public void run() {
-                timeLive();
+                hTime.setText(getTimeH());
+                mTime.setText(getTimeM());
+                sTime.setText(getTimeS());
+                handler.postDelayed(this, 1000);
             }
-        }, 1000);
+        });
     }
 
     private void insideRadius() {
@@ -920,31 +868,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void statusAbsen(){
         bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_status_absen, bottomSheet, false));
         statusAbsenRV = findViewById(R.id.status_absen_rv);
-
-        if(statusAbsenRV != null){
+        try {
             statusAbsenRV.setLayoutManager(new LinearLayoutManager(this));
             statusAbsenRV.setHasFixedSize(true);
             statusAbsenRV.setNestedScrollingEnabled(false);
             statusAbsenRV.setItemAnimator(new DefaultItemAnimator());
+
+            getStatusAbsenBagian();
+        } catch (NullPointerException e){
+            Log.e("Error", e.toString());
         }
-
-        getStatusAbsenBagian();
-
     }
 
     private void shiftAbsen(){
         bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_shift_absen, bottomSheet, false));
         shifAbsenRV = findViewById(R.id.shift_absen_rv);
-
-        if(shifAbsenRV != null){
+        try {
             shifAbsenRV.setLayoutManager(new LinearLayoutManager(this));
             shifAbsenRV.setHasFixedSize(true);
             shifAbsenRV.setNestedScrollingEnabled(false);
             shifAbsenRV.setItemAnimator(new DefaultItemAnimator());
+
+            getShiftAbsenBagian();
+        } catch (NullPointerException e){
+            Log.e("Error", e.toString());
         }
-
-        getShiftAbsenBagian();
-
     }
 
     @Override
@@ -1183,7 +1131,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 actionTV.setText("CHECK IN");
             }
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -1209,7 +1157,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             statusAction = "checkin";
             actionButton();
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -4968,7 +4916,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void devModeOnDetection(){
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://hrisgelora.co.id/api/user_devmode_detection";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -5044,6 +4991,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             requestQueue.cancelAll(this);
         }
         statusLooping = "off";
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

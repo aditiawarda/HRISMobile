@@ -90,6 +90,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
     private AdapterAllKaryawan adapterAllKaryawan;
     String dueDateChoice = "", starDateChoice = "", endDateChoice = "", nikProjectLeader = "", namaProjectLeader = "", idBagianProjectLeader = "", idDepartemenProjectLeader = "", idJabatanProjectLeader = "", namaBagianProjectLeader = "", namaDepartemenProjectLeader = "";
     String AUTH_TOKEN = "";
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,7 +154,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
                 starDateChoice = "";
                 endDateTV.setText("");
                 endDateChoice = "";
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -334,7 +335,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
                 karyawanRV.setVisibility(View.GONE);
 
                 if (!keyWordSearch.equals("")) {
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getAllUser(keyWordSearch);
@@ -437,7 +438,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
             projectNameED.clearFocus();
             projectDescED.clearFocus();
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -456,7 +457,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
             categoryChoice = categoryId;
             categoryChoiceTV.setText(categoryName);
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -1273,6 +1274,12 @@ public class FormInputProjectActivity extends AppCompatActivity {
                 super.onBackPressed();
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

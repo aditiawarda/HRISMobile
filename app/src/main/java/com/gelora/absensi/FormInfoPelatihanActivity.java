@@ -52,6 +52,7 @@ public class FormInfoPelatihanActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     KAlertDialog pDialog;
     private int i = -1;
+    private Handler handler = new Handler();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -177,7 +178,7 @@ public class FormInfoPelatihanActivity extends AppCompatActivity {
                 namaPelatihanED.clearFocus();
                 lembagaPelatihanED.clearFocus();
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -559,6 +560,12 @@ public class FormInfoPelatihanActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

@@ -106,6 +106,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
     private static final int PICK_PDF_ST_6 = 6;
 
     String nikKaryawan, namaKaryawan, idBagian, idDepartemen, idJabatan;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,7 +201,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -1380,7 +1381,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     request.startUpload();
                 }
                 if(i+1 == arrayFile.length){
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             permohonanTerkirim = "1";
@@ -1597,6 +1598,12 @@ public class FormExitClearanceActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

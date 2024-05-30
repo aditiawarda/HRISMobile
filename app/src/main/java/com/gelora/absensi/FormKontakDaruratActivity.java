@@ -63,6 +63,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     ImageView successGif;
     private int i = -1;
+    private Handler handler = new Handler();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -135,7 +136,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                 namaED.clearFocus();
                 hubunganLainnyaED.clearFocus();
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -617,7 +618,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                 hubunganPilih = "Ayah";
                 hubunganPilihTV.setText("Ayah");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -652,7 +653,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                 hubunganPilih = "Ibu";
                 hubunganPilihTV.setText("Ibu");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -687,7 +688,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                 hubunganPilih = "Suami";
                 hubunganPilihTV.setText("Suami");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -722,7 +723,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                 hubunganPilih = "Istri";
                 hubunganPilihTV.setText("Istri");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -757,7 +758,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                 hubunganPilih = "Anak";
                 hubunganPilihTV.setText("Anak");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -792,7 +793,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                 hubunganPilih = "Saudara Laki-Laki";
                 hubunganPilihTV.setText("Saudara Laki-Laki");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -827,7 +828,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                 hubunganPilih = "Saudara Perempuan";
                 hubunganPilihTV.setText("Saudara Perempuan");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -862,7 +863,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                 hubunganPilih = "Lainnya";
                 hubunganPilihTV.setText("Lainnya");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1049,6 +1050,12 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

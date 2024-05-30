@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,7 +21,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterListSDM;
 import com.gelora.absensi.model.HumanResource;
 import com.google.gson.Gson;
@@ -45,6 +43,7 @@ public class HumanResourceActivity extends AppCompatActivity {
     private RecyclerView dataListKaryawanRV;
     private HumanResource[] humanResources;
     private AdapterListSDM adapterListSDM;
+    private Handler handler = new Handler();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -93,7 +92,7 @@ public class HumanResourceActivity extends AppCompatActivity {
                 noDataPart.setVisibility(View.GONE);
                 dataListKaryawanRV.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -300,13 +299,19 @@ public class HumanResourceActivity extends AppCompatActivity {
         loadingDataPart.setVisibility(View.VISIBLE);
         noDataPart.setVisibility(View.GONE);
         dataListKaryawanRV.setVisibility(View.GONE);
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 refreshLayout.setRefreshing(false);
                 getData();
             }
         }, 500);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

@@ -17,7 +17,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -49,6 +48,7 @@ public class ForgotPasswordVerificationActivity extends AppCompatActivity {
     ProgressBar loadingResending;
     String nik, email, otp, expired;
     Boolean timeOut = false;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,7 +187,8 @@ public class ForgotPasswordVerificationActivity extends AppCompatActivity {
                                 intent.putExtra("otp", otp);
                                 intent.putExtra("expired", expired_at);
                                 startActivity(intent);
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
+                                    @SuppressLint("SetTextI18n")
                                     @Override
                                     public void run() {
                                         loadingResending.setVisibility(View.GONE);
@@ -334,6 +335,7 @@ public class ForgotPasswordVerificationActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }

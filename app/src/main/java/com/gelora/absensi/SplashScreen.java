@@ -83,6 +83,7 @@ public class SplashScreen extends AppCompatActivity {
     private LocationRequest mLocationRequest;
     private long UPDATE_INTERVAL = 10 * 1000;  /* 10 secs */
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +113,7 @@ public class SplashScreen extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void run() {
@@ -131,7 +132,7 @@ public class SplashScreen extends AppCompatActivity {
             }
         });
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -150,8 +151,7 @@ public class SplashScreen extends AppCompatActivity {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 refreshBTN.setOnClickListener(null);
                 refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss_off));
-
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -241,14 +241,14 @@ public class SplashScreen extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
             }
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     permissionLoc();
                 }
             }, 50);
         } else {
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     Intent intent = new Intent(SplashScreen.this, HomeActivity.class);
@@ -285,7 +285,7 @@ public class SplashScreen extends AppCompatActivity {
 
                 if (location != null) {
                     Log.d("TAG", "GPS is on " + String.valueOf(location));
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             Intent intent = new Intent(SplashScreen.this, HomeActivity.class);
@@ -317,7 +317,7 @@ public class SplashScreen extends AppCompatActivity {
 
         if (location != null) {
             Log.d("TAG", "GPS is on " + String.valueOf(location));
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     Intent intent = new Intent(SplashScreen.this, HomeActivity.class);
@@ -325,7 +325,6 @@ public class SplashScreen extends AppCompatActivity {
                     finish();
                 }
             }, 50);
-
         } else {
             gpsEnableAction();
         }
@@ -384,8 +383,7 @@ public class SplashScreen extends AppCompatActivity {
                                     loadingProgressBar.setVisibility(View.VISIBLE);
                                     refreshBTN.setOnClickListener(null);
                                     refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss_off));
-
-                                    new Handler().postDelayed(new Runnable() {
+                                    handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
                                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -404,7 +402,7 @@ public class SplashScreen extends AppCompatActivity {
                             String close_btn = data.getString("close_btn");
 
                             if (status.equals("Success")){
-                                String currentVersion = "2.5.0";
+                                String currentVersion = "2.5.1";
                                 if (popup.equals("1") && ((!currentVersion.equals(version) && target.equals("all")) || target.equals(currentVersion))){
                                     refreshPart.animate()
                                             .translationY(refreshPart.getHeight())
@@ -565,8 +563,7 @@ public class SplashScreen extends AppCompatActivity {
                                 loadingProgressBar.setVisibility(View.VISIBLE);
                                 refreshBTN.setOnClickListener(null);
                                 refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss_off));
-
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -614,7 +611,7 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -673,14 +670,12 @@ public class SplashScreen extends AppCompatActivity {
                                 updateLayout.setVisibility(View.GONE);
                             }
                         });
-
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         closeApp();
                     }
                 }, 300);
-
             }
         } else {
             super.onBackPressed();
@@ -689,6 +684,12 @@ public class SplashScreen extends AppCompatActivity {
 
     private void closeApp(){
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

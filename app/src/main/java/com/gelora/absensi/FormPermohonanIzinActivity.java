@@ -33,7 +33,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Header;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -59,7 +58,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -87,6 +85,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
     int REQUEST_IMAGE = 100;
     private Uri uri;
     RequestQueue requestQueue;
+    private Handler handler = new Handler();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -149,7 +148,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -1642,7 +1641,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     dayCalculate();
                 }
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1666,7 +1665,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     dayCalculate();
                 }
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1822,7 +1821,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         String pngImagePath = FilePathimage.getPath(this, uri);
                         new ConvertImageTask().execute(pngImagePath);
                     } else {
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
@@ -1920,7 +1919,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     throw new RuntimeException(e);
                 }
             } else {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
@@ -1992,6 +1991,12 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                 super.onBackPressed();
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

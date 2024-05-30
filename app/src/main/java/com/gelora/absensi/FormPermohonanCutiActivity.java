@@ -111,6 +111,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     private Uri uri;
     private static final int PICKFILE_RESULT_CODE = 1;
     RequestQueue requestQueue;
+    private Handler handler = new Handler();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -188,7 +189,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -2985,7 +2986,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                 karyawanPenggantiRV.setVisibility(View.GONE);
 
                 if(!keyWordSearch.equals("")){
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getDataKaryawanPengganti(keyWordSearch);
@@ -3619,7 +3620,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
             alamatSelamaCutiTV.clearFocus();
             noHpTV.clearFocus();
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -3648,7 +3649,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
             alamatSelamaCutiTV.clearFocus();
             noHpTV.clearFocus();
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -3966,7 +3967,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                     throw new RuntimeException(e);
                 }
             } else {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
@@ -4031,7 +4032,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                         String pngImagePath = FilePathimage.getPath(this, uri);
                         new ConvertImageTask().execute(pngImagePath);
                     } else {
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
@@ -4055,5 +4056,10 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
+    }
 
 }

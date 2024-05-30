@@ -11,8 +11,8 @@ android {
         applicationId "com.gelora.absensi"
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 150
-        versionName "2.5.0"
+        versionCode 151
+        versionName "2.5.1"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -100,5 +100,6 @@ dependencies {
     implementation 'com.github.travijuu:numberpicker:1.0.7'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
     implementation 'io.github.chaosleung:pinview:1.4.4'
+    implementation 'com.github.NitishGadangi:TypeWriter-TextView:v1.3'
 
 }

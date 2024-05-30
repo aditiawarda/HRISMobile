@@ -37,7 +37,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -63,7 +62,6 @@ import com.gelora.absensi.ChatSplashScreenActivity;
 import com.gelora.absensi.DataFormSdmActivity;
 import com.gelora.absensi.DetailCuacaActivity;
 import com.gelora.absensi.DetailPengumumanActivity;
-import com.gelora.absensi.DetailReportSumaActivity;
 import com.gelora.absensi.DigitalCardActivity;
 import com.gelora.absensi.DigitalSignatureActivity;
 import com.gelora.absensi.ExitClearanceActivity;
@@ -99,6 +97,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.nitish.typewriterview.TypeWriterView;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -126,10 +125,10 @@ import java.util.Map;
 
 public class FragmentHome extends Fragment {
 
-    LinearLayout visiMisiBTN, countNotificationClearancePart, clearancePart, calendarPart, weatherBTN, newsPart, countNotificationPersonalPart, personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLainnyaBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN, menuClearanceBTN;
+    LinearLayout updateLogo, visiMisiBTN, countNotificationClearancePart, clearancePart, calendarPart, weatherBTN, newsPart, countNotificationPersonalPart, personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLainnyaBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN, menuClearanceBTN;
     TextView countNotifClearanceTV, countNotificationPersonalTV, countNotifPenilaianTV, nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
     ProgressBar loadingProgressBarCuaca;
-    ImageView avatarUser, weatherIcon;
+    ImageView avatarUser, weatherIcon, updateIcImg, regulerLogo;
     RelativeLayout dataCuaca, dataCuacaEmpty;
 
     MediaPlayer musicUlangTahun;
@@ -152,11 +151,17 @@ public class FragmentHome extends Fragment {
     protected ViewGroup viewGroup;
     protected int[] colors;
 
+    private TypeWriterView typeWriterView;
+    private Handler handler = new Handler();
+    private Runnable textAnimator;
+    private static String TEXT_TO_ANIMATE = "";
+    private static final long ANIMATION_INTERVAL = 2100;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
-        resultReceiver = new AddressResultReceiver(new Handler());
+        resultReceiver = new AddressResultReceiver(handler);
         mContext = getContext();
         mActivity = getActivity();
 
@@ -239,6 +244,15 @@ public class FragmentHome extends Fragment {
         calendarPart = view.findViewById(R.id.calendar_part);
         countNotificationClearancePart = view.findViewById(R.id.count_notification_clearance);
         countNotifClearanceTV = view.findViewById(R.id.count_notif_clearance_tv);
+        updateLogo = view.findViewById(R.id.update_logo);
+        regulerLogo = view.findViewById(R.id.reguler_logo);
+        updateIcImg = view.findViewById(R.id.update_ic_img);
+
+        Glide.with(mContext)
+                .load(R.drawable.update_ic)
+                .into(updateIcImg);
+
+        typeWriterView = view.findViewById(R.id.typeWriterView);
 
         listPengumumanNewRV = view.findViewById(R.id.list_pengumuman_rv);
         listPengumumanNewRV.setLayoutManager(new LinearLayoutManager(mContext));
@@ -250,18 +264,17 @@ public class FragmentHome extends Fragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                stopTyper();
+                checkVersion();
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                     listPengumumanNewRV.setVisibility(View.GONE);
                     noDataPart.setVisibility(View.GONE);
                     loadingDataPart.setVisibility(View.VISIBLE);
                 }
-
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
-                        getDataKaryawan();
                     }
                 }, 1000);
             }
@@ -342,7 +355,7 @@ public class FragmentHome extends Fragment {
                                 @Override
                                 public void onClick(KAlertDialog sDialog) {
                                     sDialog.dismiss();
-                                    new Handler().postDelayed(new Runnable() {
+                                    handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
                                             getContact();
@@ -368,7 +381,7 @@ public class FragmentHome extends Fragment {
                                 @Override
                                 public void onClick(KAlertDialog sDialog) {
                                     sDialog.dismiss();
-                                    new Handler().postDelayed(new Runnable() {
+                                    handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
                                             getContact();
@@ -480,7 +493,7 @@ public class FragmentHome extends Fragment {
             visiMisiBTN.setVisibility(View.GONE);
         }
 
-        getDataKaryawan();
+        //getDataKaryawan();
         getCurrentDay();
         nameOfUser.setText(sharedPrefManager.getSpNama());
         nikTV.setText(sharedPrefManager.getSpNik());
@@ -744,7 +757,7 @@ public class FragmentHome extends Fragment {
                                                 if (refeatConfeti.equals("1")) {
                                                     CommonConfetti.rainingConfetti(mainParent, colors).stream(3000);
                                                     refeatConfeti = "0";
-                                                    new Handler().postDelayed(new Runnable() {
+                                                    handler.postDelayed(new Runnable() {
                                                         @Override
                                                         public void run() {
                                                             refeatConfeti = "1";
@@ -783,7 +796,7 @@ public class FragmentHome extends Fragment {
                                                         if (refeatConfeti.equals("1")) {
                                                             CommonConfetti.rainingConfetti(mainParent, colors).stream(3000);
                                                             refeatConfeti = "0";
-                                                            new Handler().postDelayed(new Runnable() {
+                                                            handler.postDelayed(new Runnable() {
                                                                 @Override
                                                                 public void run() {
                                                                     refeatConfeti = "1";
@@ -1584,7 +1597,7 @@ public class FragmentHome extends Fragment {
         hTime.setText(getTimeH());
         mTime.setText(getTimeM());
         sTime.setText(getTimeS());
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 timeLive();
@@ -1599,7 +1612,7 @@ public class FragmentHome extends Fragment {
             musicUlangTahun.pause();
             musicPlay = "off";
         } else {
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     checkMusic();
@@ -2099,6 +2112,95 @@ public class FragmentHome extends Fragment {
         };
 
         requestQueue.add(postRequest);
+
+    }
+
+    private void checkVersion() {
+        final String url = "https://hrisgelora.co.id/api/version_app";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("PaRSE JSON", response + "");
+                        try {
+                            String status = response.getString("status");
+                            String version = response.getString("version");
+                            String btn_update = response.getString("btn_update");
+
+                            if (status.equals("Success")){
+                                String currentVersion = "2.5.1"; //harus disesuaikan
+                                if (!currentVersion.equals(version) && btn_update.equals("1")){
+                                    regulerLogo.setVisibility(View.GONE);
+                                    updateLogo.setVisibility(View.VISIBLE);
+                                    updateLogo.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.gelora.absensi"));
+                                            startActivity(webIntent);
+                                            try {
+                                                startActivity(webIntent);
+                                            } catch (SecurityException e) {
+                                                e.printStackTrace();
+                                                new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
+                                                        .setTitleText("Perhatian")
+                                                        .setContentText("Tidak dapat terhubung ke Play Store, anda dapat membuka Play Store secara langsung dan cari HRIS Mobile Gelora di kolom pencarian")
+                                                        .setConfirmText("TUTUP")
+                                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                            @Override
+                                                            public void onClick(KAlertDialog sDialog) {
+                                                                sDialog.dismiss();
+                                                            }
+                                                        })
+                                                        .show();
+                                            }
+                                        }
+                                    });
+
+                                    TEXT_TO_ANIMATE = "Update ke v "+version;
+                                    updateTyper(TEXT_TO_ANIMATE);
+
+                                } else {
+                                    regulerLogo.setVisibility(View.VISIBLE);
+                                    updateLogo.setVisibility(View.GONE);
+                                }
+                            } else {
+                                regulerLogo.setVisibility(View.VISIBLE);
+                                updateLogo.setVisibility(View.GONE);
+                            }
+
+                            getDataKaryawan();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                connectionFailed();
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
+    private void updateTyper(final String textToAnimate) {
+        textAnimator = new Runnable() {
+            @Override
+            public void run() {
+                typeWriterView.animateText(textToAnimate);
+                handler.postDelayed(this, ANIMATION_INTERVAL);
+            }
+        };
+        handler.post(textAnimator);
+    }
+
+    private void stopTyper() {
+        if (handler != null && textAnimator != null) {
+            handler.removeCallbacks(textAnimator);
+        }
     }
 
     private void connectionFailed(){
@@ -2114,10 +2216,18 @@ public class FragmentHome extends Fragment {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        stopTyper();
+        handler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         requestQueue = Volley.newRequestQueue(mContext);
-        getDataKaryawan();
+        stopTyper();
+        checkVersion();
     }
 
 }
