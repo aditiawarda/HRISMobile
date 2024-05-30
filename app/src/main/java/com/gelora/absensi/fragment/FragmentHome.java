@@ -493,7 +493,6 @@ public class FragmentHome extends Fragment {
             visiMisiBTN.setVisibility(View.GONE);
         }
 
-        //getDataKaryawan();
         getCurrentDay();
         nameOfUser.setText(sharedPrefManager.getSpNama());
         nikTV.setText(sharedPrefManager.getSpNik());

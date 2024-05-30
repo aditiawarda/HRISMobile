@@ -92,8 +92,6 @@ public class ListChatMateActivity extends AppCompatActivity {
             }
         });
 
-        getListChatMate();
-
     }
 
     private void getListChatMate() {

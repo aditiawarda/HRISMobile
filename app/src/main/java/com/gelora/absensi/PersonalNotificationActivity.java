@@ -91,8 +91,6 @@ public class PersonalNotificationActivity extends AppCompatActivity {
             }
         });
 
-        getData();
-
     }
 
     private void getData() {

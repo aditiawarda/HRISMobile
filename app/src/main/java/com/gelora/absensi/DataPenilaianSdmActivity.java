@@ -103,8 +103,6 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
             }
         });
 
-        getData();
-
     }
 
     private void getData() {

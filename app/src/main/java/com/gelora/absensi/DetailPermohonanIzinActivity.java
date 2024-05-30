@@ -444,8 +444,6 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
         idPermohonanTV.setText(idIzinRecord);
 
-        getDataDetailPermohonan();
-
     }
 
     private void generateQRCode(){

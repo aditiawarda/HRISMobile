@@ -107,8 +107,6 @@ public class InfoKeluargaActivity extends AppCompatActivity {
             }
         });
 
-        getDataKeluarga();
-
     }
 
     private void getDataKeluarga() {

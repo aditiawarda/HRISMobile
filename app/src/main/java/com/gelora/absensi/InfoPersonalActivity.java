@@ -109,8 +109,6 @@ public class InfoPersonalActivity extends AppCompatActivity {
             }
         });
 
-        getData();
-
     }
 
     private void getData() {

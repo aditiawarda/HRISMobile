@@ -163,8 +163,6 @@ public class DetailKeluargaActivity extends AppCompatActivity {
             }
         });
 
-        getData();
-
     }
 
     private void deleteData(String id_data) {

@@ -147,8 +147,6 @@ public class DetailProjectActivity extends AppCompatActivity {
             }
         });
 
-        getDetailProject(projectId);
-
     }
 
     private void getDetailProject2(String project_id) {

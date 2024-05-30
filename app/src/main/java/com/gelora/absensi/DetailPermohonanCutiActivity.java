@@ -434,8 +434,6 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
             }
         });
 
-        getDataDetailPermohonan();
-
     }
 
     private void cancelPermohonan(String id){

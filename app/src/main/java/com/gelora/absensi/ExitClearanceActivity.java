@@ -251,9 +251,6 @@ public class ExitClearanceActivity extends AppCompatActivity {
             dataKeluarPart.setVisibility(View.VISIBLE);
         }
 
-        getDataIn(otoritorEC);
-        getDataOut();
-
     }
 
     private void pilihKaryawan(){

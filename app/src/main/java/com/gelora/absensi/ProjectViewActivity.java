@@ -140,7 +140,6 @@ public class ProjectViewActivity extends AppCompatActivity {
         });
 
         getAccess();
-        getProjectAll();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_KATEGORI_PROJECT, "");
         categoryChoiceTV.setText("Semua");
 
@@ -352,73 +351,6 @@ public class ProjectViewActivity extends AppCompatActivity {
                         Log.e(TAG, "Volley error: " + error.getMessage());
                     }
                 });
-
-        requestQueue.add(jsonObjectRequest);
-
-    }
-
-    private void getProjectAll2() {
-        final String API_ENDPOINT_CATEGORY = "https://timeline.geloraaksara.co.id/project/list?limit=30";
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.GET,
-                API_ENDPOINT_CATEGORY,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // Handle the response
-                        Log.d(TAG, "Response: " + response.toString());
-                        JSONObject data = null;
-                        try {
-                            Log.d("Success.Response", response.toString());
-                            data = response.getJSONObject("data");
-                            String data_project = data.getString("response");
-                            JSONArray jsonArray = new JSONArray(data_project);
-                            int arrayLength = jsonArray.length();
-                            if(arrayLength != 0) {
-                                projectRV.setVisibility(View.VISIBLE);
-                                loadingPart.setVisibility(View.GONE);
-                                noDataPart.setVisibility(View.GONE);
-                                GsonBuilder builder = new GsonBuilder();
-                                Gson gson = builder.create();
-                                projectData = gson.fromJson(data_project, ProjectData[].class);
-                                adapterDataProject = new AdapterDataProject(projectData,ProjectViewActivity.this);
-                                try {
-                                    projectRV.setAdapter(adapterDataProject);
-                                } catch (NullPointerException e) {
-                                    e.printStackTrace();
-                                }
-                            } else {
-                                projectRV.setVisibility(View.GONE);
-                                loadingPart.setVisibility(View.GONE);
-                                noDataPart.setVisibility(View.VISIBLE);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // Handle the error
-                        Log.e(TAG, "Volley error: " + error.getMessage());
-                        bottomSheet.dismissSheet();
-                        connectionFailed();
-                        projectRV.setVisibility(View.GONE);
-                        loadingPart.setVisibility(View.GONE);
-                        noDataPart.setVisibility(View.VISIBLE);
-                    }
-                }) {
-            @Override
-            public java.util.Map<String, String> getHeaders() {
-                java.util.Map<String, String> headers = new java.util.HashMap<>();
-                headers.put("Authorization", "Bearer " + AUTH_TOKEN);
-                return headers;
-            }
-        };
 
         requestQueue.add(jsonObjectRequest);
 

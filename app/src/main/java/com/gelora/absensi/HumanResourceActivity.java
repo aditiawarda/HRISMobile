@@ -141,8 +141,6 @@ public class HumanResourceActivity extends AppCompatActivity {
             }
         });
 
-        getData();
-
     }
 
     @SuppressLint("SetTextI18n")

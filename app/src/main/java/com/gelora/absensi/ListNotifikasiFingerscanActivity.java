@@ -202,8 +202,6 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
             permohonanSayaPart.setVisibility(View.VISIBLE);
         }
 
-        getData();
-
     }
 
     private void getData() {

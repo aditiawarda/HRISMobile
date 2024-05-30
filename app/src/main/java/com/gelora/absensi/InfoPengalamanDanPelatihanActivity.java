@@ -172,8 +172,6 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
             }
         });
 
-        getData();
-
     }
 
     private void getData() {

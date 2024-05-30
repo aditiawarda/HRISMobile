@@ -209,8 +209,6 @@ public class ListNotifikasiActivity extends AppCompatActivity {
             permohonanSayaPart.setVisibility(View.VISIBLE);
         }
 
-        getData();
-
     }
 
     private void getData() {

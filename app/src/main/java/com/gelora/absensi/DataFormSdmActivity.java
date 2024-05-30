@@ -106,8 +106,6 @@ public class DataFormSdmActivity extends AppCompatActivity {
             }
         });
 
-        getData();
-
     }
 
     private void getData() {

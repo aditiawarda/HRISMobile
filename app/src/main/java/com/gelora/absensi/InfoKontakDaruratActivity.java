@@ -116,8 +116,6 @@ public class InfoKontakDaruratActivity extends AppCompatActivity {
             }
         });
 
-        getDataKontak();
-
     }
 
     private void getDataKontak() {
