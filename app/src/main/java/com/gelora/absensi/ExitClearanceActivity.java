@@ -451,7 +451,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Log.d("Error.Response", error.toString());
+                        Log.e("Error.Response", error.toString());
                         connectionFailed();
                     }
                 }
@@ -526,7 +526,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Log.d("Error.Response", error.toString());
+                        Log.e("Error.Response", error.toString());
                         connectionFailed();
                     }
                 }

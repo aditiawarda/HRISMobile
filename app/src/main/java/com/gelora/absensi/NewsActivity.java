@@ -163,7 +163,6 @@ public class NewsActivity extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
                         // response
                         JSONObject data = null;
                         try {

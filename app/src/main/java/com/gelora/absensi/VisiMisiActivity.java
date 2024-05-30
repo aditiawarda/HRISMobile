@@ -68,8 +68,8 @@ public class VisiMisiActivity extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
                         try {
+                            Log.d("PaRSE JSON", response + "");
                             String status = response.getString("status");
                             if(status.equals("Success")){
                                 String visi = response.getString("visi");

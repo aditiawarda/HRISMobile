@@ -1799,7 +1799,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                         String file_directori = getRealPathFromURIPath(uri, FormPermohonanIzinActivity.this);
                         String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
-                        Log.e("PaRSE JSON", a);
+                        Log.d("PaRSE JSON", a);
                         markUpload.setVisibility(View.VISIBLE);
                         viewUploadBTN.setVisibility(View.VISIBLE);
                         statusUploadTV.setText("Berhasil diunggah");
@@ -1868,7 +1868,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     .startUpload();
             }
             catch (Exception exc) {
-                Log.e("PaRSE JSON", "Oke");
+                Log.e("PaRSE JSON", exc.toString());
                 pDialog.dismiss();
             }
         }
@@ -1898,7 +1898,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     String file_directori = getRealPathFromURIPath(uri, FormPermohonanIzinActivity.this);
                     String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
-                    Log.e("PaRSE JSON", a);
+                    Log.d("PaRSE JSON", a);
                     markUpload.setVisibility(View.VISIBLE);
                     viewUploadBTN.setVisibility(View.VISIBLE);
                     statusUploadTV.setText("Berhasil diunggah");
