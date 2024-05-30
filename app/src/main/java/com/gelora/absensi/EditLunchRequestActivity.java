@@ -838,7 +838,7 @@ public class EditLunchRequestActivity extends AppCompatActivity {
                                 long pilih = date.getTime();
                                 long sekarang = date2.getTime();
 
-                                if (pilih==sekarang){
+                                if (pilih<=sekarang){
                                     String jamString = getTimeNow();
                                     String batasString = timeOutRequest;
 

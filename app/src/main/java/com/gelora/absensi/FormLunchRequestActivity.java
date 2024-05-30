@@ -858,7 +858,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 long pilih = date.getTime();
                 long sekarang = date2.getTime();
 
-                if (pilih==sekarang){
+                if (pilih<=sekarang){
                     String jamString = getTimeNow();
                     String batasString = timeOutRequest;
 
@@ -978,7 +978,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                         })
                         .show();
 
-            } else if (pilih==sekarang){
+            } else if (pilih<=sekarang){
                 String input_date = tanggal;
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 Date dt1= null;
