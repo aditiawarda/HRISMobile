@@ -838,7 +838,22 @@ public class EditLunchRequestActivity extends AppCompatActivity {
                                 long pilih = date.getTime();
                                 long sekarang = date2.getTime();
 
-                                if (pilih<=sekarang){
+                                if (pilih<sekarang) {
+                                    inputPart.setVisibility(View.GONE);
+                                    siangPart1.setVisibility(View.GONE);
+                                    siangPart2.setVisibility(View.GONE);
+                                    soreMalamPart1.setVisibility(View.GONE);
+                                    soreMalamPart2.setVisibility(View.GONE);
+                                    closePart.setVisibility(View.VISIBLE);
+
+                                    submitLabelTV.setText("KEMBALI");
+                                    submitBTN.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            onBackPressed();
+                                        }
+                                    });
+                                } else if (pilih==sekarang){
                                     String jamString = getTimeNow();
                                     String batasString = timeOutRequest;
 
@@ -883,8 +898,7 @@ public class EditLunchRequestActivity extends AppCompatActivity {
                                         e.printStackTrace();
                                     }
 
-                                }
-                                else {
+                                } else if (pilih>sekarang) {
                                     inputPart.setVisibility(View.VISIBLE);
                                     siangPart1.setVisibility(View.VISIBLE);
                                     siangPart2.setVisibility(View.VISIBLE);

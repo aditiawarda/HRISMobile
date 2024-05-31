@@ -858,7 +858,22 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 long pilih = date.getTime();
                 long sekarang = date2.getTime();
 
-                if (pilih<=sekarang){
+                if(pilih<sekarang){
+                    inputPart.setVisibility(View.GONE);
+                    siangPart1.setVisibility(View.GONE);
+                    siangPart2.setVisibility(View.GONE);
+                    soreMalamPart1.setVisibility(View.GONE);
+                    soreMalamPart2.setVisibility(View.GONE);
+                    closePart.setVisibility(View.VISIBLE);
+
+                    submitLabelTV.setText("KEMBALI");
+                    submitBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onBackPressed();
+                        }
+                    });
+                } else if (pilih==sekarang){
                     String jamString = getTimeNow();
                     String batasString = timeOutRequest;
 
@@ -903,8 +918,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                }
-                else {
+                } else if (pilih>sekarang){
                     inputPart.setVisibility(View.VISIBLE);
                     siangPart1.setVisibility(View.VISIBLE);
                     siangPart2.setVisibility(View.VISIBLE);
@@ -978,7 +992,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                         })
                         .show();
 
-            } else if (pilih<=sekarang){
+            } else if (pilih==sekarang){
                 String input_date = tanggal;
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 Date dt1= null;
@@ -1101,7 +1115,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-            } else {
+            } else if(pilih>sekarang) {
                 String input_date = tanggal;
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 Date dt1= null;
@@ -1441,7 +1455,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                         })
                         .show();
             } else {
-                if(pusat_siang1 ==0 && pusat_siang2 ==0 && pusat_sore ==0 && pusat_malam ==0 && gapprint_siang ==0 && gapprint_sore ==0  && gapprint_malam ==0){
+                if(pusat_siang1==0 && pusat_siang2==0 && pusat_sore==0 && pusat_malam==0 && gapprint_siang==0 && gapprint_sore==0  && gapprint_malam==0){
                     new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
                             .setContentText("Harap isi jumlah permohonan")

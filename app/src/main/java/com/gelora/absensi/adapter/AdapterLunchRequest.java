@@ -134,7 +134,9 @@ public class AdapterLunchRequest extends RecyclerView.Adapter<AdapterLunchReques
         long pilih = date.getTime();
         long sekarang = date2.getTime();
 
-        if (pilih<=sekarang){
+        if(pilih<sekarang) {
+            myViewHolder.updateBTN.setVisibility(View.GONE);
+        } else if (pilih==sekarang){
             String jamString = getTimeNow();
             String batasString = sharedPrefAbsen.getSpLunchRequestTimeout();
 
@@ -161,8 +163,7 @@ public class AdapterLunchRequest extends RecyclerView.Adapter<AdapterLunchReques
                 e.printStackTrace();
             }
 
-        }
-        else {
+        } else if (pilih>sekarang){
             myViewHolder.updateBTN.setVisibility(View.VISIBLE);
             myViewHolder.updateBTN.setOnClickListener(new View.OnClickListener() {
                 @Override
