@@ -54,6 +54,7 @@
 
                                 <ImageView
                                     android:id="@+id/reguler_logo"
+                                    android:visibility="gone"
                                     android:foregroundGravity="center"
                                     android:layout_width="100dp"
                                     android:layout_height="19dp"
@@ -63,7 +64,7 @@
 
                                 <LinearLayout
                                     android:id="@+id/update_logo"
-                                    android:visibility="gone"
+
                                     android:layout_width="match_parent"
                                     android:layout_height="33dp"
                                     android:gravity="center|left"
@@ -89,7 +90,7 @@
                                     </LinearLayout>
 
                                     <LinearLayout
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical">
 

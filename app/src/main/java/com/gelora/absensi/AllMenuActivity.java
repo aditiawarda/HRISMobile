@@ -37,8 +37,8 @@ import java.util.Map;
 
 public class AllMenuActivity extends AppCompatActivity {
 
-    LinearLayout projectPart3, menuProjectBTN3, menuMakanLemburBTN, menuMakanLembur2BTN, menuMakanLembur3BTN, makanLemburPart, makanLemburPart2, makanLemburPart3, menuReportSumaBTN, menuReport3SumaBTN, menuReport2SumaBTN, reportSumaPart3, reportSumaPart2, reportSumaPart, menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
-    LinearLayout actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
+    LinearLayout makanLemburPart4, projectPart3, menuProjectBTN3, menuMakanLemburBTN, menuMakanLembur2BTN, menuMakanLembur3BTN, makanLemburPart, makanLemburPart2, makanLemburPart3, menuReportSumaBTN, menuReport3SumaBTN, menuReport2SumaBTN, reportSumaPart3, reportSumaPart2, reportSumaPart, menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
+    LinearLayout menuMakanLembur4BTN, actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
     TextView countNotifGMTV, countNotifClearanceTV, countNotifPenilaianTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -101,9 +101,11 @@ public class AllMenuActivity extends AppCompatActivity {
         makanLemburPart = findViewById(R.id.makan_lembur_part);
         makanLemburPart2 = findViewById(R.id.makan_lembur_part_2);
         makanLemburPart3 = findViewById(R.id.makan_lembur_part_3);
+        makanLemburPart4 = findViewById(R.id.makan_lembur_part_4);
         menuMakanLemburBTN = findViewById(R.id.makan_lembur_btn);
         menuMakanLembur2BTN = findViewById(R.id.makan_lembur_btn_2);
         menuMakanLembur3BTN = findViewById(R.id.makan_lembur_btn_3);
+        menuMakanLembur4BTN = findViewById(R.id.makan_lembur_btn_4);
         countNotificationPenilaian = findViewById(R.id.count_notification_penilaian);
         countNotifPenilaianTV = findViewById(R.id.count_notif_penilaian_tv);
         countNotificationClearancePart = findViewById(R.id.count_notification_clearance);
@@ -448,6 +450,14 @@ public class AllMenuActivity extends AppCompatActivity {
             }
         });
 
+        menuMakanLembur4BTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllMenuActivity.this, ListDataLunchRequestActivity.class);
+                startActivity(intent);
+            }
+        });
+
         roleMenu();
 
     }
@@ -524,6 +534,7 @@ public class AllMenuActivity extends AppCompatActivity {
                 }
 
                 makanLemburPart3.setVisibility(View.GONE);
+                makanLemburPart4.setVisibility(View.GONE);
                 newsPartSub.setVisibility(View.VISIBLE);
                 calendarPartSub.setVisibility(View.VISIBLE);
                 idCardPartSub.setVisibility(View.VISIBLE);
@@ -556,6 +567,7 @@ public class AllMenuActivity extends AppCompatActivity {
                     }
 
                     makanLemburPart3.setVisibility(View.GONE);
+                    makanLemburPart4.setVisibility(View.GONE);
                     newsPartSub.setVisibility(View.VISIBLE);
                     calendarPartSub.setVisibility(View.VISIBLE);
                     idCardPartSub.setVisibility(View.VISIBLE);
@@ -587,6 +599,7 @@ public class AllMenuActivity extends AppCompatActivity {
                         makanLemburPart3.setVisibility(View.GONE);
                     }
 
+                    makanLemburPart4.setVisibility(View.GONE);
                     newsPartSub.setVisibility(View.VISIBLE);
                     calendarPartSub.setVisibility(View.VISIBLE);
                     idCardPartSub.setVisibility(View.GONE);
@@ -629,11 +642,24 @@ public class AllMenuActivity extends AppCompatActivity {
                         reportSumaPart3.setVisibility(View.VISIBLE);
                         projectPart3.setVisibility(View.GONE);
                         projectPartSub.setVisibility(View.VISIBLE);
+
+                        if(sharedPrefManager.getSpIdJabatan().equals("1") && sharedPrefManager.getSpIdCor().equals("1") && (sharedPrefManager.getSpIdCab().equals("1") || sharedPrefManager.getSpIdCab().equals("0"))){
+                            makanLemburPart3.setVisibility(View.VISIBLE);
+                        } else {
+                            makanLemburPart3.setVisibility(View.GONE);
+                        }
                     } else {
                         reportSumaPart3.setVisibility(View.GONE);
                         projectPart3.setVisibility(View.VISIBLE);
                         projectPartSub.setVisibility(View.GONE);
+
+                        if(sharedPrefManager.getSpIdJabatan().equals("1") && sharedPrefManager.getSpIdCor().equals("1") && (sharedPrefManager.getSpIdCab().equals("1") || sharedPrefManager.getSpIdCab().equals("0"))){
+                            makanLemburPart4.setVisibility(View.VISIBLE);
+                        } else {
+                            makanLemburPart4.setVisibility(View.GONE);
+                        }
                     }
+
                 }
                 messengerPart.setVisibility(View.VISIBLE);
                 newsPart.setVisibility(View.GONE);
