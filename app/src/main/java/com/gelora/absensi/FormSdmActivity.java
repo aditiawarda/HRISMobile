@@ -2226,7 +2226,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f4UnitBisnisDisableModeTV.setText("");
                 f4KomponenGajiDisableModeTV.setText("");
 
-                if(sharedPrefManager.getSpIdJabatan().equals("1") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpNik().equals("3313210223") || sharedPrefManager.getSpNik().equals("3196310521")){
+                if(sharedPrefManager.getSpIdJabatan().equals("1") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpNik().equals("3313210223") || sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")){
                     f1UnitBisnisPart.setVisibility(View.GONE);
                     f1UnitBisnisDisableMode.setVisibility(View.VISIBLE);
                     f1DepartemenPart.setVisibility(View.GONE);
