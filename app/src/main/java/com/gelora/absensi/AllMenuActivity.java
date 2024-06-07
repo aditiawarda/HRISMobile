@@ -543,7 +543,7 @@ public class AllMenuActivity extends AppCompatActivity {
                 reportSumaPart3.setVisibility(View.GONE);
 
             } else {
-                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")){ //Admin
+                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")){ //Admin
                     cardPart.setVisibility(View.GONE);
                     sdmPart.setVisibility(View.VISIBLE);
                     projectPart.setVisibility(View.VISIBLE);
