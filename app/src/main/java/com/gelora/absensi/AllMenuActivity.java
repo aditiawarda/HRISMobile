@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -38,7 +39,7 @@ import java.util.Map;
 public class AllMenuActivity extends AppCompatActivity {
 
     LinearLayout makanLemburPart4, projectPart3, menuProjectBTN3, menuMakanLemburBTN, menuMakanLembur2BTN, menuMakanLembur3BTN, makanLemburPart, makanLemburPart2, makanLemburPart3, menuReportSumaBTN, menuReport3SumaBTN, menuReport2SumaBTN, reportSumaPart3, reportSumaPart2, reportSumaPart, menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
-    LinearLayout menuMakanLembur4BTN, actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
+    LinearLayout keluarKantorPart2, menuKeluarKantor2BTN, keluarKantorPart, menuKeluarKantorBTN, menuMakanLembur4BTN, actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
     TextView countNotifGMTV, countNotifClearanceTV, countNotifPenilaianTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -93,6 +94,8 @@ public class AllMenuActivity extends AppCompatActivity {
         reportSumaPart = findViewById(R.id.report_suma_part);
         reportSumaPart2 = findViewById(R.id.report_suma_part_2);
         reportSumaPart3 = findViewById(R.id.report_suma_part_3);
+        keluarKantorPart = findViewById(R.id.keluar_kantor_part);
+        keluarKantorPart2 = findViewById(R.id.keluar_kantor_part_2);
         menuReportSumaBTN = findViewById(R.id.menu_report_suma_btn);
         menuReport2SumaBTN = findViewById(R.id.menu_report_2_suma_btn);
         menuReport3SumaBTN = findViewById(R.id.menu_report_3_suma_btn);
@@ -106,6 +109,8 @@ public class AllMenuActivity extends AppCompatActivity {
         menuMakanLembur2BTN = findViewById(R.id.makan_lembur_btn_2);
         menuMakanLembur3BTN = findViewById(R.id.makan_lembur_btn_3);
         menuMakanLembur4BTN = findViewById(R.id.makan_lembur_btn_4);
+        menuKeluarKantorBTN = findViewById(R.id.keluar_kantor_btn);
+        menuKeluarKantor2BTN = findViewById(R.id.keluar_kantor_btn_2);
         countNotificationPenilaian = findViewById(R.id.count_notification_penilaian);
         countNotifPenilaianTV = findViewById(R.id.count_notif_penilaian_tv);
         countNotificationClearancePart = findViewById(R.id.count_notification_clearance);
@@ -458,6 +463,14 @@ public class AllMenuActivity extends AppCompatActivity {
             }
         });
 
+        menuKeluarKantorBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                startActivity(intent);
+            }
+        });
+
         roleMenu();
 
     }
@@ -523,6 +536,8 @@ public class AllMenuActivity extends AppCompatActivity {
                     } else {
                         makanLemburPart.setVisibility(View.GONE);
                     }
+                    keluarKantorPart.setVisibility(View.VISIBLE);
+                    keluarKantorPart2.setVisibility(View.GONE);
                 } else {
                     reportSumaPart2.setVisibility(View.GONE);
                     if(sharedPrefManager.getSpIdCor().equals("1") && (sharedPrefManager.getSpIdCab().equals("1") || sharedPrefManager.getSpIdCab().equals("0"))){
@@ -531,6 +546,8 @@ public class AllMenuActivity extends AppCompatActivity {
                         makanLemburPart2.setVisibility(View.GONE);
                     }
                     makanLemburPart.setVisibility(View.GONE);
+                    keluarKantorPart.setVisibility(View.GONE);
+                    keluarKantorPart2.setVisibility(View.VISIBLE);
                 }
 
                 makanLemburPart3.setVisibility(View.GONE);
@@ -556,6 +573,8 @@ public class AllMenuActivity extends AppCompatActivity {
                         } else {
                             makanLemburPart.setVisibility(View.GONE);
                         }
+                        keluarKantorPart.setVisibility(View.VISIBLE);
+                        keluarKantorPart2.setVisibility(View.GONE);
                     } else {
                         reportSumaPart2.setVisibility(View.GONE);
                         if(sharedPrefManager.getSpIdCor().equals("1") && (sharedPrefManager.getSpIdCab().equals("1") || sharedPrefManager.getSpIdCab().equals("0"))){
@@ -564,6 +583,8 @@ public class AllMenuActivity extends AppCompatActivity {
                             makanLemburPart2.setVisibility(View.GONE);
                         }
                         makanLemburPart.setVisibility(View.GONE);
+                        keluarKantorPart.setVisibility(View.GONE);
+                        keluarKantorPart2.setVisibility(View.VISIBLE);
                     }
 
                     makanLemburPart3.setVisibility(View.GONE);
@@ -599,6 +620,10 @@ public class AllMenuActivity extends AppCompatActivity {
                         makanLemburPart3.setVisibility(View.GONE);
                     }
 
+                    keluarKantorPart.setVisibility(View.GONE);
+                    keluarKantorPart2.setVisibility(View.GONE);
+                    makanLemburPart.setVisibility(View.GONE);
+                    makanLemburPart2.setVisibility(View.GONE);
                     makanLemburPart4.setVisibility(View.GONE);
                     newsPartSub.setVisibility(View.VISIBLE);
                     calendarPartSub.setVisibility(View.VISIBLE);
@@ -617,6 +642,8 @@ public class AllMenuActivity extends AppCompatActivity {
             projectPart.setVisibility(View.GONE);
             reportSumaPart.setVisibility(View.GONE);
             reportSumaPart2.setVisibility(View.GONE);
+            keluarKantorPart.setVisibility(View.GONE);
+            keluarKantorPart2.setVisibility(View.GONE);
 
             cutiPart.setVisibility(View.GONE);
             pengaduanPart.setVisibility(View.VISIBLE);
@@ -630,6 +657,11 @@ public class AllMenuActivity extends AppCompatActivity {
                     idCardPartSub.setVisibility(View.GONE);
                     projectPartSub.setVisibility(View.GONE);
                     pengaduanPartSub.setVisibility(View.GONE);
+
+                    makanLemburPart.setVisibility(View.GONE);
+                    makanLemburPart2.setVisibility(View.GONE);
+                    makanLemburPart3.setVisibility(View.GONE);
+                    makanLemburPart4.setVisibility(View.GONE);
                 } else { //Harian
                     clearancePart.setVisibility(View.VISIBLE);
                     calendarPart.setVisibility(View.GONE);
@@ -648,6 +680,9 @@ public class AllMenuActivity extends AppCompatActivity {
                         } else {
                             makanLemburPart3.setVisibility(View.GONE);
                         }
+                        makanLemburPart.setVisibility(View.GONE);
+                        makanLemburPart2.setVisibility(View.GONE);
+                        makanLemburPart4.setVisibility(View.GONE);
                     } else {
                         reportSumaPart3.setVisibility(View.GONE);
                         projectPart3.setVisibility(View.VISIBLE);
@@ -658,6 +693,9 @@ public class AllMenuActivity extends AppCompatActivity {
                         } else {
                             makanLemburPart4.setVisibility(View.GONE);
                         }
+                        makanLemburPart.setVisibility(View.GONE);
+                        makanLemburPart2.setVisibility(View.GONE);
+                        makanLemburPart3.setVisibility(View.GONE);
                     }
 
                 }
@@ -675,6 +713,10 @@ public class AllMenuActivity extends AppCompatActivity {
                 idCardPartSub.setVisibility(View.GONE);
                 projectPartSub.setVisibility(View.GONE);
                 pengaduanPartSub.setVisibility(View.GONE);
+                makanLemburPart.setVisibility(View.GONE);
+                makanLemburPart2.setVisibility(View.GONE);
+                makanLemburPart3.setVisibility(View.GONE);
+                makanLemburPart4.setVisibility(View.GONE);
             }
         }
 

@@ -125,14 +125,25 @@ public class DataFormSdmActivity extends AppCompatActivity {
                                 String jumlah = data.getString("jumlah");
                                 String waiting_kadep = data.getString("waiting_kadep");
                                 String waiting_kabag = data.getString("waiting_kabag");
+                                int waiting_data = Integer.parseInt(waiting_kadep) + Integer.parseInt(waiting_kabag);
 
                                 if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")){
-                                    if(Integer.parseInt(waiting_kadep)>0){
-                                        countWaitingBTN.setVisibility(View.VISIBLE);
-                                        countWaitingTV.setText(waiting_kadep);
+                                    if(sharedPrefManager.getSpNik().equals("3294031022")){
+                                        if(waiting_data>0){
+                                            countWaitingBTN.setVisibility(View.VISIBLE);
+                                            countWaitingTV.setText(waiting_data);
+                                        } else {
+                                            countWaitingBTN.setVisibility(View.GONE);
+                                            countWaitingTV.setText("");
+                                        }
                                     } else {
-                                        countWaitingBTN.setVisibility(View.GONE);
-                                        countWaitingTV.setText("");
+                                        if(Integer.parseInt(waiting_kadep)>0){
+                                            countWaitingBTN.setVisibility(View.VISIBLE);
+                                            countWaitingTV.setText(waiting_kadep);
+                                        } else {
+                                            countWaitingBTN.setVisibility(View.GONE);
+                                            countWaitingTV.setText("");
+                                        }
                                     }
                                 } else if(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
                                     if(Integer.parseInt(waiting_kabag)>0){
