@@ -798,6 +798,45 @@
 
                                         </LinearLayout>
 
+                                        <LinearLayout
+                                            android:id="@+id/keluar_kantor_part_6"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/keluar_kantor_btn_6"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_2"
+                                                android:orientation="vertical"
+                                                android:padding="10dp"
+                                                tools:ignore="TooManyViews">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_keluar_kantor"
+                                                    tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:maxLines="2"
+                                                android:gravity="center"
+                                                android:text="Keluar Kantor"
+                                                android:textColor="#515151"
+                                                android:textSize="10dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        </LinearLayout>
+
                                     </LinearLayout>
 
                                     <LinearLayout
@@ -1048,6 +1087,45 @@
 
                                         </LinearLayout>
 
+                                        <LinearLayout
+                                            android:id="@+id/keluar_kantor_part_5"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/keluar_kantor_btn_5"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_4"
+                                                android:orientation="vertical"
+                                                android:padding="10dp"
+                                                tools:ignore="TooManyViews">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_keluar_kantor"
+                                                    tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:maxLines="2"
+                                                android:gravity="center"
+                                                android:text="Keluar Kantor"
+                                                android:textColor="#515151"
+                                                android:textSize="10dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        </LinearLayout>
+
                                     </LinearLayout>
 
                                 </LinearLayout>
@@ -1190,6 +1268,45 @@
 
                                         </LinearLayout>
 
+                                        <LinearLayout
+                                            android:id="@+id/keluar_kantor_part_4"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/keluar_kantor_btn_4"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_3"
+                                                android:orientation="vertical"
+                                                android:padding="10dp"
+                                                tools:ignore="TooManyViews">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_keluar_kantor"
+                                                    tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:maxLines="2"
+                                                android:gravity="center"
+                                                android:text="Keluar Kantor"
+                                                android:textColor="#515151"
+                                                android:textSize="10dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        </LinearLayout>
+
                                     </LinearLayout>
 
                                     <LinearLayout
@@ -1272,6 +1389,45 @@
                                                 android:maxLines="2"
                                                 android:gravity="center"
                                                 android:text="Ajuan Makan"
+                                                android:textColor="#515151"
+                                                android:textSize="10dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/keluar_kantor_part_3"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/keluar_kantor_btn_3"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_4"
+                                                android:orientation="vertical"
+                                                android:padding="10dp"
+                                                tools:ignore="TooManyViews">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_keluar_kantor"
+                                                    tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:maxLines="2"
+                                                android:gravity="center"
+                                                android:text="Keluar Kantor"
                                                 android:textColor="#515151"
                                                 android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />

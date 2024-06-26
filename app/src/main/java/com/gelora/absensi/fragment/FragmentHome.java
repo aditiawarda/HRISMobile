@@ -1969,7 +1969,6 @@ public class FragmentHome extends Fragment {
     }
 
     private void getWaitingConfirm(){
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://hrisgelora.co.id/api/get_waiting_data";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

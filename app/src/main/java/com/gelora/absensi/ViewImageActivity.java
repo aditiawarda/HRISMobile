@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -68,12 +69,24 @@ public class ViewImageActivity extends AppCompatActivity {
                     loadingPart.setVisibility(View.GONE);
                     photoView.setVisibility(View.GONE);
                 } else {
-                    noDataImage.setVisibility(View.GONE);
-                    loadingPart.setVisibility(View.GONE);
-                    photoView.setVisibility(View.VISIBLE);
-                    Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
+                    Picasso.get()
+                            .load(url)
+                            .networkPolicy(NetworkPolicy.NO_CACHE)
                             .memoryPolicy(MemoryPolicy.NO_CACHE)
-                            .into(photoView);
+                            .into(photoView, new Callback() {
+                                @Override
+                                public void onSuccess() {
+                                    loadingPart.setVisibility(View.GONE);
+                                    noDataImage.setVisibility(View.GONE);
+                                    photoView.setVisibility(View.VISIBLE);
+                                }
+                                @Override
+                                public void onError(Exception e) {
+                                    loadingPart.setVisibility(View.GONE);
+                                    noDataImage.setVisibility(View.VISIBLE);
+                                    photoView.setVisibility(View.GONE);
+                                }
+                            });
                 }
             } else if(jenis_detail.equals("cuti")){
                 titlePageTV.setText("LAMPIRAN CUTI");
