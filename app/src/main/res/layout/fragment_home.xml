@@ -53,12 +53,68 @@
                                 android:orientation="horizontal">
 
                                 <ImageView
+                                    android:id="@+id/reguler_logo"
+                                    android:visibility="gone"
                                     android:foregroundGravity="center"
                                     android:layout_width="100dp"
                                     android:layout_height="19dp"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/hris_text_logo"
-                                    tools:ignore="ContentDescription" />
+                                    tools:ignore="ContentDescription,TooDeepLayout" />
+
+                                <LinearLayout
+                                    android:id="@+id/update_logo"
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="33dp"
+                                    android:gravity="center|left"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="31dp"
+                                        android:layout_height="31dp"
+                                        android:layout_marginRight="8dp"
+                                        android:background="@drawable/shape_update_animation"
+                                        android:gravity="center"
+                                        tools:ignore="TooDeepLayout">
+
+                                        <ImageView
+                                            android:id="@+id/update_ic_img"
+                                            android:foregroundGravity="center"
+                                            android:layout_width="17dp"
+                                            android:layout_height="17dp"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/update_ic"
+                                            tools:ignore="ContentDescription,TooDeepLayout" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <ImageView
+                                            android:foregroundGravity="center"
+                                            android:layout_width="81dp"
+                                            android:layout_height="16dp"
+                                            android:layout_marginBottom="1dp"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/hris_text_logo"
+                                            tools:ignore="ContentDescription,TooDeepLayout" />
+
+                                        <com.nitish.typewriterview.TypeWriterView
+                                            android:id="@+id/typeWriterView"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Update tersedia"
+                                            android:textColor="#EACA52"
+                                            android:textSize="10.5dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
 
                                 <LinearLayout
                                     android:orientation="horizontal"
@@ -677,14 +733,15 @@
                                             android:layout_height="65dp"
                                             android:background="@drawable/shape_menu_2"
                                             android:orientation="vertical"
-                                            android:padding="10dp">
+                                            android:padding="10dp"
+                                            tools:ignore="TooManyViews">
 
                                             <ImageView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:scaleType="fitCenter"
                                                 android:src="@drawable/icon_izin"
-                                                tools:ignore="ContentDescription" />
+                                                tools:ignore="ContentDescription,TooManyViews" />
 
                                         </LinearLayout>
 
@@ -716,7 +773,8 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:visibility="gone"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            tools:ignore="TooManyViews">
 
                                             <LinearLayout
                                                 android:id="@+id/menu_cuti_btn"

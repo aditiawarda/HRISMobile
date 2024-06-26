@@ -54,6 +54,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
     LinearLayout dStatusAbsen, dShiftAbsen, dTanggalMasuk, dJamMasuk, dTanggalPulang, dJamPulang, dTitikAbsen, dKetLembur;
     TextView dTanggalMasukTVLabel, dStatusAbsenTV, dShiftAbsenTV, dTanggalMasukTV, dJamMasukTV, dTanggalPulangTV, dJamPulangTV, dTitikAbsenTV, dKetLemburTV;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +129,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -1292,7 +1293,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                 ketLemburStatus = "1";
                 ketLemburChoiceTV.setText("Lembur");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1311,7 +1312,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                 ketLemburStatus = "0";
                 ketLemburChoiceTV.setText("Tidak Lembur");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1339,6 +1340,12 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

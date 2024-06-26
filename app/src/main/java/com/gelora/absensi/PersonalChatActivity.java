@@ -83,6 +83,7 @@ public class PersonalChatActivity extends AppCompatActivity {
 
     SharedPrefManager sharedPrefManager;
     View constraintLayout;
+    private Handler handler = new Handler();
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -391,7 +392,7 @@ public class PersonalChatActivity extends AppCompatActivity {
                 state = "1";
             }
         }
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 getPersonalChat();
@@ -707,6 +708,12 @@ public class PersonalChatActivity extends AppCompatActivity {
         } catch (NullPointerException nullPointerException){
             System.out.println("Catch the NullPointerException in FragmentPagerAdapter.finishUpdate");
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

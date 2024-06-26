@@ -40,7 +40,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Oleh :"
+                        android:text="Oleh"
                         android:textColor="#A1A1A1"
                         android:textSize="10dp"
                         android:ellipsize="end"
@@ -103,6 +103,21 @@
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="left"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="PUSAT"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="5dp"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,7 +170,7 @@
                             android:layout_height="wrap_content"
                             android:text="0"
                             android:textColor="#020202"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
@@ -209,7 +224,7 @@
                             android:layout_height="wrap_content"
                             android:text="0"
                             android:textColor="#020202"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
@@ -263,7 +278,7 @@
                             android:layout_height="wrap_content"
                             android:text="0"
                             android:textColor="#020202"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
@@ -316,12 +331,218 @@
                             android:layout_height="wrap_content"
                             android:text="0"
                             android:textColor="#020202"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
 
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="left"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="GAPPRINT"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="5dp"
+                android:textSize="11dp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3.5dp"
+                    android:layout_weight=".33"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    tools:ignore="RtlHardcoded">
+
+                    <LinearLayout
+                        android:background="@drawable/shape_nilai_label"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="15dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SIANG"
+                            android:textColor="#FFFFFF"
+                            android:textSize="9dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:background="@drawable/shape_nilai"
+                        android:paddingRight="8dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_marginTop="-12dp"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/jumlah_5_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#020202"
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3.5dp"
+                    android:layout_marginRight="3.5dp"
+                    android:layout_weight=".33"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    tools:ignore="RtlHardcoded">
+
+                    <LinearLayout
+                        android:background="@drawable/shape_nilai_label"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="15dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SORE"
+                            android:textColor="#FFFFFF"
+                            android:textSize="9dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:background="@drawable/shape_nilai"
+                        android:paddingRight="8dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_marginTop="-12dp"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/jumlah_6_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#020202"
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3.5dp"
+                    android:layout_weight=".33"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    tools:ignore="RtlHardcoded">
+
+                    <LinearLayout
+                        android:background="@drawable/shape_nilai_label"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="15dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MALAM"
+                            android:textColor="#FFFFFF"
+                            android:textSize="9dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:background="@drawable/shape_nilai"
+                        android:paddingRight="8dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_marginTop="-12dp"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/jumlah_7_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#020202"
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/update_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingTop="11dp"
+                android:paddingBottom="11dp"
+                android:background="@drawable/shape_second_btn"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="7dp"
+                    android:drawableTint="@color/white"
+                    android:text="UBAH DATA"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
 
             </LinearLayout>
 

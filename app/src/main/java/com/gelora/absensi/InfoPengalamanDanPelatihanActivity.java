@@ -48,6 +48,7 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
     private AdapterListPengalaman adapterListPengalaman;
     private DataPelatihan[] dataPelatihans;
     private AdapterListPelatihan adapterListPelatihan;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +90,7 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
                 noDataPengalamanPart.setVisibility(View.GONE);
                 dataPengalamanRV.setVisibility(View.GONE);
                 dataPelatihanRV.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -121,7 +122,7 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
                 noDataPengalamanPart.setVisibility(View.GONE);
                 dataPengalamanRV.setVisibility(View.GONE);
                 dataPelatihanRV.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         getData();
@@ -146,7 +147,7 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
                 noDataPengalamanPart.setVisibility(View.GONE);
                 dataPengalamanRV.setVisibility(View.GONE);
                 dataPelatihanRV.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         getData();
@@ -170,8 +171,6 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
                 }
             }
         });
-
-        getData();
 
     }
 
@@ -278,6 +277,12 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

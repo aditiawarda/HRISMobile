@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.volley.Request;
@@ -19,7 +18,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterPersonalNotification;
 import com.gelora.absensi.model.DataPersonalNotification;
 import com.google.gson.Gson;
@@ -42,6 +40,7 @@ public class PersonalNotificationActivity extends AppCompatActivity {
     private RecyclerView dataNotifikasiPersonalRV;
     private DataPersonalNotification[] dataPersonalNotifications;
     private AdapterPersonalNotification adapterPersonalNotification;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +74,8 @@ public class PersonalNotificationActivity extends AppCompatActivity {
                 noDataPart.setVisibility(View.GONE);
                 loadingDataPart.setVisibility(View.VISIBLE);
                 dataNotifikasiPersonalRV.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         getData();
@@ -90,8 +90,6 @@ public class PersonalNotificationActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
-        getData();
 
     }
 
@@ -177,12 +175,18 @@ public class PersonalNotificationActivity extends AppCompatActivity {
         noDataPart.setVisibility(View.GONE);
         loadingDataPart.setVisibility(View.VISIBLE);
         dataNotifikasiPersonalRV.setVisibility(View.GONE);
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 getData();
             }
         }, 500);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

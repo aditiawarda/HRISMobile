@@ -109,6 +109,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
     private RecyclerView titikAbsenRV;
     private TitikAbsensi[] titikAbsensis;
     private AdapterTitikAbsenFinger adapterTitikAbsenFinger;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,7 +196,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void run() {
@@ -4911,7 +4912,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
             statusAbsensi = idStatusAbsen;
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -4940,7 +4941,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
             jamMasuk = datangShiftAbsen;
             shiftAbsensi = idShiftAbsen;
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -4966,7 +4967,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
             namaTitikAbsensi = namaTitik;
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -5078,6 +5079,12 @@ public class FormFingerscanActivity extends AppCompatActivity {
                 super.onBackPressed();
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,7 +22,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterListDataPenilaianSDM;
 import com.gelora.absensi.model.DataPenilaianSDM;
 import com.google.gson.Gson;
@@ -45,6 +44,7 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
     private RecyclerView dataPenilaianSDMRV;
     private DataPenilaianSDM[] dataPenilaianSDMS;
     private AdapterListDataPenilaianSDM adapterListDataPenilaianSDM;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +75,8 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
                 dataPenilaianSDMRV.setVisibility(View.GONE);
                 loadingDataPart.setVisibility(View.VISIBLE);
                 noDataPart.setVisibility(View.GONE);
-
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -102,8 +102,6 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        getData();
 
     }
 
@@ -192,7 +190,7 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
 
     public int dpToPixels(int dp, Context context) {
         float density = context.getResources().getDisplayMetrics().density;
-        return (int) (dp * density + 0.5f); // Adding 0.5 for better rounding to the nearest integer
+        return (int) (dp * density + 0.5f);
     }
 
     private void connectionFailed(){
@@ -213,13 +211,20 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
         loadingDataPart.setVisibility(View.VISIBLE);
         noDataPart.setVisibility(View.GONE);
         dataPenilaianSDMRV.setVisibility(View.GONE);
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void run() {
                 refreshLayout.setRefreshing(false);
                 getData();
             }
-        }, 500);
+        }, 800);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.gelora.absensi;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,11 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,15 +20,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.gelora.absensi.adapter.AdapterDataAbsensiMore;
 import com.gelora.absensi.adapter.AdapterLunchRequest;
-import com.gelora.absensi.adapter.AdapterStatusAbsen;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataListLunchRequest;
-import com.gelora.absensi.model.DataRecordAbsensi;
-import com.gelora.absensi.model.StatusAbsen;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -52,6 +46,7 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
     private DataListLunchRequest[] dataListLunchRequests;
     private AdapterLunchRequest adapterLunchRequest;
     SwipeRefreshLayout refreshLayout;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,26 +68,7 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
         listDataRV.setNestedScrollingEnabled(false);
         listDataRV.setItemAnimator(new DefaultItemAnimator());
 
-        if (sharedPrefManager.getSpIdHeadDept().equals("5")) {
-            if (sharedPrefManager.getSpIdDept().equals("21")) {
-                bagianRL = "Satpam";
-                getData();
-            } else {
-                bagianRL = "HRD";
-                getData();
-            }
-        } else if (sharedPrefManager.getSpIdHeadDept().equals("3")) {
-            bagianRL = "Marketing";
-            getData();
-        } else if (sharedPrefManager.getSpIdHeadDept().equals("4")) {
-            bagianRL = "Akunting";
-            getData();
-        } else if (sharedPrefManager.getSpIdHeadDept().equals("2")) {
-            bagianRL = "EDP";
-            getData();
-        } else {
-            getBagian();
-        }
+        getBagian();
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -102,7 +78,7 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
                 loadingDataPart.setVisibility(View.VISIBLE);
                 noDataPart.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -154,7 +130,9 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
 
                             if(status.equals("Success")){
                                 bagianRL = data.getString("bagian");
-                                getData();
+                                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_BAGIAN_RL, bagianRL);
+
+                                getTimeOut();
                             } else {
                                 new KAlertDialog(ListDataLunchRequestActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
@@ -203,6 +181,37 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
 
     }
 
+    private void getTimeOut() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+        final String url = "https://hrisgelora.co.id/api/get_lunch_request_timeout";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String status = response.getString("status");
+                            String time = response.getString("time");
+                            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_LUNCH_REQUEST_TIMEOUT, time);
+
+                            getData();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                connectionFailed();
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
     private void getData() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://hrisgelora.co.id/api/get_list_lunch_request";
@@ -230,7 +239,7 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
                                     adapterLunchRequest = new AdapterLunchRequest(dataListLunchRequests, ListDataLunchRequestActivity.this);
                                     listDataRV.setAdapter(adapterLunchRequest);
                                 } else {
-                                    new Handler().postDelayed(new Runnable() {
+                                    handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
                                             loadingDataPart.setVisibility(View.GONE);
@@ -295,12 +304,19 @@ public class ListDataLunchRequestActivity extends AppCompatActivity {
         loadingDataPart.setVisibility(View.VISIBLE);
         noDataPart.setVisibility(View.GONE);
         listDataRV.setVisibility(View.GONE);
-        new Handler().postDelayed(new Runnable() {
+        getBagian();
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 getData();
             }
         }, 500);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

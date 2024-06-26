@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     ProgressBar loadingProgressBar;
     View rootview;
+    private Handler handler = new Handler();
 
     @SuppressLint({"ClickableViewAccessibility", "HardwareIds"})
     @Override
@@ -94,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -610,6 +611,12 @@ public class LoginActivity extends AppCompatActivity {
 
         requestQueue.add(request);
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

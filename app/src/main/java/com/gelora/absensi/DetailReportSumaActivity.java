@@ -48,9 +48,7 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
@@ -191,6 +189,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     private AdapterProductInputSumaRealisasi adapterProductInputSuma;
     private boolean isFirstRun = true;
     ImageButton commentSendBTN;
+    private Handler handler = new Handler();
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -374,7 +373,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 lampiranImage.clear();
                 extentionImage.clear();
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -460,14 +459,14 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     penagihanLayoutTambahan.setVisibility(View.VISIBLE);
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             bottomSheet.dismissSheet();
                             loadingDataPiutang.setVisibility(View.VISIBLE);
                             invRV.setVisibility(View.GONE);
                             noDataPiutang.setVisibility(View.GONE);
-                            new Handler().postDelayed(new Runnable() {
+                            handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     getDataInvoice(idPelanggan);
@@ -947,7 +946,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 commentED.setText("");
                 commentLoading.setVisibility(View.VISIBLE);
                 commentSendBTNPart.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         sendComment(comment);
@@ -1029,7 +1028,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         public void onReceive(Context context, Intent intent) {
             String no_sj = intent.getStringExtra("no_sj");
             noSuratJalanChoiceTV.setText(no_sj);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -1186,7 +1185,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         produkRV.setNestedScrollingEnabled(false);
         produkRV.setItemAnimator(new DefaultItemAnimator());
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 getProduct("Semua");
@@ -1212,14 +1211,14 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 produkRV.setVisibility(View.GONE);
 
                 if (!keyWordSearch.equals("")) {
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getProduct(keyWordSearch);
                         }
                     }, 500);
                 } else {
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getProduct("Semua");
@@ -1438,7 +1437,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 String file_name = data.getString("file_name");
                                 if(file_name.equals("No data")){
                                     scrollView.fullScroll(NestedScrollView.FOCUS_UP);
-                                    new Handler().postDelayed(new Runnable() {
+                                    handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
                                             pDialog.setTitleText("Berhasil")
@@ -1733,7 +1732,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             }
             if(lampiranImage.size()-1==i){
                 scrollView.fullScroll(NestedScrollView.FOCUS_UP);
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         if(tipeLaporan.equals("1")){
@@ -1944,7 +1943,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                         String pngImagePath = FilePathimage.getPath(this, uri);
                         new ConvertImageTask().execute(pngImagePath);
                     } else {
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
@@ -2819,7 +2818,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         noDataPartSj.setVisibility(View.GONE);
         noSjRV.setVisibility(View.GONE);
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 getNoSJ(idPelanggan);
@@ -2863,11 +2862,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                         markRealKunjungan.setVisibility(View.VISIBLE);
                         markRealPenagihan.setVisibility(View.GONE);
                         markRealPengiriman.setVisibility(View.GONE);
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
@@ -2891,11 +2890,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                         markRealKunjungan.setVisibility(View.GONE);
                         markRealPenagihan.setVisibility(View.VISIBLE);
                         markRealPengiriman.setVisibility(View.GONE);
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
@@ -2919,11 +2918,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                         markRealKunjungan.setVisibility(View.GONE);
                         markRealPenagihan.setVisibility(View.GONE);
                         markRealPengiriman.setVisibility(View.VISIBLE);
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
@@ -3039,7 +3038,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             keteranganKunjunganRealisasiED.clearFocus();
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -3292,7 +3291,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                     });
                 }
             } else {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
@@ -3335,6 +3334,12 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

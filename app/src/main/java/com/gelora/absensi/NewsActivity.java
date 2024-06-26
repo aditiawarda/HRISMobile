@@ -13,7 +13,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,7 +24,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterDataNews;
 import com.gelora.absensi.model.NewsData;
@@ -55,6 +53,7 @@ public class NewsActivity extends AppCompatActivity {
     private RecyclerView dataNewsRV;
     private NewsData[] dataNews;
     private AdapterDataNews adapterDataNews;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +125,8 @@ public class NewsActivity extends AppCompatActivity {
                 loadingNewsPart.setVisibility(View.VISIBLE);
                 emptyDataNews.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -163,7 +163,6 @@ public class NewsActivity extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
                         // response
                         JSONObject data = null;
                         try {
@@ -249,7 +248,8 @@ public class NewsActivity extends AppCompatActivity {
         markCat11BTN = findViewById(R.id.mark_cat_11);
         markCat12BTN = findViewById(R.id.mark_cat_12);
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void run() {
                 if (categoryNews.equals("top")){
@@ -628,7 +628,8 @@ public class NewsActivity extends AppCompatActivity {
                         loadingNewsPart.setVisibility(View.VISIBLE);
                         emptyDataNews.setVisibility(View.GONE);
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -676,7 +677,8 @@ public class NewsActivity extends AppCompatActivity {
                         loadingNewsPart.setVisibility(View.VISIBLE);
                         emptyDataNews.setVisibility(View.GONE);
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -724,7 +726,8 @@ public class NewsActivity extends AppCompatActivity {
                         loadingNewsPart.setVisibility(View.VISIBLE);
                         emptyDataNews.setVisibility(View.GONE);
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -772,7 +775,8 @@ public class NewsActivity extends AppCompatActivity {
                         loadingNewsPart.setVisibility(View.VISIBLE);
                         emptyDataNews.setVisibility(View.GONE);
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -820,7 +824,8 @@ public class NewsActivity extends AppCompatActivity {
                         loadingNewsPart.setVisibility(View.VISIBLE);
                         emptyDataNews.setVisibility(View.GONE);
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -868,7 +873,8 @@ public class NewsActivity extends AppCompatActivity {
                         loadingNewsPart.setVisibility(View.VISIBLE);
                         emptyDataNews.setVisibility(View.GONE);
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -916,7 +922,8 @@ public class NewsActivity extends AppCompatActivity {
                         loadingNewsPart.setVisibility(View.VISIBLE);
                         emptyDataNews.setVisibility(View.GONE);
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -964,7 +971,8 @@ public class NewsActivity extends AppCompatActivity {
                         loadingNewsPart.setVisibility(View.VISIBLE);
                         emptyDataNews.setVisibility(View.GONE);
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1012,7 +1020,8 @@ public class NewsActivity extends AppCompatActivity {
                         loadingNewsPart.setVisibility(View.VISIBLE);
                         emptyDataNews.setVisibility(View.GONE);
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1060,7 +1069,8 @@ public class NewsActivity extends AppCompatActivity {
                         loadingNewsPart.setVisibility(View.VISIBLE);
                         emptyDataNews.setVisibility(View.GONE);
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1108,7 +1118,8 @@ public class NewsActivity extends AppCompatActivity {
                         loadingNewsPart.setVisibility(View.VISIBLE);
                         emptyDataNews.setVisibility(View.GONE);
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1156,7 +1167,8 @@ public class NewsActivity extends AppCompatActivity {
                         loadingNewsPart.setVisibility(View.VISIBLE);
                         emptyDataNews.setVisibility(View.GONE);
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1231,6 +1243,12 @@ public class NewsActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

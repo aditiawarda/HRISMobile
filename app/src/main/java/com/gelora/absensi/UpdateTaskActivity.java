@@ -17,7 +17,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -29,10 +28,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,7 +38,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterAllKaryawanPICUpdate;
 import com.gelora.absensi.adapter.AdapterStatusTaskUpdate;
@@ -49,7 +45,6 @@ import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.KaryawanAll;
 import com.gelora.absensi.model.StatusTask;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.takisoft.datetimepicker.DatePickerDialog;
@@ -93,6 +88,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
     // After
     int persentasePregressNumber = 0, persentasePregressNumberBefore = 0;
     String statusIdTaskBeforeBARU = "", statusIdTaskBARU = "", projectIdBARU = "", picNikBARU = "", picNameBARU = "", targetDateBARU = "", targetDateBARUPar = "", startDateBARU = "", startDateParBARU = "", endDateBARU = "", endDateParBARU = "";
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,12 +180,13 @@ public class UpdateTaskActivity extends AppCompatActivity {
                 }
 
                 applyData();
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
                     }
                 }, 500);
+
             }
         });
 
@@ -1235,7 +1232,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
                 noDataPart.setVisibility(View.GONE);
                 karyawanRV.setVisibility(View.GONE);
                 if (!keyWordSearch.equals("")) {
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getAllUser(keyWordSearch);
@@ -1328,12 +1325,13 @@ public class UpdateTaskActivity extends AppCompatActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             taskNameED.clearFocus();
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
                 }
-            }, 300);
+            }, 500);
+
         }
     };
 
@@ -1545,12 +1543,13 @@ public class UpdateTaskActivity extends AppCompatActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             taskNameED.clearFocus();
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
                 }
             }, 300);
+
         }
     };
 
@@ -2499,6 +2498,12 @@ public class UpdateTaskActivity extends AppCompatActivity {
                 super.onBackPressed();
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

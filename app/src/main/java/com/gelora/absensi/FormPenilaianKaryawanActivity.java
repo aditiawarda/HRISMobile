@@ -179,6 +179,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
     TextView fp_predikat;
     int totalNilai = 0;
     String listRating = "", idFormSDM = "";
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -381,7 +382,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                 fP14.clearCheck();
                 kelulusan_option.clearCheck();
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -956,7 +957,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
             }
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -999,7 +1000,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                 karyawanRV.setVisibility(View.GONE);
 
                 if(!keyWordSearch.equals("")){
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getDataKaryawan(keyWordSearch);
@@ -1278,6 +1279,12 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

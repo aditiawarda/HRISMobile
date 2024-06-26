@@ -52,6 +52,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
     String file_url = "";
     KAlertDialog pDialog;
     private int i = -1;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,7 +147,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 getData();
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -789,6 +790,12 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

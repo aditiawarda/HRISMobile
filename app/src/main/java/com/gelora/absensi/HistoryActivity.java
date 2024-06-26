@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,7 +21,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterHistoryAbsen;
 import com.gelora.absensi.model.HistoryAbsen;
@@ -54,6 +52,7 @@ public class HistoryActivity extends AppCompatActivity {
     private RecyclerView historyAbsenRV;
     private HistoryAbsen[] historyAbsens;
     private AdapterHistoryAbsen adapterHistoryAbsen;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +103,7 @@ public class HistoryActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -248,7 +247,7 @@ public class HistoryActivity extends AppCompatActivity {
                 noDataPart.setVisibility(View.GONE);
                 noConnectPart.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         getHistoryAbsensi();
@@ -352,7 +351,7 @@ public class HistoryActivity extends AppCompatActivity {
                 noDataPart.setVisibility(View.GONE);
                 noConnectPart.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         getHistoryAbsensi();
@@ -665,6 +664,12 @@ public class HistoryActivity extends AppCompatActivity {
             requestQueue.add(postRequest);
         }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

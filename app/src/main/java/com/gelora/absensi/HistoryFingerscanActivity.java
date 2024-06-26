@@ -51,6 +51,7 @@ public class HistoryFingerscanActivity extends AppCompatActivity {
     private RecyclerView dataRV;
     private DataHistoryFinger[] dataFingers;
     private AdapterDataHistoryFingerscan adapterDataFinger;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +116,7 @@ public class HistoryFingerscanActivity extends AppCompatActivity {
 
                 attantionPart.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -176,7 +177,7 @@ public class HistoryFingerscanActivity extends AppCompatActivity {
 
                                 attantionPart.setVisibility(View.GONE);
 
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         getDataPermohonan();
@@ -298,6 +299,12 @@ public class HistoryFingerscanActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

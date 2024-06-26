@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,7 +20,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterDataAbsensiMore;
 import com.gelora.absensi.model.DataRecordAbsensi;
 import com.google.gson.Gson;
@@ -50,6 +48,7 @@ public class RecordAbsensiActivity extends AppCompatActivity {
     private RecyclerView dataAbsensiRV;
     private DataRecordAbsensi[] dataAbsensis;
     private AdapterDataAbsensiMore adapterDataAbsensi;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +89,7 @@ public class RecordAbsensiActivity extends AppCompatActivity {
                 noDataPart.setVisibility(View.GONE);
                 dataAbsensiRV.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -98,6 +97,7 @@ public class RecordAbsensiActivity extends AppCompatActivity {
                         currentMonth();
                     }
                 }, 1000);
+
             }
         });
 
@@ -148,13 +148,12 @@ public class RecordAbsensiActivity extends AppCompatActivity {
                                 } else if (month==9){
                                     bulan = "10";
                                     bulanName = "Oktober";
-                                } else {
-                                    bulan = String.valueOf(month);
-                                    if (month==10){
-                                        bulanName = "November";
-                                    } else if(month==11){
-                                        bulanName = "Desember";
-                                    }
+                                } else if (month==10){
+                                    bulan = "11";
+                                    bulanName = "November";
+                                } else if (month==11){
+                                    bulan = "12";
+                                    bulanName = "Desember";
                                 }
 
                                 selectMonth = String.valueOf(year)+"-"+bulan;
@@ -165,7 +164,7 @@ public class RecordAbsensiActivity extends AppCompatActivity {
 
                                 bulanPilihTV.setText(bulanName+" "+String.valueOf(year));
 
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         getData();
@@ -266,7 +265,7 @@ public class RecordAbsensiActivity extends AppCompatActivity {
                                     adapterDataAbsensi = new AdapterDataAbsensiMore(dataAbsensis, RecordAbsensiActivity.this);
                                     dataAbsensiRV.setAdapter(adapterDataAbsensi);
                                 } else {
-                                    new Handler().postDelayed(new Runnable() {
+                                    handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
                                             loadingRecordPart.setVisibility(View.GONE);
@@ -321,6 +320,12 @@ public class RecordAbsensiActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

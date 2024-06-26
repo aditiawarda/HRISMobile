@@ -52,6 +52,7 @@ public class DetailPulangCepatActivity extends AppCompatActivity {
     private RecyclerView dataPulangCepatRV;
     private DataPulangCepat[] dataPulangCepats;
     private AdapterPulangCepat adapterPulangCepat;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +116,7 @@ public class DetailPulangCepatActivity extends AppCompatActivity {
 
                 attantionPart.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -176,7 +177,7 @@ public class DetailPulangCepatActivity extends AppCompatActivity {
 
                                 attantionPart.setVisibility(View.GONE);
 
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         getDetailPulangCepat();
@@ -305,6 +306,12 @@ public class DetailPulangCepatActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

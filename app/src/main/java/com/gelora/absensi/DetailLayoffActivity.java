@@ -52,6 +52,7 @@ public class DetailLayoffActivity extends AppCompatActivity {
     private RecyclerView dataLayoffRV;
     private DataLayoff[] dataLayoffs;
     private AdapterDataLayoff adapterDataLayoff;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +116,7 @@ public class DetailLayoffActivity extends AppCompatActivity {
 
                 attantionPart.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -176,13 +177,12 @@ public class DetailLayoffActivity extends AppCompatActivity {
 
                                 attantionPart.setVisibility(View.GONE);
 
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         getDetailLayoff();
                                     }
                                 }, 500);
-
                             }
                         }, now.get(Calendar.YEAR), now.get(Calendar.MONTH));
 
@@ -306,6 +306,12 @@ public class DetailLayoffActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

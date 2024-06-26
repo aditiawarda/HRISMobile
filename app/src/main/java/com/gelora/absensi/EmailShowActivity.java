@@ -5,9 +5,7 @@ import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +13,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -47,6 +44,7 @@ public class EmailShowActivity extends AppCompatActivity {
     String userNIK, userEmail;
     EditText mailED;
     ProgressBar loadingSending;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +79,9 @@ public class EmailShowActivity extends AppCompatActivity {
             public void onClick(View v) {
                 loadingSending.setVisibility(View.VISIBLE);
                 icSending.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+
+                handler.postDelayed(new Runnable() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void run() {
                         String emailUser = "", mode = "";
@@ -228,7 +228,8 @@ public class EmailShowActivity extends AppCompatActivity {
                                 intent.putExtra("otp", otp);
                                 intent.putExtra("expired", expired_at);
                                 startActivity(intent);
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
+                                    @SuppressLint("SetTextI18n")
                                     @Override
                                     public void run() {
                                         loadingSending.setVisibility(View.GONE);
@@ -304,6 +305,12 @@ public class EmailShowActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

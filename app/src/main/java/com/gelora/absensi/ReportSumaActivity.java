@@ -35,7 +35,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.VibrationEffect;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Editable;
@@ -192,6 +191,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     private List<String> extentionImage = new ArrayList<>();
     KAlertDialog pDialog;
     private int i = -1;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -400,12 +400,13 @@ public class ReportSumaActivity extends AppCompatActivity {
                 fullBase64String = "";
                 f2TotalPesanan = 0;
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
                     }
                 }, 1000);
+
             }
         });
 
@@ -644,14 +645,14 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2ListProductInputRV.setItemAnimator(new DefaultItemAnimator());
 
                     if(f2CB2.isChecked()){
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
                                 f2LoadingDataInv.setVisibility(View.VISIBLE);
                                 f2InvRV.setVisibility(View.GONE);
                                 f2NoDataInv.setVisibility(View.GONE);
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         if(f2IdPelangganLama.equals("")){
@@ -719,14 +720,14 @@ public class ReportSumaActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     f2PenagihanPart.setVisibility(View.VISIBLE);
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             bottomSheet.dismissSheet();
                             f2LoadingDataInv.setVisibility(View.VISIBLE);
                             f2InvRV.setVisibility(View.GONE);
                             f2NoDataInv.setVisibility(View.GONE);
-                            new Handler().postDelayed(new Runnable() {
+                            handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     if(f2IdPelangganLama.equals("")){
@@ -1275,7 +1276,8 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2NoSuratJalanChoiceTV.setText("");
         loadingFormPart.setVisibility(View.VISIBLE);
         attantionNoForm.setVisibility(View.GONE);
-        new Handler().postDelayed(new Runnable() {
+
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 getCatecoryForm();
@@ -1290,7 +1292,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             categoryReport = "1";
             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport);
             reportKategoriChoiceTV.setText("Rencana Kunjungan");
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -1381,7 +1383,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     fullBase64String = "";
                     f2TotalPesanan = 0;
 
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             aktivitasKunjunganFormPart.setVisibility(View.GONE);
@@ -1399,7 +1401,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             categoryReport = "0";
             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport);
             reportKategoriChoiceTV.setText("Aktivitas Kunjungan");
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -1489,7 +1491,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     fullBase64String = "";
                     f2TotalPesanan = 0;
 
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             aktivitasKunjunganFormPart.setVisibility(View.VISIBLE);
@@ -1539,7 +1541,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 markAktivitas.setVisibility(View.GONE);
                 rencanaBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
                 aktivitasBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1628,7 +1630,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         fullBase64String = "";
                         f2TotalPesanan = 0;
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 aktivitasKunjunganFormPart.setVisibility(View.GONE);
@@ -1654,8 +1656,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 markAktivitas.setVisibility(View.VISIBLE);
                 rencanaBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
                 aktivitasBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
-
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1744,7 +1745,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         fullBase64String = "";
                         f2TotalPesanan = 0;
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 aktivitasKunjunganFormPart.setVisibility(View.VISIBLE);
@@ -1753,7 +1754,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                                 loadingFormPart.setVisibility(View.GONE);
                             }
                         }, 1000);
-
                     }
                 }, 300);
             }
@@ -1908,7 +1908,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         pelangganRV.setNestedScrollingEnabled(false);
         pelangganRV.setItemAnimator(new DefaultItemAnimator());
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 getPelangganLama("Semua");
@@ -1936,14 +1936,14 @@ public class ReportSumaActivity extends AppCompatActivity {
                 pelangganRV.setVisibility(View.GONE);
 
                 if (!keyWordSearch.equals("")) {
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getPelangganLama(keyWordSearch);
                         }
                     }, 500);
                 } else {
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getPelangganLama("Semua");
@@ -1971,7 +1971,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         pelangganRV.setNestedScrollingEnabled(false);
         pelangganRV.setItemAnimator(new DefaultItemAnimator());
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 getPelangganLama("Semua");
@@ -1999,14 +1999,14 @@ public class ReportSumaActivity extends AppCompatActivity {
                 pelangganRV.setVisibility(View.GONE);
 
                 if (!keyWordSearch.equals("")) {
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getPelangganLama(keyWordSearch);
                         }
                     }, 500);
                 } else {
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getPelangganLama("Semua");
@@ -2034,7 +2034,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2NoDataPartSj.setVisibility(View.GONE);
         f2NoSjRV.setVisibility(View.GONE);
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if(f2IdPelangganLama.equals("")){
@@ -2044,6 +2044,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 }
             }
         }, 800);
+
     }
 
     private void f2ProductListBottomSheet() {
@@ -2061,7 +2062,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         produkRV.setNestedScrollingEnabled(false);
         produkRV.setItemAnimator(new DefaultItemAnimator());
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 getProduct("Semua");
@@ -2087,14 +2088,14 @@ public class ReportSumaActivity extends AppCompatActivity {
                 produkRV.setVisibility(View.GONE);
 
                 if (!keyWordSearch.equals("")) {
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getProduct(keyWordSearch);
                         }
                     }, 500);
                 } else {
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getProduct("Semua");
@@ -2311,7 +2312,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 f1KeteranganKunjunganED.clearFocus();
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -2334,21 +2335,22 @@ public class ReportSumaActivity extends AppCompatActivity {
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NO_SJ, "");
                 f2NoSuratJalanChoiceTV.setText("");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
                         if(f2CB2.isChecked()){
                             f2TotalTagihanInvTV.setText("Rp 0");
                             f2TotalInvTagihan = 0;
-                            new Handler().postDelayed(new Runnable() {
+                            handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     bottomSheet.dismissSheet();
                                     f2LoadingDataInv.setVisibility(View.VISIBLE);
                                     f2InvRV.setVisibility(View.GONE);
                                     f2NoDataInv.setVisibility(View.GONE);
-                                    new Handler().postDelayed(new Runnable() {
+
+                                    handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
                                             if(f2IdPelangganLama.equals("")){
@@ -2358,11 +2360,13 @@ public class ReportSumaActivity extends AppCompatActivity {
                                             }
                                         }
                                     }, 100);
+
                                 }
                             }, 300);
                         }
                     }
                 }, 300);
+
             }
 
         }
@@ -2507,12 +2511,13 @@ public class ReportSumaActivity extends AppCompatActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             f2KeteranganKunjunganED.clearFocus();
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
                 }
             }, 300);
+
         }
     };
 
@@ -2567,7 +2572,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String no_sj = intent.getStringExtra("no_sj");
             f2NoSuratJalanChoiceTV.setText(no_sj);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -2908,7 +2913,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         String pngImagePath = FilePathimage.getPath(this, uri);
                         new ConvertImageTask().execute(pngImagePath);
                     } else {
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
@@ -3283,7 +3288,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 }
                 uriToBase64(uri);
             } else {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
@@ -3319,6 +3324,12 @@ public class ReportSumaActivity extends AppCompatActivity {
                     android.provider.Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0) != 0;
         }
         return false;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

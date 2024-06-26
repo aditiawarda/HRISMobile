@@ -37,6 +37,7 @@ public class DetailKeluargaActivity extends AppCompatActivity {
     TextView namaTV, tempatLahirTV, tanggalLahirTV, jenisKelaminTV, hubunganTV, statusPenikahanTV, agamaTV, statusBekerjaTV;
     KAlertDialog pDialog;
     private int i = -1;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class DetailKeluargaActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -161,8 +162,6 @@ public class DetailKeluargaActivity extends AppCompatActivity {
                         .show();
             }
         });
-
-        getData();
 
     }
 
@@ -390,6 +389,12 @@ public class DetailKeluargaActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

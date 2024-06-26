@@ -3,8 +3,6 @@ package com.gelora.absensi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +10,6 @@ import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,7 +19,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.gelora.absensi.kalert.KAlertDialog;
 
 import org.json.JSONException;
@@ -33,6 +29,7 @@ public class VisiMisiActivity extends AppCompatActivity {
     LinearLayout actionBar, backBTN, mainContent, loadingContent;
     TextView visiTV, misiTV;
     RequestQueue requestQueue;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +68,13 @@ public class VisiMisiActivity extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
                         try {
+                            Log.d("PaRSE JSON", response + "");
                             String status = response.getString("status");
                             if(status.equals("Success")){
                                 String visi = response.getString("visi");
                                 String misi = response.getString("misi");
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         mainContent.setVisibility(View.VISIBLE);
@@ -123,6 +120,12 @@ public class VisiMisiActivity extends AppCompatActivity {
 
         requestQueue.add(request);
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

@@ -59,6 +59,7 @@ public class FormInfoPengalamanActivity extends AppCompatActivity {
     KAlertDialog pDialog;
     ImageView successGif;
     private int i = -1;
+    private Handler handler = new Handler();
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch tahunAkhirSwitch;
@@ -191,7 +192,7 @@ public class FormInfoPengalamanActivity extends AppCompatActivity {
 
                 posisiED.clearFocus();
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -691,6 +692,12 @@ public class FormInfoPengalamanActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

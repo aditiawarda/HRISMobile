@@ -18,7 +18,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -58,6 +57,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
     KAlertDialog pDialog;
     private int i = -1;
     String file_url = "";
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +134,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -433,8 +433,6 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
             }
         });
-
-        getDataDetailPermohonan();
 
     }
 
@@ -1543,6 +1541,12 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
             statusKondisi = "0";
             recheckSignature();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

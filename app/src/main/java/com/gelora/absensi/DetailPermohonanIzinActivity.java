@@ -80,6 +80,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     private NotificationManager mNotifyManager;
     private NotificationCompat.Builder mBuilder;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,8 +152,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -443,8 +443,6 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         });
 
         idPermohonanTV.setText(idIzinRecord);
-
-        getDataDetailPermohonan();
 
     }
 
@@ -1457,5 +1455,10 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
+    }
 
 }

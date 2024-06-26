@@ -69,6 +69,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
     private ListDataExitClearanceIn[] listDataExitClearanceIns;
     private AdapterExitClearanceIn adapterExitClearanceIn;
     private AdapterKaryawanClearance adapterKaryawanClearance;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +129,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
                 noDataPart2.setVisibility(View.GONE);
                 dataInRV.setVisibility(View.GONE);
                 dataOutRV.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -149,7 +150,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
         addBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")){
+                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")){
                     pilihKaryawan();
                 } else {
                     Intent intent = new Intent(ExitClearanceActivity.this, FormExitClearanceActivity.class);
@@ -177,7 +178,8 @@ public class ExitClearanceActivity extends AppCompatActivity {
                 noDataPart2.setVisibility(View.GONE);
                 dataInRV.setVisibility(View.GONE);
                 dataOutRV.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -203,7 +205,8 @@ public class ExitClearanceActivity extends AppCompatActivity {
                 noDataPart2.setVisibility(View.GONE);
                 dataInRV.setVisibility(View.GONE);
                 dataOutRV.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -248,9 +251,6 @@ public class ExitClearanceActivity extends AppCompatActivity {
             dataKeluarPart.setVisibility(View.VISIBLE);
         }
 
-        getDataIn(otoritorEC);
-        getDataOut();
-
     }
 
     private void pilihKaryawan(){
@@ -287,7 +287,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
                 karyawanRV.setVisibility(View.GONE);
 
                 if(!keyWordSearch.equals("")){
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getDataKaryawan(keyWordSearch);
@@ -326,13 +326,12 @@ public class ExitClearanceActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
                 }
             }, 300);
-
         }
     };
 
@@ -418,7 +417,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
-                                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")){
+                                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")){
                                     addBTN.setVisibility(View.VISIBLE);
                                 } else {
                                     addBTN.setVisibility(View.GONE);
@@ -452,7 +451,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Log.d("Error.Response", error.toString());
+                        Log.e("Error.Response", error.toString());
                         connectionFailed();
                     }
                 }
@@ -527,7 +526,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Log.d("Error.Response", error.toString());
+                        Log.e("Error.Response", error.toString());
                         connectionFailed();
                     }
                 }
@@ -556,7 +555,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
         noDataPart2.setVisibility(View.GONE);
         dataInRV.setVisibility(View.GONE);
         dataOutRV.setVisibility(View.GONE);
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 refreshLayout.setRefreshing(false);
@@ -585,6 +584,12 @@ public class ExitClearanceActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,6 +34,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     EditText nikED;
     String deviceID;
     ProgressBar loadingProgress;
+    private Handler handler = new Handler();
 
     @SuppressLint("HardwareIds")
     @Override
@@ -60,7 +60,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadingProgress.setVisibility(View.VISIBLE);
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void run() {
                         if(nikED.getText().toString().equals("")){
@@ -103,7 +104,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                 Intent intent = new Intent(ForgotPasswordActivity.this, EmailShowActivity.class);
                                 intent.putExtra("nik", nik);
                                 startActivity(intent);
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
+                                    @SuppressLint("SetTextI18n")
                                     @Override
                                     public void run() {
                                         loadingProgress.setVisibility(View.GONE);
@@ -124,7 +126,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                 intent.putExtra("nik", nik);
                                 intent.putExtra("atas_nama", atas_nama);
                                 startActivity(intent);
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
+                                    @SuppressLint("SetTextI18n")
                                     @Override
                                     public void run() {
                                         loadingProgress.setVisibility(View.GONE);
@@ -185,6 +188,12 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

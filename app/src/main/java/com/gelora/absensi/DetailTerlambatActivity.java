@@ -52,6 +52,7 @@ public class DetailTerlambatActivity extends AppCompatActivity {
     private RecyclerView dataLateRV;
     private DataTerlambat[] dataLates;
     private AdapterDataTerlambat adapterDataLate;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +123,7 @@ public class DetailTerlambatActivity extends AppCompatActivity {
                 markerWarningLate.setVisibility(View.GONE);
                 attantionPart.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -184,7 +185,7 @@ public class DetailTerlambatActivity extends AppCompatActivity {
                                 markerWarningLate.setVisibility(View.GONE);
                                 attantionPart.setVisibility(View.GONE);
 
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         getDetailTerlambat();
@@ -315,6 +316,12 @@ public class DetailTerlambatActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

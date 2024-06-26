@@ -33,6 +33,7 @@ public class InfoPersonalActivity extends AppCompatActivity {
     TextView namaTV, emailTV, genderTV, tempatLahirTV, tanggalLAhirTV, hanphoneTV, statusPernikahanTV, agamaTV, alamatKTPTV, alamatDomisiliTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class InfoPersonalActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -107,8 +108,6 @@ public class InfoPersonalActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        getData();
 
     }
 
@@ -351,6 +350,12 @@ public class InfoPersonalActivity extends AppCompatActivity {
         super.onResume();
         emptyWarningBTN.setVisibility(View.GONE);
         getData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

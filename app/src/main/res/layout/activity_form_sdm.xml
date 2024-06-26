@@ -1759,7 +1759,7 @@
                                         android:orientation="horizontal"
                                         android:paddingStart="20dp"
                                         android:paddingEnd="20dp"
-                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginBottom="5dp"
                                         tools:ignore="RtlHardcoded">
 
                                         <TextView

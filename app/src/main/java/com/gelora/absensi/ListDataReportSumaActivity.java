@@ -28,7 +28,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,7 +38,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterKaryawanSales;
 import com.gelora.absensi.adapter.AdapterSumaReport;
@@ -81,7 +79,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     LinearLayout contentPart, startAttantionPart, noDataPart, loadingDataPart;
     private KaryawanSales[] karyawanSales;
     private AdapterKaryawanSales adapterKaryawanSales;
-
+    private Handler handler = new Handler();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -184,7 +182,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 reportRV.setVisibility(View.GONE);
                 loadingDataPartReport.setVisibility(View.VISIBLE);
                 noDataPartReport.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -247,7 +245,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 if(categoryCode.equals("1")){
@@ -280,7 +278,8 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         reportRV.setVisibility(View.GONE);
         loadingDataPartReport.setVisibility(View.VISIBLE);
         noDataPartReport.setVisibility(View.GONE);
-        new Handler().postDelayed(new Runnable() {
+
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if(sharedPrefManager.getSpNik().equals("0499070507")){
@@ -288,7 +287,6 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 } else {
                     getData(categoryCode);
                 }
-
             }
         }, 500);
 
@@ -343,7 +341,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                                 adapterSumaReport = new AdapterSumaReport(dataReportSumas, ListDataReportSumaActivity.this);
                                 reportRV.setAdapter(adapterSumaReport);
 
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         attantionReportPart.setVisibility(View.GONE);
@@ -441,7 +439,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 markAktivitas.setVisibility(View.GONE);
                 rencanaBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
                 aktivitasBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -449,13 +447,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 getData(categoryCode);
                             }
                         }, 1000);
-
                     }
                 }, 300);
 
@@ -478,7 +475,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 markAktivitas.setVisibility(View.VISIBLE);
                 rencanaBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 aktivitasBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -486,7 +483,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 if(categoryCode.equals("0")){
@@ -496,7 +493,6 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                                 }
                             }
                         }, 1000);
-
                     }
                 }, 300);
 
@@ -555,7 +551,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 promosiBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
                 pengirimanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 penagihanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -563,16 +559,14 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 getData(subCategoryCode);
                             }
                         }, 1000);
-
                     }
                 }, 300);
-
             }
         });
 
@@ -590,23 +584,20 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 promosiBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 pengirimanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 penagihanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
-
                         attantionReportPart.setVisibility(View.GONE);
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
-
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 getData(subCategoryCode);
                             }
                         }, 1000);
-
                     }
                 }, 300);
 
@@ -627,7 +618,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 promosiBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 pengirimanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
                 penagihanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -636,7 +627,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 getData(subCategoryCode);
@@ -743,7 +734,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 reportRV.setVisibility(View.GONE);
                 loadingDataPartReport.setVisibility(View.VISIBLE);
                 noDataPartReport.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         if(categoryCode.equals("1")){
@@ -848,7 +839,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 reportRV.setVisibility(View.GONE);
                 loadingDataPartReport.setVisibility(View.VISIBLE);
                 noDataPartReport.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         if(categoryCode.equals("1")){
@@ -909,7 +900,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         karyawanSalesRV.setNestedScrollingEnabled(false);
         karyawanSalesRV.setItemAnimator(new DefaultItemAnimator());
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 getSales("Semua");
@@ -935,14 +926,14 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 karyawanSalesRV.setVisibility(View.GONE);
 
                 if(!keyWordSearch.equals("")){
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getSales(keyWordSearch);
                         }
                     }, 500);
                 } else {
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getSales("Semua");
@@ -980,7 +971,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 salesChoiceTV.setText("Semua Sales");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -988,7 +979,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 if(categoryCode.equals("1")){
@@ -1088,7 +1079,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 view = new View(ListDataReportSumaActivity.this);
             }
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -1097,7 +1088,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     reportRV.setVisibility(View.GONE);
                     loadingDataPartReport.setVisibility(View.VISIBLE);
                     noDataPartReport.setVisibility(View.GONE);
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             if(categoryCode.equals("1")){
@@ -1121,7 +1112,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             reportRV.setVisibility(View.GONE);
             loadingDataPartReport.setVisibility(View.VISIBLE);
             noDataPartReport.setVisibility(View.GONE);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     if(categoryCode.equals("1")){
@@ -1140,7 +1131,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 reportRV.setVisibility(View.GONE);
                 loadingDataPartReport.setVisibility(View.VISIBLE);
                 noDataPartReport.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
+                 handler.postDelayed(new Runnable() {
                      @Override
                      public void run() {
                          getData(categoryCode);
@@ -1172,7 +1163,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                  reportRV.setVisibility(View.GONE);
                  loadingDataPartReport.setVisibility(View.VISIBLE);
                  noDataPartReport.setVisibility(View.GONE);
-                 new Handler().postDelayed(new Runnable() {
+                 handler.postDelayed(new Runnable() {
                      @Override
                      public void run() {
                          if(subCategoryChoiceTV.getText().toString().equals("Aktivitas Promosi")){
@@ -1202,6 +1193,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.volley.Request;
@@ -20,7 +19,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterListKeluarga;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataKeluarga;
@@ -46,6 +44,7 @@ public class InfoKeluargaActivity extends AppCompatActivity {
     private RecyclerView listKeluargaRV;
     private DataKeluarga[] dataKeluargas;
     private AdapterListKeluarga adapterListKeluarga;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +81,7 @@ public class InfoKeluargaActivity extends AppCompatActivity {
                 noDataPart.setVisibility(View.GONE);
                 loadingDataPart.setVisibility(View.VISIBLE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -107,8 +106,6 @@ public class InfoKeluargaActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        getDataKeluarga();
 
     }
 
@@ -198,6 +195,12 @@ public class InfoKeluargaActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getDataKeluarga();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

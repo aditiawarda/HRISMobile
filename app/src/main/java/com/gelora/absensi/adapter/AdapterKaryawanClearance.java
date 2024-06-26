@@ -49,6 +49,9 @@ public class AdapterKaryawanClearance extends RecyclerView.Adapter<AdapterKaryaw
         myViewHolder.karyawanNik.setText(karyawanClearance.getNIK());
         myViewHolder.karyawanDesc.setText(karyawanClearance.getJabatan()+" | "+karyawanClearance.getBagian()+" | "+karyawanClearance.getDepartemen());
 
+        myViewHolder.markStatus.setVisibility(View.GONE);
+        myViewHolder.parentPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_option));
+
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override

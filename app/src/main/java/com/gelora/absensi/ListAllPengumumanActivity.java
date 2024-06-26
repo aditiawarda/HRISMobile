@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.volley.Request;
@@ -19,7 +18,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterListPengumuman;
 import com.gelora.absensi.model.DataPengumumanAll;
 import com.google.gson.Gson;
@@ -41,6 +39,7 @@ public class ListAllPengumumanActivity extends AppCompatActivity {
     private RecyclerView listPengumumanRV;
     private DataPengumumanAll[] dataPengumumans;
     private AdapterListPengumuman adapterListPengumuman;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +75,7 @@ public class ListAllPengumumanActivity extends AppCompatActivity {
                 noDataPart.setVisibility(View.GONE);
                 loadingDataPart.setVisibility(View.VISIBLE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -170,6 +169,12 @@ public class ListAllPengumumanActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

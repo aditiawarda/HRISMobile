@@ -18,7 +18,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.volley.Request;
@@ -27,7 +26,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterListKontakDarurat;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataKontakDarurat;
@@ -53,6 +51,7 @@ public class InfoKontakDaruratActivity extends AppCompatActivity {
     private RecyclerView listKontakRV;
     private DataKontakDarurat[] dataKontakDarurats;
     private AdapterListKontakDarurat adapterListKontakDarurat;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +90,7 @@ public class InfoKontakDaruratActivity extends AppCompatActivity {
                 noDataPart.setVisibility(View.GONE);
                 loadingDataPart.setVisibility(View.VISIBLE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -116,8 +115,6 @@ public class InfoKontakDaruratActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        getDataKontak();
 
     }
 
@@ -342,6 +339,12 @@ public class InfoKontakDaruratActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getDataKontak();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

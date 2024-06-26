@@ -106,6 +106,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
     private static final int PICK_PDF_ST_6 = 6;
 
     String nikKaryawan, namaKaryawan, idBagian, idDepartemen, idJabatan;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,7 +201,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -1380,7 +1381,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     request.startUpload();
                 }
                 if(i+1 == arrayFile.length){
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             permohonanTerkirim = "1";
@@ -1476,7 +1477,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                                 String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 submitRecord();
                             } else {
-                                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")){
+                                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")){
                                     if (sharedPrefManager.getSpNik().equals(nikKaryawan)){
                                         pDialog.setTitleText("Perhatian")
                                                 .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")
@@ -1597,6 +1598,12 @@ public class FormExitClearanceActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

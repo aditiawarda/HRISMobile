@@ -2780,7 +2780,7 @@
                                         android:id="@+id/warning_penilaian"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Penilaian menunggu verifikasi penilaian SDM"
+                                        android:text="Menunggu verifikasi penilaian SDM"
                                         android:textColor="#BA4A4A"
                                         android:textSize="10dp"
                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />

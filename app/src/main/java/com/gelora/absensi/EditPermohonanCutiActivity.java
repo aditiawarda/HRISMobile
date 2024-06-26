@@ -111,6 +111,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
     private AdapterKategoriIzinEdit adapterKategoriIzin;
     private KaryawanPengganti[] karyawanPenggantis;
     private AdapterKaryawanPenggantiEdit adapterKaryawanPengganti;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,7 +174,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -3423,7 +3424,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                 noDataPart.setVisibility(View.GONE);
                 karyawanPenggantiRV.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         getDataKaryawanPengganti(keyWordSearch);
@@ -3574,7 +3575,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
             alamatSelamaCutiTV.clearFocus();
             noHpTV.clearFocus();
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -3603,7 +3604,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
             alamatSelamaCutiTV.clearFocus();
             noHpTV.clearFocus();
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -3825,7 +3826,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                         String pngImagePath = FilePathimage.getPath(this, uri);
                         new ConvertImageTask().execute(pngImagePath);
                     } else {
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 new KAlertDialog(EditPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
@@ -4117,7 +4118,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                     throw new RuntimeException(e);
                 }
             } else {
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         new KAlertDialog(EditPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
@@ -4198,6 +4199,12 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                 super.onBackPressed();
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

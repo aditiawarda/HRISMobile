@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.StatusBarColorManager;
@@ -28,6 +27,7 @@ public class DetailCuacaActivity extends AppCompatActivity {
     TextView mainWeatherTV, weatherTempTV, feelsLikeTempTV, locationTV;
     ProgressBar loadingProgressBar;
     ImageView weatherIcon;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,15 +56,15 @@ public class DetailCuacaActivity extends AppCompatActivity {
                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                 .into(weatherIcon);
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-              loadingProgressBar.setVisibility(View.GONE);
-              weatherIcon.setVisibility(View.VISIBLE);
-              mainWeatherTV.setText(mainWaether);
-              weatherTempTV.setText(temp);
-              feelsLikeTempTV.setText(feel_like);
-              locationTV.setText(location);
+                loadingProgressBar.setVisibility(View.GONE);
+                weatherIcon.setVisibility(View.VISIBLE);
+                mainWeatherTV.setText(mainWaether);
+                weatherTempTV.setText(temp);
+                feelsLikeTempTV.setText(feel_like);
+                locationTV.setText(location);
             }
         }, 2000);
 
@@ -99,4 +99,11 @@ public class DetailCuacaActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
+    }
+
 }

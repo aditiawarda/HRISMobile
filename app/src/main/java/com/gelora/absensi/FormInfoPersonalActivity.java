@@ -56,6 +56,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
     String genderChoice = "", tanggalLAhir = "", statusPernikahanChoice = "", agamaChoice = "";
     KAlertDialog pDialog;
     private int i = -1;
+    private Handler handler = new Handler();
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch domisiliSwitch;
@@ -110,7 +111,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 tempatLahirED.clearFocus();
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -712,7 +713,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                     genderChoice = "male";
                     genderPilihTV.setText("Laki-Laki");
 
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             bottomSheet.dismissSheet();
@@ -732,7 +733,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                     genderChoice = "female";
                     genderPilihTV.setText("Perempuan");
 
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             bottomSheet.dismissSheet();
@@ -892,7 +893,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 agamaChoice = "Islam";
                 agamaPilihTV.setText("Islam");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -923,7 +924,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 agamaChoice = "Kristen";
                 agamaPilihTV.setText("Kristen");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -954,7 +955,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 agamaChoice = "Hindu";
                 agamaPilihTV.setText("Hindu");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -985,7 +986,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 agamaChoice = "Buddha";
                 agamaPilihTV.setText("Buddha");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1016,7 +1017,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 agamaChoice = "Katolik";
                 agamaPilihTV.setText("Katolik");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1047,7 +1048,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 agamaChoice = "Kong Hu Chu";
                 agamaPilihTV.setText("Kong Hu Chu");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1078,7 +1079,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 agamaChoice = "Lainnya";
                 agamaPilihTV.setText("Lainnya");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1226,7 +1227,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 statusPernikahanChoice = "1";
                 statusPernikahanPilihTV.setText("Belum Menikah");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1251,7 +1252,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 statusPernikahanChoice = "2";
                 statusPernikahanPilihTV.setText("Menikah");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1276,7 +1277,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 statusPernikahanChoice = "3";
                 statusPernikahanPilihTV.setText("Cerai Hidup");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1301,7 +1302,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 statusPernikahanChoice = "4";
                 statusPernikahanPilihTV.setText("Cerai Mati");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
@@ -1358,6 +1359,12 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

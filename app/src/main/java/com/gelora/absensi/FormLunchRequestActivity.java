@@ -33,15 +33,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
-import com.gelora.absensi.adapter.AdapterUnitBagian2;
 import com.gelora.absensi.adapter.AdapterUnitBagianLunchRequest;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.BagianLunchRequest;
-import com.gelora.absensi.model.UnitBagian;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.takisoft.datetimepicker.DatePickerDialog;
@@ -56,7 +55,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class FormLunchRequestActivity extends AppCompatActivity {
 
@@ -72,9 +70,18 @@ public class FormLunchRequestActivity extends AppCompatActivity {
     LinearLayout removeBTN4, addBTN4;
     EditText jumlahTV4;
 
+    LinearLayout removeBTN5, addBTN5;
+    EditText jumlahTV5;
+
+    LinearLayout removeBTN6, addBTN6;
+    EditText jumlahTV6;
+
+    LinearLayout removeBTN7, addBTN7;
+    EditText jumlahTV7;
+
     SwipeRefreshLayout refreshLayout;
-    LinearLayout submitBTN, backBTN, bagianBTN, dateBTN, formPart, successPart, rebackBTN, actionBar;
-    TextView bagianPilihTV, tanggalPilihTV;
+    LinearLayout closePart, inputPart, soreMalamPart1, soreMalamPart2, siangPart1, siangPart2, submitBTN, backBTN, bagianBTN, dateBTN, formPart, successPart, rebackBTN, actionBar;
+    TextView bagianPilihTV, tanggalPilihTV, submitLabelTV, warningTV;
     ImageView successGif;
 
     private RecyclerView bagianRV;
@@ -83,10 +90,12 @@ public class FormLunchRequestActivity extends AppCompatActivity {
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    int siang1 = 0, siang2 = 0, sore = 0, malam = 0;
-    String permohonanTerkirim = "0", tanggal = "", bagianRL = "";
+    int pusat_siang1 = 0, pusat_siang2 = 0, pusat_sore = 0, pusat_malam = 0;
+    int gapprint_siang = 0, gapprint_sore = 0, gapprint_malam = 0;
+    String tanggal = "", bagianRL = "", timeOutRequest = "12:00:00";
     KAlertDialog pDialog;
     private int i = -1;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +122,18 @@ public class FormLunchRequestActivity extends AppCompatActivity {
         addBTN4 = findViewById(R.id.add_4_btn);
         jumlahTV4 = findViewById(R.id.jumlah_4_tv);
 
+        removeBTN5 = findViewById(R.id.remove_5_btn);
+        addBTN5 = findViewById(R.id.add_5_btn);
+        jumlahTV5 = findViewById(R.id.jumlah_5_tv);
+
+        removeBTN6 = findViewById(R.id.remove_6_btn);
+        addBTN6 = findViewById(R.id.add_6_btn);
+        jumlahTV6 = findViewById(R.id.jumlah_6_tv);
+
+        removeBTN7 = findViewById(R.id.remove_7_btn);
+        addBTN7 = findViewById(R.id.add_7_btn);
+        jumlahTV7 = findViewById(R.id.jumlah_7_tv);
+
         submitBTN = findViewById(R.id.submit_btn);
         backBTN = findViewById(R.id.back_btn);
         bagianBTN = findViewById(R.id.bagian_btn);
@@ -125,15 +146,24 @@ public class FormLunchRequestActivity extends AppCompatActivity {
         successGif = findViewById(R.id.success_gif);
         rebackBTN = findViewById(R.id.reback_btn);
         actionBar = findViewById(R.id.action_bar);
+        siangPart1 = findViewById(R.id.siang_part_1);
+        siangPart2 = findViewById(R.id.siang_part_2);
+        soreMalamPart1 = findViewById(R.id.sore_malam_part_1);
+        soreMalamPart2 = findViewById(R.id.sore_malam_part_2);
+        inputPart = findViewById(R.id.input_part);
+        closePart = findViewById(R.id.close_part);
+        submitLabelTV = findViewById(R.id.submit_label);
+        warningTV = findViewById(R.id.warning_tv);
 
         bagianRL = getIntent().getExtras().getString("bagianRL");
         bagianPilihTV.setText(bagianRL);
+
+        getTimeOut();
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
                 .into(successGif);
 
-        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_BAGIAN_RL, "");
         LocalBroadcastManager.getInstance(this).registerReceiver(bagianBroadRL, new IntentFilter("bagian_broad_rl"));
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
@@ -142,17 +172,22 @@ public class FormLunchRequestActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 bagianPilihTV.setText(bagianRL);
-                siang1 = 0;
-                siang2 = 0;
-                sore = 0;
-                malam = 0;
+                pusat_siang1 = 0;
+                pusat_siang2 = 0;
+                pusat_sore = 0;
+                pusat_malam = 0;
+                gapprint_siang = 0;
+                gapprint_sore = 0;
+                gapprint_malam = 0;
                 tanggal = "";
                 tanggalPilihTV.setText("");
                 jumlahTV1.setText("0");
                 jumlahTV2.setText("0");
                 jumlahTV3.setText("0");
-                jumlahTV4.setText("0");
-                new Handler().postDelayed(new Runnable() {
+                jumlahTV5.setText("0");
+                jumlahTV6.setText("0");
+                jumlahTV7.setText("0");
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -197,6 +232,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 choiceDate();
             }
         });
@@ -213,11 +251,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() == 0) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
-                    jumlahTV1.clearFocus();
-                    jumlahTV1.setText("0");
-                    siang1 = 0;
+                    pusat_siang1 = 0;
+                } else {
+                    pusat_siang1 = Integer.parseInt(jumlahTV1.getText().toString());
                 }
             }
         });
@@ -234,11 +270,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() == 0) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
-                    jumlahTV2.clearFocus();
-                    jumlahTV2.setText("0");
-                    siang2 = 0;
+                    pusat_siang2 = 0;
+                } else {
+                    pusat_siang2 = Integer.parseInt(jumlahTV2.getText().toString());
                 }
             }
         });
@@ -255,11 +289,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() == 0) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
-                    jumlahTV3.clearFocus();
-                    jumlahTV3.setText("0");
-                    sore = 0;
+                    pusat_sore = 0;
+                } else {
+                    pusat_sore = Integer.parseInt(jumlahTV3.getText().toString());
                 }
             }
         });
@@ -276,16 +308,71 @@ public class FormLunchRequestActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() == 0) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
-                    jumlahTV4.clearFocus();
-                    jumlahTV4.setText("0");
-                    malam = 0;
+                    pusat_malam = 0;
+                } else {
+                    pusat_malam = Integer.parseInt(jumlahTV4.getText().toString());
                 }
             }
         });
 
-        jumlahTV4.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        jumlahTV5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No action needed
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // No action needed
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 0) {
+                    gapprint_siang = 0;
+                } else {
+                    gapprint_siang = Integer.parseInt(jumlahTV5.getText().toString());
+                }
+            }
+        });
+
+        jumlahTV6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No action needed
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // No action needed
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 0) {
+                    gapprint_sore = 0;
+                } else {
+                    gapprint_sore = Integer.parseInt(jumlahTV6.getText().toString());
+                }
+            }
+        });
+
+        jumlahTV7.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No action needed
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // No action needed
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 0) {
+                    gapprint_malam = 0;
+                } else {
+                    gapprint_malam = Integer.parseInt(jumlahTV7.getText().toString());
+                }
+            }
+        });
+
+        jumlahTV7.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -294,6 +381,9 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
 
                 return false;
             }
@@ -308,16 +398,19 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV1.getText().toString().isEmpty()){
                     jumlahTV1.setText(String.valueOf(0));
-                    siang1 = 0;
+                    pusat_siang1 = 0;
                 } else if(Integer.parseInt(jumlahTV1.getText().toString()) == 0){
                     jumlahTV1.setText(String.valueOf(0));
-                    siang1 = 0;
+                    pusat_siang1 = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV1.getText().toString()) - 1;
                     jumlahTV1.setText(String.valueOf(newValue));
-                    siang1 = newValue;
+                    pusat_siang1 = newValue;
                 }
             }
         });
@@ -331,13 +424,16 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV1.getText().toString().isEmpty()){
                     jumlahTV1.setText(String.valueOf(0));
-                    siang1 = 0;
+                    pusat_siang1 = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV1.getText().toString()) + 1;
                     jumlahTV1.setText(String.valueOf(newValue));
-                    siang1 = newValue;
+                    pusat_siang1 = newValue;
                 }
             }
         });
@@ -351,16 +447,19 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV2.getText().toString().isEmpty()){
                     jumlahTV2.setText(String.valueOf(0));
-                    siang2 = 0;
+                    pusat_siang2 = 0;
                 } else if(Integer.parseInt(jumlahTV2.getText().toString()) == 0){
                     jumlahTV2.setText(String.valueOf(0));
-                    siang2 = 0;
+                    pusat_siang2 = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV2.getText().toString()) - 1;
                     jumlahTV2.setText(String.valueOf(newValue));
-                    siang2 = newValue;
+                    pusat_siang2 = newValue;
                 }
             }
         });
@@ -374,13 +473,16 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV2.getText().toString().isEmpty()){
                     jumlahTV2.setText(String.valueOf(0));
-                    siang2 = 0;
+                    pusat_siang2 = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV2.getText().toString()) + 1;
                     jumlahTV2.setText(String.valueOf(newValue));
-                    siang2 = newValue;
+                    pusat_siang2 = newValue;
                 }
             }
         });
@@ -394,16 +496,19 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV3.getText().toString().isEmpty()){
                     jumlahTV3.setText(String.valueOf(0));
-                    sore = 0;
+                    pusat_sore = 0;
                 } else if(Integer.parseInt(jumlahTV3.getText().toString()) == 0){
                     jumlahTV3.setText(String.valueOf(0));
-                    sore = 0;
+                    pusat_sore = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV3.getText().toString()) - 1;
                     jumlahTV3.setText(String.valueOf(newValue));
-                    sore = newValue;
+                    pusat_sore = newValue;
                 }
             }
         });
@@ -417,13 +522,16 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV3.getText().toString().isEmpty()){
                     jumlahTV3.setText(String.valueOf(0));
-                    sore = 0;
+                    pusat_sore = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV3.getText().toString()) + 1;
                     jumlahTV3.setText(String.valueOf(newValue));
-                    sore = newValue;
+                    pusat_sore = newValue;
                 }
             }
         });
@@ -437,16 +545,19 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV4.getText().toString().isEmpty()){
                     jumlahTV4.setText(String.valueOf(0));
-                    malam = 0;
+                    pusat_malam = 0;
                 } else if(Integer.parseInt(jumlahTV4.getText().toString()) == 0){
                     jumlahTV4.setText(String.valueOf(0));
-                    malam = 0;
+                    pusat_malam = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV4.getText().toString()) - 1;
                     jumlahTV4.setText(String.valueOf(newValue));
-                    malam = newValue;
+                    pusat_malam = newValue;
                 }
             }
         });
@@ -460,18 +571,21 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
                 if(jumlahTV4.getText().toString().isEmpty()){
                     jumlahTV4.setText(String.valueOf(0));
-                    malam = 0;
+                    pusat_malam = 0;
                 } else {
                     int newValue = Integer.parseInt(jumlahTV4.getText().toString()) + 1;
                     jumlahTV4.setText(String.valueOf(newValue));
-                    malam = newValue;
+                    pusat_malam = newValue;
                 }
             }
         });
 
-        submitBTN.setOnClickListener(new View.OnClickListener() {
+        removeBTN5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -480,114 +594,149 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 jumlahTV2.clearFocus();
                 jumlahTV3.clearFocus();
                 jumlahTV4.clearFocus();
-
-                jumlahTV1.setText(String.valueOf(Integer.parseInt(jumlahTV1.getText().toString())));
-                jumlahTV2.setText(String.valueOf(Integer.parseInt(jumlahTV2.getText().toString())));
-                jumlahTV3.setText(String.valueOf(Integer.parseInt(jumlahTV3.getText().toString())));
-                jumlahTV4.setText(String.valueOf(Integer.parseInt(jumlahTV4.getText().toString())));
-
-                if(bagianPilihTV.getText().toString().isEmpty()){
-                    new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Harap isi pilih bagian")
-                            .setConfirmText("    OK    ")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
+                if(jumlahTV5.getText().toString().isEmpty()){
+                    jumlahTV5.setText(String.valueOf(0));
+                    gapprint_siang = 0;
+                } else if(Integer.parseInt(jumlahTV5.getText().toString()) == 0){
+                    jumlahTV5.setText(String.valueOf(0));
+                    gapprint_siang = 0;
                 } else {
-                    if(tanggal.isEmpty()){
-                        new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.ERROR_TYPE)
-                                .setTitleText("Perhatian")
-                                .setContentText("Harap isi pilih tanggal")
-                                .setConfirmText("    OK    ")
-                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                    @Override
-                                    public void onClick(KAlertDialog sDialog) {
-                                        sDialog.dismiss();
-                                    }
-                                })
-                                .show();
-                    } else {
-                        if(Integer.parseInt(jumlahTV1.getText().toString())==0 && Integer.parseInt(jumlahTV2.getText().toString())==0 && Integer.parseInt(jumlahTV3.getText().toString())==0 && Integer.parseInt(jumlahTV4.getText().toString())==0){
-                            new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.ERROR_TYPE)
-                                    .setTitleText("Perhatian")
-                                    .setContentText("Harap isi jumlah permohonan")
-                                    .setConfirmText("    OK    ")
-                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismiss();
-                                        }
-                                    })
-                                    .show();
-                        } else {
-                            new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.WARNING_TYPE)
-                                    .setTitleText("Perhatian")
-                                    .setContentText("Kirim permohonan sekarang?")
-                                    .setCancelText("TIDAK")
-                                    .setConfirmText("   YA   ")
-                                    .showCancelButton(true)
-                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismiss();
-                                        }
-                                    })
-                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismiss();
-                                            pDialog = new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                                            pDialog.show();
-                                            pDialog.setCancelable(false);
-                                            new CountDownTimer(1300, 800) {
-                                                public void onTick(long millisUntilFinished) {
-                                                    i++;
-                                                    switch (i) {
-                                                        case 0:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (FormLunchRequestActivity.this, R.color.colorGradien));
-                                                            break;
-                                                        case 1:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (FormLunchRequestActivity.this, R.color.colorGradien2));
-                                                            break;
-                                                        case 2:
-                                                        case 6:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (FormLunchRequestActivity.this, R.color.colorGradien3));
-                                                            break;
-                                                        case 3:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (FormLunchRequestActivity.this, R.color.colorGradien4));
-                                                            break;
-                                                        case 4:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (FormLunchRequestActivity.this, R.color.colorGradien5));
-                                                            break;
-                                                        case 5:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (FormLunchRequestActivity.this, R.color.colorGradien6));
-                                                            break;
-                                                    }
-                                                }
-                                                public void onFinish() {
-                                                    i = -1;
-                                                    sendData();
-                                                }
-                                            }.start();
-
-                                        }
-                                    })
-                                    .show();
-                        }
-                    }
-
+                    int newValue = Integer.parseInt(jumlahTV5.getText().toString()) - 1;
+                    jumlahTV5.setText(String.valueOf(newValue));
+                    gapprint_siang = newValue;
                 }
+            }
+        });
+
+        addBTN5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                jumlahTV1.clearFocus();
+                jumlahTV2.clearFocus();
+                jumlahTV3.clearFocus();
+                jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
+                if(jumlahTV5.getText().toString().isEmpty()){
+                    jumlahTV5.setText(String.valueOf(0));
+                    gapprint_siang = 0;
+                } else {
+                    int newValue = Integer.parseInt(jumlahTV5.getText().toString()) + 1;
+                    jumlahTV5.setText(String.valueOf(newValue));
+                    gapprint_siang = newValue;
+                }
+            }
+        });
+
+        removeBTN6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                jumlahTV1.clearFocus();
+                jumlahTV2.clearFocus();
+                jumlahTV3.clearFocus();
+                jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
+                if(jumlahTV6.getText().toString().isEmpty()){
+                    jumlahTV6.setText(String.valueOf(0));
+                    gapprint_sore = 0;
+                } else if(Integer.parseInt(jumlahTV6.getText().toString()) == 0){
+                    jumlahTV6.setText(String.valueOf(0));
+                    gapprint_sore = 0;
+                } else {
+                    int newValue = Integer.parseInt(jumlahTV6.getText().toString()) - 1;
+                    jumlahTV6.setText(String.valueOf(newValue));
+                    gapprint_sore = newValue;
+                }
+            }
+        });
+
+        addBTN6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                jumlahTV1.clearFocus();
+                jumlahTV2.clearFocus();
+                jumlahTV3.clearFocus();
+                jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
+                if(jumlahTV6.getText().toString().isEmpty()){
+                    jumlahTV6.setText(String.valueOf(0));
+                    gapprint_sore = 0;
+                } else {
+                    int newValue = Integer.parseInt(jumlahTV6.getText().toString()) + 1;
+                    jumlahTV6.setText(String.valueOf(newValue));
+                    gapprint_sore = newValue;
+                }
+            }
+        });
+
+        removeBTN7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                jumlahTV1.clearFocus();
+                jumlahTV2.clearFocus();
+                jumlahTV3.clearFocus();
+                jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
+                if(jumlahTV7.getText().toString().isEmpty()){
+                    jumlahTV7.setText(String.valueOf(0));
+                    gapprint_malam = 0;
+                } else if(Integer.parseInt(jumlahTV7.getText().toString()) == 0){
+                    jumlahTV7.setText(String.valueOf(0));
+                    gapprint_malam = 0;
+                } else {
+                    int newValue = Integer.parseInt(jumlahTV7.getText().toString()) - 1;
+                    jumlahTV7.setText(String.valueOf(newValue));
+                    gapprint_malam = newValue;
+                }
+            }
+        });
+
+        addBTN7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                jumlahTV1.clearFocus();
+                jumlahTV2.clearFocus();
+                jumlahTV3.clearFocus();
+                jumlahTV4.clearFocus();
+                jumlahTV5.clearFocus();
+                jumlahTV6.clearFocus();
+                jumlahTV7.clearFocus();
+                if(jumlahTV7.getText().toString().isEmpty()){
+                    jumlahTV7.setText(String.valueOf(0));
+                    gapprint_sore = 0;
+                } else {
+                    int newValue = Integer.parseInt(jumlahTV7.getText().toString()) + 1;
+                    jumlahTV7.setText(String.valueOf(newValue));
+                    gapprint_malam = newValue;
+                }
+            }
+        });
+
+        submitLabelTV.setText("KIRIM");
+        submitBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitData();
             }
         });
 
@@ -680,7 +829,115 @@ public class FormLunchRequestActivity extends AppCompatActivity {
             String id_bagian = intent.getStringExtra("id_bagian");
             String nama_bagian = intent.getStringExtra("nama_bagian");
             bagianPilihTV.setText(nama_bagian);
-            new Handler().postDelayed(new Runnable() {
+
+            pusat_siang1 = 0;
+            pusat_siang2 = 0;
+            pusat_sore = 0;
+            pusat_malam = 0;
+            gapprint_siang = 0;
+            gapprint_sore = 0;
+            gapprint_malam = 0;
+            jumlahTV1.setText("0");
+            jumlahTV2.setText("0");
+            jumlahTV3.setText("0");
+            jumlahTV5.setText("0");
+            jumlahTV6.setText("0");
+            jumlahTV7.setText("0");
+
+            if(!tanggal.isEmpty()){
+                @SuppressLint("SimpleDateFormat")
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                Date date2 = null;
+                try {
+                    date = sdf.parse(String.valueOf(tanggal));
+                    date2 = sdf.parse(getDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long pilih = date.getTime();
+                long sekarang = date2.getTime();
+
+                if(pilih<sekarang){
+                    inputPart.setVisibility(View.GONE);
+                    siangPart1.setVisibility(View.GONE);
+                    siangPart2.setVisibility(View.GONE);
+                    soreMalamPart1.setVisibility(View.GONE);
+                    soreMalamPart2.setVisibility(View.GONE);
+                    closePart.setVisibility(View.VISIBLE);
+
+                    submitLabelTV.setText("KEMBALI");
+                    submitBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onBackPressed();
+                        }
+                    });
+                } else if (pilih==sekarang){
+                    String jamString = getTimeNow();
+                    String batasString = timeOutRequest;
+
+                    @SuppressLint("SimpleDateFormat")
+                    SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+                    try {
+                        Date jam = format.parse(jamString);
+                        Date batas = format.parse(batasString);
+
+                        if (jam.before(batas)) {
+                            inputPart.setVisibility(View.VISIBLE);
+                            siangPart1.setVisibility(View.GONE);
+                            siangPart2.setVisibility(View.GONE);
+                            soreMalamPart1.setVisibility(View.VISIBLE);
+                            soreMalamPart2.setVisibility(View.VISIBLE);
+                            closePart.setVisibility(View.GONE);
+
+                            submitLabelTV.setText("KIRIM");
+                            submitBTN.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    submitData();
+                                }
+                            });
+                        } else {
+                            inputPart.setVisibility(View.GONE);
+                            siangPart1.setVisibility(View.GONE);
+                            siangPart2.setVisibility(View.GONE);
+                            soreMalamPart1.setVisibility(View.GONE);
+                            soreMalamPart2.setVisibility(View.GONE);
+                            closePart.setVisibility(View.VISIBLE);
+
+                            submitLabelTV.setText("KEMBALI");
+                            submitBTN.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    onBackPressed();
+                                }
+                            });
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                } else if (pilih>sekarang){
+                    inputPart.setVisibility(View.VISIBLE);
+                    siangPart1.setVisibility(View.VISIBLE);
+                    siangPart2.setVisibility(View.VISIBLE);
+                    soreMalamPart1.setVisibility(View.VISIBLE);
+                    soreMalamPart2.setVisibility(View.VISIBLE);
+                    closePart.setVisibility(View.GONE);
+
+                    submitLabelTV.setText("SUBMIT");
+                    submitBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            submitData();
+                        }
+                    });
+
+                }
+            }
+
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -719,7 +976,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
             long pilih = date.getTime();
             long sekarang = date2.getTime();
 
-            if (pilih<sekarang){
+            if (pilih<sekarang) {
                 tanggalPilihTV.setText("Pilih Kembali !");
                 tanggal = "";
 
@@ -734,7 +991,8 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                             }
                         })
                         .show();
-            } else {
+
+            } else if (pilih==sekarang){
                 String input_date = tanggal;
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 Date dt1= null;
@@ -814,6 +1072,144 @@ public class FormLunchRequestActivity extends AppCompatActivity {
 
                 tanggalPilihTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                String jamString = getTimeNow();
+                String batasString = timeOutRequest;
+
+                SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+                try {
+                    Date jam = format.parse(jamString);
+                    Date batas = format.parse(batasString);
+
+                    if (jam.before(batas)) {
+                        inputPart.setVisibility(View.VISIBLE);
+                        siangPart1.setVisibility(View.GONE);
+                        siangPart2.setVisibility(View.GONE);
+                        soreMalamPart1.setVisibility(View.VISIBLE);
+                        soreMalamPart2.setVisibility(View.VISIBLE);
+                        closePart.setVisibility(View.GONE);
+
+                        submitLabelTV.setText("KIRIM");
+                        submitBTN.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                submitData();
+                            }
+                        });
+                    } else {
+                        inputPart.setVisibility(View.GONE);
+                        siangPart1.setVisibility(View.GONE);
+                        siangPart2.setVisibility(View.GONE);
+                        soreMalamPart1.setVisibility(View.GONE);
+                        soreMalamPart2.setVisibility(View.GONE);
+                        closePart.setVisibility(View.VISIBLE);
+
+                        submitLabelTV.setText("KEMBALI");
+                        submitBTN.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                onBackPressed();
+                            }
+                        });
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+            } else if(pilih>sekarang) {
+                String input_date = tanggal;
+                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                Date dt1= null;
+                try {
+                    dt1 = format1.parse(input_date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                DateFormat format2 = new SimpleDateFormat("EEE");
+                DateFormat getweek = new SimpleDateFormat("W");
+                String finalDay = format2.format(dt1);
+                String week = getweek.format(dt1);
+                String hariName = "";
+
+                if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                    hariName = "Senin";
+                } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                    hariName = "Selasa";
+                } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                    hariName = "Rabu";
+                } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                    hariName = "Kamis";
+                } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                    hariName = "Jumat";
+                } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                    hariName = "Sabtu";
+                } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                    hariName = "Minggu";
+                }
+
+                String dayDate = input_date.substring(8,10);
+                String yearDate = input_date.substring(0,4);
+                String bulanValue = input_date.substring(5,7);
+                String bulanName;
+
+                switch (bulanValue) {
+                    case "01":
+                        bulanName = "Januari";
+                        break;
+                    case "02":
+                        bulanName = "Februari";
+                        break;
+                    case "03":
+                        bulanName = "Maret";
+                        break;
+                    case "04":
+                        bulanName = "April";
+                        break;
+                    case "05":
+                        bulanName = "Mei";
+                        break;
+                    case "06":
+                        bulanName = "Juni";
+                        break;
+                    case "07":
+                        bulanName = "Juli";
+                        break;
+                    case "08":
+                        bulanName = "Agustus";
+                        break;
+                    case "09":
+                        bulanName = "September";
+                        break;
+                    case "10":
+                        bulanName = "Oktober";
+                        break;
+                    case "11":
+                        bulanName = "November";
+                        break;
+                    case "12":
+                        bulanName = "Desember";
+                        break;
+                    default:
+                        bulanName = "Not found!";
+                        break;
+                }
+
+                tanggalPilihTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                inputPart.setVisibility(View.VISIBLE);
+                siangPart1.setVisibility(View.VISIBLE);
+                siangPart2.setVisibility(View.VISIBLE);
+                soreMalamPart1.setVisibility(View.VISIBLE);
+                soreMalamPart2.setVisibility(View.VISIBLE);
+                closePart.setVisibility(View.GONE);
+
+                submitLabelTV.setText("KIRIM");
+                submitBTN.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        submitData();
+                    }
+                });
+
             }
 
         }, y,m-1,d);
@@ -823,44 +1219,46 @@ public class FormLunchRequestActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (siang1!=0 || siang2!=0 || sore!=0 || malam!=0 || !bagianPilihTV.getText().toString().isEmpty() || !tanggal.isEmpty()){
+        if (pusat_siang1 !=0 || pusat_siang2 !=0 || pusat_sore !=0 || pusat_malam !=0 || gapprint_siang !=0 || gapprint_sore !=0 || gapprint_malam !=0 || !bagianPilihTV.getText().toString().isEmpty() || !tanggal.isEmpty()){
             if(bottomSheet.isSheetShowing()){
                 bottomSheet.dismissSheet();
             } else {
-                if (permohonanTerkirim.equals("1")){
-                    super.onBackPressed();
-                } else {
-                    new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.WARNING_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
-                            .setCancelText("TIDAK")
-                            .setConfirmText("   YA   ")
-                            .showCancelButton(true)
-                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                    siang1 = 0;
-                                    siang2 = 0;
-                                    sore = 0;
-                                    malam = 0;
-                                    tanggal = "";
-                                    bagianPilihTV.setText("");
-                                    jumlahTV1.setText("0");
-                                    jumlahTV2.setText("0");
-                                    jumlahTV3.setText("0");
-                                    jumlahTV4.setText("0");
-                                    onBackPressed();
-                                }
-                            })
-                            .show();
-                }
+                new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                pusat_siang1 = 0;
+                                pusat_siang2 = 0;
+                                pusat_sore = 0;
+                                pusat_malam = 0;
+                                gapprint_siang = 0;
+                                gapprint_sore = 0;
+                                gapprint_malam = 0;
+                                tanggal = "";
+                                bagianPilihTV.setText("");
+                                jumlahTV1.setText("0");
+                                jumlahTV2.setText("0");
+                                jumlahTV3.setText("0");
+                                jumlahTV4.setText("0");
+                                jumlahTV5.setText("0");
+                                jumlahTV6.setText("0");
+                                jumlahTV7.setText("0");
+                                onBackPressed();
+                            }
+                        })
+                        .show();
             }
         } else {
             if(bottomSheet.isSheetShowing()){
@@ -873,7 +1271,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
 
     private void sendData() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://hrisgelora.co.id/api/craete_lunch_request";
+        final String url = "https://hrisgelora.co.id/api/create_lunch_request";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -889,21 +1287,42 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                                 pDialog.dismiss();
                                 successPart.setVisibility(View.VISIBLE);
                                 formPart.setVisibility(View.GONE);
-                                siang1 = 0;
-                                siang2 = 0;
-                                sore = 0;
-                                malam = 0;
+                                pusat_siang1 = 0;
+                                pusat_siang2 = 0;
+                                pusat_sore = 0;
+                                pusat_malam = 0;
+                                gapprint_siang = 0;
+                                gapprint_sore = 0;
+                                gapprint_malam = 0;
                                 tanggal = "";
                                 bagianPilihTV.setText("");
                                 jumlahTV1.setText("0");
                                 jumlahTV2.setText("0");
                                 jumlahTV3.setText("0");
                                 jumlahTV4.setText("0");
+                                jumlahTV5.setText("0");
+                                jumlahTV6.setText("0");
+                                jumlahTV7.setText("0");
                             } else if(status.equals("Available")){
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
                                 pDialog.setTitleText("Perhatian")
-                                        .setContentText("Permohonan makan karyawan pada tanggal yang dipilih telah diajukan sebelumnya")
+                                        .setContentText("Ajuan makan karyawan pada tanggal yang dipilih telah diajukan sebelumnya")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            } else if(status.equals("Time Out")){
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Perhatian")
+                                        .setContentText("Khusus pengajuan makan siang karyawan paling lambat H-1 untuk tanggal yang dipilih")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            } else if(status.equals("Time Out in Same Day")){
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                String time_close = data.getString("time_close");
+                                pDialog.setTitleText("Perhatian")
+                                        .setContentText("Pengajuan makan karyawan paling pukul "+time_close+" WIB")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else {
@@ -914,7 +1333,6 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -939,10 +1357,13 @@ public class FormLunchRequestActivity extends AppCompatActivity {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("tanggal", tanggal);
                 params.put("bagian", bagianPilihTV.getText().toString());
-                params.put("siang_k", String.valueOf(siang1));
-                params.put("siang_s", String.valueOf(siang2));
-                params.put("sore", String.valueOf(sore));
-                params.put("malam", String.valueOf(malam));
+                params.put("pusat_siang_k", String.valueOf(pusat_siang1));
+                params.put("pusat_siang_s", String.valueOf(pusat_siang2));
+                params.put("pusat_sore", String.valueOf(pusat_sore));
+                params.put("pusat_malam", String.valueOf(pusat_malam));
+                params.put("gapprint_siang", String.valueOf(gapprint_siang));
+                params.put("gapprint_sore", String.valueOf(gapprint_sore));
+                params.put("gapprint_malam", String.valueOf(gapprint_malam));
                 params.put("requester", sharedPrefManager.getSpNik());
 
                 return params;
@@ -956,6 +1377,160 @@ public class FormLunchRequestActivity extends AppCompatActivity {
         postRequest.setRetryPolicy(retryPolicy);
         requestQueue.add(postRequest);
 
+    }
+
+    private void getTimeOut() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+        final String url = "https://hrisgelora.co.id/api/get_lunch_request_timeout";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String status = response.getString("status");
+                            String time = response.getString("time");
+                            timeOutRequest = time;
+
+                            warningTV.setText("Pengajuan makan siang karyawan harus diajukan paling lambat H-1 dari tanggal yang dipilih, sedangkan untuk pengajuan makan sore dan malam paling lambat pukul "+time.substring(0,5)+" WIB pada tanggal yang dipilih.");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                connectionFailed();
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
+    private void submitData(){
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+        jumlahTV1.clearFocus();
+        jumlahTV2.clearFocus();
+        jumlahTV3.clearFocus();
+        jumlahTV4.clearFocus();
+        jumlahTV5.clearFocus();
+        jumlahTV6.clearFocus();
+        jumlahTV7.clearFocus();
+
+        jumlahTV1.setText(String.valueOf(pusat_siang1));
+        jumlahTV2.setText(String.valueOf(pusat_siang2));
+        jumlahTV3.setText(String.valueOf(pusat_sore));
+        jumlahTV4.setText(String.valueOf(pusat_malam));
+        jumlahTV5.setText(String.valueOf(gapprint_siang));
+        jumlahTV6.setText(String.valueOf(gapprint_sore));
+        jumlahTV7.setText(String.valueOf(gapprint_malam));
+
+        if(bagianPilihTV.getText().toString().isEmpty()){
+            new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.ERROR_TYPE)
+                    .setTitleText("Perhatian")
+                    .setContentText("Harap pilih bagian")
+                    .setConfirmText("    OK    ")
+                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(KAlertDialog sDialog) {
+                            sDialog.dismiss();
+                        }
+                    })
+                    .show();
+        } else {
+            if(tanggal.isEmpty()){
+                new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.ERROR_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Harap pilih tanggal")
+                        .setConfirmText("    OK    ")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .show();
+            } else {
+                if(pusat_siang1==0 && pusat_siang2==0 && pusat_sore==0 && pusat_malam==0 && gapprint_siang==0 && gapprint_sore==0  && gapprint_malam==0){
+                    new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap isi jumlah permohonan")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Kirim permohonan sekarang?")
+                            .setCancelText("TIDAK")
+                            .setConfirmText("   YA   ")
+                            .showCancelButton(true)
+                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                    pDialog = new KAlertDialog(FormLunchRequestActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                    pDialog.show();
+                                    pDialog.setCancelable(false);
+                                    new CountDownTimer(1300, 800) {
+                                        public void onTick(long millisUntilFinished) {
+                                            i++;
+                                            switch (i) {
+                                                case 0:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (FormLunchRequestActivity.this, R.color.colorGradien));
+                                                    break;
+                                                case 1:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (FormLunchRequestActivity.this, R.color.colorGradien2));
+                                                    break;
+                                                case 2:
+                                                case 6:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (FormLunchRequestActivity.this, R.color.colorGradien3));
+                                                    break;
+                                                case 3:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (FormLunchRequestActivity.this, R.color.colorGradien4));
+                                                    break;
+                                                case 4:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (FormLunchRequestActivity.this, R.color.colorGradien5));
+                                                    break;
+                                                case 5:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (FormLunchRequestActivity.this, R.color.colorGradien6));
+                                                    break;
+                                            }
+                                        }
+                                        public void onFinish() {
+                                            i = -1;
+                                            sendData();
+                                        }
+                                    }.start();
+
+                                }
+                            })
+                            .show();
+                }
+            }
+
+        }
     }
 
     private String getDate() {
@@ -984,6 +1559,19 @@ public class FormLunchRequestActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    private String getTimeNow() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

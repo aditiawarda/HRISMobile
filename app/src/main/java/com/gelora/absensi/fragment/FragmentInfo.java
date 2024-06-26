@@ -82,6 +82,7 @@ public class FragmentInfo extends Fragment {
     Activity mActivity;
     SharedPrefManager sharedPrefManager;
     RequestQueue requestQueue;
+    private Handler handler = new Handler();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -262,7 +263,7 @@ public class FragmentInfo extends Fragment {
                 sisaCutiData.setVisibility(View.GONE);
                 sisaCutiLoading.setVisibility(View.VISIBLE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -270,6 +271,7 @@ public class FragmentInfo extends Fragment {
                         getCurrentDay();
                     }
                 }, 1000);
+
             }
         });
 
@@ -370,7 +372,7 @@ public class FragmentInfo extends Fragment {
                                 markerWarningLate.setVisibility(View.GONE);
                                 markerWarningNoCheckout.setVisibility(View.GONE);
 
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         getDataAbsensi();
@@ -598,7 +600,6 @@ public class FragmentInfo extends Fragment {
             faqBTN.setVisibility(View.VISIBLE);
         }
 
-        getPersonalization();
         getCurrentDay();
 
         return view;
@@ -610,7 +611,6 @@ public class FragmentInfo extends Fragment {
     }
 
     private void getDataAbsensi() {
-        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://hrisgelora.co.id/api/total_hadir";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -644,7 +644,7 @@ public class FragmentInfo extends Fragment {
                                 kelebihanJamData.setText(kelebihan_jam);
                                 layoffData.setText(layoff);
 
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         bulanLoading.setVisibility(View.GONE);
@@ -671,7 +671,6 @@ public class FragmentInfo extends Fragment {
 
                                         layoffLoading.setVisibility(View.GONE);
                                         layoffData.setVisibility(View.VISIBLE);
-
                                     }
                                 }, 100);
 
@@ -1333,6 +1332,12 @@ public class FragmentInfo extends Fragment {
         } catch (OutOfMemoryError e){
             Log.e("Error", e.toString());
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

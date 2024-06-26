@@ -72,6 +72,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
     private RecyclerView bagianRV;
     private Bagian[] bagians;
     private AdapterBagian adapterBagian;
+    private Handler handler = new Handler();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -174,7 +175,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
 
                 attantionPart.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -182,6 +183,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                         getCurrentDay();
                     }
                 }, 800);
+
             }
         });
 
@@ -237,7 +239,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
 
                 attantionPart.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         getKehadiranBagian();
@@ -268,7 +270,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
 
                 attantionPart.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         getKehadiranBagian();
@@ -331,7 +333,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
 
             attantionPart.setVisibility(View.GONE);
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -395,7 +397,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                                 monitorDataHadir.setText(hadir);
                                 monitorDataTidakHadir.setText(tidak_hadir);
 
-                                new Handler().postDelayed(new Runnable() {
+                                handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         dataHadirLoading.setVisibility(View.GONE);
@@ -417,7 +419,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                                         dataKeTidakhadiranBagianRV.setVisibility(View.GONE);
                                         loadingDataKetidakhadiranPart.setVisibility(View.GONE);
                                     } else {
-                                        new Handler().postDelayed(new Runnable() {
+                                        handler.postDelayed(new Runnable() {
                                             @Override
                                             public void run() {
                                                 indTidakhadir.setVisibility(View.VISIBLE);
@@ -438,10 +440,9 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                                 } else {
                                     String message = data.getString("message");
 
-                                    new Handler().postDelayed(new Runnable() {
+                                    handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
-
                                             if (message.equals("Tanggal Merah")) {
                                                 attantionPart.setVisibility(View.VISIBLE);
                                             } else {
@@ -468,7 +469,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                                         dataKeTidakhadiranBagianRV.setVisibility(View.GONE);
                                         loadingDataKetidakhadiranPart.setVisibility(View.GONE);
                                     } else {
-                                        new Handler().postDelayed(new Runnable() {
+                                        handler.postDelayed(new Runnable() {
                                             @Override
                                             public void run() {
                                                 indTidakhadir.setVisibility(View.VISIBLE);
@@ -732,7 +733,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
 
             attantionPart.setVisibility(View.GONE);
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     getKehadiranBagian();
@@ -810,6 +811,12 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

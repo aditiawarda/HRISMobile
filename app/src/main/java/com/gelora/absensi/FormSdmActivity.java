@@ -214,6 +214,7 @@ public class FormSdmActivity extends AppCompatActivity {
     ImageView successGif;
     private int i = -1;
     String kodeKeterangan = "0", perngajuanTerkirim = "0";
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -608,7 +609,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f4UnitBisnisDisableModeTV.setText("");
                 f4KomponenGajiDisableModeTV.setText("");
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -1573,66 +1574,80 @@ public class FormSdmActivity extends AppCompatActivity {
                                     })
                                     .show();
                         } else {
-                            new KAlertDialog(FormSdmActivity.this, KAlertDialog.WARNING_TYPE)
-                                    .setTitleText("Perhatian")
-                                    .setContentText("Kirim data sekarang?")
-                                    .setCancelText("TIDAK")
-                                    .setConfirmText("   YA   ")
-                                    .showCancelButton(true)
-                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismiss();
-                                        }
-                                    })
-                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismiss();
-                                            pDialog = new KAlertDialog(FormSdmActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                                            pDialog.show();
-                                            pDialog.setCancelable(false);
-                                            new CountDownTimer(1300, 800) {
-                                                public void onTick(long millisUntilFinished) {
-                                                    i++;
-                                                    switch (i) {
-                                                        case 0:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (FormSdmActivity.this, R.color.colorGradien));
-                                                            break;
-                                                        case 1:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (FormSdmActivity.this, R.color.colorGradien2));
-                                                            break;
-                                                        case 2:
-                                                        case 6:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (FormSdmActivity.this, R.color.colorGradien3));
-                                                            break;
-                                                        case 3:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (FormSdmActivity.this, R.color.colorGradien4));
-                                                            break;
-                                                        case 4:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (FormSdmActivity.this, R.color.colorGradien5));
-                                                            break;
-                                                        case 5:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (FormSdmActivity.this, R.color.colorGradien6));
-                                                            break;
+                            if(f2KomponenGajiDisableModeTV.getText().toString().equals("Kontrak") && (f2DateChoiceMulai.equals("") || f2DateChoiceAkhir.equals(""))){
+                                new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Pastikan kolom durasi kontrak terisi!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            } else {
+                                new KAlertDialog(FormSdmActivity.this, KAlertDialog.WARNING_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Kirim data sekarang?")
+                                        .setCancelText("TIDAK")
+                                        .setConfirmText("   YA   ")
+                                        .showCancelButton(true)
+                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                pDialog = new KAlertDialog(FormSdmActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                                pDialog.show();
+                                                pDialog.setCancelable(false);
+                                                new CountDownTimer(1300, 800) {
+                                                    public void onTick(long millisUntilFinished) {
+                                                        i++;
+                                                        switch (i) {
+                                                            case 0:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (FormSdmActivity.this, R.color.colorGradien));
+                                                                break;
+                                                            case 1:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (FormSdmActivity.this, R.color.colorGradien2));
+                                                                break;
+                                                            case 2:
+                                                            case 6:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (FormSdmActivity.this, R.color.colorGradien3));
+                                                                break;
+                                                            case 3:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (FormSdmActivity.this, R.color.colorGradien4));
+                                                                break;
+                                                            case 4:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (FormSdmActivity.this, R.color.colorGradien5));
+                                                                break;
+                                                            case 5:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (FormSdmActivity.this, R.color.colorGradien6));
+                                                                break;
+                                                        }
                                                     }
-                                                }
 
-                                                public void onFinish() {
-                                                    i = -1;
-                                                    checkSignature();
-                                                }
-                                            }.start();
+                                                    public void onFinish() {
+                                                        i = -1;
+                                                        checkSignature();
+                                                    }
+                                                }.start();
 
-                                        }
-                                    })
-                                    .show();
+                                            }
+                                        })
+                                        .show();
+                            }
                         }
                     }
                 }
@@ -1872,7 +1887,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
         loadingFormPart.setVisibility(View.VISIBLE);
         attantionNoForm.setVisibility(View.GONE);
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 loadingFormPart.setVisibility(View.GONE);
@@ -2225,7 +2240,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f4UnitBisnisDisableModeTV.setText("");
                 f4KomponenGajiDisableModeTV.setText("");
 
-                if(sharedPrefManager.getSpIdJabatan().equals("1") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpNik().equals("3313210223")){
+                if(sharedPrefManager.getSpIdJabatan().equals("1") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpNik().equals("3313210223") || sharedPrefManager.getSpNik().equals("3196310521") || sharedPrefManager.getSpNik().equals("3310140223") || sharedPrefManager.getSpNik().equals("1311201210")){
                     f1UnitBisnisPart.setVisibility(View.GONE);
                     f1UnitBisnisDisableMode.setVisibility(View.VISIBLE);
                     f1DepartemenPart.setVisibility(View.GONE);
@@ -2254,14 +2269,14 @@ public class FormSdmActivity extends AppCompatActivity {
                     getBagianDepartemen();
                 }
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
 
                         loadingFormPart.setVisibility(View.VISIBLE);
                         attantionNoForm.setVisibility(View.GONE);
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 warningNoForm.setVisibility(View.GONE);
@@ -2491,14 +2506,14 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 f2DurasiKontrakPart.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
 
                         loadingFormPart.setVisibility(View.VISIBLE);
                         attantionNoForm.setVisibility(View.GONE);
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 warningNoForm.setVisibility(View.GONE);
@@ -2731,14 +2746,14 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 f2DurasiKontrakPart.setVisibility(View.VISIBLE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
 
                         loadingFormPart.setVisibility(View.VISIBLE);
                         attantionNoForm.setVisibility(View.GONE);
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 warningNoForm.setVisibility(View.GONE);
@@ -2969,14 +2984,14 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 f2DurasiKontrakPart.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
 
                         loadingFormPart.setVisibility(View.VISIBLE);
                         attantionNoForm.setVisibility(View.GONE);
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 warningNoForm.setVisibility(View.GONE);
@@ -3213,14 +3228,14 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3JabatanBaruDetailPart.setVisibility(View.GONE);
                 f3JabatanBaruDetailDisableMode.setVisibility(View.VISIBLE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
 
                         loadingFormPart.setVisibility(View.VISIBLE);
                         attantionNoForm.setVisibility(View.GONE);
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 warningNoForm.setVisibility(View.GONE);
@@ -3239,470 +3254,6 @@ public class FormSdmActivity extends AppCompatActivity {
                 }, 300);
             }
         });
-
-        //ket6BTN.setOnClickListener(new View.OnClickListener() {
-        //    @SuppressLint("SetTextI18n")
-        //    @Override
-        //    public void onClick(View v) {
-        //        markKet1.setVisibility(View.GONE);
-        //        markKet2.setVisibility(View.GONE);
-        //        markKet3.setVisibility(View.GONE);
-        //        markKet4.setVisibility(View.GONE);
-        //        markKet5.setVisibility(View.GONE);
-        //        markKet6.setVisibility(View.VISIBLE);
-        //        markKet7.setVisibility(View.GONE);
-        //        ket1BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-        //        ket2BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-        //        ket3BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-        //        ket4BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-        //        ket5BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-        //        ket6BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option_choice));
-        //        ket7BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-        //        kodeKeterangan = "6";
-        //        keteranganTV.setText("Penyesuaian Gaji");
-        //
-        //        warningNoForm.setVisibility(View.GONE);
-        //        loadingFormPart.setVisibility(View.VISIBLE);
-        //        attantionNoForm.setVisibility(View.GONE);
-        //        submitBTN.setVisibility(View.GONE);
-        //        f1Part.setVisibility(View.GONE);
-        //        f2Part.setVisibility(View.GONE);
-        //        f3Part.setVisibility(View.GONE);
-        //        f4Part.setVisibility(View.GONE);
-        //
-        //        //Form 1
-        //        f1UnitBisnisTV.setText("");
-        //        f1IdUnitBisnis = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-        //        f1DepartemenTV.setText("");
-        //        f1IdDepartemen = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
-        //        f1BagianTV.setText("");
-        //        f1IdBagian = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
-        //        f1JabatanTV.setText("");
-        //        f1IdJabatan = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI, "");
-        //        f1KomponenGajiPilihTV.setText("");
-        //        f1DeskripsiJabatanTV.setText("");
-        //        f1SyaratTV.setText("");
-        //        f1TglDibutuhkan = "";
-        //        f1TglDibutuhkanTV.setText("");
-        //        f1TglPemenuhan = "";
-        //        f1TglPemenuhanTV.setText("");
-        //        f1CatatanTV.setText("");
-        //
-        //        //Form 2 3 4
-        //        f2NamaKaryawanTV.setText("");
-        //        f2NamaKaryawanDisableModeTV.setText("");
-        //        f2NikBaru = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
-        //        f2DepartemenBaru = "";
-        //        f2DepartemenTV.setText("");
-        //        f2BagianBaru = "";
-        //        f2BagianTV.setText("");
-        //        f2JabatanBaru = "";
-        //        f2JabatanTV.setText("");
-        //        f2KomponenGajiTV.setText("");
-        //        f2KomponenGajiDisableModeTV.setText("");
-        //        f2UnitBisnisTV.setText("");
-        //        f2IdUnitBisnis = "";
-        //        f2UnitBisnisDisableModeTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-        //        f2NamaKaryawanLamaTV.setText("");
-        //        f2NikLama = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
-        //        f2DepartemenLama = "";
-        //        f2DepartemenLamaTV.setText("");
-        //        f2BagianLama = "";
-        //        f2BagianLamaTV.setText("");
-        //        f2JabatanLama = "";
-        //        f2JabatanLamaTV.setText("");
-        //        f2KomponenGajiLamaTV.setText("");
-        //        f2KomponenGajiDisableModeLamaTV.setText("");
-        //        f2UnitBisnisLamaTV.setText("");
-        //        f2IdUnitBisnisLama = "";
-        //        f2UnitBisnisDisableModeLamaTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
-        //        f2LabelPoint.setText("Pengunduran Diri, Penugasan Kembali, Pensiun, PHK");
-        //        f2LabelPoint.setVisibility(View.VISIBLE);
-        //        f2CatatanTV.setText("");
-        //        f2StartDatePilih.setText("");
-        //        f2EndDatePilih.setText("");
-        //        f2DateChoiceMulai = "";
-        //        f2DateChoiceAkhir = "";
-        //
-        //        //Form 5 6
-        //        f3NamaKaryawanTV.setText("");
-        //        f2NamaKaryawanDisableModeTV.setText("");
-        //        f3NikBaru = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
-        //        f3DepartemenBaru = "";
-        //        f3DepartemenTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
-        //        f3BagianBaru = "";
-        //        f3BagianTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
-        //        f3JabatanBaru = "";
-        //        f3JabatanTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
-        //        f3KomponenGajiTV.setText("");
-        //        f3UnitBisnisTV.setText("");
-        //        f3IdUnitBisnis = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-        //        f3NamaKaryawanLamaTV.setText("");
-        //        f3NikLama = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
-        //        f3DepartemenLama = "";
-        //        f3DepartemenLamaTV.setText("");
-        //        f3DepartemenDisableModeLamaTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN_LAMA, "");
-        //        f3BagianLama = "";
-        //        f3BagianLamaTV.setText("");
-        //        f3BagianDisableModeLamaTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN_LAMA, "");
-        //        f3JabatanLama = "";
-        //        f3JabatanLamaTV.setText("");
-        //        f3JabatanDisableModeLamaTV.setText("");
-        //        f3JabatanLamaDetailDisableModeTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA, "");
-        //        f3KomponenGajiLamaTV.setText("");
-        //        f3KomponenGajiDisableModeLamaTV.setText("");
-        //        f3UnitBisnisLamaTV.setText("");
-        //        f3IdUnitBisnisLama = "";
-        //        f3UnitBisnisDisableModeLamaTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
-        //        f3JabatanLamaDetail = "";
-        //        f3JabatanLamaDetailTV.setText("");
-        //        f3JabatanLamaDetailDisableModeTV.setText("");
-        //        f3JabatanBaruDetailDisableModeTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA_DETAIL, "");
-        //        f3TglPengangkatanJabatanLama = "";
-        //        f3TglPengangkatanJabatanLamaTV.setText("");
-        //        f3JabatanBaruDetail = "";
-        //        f3JabatanBaruDetailTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_BARU_DETAIL, "");
-        //        f3TglPengangkatanJabatanBaru = "";
-        //        f3TglPengangkatanJabatanBaruTV.setText("");
-        //        f3AlasanPengangkatanTV.setText("");
-        //        f3TglDibutuhkan = "";
-        //        f3TglDibutuhkanTV.setText("");
-        //        f3TglPemenuhan = "";
-        //        f3TglPemenuhanTV.setText("");
-        //        f3CatatanTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI_3, "");
-        //        f3KomponenGajiPilihTV.setText("");
-        //        f3LabelPoint.setText("Untuk Penyesuaian Gaji");
-        //
-        //        //Form 7
-        //        f4NamaKaryawanTV.setText("");
-        //        f4NikBaru = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
-        //        f4DepartemenBaru = "";
-        //        f4DepartemenTV.setText("");
-        //        f4BagianBaru = "";
-        //        f4BagianTV.setText("");
-        //        f4JabatanBaru = "";
-        //        f4JabatanTV.setText("");
-        //        f4KomponenGajiTV.setText("");
-        //        f4UnitBisnisTV.setText("");
-        //        f4IdUnitBisnis = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-        //        f4NamaKaryawanLamaTV.setText("");
-        //        f4NikLama = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
-        //        f4DepartemenLama = "";
-        //        f4DepartemenLamaTV.setText("");
-        //        f4BagianLama = "";
-        //        f4BagianLamaTV.setText("");
-        //        f4JabatanLama = "";
-        //        f4JabatanLamaTV.setText("");
-        //        f4KomponenGajiLamaTV.setText("");
-        //        f4UnitBisnisLamaTV.setText("");
-        //        f4IdUnitBisnisLama = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
-        //        f4LainlainTV.setText("");
-        //        f4Persetujuan = "";
-        //        f4VerifPersetujuanGroup.clearCheck();
-        //        f4CatatanTV.setText("");
-        //        f4UnitBisnisDisableModeLamaTV.setText("");
-        //        f4KomponenGajiDisableModeLamaTV.setText("");
-        //        f4UnitBisnisDisableModeTV.setText("");
-        //        f4KomponenGajiDisableModeTV.setText("");
-        //
-        //        f3UnitBisnisLamaPart.setVisibility(View.GONE);
-        //        f3UnitBisnisDisableModeLama.setVisibility(View.VISIBLE);
-        //        f3DepartemenLamaPart.setVisibility(View.GONE);
-        //        f3DepartemenDisableModeLama.setVisibility(View.VISIBLE);
-        //        f3BagianLamaPart.setVisibility(View.GONE);
-        //        f3BagianDisableModeLama.setVisibility(View.VISIBLE);
-        //        f3JabatanLamaPart.setVisibility(View.GONE);
-        //        f3JabatanDisableModeLama.setVisibility(View.VISIBLE);
-        //        f3KomponenGajiLamaTV.setVisibility(View.GONE);
-        //        f3KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
-        //        f3NamaKaryawanPart.setVisibility(View.GONE);
-        //        f3NamaKaryawanDisableMode.setVisibility(View.VISIBLE);
-        //        f3KomponenGajiTV.setVisibility(View.GONE);
-        //        f3KomponenGajiPart.setVisibility(View.VISIBLE);
-        //        f3JabatanLamaDetailPart.setVisibility(View.GONE);
-        //        f3JabatanLamaDetailDisableMode.setVisibility(View.VISIBLE);
-        //        f3JabatanBaruDetailPart.setVisibility(View.GONE);
-        //        f3JabatanBaruDetailDisableMode.setVisibility(View.VISIBLE);
-        //
-        //        new Handler().postDelayed(new Runnable() {
-        //            @Override
-        //            public void run() {
-        //                bottomSheet.dismissSheet();
-        //
-        //                loadingFormPart.setVisibility(View.VISIBLE);
-        //                attantionNoForm.setVisibility(View.GONE);
-        //                new Handler().postDelayed(new Runnable() {
-        //                    @Override
-        //                    public void run() {
-        //                        warningNoForm.setVisibility(View.GONE);
-        //
-        //                        loadingFormPart.setVisibility(View.GONE);
-        //                        attantionNoForm.setVisibility(View.GONE);
-        //
-        //                        submitBTN.setVisibility(View.VISIBLE);
-        //                        f1Part.setVisibility(View.GONE);
-        //                        f2Part.setVisibility(View.GONE);
-        //                        f3Part.setVisibility(View.VISIBLE);
-        //                        f4Part.setVisibility(View.GONE);
-        //                    }
-        //                }, 1500);
-        //            }
-        //        }, 300);
-        //    }
-        //});
-        //
-        //ket7BTN.setOnClickListener(new View.OnClickListener() {
-        //    @SuppressLint("SetTextI18n")
-        //    @Override
-        //    public void onClick(View v) {
-        //        markKet1.setVisibility(View.GONE);
-        //        markKet2.setVisibility(View.GONE);
-        //        markKet3.setVisibility(View.GONE);
-        //        markKet4.setVisibility(View.GONE);
-        //        markKet5.setVisibility(View.GONE);
-        //        markKet6.setVisibility(View.GONE);
-        //        markKet7.setVisibility(View.VISIBLE);
-        //        ket1BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-        //        ket2BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-        //        ket3BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-        //        ket4BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-        //        ket5BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-        //        ket6BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-        //        ket7BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option_choice));
-        //        kodeKeterangan = "7";
-        //        keteranganTV.setText("Lain-lain");
-        //
-        //        warningNoForm.setVisibility(View.GONE);
-        //        loadingFormPart.setVisibility(View.VISIBLE);
-        //        attantionNoForm.setVisibility(View.GONE);
-        //        submitBTN.setVisibility(View.GONE);
-        //        f1Part.setVisibility(View.GONE);
-        //        f2Part.setVisibility(View.GONE);
-        //        f3Part.setVisibility(View.GONE);
-        //        f4Part.setVisibility(View.GONE);
-        //
-        //        //Form 1
-        //        f1UnitBisnisTV.setText("");
-        //        f1IdUnitBisnis = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-        //        f1DepartemenTV.setText("");
-        //        f1IdDepartemen = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
-        //        f1BagianTV.setText("");
-        //        f1IdBagian = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
-        //        f1JabatanTV.setText("");
-        //        f1IdJabatan = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI, "");
-        //        f1KomponenGajiPilihTV.setText("");
-        //        f1DeskripsiJabatanTV.setText("");
-        //        f1SyaratTV.setText("");
-        //        f1TglDibutuhkan = "";
-        //        f1TglDibutuhkanTV.setText("");
-        //        f1TglPemenuhan = "";
-        //        f1TglPemenuhanTV.setText("");
-        //        f1CatatanTV.setText("");
-        //
-        //        //Form 2 3 4
-        //        f2NamaKaryawanTV.setText("");
-        //        f2NamaKaryawanDisableModeTV.setText("");
-        //        f2NikBaru = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
-        //        f2DepartemenBaru = "";
-        //        f2DepartemenTV.setText("");
-        //        f2BagianBaru = "";
-        //        f2BagianTV.setText("");
-        //        f2JabatanBaru = "";
-        //        f2JabatanTV.setText("");
-        //        f2KomponenGajiTV.setText("");
-        //        f2KomponenGajiDisableModeTV.setText("");
-        //        f2UnitBisnisTV.setText("");
-        //        f2IdUnitBisnis = "";
-        //        f2UnitBisnisDisableModeTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-        //        f2NamaKaryawanLamaTV.setText("");
-        //        f2NikLama = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
-        //        f2DepartemenLama = "";
-        //        f2DepartemenLamaTV.setText("");
-        //        f2BagianLama = "";
-        //        f2BagianLamaTV.setText("");
-        //        f2JabatanLama = "";
-        //        f2JabatanLamaTV.setText("");
-        //        f2KomponenGajiLamaTV.setText("");
-        //        f2KomponenGajiDisableModeLamaTV.setText("");
-        //        f2UnitBisnisLamaTV.setText("");
-        //        f2IdUnitBisnisLama = "";
-        //        f2UnitBisnisDisableModeLamaTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
-        //        f2LabelPoint.setText("Pengunduran Diri, Penugasan Kembali, Pensiun, PHK");
-        //        f2LabelPoint.setVisibility(View.VISIBLE);
-        //        f2CatatanTV.setText("");
-        //        f2StartDatePilih.setText("");
-        //        f2EndDatePilih.setText("");
-        //        f2DateChoiceMulai = "";
-        //        f2DateChoiceAkhir = "";
-        //
-        //        //Form 5 6
-        //        f3NamaKaryawanTV.setText("");
-        //        f2NamaKaryawanDisableModeTV.setText("");
-        //        f3NikBaru = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
-        //        f3DepartemenBaru = "";
-        //        f3DepartemenTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
-        //        f3BagianBaru = "";
-        //        f3BagianTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
-        //        f3JabatanBaru = "";
-        //        f3JabatanTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
-        //        f3KomponenGajiTV.setText("");
-        //        f3UnitBisnisTV.setText("");
-        //        f3IdUnitBisnis = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-        //        f3NamaKaryawanLamaTV.setText("");
-        //        f3NikLama = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
-        //        f3DepartemenLama = "";
-        //        f3DepartemenLamaTV.setText("");
-        //        f3DepartemenDisableModeLamaTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN_LAMA, "");
-        //        f3BagianLama = "";
-        //        f3BagianLamaTV.setText("");
-        //        f3BagianDisableModeLamaTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN_LAMA, "");
-        //        f3JabatanLama = "";
-        //        f3JabatanLamaTV.setText("");
-        //        f3JabatanDisableModeLamaTV.setText("");
-        //        f3JabatanLamaDetailDisableModeTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA, "");
-        //        f3KomponenGajiLamaTV.setText("");
-        //        f3KomponenGajiDisableModeLamaTV.setText("");
-        //        f3UnitBisnisLamaTV.setText("");
-        //        f3IdUnitBisnisLama = "";
-        //        f3UnitBisnisDisableModeLamaTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
-        //        f3JabatanLamaDetail = "";
-        //        f3JabatanLamaDetailTV.setText("");
-        //        f3JabatanLamaDetailDisableModeTV.setText("");
-        //        f3JabatanBaruDetailDisableModeTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA_DETAIL, "");
-        //        f3TglPengangkatanJabatanLama = "";
-        //        f3TglPengangkatanJabatanLamaTV.setText("");
-        //        f3JabatanBaruDetail = "";
-        //        f3JabatanBaruDetailTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_BARU_DETAIL, "");
-        //        f3TglPengangkatanJabatanBaru = "";
-        //        f3TglPengangkatanJabatanBaruTV.setText("");
-        //        f3AlasanPengangkatanTV.setText("");
-        //        f3TglDibutuhkan = "";
-        //        f3TglDibutuhkanTV.setText("");
-        //        f3TglPemenuhan = "";
-        //        f3TglPemenuhanTV.setText("");
-        //        f3CatatanTV.setText("");
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI_3, "");
-        //        f3KomponenGajiPilihTV.setText("");
-        //        f3LabelPoint.setText("Untuk Promosi/Mutasi/Penyesuaian Gaji");
-        //
-        //        //Form 7
-        //        f4NamaKaryawanTV.setText("");
-        //        f4NikBaru = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
-        //        f4DepartemenBaru = "";
-        //        f4DepartemenTV.setText("");
-        //        f4BagianBaru = "";
-        //        f4BagianTV.setText("");
-        //        f4JabatanBaru = "";
-        //        f4JabatanTV.setText("");
-        //        f4KomponenGajiTV.setText("");
-        //        f4UnitBisnisTV.setText("");
-        //        f4IdUnitBisnis = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-        //        f4NamaKaryawanLamaTV.setText("");
-        //        f4NikLama = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
-        //        f4DepartemenLama = "";
-        //        f4DepartemenLamaTV.setText("");
-        //        f4BagianLama = "";
-        //        f4BagianLamaTV.setText("");
-        //        f4JabatanLama = "";
-        //        f4JabatanLamaTV.setText("");
-        //        f4KomponenGajiLamaTV.setText("");
-        //        f4UnitBisnisLamaTV.setText("");
-        //        f4IdUnitBisnisLama = "";
-        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
-        //        f4LainlainTV.setText("");
-        //        f4Persetujuan = "";
-        //        f4VerifPersetujuanGroup.clearCheck();
-        //        f4CatatanTV.setText("");
-        //        f4UnitBisnisDisableModeLamaTV.setText("");
-        //        f4KomponenGajiDisableModeLamaTV.setText("");
-        //        f4UnitBisnisDisableModeTV.setText("");
-        //        f4KomponenGajiDisableModeTV.setText("");
-        //
-        //        f4UnitBisnisLamaPart.setVisibility(View.GONE);
-        //        f4UnitBisnisDisableModeLama.setVisibility(View.VISIBLE);
-        //        f4KomponenGajiLamaTV.setVisibility(View.GONE);
-        //        f4KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
-        //        f4UnitBisnisPart.setVisibility(View.GONE);
-        //        f4UnitBisnisDisableMode.setVisibility(View.VISIBLE);
-        //        f4KomponenGajiTV.setVisibility(View.GONE);
-        //        f4KomponenGajiDisableMode.setVisibility(View.VISIBLE);
-        //
-        //        new Handler().postDelayed(new Runnable() {
-        //            @Override
-        //            public void run() {
-        //                bottomSheet.dismissSheet();
-        //
-        //                loadingFormPart.setVisibility(View.VISIBLE);
-        //                attantionNoForm.setVisibility(View.GONE);
-        //                new Handler().postDelayed(new Runnable() {
-        //                    @Override
-        //                    public void run() {
-        //                        warningNoForm.setVisibility(View.GONE);
-        //
-        //                        loadingFormPart.setVisibility(View.GONE);
-        //                        attantionNoForm.setVisibility(View.GONE);
-        //
-        //                        submitBTN.setVisibility(View.VISIBLE);
-        //                        f1Part.setVisibility(View.GONE);
-        //                        f2Part.setVisibility(View.GONE);
-        //                        f3Part.setVisibility(View.GONE);
-        //                        f4Part.setVisibility(View.VISIBLE);
-        //                    }
-        //                }, 1500);
-        //            }
-        //        }, 300);
-        //    }
-        //});
 
     }
 
@@ -3791,7 +3342,7 @@ public class FormSdmActivity extends AppCompatActivity {
             String nama_unit = intent.getStringExtra("nama_unit");
             f1IdUnitBisnis = id_unit;
             f1UnitBisnisTV.setText(nama_unit);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -3885,7 +3436,7 @@ public class FormSdmActivity extends AppCompatActivity {
             f1DepartemenTV.setText(nama_departemen);
             f1IdBagian = "";
             f1BagianTV.setText("");
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -3977,7 +3528,7 @@ public class FormSdmActivity extends AppCompatActivity {
             String nama_bagian = intent.getStringExtra("nama_bagian");
             f1IdBagian = id_bagian;
             f1BagianTV.setText(nama_bagian);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -4065,7 +3616,7 @@ public class FormSdmActivity extends AppCompatActivity {
             String nama_jabatan = intent.getStringExtra("nama_jabatan");
             f1IdJabatan = id_jabatan;
             f1JabatanTV.setText(nama_jabatan);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -4151,7 +3702,7 @@ public class FormSdmActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String nama_komponen_gaji = intent.getStringExtra("nama_komponen_gaji");
             f1KomponenGajiPilihTV.setText(nama_komponen_gaji);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -4236,7 +3787,7 @@ public class FormSdmActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String nama_komponen_gaji = intent.getStringExtra("nama_komponen_gaji");
             f3KomponenGajiPilihTV.setText(nama_komponen_gaji);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -5354,7 +4905,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2KaryawanBaruRV.setVisibility(View.GONE);
 
                 if(!keyWordSearch.equals("")){
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             f2GetDataKaryawanBaru(keyWordSearch);
@@ -5480,7 +5031,7 @@ public class FormSdmActivity extends AppCompatActivity {
             f2JabatanBaru = id_jabatan_karyawan_baru;
             f2JabatanTV.setText(jabatan_karyawan_baru);
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -5577,7 +5128,7 @@ public class FormSdmActivity extends AppCompatActivity {
             String nama_unit = intent.getStringExtra("nama_unit");
             f2IdUnitBisnis = id_unit;
             f2UnitBisnisTV.setText(nama_unit);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -5621,7 +5172,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2KaryawanLamaRV.setVisibility(View.GONE);
 
                 if(!keyWordSearch.equals("")){
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             f2GetDataKaryawanLama(keyWordSearch);
@@ -5771,20 +5322,25 @@ public class FormSdmActivity extends AppCompatActivity {
             if(kodeKeterangan.equals("2")){
                 if(status_karyawan_lama.equals("Harian")){
                     f2KomponenGajiDisableModeTV.setText("Kontrak");
+                    f2DurasiKontrakPart.setVisibility(View.VISIBLE);
                 } else if(status_karyawan_lama.equals("Kontrak")){
                     f2KomponenGajiDisableModeTV.setText("Tetap");
+                    f2DurasiKontrakPart.setVisibility(View.GONE);
                 } else if(status_karyawan_lama.equals("Percobaan")){
                     f2KomponenGajiDisableModeTV.setText("Tetap");
+                    f2DurasiKontrakPart.setVisibility(View.GONE);
                 } else if(status_karyawan_lama.equals("OJT")){
                     f2KomponenGajiDisableModeTV.setText("Percobaan");
+                    f2DurasiKontrakPart.setVisibility(View.GONE);
                 } else {
                     f2KomponenGajiDisableModeTV.setText(status_karyawan_lama);
+                    f2DurasiKontrakPart.setVisibility(View.GONE);
                 }
             } else if(kodeKeterangan.equals("3")||kodeKeterangan.equals("4")){
                 f2KomponenGajiDisableModeTV.setText(status_karyawan_lama);
             }
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -5880,7 +5436,7 @@ public class FormSdmActivity extends AppCompatActivity {
             String nama_unit_lama = intent.getStringExtra("nama_unit_lama");
             f2IdUnitBisnisLama = id_unit_lama;
             f2UnitBisnisLamaTV.setText(nama_unit_lama);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -5977,7 +5533,13 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 params.put("memenuhi_syarat", f2PemenuhanSyarat);
 
-                if(kodeKeterangan.equals("3")){
+                if(kodeKeterangan.equals("2")) {
+                    if(f2KomponenGajiDisableModeTV.getText().toString().equals("Kontrak")){
+                        params.put("catatan", "Durasi Kontrak : "+f2DurasiKontrak.getText().toString()+" ("+f2StartDatePilih.getText().toString()+" s.d. "+f2EndDatePilih.getText().toString()+") "+f2CatatanTV.getText().toString());
+                    } else {
+                        params.put("catatan", f2CatatanTV.getText().toString());
+                    }
+                } else if(kodeKeterangan.equals("3")){
                     params.put("catatan", "Durasi Kontrak : "+f2DurasiKontrak.getText().toString()+" ("+f2StartDatePilih.getText().toString()+" s.d. "+f2EndDatePilih.getText().toString()+") "+f2CatatanTV.getText().toString());
                 } else if(kodeKeterangan.equals("4")){
                     if(f2SubKet.equals("1")){
@@ -6038,7 +5600,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3KaryawanBaruRV.setVisibility(View.GONE);
 
                 if(!keyWordSearch.equals("")){
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             f3GetDataKaryawanBaru(keyWordSearch);
@@ -6156,7 +5718,7 @@ public class FormSdmActivity extends AppCompatActivity {
             f3NikBaru = nik_karyawan_baru;
             f3NamaKaryawanTV.setText(nama_karyawan_baru);
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -6253,7 +5815,7 @@ public class FormSdmActivity extends AppCompatActivity {
             String nama_unit = intent.getStringExtra("nama_unit");
             f3IdUnitBisnis = id_unit;
             f3UnitBisnisTV.setText(nama_unit);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -6350,7 +5912,7 @@ public class FormSdmActivity extends AppCompatActivity {
             f3DepartemenTV.setText(nama_departemen);
             f3BagianBaru = "";
             f3BagianTV.setText("");
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -6445,7 +6007,7 @@ public class FormSdmActivity extends AppCompatActivity {
             String nama_bagian = intent.getStringExtra("nama_bagian");
             f3BagianBaru = id_bagian;
             f3BagianTV.setText(nama_bagian);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -6540,7 +6102,7 @@ public class FormSdmActivity extends AppCompatActivity {
             f3JabatanBaruDetailDisableModeTV.setText(nama_jabatan);
             f3JabatanBaruDetail = id_jabatan;
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -6584,7 +6146,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3KaryawanLamaRV.setVisibility(View.GONE);
 
                 if(!keyWordSearch.equals("")){
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             f3GetDataKaryawanLama(keyWordSearch);
@@ -6743,7 +6305,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3GolonganDisableModeTV.setText("10");
             }
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -6840,7 +6402,7 @@ public class FormSdmActivity extends AppCompatActivity {
             String nama_unit_lama = intent.getStringExtra("nama_unit_lama");
             f3IdUnitBisnisLama = id_unit_lama;
             f3UnitBisnisLamaTV.setText(nama_unit_lama);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -6937,7 +6499,7 @@ public class FormSdmActivity extends AppCompatActivity {
             f3DepartemenLamaTV.setText(nama_departemen);
             f3BagianLama = "";
             f3BagianLamaTV.setText("");
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -7032,7 +6594,7 @@ public class FormSdmActivity extends AppCompatActivity {
             String nama_bagian = intent.getStringExtra("nama_bagian");
             f3BagianLama = id_bagian;
             f3BagianLamaTV.setText(nama_bagian);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -7124,7 +6686,7 @@ public class FormSdmActivity extends AppCompatActivity {
             f3JabatanLama = id_jabatan;
             f3JabatanLamaTV.setText(nama_jabatan);
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -7215,7 +6777,7 @@ public class FormSdmActivity extends AppCompatActivity {
             String nama_jabatan = intent.getStringExtra("nama_jabatan");
             f3JabatanLamaDetail = id_jabatan;
             f3JabatanLamaDetailTV.setText(nama_jabatan);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -7306,7 +6868,7 @@ public class FormSdmActivity extends AppCompatActivity {
             String nama_jabatan = intent.getStringExtra("nama_jabatan");
             f3JabatanBaruDetail = id_jabatan;
             f3JabatanBaruDetailTV.setText(nama_jabatan);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -7469,7 +7031,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f4KaryawanBaruRV.setVisibility(View.GONE);
 
                 if(!keyWordSearch.equals("")){
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             f4GetDataKaryawanBaru(keyWordSearch);
@@ -7598,7 +7160,7 @@ public class FormSdmActivity extends AppCompatActivity {
             f4IdUnitBisnis = "1";
             f4KomponenGajiDisableModeTV.setText(status_karyawan_baru);
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -7695,7 +7257,7 @@ public class FormSdmActivity extends AppCompatActivity {
             String nama_unit = intent.getStringExtra("nama_unit");
             f4IdUnitBisnis = id_unit;
             f4UnitBisnisTV.setText(nama_unit);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -7739,7 +7301,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f4KaryawanLamaRV.setVisibility(View.GONE);
 
                 if(!keyWordSearch.equals("")){
-                    new Handler().postDelayed(new Runnable() {
+                    handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             f4GetDataKaryawanLama(keyWordSearch);
@@ -7868,7 +7430,7 @@ public class FormSdmActivity extends AppCompatActivity {
             f4IdUnitBisnisLama = "1";
             f4KomponenGajiDisableModeLamaTV.setText(status_karyawan_lama);
 
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -7965,7 +7527,7 @@ public class FormSdmActivity extends AppCompatActivity {
             String nama_unit_lama = intent.getStringExtra("nama_unit_lama");
             f4IdUnitBisnisLama = id_unit_lama;
             f4UnitBisnisLamaTV.setText(nama_unit_lama);
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
@@ -8091,7 +7653,7 @@ public class FormSdmActivity extends AppCompatActivity {
                                 String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 if(kodeKeterangan.equals("1")){
                                     f1SendData();
-                                } else  if(kodeKeterangan.equals("2")||kodeKeterangan.equals("3")||kodeKeterangan.equals("4")){
+                                } else if(kodeKeterangan.equals("2")||kodeKeterangan.equals("3")||kodeKeterangan.equals("4")){
                                     f2SendData();
                                 } else if(kodeKeterangan.equals("5")||kodeKeterangan.equals("6")){
                                     f3SendData();
@@ -8808,6 +8370,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 super.onBackPressed();
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

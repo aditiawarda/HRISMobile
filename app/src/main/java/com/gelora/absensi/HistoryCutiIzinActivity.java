@@ -66,6 +66,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
     private RecyclerView dataHistoryPenambahanCutiRV;
     private DataHistoryPenambahanCuti[] dataHistoryPenambahanCutis;
     private AdapterDataHistoryPenambahanCuti adapterDataHistoryPenambahanCuti;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,7 +180,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                 loadingDataPartPenambahanCuti.setVisibility(View.VISIBLE);
                 dataHistoryPenambahanCutiRV.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -369,6 +370,12 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }

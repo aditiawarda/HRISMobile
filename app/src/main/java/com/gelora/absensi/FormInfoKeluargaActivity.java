@@ -18,7 +18,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -59,7 +58,8 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
     private int i = -1;
     String tipeForm = "", idData = "";
     String statusBekerjaChoice = "", genderChoice = "", tanggalLahir = "", hubunganPilih = "", statusPernikahanChoice = "", agamaChoice = "";
-
+    private Handler handler = new Handler();
+    
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,7 +149,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                 tempatLahirED.clearFocus();
                 hubunganLainnyaED.clearFocus();
 
-                new Handler().postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -748,7 +748,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         markMale = findViewById(R.id.mark_male);
         markFemale = findViewById(R.id.mark_female);
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (genderChoice.equals("male")){
@@ -781,7 +781,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         genderChoice = "male";
                         genderPilihTV.setText("Laki-Laki");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -801,7 +801,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         genderChoice = "female";
                         genderPilihTV.setText("Perempuan");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -833,7 +833,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         markSodaraPerempuan = findViewById(R.id.mark_sodara_perempuan);
         markLainnya = findViewById(R.id.mark_lainnya);
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (hubunganPilih.equals("Ayah")){
@@ -1023,7 +1023,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         hubunganPilih = "Ayah";
                         hubunganPilihTV.setText("Ayah");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1058,7 +1058,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         hubunganPilih = "Ibu";
                         hubunganPilihTV.setText("Ibu");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1093,7 +1093,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         hubunganPilih = "Suami";
                         hubunganPilihTV.setText("Suami");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1128,7 +1128,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         hubunganPilih = "Istri";
                         hubunganPilihTV.setText("Istri");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1163,7 +1163,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         hubunganPilih = "Anak";
                         hubunganPilihTV.setText("Anak");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1198,7 +1198,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         hubunganPilih = "Saudara Laki-Laki";
                         hubunganPilihTV.setText("Saudara Laki-Laki");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1233,7 +1233,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         hubunganPilih = "Saudara Perempuan";
                         hubunganPilihTV.setText("Saudara Perempuan");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1268,7 +1268,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         hubunganPilih = "Lainnya";
                         hubunganPilihTV.setText("Lainnya");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1292,7 +1292,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         markCeraiHidup = findViewById(R.id.mark_cerai_hidup);
         markCeraiMati = findViewById(R.id.mark_cerai_mati);
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (statusPernikahanChoice.equals("1")){
@@ -1352,7 +1352,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         statusPernikahanChoice = "1";
                         statusPernikahanPilihTV.setText("Belum Menikah");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1377,7 +1377,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         statusPernikahanChoice = "2";
                         statusPernikahanPilihTV.setText("Menikah");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1402,7 +1402,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         statusPernikahanChoice = "3";
                         statusPernikahanPilihTV.setText("Cerai Hidup");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1427,7 +1427,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         statusPernikahanChoice = "4";
                         statusPernikahanPilihTV.setText("Cerai Mati");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1458,7 +1458,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         markKonghuchu = findViewById(R.id.mark_konghuchu);
         markLainnya = findViewById(R.id.mark_lainnya);
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (agamaChoice.equals("Islam")){
@@ -1596,7 +1596,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         agamaChoice = "Islam";
                         agamaPilihTV.setText("Islam");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1627,7 +1627,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         agamaChoice = "Kristen";
                         agamaPilihTV.setText("Kristen");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1658,7 +1658,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         agamaChoice = "Hindu";
                         agamaPilihTV.setText("Hindu");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1689,7 +1689,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         agamaChoice = "Buddha";
                         agamaPilihTV.setText("Buddha");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1720,7 +1720,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         agamaChoice = "Katolik";
                         agamaPilihTV.setText("Katolik");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1751,7 +1751,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         agamaChoice = "Kong Hu Chu";
                         agamaPilihTV.setText("Kong Hu Chu");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1782,7 +1782,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         agamaChoice = "Lainnya";
                         agamaPilihTV.setText("Lainnya");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1802,7 +1802,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         markBekerja = findViewById(R.id.mark_bekerja);
         markTidakBekerja = findViewById(R.id.mark_tidak_bekerja);
 
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (statusBekerjaChoice.equals("Bekerja")){
@@ -1835,7 +1835,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         statusBekerjaChoice = "Bekerja";
                         statusBekerjaPilihTV.setText("Bekerja");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1855,7 +1855,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                         statusBekerjaChoice = "Belum/Tidak Bekerja";
                         statusBekerjaPilihTV.setText("Belum/Tidak Bekerja");
 
-                        new Handler().postDelayed(new Runnable() {
+                        handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 bottomSheet.dismissSheet();
@@ -1907,6 +1907,12 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }
