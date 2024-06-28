@@ -52,8 +52,8 @@ dependencies {
     implementation 'com.google.ar.sceneform:sceneform-base:1.17.1'
     implementation 'androidx.activity:activity:1.9.0'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'com.github.bumptech.glide:glide:4.14.2'
@@ -101,5 +101,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
     implementation 'io.github.chaosleung:pinview:1.4.4'
     implementation 'com.github.NitishGadangi:TypeWriter-TextView:v1.3'
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+    implementation 'com.google.zxing:core:3.4.1'
 
 }
