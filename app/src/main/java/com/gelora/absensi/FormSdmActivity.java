@@ -1,6 +1,7 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -8,17 +9,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.icu.util.Calendar;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.provider.OpenableColumns;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -35,6 +42,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -83,23 +91,32 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.takisoft.datetimepicker.DatePickerDialog;
 
+import net.gotev.uploadservice.MultipartUploadRequest;
+
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class FormSdmActivity extends AppCompatActivity {
 
-    LinearLayout viewBTN, backBTN, pilihKeteranganPart, actionBar, submitBTN, attantionNoForm, loadingFormPart, formPart, successPart, warningNoForm;
+    LinearLayout penilaianUploadView, uploadPenilaianBTN, uploadPenilaianTahuananPart, viewBTN, backBTN, pilihKeteranganPart, actionBar, submitBTN, attantionNoForm, loadingFormPart, formPart, successPart, warningNoForm;
     LinearLayout f1Part, f2Part, f3Part, f4Part;
     LinearLayout ket1BTN, ket2BTN, ket3BTN, ket4BTN, ket5BTN, ket6BTN, ket7BTN;
     LinearLayout markKet1, markKet2, markKet3, markKet4, markKet5, markKet6, markKet7;
+    TextView penilaianFileTV, penilaianUploadIc, penilaianUploadIcChange;
+    Uri penilaianUriFile;
 
     //Form 1
     LinearLayout f1KomponenGajiPart, f1BagianDisableMode, f1DepartemenDisableMode, f1UnitBisnisDisableMode, f1UnitBisnisPart, f1DepartemenPart, f1BagianPart, f1JabatanPart, f1TglDibutuhkanPart, f1TglPemenuhanPart;
@@ -215,6 +232,7 @@ public class FormSdmActivity extends AppCompatActivity {
     private int i = -1;
     String kodeKeterangan = "0", perngajuanTerkirim = "0";
     private Handler handler = new Handler();
+    private static final int PICK_PDF = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -242,6 +260,12 @@ public class FormSdmActivity extends AppCompatActivity {
         successPart = findViewById(R.id.success_submit);
         successGif = findViewById(R.id.success_gif);
         viewBTN = findViewById(R.id.view_btn);
+        uploadPenilaianTahuananPart = findViewById(R.id.upload_penilaian_tahuanan_part);
+        uploadPenilaianBTN = findViewById(R.id.upload_penilaian_btn);
+        penilaianFileTV = findViewById(R.id.penilaian_file_tv);
+        penilaianUploadView = findViewById(R.id.penilaian_review);
+        penilaianUploadIc = findViewById(R.id.penilaian_upload_ic);
+        penilaianUploadIcChange = findViewById(R.id.penilaian_upload_ic_change);
 
         //Form 1
         f1UnitBisnisPart = findViewById(R.id.f1_unit_bisnis_part);
@@ -609,6 +633,13 @@ public class FormSdmActivity extends AppCompatActivity {
                 f4UnitBisnisDisableModeTV.setText("");
                 f4KomponenGajiDisableModeTV.setText("");
 
+                uploadPenilaianTahuananPart.setVisibility(View.GONE);
+                penilaianUriFile = null;
+                penilaianFileTV.setText("Unggah PDF...");
+                penilaianUploadView.setVisibility(View.GONE);
+                penilaianUploadIc.setVisibility(View.VISIBLE);
+                penilaianUploadIcChange.setVisibility(View.GONE);
+
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -785,11 +816,25 @@ public class FormSdmActivity extends AppCompatActivity {
                     f3GolonganLamaPart.setVisibility(View.VISIBLE);
                     f3GolonganPart.setVisibility(View.VISIBLE);
                     f3LabelPoint.setText("Untuk Promosi");
+
+                    uploadPenilaianTahuananPart.setVisibility(View.VISIBLE);
+                    penilaianUriFile = null;
+                    penilaianFileTV.setText("Unggah PDF...");
+                    penilaianUploadView.setVisibility(View.GONE);
+                    penilaianUploadIc.setVisibility(View.VISIBLE);
+                    penilaianUploadIcChange.setVisibility(View.GONE);
                 } else if (f3OptionSub2.isChecked()) {
                     f3SubKet = "2";
                     f3GolonganLamaPart.setVisibility(View.GONE);
                     f3GolonganPart.setVisibility(View.GONE);
                     f3LabelPoint.setText("Untuk Mutasi");
+
+                    uploadPenilaianTahuananPart.setVisibility(View.GONE);
+                    penilaianUriFile = null;
+                    penilaianFileTV.setText("Unggah PDF...");
+                    penilaianUploadView.setVisibility(View.GONE);
+                    penilaianUploadIc.setVisibility(View.VISIBLE);
+                    penilaianUploadIcChange.setVisibility(View.GONE);
                 }
             }
         });
@@ -1653,10 +1698,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 }
                 else if(kodeKeterangan.equals("5")||kodeKeterangan.equals("6")) {
                     if(kodeKeterangan.equals("5")){
-                        if (f3SubKet.equals("") || f3NikBaru.equals("") || f3DepartemenBaru.equals("") || f3BagianBaru.equals("") || f3JabatanBaru.equals("") || f3IdUnitBisnis.equals("") || f3KomponenGajiPilihTV.getText().toString().equals("") || f3NikLama.equals("") || f3IdUnitBisnisLama.equals("") || f3DepartemenLama.equals("") || f3BagianLama.equals("") || f3JabatanLama.equals("") || f3KomponenGajiDisableModeLamaTV.getText().toString().equals("") || f3JabatanLamaDetail.equals("") || f3TglPengangkatanJabatanLama.equals("") || f3JabatanBaruDetail.equals("") || f3TglPengangkatanJabatanBaru.equals("") || f3AlasanPengangkatanTV.getText().toString().equals("") || f3TglDibutuhkan.equals("") || f3TglPemenuhan.equals("")) {
+                        if (f3SubKet.equals("") || f3NikBaru.equals("") || f3DepartemenBaru.equals("") || f3BagianBaru.equals("") || f3JabatanBaru.equals("") || f3IdUnitBisnis.equals("") || f3KomponenGajiPilihTV.getText().toString().equals("") || f3NikLama.equals("") || f3IdUnitBisnisLama.equals("") || f3DepartemenLama.equals("") || f3BagianLama.equals("") || f3JabatanLama.equals("") || f3KomponenGajiDisableModeLamaTV.getText().toString().equals("") || f3JabatanLamaDetail.equals("") || f3TglPengangkatanJabatanLama.equals("") || f3JabatanBaruDetail.equals("") || f3TglPengangkatanJabatanBaru.equals("") || f3AlasanPengangkatanTV.getText().toString().equals("") || f3TglDibutuhkan.equals("") || f3TglPemenuhan.equals("") || penilaianUriFile==null) {
                             new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
                                     .setTitleText("Perhatian")
-                                    .setContentText("Pastikan sub keterangan, kolom nama, unit bisnis dan komponen gaji terisi!")
+                                    .setContentText("Pastikan sub keterangan, kolom nama, unit bisnis, komponen gaji dan penilaian tahunan terisi!")
                                     .setConfirmText("    OK    ")
                                     .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                         @Override
@@ -1885,6 +1930,21 @@ public class FormSdmActivity extends AppCompatActivity {
             }
         });
 
+        uploadPenilaianBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                if (ActivityCompat.checkSelfPermission(FormSdmActivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(FormSdmActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("application/pdf");
+                    startActivityForResult(Intent.createChooser(intent, "PDF - 1"), PICK_PDF);
+                }
+            }
+        });
+
         loadingFormPart.setVisibility(View.VISIBLE);
         attantionNoForm.setVisibility(View.GONE);
         handler.postDelayed(new Runnable() {
@@ -1912,6 +1972,114 @@ public class FormSdmActivity extends AppCompatActivity {
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN_LAMA, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA_DETAIL, "");
+
+    }
+
+    private long getFileSize(Uri uri) {
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        if (cursor != null) {
+            int sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE);
+            cursor.moveToFirst();
+            long size = cursor.getLong(sizeIndex);
+            cursor.close();
+            return size;
+        }
+        return 0; // Default to 0 if the size can't be determined
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == PICK_PDF) {
+                Uri selectedPdfUri = data.getData();
+                if (selectedPdfUri!= null) {
+                    long fileSize = getFileSize(selectedPdfUri);
+                    final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB Max
+                    if (fileSize <= MAX_FILE_SIZE) {
+                        String pdfFilePath = selectedPdfUri.getPath();
+                        processDocument(selectedPdfUri);
+                    } else {
+                        new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Ukuran file terlalu besar, batas maksimum ukuran file adalah 5 MB")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    private void processDocument(Uri contentUri) {
+        ContentResolver contentResolver = getContentResolver();
+
+        // Use a cursor to get the file's display name and MIME type
+        Cursor cursor = contentResolver.query(contentUri, null, null, null, null);
+        String displayName = null;
+        String mimeType = null;
+        if (cursor != null && cursor.moveToFirst()) {
+            int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+            int mimeTypeIndex = cursor.getColumnIndex("mime_type"); // Use "mime_type" for MIME type
+            if (nameIndex != -1) {
+                displayName = cursor.getString(nameIndex);
+            }
+            if (mimeTypeIndex != -1) {
+                mimeType = cursor.getString(mimeTypeIndex);
+            }
+            cursor.close();
+        }
+
+        // Create a temporary file to store the content
+        File tempFile;
+        File path;
+        try {
+            path = this.getExternalCacheDir();
+            if (!path.exists()) path.mkdirs();
+            tempFile = File.createTempFile("temp_", ".pdf", path.getAbsoluteFile());
+            InputStream inputStream = contentResolver.openInputStream(contentUri);
+            FileOutputStream outputStream = new FileOutputStream(tempFile);
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, read);
+            }
+            inputStream.close();
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        penilaianFileTV.setText(displayName);
+        if (tempFile.exists()) {
+            penilaianUploadView.setVisibility(View.VISIBLE);
+            penilaianUploadIc.setVisibility(View.GONE);
+            penilaianUploadIcChange.setVisibility(View.VISIBLE);
+            String finalMimeType = mimeType;
+            penilaianUriFile = Uri.parse(String.valueOf(tempFile));
+            penilaianUploadView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Uri fileUri = Uri.parse(String.valueOf(tempFile));
+                    Intent intent = new Intent(FormSdmActivity.this, PdfViewerActivity.class);
+                    intent.putExtra("initialisasi", "form");
+                    intent.putExtra("kode_st", "penilaian_tahunan");
+                    intent.putExtra("uri", String.valueOf(tempFile));
+                    startActivity(intent);
+                }
+            });
+        } else {
+            Toast.makeText(this, "File does not exist", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -2269,6 +2437,13 @@ public class FormSdmActivity extends AppCompatActivity {
                     getBagianDepartemen();
                 }
 
+                uploadPenilaianTahuananPart.setVisibility(View.GONE);
+                penilaianUriFile = null;
+                penilaianFileTV.setText("Unggah PDF...");
+                penilaianUploadView.setVisibility(View.GONE);
+                penilaianUploadIc.setVisibility(View.VISIBLE);
+                penilaianUploadIcChange.setVisibility(View.GONE);
+
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -2505,6 +2680,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
 
                 f2DurasiKontrakPart.setVisibility(View.GONE);
+                uploadPenilaianTahuananPart.setVisibility(View.GONE);
+                penilaianUriFile = null;
+                penilaianFileTV.setText("Unggah PDF...");
+                penilaianUploadView.setVisibility(View.GONE);
+                penilaianUploadIc.setVisibility(View.VISIBLE);
+                penilaianUploadIcChange.setVisibility(View.GONE);
 
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -2745,6 +2926,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
 
                 f2DurasiKontrakPart.setVisibility(View.VISIBLE);
+                uploadPenilaianTahuananPart.setVisibility(View.GONE);
+                penilaianUriFile = null;
+                penilaianFileTV.setText("Unggah PDF...");
+                penilaianUploadView.setVisibility(View.GONE);
+                penilaianUploadIc.setVisibility(View.VISIBLE);
+                penilaianUploadIcChange.setVisibility(View.GONE);
 
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -2983,6 +3170,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
 
                 f2DurasiKontrakPart.setVisibility(View.GONE);
+                uploadPenilaianTahuananPart.setVisibility(View.GONE);
+                penilaianUriFile = null;
+                penilaianFileTV.setText("Unggah PDF...");
+                penilaianUploadView.setVisibility(View.GONE);
+                penilaianUploadIc.setVisibility(View.VISIBLE);
+                penilaianUploadIcChange.setVisibility(View.GONE);
 
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -3227,6 +3420,13 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3JabatanLamaDetailDisableMode.setVisibility(View.VISIBLE);
                 f3JabatanBaruDetailPart.setVisibility(View.GONE);
                 f3JabatanBaruDetailDisableMode.setVisibility(View.VISIBLE);
+
+                uploadPenilaianTahuananPart.setVisibility(View.GONE);
+                penilaianUriFile = null;
+                penilaianFileTV.setText("Unggah PDF...");
+                penilaianUploadView.setVisibility(View.GONE);
+                penilaianUploadIc.setVisibility(View.VISIBLE);
+                penilaianUploadIcChange.setVisibility(View.GONE);
 
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -6893,19 +7093,23 @@ public class FormSdmActivity extends AppCompatActivity {
 
                             if(status.equals("Success")){
                                 String id = data.getString("id_data");
-                                perngajuanTerkirim = "1";
-                                pDialog.dismiss();
-                                successPart.setVisibility(View.VISIBLE);
-                                formPart.setVisibility(View.GONE);
+                                if(kodeKeterangan.equals("5")){
+                                    uploadPenilaian(id);
+                                } else {
+                                    perngajuanTerkirim = "1";
+                                    pDialog.dismiss();
+                                    successPart.setVisibility(View.VISIBLE);
+                                    formPart.setVisibility(View.GONE);
 
-                                viewBTN.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent intent = new Intent(FormSdmActivity.this, DetailFormSdmActivity.class);
-                                        intent.putExtra("id_data",id);
-                                        startActivity(intent);
-                                    }
-                                });
+                                    viewBTN.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(FormSdmActivity.this, DetailFormSdmActivity.class);
+                                            intent.putExtra("id_data",id);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                }
 
                             }  else {
                                 successPart.setVisibility(View.GONE);
@@ -8322,6 +8526,45 @@ public class FormSdmActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    @SuppressLint("SdCardPath")
+    public void uploadPenilaian(String id_record) {
+        String UPLOAD_URL = "https://hrisgelora.co.id/api/upload_lampiran_serah_terima_exit_c";
+
+        try {
+            String uploadId = UUID.randomUUID().toString();
+            MultipartUploadRequest request = new MultipartUploadRequest(this, uploadId, UPLOAD_URL);
+            request.addFileToUpload(String.valueOf(penilaianUriFile), "file");
+            request.addParameter("id_record", id_record);
+            request.addParameter("current_time", getDate().substring(8,10)+getDate().substring(5,7)+getDate().substring(0,4));
+            request.setMaxRetries(1);
+            request.startUpload();
+
+            viewBTN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(FormSdmActivity.this, DetailFormSdmActivity.class);
+                    intent.putExtra("id_data",id_record);
+                    startActivity(intent);
+                }
+            });
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    perngajuanTerkirim = "1";
+                    pDialog.dismiss();
+                    successPart.setVisibility(View.VISIBLE);
+                    formPart.setVisibility(View.GONE);
+                }
+            }, 5000);
+
+
+        } catch (Exception exc) {
+            Log.e("PaRSE JSON", exc.toString());
+            pDialog.dismiss();
+        }
     }
 
     private String getTime() {

@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class PdfViewerActivity extends AppCompatActivity {
     TextView titlePage;
     LinearLayout actionBar, loadingPart, backBTN;
     private View scrollIndicator;
+    private Handler handler = new Handler();
 
     @SuppressLint({"SetJavaScriptEnabled", "SetTextI18n"})
     @Override
@@ -67,11 +69,12 @@ public class PdfViewerActivity extends AppCompatActivity {
             titlePage.setText("SERAH TERIMA KOPERASI");
         } else if(kodeST.equals("6")){
             titlePage.setText("SERAH TERIMA PERSONALIA");
+        } else if(kodeST.equals("penilaian_tahunan")){
+            titlePage.setText("PENILAIAN KARYAWAN TAHUNAN");
         }
 
         if(initialisasi.equals("form")){
             if (pdfFile.exists()) {
-                loadingPart.setVisibility(View.GONE);
                 pdfView.fromFile(pdfFile)
                         .defaultPage(0)
                         .enableSwipe(true)
@@ -88,6 +91,14 @@ public class PdfViewerActivity extends AppCompatActivity {
                             }
                         })
                         .load();
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadingPart.setVisibility(View.GONE);
+                    }
+                }, 2000);
+
             } else {
                 Toast.makeText(this, "Kosong", Toast.LENGTH_SHORT).show();
             }

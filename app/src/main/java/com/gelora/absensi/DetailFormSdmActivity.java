@@ -394,6 +394,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String nama_penerima           = dataArray.getString("nama_penerima");
                                 String ttd_penerima            = dataArray.getString("ttd_penerima");
                                 String catatan                 = dataArray.getString("catatan");
+                                String file_penilaian_tahunan  = dataArray.getString("file_penilaian_tahunan");
                                 String no_frm                  = dataArray.getString("no_frm");
                                 String created_at              = dataArray.getString("created_at");
                                 String updated_at              = dataArray.getString("updated_at");
@@ -815,7 +816,19 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
                                     } else if(status_approve_kabag.equals("0")){
-                                        if(keterangan.equals("5")||keterangan.equals("6")){
+                                        if(keterangan.equals("5")) {
+                                            if((sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                                //Upload attch
+                                                if(file_penilaian_tahunan.isEmpty()||file_penilaian_tahunan==null||file_penilaian_tahunan.equals("null")){
+
+                                                } else {
+
+                                                }
+                                            } else {
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.GONE);
+                                            }
+                                        } else if(keterangan.equals("6")){
                                             if((sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                 cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                             } else {
