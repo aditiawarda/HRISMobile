@@ -8530,7 +8530,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
     @SuppressLint("SdCardPath")
     public void uploadPenilaian(String id_record) {
-        String UPLOAD_URL = "https://hrisgelora.co.id/api/upload_lampiran_serah_terima_exit_c";
+        String UPLOAD_URL = "https://hrisgelora.co.id/api/upload_pelilaian_tahunan";
 
         try {
             String uploadId = UUID.randomUUID().toString();
