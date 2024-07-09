@@ -128,7 +128,7 @@ public class DataFormSdmActivity extends AppCompatActivity {
                                 int waiting_data = Integer.parseInt(waiting_kadep) + Integer.parseInt(waiting_kabag);
 
                                 if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")){
-                                    if(sharedPrefManager.getSpNik().equals("3294031022") || sharedPrefManager.getSpNik().equals("0113010500")){
+                                    if(sharedPrefManager.getSpNik().equals("3294031022") || sharedPrefManager.getSpNik().equals("0113010500") || sharedPrefManager.getSpNik().equals("0687260508") || sharedPrefManager.getSpNik().equals("0057010793")){
                                         if(waiting_data>0){
                                             countWaitingBTN.setVisibility(View.VISIBLE);
                                             countWaitingTV.setText(String.valueOf(waiting_data));
@@ -145,7 +145,7 @@ public class DataFormSdmActivity extends AppCompatActivity {
                                             countWaitingTV.setText("");
                                         }
                                     }
-                                } else if(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
+                                } else if(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")  || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
                                     if(Integer.parseInt(waiting_kabag)>0){
                                         countWaitingBTN.setVisibility(View.VISIBLE);
                                         countWaitingTV.setText(waiting_kabag);

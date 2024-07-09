@@ -184,11 +184,11 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 .load(R.drawable.success_ic)
                 .into(successGif);
 
-        nikKaryawan  = getIntent().getExtras().getString("nik");;
-        namaKaryawan = getIntent().getExtras().getString("nama");;
-        idBagian     = getIntent().getExtras().getString("id_bagian");;
-        idDepartemen = getIntent().getExtras().getString("id_dept");;
-        idJabatan    = getIntent().getExtras().getString("id_jabatan");;
+        nikKaryawan  = getIntent().getExtras().getString("nik");
+        namaKaryawan = getIntent().getExtras().getString("nama");
+        idBagian     = getIntent().getExtras().getString("id_bagian");
+        idDepartemen = getIntent().getExtras().getString("id_dept");
+        idJabatan    = getIntent().getExtras().getString("id_jabatan");
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
