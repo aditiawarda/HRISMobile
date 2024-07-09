@@ -1060,7 +1060,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             actionPart.setVisibility(View.GONE);
                                             warningPenilaian.setVisibility(View.GONE);
                                         } else {
-                                            actionPart.setVisibility(View.GONE);
+                                            actionPart.setVisibility(View.VISIBLE);
                                             warningPenilaian.setVisibility(View.VISIBLE);
                                         }
                                     } else if (status_approve_kabag.equals("2")){
