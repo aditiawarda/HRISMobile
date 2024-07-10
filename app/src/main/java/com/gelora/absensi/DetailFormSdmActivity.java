@@ -506,7 +506,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     } else if(status_approve_kabag.equals("0")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.GONE);
-                                        if((sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                        if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                             actionPart.setVisibility(View.VISIBLE);
                                         } else {
                                             actionPart.setVisibility(View.GONE);
@@ -646,7 +646,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 lihatPenilaianPart.setVisibility(View.GONE);
                                                 lihatPenilaianBTN.setVisibility(View.GONE);
                                                 warningPenilaian.setVisibility(View.GONE);
-                                                if((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")) || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                                if((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")) || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
                                             } else {
@@ -677,7 +677,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         rejMark.setVisibility(View.VISIBLE);
                                     } else if(status_approve_kabag.equals("0")){
                                         if(keterangan.equals("2")||keterangan.equals("3")||keterangan.equals("4")){
-                                            if((sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                            if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                 cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                             } else {
                                                 accMark.setVisibility(View.GONE);
@@ -686,7 +686,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         } else {
                                             accMark.setVisibility(View.GONE);
                                             rejMark.setVisibility(View.GONE);
-                                            if((sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                            if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                 actionPart.setVisibility(View.VISIBLE);
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
@@ -782,25 +782,34 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         }
 
                                         if(keterangan.equals("5")){
-                                            lihatPenilaianPart.setVisibility(View.VISIBLE);
-                                            lihatPenilaianBTN.setVisibility(View.VISIBLE);
-                                            lihatPenilaianBTN.setOnClickListener(new View.OnClickListener() {
-                                                @Override
-                                                public void onClick(View v) {
-                                                    Intent intent = new Intent(DetailFormSdmActivity.this, PdfViewerActivity.class);
-                                                    intent.putExtra("initialisasi", "detail");
-                                                    intent.putExtra("kode_st", "penilaian_tahunan");
-                                                    intent.putExtra("uri", "https://hrisgelora.co.id/upload/penilaian_tahunan_karyawan/"+file_penilaian_tahunan);
-                                                    startActivity(intent);
+                                            if(file_penilaian_tahunan.equals("null") || file_penilaian_tahunan == null || file_penilaian_tahunan.isEmpty()){
+                                                lihatPenilaianPart.setVisibility(View.GONE);
+                                                lihatPenilaianBTN.setVisibility(View.GONE);
+                                                warningPenilaian.setVisibility(View.GONE);
+                                                if((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")) || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                                    cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
-                                            });
-                                            warningPenilaian.setVisibility(View.GONE);
+                                            } else {
+                                                lihatPenilaianPart.setVisibility(View.VISIBLE);
+                                                lihatPenilaianBTN.setVisibility(View.VISIBLE);
+                                                lihatPenilaianBTN.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        Intent intent = new Intent(DetailFormSdmActivity.this, PdfViewerActivity.class);
+                                                        intent.putExtra("initialisasi", "detail");
+                                                        intent.putExtra("kode_st", "penilaian_tahunan");
+                                                        intent.putExtra("uri", "https://hrisgelora.co.id/upload/penilaian_tahunan_karyawan/"+file_penilaian_tahunan);
+                                                        startActivity(intent);
+                                                    }
+                                                });
+                                                warningPenilaian.setVisibility(View.GONE);
+                                            }
                                         } else if(keterangan.equals("6")){
                                             if(id_penilaian.equals("null")){
                                                 lihatPenilaianPart.setVisibility(View.GONE);
                                                 lihatPenilaianBTN.setVisibility(View.GONE);
                                                 warningPenilaian.setVisibility(View.GONE);
-                                                if((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")) || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                                if((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")) || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
                                             } else {
@@ -831,22 +840,31 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         rejMark.setVisibility(View.VISIBLE);
                                     } else if(status_approve_kabag.equals("0")){
                                         if(keterangan.equals("5")) {
-                                            lihatPenilaianPart.setVisibility(View.VISIBLE);
-                                            lihatPenilaianBTN.setVisibility(View.VISIBLE);
-                                            lihatPenilaianBTN.setOnClickListener(new View.OnClickListener() {
-                                                @Override
-                                                public void onClick(View v) {
-                                                    Intent intent = new Intent(DetailFormSdmActivity.this, PdfViewerActivity.class);
-                                                    intent.putExtra("initialisasi", "detail");
-                                                    intent.putExtra("kode_st", "penilaian_tahunan");
-                                                    intent.putExtra("uri", "https://hrisgelora.co.id/upload/penilaian_tahunan_karyawan/"+file_penilaian_tahunan);
-                                                    startActivity(intent);
+                                            if(file_penilaian_tahunan.equals("null") || file_penilaian_tahunan == null || file_penilaian_tahunan.isEmpty()){
+                                                lihatPenilaianPart.setVisibility(View.GONE);
+                                                lihatPenilaianBTN.setVisibility(View.GONE);
+                                                warningPenilaian.setVisibility(View.GONE);
+                                                if((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")) || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                                    cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
-                                            });
-                                            warningPenilaian.setVisibility(View.GONE);
+                                            } else {
+                                                lihatPenilaianPart.setVisibility(View.VISIBLE);
+                                                lihatPenilaianBTN.setVisibility(View.VISIBLE);
+                                                lihatPenilaianBTN.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        Intent intent = new Intent(DetailFormSdmActivity.this, PdfViewerActivity.class);
+                                                        intent.putExtra("initialisasi", "detail");
+                                                        intent.putExtra("kode_st", "penilaian_tahunan");
+                                                        intent.putExtra("uri", "https://hrisgelora.co.id/upload/penilaian_tahunan_karyawan/"+file_penilaian_tahunan);
+                                                        startActivity(intent);
+                                                    }
+                                                });
+                                                warningPenilaian.setVisibility(View.GONE);
+                                            }
                                         } else if(keterangan.equals("6")){
                                             if(keterangan.equals("5")) {
-                                                if((sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                                if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 } else {
                                                     accMark.setVisibility(View.GONE);
@@ -855,7 +873,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             } else {
                                                 accMark.setVisibility(View.GONE);
                                                 rejMark.setVisibility(View.GONE);
-                                                if((sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                                if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     actionPart.setVisibility(View.VISIBLE);
                                                 } else {
                                                     actionPart.setVisibility(View.GONE);
@@ -949,7 +967,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     } else if(status_approve_kabag.equals("0")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.GONE);
-                                        if((sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                        if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                             actionPart.setVisibility(View.VISIBLE);
                                         } else {
                                             actionPart.setVisibility(View.GONE);
@@ -1018,6 +1036,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                             String status = data.getString("status");
                             if (status.equals("Available")) {
                                 String last_id = data.getString("last_id");
+                                String approval = data.getString("approval");
                                 penilaianBTN.setVisibility(View.GONE);
                                 lihatPenilaianPart.setVisibility(View.VISIBLE);
                                 lihatPenilaianBTN.setVisibility(View.VISIBLE);
@@ -1032,13 +1051,25 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
                                 accMark.setVisibility(View.GONE);
                                 rejMark.setVisibility(View.GONE);
-                                if((sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
-                                    if(status_approve_kabag.equals("1")||status_approve_kabag.equals("2")){
+                                if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                    if(status_approve_kabag.equals("1")){
+                                        if(approval.equals("1")){
+                                            actionPart.setVisibility(View.VISIBLE);
+                                            warningPenilaian.setVisibility(View.GONE);
+                                        } else if(approval.equals("2")){
+                                            actionPart.setVisibility(View.GONE);
+                                            warningPenilaian.setVisibility(View.GONE);
+                                        } else {
+                                            actionPart.setVisibility(View.VISIBLE);
+                                            warningPenilaian.setVisibility(View.VISIBLE);
+                                        }
+                                    } else if (status_approve_kabag.equals("2")){
                                         actionPart.setVisibility(View.GONE);
+                                        warningPenilaian.setVisibility(View.GONE);
                                     } else {
                                         actionPart.setVisibility(View.VISIBLE);
+                                        warningPenilaian.setVisibility(View.GONE);
                                     }
-                                    warningPenilaian.setVisibility(View.GONE);
                                 } else {
                                     actionPart.setVisibility(View.GONE);
                                 }
