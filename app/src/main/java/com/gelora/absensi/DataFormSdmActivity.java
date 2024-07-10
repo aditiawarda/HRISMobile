@@ -145,7 +145,7 @@ public class DataFormSdmActivity extends AppCompatActivity {
                                             countWaitingTV.setText("");
                                         }
                                     }
-                                } else if(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")  || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
+                                } else if(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")  || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
                                     if(Integer.parseInt(waiting_kabag)>0){
                                         countWaitingBTN.setVisibility(View.VISIBLE);
                                         countWaitingTV.setText(waiting_kabag);
