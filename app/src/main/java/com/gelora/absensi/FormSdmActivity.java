@@ -1935,12 +1935,18 @@ public class FormSdmActivity extends AppCompatActivity {
             public void onClick(View v) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
-                if (ActivityCompat.checkSelfPermission(FormSdmActivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(FormSdmActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
-                } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("application/pdf");
                     startActivityForResult(Intent.createChooser(intent, "PDF - 1"), PICK_PDF);
+                } else {
+                    if (ActivityCompat.checkSelfPermission(FormSdmActivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(FormSdmActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("application/pdf");
+                        startActivityForResult(Intent.createChooser(intent, "PDF - 1"), PICK_PDF);
+                    }
                 }
             }
         });
