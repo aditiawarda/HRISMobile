@@ -62,7 +62,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.3.2'
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'com.pnikosis:materialish-progress:1.7'
-    implementation 'com.google.android.gms:play-services-location:21.3.0' //In Check Update
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
     implementation 'com.takisoft.datetimepicker:datetimepicker:1.0.3'
     implementation 'com.github.shasin89:NotificationBanner:1.1.5'
     implementation 'com.github.Mahfa:DayNightSwitch:1.5'
@@ -70,7 +70,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation "androidx.core:core-ktx:1.13.1" //In Check Update
+    implementation "androidx.core:core-ktx:1.13.1"
     implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
     implementation "com.karumi:dexter:5.0.0"
     implementation 'net.gotev:uploadservice:2.1'
