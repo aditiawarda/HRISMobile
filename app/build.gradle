@@ -10,9 +10,10 @@ android {
     defaultConfig {
         applicationId "com.gelora.absensi"
         minSdkVersion 21
+        //noinspection OldTargetApi
         targetSdkVersion 34
-        versionCode 164
-        versionName "2.6.4"
+        versionCode 165
+        versionName "2.6.5"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -65,7 +66,7 @@ dependencies {
     implementation 'com.takisoft.datetimepicker:datetimepicker:1.0.3'
     implementation 'com.github.shasin89:NotificationBanner:1.1.5'
     implementation 'com.github.Mahfa:DayNightSwitch:1.5'
-    implementation platform('com.google.firebase:firebase-bom:33.1.1')
+    implementation platform('com.google.firebase:firebase-bom:33.1.2')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'androidx.cardview:cardview:1.0.0'

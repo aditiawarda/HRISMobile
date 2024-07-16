@@ -1131,7 +1131,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                     if(status_approve_kabag.equals("1")){
                                         if(approval.equals("1")){
-                                            actionPart.setVisibility(View.VISIBLE);
+                                            actionPart.setVisibility(View.GONE);
                                             warningPenilaian.setVisibility(View.GONE);
                                         } else if(approval.equals("2")){
                                             actionPart.setVisibility(View.GONE);
