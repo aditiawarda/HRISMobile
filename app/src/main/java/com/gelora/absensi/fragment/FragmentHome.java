@@ -2128,7 +2128,7 @@ public class FragmentHome extends Fragment {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "2.6.5"; //harus disesuaikan
+                                String currentVersion = "2.6.6"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     regulerLogo.setVisibility(View.GONE);
                                     updateLogo.setVisibility(View.VISIBLE);
