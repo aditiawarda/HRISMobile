@@ -513,6 +513,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
                                         || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
                                         || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                        || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                        || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
                                         || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                             actionPart.setVisibility(View.VISIBLE);
                                         } else {
@@ -660,6 +662,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
                                                 || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
                                                 || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                                || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                                || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
                                                 || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
@@ -698,6 +702,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
                                             || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
                                             || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                            || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                            || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
                                             || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                 cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                             } else {
@@ -714,6 +720,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
                                             || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
                                             || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                            || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                            || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
                                             || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                 actionPart.setVisibility(View.VISIBLE);
                                             } else {
@@ -821,6 +829,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
                                                 || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
                                                 || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                                || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                                || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
                                                 || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
@@ -851,6 +861,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
                                                 || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
                                                 || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                                || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                                || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
                                                 || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
@@ -893,6 +905,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
                                                 || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
                                                 || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                                || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                                || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
                                                 || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
@@ -920,6 +934,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
                                                 || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
                                                 || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                                || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                                || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
                                                 || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 } else {
@@ -936,6 +952,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
                                                 || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
                                                 || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                                || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                                || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
                                                 || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     actionPart.setVisibility(View.VISIBLE);
                                                 } else {
@@ -1037,6 +1055,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
                                         || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
                                         || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                        || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                        || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
                                         || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                             actionPart.setVisibility(View.VISIBLE);
                                         } else {
@@ -1128,6 +1148,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
                                 || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
                                 || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
                                 || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                     if(status_approve_kabag.equals("1")){
                                         if(approval.equals("1")){
