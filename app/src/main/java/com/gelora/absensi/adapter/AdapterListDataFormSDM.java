@@ -103,7 +103,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             myViewHolder.accMark.setVisibility(View.GONE);
             myViewHolder.rejMark.setVisibility(View.GONE);
             myViewHolder.proMark.setVisibility(View.VISIBLE);
-            if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpNik().equals("3294031022")||sharedPrefManager.getSpNik().equals("0113010500")||sharedPrefManager.getSpNik().equals("0687260508") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")||sharedPrefManager.getSpNik().equals("0057010793"))){
+            if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpNik().equals("3294031022")||sharedPrefManager.getSpNik().equals("0113010500")||sharedPrefManager.getSpNik().equals("0687260508")||sharedPrefManager.getSpNik().equals("0121010900")||sharedPrefManager.getSpNik().equals("0015141287") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")||sharedPrefManager.getSpNik().equals("0057010793"))){
                 myViewHolder.waitingMark.setVisibility(View.VISIBLE);
             } else {
                 myViewHolder.waitingMark.setVisibility(View.GONE);
