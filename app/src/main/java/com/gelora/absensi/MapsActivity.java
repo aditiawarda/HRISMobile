@@ -4865,8 +4865,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .setColor(Color.parseColor("#A6441F"))
                 .setPriority(Notification.PRIORITY_DEFAULT)
                 .setContentTitle("HRIS Mobile Gelora")
-                .setStyle(new NotificationCompat.BigTextStyle().bigText("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0"))
-                .setContentText("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0");
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0"))
+                .setContentText("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0");
 
         Intent notificationIntent = new Intent(this, DetailTidakCheckoutActivity.class);
         notificationIntent.putExtra("bulan", getBulanTahun());
