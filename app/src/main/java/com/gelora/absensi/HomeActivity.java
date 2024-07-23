@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
@@ -50,6 +51,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
@@ -591,6 +593,119 @@ public class HomeActivity extends AppCompatActivity {
                                 profileMark.setVisibility(View.GONE);
                             }
 
+                            if(getNamaHari().toLowerCase().equals("jumat")){
+                                if(sharedPrefManager.getSpIdCor().equals("1") && sharedPrefManager.getSpIdCab().equals("1")){
+                                    if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")){
+                                        checkPengajuanMakan();
+                                    }
+                                }
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void checkPengajuanMakan() {
+        final String url = "https://hrisgelora.co.id/api/cek_pengajuan_makan_reminder";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response);
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Available")){
+                                String jumlah_data = data.getString("jumlah_data");
+                                String data_min = data.getString("data_min");
+                                if(Integer.parseInt(jumlah_data)<Integer.parseInt(data_min)){
+                                    if(pDialog==null){
+                                        pDialog = new KAlertDialog(HomeActivity.this, KAlertDialog.WARNING_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("PERMOHONAN MAKAN KARYAWAN YANG ANDA AJUKAN BELUM LENGKAP 1 MINGGU UNTUK MINGGU DEPAN, HARAP SEGERA AJUKAN PERMOHONAN MAKAN KARYAWAN SELAMA 1 MINGGU MENGGUNAKAN FORM AJUAN MAKAN!")
+                                                .setConfirmText("AJUKAN")
+                                                .setCancelText("TUTUP");
+                                        pDialog.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                Intent intent = new Intent(HomeActivity.this, ListDataLunchRequestActivity.class);
+                                                startActivity(intent);
+                                            }
+                                        });
+                                        pDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                            @Override
+                                            public void onDismiss(DialogInterface dialog) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                        pDialog.show();
+
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                            vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                        } else {
+                                            vibrate.vibrate(500);
+                                        }
+                                    }
+                                }
+                            } else {
+                                if(pDialog==null){
+                                    pDialog = new KAlertDialog(HomeActivity.this, KAlertDialog.WARNING_TYPE)
+                                            .setTitleText("Perhatian")
+                                            .setContentText("ANDA BELUM MENGAJUKAN PERMOHONAN MAKAN KARYAWAN UNTUK MINGGU DEPAN, HARAP SEGERA AJUKAN PERMOHONAN MAKAN KARYAWAN SELAMA 1 MINGGU MENGGUNAKAN FORM AJUAN MAKAN!")
+                                            .setConfirmText("AJUKAN")
+                                            .setCancelText("TUTUP");
+                                    pDialog.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                            Intent intent = new Intent(HomeActivity.this, ListDataLunchRequestActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                    pDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                        @Override
+                                        public void onDismiss(DialogInterface dialog) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    pDialog.show();
+
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                    } else {
+                                        vibrate.vibrate(500);
+                                    }
+                                }
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -1071,6 +1186,13 @@ public class HomeActivity extends AppCompatActivity {
     private String getBulanTahun() {
         @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getNamaHari() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("EEEE", new Locale("id", "ID"));
         Date date = new Date();
         return dateFormat.format(date);
     }
