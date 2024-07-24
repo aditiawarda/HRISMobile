@@ -804,6 +804,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 rejMark.setVisibility(View.VISIBLE);
                                             }
 
+                                            actionPart.setVisibility(View.GONE);
                                         } else if(status_approve_kadept.equals("2")){
                                             accMark.setVisibility(View.GONE);
                                             rejMark.setVisibility(View.VISIBLE);
@@ -924,6 +925,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                     }
                                                 });
                                                 warningPenilaian.setVisibility(View.GONE);
+                                                actionPart.setVisibility(View.VISIBLE);
                                             }
                                         } else if(keterangan.equals("6")){
                                             if(keterangan.equals("5")) {
