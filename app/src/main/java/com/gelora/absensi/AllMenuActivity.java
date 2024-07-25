@@ -473,7 +473,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuKeluarKantorBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, OfficeLeftScannerActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
                 startActivity(intent);
             }
         });
@@ -481,7 +481,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuKeluarKantor2BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, OfficeLeftScannerActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
                 startActivity(intent);
             }
         });
@@ -489,7 +489,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuKeluarKantor3BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, OfficeLeftScannerActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
                 startActivity(intent);
             }
         });
@@ -497,7 +497,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuKeluarKantor4BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, OfficeLeftScannerActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
                 startActivity(intent);
             }
         });
@@ -505,7 +505,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuKeluarKantor5BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, OfficeLeftScannerActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
                 startActivity(intent);
             }
         });
@@ -513,7 +513,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuKeluarKantor6BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, OfficeLeftScannerActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
                 startActivity(intent);
             }
         });
