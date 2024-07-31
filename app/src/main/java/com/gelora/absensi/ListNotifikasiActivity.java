@@ -8,12 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -42,7 +44,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
     private AdapterPermohonanIzin adapterPermohonanIzin;
     private AdapterPermohonanSaya adapterPermohonanSaya;
     SharedPrefManager sharedPrefManager;
-    LinearLayout actionBar, mainPart, optionPart, countPartIn, countPartMe, permohonanMasukPart, permohonanSayaPart, notifyInBTN, notifySayaBTN, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2, backBTN;
+    LinearLayout addBTN, addBtnPart, actionBar, mainPart, optionPart, countPartIn, countPartMe, permohonanMasukPart, permohonanSayaPart, notifyInBTN, notifySayaBTN, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2, backBTN;
     SwipeRefreshLayout refreshLayout;
     View rootview;
     TextView countNotifMasuk, countNotifSaya, labelPageIzin;
@@ -76,6 +78,8 @@ public class ListNotifikasiActivity extends AppCompatActivity {
         mainPart = findViewById(R.id.main_part);
         actionBar = findViewById(R.id.action_bar);
         labelPageIzin = findViewById(R.id.label_page);
+        addBtnPart = findViewById(R.id.add_btn_part);
+        addBTN = findViewById(R.id.btn_add);
 
         dataNotifikasiRV.setLayoutManager(new LinearLayoutManager(this));
         dataNotifikasiRV.setHasFixedSize(true);
@@ -90,6 +94,14 @@ public class ListNotifikasiActivity extends AppCompatActivity {
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            }
+        });
+
+        addBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListNotifikasiActivity.this, FormPermohonanIzinActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -114,9 +126,9 @@ public class ListNotifikasiActivity extends AppCompatActivity {
         });
 
         if(sharedPrefManager.getSpIdCor().equals("1")){
-            labelPageIzin.setText("NOTIFIKASI IZIN/CUTI");
+            labelPageIzin.setText("IZIN/CUTI");
         } else if(sharedPrefManager.getSpIdCor().equals("3")){
-            labelPageIzin.setText("NOTIFIKASI IZIN");
+            labelPageIzin.setText("IZIN");
         }
 
         backBTN.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +152,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                 noDataPart2.setVisibility(View.GONE);
                 dataNotifikasiRV.setVisibility(View.GONE);
                 dataNotifikasi2RV.setVisibility(View.GONE);
+                addBtnPart.setVisibility(View.VISIBLE);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -165,6 +178,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                 noDataPart2.setVisibility(View.GONE);
                 dataNotifikasiRV.setVisibility(View.GONE);
                 dataNotifikasi2RV.setVisibility(View.GONE);
+                addBtnPart.setVisibility(View.GONE);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -186,6 +200,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                 optionPart.setVisibility(View.GONE);
                 permohonanMasukPart.setVisibility(View.VISIBLE);
                 permohonanSayaPart.setVisibility(View.GONE);
+                addBtnPart.setVisibility(View.GONE);
             } else {
                 optionPart.setVisibility(View.VISIBLE);
             }
@@ -198,6 +213,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
             optionPart.setVisibility(View.GONE);
             permohonanMasukPart.setVisibility(View.VISIBLE);
             permohonanSayaPart.setVisibility(View.GONE);
+            addBtnPart.setVisibility(View.GONE);
         } else {
             float scale = getResources().getDisplayMetrics().density;
             int side = (int) (17*scale + 0.5f);
@@ -207,6 +223,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
             optionPart.setVisibility(View.GONE);
             permohonanMasukPart.setVisibility(View.GONE);
             permohonanSayaPart.setVisibility(View.VISIBLE);
+            addBtnPart.setVisibility(View.VISIBLE);
         }
 
     }

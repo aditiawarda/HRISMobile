@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -42,7 +43,7 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
     private AdapterPermohonanFingerSaya adapterPermohonanFingerSaya;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
-    LinearLayout backBTN, actionBar;
+    LinearLayout addBTN, addBtnPart, backBTN, actionBar;
     LinearLayout mainPart, optionPart, countPartIn, countPartMe, permohonanMasukPart, permohonanSayaPart, notifyInBTN, notifySayaBTN, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2;
     View rootview;
     TextView countNotifMasuk, countNotifSaya;
@@ -74,6 +75,8 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
         optionPart = findViewById(R.id.option_part);
         mainPart = findViewById(R.id.main_part);
         actionBar = findViewById(R.id.action_bar);
+        addBtnPart = findViewById(R.id.add_btn_part_fin);
+        addBTN = findViewById(R.id.btn_add_fin);
 
         dataNotifikasiRV.setLayoutManager(new LinearLayoutManager(this));
         dataNotifikasiRV.setHasFixedSize(true);
@@ -84,6 +87,14 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
         dataNotifikasi2RV.setHasFixedSize(true);
         dataNotifikasi2RV.setNestedScrollingEnabled(false);
         dataNotifikasi2RV.setItemAnimator(new DefaultItemAnimator());
+
+        addBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListNotifikasiFingerscanActivity.this, FormFingerscanActivity.class);
+                startActivity(intent);
+            }
+        });
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +143,7 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
                 noDataPart2.setVisibility(View.GONE);
                 dataNotifikasiRV.setVisibility(View.GONE);
                 dataNotifikasi2RV.setVisibility(View.GONE);
-
+                addBtnPart.setVisibility(View.VISIBLE);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -158,6 +169,7 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
                 noDataPart2.setVisibility(View.GONE);
                 dataNotifikasiRV.setVisibility(View.GONE);
                 dataNotifikasi2RV.setVisibility(View.GONE);
+                addBtnPart.setVisibility(View.GONE);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -179,6 +191,7 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
                 optionPart.setVisibility(View.GONE);
                 permohonanMasukPart.setVisibility(View.VISIBLE);
                 permohonanSayaPart.setVisibility(View.GONE);
+                addBtnPart.setVisibility(View.GONE);
             } else {
                 optionPart.setVisibility(View.VISIBLE);
             }
@@ -191,6 +204,7 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
             optionPart.setVisibility(View.GONE);
             permohonanMasukPart.setVisibility(View.VISIBLE);
             permohonanSayaPart.setVisibility(View.GONE);
+            addBtnPart.setVisibility(View.GONE);
         } else {
             float scale = getResources().getDisplayMetrics().density;
             int side = (int) (17*scale + 0.5f);
@@ -200,6 +214,7 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
             optionPart.setVisibility(View.GONE);
             permohonanMasukPart.setVisibility(View.GONE);
             permohonanSayaPart.setVisibility(View.VISIBLE);
+            addBtnPart.setVisibility(View.VISIBLE);
         }
 
     }

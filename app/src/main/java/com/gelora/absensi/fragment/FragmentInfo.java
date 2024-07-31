@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ import com.gelora.absensi.HistoryActivity;
 import com.gelora.absensi.HistoryCutiIzinActivity;
 import com.gelora.absensi.HumanResourceActivity;
 import com.gelora.absensi.ListDataReportSumaActivity;
+import com.gelora.absensi.ListIzinKeluarKantor;
 import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.ListNotifikasiFingerscanActivity;
 import com.gelora.absensi.MonitoringAbsensiBagianActivity;
@@ -73,8 +75,8 @@ public class FragmentInfo extends Fragment {
 
     TextView bagianNameTvEc, descContactHRDTV, titlePage, dateNowTV, countNotifFingerTV, countNotifIzinTV;
     ExpandableLayout aboutAppField, privacyPolicyField, contactServiceField;
-    LinearLayout reportSalesPart, projectPart, ecBTN, menuPermohonanPart, headerPart, helpDeskIT, helpDeskHRD, newsPart, sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
-    TextView labelNotificationIzin, bagianNameTVSDM, historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    LinearLayout inLayoutIzin, inLayoutFinger, countNotificationIkk, permohonanIkkBTN, reportSalesPart, projectPart, ecBTN, menuPermohonanPart, headerPart, helpDeskIT, helpDeskHRD, newsPart, sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
+    TextView labelNotificationFinger, countNotifIkkTV, labelNotificationIzin, bagianNameTVSDM, historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     ImageView hrisLogo, notifFiturLoading, sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     SwipeRefreshLayout refreshLayout;
     String selectMonth = "", statusFiturIzinCuti = "1", statusFiturFinger = "1", currentDay = "", otoritorEC = "", listSDM = "";
@@ -83,6 +85,7 @@ public class FragmentInfo extends Fragment {
     SharedPrefManager sharedPrefManager;
     RequestQueue requestQueue;
     private Handler handler = new Handler();
+    ImageView imgIzin, imgFinger;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -161,6 +164,7 @@ public class FragmentInfo extends Fragment {
         descContactHRDTV = view.findViewById(R.id.desc_contact_hrd_tv);
         newsPart = view.findViewById(R.id.news_part);
         labelNotificationIzin = view.findViewById(R.id.label_notification_izin);
+        labelNotificationFinger = view.findViewById(R.id.label_notification_finger);
         helpDeskIT = view.findViewById(R.id.help_desk_it);
         helpDeskHRD = view.findViewById(R.id.help_desk_hrd);
         hrisLogo = view.findViewById(R.id.hris_logo);
@@ -169,6 +173,13 @@ public class FragmentInfo extends Fragment {
         bagianNameTvEc = view.findViewById(R.id.bagian_name_tv_ec);
         projectPart = view.findViewById(R.id.project_part);
         reportSalesPart = view.findViewById(R.id.report_sales_part);
+        permohonanIkkBTN = view.findViewById(R.id.permohonan_ikk_btn);
+        countNotificationIkk = view.findViewById(R.id.count_notification_ikk);
+        countNotifIkkTV = view.findViewById(R.id.count_notif_ikk_tv);
+        imgIzin = view.findViewById(R.id.img_izin);
+        imgFinger = view.findViewById(R.id.img_finger);
+        inLayoutIzin = view.findViewById(R.id.in_layout_izin);
+        inLayoutFinger = view.findViewById(R.id.in_layout_finger);
 
         selectMonth = getBulanTahun();
         dateNowTV.setText(getDate().substring(8,10)+"/"+getDate().substring(5,7)+"/"+getDate().substring(0,4));
@@ -277,8 +288,33 @@ public class FragmentInfo extends Fragment {
 
         if(sharedPrefManager.getSpIdCor().equals("1")){
             labelNotificationIzin.setText("Izin/Cuti");
+            permohonanIkkBTN.setVisibility(View.VISIBLE);
         } else if(sharedPrefManager.getSpIdCor().equals("3")){
             labelNotificationIzin.setText("Izin");
+            permohonanIkkBTN.setVisibility(View.GONE);
+            imgIzin.setMinimumHeight(200);
+            int heightInDp = 100;
+            int heightInPx = convertDpToPx(mContext, heightInDp);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    heightInPx
+            );
+            imgIzin.setLayoutParams(layoutParams);
+            int topDp = 20;
+            int bottomDp = 20;
+            int leftDp = 15;
+            int rightDp = 15;
+            int topPx = convertDpToPx(mContext, topDp);
+            int bottomPx = convertDpToPx(mContext, bottomDp);
+            int leftPx = convertDpToPx(mContext, leftDp);
+            int rightPx = convertDpToPx(mContext, rightDp);
+            inLayoutIzin.setPadding(leftPx, topPx, rightPx, bottomPx);
+            labelNotificationIzin.setTextSize(17);
+
+            imgFinger.setMinimumHeight(200);
+            imgFinger.setLayoutParams(layoutParams);
+            inLayoutFinger.setPadding(leftPx, topPx, rightPx, bottomPx);
+            labelNotificationFinger.setTextSize(17);
         }
 
         historyBTN.setOnClickListener(new View.OnClickListener() {
@@ -301,6 +337,14 @@ public class FragmentInfo extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, ListNotifikasiFingerscanActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        permohonanIkkBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ListIzinKeluarKantor.class);
                 startActivity(intent);
             }
         });
@@ -791,12 +835,20 @@ public class FragmentInfo extends Fragment {
                                 String defaut_news_category = data.getString("defaut_news_category");
                                 String ototitor_ec = data.getString("ototitor_ec");
                                 String list_sdm = data.getString("list_sdm");
+                                String waiting_ikk = data.getString("waiting_ikk");
 
                                 listSDM = list_sdm;
                                 otoritorEC = ototitor_ec;
 
                                 statusFiturIzinCuti = fitur_izin;
                                 statusFiturFinger = fitur_finger;
+
+                                if(Integer.parseInt(waiting_ikk)>0){
+                                    countNotificationIkk.setVisibility(View.VISIBLE);
+                                    countNotifIkkTV.setText(waiting_ikk);
+                                } else {
+                                    countNotificationIkk.setVisibility(View.GONE);
+                                }
 
                                 if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
                                     projectPart.setVisibility(View.VISIBLE);
@@ -1317,6 +1369,11 @@ public class FragmentInfo extends Fragment {
                 break;
         }
 
+    }
+
+    private int convertDpToPx(Context context, int dp) {
+        return (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
 
     @Override

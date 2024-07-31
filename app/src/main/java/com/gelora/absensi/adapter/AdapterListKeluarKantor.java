@@ -93,21 +93,31 @@ public class AdapterListKeluarKantor extends RecyclerView.Adapter<AdapterListKel
                 if(Objects.equals(item.getStatusApproval(), "0")){
                     getBinding().cardDetailProses.setText("Menunggu persetujuan Atasan");
                     if ((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) || (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25"))){
-                        getBinding().batasStatus.setVisibility(View.VISIBLE);
-                        getBinding().waitingMark.setVisibility(View.VISIBLE);
+                        if(sharedPrefManager.getSpNik().equals(item.getNik())){
+                            getBinding().batasStatus.setVisibility(View.GONE);
+                            getBinding().waitingMark.setVisibility(View.GONE);
+                        } else {
+                            getBinding().batasStatus.setVisibility(View.VISIBLE);
+                            getBinding().waitingMark.setVisibility(View.VISIBLE);
+                        }
                     } else {
                         getBinding().batasStatus.setVisibility(View.GONE);
                         getBinding().waitingMark.setVisibility(View.GONE);
                     }
                 } else if(Objects.equals(item.getStatusApproval(), "1")){
+                    getBinding().cardDetailProses.setText("Menunggu persetujuan Satpam");
                     if (sharedPrefManager.getSpIdDept().equals("21")){
-                        getBinding().batasStatus.setVisibility(View.VISIBLE);
-                        getBinding().waitingMark.setVisibility(View.VISIBLE);
+                        if(sharedPrefManager.getSpNik().equals(item.getNik())){
+                            getBinding().batasStatus.setVisibility(View.GONE);
+                            getBinding().waitingMark.setVisibility(View.GONE);
+                        } else {
+                            getBinding().batasStatus.setVisibility(View.VISIBLE);
+                            getBinding().waitingMark.setVisibility(View.VISIBLE);
+                        }
                     } else {
                         getBinding().batasStatus.setVisibility(View.GONE);
                         getBinding().waitingMark.setVisibility(View.GONE);
                     }
-                    getBinding().cardDetailProses.setText("Menunggu persetujuan Satpam");
                 }
                 getBinding().cardDetailProses.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.selected_yellow));
             }

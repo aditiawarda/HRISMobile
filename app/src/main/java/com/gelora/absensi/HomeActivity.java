@@ -122,7 +122,8 @@ public class HomeActivity extends AppCompatActivity {
                 }
             });
 
-        } else {
+        }
+        else {
             setContentView(R.layout.activity_home);
 
             bubbleNavigation = findViewById(R.id.equal_navigation_bar);
@@ -405,8 +406,9 @@ public class HomeActivity extends AppCompatActivity {
                                 String terlambat = data.getString("terlambat");
                                 String tidak_checkout = data.getString("tidak_checkout");
                                 String status_notif = data.getString("status_notif");
+                                String waiting_ikk = data.getString("waiting_ikk");
 
-                                if (count.equals("0") && count_finger.equals("0")){
+                                if (count.equals("0") && count_finger.equals("0") && waiting_ikk.equals("0")){
                                     int alpaNumb = Integer.parseInt(alpa);
                                     int lateNumb = Integer.parseInt(terlambat);
                                     int noCheckoutNumb = Integer.parseInt(tidak_checkout);
@@ -452,7 +454,8 @@ public class HomeActivity extends AppCompatActivity {
                                         notif = "0";
                                         infoMark.setVisibility(View.GONE);
                                     }
-                                } else if (!count.equals("0") && count_finger.equals("0")) {
+                                }
+                                else if (!count.equals("0") && count_finger.equals("0") && waiting_ikk.equals("0")) {
                                     infoMark.setVisibility(View.VISIBLE);
                                     if(notif.equals("0")){
                                         if(status_notif.equals("1")){
@@ -464,7 +467,8 @@ public class HomeActivity extends AppCompatActivity {
                                     } else {
                                         notif = "0";
                                     }
-                                } else if (count.equals("0") && !count_finger.equals("0")) {
+                                }
+                                else if (count.equals("0") && !count_finger.equals("0") && waiting_ikk.equals("0")) {
                                     infoMark.setVisibility(View.VISIBLE);
                                     if(notif.equals("0")){
                                         if(status_notif.equals("1")){
@@ -476,10 +480,60 @@ public class HomeActivity extends AppCompatActivity {
                                     } else {
                                         notif = "0";
                                     }
-                                } else if (!count.equals("0") && !count_finger.equals("0")) {
+                                }
+                                else if (count.equals("0") && count_finger.equals("0") && !waiting_ikk.equals("0")) {
                                     infoMark.setVisibility(View.VISIBLE);
                                     if(notif.equals("0")){
                                         if(status_notif.equals("1")){
+                                            notif = "1";
+                                            warningNotifIkk();
+                                        } else {
+                                            notif = "0";
+                                        }
+                                    } else {
+                                        notif = "0";
+                                    }
+                                }
+                                else if (!count.equals("0") && !count_finger.equals("0") && waiting_ikk.equals("0")) {
+                                    infoMark.setVisibility(View.VISIBLE);
+                                    if(notif.equals("0")){
+                                        if(status_notif.equals("1")){
+                                            notif = "1";
+                                            warningNotifIzin();
+                                        } else {
+                                            notif = "0";
+                                        }
+                                    } else {
+                                        notif = "0";
+                                    }
+                                } else if (!count.equals("0") && count_finger.equals("0") && !waiting_ikk.equals("0")) {
+                                    infoMark.setVisibility(View.VISIBLE);
+                                    if (notif.equals("0")) {
+                                        if (status_notif.equals("1")) {
+                                            notif = "1";
+                                            warningNotifIzin();
+                                        } else {
+                                            notif = "0";
+                                        }
+                                    } else {
+                                        notif = "0";
+                                    }
+                                } else if (count.equals("0") && !count_finger.equals("0") && !waiting_ikk.equals("0")) {
+                                    infoMark.setVisibility(View.VISIBLE);
+                                    if (notif.equals("0")) {
+                                        if (status_notif.equals("1")) {
+                                            notif = "1";
+                                            warningNotifFinger();
+                                        } else {
+                                            notif = "0";
+                                        }
+                                    } else {
+                                        notif = "0";
+                                    }
+                                } else if (!count.equals("0") && !count_finger.equals("0") && !waiting_ikk.equals("0")) {
+                                    infoMark.setVisibility(View.VISIBLE);
+                                    if (notif.equals("0")) {
+                                        if (status_notif.equals("1")) {
                                             notif = "1";
                                             warningNotifIzin();
                                         } else {
@@ -1051,6 +1105,63 @@ public class HomeActivity extends AppCompatActivity {
                 .setContentText("Halo "+shortName+", terdapat notifikasi permohonan fingerscan atau form keterangan tidak absen yang belum anda lihat");
 
         Intent notificationIntent = new Intent(this, ListNotifikasiActivity.class);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_MUTABLE);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        } else {
+            @SuppressLint("UnspecifiedImmutableFlag")
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        }
+
+    }
+
+    private void warningNotifIkk() {
+        String shortName;
+        String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+        if(shortNameArray.length>1){
+            if(shortNameArray[0].length()<3){
+                shortName = shortNameArray[1];
+                System.out.println(shortName);
+            } else {
+                shortName = shortNameArray[0];
+                System.out.println(shortName);
+            }
+        } else {
+            shortName = shortNameArray[0];
+            System.out.println(shortName);
+        }
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        String NOTIFICATION_CHANNEL_ID = "warning_notif_izin";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            @SuppressLint("WrongConstant")
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+            notificationChannel.enableVibration(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        notificationBuilder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.ic_skylight_notification)
+                .setColor(Color.parseColor("#A6441F"))
+                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setContentTitle("HRIS Mobile Gelora")
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("Halo "+shortName+", terdapat notifikasi permohonan izin keluar kantor yang belum anda lihat"))
+                .setContentText("Halo "+shortName+", terdapat notifikasi permohonan izin keluar kantor yang belum anda lihat");
+
+        Intent notificationIntent = new Intent(this, ListIzinKeluarKantor.class);
         notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
