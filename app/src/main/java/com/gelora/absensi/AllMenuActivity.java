@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -38,8 +39,8 @@ import java.util.Map;
 public class AllMenuActivity extends AppCompatActivity {
 
     LinearLayout makanLemburPart4, projectPart3, menuProjectBTN3, menuMakanLemburBTN, menuMakanLembur2BTN, menuMakanLembur3BTN, makanLemburPart, makanLemburPart2, makanLemburPart3, menuReportSumaBTN, menuReport3SumaBTN, menuReport2SumaBTN, reportSumaPart3, reportSumaPart2, reportSumaPart, menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
-    LinearLayout keluarKantorPart6, menuKeluarKantor6BTN, keluarKantorPart5, menuKeluarKantor5BTN, keluarKantorPart4, menuKeluarKantor4BTN, keluarKantorPart3, menuKeluarKantor3BTN, keluarKantorPart2, menuKeluarKantor2BTN, keluarKantorPart, menuKeluarKantorBTN, menuMakanLembur4BTN, actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
-    TextView countNotifGMTV, countNotifClearanceTV, countNotifPenilaianTV;
+    LinearLayout countInIkkPart, countInIkkPart2, countInIkkPart3, countInIkkPart4, countInIkkPart5, countInIkkPart6, keluarKantorPart6, menuKeluarKantor6BTN, keluarKantorPart5, menuKeluarKantor5BTN, keluarKantorPart4, menuKeluarKantor4BTN, keluarKantorPart3, menuKeluarKantor3BTN, keluarKantorPart2, menuKeluarKantor2BTN, keluarKantorPart, menuKeluarKantorBTN, menuMakanLembur4BTN, actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
+    TextView countInIkkTv, countInIkkTv2, countInIkkTv3, countInIkkTv4, countInIkkTv5, countInIkkTv6, countNotifGMTV, countNotifClearanceTV, countNotifPenilaianTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -118,6 +119,18 @@ public class AllMenuActivity extends AppCompatActivity {
         menuKeluarKantor4BTN = findViewById(R.id.keluar_kantor_btn_4);
         menuKeluarKantor5BTN = findViewById(R.id.keluar_kantor_btn_5);
         menuKeluarKantor6BTN = findViewById(R.id.keluar_kantor_btn_6);
+        countInIkkPart = findViewById(R.id.count_in_ikk_part);
+        countInIkkTv = findViewById(R.id.count_in_ikk_tv);
+        countInIkkPart2 = findViewById(R.id.count_in_ikk_part_2);
+        countInIkkTv2 = findViewById(R.id.count_in_ikk_tv_2);
+        countInIkkPart3 = findViewById(R.id.count_in_ikk_part_3);
+        countInIkkTv3 = findViewById(R.id.count_in_ikk_tv_3);
+        countInIkkPart4 = findViewById(R.id.count_in_ikk_part_4);
+        countInIkkTv4 = findViewById(R.id.count_in_ikk_tv_4);
+        countInIkkPart5 = findViewById(R.id.count_in_ikk_part_5);
+        countInIkkTv5 = findViewById(R.id.count_in_ikk_tv_5);
+        countInIkkPart6 = findViewById(R.id.count_in_ikk_part_6);
+        countInIkkTv6 = findViewById(R.id.count_in_ikk_tv_6);
         countNotificationPenilaian = findViewById(R.id.count_notification_penilaian);
         countNotifPenilaianTV = findViewById(R.id.count_notif_penilaian_tv);
         countNotificationClearancePart = findViewById(R.id.count_notification_clearance);
@@ -473,7 +486,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuKeluarKantorBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ListIzinKeluarKantor.class);
                 startActivity(intent);
             }
         });
@@ -481,7 +494,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuKeluarKantor2BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ListIzinKeluarKantor.class);
                 startActivity(intent);
             }
         });
@@ -489,7 +502,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuKeluarKantor3BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ListIzinKeluarKantor.class);
                 startActivity(intent);
             }
         });
@@ -497,7 +510,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuKeluarKantor4BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ListIzinKeluarKantor.class);
                 startActivity(intent);
             }
         });
@@ -505,7 +518,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuKeluarKantor5BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ListIzinKeluarKantor.class);
                 startActivity(intent);
             }
         });
@@ -513,12 +526,10 @@ public class AllMenuActivity extends AppCompatActivity {
         menuKeluarKantor6BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ListIzinKeluarKantor.class);
                 startActivity(intent);
             }
         });
-
-        roleMenu();
 
     }
 
@@ -849,6 +860,7 @@ public class AllMenuActivity extends AppCompatActivity {
                                 String pengumuman_time = data.getString("pengumuman_time");
                                 String ototitor_ec = data.getString("ototitor_ec");
                                 String waiting_ec = data.getString("waiting_ec");
+                                String waiting_ikk = data.getString("waiting_ikk");
 
                                 String id_corporate = data.getString("id_corporate");
                                 String id_cab = data.getString("id_cab");
@@ -858,6 +870,29 @@ public class AllMenuActivity extends AppCompatActivity {
 
                                 otoritorEC = ototitor_ec;
                                 listSDM = list_sdm;
+
+                                if(Integer.parseInt(waiting_ikk)>0){
+                                    countInIkkPart.setVisibility(View.VISIBLE);
+                                    countInIkkPart2.setVisibility(View.VISIBLE);
+                                    countInIkkPart3.setVisibility(View.VISIBLE);
+                                    countInIkkPart4.setVisibility(View.VISIBLE);
+                                    countInIkkPart5.setVisibility(View.VISIBLE);
+                                    countInIkkPart6.setVisibility(View.VISIBLE);
+
+                                    countInIkkTv.setText(waiting_ikk);
+                                    countInIkkTv2.setText(waiting_ikk);
+                                    countInIkkTv3.setText(waiting_ikk);
+                                    countInIkkTv4.setText(waiting_ikk);
+                                    countInIkkTv5.setText(waiting_ikk);
+                                    countInIkkTv6.setText(waiting_ikk);
+                                } else {
+                                    countInIkkPart.setVisibility(View.GONE);
+                                    countInIkkPart2.setVisibility(View.GONE);
+                                    countInIkkPart3.setVisibility(View.GONE);
+                                    countInIkkPart4.setVisibility(View.GONE);
+                                    countInIkkPart5.setVisibility(View.GONE);
+                                    countInIkkPart6.setVisibility(View.GONE);
+                                }
 
                                 menuNewsBTN.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -1269,6 +1304,11 @@ public class AllMenuActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacksAndMessages(null);
+    }
+
+    protected void onResume() {
+        super.onResume();
+        roleMenu();
     }
 
 }

@@ -55,6 +55,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".DetailIzinKeluar"
+            android:exported="false"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
+        <activity
+            android:name=".FormIzinKeluarKantor"
+            android:exported="false"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
+        <activity
+            android:name=".ListIzinKeluarKantor"
+            android:exported="false"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
+        <activity
             android:name=".OfficeLeftScannerActivity"
             android:exported="false"
             tools:ignore="DiscouragedApi,LockedOrientationActivity" />

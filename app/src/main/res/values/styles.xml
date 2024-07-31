@@ -80,4 +80,21 @@
         <item name="android:statusBarColor" tools:targetApi="1" tools:ignore="ObsoleteSdkInt">?attr/colorPrimaryDark</item>
     </style>
 
+    <style name="CustomAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:buttonBarStyle">@style/CustomButtonBar</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+
+    <style name="CustomButtonBar" parent="Widget.AppCompat.ButtonBar.AlertDialog">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="CustomButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">#FF4081</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
 </resources>

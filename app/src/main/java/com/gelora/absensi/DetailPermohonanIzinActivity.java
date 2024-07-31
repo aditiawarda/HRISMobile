@@ -431,7 +431,6 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                     public void onFinish() {
                                         i = -1;
                                         rejectedAction();
-
                                     }
                                 }.start();
 

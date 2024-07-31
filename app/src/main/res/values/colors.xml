@@ -7,8 +7,14 @@
     <color name="cbDefault">#DBDBDB</color>
     <color name="strokeColorArea">#E6FB3527</color>
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
     <color name="green">#309A35</color>
     <color name="red">#B83633</color>
+    <color name="blueBtnEdit">#0C8FD6</color>
+    <color name="redBtnTolak">#ED5151</color>
+    <color name="greenBtnSetujui">#47BE4C</color>
+    <color name="heavyGreen">#518f57</color>
+    <color name="heavyRed">#e56657</color>
     <color name="warningBottom">#FFE3B3</color>
     <color name="colorGradien">#E1693C</color>
     <color name="colorGradien2">#E1693C</color>
@@ -32,4 +38,8 @@
     <color name="color5">#388E3C</color>
     <color name="color6">#FFC400</color>
     <color name="color7">#E4DEC9</color>
+    <color name="heavy_gray">#a8b9c3</color>
+    <color name="heavy_blue">#60a4ac</color>
+    <color name="selected_yellow">#ef9133</color>
+    <color name="darker_gray">#b8b8b8</color>
 </resources>
