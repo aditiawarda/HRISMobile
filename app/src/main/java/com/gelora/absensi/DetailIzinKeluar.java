@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -97,19 +98,42 @@ public class DetailIzinKeluar extends AppCompatActivity {
         networkViewModel = new ViewModelProvider(DetailIzinKeluar.this).get(ConnectivityViewModel.class);
         viewModel = new ViewModelProvider(this).get(ScreenshotViewModel.class);
 
-        getBinding().backBtn.setOnClickListener( view1 ->  {
+        getBinding().backBtn.setOnClickListener(view1 ->  {
             DetailIzinKeluar.this.finish();
+        });
+
+        getBinding().appbar.setOnClickListener(view1 -> {
+        });
+
+        getBinding().swipeToRefreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        getBinding().swipeToRefreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        getBinding().swipeToRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getDetail();
+                handleApprovalByJabatan();
+                screenshotRestriction();
+                checkInternet();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getBinding().swipeToRefreshLayout.setRefreshing(false);
+                    }
+                }, 500);
+            }
         });
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             getApprovalId = extras.getString("current_id");
-            getNikPemohon  = extras.getString("nik_pemohon");
+            getNikPemohon = extras.getString("nik_pemohon");
         }
+
         getDetail();
         handleApprovalByJabatan();
         screenshotRestriction();
         checkInternet();
+
     }
 
     private void checkInternet(){
@@ -530,7 +554,7 @@ public class DetailIzinKeluar extends AppCompatActivity {
                                 .into(getBinding().ttdSupervisor);
                     }
                 } else {
-                    getBinding().namaAtasan.setText("(      ....      )");
+                    getBinding().namaAtasan.setText("( ............... )");
                 }
 
                 if (!Objects.equals(detail.getStatusApprovalSatpam(), "0") && detail.getStatusApprovalSatpam() != null) {
@@ -551,7 +575,7 @@ public class DetailIzinKeluar extends AppCompatActivity {
                                 .into(getBinding().ttdSatpam);
                     }
                 } else {
-                    getBinding().namaSatpam.setText("(      ....      )");
+                    getBinding().namaSatpam.setText("( ............... )");
                 }
 
                 getBinding().detailKeperluan.setText(detail.getKeperluan());
@@ -739,18 +763,21 @@ public class DetailIzinKeluar extends AppCompatActivity {
                                 getDetail();
                                 statusStop = "1";
                                 getBinding().qrBtn.setVisibility(View.GONE);
-                                new KAlertDialog(DetailIzinKeluar.this, KAlertDialog.SUCCESS_TYPE)
-                                        .setTitleText("Berhasil")
-                                        .setContentText("Data izin keluar kantor yang anda ajukan berhasil diverifikasi. jam kembali anda pukul "+jam_kembali)
-                                        .setConfirmText("    OK    ")
-                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                            @Override
-                                            public void onClick(KAlertDialog sDialog) {
-                                                sDialog.dismiss();
-                                            }
-                                        })
-                                        .show();
-
+                                try {
+                                    new KAlertDialog(DetailIzinKeluar.this, KAlertDialog.SUCCESS_TYPE)
+                                            .setTitleText("Berhasil")
+                                            .setContentText("Data izin keluar kantor yang anda ajukan berhasil diverifikasi. jam kembali anda pukul "+jam_kembali)
+                                            .setConfirmText("    OK    ")
+                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                @Override
+                                                public void onClick(KAlertDialog sDialog) {
+                                                    sDialog.dismiss();
+                                                }
+                                            })
+                                            .show();
+                                } catch (WindowManager.BadTokenException e){
+                                    Log.e("Error", e.toString());
+                                }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

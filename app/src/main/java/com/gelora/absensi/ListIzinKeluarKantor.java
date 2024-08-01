@@ -111,7 +111,7 @@ public class ListIzinKeluarKantor extends AppCompatActivity {
             getBinding().scannerBtn.setVisibility(View.GONE);
         }
 
-        if (!(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")) || !(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")) || !(sharedPrefManager.getSpNik().equals("1280270910") || sharedPrefManager.getSpNik().equals("1090080310") || sharedPrefManager.getSpNik().equals("2840071116") || sharedPrefManager.getSpNik().equals("1332240111")) || !sharedPrefManager.getSpIdDept().equals("21")) {
+        if ((!sharedPrefManager.getSpIdJabatan().equals("41") && !sharedPrefManager.getSpIdJabatan().equals("10") && !sharedPrefManager.getSpIdJabatan().equals("3")) && (!sharedPrefManager.getSpIdJabatan().equals("11") && !sharedPrefManager.getSpIdJabatan().equals("25")) && (!sharedPrefManager.getSpNik().equals("1280270910") && !sharedPrefManager.getSpNik().equals("1090080310") && !sharedPrefManager.getSpNik().equals("2840071116") && !sharedPrefManager.getSpNik().equals("1332240111")) && !sharedPrefManager.getSpIdDept().equals("21")) {
             getBinding().addBtnPart.setVisibility(View.VISIBLE);
         }
 
@@ -178,18 +178,27 @@ public class ListIzinKeluarKantor extends AppCompatActivity {
             }
             getCountWaiting();
         } else if (sharedPrefManager.getSpIdDept().equals("21")){
-            int topDp = 205;
-            int bottomDp = 20;
-            int leftDp = 17;
-            int rightDp = 17;
-            int topPx = dpToPx(topDp);
-            int bottomPx = dpToPx(bottomDp);
-            int leftPx = dpToPx(leftDp);
-            int rightPx = dpToPx(rightDp);
-            getBinding().waitingData.setPadding(leftPx, topPx, rightPx, bottomPx);
             if (selectedLeftButton){
+                int topDp = 250;
+                int bottomDp = 20;
+                int leftDp = 17;
+                int rightDp = 17;
+                int topPx = dpToPx(topDp);
+                int bottomPx = dpToPx(bottomDp);
+                int leftPx = dpToPx(leftDp);
+                int rightPx = dpToPx(rightDp);
+                getBinding().waitingData.setPadding(leftPx, topPx, rightPx, bottomPx);
                 getAllDataForSatpam(sharedPrefManager.getSpNik());
             } else {
+                int topDp = 205;
+                int bottomDp = 20;
+                int leftDp = 17;
+                int rightDp = 17;
+                int topPx = dpToPx(topDp);
+                int bottomPx = dpToPx(bottomDp);
+                int leftPx = dpToPx(leftDp);
+                int rightPx = dpToPx(rightDp);
+                getBinding().waitingData.setPadding(leftPx, topPx, rightPx, bottomPx);
                 int topPaddingDp = 0;
                 int bottomPaddingDp = 100;
                 int leftPaddingDp = 20;
@@ -228,15 +237,27 @@ public class ListIzinKeluarKantor extends AppCompatActivity {
 
     private void handleSelectedButton(){
         if ((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) || (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")) || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")) || sharedPrefManager.getSpIdDept().equals("21")){
-            int topDp = 205;
-            int bottomDp = 20;
-            int leftDp = 17;
-            int rightDp = 17;
-            int topPx = dpToPx(topDp);
-            int bottomPx = dpToPx(bottomDp);
-            int leftPx = dpToPx(leftDp);
-            int rightPx = dpToPx(rightDp);
-            getBinding().waitingData.setPadding(leftPx, topPx, rightPx, bottomPx);
+            if(sharedPrefManager.getSpIdDept().equals("21")){
+                int topDp = 250;
+                int bottomDp = 20;
+                int leftDp = 17;
+                int rightDp = 17;
+                int topPx = dpToPx(topDp);
+                int bottomPx = dpToPx(bottomDp);
+                int leftPx = dpToPx(leftDp);
+                int rightPx = dpToPx(rightDp);
+                getBinding().waitingData.setPadding(leftPx, topPx, rightPx, bottomPx);
+            } else {
+                int topDp = 205;
+                int bottomDp = 20;
+                int leftDp = 17;
+                int rightDp = 17;
+                int topPx = dpToPx(topDp);
+                int bottomPx = dpToPx(bottomDp);
+                int leftPx = dpToPx(leftDp);
+                int rightPx = dpToPx(rightDp);
+                getBinding().waitingData.setPadding(leftPx, topPx, rightPx, bottomPx);
+            }
             getBinding().tabBar.setVisibility(View.VISIBLE);
             getCountWaiting();
         } else {

@@ -3,6 +3,7 @@ package com.gelora.absensi;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -105,10 +106,6 @@ public class FormIzinKeluarKantor extends AppCompatActivity {
                     }
                 }, 500);
             }
-        });
-
-        getBinding().backBtn.setOnClickListener(view1 -> {
-
         });
 
         getBinding().backBtn.setOnClickListener(new View.OnClickListener() {
@@ -435,11 +432,15 @@ public class FormIzinKeluarKantor extends AppCompatActivity {
                 keperluan
         );
         repository.postData(postResponse, response -> {
-            if (Objects.equals(response, "Success")){
+            String[] parts = response.split("-");
+            if (Objects.equals(parts[0], "Success")){
                 getBinding().successSubmit.setVisibility(View.VISIBLE);
                 getBinding().formPart.setVisibility(View.GONE);
-                getBinding().okBtn.setOnClickListener(view -> {
-                    onBackPressed();
+                getBinding().viewBtn.setOnClickListener(view -> {
+                    Intent intent = new Intent(FormIzinKeluarKantor.this, DetailIzinKeluar.class);
+                    intent.putExtra("current_id",parts[1]);
+                    intent.putExtra("nik_pemohon",sharedPrefManager.getSpNik());
+                    startActivity(intent);
                 });
             }
         }, Throwable::printStackTrace);

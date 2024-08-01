@@ -416,7 +416,7 @@
                                 </RelativeLayout>
 
                                 <LinearLayout
-                                    android:id="@+id/ok_btn"
+                                    android:id="@+id/view_btn"
                                     android:layout_width="match_parent"
                                     android:layout_marginTop="10dp"
                                     android:layout_height="40dp"
@@ -429,7 +429,7 @@
                                         android:textStyle="bold"
                                         android:textSize="13dp"
                                         android:textColor="@color/white"
-                                        android:text="OK"
+                                        android:text="LIHAT PERMOHONAN"
                                         tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>

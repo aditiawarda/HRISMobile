@@ -233,7 +233,8 @@ public void postData(PostIzinResponse karyawanKeluar, Response.Listener<String> 
                 response -> {
                     try {
                         String message = response.getString("status");
-                        listener.onResponse(message);
+                        String id = response.getString("id");
+                        listener.onResponse(message+"-"+id);
                     } catch (JSONException e) {
                         e.printStackTrace();
                         errorListener.onErrorResponse(new VolleyError("Error parsing response JSON"));
