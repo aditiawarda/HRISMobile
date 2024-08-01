@@ -995,6 +995,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
+                params.put("nik", sharedPrefManager.getSpNik());
                 params.put("id_bagian", sharedPrefManager.getSpIdDept());
                 return params;
             }
