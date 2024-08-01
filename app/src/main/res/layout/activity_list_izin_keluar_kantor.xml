@@ -188,7 +188,8 @@
                             android:gravity="right"
                             android:maxLines="1"
                             android:singleLine="true"
-                            android:text="IZIN KELUAR KANTOR"
+                            android:layout_marginRight="-2dp"
+                            android:text="IZIN KELUAR KANTOR "
                             android:textColor="@color/white"
                             android:textSize="15dp"
                             android:textStyle="bold"
@@ -402,7 +403,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="17dp"
-        android:paddingTop="190dp"
+        android:paddingTop="200dp"
         android:paddingRight="17dp"
         android:paddingBottom="20dp"
         tools:ignore="MissingConstraints,UselessParent">
@@ -414,7 +415,7 @@
             android:gravity="center"
             android:visibility="gone"
             android:orientation="vertical"
-            android:paddingTop="55dp"
+            android:paddingTop="40dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:paddingBottom="20dp">
@@ -422,7 +423,6 @@
             <TextView
                 android:layout_width="85dp"
                 android:layout_height="85dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/empty_image"
                 android:textAlignment="center"
@@ -458,7 +458,7 @@
             android:layout_height="match_parent"
             android:gravity="center|top"
             android:orientation="vertical"
-            android:paddingTop="55dp"
+            android:paddingTop="40dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:paddingBottom="20dp">

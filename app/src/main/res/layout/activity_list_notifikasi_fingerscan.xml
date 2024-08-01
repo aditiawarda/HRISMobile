@@ -356,7 +356,7 @@
                                 android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:text="FINGERSCAN"
+                                android:text="KETERANGAN TIDAK ABSEN"
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
