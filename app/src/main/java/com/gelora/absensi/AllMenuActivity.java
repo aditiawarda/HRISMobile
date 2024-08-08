@@ -781,8 +781,15 @@ public class AllMenuActivity extends AppCompatActivity {
 
                         if(sharedPrefManager.getSpIdJabatan().equals("1") && sharedPrefManager.getSpIdCor().equals("1") && (sharedPrefManager.getSpIdCab().equals("1") || sharedPrefManager.getSpIdCab().equals("0"))){
                             makanLemburPart4.setVisibility(View.VISIBLE);
+
+                            keluarKantorPart4.setVisibility(View.VISIBLE);
+                            keluarKantorPart5.setVisibility(View.GONE);
                         } else {
                             makanLemburPart4.setVisibility(View.GONE);
+
+                            keluarKantorPart4.setVisibility(View.GONE);
+                            keluarKantorPart5.setVisibility(View.VISIBLE);
+                            keluarKantorPart6.setVisibility(View.GONE);
                         }
                         makanLemburPart.setVisibility(View.GONE);
                         makanLemburPart2.setVisibility(View.GONE);
@@ -791,8 +798,6 @@ public class AllMenuActivity extends AppCompatActivity {
                         keluarKantorPart.setVisibility(View.GONE);
                         keluarKantorPart2.setVisibility(View.GONE);
                         keluarKantorPart3.setVisibility(View.GONE);
-                        keluarKantorPart4.setVisibility(View.GONE);
-                        keluarKantorPart5.setVisibility(View.VISIBLE);
                         keluarKantorPart6.setVisibility(View.GONE);
                     }
 
