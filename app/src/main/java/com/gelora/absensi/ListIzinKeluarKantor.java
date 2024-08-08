@@ -414,6 +414,10 @@ public class ListIzinKeluarKantor extends AppCompatActivity {
                         getBinding().loadingDataPart.setVisibility(View.GONE);
                     }
                 }, 600);
+            } else {
+                getBinding().noDataPart.setVisibility(View.VISIBLE);
+                getBinding().parentLay.setVisibility(View.VISIBLE);
+                getBinding().loadingDataPart.setVisibility(View.GONE);
             }
         }, Throwable::printStackTrace);
     }
@@ -442,6 +446,10 @@ public class ListIzinKeluarKantor extends AppCompatActivity {
                         getBinding().loadingDataPart.setVisibility(View.GONE);
                     }
                 }, 600);
+            } else {
+                getBinding().noDataPart.setVisibility(View.VISIBLE);
+                getBinding().parentLay.setVisibility(View.VISIBLE);
+                getBinding().loadingDataPart.setVisibility(View.GONE);
             }
         }, Throwable::printStackTrace);
     }
