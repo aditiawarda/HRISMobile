@@ -1215,7 +1215,7 @@
                                 android:ellipsize="end"
                                 android:gravity="center"
                                 android:maxLines="1"
-                                android:text="Versi 2.7.3"
+                                android:text="Versi 2.7.4"
                                 android:textColor="#1AB4FF"
                                 android:textSize="12dp"
                                 tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
