@@ -479,10 +479,12 @@ public class DetailIzinKeluar extends AppCompatActivity {
                 if(checkApprovalAtasan.equals("1") && checkApprovalSatpam.equals("1") && isKembali.equals("0")){
                     getBinding().layoutUserBiasa.setVisibility(View.GONE);
                     getBinding().jamKembali.setText("Belum Kembali");
+                    getBinding().satpamVerifikator.setText("-");
                     getBinding().jamKembali.setTextColor(ContextCompat.getColor(DetailIzinKeluar.this, R.color.heavyRed));
                 } else if (checkApprovalAtasan.equals("1") && checkApprovalSatpam.equals("1") && isKembali.equals("1")){
                     getBinding().layoutUserBiasa.setVisibility(View.GONE);
                     getBinding().jamKembali.setText(detail.getJamKembali());
+                    getBinding().satpamVerifikator.setText(detail.getNamaVerifSatpam());
                     getBinding().jamKembali.setTextColor(ContextCompat.getColor(DetailIzinKeluar.this, R.color.black));
                 } else {
                     if(checkApprovalAtasan.equals("1")){

@@ -593,43 +593,92 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:layout_marginBottom="30dp"
-                                android:orientation="horizontal">
+                                android:orientation="vertical">
 
-                                <TextView
-                                    android:layout_width="120dp"
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="30dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text="KEMBALI JAM"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
+                                    android:layout_marginTop="20dp"
+                                    android:orientation="horizontal">
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="10dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text=":"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
+                                    <TextView
+                                        android:layout_width="120dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="30dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:text="KEMBALI JAM"
+                                        android:textSize="11dp"
+                                        android:textColor="#515151"
+                                        tools:ignore="HardcodedText,SpUsage"/>
 
-                                <TextView
-                                    android:id="@+id/jam_kembali"
-                                    android:layout_width="wrap_content"
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="10dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:text=":"
+                                        android:textSize="11dp"
+                                        android:textColor="#515151"
+                                        tools:ignore="HardcodedText,SpUsage"/>
+
+                                    <TextView
+                                        android:id="@+id/jam_kembali"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="10dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:text="-"
+                                        android:textSize="11dp"
+                                        android:textColor="#515151"
+                                        tools:ignore="HardcodedText,SpUsage"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="10dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text="=-"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="30dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="120dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="30dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:text="DI VERIFIKASI OLEH"
+                                        android:textSize="11dp"
+                                        android:textColor="#515151"
+                                        tools:ignore="HardcodedText,SpUsage"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="10dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:text=":"
+                                        android:textSize="11dp"
+                                        android:textColor="#515151"
+                                        tools:ignore="HardcodedText,SpUsage"/>
+
+                                    <TextView
+                                        android:id="@+id/satpam_verifikator"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="10dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:text="-"
+                                        android:textSize="11dp"
+                                        android:textColor="#515151"
+                                        tools:ignore="HardcodedText,SpUsage"/>
+
+                                </LinearLayout>
 
                             </LinearLayout>
 
