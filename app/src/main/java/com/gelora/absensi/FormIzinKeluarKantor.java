@@ -145,8 +145,24 @@ public class FormIzinKeluarKantor extends AppCompatActivity {
                     }
                     @SuppressLint("SimpleDateFormat")
                     String timeStamp = new SimpleDateFormat(" dd-MM-yyyy").format(Calendar.getInstance().getTime());
-                    getBinding().selectedDateTv.setText(selectedHour + ":" + selectedMinute + ":00");
-                    postJamKeluar = selectedHour + ":" + selectedMinute + ":00";
+                    if(selectedHour<10){
+                        if(selectedMinute<10){
+                            getBinding().selectedDateTv.setText("0"+selectedHour + ":" + "0"+selectedMinute + ":00");
+                            postJamKeluar = "0"+selectedHour + ":" + "0"+selectedMinute + ":00";
+                        } else {
+                            getBinding().selectedDateTv.setText("0"+selectedHour + ":" + selectedMinute + ":00");
+                            postJamKeluar = "0"+selectedHour + ":" + selectedMinute + ":00";
+                        }
+                    } else {
+                        if(selectedMinute<10){
+                            getBinding().selectedDateTv.setText(selectedHour + ":" + "0"+selectedMinute + ":00");
+                            postJamKeluar = selectedHour + ":" + "0"+selectedMinute + ":00";
+                        } else {
+                            getBinding().selectedDateTv.setText(selectedHour + ":" + selectedMinute + ":00");
+                            postJamKeluar = selectedHour + ":" + selectedMinute + ":00";
+                        }
+                    }
+
                     jamKeluarFilled = true;
                     timeDialog.dismiss();
                 });
