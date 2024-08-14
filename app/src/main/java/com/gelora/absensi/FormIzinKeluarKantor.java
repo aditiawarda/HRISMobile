@@ -162,7 +162,6 @@ public class FormIzinKeluarKantor extends AppCompatActivity {
                             postJamKeluar = selectedHour + ":" + selectedMinute + ":00";
                         }
                     }
-
                     jamKeluarFilled = true;
                     timeDialog.dismiss();
                 });
