@@ -48,15 +48,11 @@ public class Repository {
     public static final String GET_SIGNATURE_ENDPOINT = FILE_URL + "upload/digital_signature/";
     public static final String DELETE_REQUEST_ENDPOINT = BASE_URL + "cancel_permohonan_izin_keluar_kantor";
 
-
     private final RequestQueue requestQueue;
     private final ApiClient apiClient;
     private final Gson gson;
 
-
-
     private ApiService apiService;
-
 
     public Repository(Context context) {
         apiClient = ApiClient.getInstance(context);

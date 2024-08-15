@@ -3,6 +3,7 @@ package com.gelora.absensi;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -121,6 +123,9 @@ public class FormIzinKeluarKantor extends AppCompatActivity {
         getBinding().keluarDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+
                 final Calendar c = Calendar.getInstance();
                 int hour = c.get(Calendar.HOUR_OF_DAY);
                 int minute = c.get(Calendar.MINUTE);
@@ -177,6 +182,9 @@ public class FormIzinKeluarKantor extends AppCompatActivity {
         getBinding().submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+
                 final Calendar c = Calendar.getInstance();
                 postJamKeluar = getBinding().selectedDateTv.getText().toString();
                 keperluan = getBinding().etKeperluan.getText().toString();
@@ -241,7 +249,7 @@ public class FormIzinKeluarKantor extends AppCompatActivity {
                                             if (isConnected){
                                                 isClickSendWhileOffline = false;
                                                 sendData();
-                                            }else {
+                                            } else {
                                                 isClickSendWhileOffline = true;
                                                 checkInternet();
                                                 connectionFailed();
