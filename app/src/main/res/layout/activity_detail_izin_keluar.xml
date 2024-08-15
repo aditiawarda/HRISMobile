@@ -650,7 +650,7 @@
                                         android:layout_gravity="center_horizontal"
                                         android:layout_marginStart="30dp"
                                         android:fontFamily="@font/roboto"
-                                        android:text="DI VERIFIKASI OLEH"
+                                        android:text="DIVERIFIKASI OLEH"
                                         android:textSize="11dp"
                                         android:textColor="#515151"
                                         tools:ignore="HardcodedText,SpUsage"/>
