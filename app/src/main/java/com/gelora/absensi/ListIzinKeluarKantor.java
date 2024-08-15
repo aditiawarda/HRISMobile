@@ -111,7 +111,7 @@ public class ListIzinKeluarKantor extends AppCompatActivity {
             getBinding().scannerBtn.setVisibility(View.GONE);
         }
 
-        if ((!sharedPrefManager.getSpIdJabatan().equals("41") && !sharedPrefManager.getSpIdJabatan().equals("10") && !sharedPrefManager.getSpIdJabatan().equals("3")) && (!sharedPrefManager.getSpIdJabatan().equals("11") && !sharedPrefManager.getSpIdJabatan().equals("25")) && (!sharedPrefManager.getSpNik().equals("1280270910") && !sharedPrefManager.getSpNik().equals("1090080310") && !sharedPrefManager.getSpNik().equals("2840071116") && !sharedPrefManager.getSpNik().equals("1332240111")) && !sharedPrefManager.getSpIdDept().equals("21")) {
+        if ((!sharedPrefManager.getSpIdJabatan().equals("41") && !sharedPrefManager.getSpIdJabatan().equals("10") && !sharedPrefManager.getSpIdJabatan().equals("3")) && (!sharedPrefManager.getSpIdJabatan().equals("11") && !sharedPrefManager.getSpIdJabatan().equals("25") && !sharedPrefManager.getSpIdJabatan().equals("4")) && (!sharedPrefManager.getSpNik().equals("1280270910") && !sharedPrefManager.getSpNik().equals("1090080310") && !sharedPrefManager.getSpNik().equals("2840071116") && !sharedPrefManager.getSpNik().equals("1332240111")) && !sharedPrefManager.getSpIdDept().equals("21")) {
             getBinding().addBtnPart.setVisibility(View.VISIBLE);
         }
 
@@ -152,7 +152,7 @@ public class ListIzinKeluarKantor extends AppCompatActivity {
     }
 
     private void getDataByJabatan(){
-        if ((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) || (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")) || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
+        if ((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) || (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("4")) || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
             int topDp = 205;
             int bottomDp = 20;
             int leftDp = 17;
@@ -236,7 +236,7 @@ public class ListIzinKeluarKantor extends AppCompatActivity {
     }
 
     private void handleSelectedButton(){
-        if ((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) || (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")) || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")) || sharedPrefManager.getSpIdDept().equals("21")){
+        if ((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) || (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("4")) || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")) || sharedPrefManager.getSpIdDept().equals("21")){
             if(sharedPrefManager.getSpIdDept().equals("21")){
                 int topDp = 250;
                 int bottomDp = 20;
@@ -428,7 +428,7 @@ public class ListIzinKeluarKantor extends AppCompatActivity {
 
     void getAllDataForSatpam(String nik){
         repository.getAllUsersForSatpam(nik, response -> {
-            if(response.size() ==0){
+            if(response.size()==0){
                 getBinding().noDataPart.setVisibility(View.VISIBLE);
                 getBinding().parentLay.setVisibility(View.VISIBLE);
                 getBinding().loadingDataPart.setVisibility(View.GONE);
