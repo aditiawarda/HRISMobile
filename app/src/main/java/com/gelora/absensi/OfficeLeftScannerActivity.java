@@ -187,38 +187,42 @@ public class OfficeLeftScannerActivity extends AppCompatActivity {
         try {
             String encryptedData = parts[0];
             String inValidMessage = parts[1];
-            String decryptedData = EncryptionUtils.decrypt(encryptedData);
-            try {
-                JSONObject jsonObject = new JSONObject(decryptedData);
-                String key = jsonObject.getString("key");
-                String approvalId = jsonObject.getString("id");
-                String nikPemohon = jsonObject.getString("nik");
-                if (parts.length == 2 && key.equals("hris_ijin_keluar")) {
-                    verificationBack(approvalId);
-                } else {
-                    pDialog.dismiss();
-                    pDialog = new KAlertDialog(OfficeLeftScannerActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("QR Code tidak valid")
-                            .setConfirmText("COBA LAGI");
-                    pDialog.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                            barcodeView.resume();
-                        }
-                    });
-                    pDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
-                            dialog.dismiss();
-                            barcodeView.resume();
-                        }
-                    });
-                    pDialog.show();
+            if(encryptedData.equals("iOS")){
+                verificationBack(inValidMessage);
+            } else {
+                String decryptedData = EncryptionUtils.decrypt(encryptedData);
+                try {
+                    JSONObject jsonObject = new JSONObject(decryptedData);
+                    String key = jsonObject.getString("key");
+                    String approvalId = jsonObject.getString("id");
+                    String nikPemohon = jsonObject.getString("nik");
+                    if (parts.length == 2 && key.equals("hris_ijin_keluar")) {
+                        verificationBack(approvalId);
+                    } else {
+                        pDialog.dismiss();
+                        pDialog = new KAlertDialog(OfficeLeftScannerActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("QR Code tidak valid")
+                                .setConfirmText("COBA LAGI");
+                        pDialog.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                barcodeView.resume();
+                            }
+                        });
+                        pDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                dialog.dismiss();
+                                barcodeView.resume();
+                            }
+                        });
+                        pDialog.show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
         } catch (ArrayIndexOutOfBoundsException e){
             pDialog.dismiss();

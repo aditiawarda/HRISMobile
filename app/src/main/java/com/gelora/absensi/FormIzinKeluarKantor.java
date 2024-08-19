@@ -248,7 +248,7 @@ public class FormIzinKeluarKantor extends AppCompatActivity {
                                             i = -1;
                                             if (isConnected){
                                                 isClickSendWhileOffline = false;
-                                                sendData();
+                                                checkSignature();
                                             } else {
                                                 isClickSendWhileOffline = true;
                                                 checkInternet();
@@ -433,7 +433,7 @@ public class FormIzinKeluarKantor extends AppCompatActivity {
                 if (isConnectedNow) {
                     isConnected = true;
                     if (isClickSendWhileOffline){
-                        sendData();
+                        checkSignature();
                     }
                 } else {
                     if (pDialog != null){
@@ -445,6 +445,77 @@ public class FormIzinKeluarKantor extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void checkSignature(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response);
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Available")){
+                                String signature = data.getString("data");
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
+                                sendData();
+                            } else {
+                                pDialog.setTitleText("Perhatian")
+                                        .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")
+                                        .setCancelText(" BATAL ")
+                                        .setConfirmText("LANJUT")
+                                        .showCancelButton(true)
+                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                Intent intent = new Intent(FormIzinKeluarKantor.this, DigitalSignatureActivity.class);
+                                                intent.putExtra("kode", "form");
+                                                startActivity(intent);
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.WARNING_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
     }
 
     public void sendData(){

@@ -3,6 +3,7 @@ package com.gelora.absensi;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -12,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -307,44 +307,7 @@ public class DetailIzinKeluar extends AppCompatActivity {
                                 }
                                 public void onFinish() {
                                     i = -1;
-                                    if ((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) || (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("4")) || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
-                                        approvalAtasanResponse = new ApprovalAtasanResponse(
-                                                getApprovalId,
-                                                sharedPrefManager.getSpNik(),
-                                                "1"
-                                        );
-                                        repository.updateApproveAtasan( approvalAtasanResponse, response-> {
-                                            if (Objects.equals(response, "Success")){
-                                                getDetail();
-                                                pDialog.setTitleText("Berhasil Disetujui")
-                                                        .setConfirmText("    OK    ")
-                                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
-                                            } else {
-                                                pDialog.setTitleText("Gagal Disetujui")
-                                                        .setConfirmText("    OK    ")
-                                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
-                                            }
-                                        }, Throwable::printStackTrace);
-                                    } else if (sharedPrefManager.getSpIdDept().equals("21")){
-                                        approvalSatpamResponse = new ApprovalSatpamResponse(
-                                                getApprovalId,
-                                                sharedPrefManager.getSpNik(),
-                                                "1"
-                                        );
-                                        repository.updateApproveSatpam( approvalSatpamResponse, response-> {
-                                            if (Objects.equals(response, "Success")){
-                                                getDetail();
-                                                pDialog.setTitleText("Berhasil Disetujui")
-                                                        .setConfirmText("    OK    ")
-                                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
-                                            } else {
-                                                pDialog.setTitleText("Gagal Disetujui")
-                                                        .setConfirmText("    OK    ")
-                                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
-                                            }
-                                        }, Throwable::printStackTrace);
-                                    }
-
+                                    checkSignature();
                                 }
                             }.start();
                         }
@@ -810,7 +773,6 @@ public class DetailIzinKeluar extends AppCompatActivity {
 
     }
 
-
     private void generateQRCode(ImageView imgView) {
         String secureToken = UUID.randomUUID().toString();
         String key = "hris_ijin_keluar";
@@ -830,6 +792,118 @@ public class DetailIzinKeluar extends AppCompatActivity {
         } catch (JSONException | WriterException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void approvedPermohonan(){
+        if ((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) || (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("4")) || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
+            approvalAtasanResponse = new ApprovalAtasanResponse(
+                    getApprovalId,
+                    sharedPrefManager.getSpNik(),
+                    "1"
+            );
+            repository.updateApproveAtasan( approvalAtasanResponse, response-> {
+                if (Objects.equals(response, "Success")){
+                    getDetail();
+                    pDialog.setTitleText("Berhasil Disetujui")
+                            .setConfirmText("    OK    ")
+                            .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                } else {
+                    pDialog.setTitleText("Gagal Disetujui")
+                            .setConfirmText("    OK    ")
+                            .changeAlertType(KAlertDialog.ERROR_TYPE);
+                }
+            }, Throwable::printStackTrace);
+        }
+        else if (sharedPrefManager.getSpIdDept().equals("21")){
+            approvalSatpamResponse = new ApprovalSatpamResponse(
+                    getApprovalId,
+                    sharedPrefManager.getSpNik(),
+                    "1"
+            );
+            repository.updateApproveSatpam( approvalSatpamResponse, response-> {
+                if (Objects.equals(response, "Success")){
+                    getDetail();
+                    pDialog.setTitleText("Berhasil Disetujui")
+                            .setConfirmText("    OK    ")
+                            .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                } else {
+                    pDialog.setTitleText("Gagal Disetujui")
+                            .setConfirmText("    OK    ")
+                            .changeAlertType(KAlertDialog.ERROR_TYPE);
+                }
+            }, Throwable::printStackTrace);
+        }
+    }
+
+    private void checkSignature(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://hrisgelora.co.id/api/cek_ttd_digital";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new com.android.volley.Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response);
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Available")){
+                                String signature = data.getString("data");
+                                String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
+                                approvedPermohonan();
+                            } else {
+                                pDialog.setTitleText("Perhatian")
+                                        .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")
+                                        .setCancelText(" BATAL ")
+                                        .setConfirmText("LANJUT")
+                                        .showCancelButton(true)
+                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                Intent intent = new Intent(DetailIzinKeluar.this, DigitalSignatureActivity.class);
+                                                intent.putExtra("kode", "form");
+                                                startActivity(intent);
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.WARNING_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new com.android.volley.Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
     }
 
     private String getDate() {
