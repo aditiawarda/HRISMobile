@@ -1377,10 +1377,10 @@ public class FormExitClearanceActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String file_url = "https://hrisgelora.co.id/absen/pdf_clearance_form/"+id_record;
                 new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
-                        .setTitleText("Perhatian")
-                        .setContentText("Unduh File?")
-                        .setCancelText("TIDAK")
-                        .setConfirmText("   YA   ")
+                        .setTitleText("Unduh File?")
+                        .setContentText("Perhatian! file hasil unduh hanya dapat dibuka dengan aplikasi WPS")
+                        .setCancelText(" BATAL ")
+                        .setConfirmText(" UNDUH ")
                         .showCancelButton(true)
                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override
