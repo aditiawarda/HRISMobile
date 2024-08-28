@@ -8,11 +8,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +31,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterPermohonanIzin;
 import com.gelora.absensi.adapter.AdapterPermohonanSaya;
 import com.gelora.absensi.model.ListPermohonanIzin;
@@ -49,6 +58,8 @@ public class ListNotifikasiActivity extends AppCompatActivity {
     View rootview;
     TextView countNotifMasuk, countNotifSaya, labelPageIzin;
     private Handler handler = new Handler();
+    BottomSheetLayout bottomSheet;
+    LinearLayout izinBTN, cutiBTN, markIzin, markCuti;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -80,6 +91,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
         labelPageIzin = findViewById(R.id.label_page);
         addBtnPart = findViewById(R.id.add_btn_part);
         addBTN = findViewById(R.id.btn_add);
+        bottomSheet = findViewById(R.id.bottom_sheet_layout);
 
         dataNotifikasiRV.setLayoutManager(new LinearLayoutManager(this));
         dataNotifikasiRV.setHasFixedSize(true);
@@ -100,8 +112,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
         addBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListNotifikasiActivity.this, FormPermohonanIzinActivity.class);
-                startActivity(intent);
+                pilihForm();
             }
         });
 
@@ -226,6 +237,59 @@ public class ListNotifikasiActivity extends AppCompatActivity {
             addBtnPart.setVisibility(View.VISIBLE);
         }
 
+    }
+
+    private void pilihForm(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_form_choice, bottomSheet, false));
+        izinBTN = findViewById(R.id.izin_btn);
+        cutiBTN = findViewById(R.id.cuti_btn);
+        markIzin = findViewById(R.id.mark_izin);
+        markCuti = findViewById(R.id.mark_cuti);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                izinBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onClick(View v) {
+                        markIzin.setVisibility(View.VISIBLE);
+                        markCuti.setVisibility(View.GONE);
+                        izinBTN.setBackground(ContextCompat.getDrawable(ListNotifikasiActivity.this, R.drawable.shape_option_choice));
+                        cutiBTN.setBackground(ContextCompat.getDrawable(ListNotifikasiActivity.this, R.drawable.shape_option));
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                                Intent intent = new Intent(ListNotifikasiActivity.this, FormPermohonanIzinActivity.class);
+                                startActivity(intent);
+                            }
+                        }, 300);
+                    }
+                });
+
+                cutiBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onClick(View v) {
+                        markIzin.setVisibility(View.GONE);
+                        markCuti.setVisibility(View.VISIBLE);
+                        izinBTN.setBackground(ContextCompat.getDrawable(ListNotifikasiActivity.this, R.drawable.shape_option));
+                        cutiBTN.setBackground(ContextCompat.getDrawable(ListNotifikasiActivity.this, R.drawable.shape_option_choice));
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                                Intent intent = new Intent(ListNotifikasiActivity.this, FormPermohonanCutiActivity.class);
+                                startActivity(intent);
+                            }
+                        }, 300);
+                    }
+                });
+            }
+        }, 500);
     }
 
     private void getData() {
