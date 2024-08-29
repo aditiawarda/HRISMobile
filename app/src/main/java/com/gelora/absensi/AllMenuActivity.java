@@ -40,7 +40,7 @@ public class AllMenuActivity extends AppCompatActivity {
 
     LinearLayout makanLemburPart4, projectPart3, menuProjectBTN3, menuMakanLemburBTN, menuMakanLembur2BTN, menuMakanLembur3BTN, makanLemburPart, makanLemburPart2, makanLemburPart3, menuReportSumaBTN, menuReport3SumaBTN, menuReport2SumaBTN, reportSumaPart3, reportSumaPart2, reportSumaPart, menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
     LinearLayout countInIkkPart, countInIkkPart2, countInIkkPart3, countInIkkPart4, countInIkkPart5, countInIkkPart6, keluarKantorPart6, menuKeluarKantor6BTN, keluarKantorPart5, menuKeluarKantor5BTN, keluarKantorPart4, menuKeluarKantor4BTN, keluarKantorPart3, menuKeluarKantor3BTN, keluarKantorPart2, menuKeluarKantor2BTN, keluarKantorPart, menuKeluarKantorBTN, menuMakanLembur4BTN, actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
-    TextView countInIkkTv, countInIkkTv2, countInIkkTv3, countInIkkTv4, countInIkkTv5, countInIkkTv6, countNotifGMTV, countNotifClearanceTV, countNotifPenilaianTV;
+    TextView labelIzinTV, countInIkkTv, countInIkkTv2, countInIkkTv3, countInIkkTv4, countInIkkTv5, countInIkkTv6, countNotifGMTV, countNotifClearanceTV, countNotifPenilaianTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -48,6 +48,7 @@ public class AllMenuActivity extends AppCompatActivity {
     String otoritorEC = "", listSDM = "";
     private Handler handler = new Handler();
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,6 +138,13 @@ public class AllMenuActivity extends AppCompatActivity {
         countNotifClearanceTV = findViewById(R.id.count_notif_clearance_tv);
         countNotificationGMPart = findViewById(R.id.count_notification_gm);
         countNotifGMTV = findViewById(R.id.count_notif_gm_tv);
+        labelIzinTV = findViewById(R.id.label_izin_tv);
+
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
+            labelIzinTV.setText("Izin/Cuti");
+        } else {
+            labelIzinTV.setText("Izin");
+        }
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,8 +199,13 @@ public class AllMenuActivity extends AppCompatActivity {
                             })
                             .show();
                 } else {
-                    Intent intent = new Intent(AllMenuActivity.this, FormPermohonanIzinActivity.class);
-                    startActivity(intent);
+                    if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
+                        Intent intent = new Intent(AllMenuActivity.this, ListNotifikasiActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(AllMenuActivity.this, FormPermohonanIzinActivity.class);
+                        startActivity(intent);
+                    }
                 }
             }
         });
@@ -314,8 +327,13 @@ public class AllMenuActivity extends AppCompatActivity {
                             })
                             .show();
                 } else {
-                    Intent intent = new Intent(AllMenuActivity.this, FormFingerscanActivity.class);
-                    startActivity(intent);
+                    if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
+                        Intent intent = new Intent(AllMenuActivity.this, ListNotifikasiFingerscanActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(AllMenuActivity.this, FormFingerscanActivity.class);
+                        startActivity(intent);
+                    }
                 }
             }
         });

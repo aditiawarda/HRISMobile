@@ -111,8 +111,13 @@ public class AdapterListKeluarKantor extends RecyclerView.Adapter<AdapterListKel
                             getBinding().batasStatus.setVisibility(View.GONE);
                             getBinding().waitingMark.setVisibility(View.GONE);
                         } else {
-                            getBinding().batasStatus.setVisibility(View.VISIBLE);
-                            getBinding().waitingMark.setVisibility(View.VISIBLE);
+                            if(sharedPrefManager.getSpNik().equals("000112092023")){
+                                getBinding().batasStatus.setVisibility(View.GONE);
+                                getBinding().waitingMark.setVisibility(View.GONE);
+                            } else {
+                                getBinding().batasStatus.setVisibility(View.VISIBLE);
+                                getBinding().waitingMark.setVisibility(View.VISIBLE);
+                            }
                         }
                     } else {
                         getBinding().batasStatus.setVisibility(View.GONE);

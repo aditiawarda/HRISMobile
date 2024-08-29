@@ -153,30 +153,66 @@ public class ListIzinKeluarKantor extends AppCompatActivity {
 
     private void getDataByJabatan(){
         if ((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) || (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("4")) || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
-            int topDp = 205;
-            int bottomDp = 20;
-            int leftDp = 17;
-            int rightDp = 17;
-            int topPx = dpToPx(topDp);
-            int bottomPx = dpToPx(bottomDp);
-            int leftPx = dpToPx(leftDp);
-            int rightPx = dpToPx(rightDp);
-            getBinding().waitingData.setPadding(leftPx, topPx, rightPx, bottomPx);
-            if (selectedLeftButton){
-                getAllData(sharedPrefManager.getSpNik());
+            if (sharedPrefManager.getSpIdDept().equals("21")){
+                if (selectedLeftButton){
+                    int topDp = 250;
+                    int bottomDp = 20;
+                    int leftDp = 17;
+                    int rightDp = 17;
+                    int topPx = dpToPx(topDp);
+                    int bottomPx = dpToPx(bottomDp);
+                    int leftPx = dpToPx(leftDp);
+                    int rightPx = dpToPx(rightDp);
+                    getBinding().waitingData.setPadding(leftPx, topPx, rightPx, bottomPx);
+                    getAllDataForSatpam(sharedPrefManager.getSpNik());
+                } else {
+                    int topDp = 205;
+                    int bottomDp = 20;
+                    int leftDp = 17;
+                    int rightDp = 17;
+                    int topPx = dpToPx(topDp);
+                    int bottomPx = dpToPx(bottomDp);
+                    int leftPx = dpToPx(leftDp);
+                    int rightPx = dpToPx(rightDp);
+                    getBinding().waitingData.setPadding(leftPx, topPx, rightPx, bottomPx);
+                    int topPaddingDp = 0;
+                    int bottomPaddingDp = 100;
+                    int leftPaddingDp = 20;
+                    int rightPaddingDp = 20;
+                    int topPaddingPx = dpToPx(topPaddingDp);
+                    int bottomPaddingPx = dpToPx(bottomPaddingDp);
+                    int leftPaddingPx = dpToPx(leftPaddingDp);
+                    int rightPaddingPx = dpToPx(rightPaddingDp);
+                    getBinding().expandableLayout.setPadding(leftPaddingPx, topPaddingPx, rightPaddingPx, bottomPaddingPx);
+                    getMyData(sharedPrefManager.getSpNik());
+                }
+                getCountWaiting();
             } else {
-                int topPaddingDp = 0;
-                int bottomPaddingDp = 100;
-                int leftPaddingDp = 20;
-                int rightPaddingDp = 20;
-                int topPaddingPx = dpToPx(topPaddingDp);
-                int bottomPaddingPx = dpToPx(bottomPaddingDp);
-                int leftPaddingPx = dpToPx(leftPaddingDp);
-                int rightPaddingPx = dpToPx(rightPaddingDp);
-                getBinding().expandableLayout.setPadding(leftPaddingPx, topPaddingPx, rightPaddingPx, bottomPaddingPx);
-                getMyData(sharedPrefManager.getSpNik());
+                int topDp = 205;
+                int bottomDp = 20;
+                int leftDp = 17;
+                int rightDp = 17;
+                int topPx = dpToPx(topDp);
+                int bottomPx = dpToPx(bottomDp);
+                int leftPx = dpToPx(leftDp);
+                int rightPx = dpToPx(rightDp);
+                getBinding().waitingData.setPadding(leftPx, topPx, rightPx, bottomPx);
+                if (selectedLeftButton){
+                    getAllData(sharedPrefManager.getSpNik());
+                } else {
+                    int topPaddingDp = 0;
+                    int bottomPaddingDp = 100;
+                    int leftPaddingDp = 20;
+                    int rightPaddingDp = 20;
+                    int topPaddingPx = dpToPx(topPaddingDp);
+                    int bottomPaddingPx = dpToPx(bottomPaddingDp);
+                    int leftPaddingPx = dpToPx(leftPaddingDp);
+                    int rightPaddingPx = dpToPx(rightPaddingDp);
+                    getBinding().expandableLayout.setPadding(leftPaddingPx, topPaddingPx, rightPaddingPx, bottomPaddingPx);
+                    getMyData(sharedPrefManager.getSpNik());
+                }
+                getCountWaiting();
             }
-            getCountWaiting();
         } else if (sharedPrefManager.getSpIdDept().equals("21")){
             if (selectedLeftButton){
                 int topDp = 250;

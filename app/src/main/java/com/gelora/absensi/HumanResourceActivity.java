@@ -154,6 +154,8 @@ public class HumanResourceActivity extends AppCompatActivity {
             titleSDM.setText("List SDM Bagian");
         } else if(sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("41")) {
             titleSDM.setText("List SDM Departemen");
+        } else if(sharedPrefManager.getSpIdJabatan().equals("8")){
+            titleSDM.setText("List SDM Perusahaan");
         } else {
             titleSDM.setText("List SDM Bagian");
         }

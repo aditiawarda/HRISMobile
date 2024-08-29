@@ -75,7 +75,7 @@ public class FragmentInfo extends Fragment {
 
     TextView bagianNameTvEc, descContactHRDTV, titlePage, dateNowTV, countNotifFingerTV, countNotifIzinTV;
     ExpandableLayout aboutAppField, privacyPolicyField, contactServiceField;
-    LinearLayout inLayoutIzin, inLayoutFinger, countNotificationIkk, permohonanIkkBTN, reportSalesPart, projectPart, ecBTN, menuPermohonanPart, headerPart, helpDeskIT, helpDeskHRD, newsPart, sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
+    LinearLayout inLayoutIzin, inLayoutFinger, countNotificationIkk, permohonanIkkBTN, reportSalesPart, ecBTN, menuPermohonanPart, headerPart, helpDeskIT, helpDeskHRD, sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
     TextView labelNotificationFinger, countNotifIkkTV, labelNotificationIzin, bagianNameTVSDM, historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     ImageView hrisLogo, notifFiturLoading, sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     SwipeRefreshLayout refreshLayout;
@@ -162,7 +162,6 @@ public class FragmentInfo extends Fragment {
         sdmBTN = view.findViewById(R.id.sdm_btn);
         ecBTN = view.findViewById(R.id.ec_btn);
         descContactHRDTV = view.findViewById(R.id.desc_contact_hrd_tv);
-        newsPart = view.findViewById(R.id.news_part);
         labelNotificationIzin = view.findViewById(R.id.label_notification_izin);
         labelNotificationFinger = view.findViewById(R.id.label_notification_finger);
         helpDeskIT = view.findViewById(R.id.help_desk_it);
@@ -171,7 +170,6 @@ public class FragmentInfo extends Fragment {
         headerPart = view.findViewById(R.id.header_part);
         menuPermohonanPart = view.findViewById(R.id.menu_permohonan_part);
         bagianNameTvEc = view.findViewById(R.id.bagian_name_tv_ec);
-        projectPart = view.findViewById(R.id.project_part);
         reportSalesPart = view.findViewById(R.id.report_sales_part);
         permohonanIkkBTN = view.findViewById(R.id.permohonan_ikk_btn);
         countNotificationIkk = view.findViewById(R.id.count_notification_ikk);
@@ -599,8 +597,7 @@ public class FragmentInfo extends Fragment {
 
         if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
             int left = 25;
-            int top = 30;
-            int top2 = 10;
+            int top = 25;
             int right = 25;
             int bottom = 10;
             int paddingLeft = dpToPixels(left, getContext());
@@ -608,17 +605,15 @@ public class FragmentInfo extends Fragment {
             int paddingRight = dpToPixels(right, getContext());
             int paddingBottom = dpToPixels(bottom, getContext());
             headerPart.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
-            int topPer = 10;
             int leftPer = 20;
             int rightPer = 20;
-            int paddingTopPer = dpToPixels(topPer, getContext());
             int paddingLeftPer = dpToPixels(leftPer, getContext());
             int paddingRightPer = dpToPixels(rightPer, getContext());
-            menuPermohonanPart.setPadding(paddingLeftPer,paddingTopPer,paddingRightPer,0);
+            menuPermohonanPart.setPadding(paddingLeftPer,0,paddingRightPer,0);
 
-            titlePage.setVisibility(View.GONE);
-            hrisLogo.setVisibility(View.VISIBLE);
-            titlePage.setText("HRIS Mobile");
+            titlePage.setVisibility(View.VISIBLE);
+            hrisLogo.setVisibility(View.GONE);
+            titlePage.setText("Info");
             dasboardStatistikAbsen.setVisibility(View.GONE);
             faqBTN.setVisibility(View.GONE);
         } else {
@@ -799,7 +794,7 @@ public class FragmentInfo extends Fragment {
 
     private void getPersonalization() {
 
-        if(sharedPrefManager.getSpNik().equals("000112092023")){
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
             sdmBTN.setVisibility(View.VISIBLE);
             ecBTN.setVisibility(View.VISIBLE);
         } else {
@@ -851,7 +846,6 @@ public class FragmentInfo extends Fragment {
                                 }
 
                                 if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
-                                    projectPart.setVisibility(View.VISIBLE);
                                     if(sharedPrefManager.getSpIdJabatan().equals("8")){
                                         reportSalesPart.setVisibility(View.VISIBLE);
                                         reportSalesPart.setOnClickListener(new View.OnClickListener() {
@@ -864,31 +858,8 @@ public class FragmentInfo extends Fragment {
                                     } else {
                                         reportSalesPart.setVisibility(View.GONE);
                                     }
-                                    projectPart.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            Intent intent = new Intent(mContext, ProjectViewActivity.class);
-                                            startActivity(intent);
-                                        }
-                                    });
-                                    if(news_part.equals("1")){
-                                        newsPart.setVisibility(View.VISIBLE);
-                                        newsPart.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                Intent intent = new Intent(mContext, NewsActivity.class);
-                                                intent.putExtra("api_url", base_news_api);
-                                                intent.putExtra("defaut_news_category", defaut_news_category);
-                                                startActivity(intent);
-                                            }
-                                        });
-                                    } else {
-                                        newsPart.setVisibility(View.GONE);
-                                    }
                                 } else {
-                                    projectPart.setVisibility(View.GONE);
                                     reportSalesPart.setVisibility(View.GONE);
-                                    newsPart.setVisibility(View.GONE);
                                 }
 
                                 if (monitoring.equals("1")) {

@@ -81,109 +81,64 @@ public class HomeActivity extends AppCompatActivity {
         sharedPrefAbsen = new SharedPrefAbsen(this);
         requestQueue = Volley.newRequestQueue(this);
 
-        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")) {
-            setContentView(R.layout.activity_home_non_gap);
+        setContentView(R.layout.activity_home);
 
-            bubbleNavigationNonGap = findViewById(R.id.equal_navigation_bar_non_gap);
-            viewPager = findViewById(R.id.viewPager);
-            shapeBG = findViewById(R.id.shape_bg);
-            vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        bubbleNavigation = findViewById(R.id.equal_navigation_bar);
+        viewPager = findViewById(R.id.viewPager);
+        shapeBG = findViewById(R.id.shape_bg);
+        infoMark = findViewById(R.id.info_mark);
+        profileMark = findViewById(R.id.profile_mark);
+        vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-            viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-            viewPagerAdapter.addFragment(new FragmentInfo());
-            viewPagerAdapter.addFragment(new FragmentProfile());
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.addFragment(new FragmentHome());
+        viewPagerAdapter.addFragment(new FragmentInfo());
+        viewPagerAdapter.addFragment(new FragmentProfile());
 
-            deviceID = String.valueOf(Settings.Secure.getString(HomeActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID)).toUpperCase();
+        deviceID = String.valueOf(Settings.Secure.getString(HomeActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID)).toUpperCase();
 
-            viewPager.setAdapter(viewPagerAdapter);
-            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                @Override
-                public void onPageScrolled(int i, float v, int i1) {
-                }
-                @Override
-                public void onPageSelected(int i) {
-                    bubbleNavigationNonGap.setCurrentActiveItem(i);
-                }
-                @Override
-                public void onPageScrollStateChanged(int i) {
-                }
-            });
+        viewPager.setAdapter(viewPagerAdapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+            }
+            @Override
+            public void onPageSelected(int i) {
+                bubbleNavigation.setCurrentActiveItem(i);
+                beforeLayout = temp;
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        nowLayout = String.valueOf(i);
+                        temp = nowLayout;
+                    }
+                }, 50);
+            }
+            @Override
+            public void onPageScrollStateChanged(int i) {
+            }
+        });
 
-            bubbleNavigationNonGap.setNavigationChangeListener(new BubbleNavigationChangeListener() {
-                @Override
-                public void onNavigationChanged(View view, int position) {
-                    viewPager.setCurrentItem(position, true);
-                }
-            });
+        bubbleNavigation.setNavigationChangeListener(new BubbleNavigationChangeListener() {
+            @Override
+            public void onNavigationChanged(View view, int position) {
+                viewPager.setCurrentItem(position, true);
+            }
+        });
 
-            shapeBG.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                }
-            });
+        shapeBG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
-        }
-        else {
-            setContentView(R.layout.activity_home);
+        Glide.with(getApplicationContext())
+                .load(R.drawable.mark_notif_info)
+                .into(infoMark);
 
-            bubbleNavigation = findViewById(R.id.equal_navigation_bar);
-            viewPager = findViewById(R.id.viewPager);
-            shapeBG = findViewById(R.id.shape_bg);
-            infoMark = findViewById(R.id.info_mark);
-            profileMark = findViewById(R.id.profile_mark);
-            vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
-            viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-            viewPagerAdapter.addFragment(new FragmentHome());
-            viewPagerAdapter.addFragment(new FragmentInfo());
-            viewPagerAdapter.addFragment(new FragmentProfile());
-
-            deviceID = String.valueOf(Settings.Secure.getString(HomeActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID)).toUpperCase();
-
-            viewPager.setAdapter(viewPagerAdapter);
-            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                @Override
-                public void onPageScrolled(int i, float v, int i1) {
-                }
-                @Override
-                public void onPageSelected(int i) {
-                    bubbleNavigation.setCurrentActiveItem(i);
-                    beforeLayout = temp;
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            nowLayout = String.valueOf(i);
-                            temp = nowLayout;
-                        }
-                    }, 50);
-                }
-                @Override
-                public void onPageScrollStateChanged(int i) {
-                }
-            });
-
-            bubbleNavigation.setNavigationChangeListener(new BubbleNavigationChangeListener() {
-                @Override
-                public void onNavigationChanged(View view, int position) {
-                    viewPager.setCurrentItem(position, true);
-                }
-            });
-
-            shapeBG.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                }
-            });
-
-            Glide.with(getApplicationContext())
-                    .load(R.drawable.mark_notif_info)
-                    .into(infoMark);
-
-            Glide.with(getApplicationContext())
-                    .load(R.drawable.mark_notif_info)
-                    .into(profileMark);
-
-        }
+        Glide.with(getApplicationContext())
+                .load(R.drawable.mark_notif_info)
+                .into(profileMark);
 
     }
 
