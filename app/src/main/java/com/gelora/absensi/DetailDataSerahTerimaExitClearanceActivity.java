@@ -1328,7 +1328,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk11 = "0";
                     }
 
-                    String valueString11 = "Softcopy"+"-"+sm11+"-"+sk11+"-"+ket11.getText().toString();
+                    String valueString11 = "Softcopy"+"~"+sm11+"~"+sk11+"~"+ket11.getText().toString();
                     params.put("value_string_11", valueString11);
 
                     String sm12, sk12;
@@ -1344,7 +1344,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk12 = "0";
                     }
 
-                    String valueString12 = "Laporan"+"-"+sm12+"-"+sk12+"-"+ket12.getText().toString();
+                    String valueString12 = "Laporan"+"~"+sm12+"~"+sk12+"~"+ket12.getText().toString();
                     params.put("value_string_12", valueString12);
 
                     String sm13, sk13;
@@ -1360,7 +1360,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk13 = "0";
                     }
 
-                    String valueString13 = "Seragam Kerja"+"-"+sm13+"-"+sk13+"-"+ket13.getText().toString();
+                    String valueString13 = "Seragam Kerja"+"~"+sm13+"~"+sk13+"~"+ket13.getText().toString();
                     params.put("value_string_13", valueString13);
 
                     String sm14, sk14;
@@ -1376,7 +1376,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk14 = "0";
                     }
 
-                    String valueString14 = "Safety Shoes"+"-"+sm14+"-"+sk14+"-"+ket14.getText().toString();
+                    String valueString14 = "Safety Shoes"+"~"+sm14+"~"+sk14+"~"+ket14.getText().toString();
                     params.put("value_string_14", valueString14);
 
                     String sm15, sk15;
@@ -1392,7 +1392,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk15 = "0";
                     }
 
-                    String valueString15 = "Kunci Loker"+"-"+sm15+"-"+sk15+"-"+ket15.getText().toString();
+                    String valueString15 = "Kunci Loker"+"~"+sm15+"~"+sk15+"~"+ket15.getText().toString();
                     params.put("value_string_15", valueString15);
 
                 } else if(urutanST.equals("2")){
@@ -1409,7 +1409,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk21 = "0";
                     }
 
-                    String valueString21 = "Mobil"+"-"+sm21+"-"+sk21+"-"+ket21.getText().toString();
+                    String valueString21 = "Mobil"+"~"+sm21+"~"+sk21+"~"+ket21.getText().toString();
                     params.put("value_string_21", valueString21);
 
                     String sm22, sk22;
@@ -1425,7 +1425,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk22 = "0";
                     }
 
-                    String valueString22 = "Motor"+"-"+sm22+"-"+sk22+"-"+ket22.getText().toString();
+                    String valueString22 = "Motor"+"~"+sm22+"~"+sk22+"~"+ket22.getText().toString();
                     params.put("value_string_22", valueString22);
 
                 } else if(urutanST.equals("3")){
@@ -1442,7 +1442,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk31 = "0";
                     }
 
-                    String valueString31 = "Notebook"+"-"+sm31+"-"+sk31+"-"+ket31.getText().toString();
+                    String valueString31 = "Notebook"+"~"+sm31+"~"+sk31+"~"+ket31.getText().toString();
                     params.put("value_string_31", valueString31);
 
                     String sm32, sk32;
@@ -1458,7 +1458,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk32 = "0";
                     }
 
-                    String valueString32 = "Email"+"-"+sm32+"-"+sk32+"-"+ket32.getText().toString();
+                    String valueString32 = "Email"+"~"+sm32+"~"+sk32+"~"+ket32.getText().toString();
                     params.put("value_string_32", valueString32);
 
                 } else if(urutanST.equals("4")){
@@ -1475,7 +1475,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk41 = "0";
                     }
 
-                    String valueString41 = "Pinjaman Perusahaan"+"-"+sm41+"-"+sk41+"-"+ket41.getText().toString();
+                    String valueString41 = "Pinjaman Perusahaan"+"~"+sm41+"~"+sk41+"~"+ket41.getText().toString();
                     params.put("value_string_41", valueString41);
 
                 } else if(urutanST.equals("5")){
@@ -1492,7 +1492,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk51 = "0";
                     }
 
-                    String valueString51 = "Pinjaman Koperasi"+"-"+sm51+"-"+sk51+"-"+ket51.getText().toString();
+                    String valueString51 = "Pinjaman Koperasi"+"~"+sm51+"~"+sk51+"~"+ket51.getText().toString();
                     params.put("value_string_51", valueString51);
 
                 } else if(urutanST.equals("6")){
@@ -1509,7 +1509,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk61 = "0";
                     }
 
-                    String valueString61 = "Ijazah"+"-"+sm61+"-"+sk61+"-"+ket61.getText().toString();
+                    String valueString61 = "Ijazah"+"~"+sm61+"~"+sk61+"~"+ket61.getText().toString();
                     params.put("value_string_61", valueString61);
 
                     String sm62, sk62;
@@ -1525,7 +1525,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk62 = "0";
                     }
 
-                    String valueString62 = "ID Card"+"-"+sm62+"-"+sk62+"-"+ket62.getText().toString();
+                    String valueString62 = "ID Card"+"~"+sm62+"~"+sk62+"~"+ket62.getText().toString();
                     params.put("value_string_62", valueString62);
 
                     String sm63, sk63;
@@ -1541,7 +1541,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk63 = "0";
                     }
 
-                    String valueString63 = "Ikatan Dinas"+"-"+sm63+"-"+sk63+"-"+ket63.getText().toString();
+                    String valueString63 = "Ikatan Dinas"+"~"+sm63+"~"+sk63+"~"+ket63.getText().toString();
                     params.put("value_string_63", valueString63);
 
                 }
@@ -1621,7 +1621,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk11 = "0";
                     }
 
-                    String valueString11 = "Softcopy"+"-"+sm11+"-"+sk11+"-"+ket11.getText().toString();
+                    String valueString11 = "Softcopy"+"~"+sm11+"~"+sk11+"~"+ket11.getText().toString();
                     params.put("value_string_11", valueString11);
 
                     String sm12, sk12;
@@ -1637,7 +1637,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk12 = "0";
                     }
 
-                    String valueString12 = "Laporan"+"-"+sm12+"-"+sk12+"-"+ket12.getText().toString();
+                    String valueString12 = "Laporan"+"~"+sm12+"~"+sk12+"~"+ket12.getText().toString();
                     params.put("value_string_12", valueString12);
 
                     String sm13, sk13;
@@ -1653,7 +1653,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk13 = "0";
                     }
 
-                    String valueString13 = "Seragam Kerja"+"-"+sm13+"-"+sk13+"-"+ket13.getText().toString();
+                    String valueString13 = "Seragam Kerja"+"~"+sm13+"~"+sk13+"~"+ket13.getText().toString();
                     params.put("value_string_13", valueString13);
 
                     String sm14, sk14;
@@ -1669,7 +1669,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk14 = "0";
                     }
 
-                    String valueString14 = "Safety Shoes"+"-"+sm14+"-"+sk14+"-"+ket14.getText().toString();
+                    String valueString14 = "Safety Shoes"+"~"+sm14+"~"+sk14+"~"+ket14.getText().toString();
                     params.put("value_string_14", valueString14);
 
                     String sm15, sk15;
@@ -1685,7 +1685,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk15 = "0";
                     }
 
-                    String valueString15 = "Kunci Loker"+"-"+sm15+"-"+sk15+"-"+ket15.getText().toString();
+                    String valueString15 = "Kunci Loker"+"~"+sm15+"~"+sk15+"~"+ket15.getText().toString();
                     params.put("value_string_15", valueString15);
 
                 } else if(urutanST.equals("2")){
@@ -1702,7 +1702,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk21 = "0";
                     }
 
-                    String valueString21 = "Mobil"+"-"+sm21+"-"+sk21+"-"+ket21.getText().toString();
+                    String valueString21 = "Mobil"+"~"+sm21+"~"+sk21+"~"+ket21.getText().toString();
                     params.put("value_string_21", valueString21);
 
                     String sm22, sk22;
@@ -1718,7 +1718,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk22 = "0";
                     }
 
-                    String valueString22 = "Motor"+"-"+sm22+"-"+sk22+"-"+ket22.getText().toString();
+                    String valueString22 = "Motor"+"~"+sm22+"~"+sk22+"~"+ket22.getText().toString();
                     params.put("value_string_22", valueString22);
 
                 } else if(urutanST.equals("3")){
@@ -1735,7 +1735,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk31 = "0";
                     }
 
-                    String valueString31 = "Notebook"+"-"+sm31+"-"+sk31+"-"+ket31.getText().toString();
+                    String valueString31 = "Notebook"+"~"+sm31+"~"+sk31+"~"+ket31.getText().toString();
                     params.put("value_string_31", valueString31);
 
                     String sm32, sk32;
@@ -1751,7 +1751,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk32 = "0";
                     }
 
-                    String valueString32 = "Email"+"-"+sm32+"-"+sk32+"-"+ket32.getText().toString();
+                    String valueString32 = "Email"+"~"+sm32+"~"+sk32+"~"+ket32.getText().toString();
                     params.put("value_string_32", valueString32);
 
                 } else if(urutanST.equals("4")){
@@ -1768,7 +1768,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk41 = "0";
                     }
 
-                    String valueString41 = "Pinjaman Perusahaan"+"-"+sm41+"-"+sk41+"-"+ket41.getText().toString();
+                    String valueString41 = "Pinjaman Perusahaan"+"~"+sm41+"~"+sk41+"~"+ket41.getText().toString();
                     params.put("value_string_41", valueString41);
 
                 } else if(urutanST.equals("5")){
@@ -1785,7 +1785,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk51 = "0";
                     }
 
-                    String valueString51 = "Pinjaman Koperasi"+"-"+sm51+"-"+sk51+"-"+ket51.getText().toString();
+                    String valueString51 = "Pinjaman Koperasi"+"~"+sm51+"~"+sk51+"~"+ket51.getText().toString();
                     params.put("value_string_51", valueString51);
 
                 } else if(urutanST.equals("6")){
@@ -1802,7 +1802,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk61 = "0";
                     }
 
-                    String valueString61 = "Ijazah"+"-"+sm61+"-"+sk61+"-"+ket61.getText().toString();
+                    String valueString61 = "Ijazah"+"~"+sm61+"~"+sk61+"~"+ket61.getText().toString();
                     params.put("value_string_61", valueString61);
 
                     String sm62, sk62;
@@ -1818,7 +1818,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk62 = "0";
                     }
 
-                    String valueString62 = "ID Card"+"-"+sm62+"-"+sk62+"-"+ket62.getText().toString();
+                    String valueString62 = "ID Card"+"~"+sm62+"~"+sk62+"~"+ket62.getText().toString();
                     params.put("value_string_62", valueString62);
 
                     String sm63, sk63;
@@ -1834,7 +1834,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                         sk63 = "0";
                     }
 
-                    String valueString63 = "Ikatan Dinas"+"-"+sm63+"-"+sk63+"-"+ket63.getText().toString();
+                    String valueString63 = "Ikatan Dinas"+"~"+sm63+"~"+sk63+"~"+ket63.getText().toString();
                     params.put("value_string_63", valueString63);
 
                 }
