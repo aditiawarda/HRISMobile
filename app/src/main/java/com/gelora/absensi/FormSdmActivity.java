@@ -2433,8 +2433,13 @@ public class FormSdmActivity extends AppCompatActivity {
                     f1UnitBisnisDisableMode.setVisibility(View.VISIBLE);
                     f1DepartemenPart.setVisibility(View.GONE);
                     f1DepartemenDisableMode.setVisibility(View.VISIBLE);
-                    f1BagianPart.setVisibility(View.GONE);
-                    f1BagianDisableMode.setVisibility(View.VISIBLE);
+                    if(sharedPrefManager.getSpNik().equals("0936071009")||sharedPrefManager.getSpNik().equals("1314281210")||sharedPrefManager.getSpNik().equals("1811180213")||sharedPrefManager.getSpNik().equals("0683020608")){ // Admin Departemen
+                        f1BagianPart.setVisibility(View.VISIBLE);
+                        f1BagianDisableMode.setVisibility(View.GONE);
+                    } else {
+                        f1BagianPart.setVisibility(View.GONE);
+                        f1BagianDisableMode.setVisibility(View.VISIBLE);
+                    }
 
                     f1UnitBisnisDisableModeTV.setText("PT. Gelora Aksara Pratama");
                     f1IdUnitBisnis = "1";
