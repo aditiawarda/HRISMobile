@@ -99,7 +99,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
         }
 
         if(dataFormSDM.getStatus_approve_kabag().equals("0")){
-            myViewHolder.detailTV.setText("Menunggu verifikasi Kepala Bagian");
+            myViewHolder.detailTV.setText("Menunggu verifikasi Atasan Bagian");
             myViewHolder.accMark.setVisibility(View.GONE);
             myViewHolder.rejMark.setVisibility(View.GONE);
             myViewHolder.proMark.setVisibility(View.VISIBLE);
@@ -110,7 +110,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             }
         } else if(dataFormSDM.getStatus_approve_kabag().equals("1")){
             if(dataFormSDM.getStatus_approve_kadept().equals("0")){
-                myViewHolder.detailTV.setText("Menunggu verifikasi Kepala Departemen");
+                myViewHolder.detailTV.setText("Menunggu verifikasi Atasan Departemen");
                 myViewHolder.accMark.setVisibility(View.GONE);
                 myViewHolder.rejMark.setVisibility(View.GONE);
                 myViewHolder.proMark.setVisibility(View.VISIBLE);
@@ -173,13 +173,13 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
                     }
                 }
             } else if(dataFormSDM.getStatus_approve_kadept().equals("2")){
-                myViewHolder.detailTV.setText("Pengajuan ditolak Kepala Departemen");
+                myViewHolder.detailTV.setText("Pengajuan ditolak Atasan Departemen");
                 myViewHolder.accMark.setVisibility(View.GONE);
                 myViewHolder.rejMark.setVisibility(View.VISIBLE);
                 myViewHolder.proMark.setVisibility(View.GONE);
             }
         } else if(dataFormSDM.getStatus_approve_kabag().equals("2")){
-            myViewHolder.detailTV.setText("Pengajuan ditolak Kepala Bagian");
+            myViewHolder.detailTV.setText("Pengajuan ditolak Atasan Bagian");
             myViewHolder.accMark.setVisibility(View.GONE);
             myViewHolder.rejMark.setVisibility(View.VISIBLE);
             myViewHolder.proMark.setVisibility(View.GONE);

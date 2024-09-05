@@ -2279,6 +2279,7 @@
                                                         android:layout_height="0dp">
 
                                                         <TextView
+                                                            android:id="@+id/jabatan_approver"
                                                             android:layout_width="0dp"
                                                             android:layout_height="match_parent"
                                                             android:layout_marginLeft="0.5dp"
@@ -2293,7 +2294,7 @@
                                                             android:paddingLeft="3dp"
                                                             android:paddingRight="3dp"
                                                             android:singleLine="true"
-                                                            android:text="Ka. Bagian"
+                                                            android:text="Atasan Terkait"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
                                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -2489,6 +2490,7 @@
                                                         android:layout_height="0dp">
 
                                                         <TextView
+                                                            android:id="@+id/jabatan_approver_2"
                                                             android:layout_width="0dp"
                                                             android:layout_height="match_parent"
                                                             android:layout_marginTop="0.5dp"
@@ -2501,7 +2503,7 @@
                                                             android:paddingLeft="3dp"
                                                             android:paddingRight="3dp"
                                                             android:singleLine="true"
-                                                            android:text="Ka. Departemen"
+                                                            android:text="GA/Ka.Dept"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
                                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />

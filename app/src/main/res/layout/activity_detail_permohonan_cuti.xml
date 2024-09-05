@@ -994,7 +994,7 @@
                                                                 android:layout_width="match_parent"
                                                                 android:layout_height="wrap_content"
                                                                 android:gravity="center"
-                                                                android:text="Kepala Bagian"
+                                                                android:text="Atasan Langsung"
                                                                 android:textColor="#515151"
                                                                 android:textSize="8dp"
                                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -1060,6 +1060,7 @@
                                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                             <TextView
+                                                                android:id="@+id/jabatan_approver_2"
                                                                 android:layout_width="match_parent"
                                                                 android:layout_height="wrap_content"
                                                                 android:gravity="center"

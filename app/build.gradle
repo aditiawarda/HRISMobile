@@ -12,8 +12,8 @@ android {
         minSdkVersion 21
         //noinspection OldTargetApi
         targetSdkVersion 34
-        versionCode 182
-        versionName "2.8.2"
+        versionCode 183
+        versionName "2.8.3"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -55,7 +55,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'com.google.ar.sceneform:sceneform-base:1.17.1'
-    implementation 'androidx.activity:activity:1.9.1'
+    implementation 'androidx.activity:activity:1.9.2'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
@@ -110,11 +110,11 @@ dependencies {
     implementation 'com.google.zxing:core:3.4.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.5")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.5")
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.8.4'
-    implementation 'androidx.lifecycle:lifecycle-livedata:2.8.4'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.8.5'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.8.5'
 
 }

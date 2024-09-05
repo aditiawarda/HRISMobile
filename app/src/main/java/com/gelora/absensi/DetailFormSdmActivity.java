@@ -40,7 +40,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
     LinearLayout lihatPenilaianPart, lihatPenilaianBTN, penilaianBTN, ttdDireksiPart, downloadBTN, backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
-    TextView warningPenilaian, labelDireksi, markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
+    TextView jabatanApprover, jabatanApprover2, warningPenilaian, labelDireksi, markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
     TextView namaBaruTV, unitBisnisBaruTV, departemenBaruTV, bagianBaruTV, jabatanBaruTV, komponenGajiBaruTV;
     TextView namaLamaTV, unitBisnisLamaTV, departemenLamaTV, bagianLamaTV, jabatanLamaTV, komponenGajiLamaTV;
     TextView jabatanSlashDepartemenTV, deskripsiSlashJabatanTV, syaratPenerimaanTV, tglDibutuhkan1TV, tglPemenuhan1TV, tglDibutuhkan2TV, tglPemenuhan2TV;
@@ -135,6 +135,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         lihatPenilaianPart = findViewById(R.id.lihat_penilaian_part);
         lihatPenilaianBTN = findViewById(R.id.lihat_penilaian_btn);
         warningPenilaian = findViewById(R.id.warning_penilaian);
+        jabatanApprover = findViewById(R.id.jabatan_approver);
+        jabatanApprover2 = findViewById(R.id.jabatan_approver_2);
 
         idData = getIntent().getExtras().getString("id_data");
         urlDownload = "https://hrisgelora.co.id/absen/pdf_formulir_sdm/"+idData;
@@ -378,11 +380,13 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String approver_kabag          = dataArray.getString("approver_kabag");
                                 String nama_kabag              = dataArray.getString("nama_kabag");
                                 String ttd_kabag               = dataArray.getString("ttd_kabag");
+                                String jabatan_approver_1      = dataArray.getString("jabatan_approver_1");
                                 String status_approve_kadept   = dataArray.getString("status_approve_kadept");
                                 String tgl_approve_kadept      = dataArray.getString("tgl_approve_kadept");
                                 String approver_kadept         = dataArray.getString("approver_kadept");
                                 String nama_kadept             = dataArray.getString("nama_kadept");
                                 String ttd_kadept              = dataArray.getString("ttd_kadept");
+                                String jabatan_approver_2      = dataArray.getString("jabatan_approver_2");
                                 String status_approve_direktur = dataArray.getString("status_approve_direktur");
                                 String tgl_approve_direktur    = dataArray.getString("tgl_approve_direktur");
                                 String approver_direktur       = dataArray.getString("approver_direktur");
@@ -450,6 +454,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 .into(ttdPemohon);
                                         namaKabagTV.setText(nama_kabag);
                                         tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
+                                        jabatanApprover.setText(jabatan_approver_1);
 
                                         if(status_approve_kadept.equals("1")){
                                             String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
@@ -583,6 +588,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 .into(ttdPemohon);
                                         namaKabagTV.setText(nama_kabag);
                                         tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
+                                        jabatanApprover.setText(jabatan_approver_1);
 
                                         if(status_approve_kadept.equals("1")){
                                             String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
@@ -783,6 +789,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 .into(ttdPemohon);
                                         namaKabagTV.setText(nama_kabag);
                                         tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
+                                        jabatanApprover.setText(jabatan_approver_1);
 
                                         if(status_approve_kadept.equals("1")){
                                             String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
@@ -1010,6 +1017,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 .into(ttdPemohon);
                                         namaKabagTV.setText(nama_kabag);
                                         tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
+                                        jabatanApprover.setText(jabatan_approver_1);
 
                                         if(status_approve_kadept.equals("1")){
                                             String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;

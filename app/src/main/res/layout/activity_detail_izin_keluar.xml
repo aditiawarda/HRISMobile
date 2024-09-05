@@ -535,7 +535,7 @@
                                                     android:layout_height="wrap_content"
                                                     android:layout_gravity="start"
                                                     android:fontFamily="@font/roboto"
-                                                    android:text="Atasan Terkait"
+                                                    android:text="Atasan Langsung"
                                                     android:textSize="10dp"
                                                     android:textColor="#515151"
                                                     android:gravity="center"
@@ -689,7 +689,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="right"
                             android:orientation="vertical"
-                            android:layout_marginTop="270dp"
+                            android:layout_marginTop="282dp"
                             android:paddingRight="40dp"
                             tools:ignore="RtlHardcoded,RtlSymmetry,UselessLeaf,UselessParent">
 
@@ -779,7 +779,7 @@
                             android:textAllCaps="false"
                             android:textColor="@color/white"
                             android:textStyle="bold"
-                            tools:ignore="HardcodedText" />
+                            tools:ignore="HardcodedText,TooManyViews" />
 
                     </RelativeLayout>
 
