@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -137,18 +138,18 @@ public class DataFormSdmActivity extends AppCompatActivity {
                                             countWaitingTV.setText("");
                                         }
                                     } else {
-                                        if(Integer.parseInt(waiting_kadep)>0){
+                                        if(waiting_data>0){
                                             countWaitingBTN.setVisibility(View.VISIBLE);
-                                            countWaitingTV.setText(waiting_kadep);
+                                            countWaitingTV.setText(String.valueOf(waiting_data));
                                         } else {
                                             countWaitingBTN.setVisibility(View.GONE);
                                             countWaitingTV.setText("");
                                         }
                                     }
                                 } else if(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
-                                    if(Integer.parseInt(waiting_kabag)>0){
+                                    if(waiting_data>0){
                                         countWaitingBTN.setVisibility(View.VISIBLE);
-                                        countWaitingTV.setText(waiting_kabag);
+                                        countWaitingTV.setText(String.valueOf(waiting_data));
                                     } else {
                                         countWaitingBTN.setVisibility(View.GONE);
                                         countWaitingTV.setText("");

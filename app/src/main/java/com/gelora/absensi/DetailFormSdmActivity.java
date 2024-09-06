@@ -435,22 +435,29 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String id_penilaian            = dataArray.getString("id_penilaian");
                                 String approval_penilaian      = dataArray.getString("approval_penilaian");
 
-                                if(id_departemen.equals("2")){
+                                String depart = "";
+                                if(keterangan.equals("1")){
+                                    depart = departemen;
+                                } else {
+                                    depart = departemen_lama;
+                                }
+
+                                if(depart.equals("2")){
                                     jabatanAstKadept.setVisibility(View.GONE);
                                     tglApproveAstKadept.setVisibility(View.GONE);
                                     ttdAstKadept.setVisibility(View.GONE);
                                     namaAstKadeptTV.setVisibility(View.GONE);
-                                } else if(id_departemen.equals("3")){
+                                } else if(depart.equals("3")){
 
-                                } else if(id_departemen.equals("4")){
+                                } else if(depart.equals("4")){
 
-                                } else if(id_departemen.equals("5")){
+                                } else if(depart.equals("5")){
 
-                                } else if(id_departemen.equals("6")){
+                                } else if(depart.equals("6")){
 
-                                } else if(id_departemen.equals("7")){
+                                } else if(depart.equals("7")){
 
-                                } else if(id_departemen.equals("11")){
+                                } else if(depart.equals("11")){
 
                                 }
 
