@@ -590,11 +590,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if (location != null) {
             Log.d("TAG", "GPS is on " + String.valueOf(location));
-//            userLat = location.getLatitude();
-//            userLong = location.getLongitude();
+            userLat = location.getLatitude();
+            userLong = location.getLongitude();
 
-             userLat = -6.321576067831295;
-             userLong = 106.8705141561883;
+            //userLat = -6.321576067831295;
+            //userLong = 106.8705141561883;
 
             checkTime();
             getCurrentDay();
@@ -1326,7 +1326,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             checkin_point = absenPoint.getText().toString();
         }
 
-        if(!id_shift.equals("") || !id_shift.equals("0")){
+        if(id_shift.equals("") || id_shift.equals("0")){
             pDialog.dismiss();
             refreshData();
             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
