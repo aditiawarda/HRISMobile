@@ -116,7 +116,7 @@
                                     android:background="@drawable/shape_detail_permohonan"
                                     android:layout_width="match_parent"
                                     android:orientation="vertical"
-                                    android:padding="15dp"
+                                    android:padding="10dp"
                                     android:layout_marginBottom="10dp"
                                     android:layout_height="wrap_content">
 
@@ -483,10 +483,11 @@
                                                 <TextView
                                                     android:layout_width="0dp"
                                                     android:layout_weight=".20"
-                                                    android:layout_height="wrap_content"
+                                                    android:layout_height="11dp"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
-                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_marginBottom="-0.5dp"
                                                     android:layout_marginRight="0.5dp"
+                                                    android:layout_marginTop="-1dp"
                                                     android:text=""
                                                     android:textSize="7dp"
                                                     android:layout_column="0"
@@ -2159,7 +2160,8 @@
                                                 tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TableLayout
-                                                    android:layout_weight=".18"
+                                                    android:id="@+id/tab_1"
+                                                    android:layout_weight=".12"
                                                     android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
                                                     android:stretchColumns="0,1">
@@ -2304,7 +2306,8 @@
                                                 </TableLayout>
 
                                                 <TableLayout
-                                                    android:layout_weight=".33"
+                                                    android:id="@+id/tab_2"
+                                                    android:layout_weight=".35"
                                                     android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
                                                     android:stretchColumns="0,1">
@@ -2344,6 +2347,51 @@
                                                             android:layout_weight=".50"
                                                             android:layout_width="0dp"
                                                             android:layout_height="match_parent"
+                                                            android:layout_marginTop="0.5dp"
+                                                            android:layout_marginBottom="0.5dp"
+                                                            android:background="#FFFFFF"
+                                                            android:gravity="center"
+                                                            android:paddingLeft="3dp"
+                                                            android:paddingRight="3dp" >
+
+                                                            <RelativeLayout
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="match_parent">
+
+                                                                <LinearLayout
+                                                                    android:layout_width="match_parent"
+                                                                    android:layout_height="match_parent"
+                                                                    android:gravity="center">
+
+                                                                    <ImageView
+                                                                        android:id="@+id/ttd_askadept"
+                                                                        android:scaleType="fitXY"
+                                                                        android:layout_width="35dp"
+                                                                        android:layout_height="25dp"
+                                                                        tools:ignore="ContentDescription" />
+
+                                                                </LinearLayout>
+
+                                                                <TextView
+                                                                    android:id="@+id/tgl_approve_askadept"
+                                                                    android:layout_width="match_parent"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_marginTop="2dp"
+                                                                    android:gravity="right"
+                                                                    android:text=""
+                                                                    android:textColor="#0C4883"
+                                                                    android:textSize="5dp"
+                                                                    tools:ignore="SpUsage" />
+
+                                                            </RelativeLayout>
+
+                                                        </LinearLayout>
+
+                                                        <LinearLayout
+                                                            android:layout_weight=".50"
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="match_parent"
+                                                            android:layout_marginLeft="0.5dp"
                                                             android:layout_marginTop="0.5dp"
                                                             android:layout_marginBottom="0.5dp"
                                                             android:background="#FFFFFF"
@@ -2441,6 +2489,25 @@
                                                         android:layout_height="0dp">
 
                                                         <TextView
+                                                            android:id="@+id/nama_askadept_tv"
+                                                            android:layout_weight=".50"
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="match_parent"
+                                                            android:textAppearance="?android:attr/textAppearanceLarge"
+                                                            android:text=""
+                                                            android:textSize="7dp"
+                                                            android:ellipsize="end"
+                                                            android:maxLines="1"
+                                                            android:singleLine="true"
+                                                            android:layout_marginTop="0.5dp"
+                                                            android:layout_marginBottom="0.5dp"
+                                                            android:background="#FFFFFF"
+                                                            android:paddingLeft="3dp"
+                                                            android:paddingRight="3dp"
+                                                            android:gravity="center"
+                                                            tools:ignore="SpUsage" />
+
+                                                        <TextView
                                                             android:id="@+id/nama_kadept_tv"
                                                             android:layout_weight=".50"
                                                             android:layout_width="0dp"
@@ -2451,6 +2518,7 @@
                                                             android:ellipsize="end"
                                                             android:maxLines="1"
                                                             android:singleLine="true"
+                                                            android:layout_marginLeft="0.5dp"
                                                             android:layout_marginTop="0.5dp"
                                                             android:layout_marginBottom="0.5dp"
                                                             android:background="#FFFFFF"
@@ -2490,6 +2558,25 @@
                                                         android:layout_height="0dp">
 
                                                         <TextView
+                                                            android:id="@+id/jabatan_askadept"
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="match_parent"
+                                                            android:layout_marginTop="0.5dp"
+                                                            android:layout_marginBottom="0.5dp"
+                                                            android:layout_weight=".50"
+                                                            android:background="#FFFFFF"
+                                                            android:ellipsize="end"
+                                                            android:gravity="center"
+                                                            android:maxLines="1"
+                                                            android:paddingLeft="3dp"
+                                                            android:paddingRight="3dp"
+                                                            android:singleLine="true"
+                                                            android:text="Ast.Ka.Dept"
+                                                            android:textAppearance="?android:attr/textAppearanceLarge"
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                        <TextView
                                                             android:id="@+id/jabatan_approver_2"
                                                             android:layout_width="0dp"
                                                             android:layout_height="match_parent"
@@ -2502,6 +2589,7 @@
                                                             android:maxLines="1"
                                                             android:paddingLeft="3dp"
                                                             android:paddingRight="3dp"
+                                                            android:layout_marginLeft="0.5dp"
                                                             android:singleLine="true"
                                                             android:text="GA/Ka.Dept"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -2534,7 +2622,8 @@
                                                 </TableLayout>
 
                                                 <TableLayout
-                                                    android:layout_weight=".25"
+                                                    android:id="@+id/tab_3"
+                                                    android:layout_weight=".13"
                                                     android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
                                                     android:stretchColumns="0,1">

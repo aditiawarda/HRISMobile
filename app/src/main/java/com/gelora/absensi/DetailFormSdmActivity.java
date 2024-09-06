@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,15 +41,16 @@ public class DetailFormSdmActivity extends AppCompatActivity {
     LinearLayout lihatPenilaianPart, lihatPenilaianBTN, penilaianBTN, ttdDireksiPart, downloadBTN, backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
-    TextView jabatanApprover, jabatanApprover2, warningPenilaian, labelDireksi, markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
-    TextView namaBaruTV, unitBisnisBaruTV, departemenBaruTV, bagianBaruTV, jabatanBaruTV, komponenGajiBaruTV;
+    TextView tglApproveAstKadept, jabatanApprover, jabatanApprover2, warningPenilaian, labelDireksi, markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
+    TextView namaAstKadeptTV, namaBaruTV, unitBisnisBaruTV, departemenBaruTV, bagianBaruTV, jabatanBaruTV, komponenGajiBaruTV;
     TextView namaLamaTV, unitBisnisLamaTV, departemenLamaTV, bagianLamaTV, jabatanLamaTV, komponenGajiLamaTV;
-    TextView jabatanSlashDepartemenTV, deskripsiSlashJabatanTV, syaratPenerimaanTV, tglDibutuhkan1TV, tglPemenuhan1TV, tglDibutuhkan2TV, tglPemenuhan2TV;
+    TextView jabatanAstKadept, jabatanSlashDepartemenTV, deskripsiSlashJabatanTV, syaratPenerimaanTV, tglDibutuhkan1TV, tglPemenuhan1TV, tglDibutuhkan2TV, tglPemenuhan2TV;
     TextView syaratYaTV, syaratTidakTV;
     TextView persetujuanYaTV, persetujuanTidakTV;
     TextView lainLainTV, jabatanLamaDetailTV, jabatanBaruDetailTV, tglPengangkatanJabatanLamaDetailTV, tglPengangkatanJabatanBaruDetailTV, alasanPengangkatanTV, catatanTV, namaKabagTV, namaKadeptTV, namaDirekturTV, tglApproveKabag, tglApproveKadept, tglApproveDireksi, tglPenerimaanTV;
-    ImageView ttdPemohon, ttdKadept, ttdDireksi, ttdPenerima;
+    ImageView ttdPemohon, ttdAstKadept, ttdKadept, ttdDireksi, ttdPenerima;
     String idData = "", urlDownload = "";
+    TableLayout tableLayout1, tableLayout2, tableLayout3;
     KAlertDialog pDialog;
     private int i = -1;
     private Handler handler = new Handler();
@@ -112,15 +114,18 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         lainLainTV = findViewById(R.id.lain_lain_tv);
 
         namaKabagTV = findViewById(R.id.nama_kabag_tv);
+        namaAstKadeptTV = findViewById(R.id.nama_askadept_tv);
         namaKadeptTV = findViewById(R.id.nama_kadept_tv);
         namaDirekturTV = findViewById(R.id.nama_direktur_tv);
 
         ttdPemohon = findViewById(R.id.ttd_pemohon);
+        ttdAstKadept = findViewById(R.id.ttd_askadept);
         ttdKadept = findViewById(R.id.ttd_kadept);
         ttdDireksi = findViewById(R.id.ttd_direksi);
         ttdPenerima = findViewById(R.id.ttd_penerima);
 
         tglApproveKabag = findViewById(R.id.tgl_approve_kabag);
+        tglApproveAstKadept = findViewById(R.id.tgl_approve_askadept);
         tglApproveKadept = findViewById(R.id.tgl_approve_kadept);
         tglApproveDireksi = findViewById(R.id.tgl_approve_direksi);
 
@@ -135,8 +140,14 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         lihatPenilaianPart = findViewById(R.id.lihat_penilaian_part);
         lihatPenilaianBTN = findViewById(R.id.lihat_penilaian_btn);
         warningPenilaian = findViewById(R.id.warning_penilaian);
+
         jabatanApprover = findViewById(R.id.jabatan_approver);
+        jabatanAstKadept = findViewById(R.id.jabatan_askadept);
         jabatanApprover2 = findViewById(R.id.jabatan_approver_2);
+
+        tableLayout1 = findViewById(R.id.tab_1);
+        tableLayout2 = findViewById(R.id.tab_2);
+        tableLayout3 = findViewById(R.id.tab_3);
 
         idData = getIntent().getExtras().getString("id_data");
         urlDownload = "https://hrisgelora.co.id/absen/pdf_formulir_sdm/"+idData;
@@ -423,6 +434,25 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String id_bagian               = dataArray.getString("id_bagian");
                                 String id_penilaian            = dataArray.getString("id_penilaian");
                                 String approval_penilaian      = dataArray.getString("approval_penilaian");
+
+                                if(id_departemen.equals("2")){
+                                    jabatanAstKadept.setVisibility(View.GONE);
+                                    tglApproveAstKadept.setVisibility(View.GONE);
+                                    ttdAstKadept.setVisibility(View.GONE);
+                                    namaAstKadeptTV.setVisibility(View.GONE);
+                                } else if(id_departemen.equals("3")){
+
+                                } else if(id_departemen.equals("4")){
+
+                                } else if(id_departemen.equals("5")){
+
+                                } else if(id_departemen.equals("6")){
+
+                                } else if(id_departemen.equals("7")){
+
+                                } else if(id_departemen.equals("11")){
+
+                                }
 
                                 if(catatan.equals("null")){
                                     catatan = "";
