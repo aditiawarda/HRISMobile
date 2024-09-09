@@ -393,6 +393,14 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String nama_kabag              = dataArray.getString("nama_kabag");
                                 String ttd_kabag               = dataArray.getString("ttd_kabag");
                                 String jabatan_approver_1      = dataArray.getString("jabatan_approver_1");
+
+                                String status_approve_astkadept= dataArray.getString("status_approve_astkadept");
+                                String tgl_approve_astkadept   = dataArray.getString("tgl_approve_astkadept");
+                                String approver_astkadept      = dataArray.getString("approver_astkadept");
+                                String nama_astkadept          = dataArray.getString("nama_astkadept");
+                                String ttd_astkadept           = dataArray.getString("ttd_astkadept");
+                                String jabatan_astkadept       = dataArray.getString("jabatan_astkadept");
+
                                 String status_approve_kadept   = dataArray.getString("status_approve_kadept");
                                 String tgl_approve_kadept      = dataArray.getString("tgl_approve_kadept");
                                 String approver_kadept         = dataArray.getString("approver_kadept");
@@ -604,18 +612,12 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     } else if(keterangan.equals("3")){
                                         markCeklis3.setText("✓");
                                         labelDireksi.setText("");
-                                        // ttdDireksiPart.setVisibility(View.GONE);
-                                        // namaDirekturTV.setVisibility(View.GONE);
-                                        // labelDireksi.setVisibility(View.GONE);
                                         ttdDireksiPart.setVisibility(View.VISIBLE);
                                         namaDirekturTV.setVisibility(View.VISIBLE);
                                         labelDireksi.setVisibility(View.VISIBLE);
                                     } else if(keterangan.equals("4")){
                                         markCeklis4.setText("✓");
                                         labelDireksi.setText("");
-                                        // ttdDireksiPart.setVisibility(View.GONE);
-                                        // namaDirekturTV.setVisibility(View.GONE);
-                                        // labelDireksi.setVisibility(View.GONE);
                                         ttdDireksiPart.setVisibility(View.VISIBLE);
                                         namaDirekturTV.setVisibility(View.VISIBLE);
                                         labelDireksi.setVisibility(View.VISIBLE);

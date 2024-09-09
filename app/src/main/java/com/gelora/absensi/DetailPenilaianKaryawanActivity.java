@@ -544,6 +544,10 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                         } else {
                                             if(sharedPrefManager.getSpNik().equals("0829030809") && (id_bagian.equals("20") || id_bagian.equals("27"))) {
                                                 actionPart.setVisibility(View.VISIBLE);
+                                            } else if(sharedPrefManager.getSpNik().equals("0687260508") && (id_bagian.equals("16") || id_bagian.equals("17") || id_bagian.equals("22"))) {
+                                                actionPart.setVisibility(View.VISIBLE);
+                                            } else if(sharedPrefManager.getSpNik().equals("0113010500") && (id_bagian.equals("4") || id_bagian.equals("5") || id_bagian.equals("6"))) {
+                                                actionPart.setVisibility(View.VISIBLE);
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
                                             }

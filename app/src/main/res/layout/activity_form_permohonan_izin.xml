@@ -389,7 +389,7 @@
                                     android:drawablePadding="10dp"
                                     android:gravity="top"
                                     android:hint=""
-                                    android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                    android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                     android:lineSpacingExtra="3dp"
                                     android:maxLength="255"
                                     android:minHeight="80dp"

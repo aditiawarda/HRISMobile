@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -89,6 +91,8 @@ public class FormIzinKeluarKantor extends AppCompatActivity {
         viewModel = new ViewModelProvider(FormIzinKeluarKantor.this).get(ConnectivityViewModel.class);
         repository = new Repository(this);
         checkInternet();
+
+        getBinding().etKeperluan.setFilters(new InputFilter[]{new FormIzinKeluarKantor.EmojiExcludeFilter()});
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
@@ -539,6 +543,19 @@ public class FormIzinKeluarKantor extends AppCompatActivity {
             }
         }, Throwable::printStackTrace);
         pDialog.dismiss();
+    }
+
+    public class EmojiExcludeFilter implements InputFilter {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            for (int i = start; i < end; i++) {
+                int type = Character.getType(source.charAt(i));
+                if (type == Character.SURROGATE || type == Character.OTHER_SYMBOL) {
+                    return "";
+                }
+            }
+            return null;
+        }
     }
 
 }

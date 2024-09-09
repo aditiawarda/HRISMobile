@@ -19,7 +19,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.text.InputFilter;
 import android.text.InputType;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -177,6 +179,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
         shiftAbsensiPilihK6 = findViewById(R.id.shift_absensi_pilih_k6);
 
         alasanED = findViewById(R.id.alasan_tv);
+        alasanED.setFilters(new InputFilter[]{new EmojiExcludeFilter()});
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
@@ -5078,6 +5081,19 @@ public class FormFingerscanActivity extends AppCompatActivity {
             } else {
                 super.onBackPressed();
             }
+        }
+    }
+
+    public class EmojiExcludeFilter implements InputFilter {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            for (int i = start; i < end; i++) {
+                int type = Character.getType(source.charAt(i));
+                if (type == Character.SURROGATE || type == Character.OTHER_SYMBOL) {
+                    return "";
+                }
+            }
+            return null;
         }
     }
 

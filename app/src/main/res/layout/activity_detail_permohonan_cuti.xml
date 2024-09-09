@@ -1543,6 +1543,7 @@
                                     android:scrollbars="vertical"
                                     android:maxLength="255"
                                     android:layout_marginBottom="10dp"
+                                    android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                     android:background="@drawable/shape_input_form_2"
                                     android:drawablePadding="10dp"
                                     android:textColor="#595959"

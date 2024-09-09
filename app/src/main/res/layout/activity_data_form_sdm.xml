@@ -78,7 +78,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:drawablePadding="7dp"
-                                    android:text="Menunggu Konfirmasi"
+                                    android:text="Menunggu Persetujuan"
                                     android:textColor="@color/colorAccent"
                                     android:textSize="13dp"
                                     android:textStyle="bold"

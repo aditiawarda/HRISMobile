@@ -29,7 +29,9 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.InputType;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -163,6 +165,9 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         notejumlahHari = findViewById(R.id.note_jumlah_hari);
         infoCutiPart = findViewById(R.id.info_cuti_part);
         actionBar = findViewById(R.id.action_bar);
+
+        alasanTV.setFilters(new InputFilter[]{new FormPermohonanCutiActivity.EmojiExcludeFilter()});
+        alamatSelamaCutiTV.setFilters(new InputFilter[]{new FormPermohonanCutiActivity.EmojiExcludeFilter()});
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
@@ -4047,6 +4052,19 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public class EmojiExcludeFilter implements InputFilter {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            for (int i = start; i < end; i++) {
+                int type = Character.getType(source.charAt(i));
+                if (type == Character.SURROGATE || type == Character.OTHER_SYMBOL) {
+                    return "";
+                }
+            }
+            return null;
         }
     }
 
