@@ -86,7 +86,7 @@
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/shape_feel_login"
                             android:hint="NIK"
-                            android:inputType="textCapCharacters"
+                            android:inputType="textVisiblePassword|textCapSentences"
                             android:paddingLeft="20dp"
                             android:paddingTop="10dp"
                             android:paddingRight="20dp"
