@@ -1010,6 +1010,7 @@
                                                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                                     <TextView
+                                                                        android:id="@+id/jabatan_approver_1"
                                                                         android:layout_width="match_parent"
                                                                         android:layout_height="wrap_content"
                                                                         android:gravity="center"
