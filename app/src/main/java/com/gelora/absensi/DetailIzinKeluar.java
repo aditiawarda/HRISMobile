@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -448,7 +449,7 @@ public class DetailIzinKeluar extends AppCompatActivity {
                     getBinding().layoutUserBiasa.setVisibility(View.GONE);
                     getBinding().jamKembali.setText(detail.getJamKembali());
                     getBinding().satpamVerifikator.setText(detail.getNamaVerifSatpam());
-                    getBinding().jamKembali.setTextColor(ContextCompat.getColor(DetailIzinKeluar.this, R.color.black));
+                    getBinding().jamKembali.setTextColor(Color.parseColor("#515151"));
                 } else {
                     if(checkApprovalAtasan.equals("1")){
                         getBinding().layoutUserBiasa.setVisibility(View.GONE);
@@ -460,14 +461,16 @@ public class DetailIzinKeluar extends AppCompatActivity {
                         }
                     }
                     getBinding().jamKembali.setText("-");
-                    getBinding().jamKembali.setTextColor(ContextCompat.getColor(DetailIzinKeluar.this, R.color.black));
+                    getBinding().jamKembali.setTextColor(Color.parseColor("#515151"));
                 }
 
                 if (Objects.equals(checkApprovalAtasan, "2") || Objects.equals(checkApprovalAtasan, "1") && Objects.equals(checkApprovalSatpam, "2")){
                     getBinding().stampleImg.setImageDrawable(getResources().getDrawable(R.drawable.rejected_img));
+                    getBinding().stampleImg.setVisibility(View.VISIBLE);
                 }
                 if (Objects.equals(checkApprovalAtasan, "1") && Objects.equals(checkApprovalSatpam, "1")){
                     getBinding().stampleImg.setImageDrawable(getResources().getDrawable(R.drawable.accepted_img));
+                    getBinding().stampleImg.setVisibility(View.VISIBLE);
                 }
 
                 if(getDate().equals(detail.getTanggal())){
@@ -514,9 +517,13 @@ public class DetailIzinKeluar extends AppCompatActivity {
                     }
                     if ("1".equals(detail.getStatusApproval())) {
                         String ttdAtasan = repository.getSignature(detail.getTtdAtasan());
-                        Glide.with(DetailIzinKeluar.this)
-                                .load(ttdAtasan)
-                                .into(getBinding().ttdSupervisor);
+                        try {
+                            Glide.with(DetailIzinKeluar.this)
+                                    .load(ttdAtasan)
+                                    .into(getBinding().ttdSupervisor);
+                        } catch (IllegalArgumentException e){
+                            Log.e("Error : ", e.toString());
+                        }
                     }
                 } else {
                     getBinding().namaAtasan.setText("( ............... )");

@@ -82,518 +82,145 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="invisible">
+                    android:visibility="visible">
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginHorizontal="20dp"
-                            android:layout_marginTop="15dp"
-                            android:background="@drawable/shape_detail_permohonan"
+                            android:layout_height="2dp"
                             android:orientation="vertical"
-                            tools:ignore="ExtraText">
+                            android:background="@color/darker_gray"/>
+
+                        <com.gelora.absensi.support.ZoomableLinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/shape_zoom_layout"
+                            android:orientation="vertical">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:orientation="horizontal"
-                                android:paddingLeft="15dp"
-                                android:paddingRight="15dp"
-                                tools:ignore="DisableBaselineAlignment">
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight=".20"
-                                    android:gravity="center"
-                                    tools:ignore="TooDeepLayout">
-
-                                    <ImageView
-                                        android:layout_width="45dp"
-                                        android:layout_height="45dp"
-                                        android:src="@drawable/glogo_4"
-                                        tools:ignore="ContentDescription" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight=".60"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:text="PT. Gelora Aksara Pratama"
-                                        android:textColor="#515151"
-                                        android:textSize="12dp"
-                                        android:textStyle="bold"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:text="The Leader in Printing Innovation"
-                                        android:textColor="#515151"
-                                        android:textSize="9dp"
-                                        android:textStyle="bold|italic"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:text="Jl. H. Baping Raya No. 100 Ciracas - Jakarta 13740"
-                                        android:textColor="#515151"
-                                        android:textSize="8dp"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:text="Telp. (021) 8710060, Fax. (021) 87796644"
-                                        android:textColor="#515151"
-                                        android:textSize="8dp"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight=".20"
-                                    android:gravity="center">
-
-                                    <ImageView
-                                        android:layout_width="45dp"
-                                        android:layout_height="45dp"
-                                        android:src="@drawable/suma_logo"
-                                        tools:ignore="ContentDescription" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginLeft="25dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginRight="25dp"
-                                android:layout_marginBottom="5dp"
-                                android:background="#83494949"
-                                android:gravity="center"
-                                android:textSize="10dp"
-                                tools:ignore="SpUsage" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="10dp"
-                                android:fontFamily="@font/roboto"
-                                android:text="IZIN KELUAR KANTOR"
-                                android:textStyle="bold"
-                                tools:ignore="HardcodedText"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="30dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text="NAMA"
-                                    android:textColor="#515151"
-                                    android:textSize="11dp"
-                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="10dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text=":"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                                <TextView
-                                    android:id="@+id/detail_nama"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="10dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text="Detail Nama"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="30dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text="BAGIAN"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="10dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text=":"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                                <TextView
-                                    android:id="@+id/detail_bagian"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="10dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text="Detail Bagian"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="30dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text="KELUAR JAM"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="10dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text=":"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                                <TextView
-                                    android:id="@+id/detail_jam"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="10dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text="Detail Jam"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="30dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text="KEPERLUAN"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="10dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text=":"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                                <TextView
-                                    android:id="@+id/detail_keperluan"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="10dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text="Detail Keperluan"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="30dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text="ESTIMASI KELUAR SELAMA?"
-                                    android:textSize="11dp"
-                                    android:lineSpacingExtra="3dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="10dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text=":"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                                <TextView
-                                    android:id="@+id/detail_durasi"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginStart="10dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:text="Detail Durasi"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="30dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/waktu_pengajuan"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="start"
-                                    android:layout_marginStart="30dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:gravity="center_vertical"
-                                    android:text="TANGGAL DAN WAKTU PENGAJUAN"
-                                    android:textSize="11dp"
-                                    android:textColor="#515151"
-                                    tools:ignore="HardcodedText,SpUsage"/>
+                                android:layout_height="match_parent"
+                                android:layout_marginHorizontal="20dp"
+                                android:layout_marginTop="25dp"
+                                android:layout_marginBottom="25dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:background="@drawable/shape_sheet"
+                                android:orientation="vertical"
+                                tools:ignore="ExtraText,UselessParent">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:orientation="horizontal">
+                                    android:layout_marginTop="20dp"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="15dp"
+                                    android:paddingRight="15dp"
+                                    tools:ignore="DisableBaselineAlignment">
 
                                     <LinearLayout
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="0dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginStart="30dp"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="start"
-                                            android:layout_marginBottom="15dp"
-                                            android:fontFamily="@font/roboto"
-                                            android:text="Pemohon"
-                                            android:textSize="11dp"
-                                            android:textColor="#515151"
-                                            tools:ignore="HardcodedText,SpUsage"/>
+                                        android:layout_weight=".20"
+                                        android:gravity="center"
+                                        tools:ignore="TooDeepLayout">
 
                                         <ImageView
-                                            android:id="@+id/ttd_pemohon"
-                                            android:layout_width="50dp"
-                                            android:layout_height="50dp"
-                                            tools:ignore="ContentDescription"/>
-
-                                        <TextView
-                                            android:id="@+id/nama_pemohon"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="start"
-                                            android:fontFamily="@font/roboto"
-                                            android:text="Nama Pemohon"
-                                            android:textSize="11dp"
-                                            android:textColor="#515151"
-                                            tools:ignore="HardcodedText,SpUsage"/>
+                                            android:layout_width="45dp"
+                                            android:layout_height="45dp"
+                                            android:src="@drawable/glogo_4"
+                                            tools:ignore="ContentDescription" />
 
                                     </LinearLayout>
 
                                     <LinearLayout
-                                        android:layout_width="match_parent"
+                                        android:layout_width="0dp"
                                         android:layout_height="wrap_content"
+                                        android:layout_weight=".60"
+                                        android:gravity="center"
                                         android:orientation="vertical">
 
                                         <TextView
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_gravity="start"
-                                            android:layout_marginBottom="15dp"
-                                            android:fontFamily="@font/roboto"
-                                            android:gravity="center_horizontal"
-                                            android:text="Mengetahui,"
-                                            android:textSize="11dp"
+                                            android:gravity="center"
+                                            android:text="PT. Gelora Aksara Pratama"
                                             android:textColor="#515151"
-                                            tools:ignore="HardcodedText,SpUsage"/>
+                                            android:textSize="12dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                                        <LinearLayout
+                                        <TextView
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:gravity="center_horizontal"
-                                            android:layout_marginRight="40dp"
-                                            android:layout_marginLeft="20dp"
-                                            android:orientation="horizontal"
-                                            tools:ignore="DisableBaselineAlignment,RtlHardcoded">
+                                            android:gravity="center"
+                                            android:text="The Leader in Printing Innovation"
+                                            android:textColor="#515151"
+                                            android:textSize="9dp"
+                                            android:textStyle="bold|italic"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                                            <LinearLayout
-                                                android:layout_width="0dp"
-                                                android:layout_weight=".50"
-                                                android:layout_height="wrap_content"
-                                                android:orientation="vertical"
-                                                android:gravity="center"
-                                                tools:ignore="TooDeepLayout,UseCompoundDrawables">
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="Jl. H. Baping Raya No. 100 Ciracas - Jakarta 13740"
+                                            android:textColor="#515151"
+                                            android:textSize="8dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                                                <ImageView
-                                                    android:id="@+id/ttd_supervisor"
-                                                    android:layout_width="50dp"
-                                                    android:layout_height="50dp"
-                                                    tools:ignore="ContentDescription,TooDeepLayout" />
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="Telp. (021) 8710060, Fax. (021) 87796644"
+                                            android:textColor="#515151"
+                                            android:textSize="8dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                                                <TextView
-                                                    android:id="@+id/nama_atasan"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_gravity="start"
-                                                    android:fontFamily="@font/roboto"
-                                                    android:text="Nama Supervisor"
-                                                    android:textSize="11dp"
-                                                    android:textColor="#515151"
-                                                    android:gravity="center"
-                                                    tools:ignore="HardcodedText,SpUsage"/>
+                                    </LinearLayout>
 
-                                                <TextView
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_gravity="start"
-                                                    android:fontFamily="@font/roboto"
-                                                    android:text="Atasan Langsung"
-                                                    android:textSize="10dp"
-                                                    android:textColor="#515151"
-                                                    android:gravity="center"
-                                                    tools:ignore="HardcodedText,SpUsage"/>
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight=".20"
+                                        android:gravity="center">
 
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_width="0dp"
-                                                android:layout_weight=".50"
-                                                android:layout_height="wrap_content"
-                                                android:orientation="vertical"
-                                                android:gravity="center"
-                                                tools:ignore="UseCompoundDrawables">
-
-                                                <ImageView
-                                                    android:id="@+id/ttd_satpam"
-                                                    android:layout_width="50dp"
-                                                    android:layout_height="50dp"
-                                                    tools:ignore="ContentDescription" />
-
-                                                <TextView
-                                                    android:id="@+id/nama_satpam"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_gravity="start"
-                                                    android:fontFamily="@font/roboto"
-                                                    android:text="Nama Satpam"
-                                                    android:textSize="11dp"
-                                                    android:textColor="#515151"
-                                                    android:gravity="center"
-                                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                                                <TextView
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_gravity="start"
-                                                    android:fontFamily="@font/roboto"
-                                                    android:text="Satpam"
-                                                    android:textSize="10dp"
-                                                    android:textColor="#515151"
-                                                    android:gravity="center"
-                                                    tools:ignore="HardcodedText,SpUsage"/>
-
-                                            </LinearLayout>
-
-                                        </LinearLayout>
+                                        <ImageView
+                                            android:layout_width="45dp"
+                                            android:layout_height="45dp"
+                                            android:src="@drawable/suma_logo"
+                                            tools:ignore="ContentDescription" />
 
                                     </LinearLayout>
 
                                 </LinearLayout>
 
-                            </LinearLayout>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginLeft="25dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginRight="25dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:background="#83494949"
+                                    android:gravity="center"
+                                    android:textSize="10dp"
+                                    tools:ignore="SpUsage" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="IZIN KELUAR KANTOR"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText"/>
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -607,10 +234,10 @@
                                         android:layout_gravity="center_horizontal"
                                         android:layout_marginStart="30dp"
                                         android:fontFamily="@font/roboto"
-                                        android:text="KEMBALI JAM"
-                                        android:textSize="11dp"
+                                        android:text="NAMA"
                                         android:textColor="#515151"
-                                        tools:ignore="HardcodedText,SpUsage"/>
+                                        android:textSize="11dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -619,29 +246,28 @@
                                         android:layout_marginStart="10dp"
                                         android:fontFamily="@font/roboto"
                                         android:text=":"
-                                        android:textSize="11dp"
                                         android:textColor="#515151"
-                                        tools:ignore="HardcodedText,SpUsage"/>
+                                        android:textSize="11dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <TextView
-                                        android:id="@+id/jam_kembali"
+                                        android:id="@+id/detail_nama"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_horizontal"
                                         android:layout_marginStart="10dp"
                                         android:fontFamily="@font/roboto"
-                                        android:text="-"
-                                        android:textSize="11dp"
+                                        android:text="Detail Nama"
                                         android:textColor="#515151"
-                                        tools:ignore="HardcodedText,SpUsage"/>
+                                        android:textSize="11dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 </LinearLayout>
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="30dp"
+                                    android:layout_marginTop="10dp"
                                     android:orientation="horizontal">
 
                                     <TextView
@@ -650,10 +276,10 @@
                                         android:layout_gravity="center_horizontal"
                                         android:layout_marginStart="30dp"
                                         android:fontFamily="@font/roboto"
-                                        android:text="DIVERIFIKASI OLEH"
-                                        android:textSize="11dp"
+                                        android:text="BAGIAN"
                                         android:textColor="#515151"
-                                        tools:ignore="HardcodedText,SpUsage"/>
+                                        android:textSize="11dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -662,54 +288,462 @@
                                         android:layout_marginStart="10dp"
                                         android:fontFamily="@font/roboto"
                                         android:text=":"
-                                        android:textSize="11dp"
                                         android:textColor="#515151"
-                                        tools:ignore="HardcodedText,SpUsage"/>
+                                        android:textSize="11dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                     <TextView
-                                        android:id="@+id/satpam_verifikator"
+                                        android:id="@+id/detail_bagian"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_horizontal"
                                         android:layout_marginStart="10dp"
                                         android:fontFamily="@font/roboto"
-                                        android:text="-"
-                                        android:textSize="11dp"
+                                        android:text="Detail Bagian"
                                         android:textColor="#515151"
-                                        tools:ignore="HardcodedText,SpUsage"/>
+                                        android:textSize="11dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="120dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="30dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:text="KELUAR JAM"
+                                        android:textColor="#515151"
+                                        android:textSize="11dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="10dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:text=":"
+                                        android:textColor="#515151"
+                                        android:textSize="11dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <TextView
+                                        android:id="@+id/detail_jam"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="10dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:text="Detail Jam"
+                                        android:textColor="#515151"
+                                        android:textSize="11dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="120dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="30dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:text="KEPERLUAN"
+                                        android:textColor="#515151"
+                                        android:textSize="11dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="10dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:text=":"
+                                        android:textColor="#515151"
+                                        android:textSize="11dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <TextView
+                                        android:id="@+id/detail_keperluan"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_marginEnd="30dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:lineSpacingExtra="3dp"
+                                        android:text="Detail Keperluan"
+                                        android:textColor="#515151"
+                                        android:textSize="11dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="120dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="30dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:lineSpacingExtra="3dp"
+                                        android:text="ESTIMASI KELUAR SELAMA?"
+                                        android:textColor="#515151"
+                                        android:textSize="11dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="10dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:text=":"
+                                        android:textColor="#515151"
+                                        android:textSize="11dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <TextView
+                                        android:id="@+id/detail_durasi"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="10dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:text="Detail Durasi"
+                                        android:textColor="#515151"
+                                        android:textSize="11dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/waktu_pengajuan"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_gravity="start"
+                                            android:gravity="bottom"
+                                            android:layout_marginStart="30dp"
+                                            android:fontFamily="@font/roboto"
+                                            android:minHeight="30dp"
+                                            android:text="JAKARTA, -- --- ----"
+                                            android:textSize="11dp"
+                                            android:textColor="#515151"
+                                            tools:ignore="HardcodedText,SpUsage"/>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:minHeight="30dp"
+                                            android:paddingRight="30dp"
+                                            android:gravity="right"
+                                            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                                            <ImageView
+                                                android:visibility="gone"
+                                                android:id="@+id/stample_img"
+                                                android:layout_width="130dp"
+                                                android:layout_height="58dp"
+                                                android:layout_gravity="end"
+                                                android:layout_marginStart="20dp"
+                                                tools:ignore="ContentDescription"/>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="30dp"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="start"
+                                                android:layout_marginBottom="15dp"
+                                                android:fontFamily="@font/roboto"
+                                                android:text="Pemohon"
+                                                android:textColor="#515151"
+                                                android:textSize="11dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <ImageView
+                                                android:id="@+id/ttd_pemohon"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                tools:ignore="ContentDescription"/>
+
+                                            <TextView
+                                                android:id="@+id/nama_pemohon"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="start"
+                                                android:fontFamily="@font/roboto"
+                                                android:text="Nama Pemohon"
+                                                android:textColor="#515151"
+                                                android:textSize="11dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="start"
+                                                android:layout_marginBottom="15dp"
+                                                android:fontFamily="@font/roboto"
+                                                android:gravity="center_horizontal"
+                                                android:text="Mengetahui,"
+                                                android:textColor="#515151"
+                                                android:textSize="11dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center_horizontal"
+                                                android:layout_marginRight="40dp"
+                                                android:layout_marginLeft="20dp"
+                                                android:orientation="horizontal"
+                                                tools:ignore="DisableBaselineAlignment,RtlHardcoded">
+
+                                                <LinearLayout
+                                                    android:layout_width="0dp"
+                                                    android:layout_weight=".50"
+                                                    android:layout_height="wrap_content"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center"
+                                                    tools:ignore="TooDeepLayout,UseCompoundDrawables">
+
+                                                    <ImageView
+                                                        android:id="@+id/ttd_supervisor"
+                                                        android:layout_width="50dp"
+                                                        android:layout_height="50dp"
+                                                        tools:ignore="ContentDescription,TooDeepLayout" />
+
+                                                    <TextView
+                                                        android:id="@+id/nama_atasan"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_gravity="start"
+                                                        android:fontFamily="@font/roboto"
+                                                        android:gravity="center"
+                                                        android:text="Nama Supervisor"
+                                                        android:textColor="#515151"
+                                                        android:textSize="11dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_gravity="start"
+                                                        android:fontFamily="@font/roboto"
+                                                        android:gravity="center"
+                                                        android:text="Atasan Langsung"
+                                                        android:textColor="#515151"
+                                                        android:textSize="10dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="0dp"
+                                                    android:layout_weight=".50"
+                                                    android:layout_height="wrap_content"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center"
+                                                    tools:ignore="UseCompoundDrawables">
+
+                                                    <ImageView
+                                                        android:id="@+id/ttd_satpam"
+                                                        android:layout_width="50dp"
+                                                        android:layout_height="50dp"
+                                                        tools:ignore="ContentDescription" />
+
+                                                    <TextView
+                                                        android:id="@+id/nama_satpam"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_gravity="start"
+                                                        android:fontFamily="@font/roboto"
+                                                        android:gravity="center"
+                                                        android:text="Nama Satpam"
+                                                        android:textColor="#515151"
+                                                        android:textSize="11dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_gravity="start"
+                                                        android:fontFamily="@font/roboto"
+                                                        android:gravity="center"
+                                                        android:text="Satpam"
+                                                        android:textColor="#515151"
+                                                        android:textSize="10dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                </LinearLayout>
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="20dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="120dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_marginStart="30dp"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="KEMBALI JAM"
+                                            android:textColor="#515151"
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_marginStart="10dp"
+                                            android:fontFamily="@font/roboto"
+                                            android:text=":"
+                                            android:textColor="#515151"
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <TextView
+                                            android:id="@+id/jam_kembali"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_marginStart="10dp"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="-"
+                                            android:textColor="#515151"
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="30dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="120dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_marginStart="30dp"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="DIVERIFIKASI OLEH"
+                                            android:textColor="#515151"
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_marginStart="10dp"
+                                            android:fontFamily="@font/roboto"
+                                            android:text=":"
+                                            android:textColor="#515151"
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <TextView
+                                            android:id="@+id/satpam_verifikator"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_marginStart="10dp"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="-"
+                                            android:textColor="#515151"
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    </LinearLayout>
 
                                 </LinearLayout>
 
                             </LinearLayout>
 
-                        </LinearLayout>
+                        </com.gelora.absensi.support.ZoomableLinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
+                            android:layout_height="2dp"
                             android:orientation="vertical"
-                            android:layout_marginTop="282dp"
-                            android:paddingRight="40dp"
-                            tools:ignore="RtlHardcoded,RtlSymmetry,UselessLeaf,UselessParent">
+                            android:layout_marginBottom="15dp"
+                            android:background="@color/darker_gray"/>
 
-                            <ImageView
-                                android:id="@+id/stample_img"
-                                android:layout_width="130dp"
-                                android:layout_height="58dp"
-                                android:layout_gravity="end"
-                                tools:ignore="ContentDescription"/>
-
-                        </LinearLayout>
-
-                    </RelativeLayout>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/layout_atasan_dan_satpam"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20dp"
-                        android:layout_marginTop="15dp"
                         android:orientation="horizontal"
                         tools:ignore="DisableBaselineAlignment">
 
@@ -730,7 +764,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="12dp"
                                 android:textStyle="bold"
-                                tools:ignore="HardcodedText,SpUsage" />
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                         </LinearLayout>
 
@@ -751,7 +785,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="12dp"
                                 android:textStyle="bold"
-                                tools:ignore="HardcodedText,SpUsage" />
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                         </LinearLayout>
 
@@ -762,10 +796,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="20dp"
-                        android:layout_marginTop="10dp"
                         android:gravity="center_horizontal"
                         android:orientation="horizontal"
-                        android:visibility="gone">
+                        android:visibility="gone"
+                        tools:ignore="TooManyViews">
 
                         <Button
                             android:id="@+id/batalkan_btn"
@@ -788,7 +822,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="20dp"
-                        android:layout_marginTop="10dp"
                         android:gravity="center_horizontal"
                         android:orientation="horizontal"
                         android:visibility="gone">
@@ -819,7 +852,7 @@
                 android:layout_height="match_parent"
                 android:paddingTop="140dp"
                 android:gravity="center|top"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:orientation="vertical"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"

@@ -594,6 +594,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                             if (status.equals("Success")) {
                                 JSONObject detail = data.getJSONObject("data");
                                 String NIK = detail.getString("NIK");
+                                String id_jabatan = detail.getString("id_jabatan");
                                 String NmKaryawan = detail.getString("NmKaryawan");
                                 String bagian = detail.getString("NmDept");
                                 String jabatan = detail.getString("NmJabatan");
@@ -856,10 +857,10 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             cancelPermohonanBTN.setVisibility(View.VISIBLE);
                                             editPermohonanBTN.setVisibility(View.VISIBLE);
 
-                                            if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || (sharedPrefManager.getSpNik().equals("0015141287")||sharedPrefManager.getSpNik().equals("3294031022"))) {
+                                            if(id_jabatan.equals("41") || id_jabatan.equals("10") || (NIK.equals("0015141287")||NIK.equals("3294031022"))) {
                                                 jabatanApprover2.setText("Direktur Utama");
                                             } else {
-                                                if(sharedPrefManager.getSpNik().equals("0687260508") || sharedPrefManager.getSpNik().equals("0113010500") || sharedPrefManager.getSpNik().equals("0499070507") || sharedPrefManager.getSpNik().equals("0056010793") || sharedPrefManager.getSpNik().equals("0829030809") || sharedPrefManager.getSpNik().equals("0552260707") || sharedPrefManager.getSpNik().equals("3318060323")) {
+                                                if(NIK.equals("0687260508") || NIK.equals("0113010500") || NIK.equals("0499070507") || NIK.equals("0056010793") || NIK.equals("0829030809") || NIK.equals("0552260707") || NIK.equals("3318060323")) {
                                                     jabatanApprover2.setText("General Manager");
                                                 } else {
                                                     jabatanApprover2.setText("Kepala Departemen");
@@ -986,10 +987,10 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 cancelPermohonanBTN.setVisibility(View.VISIBLE);
                                                 editPermohonanBTN.setVisibility(View.VISIBLE);
 
-                                                if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || (sharedPrefManager.getSpNik().equals("0015141287")||sharedPrefManager.getSpNik().equals("3294031022"))) {
+                                                if(id_jabatan.equals("41") || id_jabatan.equals("10") || (NIK.equals("0015141287")||NIK.equals("3294031022"))) {
                                                     jabatanApprover2.setText("Direktur Utama");
                                                 } else {
-                                                    if(sharedPrefManager.getSpNik().equals("0687260508") || sharedPrefManager.getSpNik().equals("0113010500") || sharedPrefManager.getSpNik().equals("0499070507") || sharedPrefManager.getSpNik().equals("0056010793") || sharedPrefManager.getSpNik().equals("0829030809") || sharedPrefManager.getSpNik().equals("0552260707") || sharedPrefManager.getSpNik().equals("3318060323")) {
+                                                    if(NIK.equals("0687260508") || NIK.equals("0113010500") || NIK.equals("0499070507") || NIK.equals("0056010793") || NIK.equals("0829030809") || NIK.equals("0552260707") || NIK.equals("3318060323")) {
                                                         jabatanApprover2.setText("General Manager");
                                                     } else {
                                                         jabatanApprover2.setText("Kepala Departemen");
@@ -1121,10 +1122,10 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                         // }
                                                     }
 
-                                                    if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || (sharedPrefManager.getSpNik().equals("0015141287")||sharedPrefManager.getSpNik().equals("3294031022"))) {
+                                                    if(id_jabatan.equals("41") || id_jabatan.equals("10") || (NIK.equals("0015141287")||NIK.equals("3294031022"))) {
                                                         jabatanApprover2.setText("Direktur Utama");
                                                     } else {
-                                                        if(sharedPrefManager.getSpNik().equals("0687260508") || sharedPrefManager.getSpNik().equals("0113010500") || sharedPrefManager.getSpNik().equals("0499070507") || sharedPrefManager.getSpNik().equals("0056010793") || sharedPrefManager.getSpNik().equals("0829030809") || sharedPrefManager.getSpNik().equals("0552260707") || sharedPrefManager.getSpNik().equals("3318060323")) {
+                                                        if(NIK.equals("0687260508") || NIK.equals("0113010500") || NIK.equals("0499070507") || NIK.equals("0056010793") || NIK.equals("0829030809") || NIK.equals("0552260707") || NIK.equals("3318060323")) {
                                                             jabatanApprover2.setText("General Manager");
                                                         } else {
                                                             jabatanApprover2.setText("Kepala Departemen");
@@ -1271,10 +1272,10 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     // }
                                                 }
 
-                                                if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || (sharedPrefManager.getSpNik().equals("0015141287")||sharedPrefManager.getSpNik().equals("3294031022"))) {
+                                                if(id_jabatan.equals("41") || id_jabatan.equals("10") || (NIK.equals("0015141287")||NIK.equals("3294031022"))) {
                                                     jabatanApprover2.setText("Direktur Utama");
                                                 } else {
-                                                    if(sharedPrefManager.getSpNik().equals("0687260508") || sharedPrefManager.getSpNik().equals("0113010500") || sharedPrefManager.getSpNik().equals("0499070507") || sharedPrefManager.getSpNik().equals("0056010793") || sharedPrefManager.getSpNik().equals("0829030809") || sharedPrefManager.getSpNik().equals("0552260707") || sharedPrefManager.getSpNik().equals("3318060323")) {
+                                                    if(NIK.equals("0687260508") || NIK.equals("0113010500") || NIK.equals("0499070507") || NIK.equals("0056010793") || NIK.equals("0829030809") || NIK.equals("0552260707") || NIK.equals("3318060323")) {
                                                         jabatanApprover2.setText("General Manager");
                                                     } else {
                                                         jabatanApprover2.setText("Kepala Departemen");

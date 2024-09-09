@@ -153,6 +153,7 @@
                                                     android:layout_height="wrap_content"
                                                     android:textColor="#B15735"
                                                     android:ellipsize="end"
+                                                    android:textSize="13dp"
                                                     android:maxLines="1"
                                                     android:singleLine="true"
                                                     android:textStyle="bold"

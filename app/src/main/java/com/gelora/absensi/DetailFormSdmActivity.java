@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class DetailFormSdmActivity extends AppCompatActivity {
 
-    LinearLayout lihatPenilaianPart, lihatPenilaianBTN, penilaianBTN, ttdDireksiPart, downloadBTN, backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
+    LinearLayout ttdAstKadeptPart, lihatPenilaianPart, lihatPenilaianBTN, penilaianBTN, ttdDireksiPart, downloadBTN, backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     TextView tglApproveAstKadept, jabatanApprover, jabatanApprover2, warningPenilaian, labelDireksi, markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
@@ -132,6 +132,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         tglPenerimaanTV = findViewById(R.id.tgl_penerimaan_tv);
         labelDireksi = findViewById(R.id.label_direksi);
         ttdDireksiPart = findViewById(R.id.ttd_direksi_part);
+        ttdAstKadeptPart = findViewById(R.id.ttd_astkadept_part);
 
         actionPart = findViewById(R.id.action_part);
         appovedBTN = findViewById(R.id.appoved_btn);
@@ -442,23 +443,50 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     depart = departemen_lama;
                                 }
 
-                                if(depart.equals("2")){
+                                if(depart.equals("2")){ //IDM
+                                    ttdAstKadeptPart.setVisibility(View.GONE);
                                     jabatanAstKadept.setVisibility(View.GONE);
                                     tglApproveAstKadept.setVisibility(View.GONE);
                                     ttdAstKadept.setVisibility(View.GONE);
                                     namaAstKadeptTV.setVisibility(View.GONE);
-                                } else if(depart.equals("3")){
+                                } else if(depart.equals("3")){ //MKT
+                                    ttdAstKadeptPart.setVisibility(View.GONE);
+                                    jabatanAstKadept.setVisibility(View.GONE);
+                                    tglApproveAstKadept.setVisibility(View.GONE);
+                                    ttdAstKadept.setVisibility(View.GONE);
+                                    namaAstKadeptTV.setVisibility(View.GONE);
+                                } else if(depart.equals("4")){ //SPT
+                                    ttdAstKadeptPart.setVisibility(View.GONE);
+                                    jabatanAstKadept.setVisibility(View.GONE);
+                                    tglApproveAstKadept.setVisibility(View.GONE);
+                                    ttdAstKadept.setVisibility(View.GONE);
+                                    namaAstKadeptTV.setVisibility(View.GONE);
+                                } else if(depart.equals("5")){ //HRD
+                                    ttdAstKadeptPart.setVisibility(View.GONE);
+                                    jabatanAstKadept.setVisibility(View.GONE);
+                                    tglApproveAstKadept.setVisibility(View.GONE);
+                                    ttdAstKadept.setVisibility(View.GONE);
+                                    namaAstKadeptTV.setVisibility(View.GONE);
+                                } else if(depart.equals("6")){ //PNE
+                                    ttdAstKadeptPart.setVisibility(View.GONE);
+                                    jabatanAstKadept.setVisibility(View.GONE);
+                                    tglApproveAstKadept.setVisibility(View.GONE);
+                                    ttdAstKadept.setVisibility(View.GONE);
+                                    namaAstKadeptTV.setVisibility(View.GONE);
+                                } else if(depart.equals("7")){ //PRO
 
-                                } else if(depart.equals("4")){
-
-                                } else if(depart.equals("5")){
-
-                                } else if(depart.equals("6")){
-
-                                } else if(depart.equals("7")){
-
-                                } else if(depart.equals("11")){
-
+                                } else if(depart.equals("15")){ //QAC
+                                    ttdAstKadeptPart.setVisibility(View.GONE);
+                                    jabatanAstKadept.setVisibility(View.GONE);
+                                    tglApproveAstKadept.setVisibility(View.GONE);
+                                    ttdAstKadept.setVisibility(View.GONE);
+                                    namaAstKadeptTV.setVisibility(View.GONE);
+                                } else if(depart.equals("19")){ //KAL
+                                    ttdAstKadeptPart.setVisibility(View.GONE);
+                                    jabatanAstKadept.setVisibility(View.GONE);
+                                    tglApproveAstKadept.setVisibility(View.GONE);
+                                    ttdAstKadept.setVisibility(View.GONE);
+                                    namaAstKadeptTV.setVisibility(View.GONE);
                                 }
 
                                 if(catatan.equals("null")){

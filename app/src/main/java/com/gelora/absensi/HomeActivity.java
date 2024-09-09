@@ -602,10 +602,10 @@ public class HomeActivity extends AppCompatActivity {
                                 profileMark.setVisibility(View.GONE);
                             }
 
-                            if(getNamaHari().toLowerCase().equals("jumat")){
+                            if(getNamaHari().toLowerCase().equals("jumat")||getNamaHari().toLowerCase().equals("sabtu")){
                                 if(sharedPrefManager.getSpIdCor().equals("1") && sharedPrefManager.getSpIdCab().equals("1")){
                                     if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")){
-                                        checkPengajuanMakan();
+                                        checkPengajuanMakan(getNamaHari().toLowerCase());
                                     }
                                 }
                             }
@@ -639,7 +639,7 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    private void checkPengajuanMakan() {
+    private void checkPengajuanMakan(String hari) {
         final String url = "https://hrisgelora.co.id/api/cek_pengajuan_makan_reminder";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -735,7 +735,8 @@ public class HomeActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                params.put("hari", hari);
                 return params;
             }
         };
