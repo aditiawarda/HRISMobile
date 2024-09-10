@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,18 +38,19 @@ import java.util.Map;
 
 public class DetailFormSdmActivity extends AppCompatActivity {
 
-    LinearLayout lihatPenilaianPart, lihatPenilaianBTN, penilaianBTN, ttdDireksiPart, downloadBTN, backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
+    LinearLayout ttdAstKadeptPart, lihatPenilaianPart, lihatPenilaianBTN, penilaianBTN, ttdDireksiPart, downloadBTN, backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
-    TextView warningPenilaian, labelDireksi, markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
-    TextView namaBaruTV, unitBisnisBaruTV, departemenBaruTV, bagianBaruTV, jabatanBaruTV, komponenGajiBaruTV;
+    TextView tglApproveAstKadept, jabatanApprover, jabatanApprover2, warningPenilaian, labelDireksi, markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
+    TextView namaAstKadeptTV, namaBaruTV, unitBisnisBaruTV, departemenBaruTV, bagianBaruTV, jabatanBaruTV, komponenGajiBaruTV;
     TextView namaLamaTV, unitBisnisLamaTV, departemenLamaTV, bagianLamaTV, jabatanLamaTV, komponenGajiLamaTV;
-    TextView jabatanSlashDepartemenTV, deskripsiSlashJabatanTV, syaratPenerimaanTV, tglDibutuhkan1TV, tglPemenuhan1TV, tglDibutuhkan2TV, tglPemenuhan2TV;
+    TextView jabatanAstKadept, jabatanSlashDepartemenTV, deskripsiSlashJabatanTV, syaratPenerimaanTV, tglDibutuhkan1TV, tglPemenuhan1TV, tglDibutuhkan2TV, tglPemenuhan2TV;
     TextView syaratYaTV, syaratTidakTV;
     TextView persetujuanYaTV, persetujuanTidakTV;
     TextView lainLainTV, jabatanLamaDetailTV, jabatanBaruDetailTV, tglPengangkatanJabatanLamaDetailTV, tglPengangkatanJabatanBaruDetailTV, alasanPengangkatanTV, catatanTV, namaKabagTV, namaKadeptTV, namaDirekturTV, tglApproveKabag, tglApproveKadept, tglApproveDireksi, tglPenerimaanTV;
-    ImageView ttdPemohon, ttdKadept, ttdDireksi, ttdPenerima;
+    ImageView ttdPemohon, ttdAstKadept, ttdKadept, ttdDireksi, ttdPenerima;
     String idData = "", urlDownload = "";
+    TableLayout tableLayout1, tableLayout2, tableLayout3;
     KAlertDialog pDialog;
     private int i = -1;
     private Handler handler = new Handler();
@@ -112,21 +114,25 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         lainLainTV = findViewById(R.id.lain_lain_tv);
 
         namaKabagTV = findViewById(R.id.nama_kabag_tv);
+        namaAstKadeptTV = findViewById(R.id.nama_askadept_tv);
         namaKadeptTV = findViewById(R.id.nama_kadept_tv);
         namaDirekturTV = findViewById(R.id.nama_direktur_tv);
 
         ttdPemohon = findViewById(R.id.ttd_pemohon);
+        ttdAstKadept = findViewById(R.id.ttd_askadept);
         ttdKadept = findViewById(R.id.ttd_kadept);
         ttdDireksi = findViewById(R.id.ttd_direksi);
         ttdPenerima = findViewById(R.id.ttd_penerima);
 
         tglApproveKabag = findViewById(R.id.tgl_approve_kabag);
+        tglApproveAstKadept = findViewById(R.id.tgl_approve_askadept);
         tglApproveKadept = findViewById(R.id.tgl_approve_kadept);
         tglApproveDireksi = findViewById(R.id.tgl_approve_direksi);
 
         tglPenerimaanTV = findViewById(R.id.tgl_penerimaan_tv);
         labelDireksi = findViewById(R.id.label_direksi);
         ttdDireksiPart = findViewById(R.id.ttd_direksi_part);
+        ttdAstKadeptPart = findViewById(R.id.ttd_astkadept_part);
 
         actionPart = findViewById(R.id.action_part);
         appovedBTN = findViewById(R.id.appoved_btn);
@@ -135,6 +141,14 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         lihatPenilaianPart = findViewById(R.id.lihat_penilaian_part);
         lihatPenilaianBTN = findViewById(R.id.lihat_penilaian_btn);
         warningPenilaian = findViewById(R.id.warning_penilaian);
+
+        jabatanApprover = findViewById(R.id.jabatan_approver);
+        jabatanAstKadept = findViewById(R.id.jabatan_askadept);
+        jabatanApprover2 = findViewById(R.id.jabatan_approver_2);
+
+        tableLayout1 = findViewById(R.id.tab_1);
+        tableLayout2 = findViewById(R.id.tab_2);
+        tableLayout3 = findViewById(R.id.tab_3);
 
         idData = getIntent().getExtras().getString("id_data");
         urlDownload = "https://hrisgelora.co.id/absen/pdf_formulir_sdm/"+idData;
@@ -170,10 +184,10 @@ public class DetailFormSdmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.WARNING_TYPE)
-                        .setTitleText("Perhatian")
-                        .setContentText("Unduh File?")
-                        .setCancelText("TIDAK")
-                        .setConfirmText("   YA   ")
+                        .setTitleText("Unduh File?")
+                        .setContentText("Perhatian! file hasil unduh hanya dapat dibuka dengan aplikasi WPS")
+                        .setCancelText(" BATAL ")
+                        .setConfirmText(" UNDUH ")
                         .showCancelButton(true)
                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override
@@ -378,11 +392,22 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String approver_kabag          = dataArray.getString("approver_kabag");
                                 String nama_kabag              = dataArray.getString("nama_kabag");
                                 String ttd_kabag               = dataArray.getString("ttd_kabag");
+                                String jabatan_approver_1      = dataArray.getString("jabatan_approver_1");
+
+                                String status_approve_astkadept= dataArray.getString("status_approve_astkadept");
+                                String tgl_approve_astkadept   = dataArray.getString("tgl_approve_astkadept");
+                                String approver_astkadept      = dataArray.getString("approver_astkadept");
+                                String nama_astkadept          = dataArray.getString("nama_astkadept");
+                                String ttd_astkadept           = dataArray.getString("ttd_astkadept");
+                                String jabatan_astkadept       = dataArray.getString("jabatan_astkadept");
+
                                 String status_approve_kadept   = dataArray.getString("status_approve_kadept");
                                 String tgl_approve_kadept      = dataArray.getString("tgl_approve_kadept");
                                 String approver_kadept         = dataArray.getString("approver_kadept");
                                 String nama_kadept             = dataArray.getString("nama_kadept");
                                 String ttd_kadept              = dataArray.getString("ttd_kadept");
+                                String jabatan_approver_2      = dataArray.getString("jabatan_approver_2");
+
                                 String status_approve_direktur = dataArray.getString("status_approve_direktur");
                                 String tgl_approve_direktur    = dataArray.getString("tgl_approve_direktur");
                                 String approver_direktur       = dataArray.getString("approver_direktur");
@@ -420,6 +445,124 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String id_penilaian            = dataArray.getString("id_penilaian");
                                 String approval_penilaian      = dataArray.getString("approval_penilaian");
 
+                                String depart = "";
+                                if(keterangan.equals("1")){
+                                    depart = departemen;
+                                } else {
+                                    depart = departemen_lama;
+                                }
+
+                                String astKadeptPart = "";
+                                if(depart.equals("2")){ //IDM
+                                    ttdAstKadeptPart.setVisibility(View.GONE);
+                                    jabatanAstKadept.setVisibility(View.GONE);
+                                    tglApproveAstKadept.setVisibility(View.GONE);
+                                    ttdAstKadept.setVisibility(View.GONE);
+                                    namaAstKadeptTV.setVisibility(View.GONE);
+                                    astKadeptPart = "0";
+                                } else if(depart.equals("3")){ //MKT
+                                    ttdAstKadeptPart.setVisibility(View.GONE);
+                                    jabatanAstKadept.setVisibility(View.GONE);
+                                    tglApproveAstKadept.setVisibility(View.GONE);
+                                    ttdAstKadept.setVisibility(View.GONE);
+                                    namaAstKadeptTV.setVisibility(View.GONE);
+                                    astKadeptPart = "0";
+                                } else if(depart.equals("4")){ //SPT
+                                    if(status_approve_kadept.equals("1")||status_approve_kadept.equals("2")){
+                                        ttdAstKadeptPart.setVisibility(View.GONE);
+                                        jabatanAstKadept.setVisibility(View.GONE);
+                                        tglApproveAstKadept.setVisibility(View.GONE);
+                                        ttdAstKadept.setVisibility(View.GONE);
+                                        namaAstKadeptTV.setVisibility(View.GONE);
+                                        astKadeptPart = "0";
+                                    } else {
+                                        if(keterangan.equals("1")){
+                                            if(bagian.equals("20")||bagian.equals("27")){
+                                                astKadeptPart = "1";
+                                            } else {
+                                                ttdAstKadeptPart.setVisibility(View.GONE);
+                                                jabatanAstKadept.setVisibility(View.GONE);
+                                                tglApproveAstKadept.setVisibility(View.GONE);
+                                                ttdAstKadept.setVisibility(View.GONE);
+                                                namaAstKadeptTV.setVisibility(View.GONE);
+                                                astKadeptPart = "0";
+                                            }
+                                        } else {
+                                            if(bagian_lama.equals("20")||bagian_lama.equals("27")){
+                                                astKadeptPart = "1";
+                                            } else {
+                                                ttdAstKadeptPart.setVisibility(View.GONE);
+                                                jabatanAstKadept.setVisibility(View.GONE);
+                                                tglApproveAstKadept.setVisibility(View.GONE);
+                                                ttdAstKadept.setVisibility(View.GONE);
+                                                namaAstKadeptTV.setVisibility(View.GONE);
+                                                astKadeptPart = "0";
+                                            }
+                                        }
+                                    }
+                                } else if(depart.equals("5")){ //HRD
+                                    ttdAstKadeptPart.setVisibility(View.GONE);
+                                    jabatanAstKadept.setVisibility(View.GONE);
+                                    tglApproveAstKadept.setVisibility(View.GONE);
+                                    ttdAstKadept.setVisibility(View.GONE);
+                                    namaAstKadeptTV.setVisibility(View.GONE);
+                                    astKadeptPart = "0";
+                                } else if(depart.equals("6")){ //PNE
+                                    ttdAstKadeptPart.setVisibility(View.GONE);
+                                    jabatanAstKadept.setVisibility(View.GONE);
+                                    tglApproveAstKadept.setVisibility(View.GONE);
+                                    ttdAstKadept.setVisibility(View.GONE);
+                                    namaAstKadeptTV.setVisibility(View.GONE);
+                                    astKadeptPart = "0";
+                                } else if(depart.equals("7")){ //PRO
+                                    if(status_approve_kadept.equals("1")||status_approve_kadept.equals("2")){
+                                        ttdAstKadeptPart.setVisibility(View.GONE);
+                                        jabatanAstKadept.setVisibility(View.GONE);
+                                        tglApproveAstKadept.setVisibility(View.GONE);
+                                        ttdAstKadept.setVisibility(View.GONE);
+                                        namaAstKadeptTV.setVisibility(View.GONE);
+                                        astKadeptPart = "0";
+                                    } else {
+                                        if(keterangan.equals("1")){
+                                            if(bagian.equals("4")||bagian.equals("5")||bagian.equals("6")||bagian.equals("16")||bagian.equals("17")||bagian.equals("22")){
+                                                astKadeptPart = "1";
+                                            } else {
+                                                ttdAstKadeptPart.setVisibility(View.GONE);
+                                                jabatanAstKadept.setVisibility(View.GONE);
+                                                tglApproveAstKadept.setVisibility(View.GONE);
+                                                ttdAstKadept.setVisibility(View.GONE);
+                                                namaAstKadeptTV.setVisibility(View.GONE);
+                                                astKadeptPart = "0";
+                                            }
+                                        } else {
+                                            if(bagian_lama.equals("4")||bagian_lama.equals("5")||bagian_lama.equals("6")||bagian_lama.equals("16")||bagian_lama.equals("17")||bagian_lama.equals("22")){
+                                                astKadeptPart = "1";
+                                            } else {
+                                                ttdAstKadeptPart.setVisibility(View.GONE);
+                                                jabatanAstKadept.setVisibility(View.GONE);
+                                                tglApproveAstKadept.setVisibility(View.GONE);
+                                                ttdAstKadept.setVisibility(View.GONE);
+                                                namaAstKadeptTV.setVisibility(View.GONE);
+                                                astKadeptPart = "0";
+                                            }
+                                        }
+                                    }
+                                } else if(depart.equals("15")){ //QAC
+                                    ttdAstKadeptPart.setVisibility(View.GONE);
+                                    jabatanAstKadept.setVisibility(View.GONE);
+                                    tglApproveAstKadept.setVisibility(View.GONE);
+                                    ttdAstKadept.setVisibility(View.GONE);
+                                    namaAstKadeptTV.setVisibility(View.GONE);
+                                    astKadeptPart = "0";
+                                } else if(depart.equals("19")){ //KAL
+                                    ttdAstKadeptPart.setVisibility(View.GONE);
+                                    jabatanAstKadept.setVisibility(View.GONE);
+                                    tglApproveAstKadept.setVisibility(View.GONE);
+                                    ttdAstKadept.setVisibility(View.GONE);
+                                    namaAstKadeptTV.setVisibility(View.GONE);
+                                    astKadeptPart = "0";
+                                }
+
                                 if(catatan.equals("null")){
                                     catatan = "";
                                 }
@@ -450,63 +593,157 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 .into(ttdPemohon);
                                         namaKabagTV.setText(nama_kabag);
                                         tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
+                                        jabatanApprover.setText(jabatan_approver_1);
 
-                                        if(status_approve_kadept.equals("1")){
-                                            String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
-                                            Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
-                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                    .into(ttdKadept);
-                                            namaKadeptTV.setText(nama_kadept);
-                                            tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
-
-                                            if(status_approve_direktur.equals("1")){
-                                                String url_ttd_direksi = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_direktur;
-                                                Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
+                                        if(astKadeptPart.equals("0")){
+                                            if(status_approve_kadept.equals("1")){
+                                                String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
+                                                Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
                                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                        .into(ttdDireksi);
-                                                namaDirekturTV.setText(nama_direktur);
-                                                tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
+                                                        .into(ttdKadept);
+                                                namaKadeptTV.setText(nama_kadept);
+                                                jabatanApprover2.setText(jabatan_approver_2);
+                                                tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
 
-                                                if(status_approve_hrd.equals("1")){
-                                                    String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
-                                                    Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                if(status_approve_direktur.equals("1")){
+                                                    String url_ttd_direksi = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_direktur;
+                                                    Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
                                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                            .into(ttdPenerima);
-                                                    tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+                                                            .into(ttdDireksi);
+                                                    namaDirekturTV.setText(nama_direktur);
+                                                    tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
 
-                                                    accMark.setVisibility(View.VISIBLE);
-                                                    rejMark.setVisibility(View.GONE);
+                                                    if(status_approve_hrd.equals("1")){
+                                                        String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
+                                                        Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                                .into(ttdPenerima);
+                                                        tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
 
-                                                } else if(status_approve_hrd.equals("2")){
+                                                        accMark.setVisibility(View.VISIBLE);
+                                                        rejMark.setVisibility(View.GONE);
+
+                                                    } else if(status_approve_hrd.equals("2")){
+                                                        accMark.setVisibility(View.GONE);
+                                                        rejMark.setVisibility(View.VISIBLE);
+                                                    }
+
+                                                } else if(status_approve_direktur.equals("2")){
                                                     accMark.setVisibility(View.GONE);
                                                     rejMark.setVisibility(View.VISIBLE);
+                                                    namaDirekturTV.setText(nama_direktur);
                                                 }
 
-                                            } else if(status_approve_direktur.equals("2")){
+                                            } else if(status_approve_kadept.equals("2")){
                                                 accMark.setVisibility(View.GONE);
                                                 rejMark.setVisibility(View.VISIBLE);
+                                                namaKadeptTV.setText(nama_kadept);
+                                                jabatanApprover2.setText(jabatan_approver_2);
+                                            } else if(status_approve_kadept.equals("0")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.GONE);
+                                                if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                                    actionPart.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    actionPart.setVisibility(View.GONE);
+                                                }
                                             }
+                                        } else {
+                                            if(status_approve_astkadept.equals("1")){
+                                                String url_ttd_astkadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_astkadept;
+                                                Picasso.get().load(url_ttd_astkadept).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                        .into(ttdAstKadept);
+                                                namaAstKadeptTV.setText(nama_astkadept);
+                                                jabatanAstKadept.setText(jabatan_astkadept);
+                                                tglApproveAstKadept.setText(tgl_approve_astkadept.substring(8,10)+"/"+tgl_approve_astkadept.substring(5,7)+"/"+tgl_approve_astkadept.substring(0,4));
 
-                                        } else if(status_approve_kadept.equals("2")){
-                                            accMark.setVisibility(View.GONE);
-                                            rejMark.setVisibility(View.VISIBLE);
-                                        } else if(status_approve_kadept.equals("0")){
-                                            accMark.setVisibility(View.GONE);
-                                            rejMark.setVisibility(View.GONE);
-                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
-                                                actionPart.setVisibility(View.VISIBLE);
-                                            } else {
-                                                actionPart.setVisibility(View.GONE);
+                                                if(status_approve_kadept.equals("1")){
+                                                    String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
+                                                    Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                            .into(ttdKadept);
+                                                    namaKadeptTV.setText(nama_kadept);
+                                                    jabatanApprover2.setText(jabatan_approver_2);
+                                                    tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
+
+                                                    if(status_approve_direktur.equals("1")){
+                                                        String url_ttd_direksi = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_direktur;
+                                                        Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                                .into(ttdDireksi);
+                                                        namaDirekturTV.setText(nama_direktur);
+                                                        tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
+
+                                                        if(status_approve_hrd.equals("1")){
+                                                            String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
+                                                            Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                                    .into(ttdPenerima);
+                                                            tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+
+                                                            accMark.setVisibility(View.VISIBLE);
+                                                            rejMark.setVisibility(View.GONE);
+
+                                                        } else if(status_approve_hrd.equals("2")){
+                                                            accMark.setVisibility(View.GONE);
+                                                            rejMark.setVisibility(View.VISIBLE);
+                                                        }
+
+                                                    } else if(status_approve_direktur.equals("2")){
+                                                        accMark.setVisibility(View.GONE);
+                                                        rejMark.setVisibility(View.VISIBLE);
+                                                        namaDirekturTV.setText(nama_direktur);
+                                                    }
+
+                                                } else if(status_approve_kadept.equals("2")){
+                                                    accMark.setVisibility(View.GONE);
+                                                    rejMark.setVisibility(View.VISIBLE);
+                                                    namaKadeptTV.setText(nama_kadept);
+                                                    jabatanApprover2.setText(jabatan_approver_2);
+                                                } else if(status_approve_kadept.equals("0")){
+                                                    accMark.setVisibility(View.GONE);
+                                                    rejMark.setVisibility(View.GONE);
+                                                    if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10"))){
+                                                        actionPart.setVisibility(View.VISIBLE);
+                                                    } else {
+                                                        actionPart.setVisibility(View.GONE);
+                                                    }
+                                                }
+                                            } else if(status_approve_astkadept.equals("2")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.VISIBLE);
+                                                namaAstKadeptTV.setText(nama_astkadept);
+                                                jabatanAstKadept.setText(jabatan_astkadept);
+                                            } else if(status_approve_astkadept.equals("0")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.GONE);
+                                                if(sharedPrefManager.getSpIdJabatan().equals("3")){
+                                                    actionPart.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    actionPart.setVisibility(View.GONE);
+                                                }
                                             }
                                         }
 
                                     } else if(status_approve_kabag.equals("2")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
+                                        namaKabagTV.setText(nama_kabag);
+                                        jabatanApprover.setText(jabatan_approver_1);
                                     } else if(status_approve_kabag.equals("0")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.GONE);
-                                        if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                        if(sharedPrefManager.getSpIdJabatan().equals("41")
+                                        || sharedPrefManager.getSpIdJabatan().equals("10")
+                                        || sharedPrefManager.getSpIdJabatan().equals("3")
+                                        || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))
+                                        || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
+                                        || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
+                                        || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                        || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                        || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
+                                        || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                             actionPart.setVisibility(View.VISIBLE);
                                         } else {
                                             actionPart.setVisibility(View.GONE);
@@ -525,18 +762,12 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     } else if(keterangan.equals("3")){
                                         markCeklis3.setText("✓");
                                         labelDireksi.setText("");
-                                        // ttdDireksiPart.setVisibility(View.GONE);
-                                        // namaDirekturTV.setVisibility(View.GONE);
-                                        // labelDireksi.setVisibility(View.GONE);
                                         ttdDireksiPart.setVisibility(View.VISIBLE);
                                         namaDirekturTV.setVisibility(View.VISIBLE);
                                         labelDireksi.setVisibility(View.VISIBLE);
                                     } else if(keterangan.equals("4")){
                                         markCeklis4.setText("✓");
                                         labelDireksi.setText("");
-                                        // ttdDireksiPart.setVisibility(View.GONE);
-                                        // namaDirekturTV.setVisibility(View.GONE);
-                                        // labelDireksi.setVisibility(View.GONE);
                                         ttdDireksiPart.setVisibility(View.VISIBLE);
                                         namaDirekturTV.setVisibility(View.VISIBLE);
                                         labelDireksi.setVisibility(View.VISIBLE);
@@ -574,24 +805,47 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 .into(ttdPemohon);
                                         namaKabagTV.setText(nama_kabag);
                                         tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
+                                        jabatanApprover.setText(jabatan_approver_1);
 
-                                        if(status_approve_kadept.equals("1")){
-                                            String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
-                                            Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
-                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                    .into(ttdKadept);
-                                            namaKadeptTV.setText(nama_kadept);
-                                            tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
+                                        if(astKadeptPart.equals("0")){
+                                            if(status_approve_kadept.equals("1")){
+                                                String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
+                                                Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                        .into(ttdKadept);
+                                                namaKadeptTV.setText(nama_kadept);
+                                                jabatanApprover2.setText(jabatan_approver_2);
+                                                tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
 
-                                            if(keterangan.equals("2")){
-                                                if(status_approve_direktur.equals("1")){
-                                                    String url_ttd_direksi = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_direktur;
-                                                    Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
-                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                            .into(ttdDireksi);
-                                                    namaDirekturTV.setText(nama_direktur);
-                                                    tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
+                                                if(keterangan.equals("2")){
+                                                    if(status_approve_direktur.equals("1")){
+                                                        String url_ttd_direksi = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_direktur;
+                                                        Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                                .into(ttdDireksi);
+                                                        namaDirekturTV.setText(nama_direktur);
+                                                        tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
 
+                                                        if(status_approve_hrd.equals("1")){
+                                                            String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
+                                                            Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                                    .into(ttdPenerima);
+                                                            tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+
+                                                        } else if(status_approve_hrd.equals("2")){
+                                                            accMark.setVisibility(View.GONE);
+                                                            rejMark.setVisibility(View.VISIBLE);
+                                                        }
+
+                                                    } else if(status_approve_direktur.equals("2")){
+                                                        accMark.setVisibility(View.GONE);
+                                                        rejMark.setVisibility(View.VISIBLE);
+                                                        namaDirekturTV.setText(nama_direktur);
+                                                    } else {
+                                                        cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
+                                                    }
+                                                } else if(keterangan.equals("3")||keterangan.equals("4")){
                                                     if(status_approve_hrd.equals("1")){
                                                         String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
                                                         Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
@@ -602,42 +856,119 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                     } else if(status_approve_hrd.equals("2")){
                                                         accMark.setVisibility(View.GONE);
                                                         rejMark.setVisibility(View.VISIBLE);
+                                                    } else {
+                                                        if(keterangan.equals("3")){
+                                                            cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
+                                                        }
                                                     }
-
-                                                } else if(status_approve_direktur.equals("2")){
-                                                    accMark.setVisibility(View.GONE);
-                                                    rejMark.setVisibility(View.VISIBLE);
-                                                } else {
-                                                    cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
-                                            } else if(keterangan.equals("3")||keterangan.equals("4")){
-                                                if(status_approve_hrd.equals("1")){
-                                                    String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
-                                                    Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
-                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                            .into(ttdPenerima);
-                                                    tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
 
-                                                } else if(status_approve_hrd.equals("2")){
-                                                    accMark.setVisibility(View.GONE);
-                                                    rejMark.setVisibility(View.VISIBLE);
+                                            } else if(status_approve_kadept.equals("2")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.VISIBLE);
+                                                namaKadeptTV.setText(nama_kadept);
+                                                jabatanApprover2.setText(jabatan_approver_2);
+                                            } else if(status_approve_kadept.equals("0")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.GONE);
+                                                if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                                    actionPart.setVisibility(View.VISIBLE);
                                                 } else {
-                                                    if(keterangan.equals("3")){
-                                                        cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
-                                                    }
+                                                    actionPart.setVisibility(View.GONE);
                                                 }
                                             }
+                                        } else {
+                                            if(status_approve_astkadept.equals("1")){
+                                                String url_ttd_astkadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_astkadept;
+                                                Picasso.get().load(url_ttd_astkadept).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                        .into(ttdAstKadept);
+                                                namaAstKadeptTV.setText(nama_astkadept);
+                                                jabatanAstKadept.setText(jabatan_astkadept);
+                                                tglApproveAstKadept.setText(tgl_approve_astkadept.substring(8,10)+"/"+tgl_approve_astkadept.substring(5,7)+"/"+tgl_approve_astkadept.substring(0,4));
 
-                                        } else if(status_approve_kadept.equals("2")){
-                                            accMark.setVisibility(View.GONE);
-                                            rejMark.setVisibility(View.VISIBLE);
-                                        } else if(status_approve_kadept.equals("0")){
-                                            accMark.setVisibility(View.GONE);
-                                            rejMark.setVisibility(View.GONE);
-                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
-                                                actionPart.setVisibility(View.VISIBLE);
-                                            } else {
-                                                actionPart.setVisibility(View.GONE);
+                                                if(status_approve_kadept.equals("1")){
+                                                    String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
+                                                    Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                            .into(ttdKadept);
+                                                    namaKadeptTV.setText(nama_kadept);
+                                                    jabatanApprover2.setText(jabatan_approver_2);
+                                                    tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
+
+                                                    if(keterangan.equals("2")){
+                                                        if(status_approve_direktur.equals("1")){
+                                                            String url_ttd_direksi = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_direktur;
+                                                            Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                                    .into(ttdDireksi);
+                                                            namaDirekturTV.setText(nama_direktur);
+                                                            tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
+
+                                                            if(status_approve_hrd.equals("1")){
+                                                                String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
+                                                                Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                                        .into(ttdPenerima);
+                                                                tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+
+                                                            } else if(status_approve_hrd.equals("2")){
+                                                                accMark.setVisibility(View.GONE);
+                                                                rejMark.setVisibility(View.VISIBLE);
+                                                            }
+
+                                                        } else if(status_approve_direktur.equals("2")){
+                                                            accMark.setVisibility(View.GONE);
+                                                            rejMark.setVisibility(View.VISIBLE);
+                                                            namaDirekturTV.setText(nama_direktur);
+                                                        } else {
+                                                            cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
+                                                        }
+                                                    } else if(keterangan.equals("3")||keterangan.equals("4")){
+                                                        if(status_approve_hrd.equals("1")){
+                                                            String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
+                                                            Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                                    .into(ttdPenerima);
+                                                            tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+
+                                                        } else if(status_approve_hrd.equals("2")){
+                                                            accMark.setVisibility(View.GONE);
+                                                            rejMark.setVisibility(View.VISIBLE);
+                                                        } else {
+                                                            if(keterangan.equals("3")){
+                                                                cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
+                                                            }
+                                                        }
+                                                    }
+
+                                                } else if(status_approve_kadept.equals("2")){
+                                                    accMark.setVisibility(View.GONE);
+                                                    rejMark.setVisibility(View.VISIBLE);
+                                                    namaKadeptTV.setText(nama_kadept);
+                                                    jabatanApprover2.setText(jabatan_approver_2);
+                                                } else if(status_approve_kadept.equals("0")){
+                                                    accMark.setVisibility(View.GONE);
+                                                    rejMark.setVisibility(View.GONE);
+                                                    if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10"))){
+                                                        actionPart.setVisibility(View.VISIBLE);
+                                                    } else {
+                                                        actionPart.setVisibility(View.GONE);
+                                                    }
+                                                }
+                                            } else if(status_approve_astkadept.equals("2")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.VISIBLE);
+                                                namaAstKadeptTV.setText(nama_astkadept);
+                                                jabatanAstKadept.setText(jabatan_astkadept);
+                                            } else if(status_approve_astkadept.equals("0")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.GONE);
+                                                if(sharedPrefManager.getSpIdJabatan().equals("3")){
+                                                    actionPart.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    actionPart.setVisibility(View.GONE);
+                                                }
                                             }
                                         }
 
@@ -646,7 +977,16 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 lihatPenilaianPart.setVisibility(View.GONE);
                                                 lihatPenilaianBTN.setVisibility(View.GONE);
                                                 warningPenilaian.setVisibility(View.GONE);
-                                                if((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")) || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                                if(sharedPrefManager.getSpIdJabatan().equals("41")
+                                                        || sharedPrefManager.getSpIdJabatan().equals("10")
+                                                        || sharedPrefManager.getSpIdJabatan().equals("3")
+                                                        || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))
+                                                        || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
+                                                        || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
+                                                        || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                                        || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                                        || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
+                                                        || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
                                             } else {
@@ -675,9 +1015,20 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     } else if(status_approve_kabag.equals("2")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
+                                        namaKabagTV.setText(nama_kabag);
+                                        jabatanApprover.setText(jabatan_approver_1);
                                     } else if(status_approve_kabag.equals("0")){
                                         if(keterangan.equals("2")||keterangan.equals("3")||keterangan.equals("4")){
-                                            if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                            if(sharedPrefManager.getSpIdJabatan().equals("41")
+                                            || sharedPrefManager.getSpIdJabatan().equals("10")
+                                            || sharedPrefManager.getSpIdJabatan().equals("3")
+                                            || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))
+                                            || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
+                                            || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
+                                            || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                            || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                            || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
+                                            || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                 cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                             } else {
                                                 accMark.setVisibility(View.GONE);
@@ -686,7 +1037,16 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         } else {
                                             accMark.setVisibility(View.GONE);
                                             rejMark.setVisibility(View.GONE);
-                                            if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                            if(sharedPrefManager.getSpIdJabatan().equals("41")
+                                            || sharedPrefManager.getSpIdJabatan().equals("10")
+                                            || sharedPrefManager.getSpIdJabatan().equals("3")
+                                            || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))
+                                            || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
+                                            || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
+                                            || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                            || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                            || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
+                                            || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                 actionPart.setVisibility(View.VISIBLE);
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
@@ -700,18 +1060,12 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     if(keterangan.equals("5")){
                                         markCeklis5.setText("✓");
                                         labelDireksi.setText("");
-                                        // ttdDireksiPart.setVisibility(View.GONE);
-                                        // namaDirekturTV.setVisibility(View.GONE);
-                                        // labelDireksi.setVisibility(View.GONE);
                                         ttdDireksiPart.setVisibility(View.VISIBLE);
                                         namaDirekturTV.setVisibility(View.VISIBLE);
                                         labelDireksi.setVisibility(View.VISIBLE);
                                     } else if(keterangan.equals("6")){
                                         markCeklis6.setText("✓");
                                         labelDireksi.setText("");
-                                        // ttdDireksiPart.setVisibility(View.GONE);
-                                        // namaDirekturTV.setVisibility(View.GONE);
-                                        // labelDireksi.setVisibility(View.GONE);
                                         ttdDireksiPart.setVisibility(View.VISIBLE);
                                         namaDirekturTV.setVisibility(View.VISIBLE);
                                         labelDireksi.setVisibility(View.VISIBLE);
@@ -747,37 +1101,104 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 .into(ttdPemohon);
                                         namaKabagTV.setText(nama_kabag);
                                         tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
+                                        jabatanApprover.setText(jabatan_approver_1);
 
-                                        if(status_approve_kadept.equals("1")){
-                                            String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
-                                            Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
-                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                    .into(ttdKadept);
-                                            namaKadeptTV.setText(nama_kadept);
-                                            tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
-
-                                            if(status_approve_hrd.equals("1")){
-                                                String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
-                                                Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                        if(astKadeptPart.equals("0")){
+                                            if(status_approve_kadept.equals("1")){
+                                                String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
+                                                Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
                                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                        .into(ttdPenerima);
-                                                tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+                                                        .into(ttdKadept);
+                                                namaKadeptTV.setText(nama_kadept);
+                                                jabatanApprover2.setText(jabatan_approver_2);
+                                                tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
 
-                                            } else if(status_approve_hrd.equals("2")){
+                                                if(status_approve_hrd.equals("1")){
+                                                    String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
+                                                    Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                            .into(ttdPenerima);
+                                                    tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+
+                                                } else if(status_approve_hrd.equals("2")){
+                                                    accMark.setVisibility(View.GONE);
+                                                    rejMark.setVisibility(View.VISIBLE);
+                                                }
+
+                                                actionPart.setVisibility(View.GONE);
+                                            } else if(status_approve_kadept.equals("2")){
                                                 accMark.setVisibility(View.GONE);
                                                 rejMark.setVisibility(View.VISIBLE);
+                                                namaKadeptTV.setText(nama_kadept);
+                                                jabatanApprover2.setText(jabatan_approver_2);
+                                            } else if(status_approve_kadept.equals("0")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.GONE);
+                                                if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                                    actionPart.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    actionPart.setVisibility(View.GONE);
+                                                }
                                             }
+                                        } else {
+                                            if(status_approve_astkadept.equals("1")){
+                                                String url_ttd_astkadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_astkadept;
+                                                Picasso.get().load(url_ttd_astkadept).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                        .into(ttdAstKadept);
+                                                namaAstKadeptTV.setText(nama_astkadept);
+                                                jabatanAstKadept.setText(jabatan_astkadept);
+                                                tglApproveAstKadept.setText(tgl_approve_astkadept.substring(8,10)+"/"+tgl_approve_astkadept.substring(5,7)+"/"+tgl_approve_astkadept.substring(0,4));
 
-                                        } else if(status_approve_kadept.equals("2")){
-                                            accMark.setVisibility(View.GONE);
-                                            rejMark.setVisibility(View.VISIBLE);
-                                        } else if(status_approve_kadept.equals("0")){
-                                            accMark.setVisibility(View.GONE);
-                                            rejMark.setVisibility(View.GONE);
-                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
-                                                actionPart.setVisibility(View.VISIBLE);
-                                            } else {
-                                                actionPart.setVisibility(View.GONE);
+                                                if(status_approve_kadept.equals("1")){
+                                                    String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
+                                                    Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                            .into(ttdKadept);
+                                                    namaKadeptTV.setText(nama_kadept);
+                                                    jabatanApprover2.setText(jabatan_approver_2);
+                                                    tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
+
+                                                    if(status_approve_hrd.equals("1")){
+                                                        String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
+                                                        Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                                .into(ttdPenerima);
+                                                        tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+
+                                                    } else if(status_approve_hrd.equals("2")){
+                                                        accMark.setVisibility(View.GONE);
+                                                        rejMark.setVisibility(View.VISIBLE);
+                                                    }
+
+                                                    actionPart.setVisibility(View.GONE);
+                                                } else if(status_approve_kadept.equals("2")){
+                                                    accMark.setVisibility(View.GONE);
+                                                    rejMark.setVisibility(View.VISIBLE);
+                                                    namaKadeptTV.setText(nama_kadept);
+                                                    jabatanApprover2.setText(jabatan_approver_2);
+                                                } else if(status_approve_kadept.equals("0")){
+                                                    accMark.setVisibility(View.GONE);
+                                                    rejMark.setVisibility(View.GONE);
+                                                    if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10"))){
+                                                        actionPart.setVisibility(View.VISIBLE);
+                                                    } else {
+                                                        actionPart.setVisibility(View.GONE);
+                                                    }
+                                                }
+                                            } else if(status_approve_astkadept.equals("2")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.VISIBLE);
+                                                namaAstKadeptTV.setText(nama_astkadept);
+                                                jabatanAstKadept.setText(jabatan_astkadept);
+                                            } else if(status_approve_astkadept.equals("0")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.GONE);
+                                                if(sharedPrefManager.getSpIdJabatan().equals("3")){
+                                                    actionPart.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    actionPart.setVisibility(View.GONE);
+                                                }
                                             }
                                         }
 
@@ -786,7 +1207,16 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 lihatPenilaianPart.setVisibility(View.GONE);
                                                 lihatPenilaianBTN.setVisibility(View.GONE);
                                                 warningPenilaian.setVisibility(View.GONE);
-                                                if((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")) || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                                if(sharedPrefManager.getSpIdJabatan().equals("41")
+                                                || sharedPrefManager.getSpIdJabatan().equals("10")
+                                                || sharedPrefManager.getSpIdJabatan().equals("3")
+                                                || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))
+                                                || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
+                                                || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
+                                                || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                                || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                                || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
+                                                || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
                                             } else {
@@ -809,7 +1239,16 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 lihatPenilaianPart.setVisibility(View.GONE);
                                                 lihatPenilaianBTN.setVisibility(View.GONE);
                                                 warningPenilaian.setVisibility(View.GONE);
-                                                if((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")) || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                                if(sharedPrefManager.getSpIdJabatan().equals("41")
+                                                || sharedPrefManager.getSpIdJabatan().equals("10")
+                                                || sharedPrefManager.getSpIdJabatan().equals("3")
+                                                || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))
+                                                || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
+                                                || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
+                                                || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                                || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                                || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
+                                                || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
                                             } else {
@@ -838,13 +1277,24 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     } else if(status_approve_kabag.equals("2")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
+                                        namaKabagTV.setText(nama_kabag);
+                                        jabatanApprover.setText(jabatan_approver_1);
                                     } else if(status_approve_kabag.equals("0")){
                                         if(keterangan.equals("5")) {
                                             if(file_penilaian_tahunan.equals("null") || file_penilaian_tahunan == null || file_penilaian_tahunan.isEmpty()){
                                                 lihatPenilaianPart.setVisibility(View.GONE);
                                                 lihatPenilaianBTN.setVisibility(View.GONE);
                                                 warningPenilaian.setVisibility(View.GONE);
-                                                if((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")) || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                                if(sharedPrefManager.getSpIdJabatan().equals("41")
+                                                || sharedPrefManager.getSpIdJabatan().equals("10")
+                                                || sharedPrefManager.getSpIdJabatan().equals("3")
+                                                || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))
+                                                || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
+                                                || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
+                                                || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                                || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                                || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
+                                                || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
                                             } else {
@@ -861,10 +1311,20 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                     }
                                                 });
                                                 warningPenilaian.setVisibility(View.GONE);
+                                                actionPart.setVisibility(View.VISIBLE);
                                             }
                                         } else if(keterangan.equals("6")){
                                             if(keterangan.equals("5")) {
-                                                if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                                if(sharedPrefManager.getSpIdJabatan().equals("41")
+                                                || sharedPrefManager.getSpIdJabatan().equals("10")
+                                                || sharedPrefManager.getSpIdJabatan().equals("3")
+                                                || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))
+                                                || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
+                                                || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
+                                                || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                                || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                                || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
+                                                || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 } else {
                                                     accMark.setVisibility(View.GONE);
@@ -873,7 +1333,16 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             } else {
                                                 accMark.setVisibility(View.GONE);
                                                 rejMark.setVisibility(View.GONE);
-                                                if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                                if(sharedPrefManager.getSpIdJabatan().equals("41")
+                                                || sharedPrefManager.getSpIdJabatan().equals("10")
+                                                || sharedPrefManager.getSpIdJabatan().equals("3")
+                                                || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))
+                                                || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
+                                                || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
+                                                || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                                || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                                || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
+                                                || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                                     actionPart.setVisibility(View.VISIBLE);
                                                 } else {
                                                     actionPart.setVisibility(View.GONE);
@@ -887,9 +1356,6 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 } else if(keterangan.equals("7")){
                                     markCeklis7.setText("✓");
                                     labelDireksi.setText("");
-                                    // ttdDireksiPart.setVisibility(View.GONE);
-                                    // namaDirekturTV.setVisibility(View.GONE);
-                                    // labelDireksi.setVisibility(View.GONE);
                                     ttdDireksiPart.setVisibility(View.VISIBLE);
                                     namaDirekturTV.setVisibility(View.VISIBLE);
                                     labelDireksi.setVisibility(View.VISIBLE);
@@ -927,47 +1393,123 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 .into(ttdPemohon);
                                         namaKabagTV.setText(nama_kabag);
                                         tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
+                                        jabatanApprover.setText(jabatan_approver_1);
 
-                                        if(status_approve_kadept.equals("1")){
-                                            String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
-                                            Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
-                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                    .into(ttdKadept);
-                                            namaKadeptTV.setText(nama_kadept);
-                                            tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
-
-                                            if(status_approve_hrd.equals("1")){
-                                                String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
-                                                Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                        if(astKadeptPart.equals("0")){
+                                            if(status_approve_kadept.equals("1")){
+                                                String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
+                                                Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
                                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                        .into(ttdPenerima);
-                                                tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+                                                        .into(ttdKadept);
+                                                namaKadeptTV.setText(nama_kadept);
+                                                jabatanApprover2.setText(jabatan_approver_2);
+                                                tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
 
-                                            } else if(status_approve_hrd.equals("2")){
+                                                if(status_approve_hrd.equals("1")){
+                                                    String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
+                                                    Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                            .into(ttdPenerima);
+                                                    tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+
+                                                } else if(status_approve_hrd.equals("2")){
+                                                    accMark.setVisibility(View.GONE);
+                                                    rejMark.setVisibility(View.VISIBLE);
+                                                }
+
+                                            } else if(status_approve_kadept.equals("2")){
                                                 accMark.setVisibility(View.GONE);
                                                 rejMark.setVisibility(View.VISIBLE);
+                                                namaKadeptTV.setText(nama_kadept);
+                                                jabatanApprover2.setText(jabatan_approver_2);
+                                            } else if(status_approve_kadept.equals("0")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.GONE);
+                                                if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                                    actionPart.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    actionPart.setVisibility(View.GONE);
+                                                }
                                             }
+                                        } else {
+                                            if(status_approve_astkadept.equals("1")){
+                                                String url_ttd_astkadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_astkadept;
+                                                Picasso.get().load(url_ttd_astkadept).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                        .into(ttdAstKadept);
+                                                namaAstKadeptTV.setText(nama_astkadept);
+                                                jabatanAstKadept.setText(jabatan_astkadept);
+                                                tglApproveAstKadept.setText(tgl_approve_astkadept.substring(8,10)+"/"+tgl_approve_astkadept.substring(5,7)+"/"+tgl_approve_astkadept.substring(0,4));
 
-                                        } else if(status_approve_kadept.equals("2")){
-                                            accMark.setVisibility(View.GONE);
-                                            rejMark.setVisibility(View.VISIBLE);
-                                        } else if(status_approve_kadept.equals("0")){
-                                            accMark.setVisibility(View.GONE);
-                                            rejMark.setVisibility(View.GONE);
-                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
-                                                actionPart.setVisibility(View.VISIBLE);
-                                            } else {
-                                                actionPart.setVisibility(View.GONE);
+                                                if(status_approve_kadept.equals("1")){
+                                                    String url_ttd_kadept = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_kadept;
+                                                    Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                            .into(ttdKadept);
+                                                    namaKadeptTV.setText(nama_kadept);
+                                                    jabatanApprover2.setText(jabatan_approver_2);
+                                                    tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
+
+                                                    if(status_approve_hrd.equals("1")){
+                                                        String url_ttd_penerima = "https://hrisgelora.co.id/upload/digital_signature/"+ttd_penerima;
+                                                        Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                                .into(ttdPenerima);
+                                                        tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+
+                                                    } else if(status_approve_hrd.equals("2")){
+                                                        accMark.setVisibility(View.GONE);
+                                                        rejMark.setVisibility(View.VISIBLE);
+                                                    }
+
+                                                } else if(status_approve_kadept.equals("2")){
+                                                    accMark.setVisibility(View.GONE);
+                                                    rejMark.setVisibility(View.VISIBLE);
+                                                    namaKadeptTV.setText(nama_kadept);
+                                                    jabatanApprover2.setText(jabatan_approver_2);
+                                                } else if(status_approve_kadept.equals("0")){
+                                                    accMark.setVisibility(View.GONE);
+                                                    rejMark.setVisibility(View.GONE);
+                                                    if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10"))){
+                                                        actionPart.setVisibility(View.VISIBLE);
+                                                    } else {
+                                                        actionPart.setVisibility(View.GONE);
+                                                    }
+                                                }
+                                            } else if(status_approve_astkadept.equals("2")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.VISIBLE);
+                                                namaAstKadeptTV.setText(nama_astkadept);
+                                                jabatanAstKadept.setText(jabatan_astkadept);
+                                            } else if(status_approve_astkadept.equals("0")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.GONE);
+                                                if(sharedPrefManager.getSpIdJabatan().equals("3")){
+                                                    actionPart.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    actionPart.setVisibility(View.GONE);
+                                                }
                                             }
                                         }
 
                                     } else if(status_approve_kabag.equals("2")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
+                                        namaKabagTV.setText(nama_kabag);
+                                        jabatanApprover.setText(jabatan_approver_1);
                                     } else if(status_approve_kabag.equals("0")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.GONE);
-                                        if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                        if(sharedPrefManager.getSpIdJabatan().equals("41")
+                                        || sharedPrefManager.getSpIdJabatan().equals("10")
+                                        || sharedPrefManager.getSpIdJabatan().equals("3")
+                                        || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))
+                                        || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
+                                        || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
+                                        || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                        || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                        || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
+                                        || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                             actionPart.setVisibility(View.VISIBLE);
                                         } else {
                                             actionPart.setVisibility(View.GONE);
@@ -1051,10 +1593,19 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
                                 accMark.setVisibility(View.GONE);
                                 rejMark.setVisibility(View.GONE);
-                                if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")))) || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81"))) || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6"))) || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
+                                if(sharedPrefManager.getSpIdJabatan().equals("41")
+                                || sharedPrefManager.getSpIdJabatan().equals("10")
+                                || sharedPrefManager.getSpIdJabatan().equals("3")
+                                || (sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))
+                                || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")))
+                                || (sharedPrefManager.getSpNik().equals("3294031022") && (sharedPrefManager.getSpIdDept().equals("53") || sharedPrefManager.getSpIdDept().equals("55") || sharedPrefManager.getSpIdDept().equals("81")))
+                                || (sharedPrefManager.getSpNik().equals("0113010500") && (sharedPrefManager.getSpIdDept().equals("4") || sharedPrefManager.getSpIdDept().equals("5") || sharedPrefManager.getSpIdDept().equals("6")))
+                                || (sharedPrefManager.getSpNik().equals("0015141287") && sharedPrefManager.getSpIdDept().equals("79"))
+                                || (sharedPrefManager.getSpNik().equals("0121010900") && sharedPrefManager.getSpIdDept().equals("43"))
+                                || (sharedPrefManager.getSpNik().equals("0687260508") && (sharedPrefManager.getSpIdDept().equals("16") || sharedPrefManager.getSpIdDept().equals("17") || sharedPrefManager.getSpIdDept().equals("22")))){
                                     if(status_approve_kabag.equals("1")){
                                         if(approval.equals("1")){
-                                            actionPart.setVisibility(View.VISIBLE);
+                                            actionPart.setVisibility(View.GONE);
                                             warningPenilaian.setVisibility(View.GONE);
                                         } else if(approval.equals("2")){
                                             actionPart.setVisibility(View.GONE);

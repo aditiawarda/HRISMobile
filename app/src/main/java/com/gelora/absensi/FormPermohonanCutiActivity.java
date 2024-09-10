@@ -29,7 +29,9 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.InputType;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -164,17 +166,14 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         infoCutiPart = findViewById(R.id.info_cuti_part);
         actionBar = findViewById(R.id.action_bar);
 
+        alasanTV.setFilters(new InputFilter[]{new FormPermohonanCutiActivity.EmojiExcludeFilter()});
+        alamatSelamaCutiTV.setFilters(new InputFilter[]{new FormPermohonanCutiActivity.EmojiExcludeFilter()});
+
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
                 .into(successGif);
 
-        if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10")){
-            messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada bagian HRD untuk persetujuan.");
-        } else if(sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
-            messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada Kepala Departemen untuk persetujuan.");
-        } else {
-            messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada Kepala Bagian untuk persetujuan.");
-        }
+        messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada Atasan Langsung untuk persetujuan.");
 
         LocalBroadcastManager.getInstance(this).registerReceiver(kategoriCutiBroad, new IntentFilter("kategori_cuti_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(karyawanPenggantiBroad, new IntentFilter("karyawan_pengganti_broad"));
@@ -4053,6 +4052,19 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public class EmojiExcludeFilter implements InputFilter {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            for (int i = start; i < end; i++) {
+                int type = Character.getType(source.charAt(i));
+                if (type == Character.SURROGATE || type == Character.OTHER_SYMBOL) {
+                    return "";
+                }
+            }
+            return null;
         }
     }
 

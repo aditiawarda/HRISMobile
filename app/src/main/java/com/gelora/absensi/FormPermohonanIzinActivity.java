@@ -22,6 +22,8 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -124,6 +126,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         jumlahHariTV = findViewById(R.id.jumlah_hari_tv);
         actionBar = findViewById(R.id.action_bar);
 
+        alasanED.setFilters(new InputFilter[]{new FormPermohonanIzinActivity.EmojiExcludeFilter()});
         alasanED.clearComposingText();
         alasanED.clearFocus();
         Glide.with(getApplicationContext())
@@ -132,7 +135,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
         if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10")){
             messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada bagian HRD untuk persetujuan.");
-        } else if(sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
+        } else if(sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
             messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada Kepala Departemen untuk persetujuan.");
         } else {
             messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada Supervisor untuk persetujuan.");
@@ -1990,6 +1993,19 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
             } else {
                 super.onBackPressed();
             }
+        }
+    }
+
+    public class EmojiExcludeFilter implements InputFilter {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            for (int i = start; i < end; i++) {
+                int type = Character.getType(source.charAt(i));
+                if (type == Character.SURROGATE || type == Character.OTHER_SYMBOL) {
+                    return "";
+                }
+            }
+            return null;
         }
     }
 

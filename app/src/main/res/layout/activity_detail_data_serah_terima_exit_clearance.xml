@@ -442,7 +442,7 @@
                                                 android:drawablePadding="10dp"
                                                 android:gravity="top"
                                                 android:hint="Ketik keterangan..."
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                                 android:lineSpacingExtra="3dp"
                                                 android:maxLength="255"
                                                 android:paddingLeft="20dp"
@@ -561,7 +561,7 @@
                                                 android:drawablePadding="10dp"
                                                 android:gravity="top"
                                                 android:hint="Ketik keterangan..."
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                                 android:lineSpacingExtra="3dp"
                                                 android:maxLength="255"
                                                 android:paddingLeft="20dp"
@@ -680,7 +680,7 @@
                                                 android:drawablePadding="10dp"
                                                 android:gravity="top"
                                                 android:hint="Ketik keterangan..."
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                                 android:lineSpacingExtra="3dp"
                                                 android:maxLength="255"
                                                 android:paddingLeft="20dp"
@@ -799,7 +799,7 @@
                                                 android:drawablePadding="10dp"
                                                 android:gravity="top"
                                                 android:hint="Ketik keterangan..."
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                                 android:lineSpacingExtra="3dp"
                                                 android:maxLength="255"
                                                 android:paddingLeft="20dp"
@@ -918,7 +918,7 @@
                                                 android:drawablePadding="10dp"
                                                 android:gravity="top"
                                                 android:hint="Ketik keterangan..."
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                                 android:lineSpacingExtra="3dp"
                                                 android:maxLength="255"
                                                 android:paddingLeft="20dp"
@@ -1047,7 +1047,7 @@
                                                 android:drawablePadding="10dp"
                                                 android:gravity="top"
                                                 android:hint="Ketik keterangan..."
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                                 android:lineSpacingExtra="3dp"
                                                 android:maxLength="255"
                                                 android:paddingLeft="20dp"
@@ -1166,7 +1166,7 @@
                                                 android:drawablePadding="10dp"
                                                 android:gravity="top"
                                                 android:hint="Ketik keterangan..."
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                                 android:lineSpacingExtra="3dp"
                                                 android:maxLength="255"
                                                 android:paddingLeft="20dp"
@@ -1295,7 +1295,7 @@
                                                 android:drawablePadding="10dp"
                                                 android:gravity="top"
                                                 android:hint="Ketik keterangan..."
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                                 android:lineSpacingExtra="3dp"
                                                 android:maxLength="255"
                                                 android:paddingLeft="20dp"
@@ -1414,7 +1414,7 @@
                                                 android:drawablePadding="10dp"
                                                 android:gravity="top"
                                                 android:hint="Ketik keterangan..."
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                                 android:lineSpacingExtra="3dp"
                                                 android:maxLength="255"
                                                 android:paddingLeft="20dp"
@@ -1543,7 +1543,7 @@
                                                 android:drawablePadding="10dp"
                                                 android:gravity="top"
                                                 android:hint="Ketik keterangan..."
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                                 android:lineSpacingExtra="3dp"
                                                 android:maxLength="255"
                                                 android:paddingLeft="20dp"
@@ -1672,7 +1672,7 @@
                                                 android:drawablePadding="10dp"
                                                 android:gravity="top"
                                                 android:hint="Ketik keterangan..."
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                                 android:lineSpacingExtra="3dp"
                                                 android:maxLength="255"
                                                 android:paddingLeft="20dp"
@@ -1801,7 +1801,7 @@
                                                 android:drawablePadding="10dp"
                                                 android:gravity="top"
                                                 android:hint="Ketik keterangan..."
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                                 android:lineSpacingExtra="3dp"
                                                 android:maxLength="255"
                                                 android:paddingLeft="20dp"
@@ -1920,7 +1920,7 @@
                                                 android:drawablePadding="10dp"
                                                 android:gravity="top"
                                                 android:hint="Ketik keterangan..."
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                                 android:lineSpacingExtra="3dp"
                                                 android:maxLength="255"
                                                 android:paddingLeft="20dp"
@@ -2039,7 +2039,7 @@
                                                 android:drawablePadding="10dp"
                                                 android:gravity="top"
                                                 android:hint="Ketik keterangan..."
-                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
                                                 android:lineSpacingExtra="3dp"
                                                 android:maxLength="255"
                                                 android:paddingLeft="20dp"
@@ -2158,22 +2158,63 @@
                                     android:layout_height="1dp"/>
 
                                 <LinearLayout
-                                    android:id="@+id/verif_btn"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:orientation="vertical"
                                     android:layout_marginTop="10dp"
-                                    android:background="@drawable/shape_btn_approved"
-                                    android:gravity="center"
-                                    tools:ignore="RtlHardcoded">
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="VERIFIKASI"
-                                        android:textColor="@color/white"
-                                        android:textSize="13dp"
-                                        android:textStyle="bold"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+                                        android:layout_marginTop="5dp"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:id="@+id/pending_btn"
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_marginRight="5dp"
+                                            android:layout_height="40dp"
+                                            android:background="@drawable/shape_second_btn"
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
+
+                                            <TextView
+                                                android:id="@+id/pending_label_btn"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="PENDING"
+                                                android:textColor="@color/white"
+                                                android:textSize="13dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/verif_btn"
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_height="40dp"
+                                            android:background="@drawable/shape_btn_approved"
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="VERIFIKASI"
+                                                android:textColor="@color/white"
+                                                android:textSize="13dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
 
                                 </LinearLayout>
 

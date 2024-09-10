@@ -227,10 +227,10 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new KAlertDialog(DetailPermohonanFingerscanActivity.this, KAlertDialog.WARNING_TYPE)
-                    .setTitleText("Perhatian")
-                    .setContentText("Unduh File Permohonan?")
-                    .setCancelText("TIDAK")
-                    .setConfirmText("   YA   ")
+                    .setTitleText("Unduh File?")
+                    .setContentText("Perhatian! file hasil unduh hanya dapat dibuka dengan aplikasi WPS")
+                    .setCancelText(" BATAL ")
+                    .setConfirmText(" UNDUH ")
                     .showCancelButton(true)
                     .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                         @Override
@@ -752,12 +752,12 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                 } else if(keterangan.equals("2")){
                                     detailKeteranganPart.setVisibility(View.VISIBLE);
                                     JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
-                                    String nama_status    = detail_keterangan.getString("nama_status");
-                                    String kode_status    = detail_keterangan.getString("kode_status");
-                                    String nama_shift     = detail_keterangan.getString("nama_shift");
-                                    String shift_datang   = detail_keterangan.getString("shift_datang");
-                                    String shift_pulang   = detail_keterangan.getString("shift_pulang");
-                                    String tanggal_masuk  = detail_keterangan.getString("tanggal_masuk");
+                                    String nama_status   = detail_keterangan.getString("nama_status");
+                                    String kode_status   = detail_keterangan.getString("kode_status");
+                                    String nama_shift    = detail_keterangan.getString("nama_shift");
+                                    String shift_datang  = detail_keterangan.getString("shift_datang");
+                                    String shift_pulang  = detail_keterangan.getString("shift_pulang");
+                                    String tanggal_masuk = detail_keterangan.getString("tanggal_masuk");
 
                                     dStatusAbsen.setVisibility(View.VISIBLE);
                                     dShiftAbsen.setVisibility(View.VISIBLE);

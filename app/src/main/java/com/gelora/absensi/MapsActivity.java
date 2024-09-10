@@ -164,7 +164,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "2.6.1";
+    String appVersion = "2.8.6";
     private StatusBarColorManager mStatusBarColorManager;
 
     private RecyclerView dataAbsensiRV;
@@ -544,6 +544,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setPadding(0,0,0,0);
+        // mMap.setBuildingsEnabled(false);
         permissionLoc();
     }
 
@@ -592,8 +593,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             userLat = location.getLatitude();
             userLong = location.getLongitude();
 
-            // userLat = -6.321576067831295;
-            // userLong = 106.8705141561883;
+            //userLat = -6.321576067831295;
+            //userLong = 106.8705141561883;
 
             checkTime();
             getCurrentDay();
@@ -994,6 +995,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
+                params.put("nik", sharedPrefManager.getSpNik());
                 params.put("id_bagian", sharedPrefManager.getSpIdDept());
                 return params;
             }
@@ -1296,7 +1298,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void actionCheckin() {
         lateTime();
 
-        String id_sift = idShiftAbsen;
+        String id_shift = idShiftAbsen;
         String NIK = sharedPrefManager.getSpNik();
         String tanggal = getDate();
         String timestamp_masuk = getDate()+" "+getTime();
@@ -1324,97 +1326,105 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             checkin_point = absenPoint.getText().toString();
         }
 
-        final String url = "https://hrisgelora.co.id/api/checkin";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        try {
-                            Log.d("Success.Response", response.toString());
+        if(id_shift.equals("") || id_shift.equals("0")){
+            pDialog.dismiss();
+            refreshData();
+            new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
+                    .setTitleText("Check In Gagal")
+                    .setContentText("Harap ulangi kembali")
+                    .setConfirmText("    OK    ")
+                    .show();
+        } else {
+            final String url = "https://hrisgelora.co.id/api/checkin";
+            StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // response
+                            try {
+                                Log.d("Success.Response", response.toString());
 
-                            connectionFailed.setVisibility(View.GONE);
-                            connectionSuccess.setVisibility(View.VISIBLE);
+                                connectionFailed.setVisibility(View.GONE);
+                                connectionSuccess.setVisibility(View.VISIBLE);
 
-                            JSONObject data = new JSONObject(response);
-                            String status = data.getString("status");
-                            String message = data.getString("message");
+                                JSONObject data = new JSONObject(response);
+                                String status = data.getString("status");
+                                String message = data.getString("message");
 
-                            if (status.equals("Success")){
-                                lateTimeNotif();
-                                dialogAktif = "1";
-                                idCheckin = data.getString("id_checkin");
-                                checkAbsen();
-                            } else if (status.equals("Available")){
-                                pDialog.dismiss();
-                                new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                        .setTitleText("Perhatian")
-                                        .setContentText("Hari ini anda sudah melakukan Check In!")
-                                        .setConfirmText("    OK    ")
-                                        .showCancelButton(true)
-                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                            @Override
-                                            public void onClick(KAlertDialog sDialog) {
-                                                sDialog.dismiss();
-                                                sesiBaru = "nonaktif";
-                                                checkAbsen();
-                                            }
-                                        })
-                                        .show();
-                            } else {
-                                pDialog.dismiss();
-                                new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                        .setTitleText("Check In Gagal")
-                                        .setContentText("Terjadi kesalahan")
-                                        .setConfirmText("    OK    ")
-                                        .show();
+                                if (status.equals("Success")) {
+                                    lateTimeNotif();
+                                    dialogAktif = "1";
+                                    idCheckin = data.getString("id_checkin");
+                                    checkAbsen();
+                                } else if (status.equals("Available")) {
+                                    pDialog.dismiss();
+                                    new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
+                                            .setTitleText("Perhatian")
+                                            .setContentText("Hari ini anda sudah melakukan Check In!")
+                                            .setConfirmText("    OK    ")
+                                            .showCancelButton(true)
+                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                @Override
+                                                public void onClick(KAlertDialog sDialog) {
+                                                    sDialog.dismiss();
+                                                    sesiBaru = "nonaktif";
+                                                    checkAbsen();
+                                                }
+                                            })
+                                            .show();
+                                } else {
+                                    pDialog.dismiss();
+                                    new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
+                                            .setTitleText("Check In Gagal")
+                                            .setContentText("Terjadi kesalahan")
+                                            .setConfirmText("    OK    ")
+                                            .show();
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // error
+                            Log.d("Error.Response", error.toString());
+                            connectionFailed();
                         }
                     }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
-                        Log.d("Error.Response", error.toString());
-                        connectionFailed();
-                    }
+            ) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+
+                    params.put("id_shift", id_shift);
+                    params.put("NIK", NIK);
+                    params.put("tanggal", tanggal);
+                    params.put("jam_masuk", jam_masuk);
+                    params.put("timestamp_masuk", timestamp_masuk);
+                    params.put("timezone_masuk", zonaWaktu);
+                    params.put("waktu_terlambat", waktu_terlambat);
+                    params.put("latitude", latitude);
+                    params.put("longitude", longitude);
+                    params.put("status_absen", status_absen);
+                    params.put("checkin_point", checkin_point);
+                    params.put("app_version", appVersion);
+
+                    return params;
                 }
-        )
-        {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
+            };
 
-                params.put("id_shift", id_sift);
-                params.put("NIK", NIK);
-                params.put("tanggal", tanggal);
-                params.put("jam_masuk", jam_masuk);
-                params.put("timestamp_masuk", timestamp_masuk);
-                params.put("timezone_masuk", zonaWaktu);
-                params.put("waktu_terlambat", waktu_terlambat);
-                params.put("latitude", latitude);
-                params.put("longitude", longitude);
-                params.put("status_absen", status_absen);
-                params.put("checkin_point", checkin_point);
-                params.put("app_version", appVersion);
+            DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                    0,
+                    -1,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+            postRequest.setRetryPolicy(retryPolicy);
 
-                return params;
-            }
-        };
+            requestQueue.add(postRequest);
 
-        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
-                0,
-                -1,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        postRequest.setRetryPolicy(retryPolicy);
-
-        requestQueue.add(postRequest);
+        }
 
     }
 
@@ -4865,8 +4875,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .setColor(Color.parseColor("#A6441F"))
                 .setPriority(Notification.PRIORITY_DEFAULT)
                 .setContentTitle("HRIS Mobile Gelora")
-                .setStyle(new NotificationCompat.BigTextStyle().bigText("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0"))
-                .setContentText("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0");
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0"))
+                .setContentText("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0");
 
         Intent notificationIntent = new Intent(this, DetailTidakCheckoutActivity.class);
         notificationIntent.putExtra("bulan", getBulanTahun());

@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
@@ -50,6 +51,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
@@ -79,108 +81,64 @@ public class HomeActivity extends AppCompatActivity {
         sharedPrefAbsen = new SharedPrefAbsen(this);
         requestQueue = Volley.newRequestQueue(this);
 
-        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")) {
-            setContentView(R.layout.activity_home_non_gap);
+        setContentView(R.layout.activity_home);
 
-            bubbleNavigationNonGap = findViewById(R.id.equal_navigation_bar_non_gap);
-            viewPager = findViewById(R.id.viewPager);
-            shapeBG = findViewById(R.id.shape_bg);
-            vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        bubbleNavigation = findViewById(R.id.equal_navigation_bar);
+        viewPager = findViewById(R.id.viewPager);
+        shapeBG = findViewById(R.id.shape_bg);
+        infoMark = findViewById(R.id.info_mark);
+        profileMark = findViewById(R.id.profile_mark);
+        vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-            viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-            viewPagerAdapter.addFragment(new FragmentInfo());
-            viewPagerAdapter.addFragment(new FragmentProfile());
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.addFragment(new FragmentHome());
+        viewPagerAdapter.addFragment(new FragmentInfo());
+        viewPagerAdapter.addFragment(new FragmentProfile());
 
-            deviceID = String.valueOf(Settings.Secure.getString(HomeActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID)).toUpperCase();
+        deviceID = String.valueOf(Settings.Secure.getString(HomeActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID)).toUpperCase();
 
-            viewPager.setAdapter(viewPagerAdapter);
-            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                @Override
-                public void onPageScrolled(int i, float v, int i1) {
-                }
-                @Override
-                public void onPageSelected(int i) {
-                    bubbleNavigationNonGap.setCurrentActiveItem(i);
-                }
-                @Override
-                public void onPageScrollStateChanged(int i) {
-                }
-            });
+        viewPager.setAdapter(viewPagerAdapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+            }
+            @Override
+            public void onPageSelected(int i) {
+                bubbleNavigation.setCurrentActiveItem(i);
+                beforeLayout = temp;
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        nowLayout = String.valueOf(i);
+                        temp = nowLayout;
+                    }
+                }, 50);
+            }
+            @Override
+            public void onPageScrollStateChanged(int i) {
+            }
+        });
 
-            bubbleNavigationNonGap.setNavigationChangeListener(new BubbleNavigationChangeListener() {
-                @Override
-                public void onNavigationChanged(View view, int position) {
-                    viewPager.setCurrentItem(position, true);
-                }
-            });
+        bubbleNavigation.setNavigationChangeListener(new BubbleNavigationChangeListener() {
+            @Override
+            public void onNavigationChanged(View view, int position) {
+                viewPager.setCurrentItem(position, true);
+            }
+        });
 
-            shapeBG.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                }
-            });
+        shapeBG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
-        } else {
-            setContentView(R.layout.activity_home);
+        Glide.with(getApplicationContext())
+                .load(R.drawable.mark_notif_info)
+                .into(infoMark);
 
-            bubbleNavigation = findViewById(R.id.equal_navigation_bar);
-            viewPager = findViewById(R.id.viewPager);
-            shapeBG = findViewById(R.id.shape_bg);
-            infoMark = findViewById(R.id.info_mark);
-            profileMark = findViewById(R.id.profile_mark);
-            vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
-            viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-            viewPagerAdapter.addFragment(new FragmentHome());
-            viewPagerAdapter.addFragment(new FragmentInfo());
-            viewPagerAdapter.addFragment(new FragmentProfile());
-
-            deviceID = String.valueOf(Settings.Secure.getString(HomeActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID)).toUpperCase();
-
-            viewPager.setAdapter(viewPagerAdapter);
-            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                @Override
-                public void onPageScrolled(int i, float v, int i1) {
-                }
-                @Override
-                public void onPageSelected(int i) {
-                    bubbleNavigation.setCurrentActiveItem(i);
-                    beforeLayout = temp;
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            nowLayout = String.valueOf(i);
-                            temp = nowLayout;
-                        }
-                    }, 50);
-                }
-                @Override
-                public void onPageScrollStateChanged(int i) {
-                }
-            });
-
-            bubbleNavigation.setNavigationChangeListener(new BubbleNavigationChangeListener() {
-                @Override
-                public void onNavigationChanged(View view, int position) {
-                    viewPager.setCurrentItem(position, true);
-                }
-            });
-
-            shapeBG.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                }
-            });
-
-            Glide.with(getApplicationContext())
-                    .load(R.drawable.mark_notif_info)
-                    .into(infoMark);
-
-            Glide.with(getApplicationContext())
-                    .load(R.drawable.mark_notif_info)
-                    .into(profileMark);
-
-        }
+        Glide.with(getApplicationContext())
+                .load(R.drawable.mark_notif_info)
+                .into(profileMark);
 
     }
 
@@ -403,8 +361,9 @@ public class HomeActivity extends AppCompatActivity {
                                 String terlambat = data.getString("terlambat");
                                 String tidak_checkout = data.getString("tidak_checkout");
                                 String status_notif = data.getString("status_notif");
+                                String waiting_ikk = data.getString("waiting_ikk");
 
-                                if (count.equals("0") && count_finger.equals("0")){
+                                if (count.equals("0") && count_finger.equals("0") && waiting_ikk.equals("0")){
                                     int alpaNumb = Integer.parseInt(alpa);
                                     int lateNumb = Integer.parseInt(terlambat);
                                     int noCheckoutNumb = Integer.parseInt(tidak_checkout);
@@ -450,7 +409,8 @@ public class HomeActivity extends AppCompatActivity {
                                         notif = "0";
                                         infoMark.setVisibility(View.GONE);
                                     }
-                                } else if (!count.equals("0") && count_finger.equals("0")) {
+                                }
+                                else if (!count.equals("0") && count_finger.equals("0") && waiting_ikk.equals("0")) {
                                     infoMark.setVisibility(View.VISIBLE);
                                     if(notif.equals("0")){
                                         if(status_notif.equals("1")){
@@ -462,7 +422,8 @@ public class HomeActivity extends AppCompatActivity {
                                     } else {
                                         notif = "0";
                                     }
-                                } else if (count.equals("0") && !count_finger.equals("0")) {
+                                }
+                                else if (count.equals("0") && !count_finger.equals("0") && waiting_ikk.equals("0")) {
                                     infoMark.setVisibility(View.VISIBLE);
                                     if(notif.equals("0")){
                                         if(status_notif.equals("1")){
@@ -474,10 +435,60 @@ public class HomeActivity extends AppCompatActivity {
                                     } else {
                                         notif = "0";
                                     }
-                                } else if (!count.equals("0") && !count_finger.equals("0")) {
+                                }
+                                else if (count.equals("0") && count_finger.equals("0") && !waiting_ikk.equals("0")) {
                                     infoMark.setVisibility(View.VISIBLE);
                                     if(notif.equals("0")){
                                         if(status_notif.equals("1")){
+                                            notif = "1";
+                                            warningNotifIkk();
+                                        } else {
+                                            notif = "0";
+                                        }
+                                    } else {
+                                        notif = "0";
+                                    }
+                                }
+                                else if (!count.equals("0") && !count_finger.equals("0") && waiting_ikk.equals("0")) {
+                                    infoMark.setVisibility(View.VISIBLE);
+                                    if(notif.equals("0")){
+                                        if(status_notif.equals("1")){
+                                            notif = "1";
+                                            warningNotifIzin();
+                                        } else {
+                                            notif = "0";
+                                        }
+                                    } else {
+                                        notif = "0";
+                                    }
+                                } else if (!count.equals("0") && count_finger.equals("0") && !waiting_ikk.equals("0")) {
+                                    infoMark.setVisibility(View.VISIBLE);
+                                    if (notif.equals("0")) {
+                                        if (status_notif.equals("1")) {
+                                            notif = "1";
+                                            warningNotifIzin();
+                                        } else {
+                                            notif = "0";
+                                        }
+                                    } else {
+                                        notif = "0";
+                                    }
+                                } else if (count.equals("0") && !count_finger.equals("0") && !waiting_ikk.equals("0")) {
+                                    infoMark.setVisibility(View.VISIBLE);
+                                    if (notif.equals("0")) {
+                                        if (status_notif.equals("1")) {
+                                            notif = "1";
+                                            warningNotifFinger();
+                                        } else {
+                                            notif = "0";
+                                        }
+                                    } else {
+                                        notif = "0";
+                                    }
+                                } else if (!count.equals("0") && !count_finger.equals("0") && !waiting_ikk.equals("0")) {
+                                    infoMark.setVisibility(View.VISIBLE);
+                                    if (notif.equals("0")) {
+                                        if (status_notif.equals("1")) {
                                             notif = "1";
                                             warningNotifIzin();
                                         } else {
@@ -591,6 +602,14 @@ public class HomeActivity extends AppCompatActivity {
                                 profileMark.setVisibility(View.GONE);
                             }
 
+                            if(getNamaHari().toLowerCase().equals("jumat")||getNamaHari().toLowerCase().equals("sabtu")){
+                                if(sharedPrefManager.getSpIdCor().equals("1") && sharedPrefManager.getSpIdCab().equals("1")){
+                                    if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")){
+                                        checkPengajuanMakan(getNamaHari().toLowerCase());
+                                    }
+                                }
+                            }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -612,6 +631,112 @@ public class HomeActivity extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void checkPengajuanMakan(String hari) {
+        final String url = "https://hrisgelora.co.id/api/cek_pengajuan_makan_reminder";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response);
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Available")){
+                                String jumlah_data = data.getString("jumlah_data");
+                                String data_min = data.getString("data_min");
+                                if(Integer.parseInt(jumlah_data)<Integer.parseInt(data_min)){
+                                    if(pDialog==null){
+                                        pDialog = new KAlertDialog(HomeActivity.this, KAlertDialog.WARNING_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("PERMOHONAN MAKAN KARYAWAN YANG ANDA AJUKAN BELUM LENGKAP 1 MINGGU UNTUK MINGGU DEPAN, HARAP SEGERA AJUKAN PERMOHONAN MAKAN KARYAWAN SELAMA 1 MINGGU MENGGUNAKAN FORM AJUAN MAKAN!")
+                                                .setConfirmText("AJUKAN")
+                                                .setCancelText("TUTUP");
+                                        pDialog.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                Intent intent = new Intent(HomeActivity.this, ListDataLunchRequestActivity.class);
+                                                startActivity(intent);
+                                            }
+                                        });
+                                        pDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                            @Override
+                                            public void onDismiss(DialogInterface dialog) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                        pDialog.show();
+
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                            vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                        } else {
+                                            vibrate.vibrate(500);
+                                        }
+                                    }
+                                }
+                            } else {
+                                if(pDialog==null){
+                                    pDialog = new KAlertDialog(HomeActivity.this, KAlertDialog.WARNING_TYPE)
+                                            .setTitleText("Perhatian")
+                                            .setContentText("ANDA BELUM MENGAJUKAN PERMOHONAN MAKAN KARYAWAN UNTUK MINGGU DEPAN, HARAP SEGERA AJUKAN PERMOHONAN MAKAN KARYAWAN SELAMA 1 MINGGU MENGGUNAKAN FORM AJUAN MAKAN!")
+                                            .setConfirmText("AJUKAN")
+                                            .setCancelText("TUTUP");
+                                    pDialog.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                            Intent intent = new Intent(HomeActivity.this, ListDataLunchRequestActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                    pDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                        @Override
+                                        public void onDismiss(DialogInterface dialog) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    pDialog.show();
+
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                    } else {
+                                        vibrate.vibrate(500);
+                                    }
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                params.put("hari", hari);
                 return params;
             }
         };
@@ -953,6 +1078,63 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    private void warningNotifIkk() {
+        String shortName;
+        String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+        if(shortNameArray.length>1){
+            if(shortNameArray[0].length()<3){
+                shortName = shortNameArray[1];
+                System.out.println(shortName);
+            } else {
+                shortName = shortNameArray[0];
+                System.out.println(shortName);
+            }
+        } else {
+            shortName = shortNameArray[0];
+            System.out.println(shortName);
+        }
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        String NOTIFICATION_CHANNEL_ID = "warning_notif_izin";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            @SuppressLint("WrongConstant")
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+            notificationChannel.enableVibration(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        notificationBuilder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.ic_skylight_notification)
+                .setColor(Color.parseColor("#A6441F"))
+                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setContentTitle("HRIS Mobile Gelora")
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("Halo "+shortName+", terdapat notifikasi permohonan izin keluar kantor yang belum anda lihat"))
+                .setContentText("Halo "+shortName+", terdapat notifikasi permohonan izin keluar kantor yang belum anda lihat");
+
+        Intent notificationIntent = new Intent(this, ListIzinKeluarKantor.class);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_MUTABLE);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        } else {
+            @SuppressLint("UnspecifiedImmutableFlag")
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        }
+
+    }
+
     private void warningNotifKontakDarurat() {
         String shortName;
         String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
@@ -1071,6 +1253,13 @@ public class HomeActivity extends AppCompatActivity {
     private String getBulanTahun() {
         @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getNamaHari() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("EEEE", new Locale("id", "ID"));
         Date date = new Date();
         return dateFormat.format(date);
     }

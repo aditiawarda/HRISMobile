@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -285,12 +286,18 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 alasanED.clearFocus();
                 saranED.clearFocus();
-                if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
-                } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("application/pdf");
                     startActivityForResult(Intent.createChooser(intent, "PDF - 1"), PICK_PDF_ST_1);
+                } else {
+                    if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("application/pdf");
+                        startActivityForResult(Intent.createChooser(intent, "PDF - 1"), PICK_PDF_ST_1);
+                    }
                 }
             }
         });
@@ -302,12 +309,18 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 alasanED.clearFocus();
                 saranED.clearFocus();
-                if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
-                } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("application/pdf");
                     startActivityForResult(Intent.createChooser(intent, "PDF - 2"), PICK_PDF_ST_2);
+                } else {
+                    if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("application/pdf");
+                        startActivityForResult(Intent.createChooser(intent, "PDF - 2"), PICK_PDF_ST_2);
+                    }
                 }
             }
         });
@@ -319,12 +332,18 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 alasanED.clearFocus();
                 saranED.clearFocus();
-                if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
-                } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("application/pdf");
                     startActivityForResult(Intent.createChooser(intent, "PDF - 3"), PICK_PDF_ST_3);
+                } else {
+                    if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("application/pdf");
+                        startActivityForResult(Intent.createChooser(intent, "PDF - 3"), PICK_PDF_ST_3);
+                    }
                 }
             }
         });
@@ -336,12 +355,18 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 alasanED.clearFocus();
                 saranED.clearFocus();
-                if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
-                } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("application/pdf");
                     startActivityForResult(Intent.createChooser(intent, "PDF - 4"), PICK_PDF_ST_4);
+                } else {
+                    if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("application/pdf");
+                        startActivityForResult(Intent.createChooser(intent, "PDF - 4"), PICK_PDF_ST_4);
+                    }
                 }
             }
         });
@@ -353,12 +378,18 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 alasanED.clearFocus();
                 saranED.clearFocus();
-                if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
-                } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("application/pdf");
                     startActivityForResult(Intent.createChooser(intent, "PDF - 5"), PICK_PDF_ST_5);
+                } else {
+                    if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("application/pdf");
+                        startActivityForResult(Intent.createChooser(intent, "PDF - 5"), PICK_PDF_ST_5);
+                    }
                 }
             }
         });
@@ -370,12 +401,18 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 alasanED.clearFocus();
                 saranED.clearFocus();
-                if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
-                } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("application/pdf");
                     startActivityForResult(Intent.createChooser(intent, "PDF - 6"), PICK_PDF_ST_6);
+                } else {
+                    if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("application/pdf");
+                        startActivityForResult(Intent.createChooser(intent, "PDF - 6"), PICK_PDF_ST_6);
+                    }
                 }
             }
         });
@@ -1340,10 +1377,10 @@ public class FormExitClearanceActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String file_url = "https://hrisgelora.co.id/absen/pdf_clearance_form/"+id_record;
                 new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
-                        .setTitleText("Perhatian")
-                        .setContentText("Unduh File?")
-                        .setCancelText("TIDAK")
-                        .setConfirmText("   YA   ")
+                        .setTitleText("Unduh File?")
+                        .setContentText("Perhatian! file hasil unduh hanya dapat dibuka dengan aplikasi WPS")
+                        .setCancelText(" BATAL ")
+                        .setConfirmText(" UNDUH ")
                         .showCancelButton(true)
                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override

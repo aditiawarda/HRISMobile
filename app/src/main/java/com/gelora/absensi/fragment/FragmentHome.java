@@ -37,6 +37,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -73,6 +74,8 @@ import com.gelora.absensi.HomeActivity;
 import com.gelora.absensi.HumanResourceActivity;
 import com.gelora.absensi.InfoPersonalActivity;
 import com.gelora.absensi.ListAllPengumumanActivity;
+import com.gelora.absensi.ListNotifikasiActivity;
+import com.gelora.absensi.ListNotifikasiFingerscanActivity;
 import com.gelora.absensi.MapsActivity;
 import com.gelora.absensi.NewsActivity;
 import com.gelora.absensi.PersonalNotificationActivity;
@@ -125,8 +128,8 @@ import java.util.Map;
 
 public class FragmentHome extends Fragment {
 
-    LinearLayout updateLogo, visiMisiBTN, countNotificationClearancePart, clearancePart, calendarPart, weatherBTN, newsPart, countNotificationPersonalPart, personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLainnyaBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN, menuClearanceBTN;
-    TextView countNotifClearanceTV, countNotificationPersonalTV, countNotifPenilaianTV, nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
+    LinearLayout menuCalendarBTNSub, absensiPart, calendarSecondPart, updateLogo, visiMisiBTN, countNotificationClearancePart, clearancePart, calendarPart, weatherBTN, newsPart, countNotificationPersonalPart, personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLainnyaBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN, menuClearanceBTN;
+    TextView labelIzinTV, countNotifClearanceTV, countNotificationPersonalTV, countNotifPenilaianTV, nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
     ProgressBar loadingProgressBarCuaca;
     ImageView avatarUser, weatherIcon, updateIcImg, regulerLogo;
     RelativeLayout dataCuaca, dataCuacaEmpty;
@@ -157,6 +160,7 @@ public class FragmentHome extends Fragment {
     private static String TEXT_TO_ANIMATE = "";
     private static final long ANIMATION_INTERVAL = 2100;
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -247,6 +251,10 @@ public class FragmentHome extends Fragment {
         updateLogo = view.findViewById(R.id.update_logo);
         regulerLogo = view.findViewById(R.id.reguler_logo);
         updateIcImg = view.findViewById(R.id.update_ic_img);
+        absensiPart = view.findViewById(R.id.absensi_part);
+        calendarSecondPart = view.findViewById(R.id.calendar_second_part);
+        menuCalendarBTNSub = view.findViewById(R.id.menu_calendar_btn_sub);
+        labelIzinTV = view.findViewById(R.id.label_izin_tv);
 
         Glide.with(mContext)
                 .load(R.drawable.update_ic)
@@ -259,6 +267,23 @@ public class FragmentHome extends Fragment {
         listPengumumanNewRV.setHasFixedSize(true);
         listPengumumanNewRV.setNestedScrollingEnabled(false);
         listPengumumanNewRV.setItemAnimator(new DefaultItemAnimator());
+
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
+            labelIzinTV.setText("Izin/Cuti");
+            absensiPart.setVisibility(View.GONE);
+            calendarSecondPart.setVisibility(View.VISIBLE);
+            menuCalendarBTNSub.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, CalendarPageActivity.class);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            labelIzinTV.setText("Izin");
+            absensiPart.setVisibility(View.VISIBLE);
+            calendarSecondPart.setVisibility(View.GONE);
+        }
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -321,8 +346,13 @@ public class FragmentHome extends Fragment {
                         })
                         .show();
                 } else {
-                    Intent intent = new Intent(mContext, FormPermohonanIzinActivity.class);
-                    startActivity(intent);
+                    if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
+                        Intent intent = new Intent(mContext, ListNotifikasiActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(mContext, FormPermohonanIzinActivity.class);
+                        startActivity(intent);
+                    }
                 }
             }
         });
@@ -411,8 +441,13 @@ public class FragmentHome extends Fragment {
                             })
                             .show();
                 } else {
-                    Intent intent = new Intent(mContext, FormFingerscanActivity.class);
-                    startActivity(intent);
+                    if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
+                        Intent intent = new Intent(mContext, ListNotifikasiFingerscanActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(mContext, FormFingerscanActivity.class);
+                        startActivity(intent);
+                    }
                 }
             }
         });
@@ -561,7 +596,7 @@ public class FragmentHome extends Fragment {
             }
         }
 
-        if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")||sharedPrefManager.getSpNik().equals("1311201210")||(sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
+        if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")||sharedPrefManager.getSpNik().equals("1311201210")||(sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
             cardPart.setVisibility(View.GONE);
             sdmPart.setVisibility(View.VISIBLE);
             if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")){
@@ -876,7 +911,7 @@ public class FragmentHome extends Fragment {
                                 getDataPengumumanNew(chat_room);
                                 getCountPersonalNotif();
 
-                                if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
+                                if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
                                     getWaitingConfirm();
                                 }
 
@@ -2127,7 +2162,7 @@ public class FragmentHome extends Fragment {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "2.6.1"; //harus disesuaikan
+                                String currentVersion = "2.8.6"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     regulerLogo.setVisibility(View.GONE);
                                     updateLogo.setVisibility(View.VISIBLE);

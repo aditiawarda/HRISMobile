@@ -8,12 +8,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,6 +31,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterPermohonanIzin;
 import com.gelora.absensi.adapter.AdapterPermohonanSaya;
 import com.gelora.absensi.model.ListPermohonanIzin;
@@ -42,11 +53,13 @@ public class ListNotifikasiActivity extends AppCompatActivity {
     private AdapterPermohonanIzin adapterPermohonanIzin;
     private AdapterPermohonanSaya adapterPermohonanSaya;
     SharedPrefManager sharedPrefManager;
-    LinearLayout actionBar, mainPart, optionPart, countPartIn, countPartMe, permohonanMasukPart, permohonanSayaPart, notifyInBTN, notifySayaBTN, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2, backBTN;
+    LinearLayout addBTN, addBtnPart, actionBar, mainPart, optionPart, countPartIn, countPartMe, permohonanMasukPart, permohonanSayaPart, notifyInBTN, notifySayaBTN, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2, backBTN;
     SwipeRefreshLayout refreshLayout;
     View rootview;
     TextView countNotifMasuk, countNotifSaya, labelPageIzin;
     private Handler handler = new Handler();
+    BottomSheetLayout bottomSheet;
+    LinearLayout izinBTN, cutiBTN, markIzin, markCuti;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -76,6 +89,9 @@ public class ListNotifikasiActivity extends AppCompatActivity {
         mainPart = findViewById(R.id.main_part);
         actionBar = findViewById(R.id.action_bar);
         labelPageIzin = findViewById(R.id.label_page);
+        addBtnPart = findViewById(R.id.add_btn_part);
+        addBTN = findViewById(R.id.btn_add);
+        bottomSheet = findViewById(R.id.bottom_sheet_layout);
 
         dataNotifikasiRV.setLayoutManager(new LinearLayoutManager(this));
         dataNotifikasiRV.setHasFixedSize(true);
@@ -90,6 +106,13 @@ public class ListNotifikasiActivity extends AppCompatActivity {
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            }
+        });
+
+        addBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pilihForm();
             }
         });
 
@@ -114,9 +137,9 @@ public class ListNotifikasiActivity extends AppCompatActivity {
         });
 
         if(sharedPrefManager.getSpIdCor().equals("1")){
-            labelPageIzin.setText("NOTIFIKASI IZIN/CUTI");
+            labelPageIzin.setText("IZIN/CUTI");
         } else if(sharedPrefManager.getSpIdCor().equals("3")){
-            labelPageIzin.setText("NOTIFIKASI IZIN");
+            labelPageIzin.setText("IZIN");
         }
 
         backBTN.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +163,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                 noDataPart2.setVisibility(View.GONE);
                 dataNotifikasiRV.setVisibility(View.GONE);
                 dataNotifikasi2RV.setVisibility(View.GONE);
+                addBtnPart.setVisibility(View.VISIBLE);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -165,6 +189,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                 noDataPart2.setVisibility(View.GONE);
                 dataNotifikasiRV.setVisibility(View.GONE);
                 dataNotifikasi2RV.setVisibility(View.GONE);
+                addBtnPart.setVisibility(View.GONE);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -176,7 +201,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
             }
         });
 
-        if (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("33") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
+        if (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("33") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
             if(sharedPrefManager.getSpNik().equals("000112092023")){
                 float scale = getResources().getDisplayMetrics().density;
                 int side = (int) (17*scale + 0.5f);
@@ -186,6 +211,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                 optionPart.setVisibility(View.GONE);
                 permohonanMasukPart.setVisibility(View.VISIBLE);
                 permohonanSayaPart.setVisibility(View.GONE);
+                addBtnPart.setVisibility(View.GONE);
             } else {
                 optionPart.setVisibility(View.VISIBLE);
             }
@@ -198,6 +224,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
             optionPart.setVisibility(View.GONE);
             permohonanMasukPart.setVisibility(View.VISIBLE);
             permohonanSayaPart.setVisibility(View.GONE);
+            addBtnPart.setVisibility(View.GONE);
         } else {
             float scale = getResources().getDisplayMetrics().density;
             int side = (int) (17*scale + 0.5f);
@@ -207,8 +234,62 @@ public class ListNotifikasiActivity extends AppCompatActivity {
             optionPart.setVisibility(View.GONE);
             permohonanMasukPart.setVisibility(View.GONE);
             permohonanSayaPart.setVisibility(View.VISIBLE);
+            addBtnPart.setVisibility(View.VISIBLE);
         }
 
+    }
+
+    private void pilihForm(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_form_choice, bottomSheet, false));
+        izinBTN = findViewById(R.id.izin_btn);
+        cutiBTN = findViewById(R.id.cuti_btn);
+        markIzin = findViewById(R.id.mark_izin);
+        markCuti = findViewById(R.id.mark_cuti);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                izinBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onClick(View v) {
+                        markIzin.setVisibility(View.VISIBLE);
+                        markCuti.setVisibility(View.GONE);
+                        izinBTN.setBackground(ContextCompat.getDrawable(ListNotifikasiActivity.this, R.drawable.shape_option_choice));
+                        cutiBTN.setBackground(ContextCompat.getDrawable(ListNotifikasiActivity.this, R.drawable.shape_option));
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                                Intent intent = new Intent(ListNotifikasiActivity.this, FormPermohonanIzinActivity.class);
+                                startActivity(intent);
+                            }
+                        }, 300);
+                    }
+                });
+
+                cutiBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onClick(View v) {
+                        markIzin.setVisibility(View.GONE);
+                        markCuti.setVisibility(View.VISIBLE);
+                        izinBTN.setBackground(ContextCompat.getDrawable(ListNotifikasiActivity.this, R.drawable.shape_option));
+                        cutiBTN.setBackground(ContextCompat.getDrawable(ListNotifikasiActivity.this, R.drawable.shape_option_choice));
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                                Intent intent = new Intent(ListNotifikasiActivity.this, FormPermohonanCutiActivity.class);
+                                startActivity(intent);
+                            }
+                        }, 300);
+                    }
+                });
+            }
+        }, 500);
     }
 
     private void getData() {

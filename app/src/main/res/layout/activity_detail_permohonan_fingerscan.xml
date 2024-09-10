@@ -34,9 +34,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingRight="20dp"
-                            android:paddingLeft="20dp"
-                            android:paddingTop="85dp"
+                            android:paddingTop="68dp"
                             android:paddingBottom="30dp"
                             android:orientation="vertical"
                             tools:ignore="UselessParent">
@@ -49,555 +47,587 @@
                                 android:text=""/>
 
                             <LinearLayout
-                                android:id="@+id/detail_part"
-                                android:background="@drawable/shape_detail_permohonan"
                                 android:layout_width="match_parent"
-                                android:orientation="vertical"
-                                android:paddingTop="10dp"
-                                android:paddingBottom="10dp"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
 
-                                <RelativeLayout
+                                <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="2dp"
+                                    android:orientation="vertical"
+                                    android:background="@color/darker_gray"/>
+
+                                <com.gelora.absensi.support.ZoomableLinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/shape_zoom_layout"
+                                    android:orientation="vertical">
 
                                     <LinearLayout
+                                        android:id="@+id/detail_part"
+                                        android:background="@drawable/shape_sheet"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:background="@drawable/shape_detail_permohonan_finger"
                                         android:orientation="vertical"
-                                        android:paddingTop="15dp"
-                                        android:paddingBottom="35dp"
+                                        android:paddingTop="10dp"
+                                        android:paddingBottom="10dp"
+                                        android:paddingLeft="10dp"
+                                        android:paddingRight="10dp"
+                                        android:layout_marginTop="25dp"
+                                        android:layout_marginBottom="25dp"
+                                        android:layout_marginRight="20dp"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_height="wrap_content"
                                         tools:ignore="TooDeepLayout">
 
-                                        <LinearLayout
+                                        <RelativeLayout
                                             android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="horizontal"
-                                            android:paddingLeft="15dp"
-                                            android:paddingRight="15dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="NO. : "
-                                                android:textColor="#515151"
-                                                android:textSize="12dp"
-                                                android:textStyle="bold"
-                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
-
-                                            <TextView
-                                                android:id="@+id/no_permohonan"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:text="000000000"
-                                                android:textColor="#515151"
-                                                android:textSize="12dp"
-                                                android:textStyle="bold"
-                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="25dp"
-                                            android:layout_marginBottom="25dp"
-                                            android:orientation="horizontal"
-                                            android:paddingLeft="15dp"
-                                            android:paddingRight="15dp">
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:gravity="center"
-                                                android:text="@string/finger_scan"
-                                                android:textColor="#515151"
-                                                android:textSize="12dp"
-                                                android:textStyle="bold"
-                                                tools:ignore="SpUsage,TextSizeCheck" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="vertical"
-                                            android:paddingLeft="25dp"
-                                            android:paddingRight="25dp">
+                                            android:layout_height="wrap_content">
 
                                             <LinearLayout
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:orientation="horizontal">
-
-                                                <TextView
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="7dp"
-                                                    android:layout_weight=".35"
-                                                    android:text="TANGGAL BUAT"
-                                                    android:textColor="#515151"
-                                                    android:textSize="11dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                                android:background="@drawable/shape_detail_permohonan_finger"
+                                                android:orientation="vertical"
+                                                android:paddingTop="15dp"
+                                                android:paddingBottom="35dp"
+                                                tools:ignore="TooDeepLayout">
 
                                                 <LinearLayout
-                                                    android:layout_width="0dp"
+                                                    android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_weight=".65"
-                                                    android:orientation="horizontal">
+                                                    android:orientation="horizontal"
+                                                    android:paddingLeft="15dp"
+                                                    android:paddingRight="15dp">
 
                                                     <TextView
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="7dp"
-                                                        android:text=":  "
+                                                        android:text="NO. : "
                                                         android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck,TextSizeCheck" />
+                                                        android:textSize="12dp"
+                                                        android:textStyle="bold"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                                     <TextView
-                                                        android:id="@+id/tanggal_tv"
-                                                        android:layout_width="0dp"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="7dp"
-                                                        android:layout_weight=".65"
-                                                        android:text="     /     /20     "
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
-
-                                                </LinearLayout>
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:orientation="horizontal">
-
-                                                <TextView
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="7dp"
-                                                    android:layout_weight=".35"
-                                                    android:text="NIK/NAMA"
-                                                    android:textColor="#515151"
-                                                    android:textSize="11dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                <LinearLayout
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight=".65"
-                                                    android:orientation="horizontal">
-
-                                                    <TextView
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="7dp"
-                                                        android:text=":  "
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                    <TextView
-                                                        android:id="@+id/nik_nama_tv"
-                                                        android:layout_width="0dp"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="7dp"
-                                                        android:layout_weight=".65"
-                                                        android:ellipsize="end"
-                                                        android:maxLines="1"
-                                                        android:singleLine="true"
-                                                        android:text="........................"
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
-
-                                                </LinearLayout>
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:orientation="horizontal">
-
-                                                <TextView
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="7dp"
-                                                    android:layout_weight=".35"
-                                                    android:text="DEPT/BAGIAN"
-                                                    android:textColor="#515151"
-                                                    android:textSize="11dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
-
-                                                <LinearLayout
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight=".65"
-                                                    android:orientation="horizontal">
-
-                                                    <TextView
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="7dp"
-                                                        android:text=":  "
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                    <TextView
-                                                        android:id="@+id/dept_bagian_tv"
-                                                        android:layout_width="0dp"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="7dp"
-                                                        android:layout_weight=".65"
-                                                        android:ellipsize="end"
-                                                        android:maxLines="1"
-                                                        android:singleLine="true"
-                                                        android:text="........................"
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
-
-                                                </LinearLayout>
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:orientation="horizontal">
-
-                                                <TextView
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="7dp"
-                                                    android:layout_weight=".35"
-                                                    android:text="KETERANGAN"
-                                                    android:textColor="#515151"
-                                                    android:textSize="11dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                <LinearLayout
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight=".65"
-                                                    android:orientation="horizontal">
-
-                                                    <TextView
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="7dp"
-                                                        android:text=":  "
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                    <TextView
-                                                        android:id="@+id/keterangan_tv"
-                                                        android:layout_width="0dp"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="7dp"
-                                                        android:layout_weight=".65"
-                                                        android:ellipsize="end"
-                                                        android:maxLines="1"
-                                                        android:singleLine="true"
-                                                        android:text="........................"
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
-
-                                                </LinearLayout>
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:orientation="horizontal">
-
-                                                <TextView
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="7dp"
-                                                    android:layout_weight=".35"
-                                                    android:text="ALASAN"
-                                                    android:textColor="#515151"
-                                                    android:textSize="11dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                <LinearLayout
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight=".65"
-                                                    android:orientation="horizontal">
-
-                                                    <TextView
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="7dp"
-                                                        android:text=":  "
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                    <TextView
-                                                        android:id="@+id/alasan_tv"
-                                                        android:layout_width="0dp"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginBottom="7dp"
-                                                        android:layout_weight=".65"
-                                                        android:lineSpacingExtra="2.5dp"
-                                                        android:text="........................"
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
-
-                                                </LinearLayout>
-
-                                            </LinearLayout>
-
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="20dp"
-                                                android:orientation="horizontal"
-                                                tools:ignore="DisableBaselineAlignment">
-
-                                                <LinearLayout
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight=".34"
-                                                    android:gravity="center"
-                                                    android:orientation="vertical">
-
-                                                    <TextView
+                                                        android:id="@+id/no_permohonan"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
-                                                        android:gravity="center"
-                                                        android:text="Hormat saya,"
+                                                        android:text="000000000"
                                                         android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                    <ImageView
-                                                        android:id="@+id/ttd_pemohon"
-                                                        android:layout_width="50dp"
-                                                        android:layout_height="50dp"
-                                                        tools:ignore="ContentDescription" />
-
-                                                    <TextView
-                                                        android:id="@+id/pemohon_tv"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:gravity="center"
-                                                        android:text="( ............... )"
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                </LinearLayout>
-
-                                                <LinearLayout
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight=".33"
-                                                    android:gravity="center"
-                                                    android:orientation="vertical">
-
-                                                    <TextView
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:gravity="center"
-                                                        android:text="Mengetahui,"
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                    <RelativeLayout
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="match_parent"
-                                                        android:gravity="center">
-
-                                                        <LinearLayout
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="match_parent"
-                                                            android:gravity="center">
-
-                                                            <ImageView
-                                                                android:id="@+id/ttd_approver"
-                                                                android:layout_width="50dp"
-                                                                android:layout_height="50dp"
-                                                                tools:ignore="ContentDescription" />
-
-                                                        </LinearLayout>
-
-                                                        <TextView
-                                                            android:id="@+id/tanggal_approve"
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="wrap_content"
-                                                            android:layout_marginTop="5dp"
-                                                            android:layout_marginRight="15dp"
-                                                            android:gravity="right"
-                                                            android:text=""
-                                                            android:textColor="#0C4883"
-                                                            android:textSize="8dp"
-                                                            tools:ignore="RtlHardcoded,SpUsage" />
-
-                                                    </RelativeLayout>
-
-                                                    <TextView
-                                                        android:id="@+id/approver_tv"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:gravity="center"
-                                                        android:text="( ............... )"
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        android:visibility="visible"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                    <TextView
-                                                        android:id="@+id/jabatan_approver"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:gravity="center"
-                                                        android:text="Atasan Terkait"
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                </LinearLayout>
-
-                                                <LinearLayout
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight=".33"
-                                                    android:gravity="center"
-                                                    android:orientation="vertical">
-
-                                                    <TextView
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:gravity="center"
-                                                        android:text=""
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        tools:ignore="SpUsage" />
-
-                                                    <RelativeLayout
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="match_parent"
-                                                        android:gravity="center">
-
-                                                        <LinearLayout
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="match_parent"
-                                                            android:gravity="center">
-
-                                                            <LinearLayout
-                                                                android:layout_width="50dp"
-                                                                android:layout_height="50dp"
-                                                                android:orientation="horizontal"
-                                                                tools:ignore="UseCompoundDrawables,UselessParent">
-
-                                                                <TextView
-                                                                    android:id="@+id/appove_status_hrd"
-                                                                    android:layout_width="match_parent"
-                                                                    android:layout_height="match_parent"
-                                                                    android:background="@drawable/approved_img"
-                                                                    android:visibility="gone" />
-
-                                                                <ImageView
-                                                                    android:id="@+id/ttd_approver_hrd"
-                                                                    android:layout_width="50dp"
-                                                                    android:layout_height="50dp"
-                                                                    tools:ignore="ContentDescription" />
-
-                                                            </LinearLayout>
-
-                                                        </LinearLayout>
-
-                                                        <TextView
-                                                            android:id="@+id/tanggal_approve_hrd"
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="wrap_content"
-                                                            android:layout_marginTop="5dp"
-                                                            android:layout_marginRight="15dp"
-                                                            android:gravity="right"
-                                                            android:text=""
-                                                            android:textColor="#0C4883"
-                                                            android:textSize="8dp"
-                                                            tools:ignore="RtlHardcoded,SpUsage" />
-
-                                                    </RelativeLayout>
-
-                                                    <TextView
-                                                        android:id="@+id/approver_hrd_tv"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:gravity="center"
-                                                        android:text="( ............... )"
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
-                                                        android:visibility="visible"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                    <TextView
-                                                        android:id="@+id/hrd_tv"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:gravity="center"
-                                                        android:text="HRD"
-                                                        android:textColor="#515151"
-                                                        android:textSize="11dp"
+                                                        android:textSize="12dp"
+                                                        android:textStyle="bold"
                                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                                 </LinearLayout>
 
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="25dp"
+                                                    android:layout_marginBottom="25dp"
+                                                    android:orientation="horizontal"
+                                                    android:paddingLeft="15dp"
+                                                    android:paddingRight="15dp">
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:gravity="center"
+                                                        android:text="@string/finger_scan"
+                                                        android:textColor="#515151"
+                                                        android:textSize="12dp"
+                                                        android:textStyle="bold"
+                                                        tools:ignore="SpUsage,TextSizeCheck" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:orientation="vertical"
+                                                    android:paddingLeft="25dp"
+                                                    android:paddingRight="25dp">
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="horizontal">
+
+                                                        <TextView
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_marginBottom="7dp"
+                                                            android:layout_weight=".35"
+                                                            android:text="TANGGAL BUAT"
+                                                            android:textColor="#515151"
+                                                            android:textSize="11dp"
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                        <LinearLayout
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight=".65"
+                                                            android:orientation="horizontal">
+
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginBottom="7dp"
+                                                                android:text=":  "
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck,TextSizeCheck" />
+
+                                                            <TextView
+                                                                android:id="@+id/tanggal_tv"
+                                                                android:layout_width="0dp"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginBottom="7dp"
+                                                                android:layout_weight=".65"
+                                                                android:text="     /     /20     "
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
+
+                                                        </LinearLayout>
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="horizontal">
+
+                                                        <TextView
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_marginBottom="7dp"
+                                                            android:layout_weight=".35"
+                                                            android:text="NIK/NAMA"
+                                                            android:textColor="#515151"
+                                                            android:textSize="11dp"
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                        <LinearLayout
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight=".65"
+                                                            android:orientation="horizontal">
+
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginBottom="7dp"
+                                                                android:text=":  "
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                            <TextView
+                                                                android:id="@+id/nik_nama_tv"
+                                                                android:layout_width="0dp"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginBottom="7dp"
+                                                                android:layout_weight=".65"
+                                                                android:ellipsize="end"
+                                                                android:maxLines="1"
+                                                                android:singleLine="true"
+                                                                android:text="........................"
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
+
+                                                        </LinearLayout>
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="horizontal">
+
+                                                        <TextView
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_marginBottom="7dp"
+                                                            android:layout_weight=".35"
+                                                            android:text="DEPT/BAGIAN"
+                                                            android:textColor="#515151"
+                                                            android:textSize="11dp"
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
+
+                                                        <LinearLayout
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight=".65"
+                                                            android:orientation="horizontal">
+
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginBottom="7dp"
+                                                                android:text=":  "
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                            <TextView
+                                                                android:id="@+id/dept_bagian_tv"
+                                                                android:layout_width="0dp"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginBottom="7dp"
+                                                                android:layout_weight=".65"
+                                                                android:ellipsize="end"
+                                                                android:maxLines="1"
+                                                                android:singleLine="true"
+                                                                android:text="........................"
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
+
+                                                        </LinearLayout>
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="horizontal">
+
+                                                        <TextView
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_marginBottom="7dp"
+                                                            android:layout_weight=".35"
+                                                            android:text="KETERANGAN"
+                                                            android:textColor="#515151"
+                                                            android:textSize="11dp"
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                        <LinearLayout
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight=".65"
+                                                            android:orientation="horizontal">
+
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginBottom="7dp"
+                                                                android:text=":  "
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                            <TextView
+                                                                android:id="@+id/keterangan_tv"
+                                                                android:layout_width="0dp"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginBottom="7dp"
+                                                                android:layout_weight=".65"
+                                                                android:ellipsize="end"
+                                                                android:maxLines="1"
+                                                                android:singleLine="true"
+                                                                android:text="........................"
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
+
+                                                        </LinearLayout>
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="horizontal">
+
+                                                        <TextView
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_marginBottom="7dp"
+                                                            android:layout_weight=".35"
+                                                            android:text="ALASAN"
+                                                            android:textColor="#515151"
+                                                            android:textSize="11dp"
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                        <LinearLayout
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight=".65"
+                                                            android:orientation="horizontal">
+
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginBottom="7dp"
+                                                                android:text=":  "
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                            <TextView
+                                                                android:id="@+id/alasan_tv"
+                                                                android:layout_width="0dp"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginBottom="7dp"
+                                                                android:layout_weight=".65"
+                                                                android:lineSpacingExtra="2.5dp"
+                                                                android:text="........................"
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="HardcodedText,NestedWeights,SpUsage,TextSizeCheck" />
+
+                                                        </LinearLayout>
+
+                                                    </LinearLayout>
+
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginTop="20dp"
+                                                        android:orientation="horizontal"
+                                                        tools:ignore="DisableBaselineAlignment">
+
+                                                        <LinearLayout
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight=".34"
+                                                            android:gravity="center"
+                                                            android:orientation="vertical">
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:text="Hormat saya,"
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                            <ImageView
+                                                                android:id="@+id/ttd_pemohon"
+                                                                android:layout_width="50dp"
+                                                                android:layout_height="50dp"
+                                                                tools:ignore="ContentDescription" />
+
+                                                            <TextView
+                                                                android:id="@+id/pemohon_tv"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:text="( ............... )"
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                        </LinearLayout>
+
+                                                        <LinearLayout
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight=".33"
+                                                            android:gravity="center"
+                                                            android:orientation="vertical">
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:text="Mengetahui,"
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                            <RelativeLayout
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="match_parent"
+                                                                android:gravity="center">
+
+                                                                <LinearLayout
+                                                                    android:layout_width="match_parent"
+                                                                    android:layout_height="match_parent"
+                                                                    android:gravity="center">
+
+                                                                    <ImageView
+                                                                        android:id="@+id/ttd_approver"
+                                                                        android:layout_width="50dp"
+                                                                        android:layout_height="50dp"
+                                                                        tools:ignore="ContentDescription" />
+
+                                                                </LinearLayout>
+
+                                                                <TextView
+                                                                    android:id="@+id/tanggal_approve"
+                                                                    android:layout_width="match_parent"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_marginTop="5dp"
+                                                                    android:layout_marginRight="15dp"
+                                                                    android:gravity="right"
+                                                                    android:text=""
+                                                                    android:textColor="#0C4883"
+                                                                    android:textSize="8dp"
+                                                                    tools:ignore="RtlHardcoded,SpUsage" />
+
+                                                            </RelativeLayout>
+
+                                                            <TextView
+                                                                android:id="@+id/approver_tv"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:text="( ............... )"
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                android:visibility="visible"
+                                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                            <TextView
+                                                                android:id="@+id/jabatan_approver"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:text="Atasan Langsung"
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                        </LinearLayout>
+
+                                                        <LinearLayout
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight=".33"
+                                                            android:gravity="center"
+                                                            android:orientation="vertical">
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:text=""
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="SpUsage" />
+
+                                                            <RelativeLayout
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="match_parent"
+                                                                android:gravity="center">
+
+                                                                <LinearLayout
+                                                                    android:layout_width="match_parent"
+                                                                    android:layout_height="match_parent"
+                                                                    android:gravity="center">
+
+                                                                    <LinearLayout
+                                                                        android:layout_width="50dp"
+                                                                        android:layout_height="50dp"
+                                                                        android:orientation="horizontal"
+                                                                        tools:ignore="UseCompoundDrawables,UselessParent">
+
+                                                                        <TextView
+                                                                            android:id="@+id/appove_status_hrd"
+                                                                            android:layout_width="match_parent"
+                                                                            android:layout_height="match_parent"
+                                                                            android:background="@drawable/approved_img"
+                                                                            android:visibility="gone" />
+
+                                                                        <ImageView
+                                                                            android:id="@+id/ttd_approver_hrd"
+                                                                            android:layout_width="50dp"
+                                                                            android:layout_height="50dp"
+                                                                            tools:ignore="ContentDescription" />
+
+                                                                    </LinearLayout>
+
+                                                                </LinearLayout>
+
+                                                                <TextView
+                                                                    android:id="@+id/tanggal_approve_hrd"
+                                                                    android:layout_width="match_parent"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_marginTop="5dp"
+                                                                    android:layout_marginRight="15dp"
+                                                                    android:gravity="right"
+                                                                    android:text=""
+                                                                    android:textColor="#0C4883"
+                                                                    android:textSize="8dp"
+                                                                    tools:ignore="RtlHardcoded,SpUsage" />
+
+                                                            </RelativeLayout>
+
+                                                            <TextView
+                                                                android:id="@+id/approver_hrd_tv"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:text="( ............... )"
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                android:visibility="visible"
+                                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                            <TextView
+                                                                android:id="@+id/hrd_tv"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:text="HRD"
+                                                                android:textColor="#515151"
+                                                                android:textSize="11dp"
+                                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
+
+                                                        </LinearLayout>
+
+                                                    </LinearLayout>
+
+                                                </LinearLayout>
+
                                             </LinearLayout>
 
-                                        </LinearLayout>
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:paddingRight="10dp"
+                                                android:layout_marginTop="5dp"
+                                                android:paddingLeft="10dp"
+                                                android:gravity="right"
+                                                android:orientation="vertical"
+                                                tools:ignore="RtlHardcoded">
+
+                                                <LinearLayout
+                                                    android:visibility="gone"
+                                                    android:id="@+id/accepted_mark"
+                                                    android:layout_width="100dp"
+                                                    android:layout_height="48dp"
+                                                    android:background="@drawable/accepted_img"
+                                                    android:orientation="horizontal" />
+
+                                                <LinearLayout
+                                                    android:visibility="gone"
+                                                    android:id="@+id/rejected_mark"
+                                                    android:layout_width="100dp"
+                                                    android:layout_height="48dp"
+                                                    android:background="@drawable/rejected_img"
+                                                    android:orientation="horizontal" />
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
 
                                     </LinearLayout>
 
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:paddingRight="10dp"
-                                        android:layout_marginTop="5dp"
-                                        android:paddingLeft="10dp"
-                                        android:gravity="right"
-                                        android:orientation="vertical"
-                                        tools:ignore="RtlHardcoded">
+                                </com.gelora.absensi.support.ZoomableLinearLayout>
 
-                                        <LinearLayout
-                                            android:visibility="gone"
-                                            android:id="@+id/accepted_mark"
-                                            android:layout_width="100dp"
-                                            android:layout_height="48dp"
-                                            android:background="@drawable/accepted_img"
-                                            android:orientation="horizontal" />
-
-                                        <LinearLayout
-                                            android:visibility="gone"
-                                            android:id="@+id/rejected_mark"
-                                            android:layout_width="100dp"
-                                            android:layout_height="48dp"
-                                            android:background="@drawable/rejected_img"
-                                            android:orientation="horizontal" />
-
-                                    </LinearLayout>
-
-                                </RelativeLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="2dp"
+                                    android:orientation="vertical"
+                                    android:layout_marginBottom="15dp"
+                                    android:background="@color/darker_gray"/>
 
                             </LinearLayout>
 
@@ -611,6 +641,8 @@
                                 android:paddingBottom="20dp"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="20dp"
                                 android:layout_marginBottom="10dp"
                                 android:layout_height="wrap_content">
 
@@ -669,7 +701,8 @@
                                             android:layout_width="0dp"
                                             android:layout_height="wrap_content"
                                             android:layout_weight=".65"
-                                            android:orientation="horizontal">
+                                            android:orientation="horizontal"
+                                            tools:ignore="TooManyViews">
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -1039,6 +1072,8 @@
                                 android:paddingBottom="20dp"
                                 android:paddingLeft="22dp"
                                 android:paddingRight="22dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="20dp"
                                 android:layout_marginBottom="10dp"
                                 android:layout_height="wrap_content">
 
@@ -1070,6 +1105,8 @@
                                 android:layout_marginBottom="10dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="20dp"
                                 android:background="@drawable/shape_third_btn"
                                 android:gravity="center">
 
@@ -1091,6 +1128,8 @@
                                 android:orientation="horizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="20dp"
                                 tools:ignore="DisableBaselineAlignment">
 
                                 <LinearLayout
@@ -1148,6 +1187,8 @@
                                 android:visibility="gone"
                                 android:orientation="vertical"
                                 android:layout_marginBottom="4dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="20dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
@@ -1222,6 +1263,8 @@
                                 android:id="@+id/action_part"
                                 android:orientation="horizontal"
                                 android:layout_marginTop="5dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="20dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 tools:ignore="DisableBaselineAlignment">

@@ -45,7 +45,7 @@ import java.util.concurrent.TimeUnit;
 
 public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
-    TextView catatanHRDTV, lampiranTV, noted2TV, noted1TV, tglApprover1, tglApprover2, tglApproverHRD, namaApprover1, namaApproverHRD, namaApprover2, namaKaryawanTV, namaPemohonTV, jabatanTV, bagianTV, mulaiBergabungTV, nikTV, statusKaryawanTV, tipeCutiTV, alamatTV, noHpTV, karyawanPenggantiTV, sisaCutiTV, alasanCutiTV, tahunCutiAmbilTV, totalCutiAmbilTV, tahunCutiTV, tglMulaiCutiTV, tglSelesaiCutiTV, totalCutiTV, tglPengajuanTV;
+    TextView jabatanApprover1, jabatanApprover2, catatanHRDTV, lampiranTV, noted2TV, noted1TV, tglApprover1, tglApprover2, tglApproverHRD, namaApprover1, namaApproverHRD, namaApprover2, namaKaryawanTV, namaPemohonTV, jabatanTV, bagianTV, mulaiBergabungTV, nikTV, statusKaryawanTV, tipeCutiTV, alamatTV, noHpTV, karyawanPenggantiTV, sisaCutiTV, alasanCutiTV, tahunCutiAmbilTV, totalCutiAmbilTV, tahunCutiTV, tglMulaiCutiTV, tglSelesaiCutiTV, totalCutiTV, tglPengajuanTV;
     String nikApprover = "", nikPemohon = "", statusKondisi = "0", idIzinRecord, kode;
     LinearLayout catatanHRDPart, actionBar, editPermohonanBTN, cancelPermohonanBTN, batalWakiliBTN, wakiliBTN, downloadBTN, viewLampiranBTN, backBTN, actionPart, approvedBTN, rejectedBTN, rejectedMark, acceptedMark;
     SwipeRefreshLayout refreshLayout;
@@ -116,6 +116,8 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
         actionBar = findViewById(R.id.action_bar);
         catatanHRDPart = findViewById(R.id.catatan_hrd_part);
         catatanHRDTV = findViewById(R.id.catatan_hrd_tv);
+        jabatanApprover1 = findViewById(R.id.jabatan_approver_1);
+        jabatanApprover2 = findViewById(R.id.jabatan_approver_2);
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
@@ -155,10 +157,10 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new KAlertDialog(DetailPermohonanCutiActivity.this, KAlertDialog.WARNING_TYPE)
-                        .setTitleText("Perhatian")
-                        .setContentText("Unduh File Permohonan?")
-                        .setCancelText("TIDAK")
-                        .setConfirmText("   YA   ")
+                        .setTitleText("Unduh File?")
+                        .setContentText("Perhatian! file hasil unduh hanya dapat dibuka dengan aplikasi WPS")
+                        .setCancelText(" BATAL ")
+                        .setConfirmText(" UNDUH ")
                         .showCancelButton(true)
                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override
@@ -591,9 +593,9 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
-
                                 JSONObject detail = data.getJSONObject("data");
                                 String NIK = detail.getString("NIK");
+                                String id_jabatan = detail.getString("id_jabatan");
                                 String NmKaryawan = detail.getString("NmKaryawan");
                                 String bagian = detail.getString("NmDept");
                                 String jabatan = detail.getString("NmJabatan");
@@ -750,9 +752,10 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                 karyawanPenggantiTV.setText(karyawan_pengganti);
 
                                 if (kode.equals("form")){
-                                    if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("33") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
+                                    if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("33") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
                                         String nik_approver = detail.getString("nik_approver");
                                         String approver = detail.getString("approver");
+                                        String jabatan_approver = detail.getString("jabatan_kabag");
                                         String signature_approver = detail.getString("signature_approver");
                                         String timestamp_approve = detail.getString("timestamp_approve");
 
@@ -765,6 +768,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 .into(ttdApprover1);
 
                                         namaApprover1.setText(approver);
+                                        jabatanApprover1.setText(jabatan_approver);
 
                                         if(!timestamp_approve.equals("null")){
                                             tglApprover1.setText(timestamp_approve.substring(8,10)+"/"+timestamp_approve.substring(5,7)+"/"+timestamp_approve.substring(0,4));
@@ -778,6 +782,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             String timestamp_approve_kadept = detail.getString("timestamp_approve_kadept");
                                             String nik_approver_kadept = detail.getString("nik_approver_kadept");
                                             String approver_kadept = detail.getString("approver_kadept");
+                                            String jabatan_kadept = detail.getString("jabatan_kadept");
                                             String signature_approver_kadept = detail.getString("signature_approver_kadept");
 
                                             String url_approver_2 = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver_kadept;
@@ -787,6 +792,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     .into(ttdApprover2);
 
                                             namaApprover2.setText(approver_kadept);
+                                            jabatanApprover2.setText(jabatan_kadept);
 
                                             if(!timestamp_approve_kadept.equals("null")){
                                                 tglApprover2.setText(timestamp_approve_kadept.substring(8,10)+"/"+timestamp_approve_kadept.substring(5,7)+"/"+timestamp_approve_kadept.substring(0,4));
@@ -845,12 +851,24 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             editPermohonanBTN.setVisibility(View.GONE);
 
                                             String approver_kadept = detail.getString("approver_kadept");
+                                            String jabatan_kadept = detail.getString("jabatan_kadept");
                                             namaApprover2.setText(approver_kadept);
+                                            jabatanApprover2.setText(jabatan_kadept);
 
                                         } else {
                                             actionPart.setVisibility(View.GONE);
                                             cancelPermohonanBTN.setVisibility(View.VISIBLE);
                                             editPermohonanBTN.setVisibility(View.VISIBLE);
+
+                                            if(id_jabatan.equals("41") || id_jabatan.equals("10") || (NIK.equals("0015141287")||NIK.equals("3294031022"))) {
+                                                jabatanApprover2.setText("Direktur Utama");
+                                            } else {
+                                                if(NIK.equals("0687260508") || NIK.equals("0113010500") || NIK.equals("0499070507") || NIK.equals("0056010793") || NIK.equals("0829030809") || NIK.equals("0552260707") || NIK.equals("3318060323")) {
+                                                    jabatanApprover2.setText("General Manager");
+                                                } else {
+                                                    jabatanApprover2.setText("Kepala Departemen");
+                                                }
+                                            }
                                         }
 
                                     } else {
@@ -863,9 +881,10 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                 else {
                                     if (NIK.equals(sharedPrefManager.getSpNik())){
                                         actionRead();
-                                        if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")|| sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("33") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
+                                        if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")|| sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("33") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
                                             String nik_approver = detail.getString("nik_approver");
                                             String approver = detail.getString("approver");
+                                            String jabatan_approver = detail.getString("jabatan_kabag");
                                             String signature_approver = detail.getString("signature_approver");
                                             String timestamp_approve = detail.getString("timestamp_approve");
 
@@ -878,6 +897,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     .into(ttdApprover1);
 
                                             namaApprover1.setText(approver);
+                                            jabatanApprover1.setText(jabatan_approver);
 
                                             if(!timestamp_approve.equals("null")){
                                                 tglApprover1.setText(timestamp_approve.substring(8,10)+"/"+timestamp_approve.substring(5,7)+"/"+timestamp_approve.substring(0,4));
@@ -891,6 +911,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 String timestamp_approve_kadept = detail.getString("timestamp_approve_kadept");
                                                 String nik_approver_kadept = detail.getString("nik_approver_kadept");
                                                 String approver_kadept = detail.getString("approver_kadept");
+                                                String jabatan_kadept = detail.getString("jabatan_kadept");
                                                 String signature_approver_kadept = detail.getString("signature_approver_kadept");
 
                                                 String url_approver_2 = "https://hrisgelora.co.id/upload/digital_signature/"+signature_approver_kadept;
@@ -900,6 +921,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                         .into(ttdApprover2);
 
                                                 namaApprover2.setText(approver_kadept);
+                                                jabatanApprover2.setText(jabatan_kadept);
 
                                                 if(!timestamp_approve_kadept.equals("null")){
                                                     tglApprover2.setText(timestamp_approve_kadept.substring(8,10)+"/"+timestamp_approve_kadept.substring(5,7)+"/"+timestamp_approve_kadept.substring(0,4));
@@ -962,12 +984,23 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 rejectedMark.setVisibility(View.VISIBLE);
 
                                                 String approver_kadept = detail.getString("approver_kadept");
+                                                String jabatan_kadept = detail.getString("jabatan_kadept");
                                                 namaApprover2.setText(approver_kadept);
-
+                                                jabatanApprover2.setText(jabatan_kadept);
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
                                                 cancelPermohonanBTN.setVisibility(View.VISIBLE);
                                                 editPermohonanBTN.setVisibility(View.VISIBLE);
+
+                                                if(id_jabatan.equals("41") || id_jabatan.equals("10") || (NIK.equals("0015141287")||NIK.equals("3294031022"))) {
+                                                    jabatanApprover2.setText("Direktur Utama");
+                                                } else {
+                                                    if(NIK.equals("0687260508") || NIK.equals("0113010500") || NIK.equals("0499070507") || NIK.equals("0056010793") || NIK.equals("0829030809") || NIK.equals("0552260707") || NIK.equals("3318060323")) {
+                                                        jabatanApprover2.setText("General Manager");
+                                                    } else {
+                                                        jabatanApprover2.setText("Kepala Departemen");
+                                                    }
+                                                }
                                             }
 
                                         } else {
@@ -977,6 +1010,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 editPermohonanBTN.setVisibility(View.GONE);
                                                 String nik_approver = detail.getString("nik_approver");
                                                 String approver = detail.getString("approver");
+                                                String jabatan_approver = detail.getString("jabatan_kabag");
                                                 String signature_approver = detail.getString("signature_approver");
                                                 String timestamp_approve = detail.getString("timestamp_approve");
 
@@ -989,6 +1023,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                         .into(ttdApprover1);
 
                                                 namaApprover1.setText(approver);
+                                                jabatanApprover1.setText(jabatan_approver);
 
                                                 if(!timestamp_approve.equals("null")){
                                                     tglApprover1.setText(timestamp_approve.substring(8,10)+"/"+timestamp_approve.substring(5,7)+"/"+timestamp_approve.substring(0,4));
@@ -1001,6 +1036,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     editPermohonanBTN.setVisibility(View.GONE);
                                                     String timestamp_approve_kadept = detail.getString("timestamp_approve_kadept");
                                                     String nik_approver_kadept = detail.getString("nik_approver_kadept");
+                                                    String jabatan_kadept = detail.getString("jabatan_kadept");
                                                     String approver_kadept = detail.getString("approver_kadept");
                                                     String signature_approver_kadept = detail.getString("signature_approver_kadept");
 
@@ -1011,6 +1047,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                             .into(ttdApprover2);
 
                                                     namaApprover2.setText(approver_kadept);
+                                                    jabatanApprover2.setText(jabatan_kadept);
 
                                                     if(!timestamp_approve_kadept.equals("null")){
                                                         tglApprover2.setText(timestamp_approve_kadept.substring(8,10)+"/"+timestamp_approve_kadept.substring(5,7)+"/"+timestamp_approve_kadept.substring(0,4));
@@ -1071,7 +1108,9 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     batalWakiliBTN.setVisibility(View.GONE);
 
                                                     String approver_kadept = detail.getString("approver_kadept");
+                                                    String jabatan_kadept = detail.getString("jabatan_kadept");
                                                     namaApprover2.setText(approver_kadept);
+                                                    jabatanApprover2.setText(jabatan_kadept);
 
                                                 } else {
                                                     if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) {
@@ -1088,6 +1127,16 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                         // } else {
                                                             actionPart.setVisibility(View.GONE);
                                                         // }
+                                                    }
+
+                                                    if(id_jabatan.equals("41") || id_jabatan.equals("10") || (NIK.equals("0015141287")||NIK.equals("3294031022"))) {
+                                                        jabatanApprover2.setText("Direktur Utama");
+                                                    } else {
+                                                        if(NIK.equals("0687260508") || NIK.equals("0113010500") || NIK.equals("0499070507") || NIK.equals("0056010793") || NIK.equals("0829030809") || NIK.equals("0552260707") || NIK.equals("3318060323")) {
+                                                            jabatanApprover2.setText("General Manager");
+                                                        } else {
+                                                            jabatanApprover2.setText("Kepala Departemen");
+                                                        }
                                                     }
                                                 }
 
@@ -1115,6 +1164,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                         if(status_approve.equals("1")){
                                             String nik_approver = detail.getString("nik_approver");
                                             String approver = detail.getString("approver");
+                                            String jabatan_approver = detail.getString("jabatan_kabag");
                                             String signature_approver = detail.getString("signature_approver");
                                             String timestamp_approve = detail.getString("timestamp_approve");
 
@@ -1127,6 +1177,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     .into(ttdApprover1);
 
                                             namaApprover1.setText(approver);
+                                            jabatanApprover1.setText(jabatan_approver);
 
                                             if(!timestamp_approve.equals("null")){
                                                 tglApprover1.setText(timestamp_approve.substring(8,10)+"/"+timestamp_approve.substring(5,7)+"/"+timestamp_approve.substring(0,4));
@@ -1137,6 +1188,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             if(status_approve_kadept.equals("1")) {
                                                 String timestamp_approve_kadept = detail.getString("timestamp_approve_kadept");
                                                 String nik_approver_kadept = detail.getString("nik_approver_kadept");
+                                                String jabatan_kadept = detail.getString("jabatan_kadept");
                                                 String approver_kadept = detail.getString("approver_kadept");
                                                 String signature_approver_kadept = detail.getString("signature_approver_kadept");
 
@@ -1147,6 +1199,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                         .into(ttdApprover2);
 
                                                 namaApprover2.setText(approver_kadept);
+                                                jabatanApprover2.setText(jabatan_kadept);
 
                                                 if(!timestamp_approve_kadept.equals("null")){
                                                     tglApprover2.setText(timestamp_approve_kadept.substring(8,10)+"/"+timestamp_approve_kadept.substring(5,7)+"/"+timestamp_approve_kadept.substring(0,4));
@@ -1207,7 +1260,9 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 batalWakiliBTN.setVisibility(View.GONE);
 
                                                 String approver_kadept = detail.getString("approver_kadept");
+                                                String jabatan_kadept = detail.getString("jabatan_kadept");
                                                 namaApprover2.setText(approver_kadept);
+                                                jabatanApprover2.setText(jabatan_kadept);
 
                                             } else {
                                                 if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpIdJabatan().equals("33")) {
@@ -1224,6 +1279,16 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     // } else {
                                                         actionPart.setVisibility(View.GONE);
                                                     // }
+                                                }
+
+                                                if(id_jabatan.equals("41") || id_jabatan.equals("10") || (NIK.equals("0015141287")||NIK.equals("3294031022"))) {
+                                                    jabatanApprover2.setText("Direktur Utama");
+                                                } else {
+                                                    if(NIK.equals("0687260508") || NIK.equals("0113010500") || NIK.equals("0499070507") || NIK.equals("0056010793") || NIK.equals("0829030809") || NIK.equals("0552260707") || NIK.equals("3318060323")) {
+                                                        jabatanApprover2.setText("General Manager");
+                                                    } else {
+                                                        jabatanApprover2.setText("Kepala Departemen");
+                                                    }
                                                 }
                                             }
 
@@ -1429,7 +1494,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                 params.put("timestamp_approve", getTimeStamp());
                 params.put("updated_at", getTimeStamp());
 
-                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
+                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
                     if(!nikApprover.equals("null") && nikApprover.equals(sharedPrefManager.getSpNik())){
                         params.put("action", "kadep");
                     } else {
@@ -1504,7 +1569,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                 params.put("timestamp_approve", getTimeStamp());
                 params.put("updated_at", getTimeStamp());
 
-                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116"))){
+                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
                     if(!nikApprover.equals("null") && nikApprover.equals(sharedPrefManager.getSpNik())){
                         params.put("action", "kadep");
                     } else {

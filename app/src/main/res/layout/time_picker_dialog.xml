@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/dialoglight"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+            <TextView
+                android:visibility="gone"
+                android:layout_marginTop="25dp"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:layout_marginBottom="5dp"
+                android:text="Akan Keluar Jam Berapa?"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="HardcodedText,SpUsage"/>
+
+            <LinearLayout
+                android:id="@+id/attantion_part_hadir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/shape_attantion"
+                android:orientation="vertical"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/message_hadir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Perhatian, format input jam keluar adalah 24 jam. Sisi kiri untuk input jam dan sisi kanan untuk input menit."
+                android:textColor="#C68D46"
+                android:textSize="12dp"
+                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+        </LinearLayout>
+
+            <TimePicker
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:id="@+id/timePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner"
+                android:layout_gravity="center"/>
+
+            <RelativeLayout
+                android:id="@+id/tab_bar"
+                android:layout_below="@+id/appbutton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="15dp"
+                tools:ignore="ObsoleteLayoutParam">
+
+                <RelativeLayout
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="30dp"
+                    android:layout_toStartOf="@id/batas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/cancel"
+                        android:layout_alignParentStart="true"
+                        android:backgroundTint="@color/colorAccent2"
+                        android:background="@drawable/rounded_corner_rectangle"
+                        android:padding="10dp"
+                        android:layout_centerVertical="true"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textAllCaps="false"
+                        android:text="BATAL"
+                        android:textSize="14dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="HardcodedText,SpUsage">
+
+                    </TextView>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_marginHorizontal="10dp"
+                    android:id="@+id/batas"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="1dp"
+                    android:layout_height="1dp">
+                </View>
+
+                <RelativeLayout
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/batas"
+                    android:layout_marginEnd="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:padding="10dp"
+                        android:id="@+id/confirm_btn"
+                        android:layout_alignParentEnd="true"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:background="@drawable/rounded_corner_rectangle"
+                        android:layout_centerVertical="true"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textAllCaps="false"
+                        android:text="OK"
+                        android:textSize="14dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="HardcodedText,SpUsage">
+
+                    </TextView>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

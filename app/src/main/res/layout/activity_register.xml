@@ -86,7 +86,7 @@
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/shape_feel_login"
                             android:hint="NIK"
-                            android:inputType="textCapCharacters"
+                            android:inputType="textVisiblePassword|textCapSentences"
                             android:paddingLeft="20dp"
                             android:paddingTop="10dp"
                             android:paddingRight="20dp"
@@ -381,7 +381,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="HRIS Mobile Gelora v 2.6.1"
+                android:text="HRIS Mobile Gelora v 2.8.6"
                 android:textColor="#BEFFC9B8"
                 android:textSize="12dp"
                 tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />

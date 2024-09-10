@@ -687,34 +687,83 @@
                                         tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
-                                            android:id="@+id/menu_absensi_btn"
+                                            android:id="@+id/absensi_part"
                                             android:layout_width="match_parent"
-                                            android:layout_height="65dp"
-                                            android:background="@drawable/shape_menu_1"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="visible"
                                             android:orientation="vertical"
-                                            android:padding="10dp">
+                                            tools:ignore="TooManyViews">
 
-                                            <ImageView
+                                            <LinearLayout
+                                                android:id="@+id/menu_absensi_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_1"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_absen"
+                                                    tools:ignore="ContentDescription" />
+
+                                            </LinearLayout>
+
+                                            <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_absen"
-                                                tools:ignore="ContentDescription" />
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="Absensi"
+                                                android:textColor="#515151"
+                                                android:textSize="11.5dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
 
-                                        <TextView
+                                        <LinearLayout
+                                            android:id="@+id/calendar_second_part"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginTop="3dp"
-                                            android:ellipsize="end"
-                                            android:gravity="center"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
-                                            android:text="Absensi"
-                                            android:textColor="#515151"
-                                            android:textSize="11.5dp"
-                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                            android:visibility="gone"
+                                            android:orientation="vertical"
+                                            tools:ignore="TooManyViews">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_calendar_btn_sub"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_1"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_calendar"
+                                                    tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="2"
+                                                android:text="Kalender"
+                                                android:textColor="#515151"
+                                                android:textSize="10dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
@@ -745,6 +794,7 @@
                                         </LinearLayout>
 
                                         <TextView
+                                            android:id="@+id/label_izin_tv"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="3dp"

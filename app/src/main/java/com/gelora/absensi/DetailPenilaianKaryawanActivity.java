@@ -167,10 +167,10 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new KAlertDialog(DetailPenilaianKaryawanActivity.this, KAlertDialog.WARNING_TYPE)
-                        .setTitleText("Perhatian")
-                        .setContentText("Unduh File?")
-                        .setCancelText("TIDAK")
-                        .setConfirmText("   YA   ")
+                        .setTitleText("Unduh File?")
+                        .setContentText("Perhatian! file hasil unduh hanya dapat dibuka dengan aplikasi WPS")
+                        .setCancelText(" BATAL ")
+                        .setConfirmText(" UNDUH ")
                         .showCancelButton(true)
                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override
@@ -364,6 +364,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                 String ttd_approver_kadept = dataArray.getString("ttd_approver_kadept");
                                 String catatan_hrd = dataArray.getString("catatan_hrd");
                                 String id_departemen = dataArray.getString("id_departemen");
+                                String id_bagian = dataArray.getString("id_bagian");
 
                                 karNama.setText(nama_karyawan);
                                 karJabatan.setText(jabatan);
@@ -538,10 +539,18 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
                                     } else if(status_approve_kadept.equals("0")){
-                                        if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                        if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10"))){
                                             actionPart.setVisibility(View.VISIBLE);
                                         } else {
-                                            actionPart.setVisibility(View.GONE);
+                                            if(sharedPrefManager.getSpNik().equals("0829030809") && (id_bagian.equals("20") || id_bagian.equals("27"))) {
+                                                actionPart.setVisibility(View.VISIBLE);
+                                            } else if(sharedPrefManager.getSpNik().equals("0687260508") && (id_bagian.equals("16") || id_bagian.equals("17") || id_bagian.equals("22"))) {
+                                                actionPart.setVisibility(View.VISIBLE);
+                                            } else if(sharedPrefManager.getSpNik().equals("0113010500") && (id_bagian.equals("4") || id_bagian.equals("5") || id_bagian.equals("6"))) {
+                                                actionPart.setVisibility(View.VISIBLE);
+                                            } else {
+                                                actionPart.setVisibility(View.GONE);
+                                            }
                                         }
                                     }
                                 }
