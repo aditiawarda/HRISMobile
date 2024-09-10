@@ -130,7 +130,7 @@ public class AdapterListDataPenilaianSDM extends RecyclerView.Adapter<AdapterLis
             myViewHolder.waitingMark.setVisibility(View.VISIBLE);
             myViewHolder.accMark.setVisibility(View.GONE);
             myViewHolder.rejMark.setVisibility(View.GONE);
-            if(sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
+            if(sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")||sharedPrefManager.getSpNik().equals("1738040712"))){
                 if(sharedPrefManager.getSpIdJabatan().equals("3") && (sharedPrefManager.getSpNik().equals("0687260508")||sharedPrefManager.getSpNik().equals("0113010500"))){
                     myViewHolder.waitingMarkTV.setText("Menunggu Konfirmasi");
                 } else {

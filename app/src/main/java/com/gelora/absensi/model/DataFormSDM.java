@@ -9,6 +9,7 @@ public class DataFormSDM {
     private String nama;
     private String penerimaan_jabatan;
     private String status_approve_kabag;
+    private String status_approve_astkadept;
     private String status_approve_kadept;
     private String status_approve_direktur;
     private String status_approve_hrd;
@@ -53,6 +54,14 @@ public class DataFormSDM {
 
     public void setStatus_approve_kabag(String status_approve_kabag) {
         this.status_approve_kabag = status_approve_kabag;
+    }
+
+    public String getStatus_approve_astkadept() {
+        return status_approve_astkadept;
+    }
+
+    public void setStatus_approve_astkadept(String status_approve_astkadept) {
+        this.status_approve_astkadept = status_approve_astkadept;
     }
 
     public String getStatus_approve_kadept() {
