@@ -95,6 +95,8 @@
                             android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
                             android:textSize="17dp"
+                            android:importantForAutofill="no"
+                            android:importantForAccessibility="no"
                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                         <TextView
@@ -140,6 +142,8 @@
                             android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
                             android:textSize="17dp"
+                            android:importantForAutofill="no"
+                            android:importantForAccessibility="no"
                             tools:ignore="Autofill,HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                         <EditText
@@ -161,6 +165,8 @@
                             android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
                             android:textSize="17dp"
+                            android:importantForAutofill="no"
+                            android:importantForAccessibility="no"
                             tools:ignore="Autofill,HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                         <LinearLayout
