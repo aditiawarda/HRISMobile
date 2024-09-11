@@ -453,7 +453,9 @@
                                                 android:textColorHighlight="#FFE1BC"
                                                 android:textColorHint="#595959"
                                                 android:textSize="14dp"
-                                                tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                                android:importantForAutofill="no"
+                                                android:importantForAccessibility="no"
+                                                tools:ignore="HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                                         </LinearLayout>
 
@@ -572,7 +574,9 @@
                                                 android:textColorHighlight="#FFE1BC"
                                                 android:textColorHint="#595959"
                                                 android:textSize="14dp"
-                                                tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                                android:importantForAutofill="no"
+                                                android:importantForAccessibility="no"
+                                                tools:ignore="HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                                         </LinearLayout>
 
@@ -691,7 +695,9 @@
                                                 android:textColorHighlight="#FFE1BC"
                                                 android:textColorHint="#595959"
                                                 android:textSize="14dp"
-                                                tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                                android:importantForAutofill="no"
+                                                android:importantForAccessibility="no"
+                                                tools:ignore="HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                                         </LinearLayout>
 
@@ -810,7 +816,9 @@
                                                 android:textColorHighlight="#FFE1BC"
                                                 android:textColorHint="#595959"
                                                 android:textSize="14dp"
-                                                tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                                android:importantForAutofill="no"
+                                                android:importantForAccessibility="no"
+                                                tools:ignore="HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                                         </LinearLayout>
 
@@ -929,7 +937,9 @@
                                                 android:textColorHighlight="#FFE1BC"
                                                 android:textColorHint="#595959"
                                                 android:textSize="14dp"
-                                                tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                                android:importantForAutofill="no"
+                                                android:importantForAccessibility="no"
+                                                tools:ignore="HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                                         </LinearLayout>
 
@@ -1058,7 +1068,9 @@
                                                 android:textColorHighlight="#FFE1BC"
                                                 android:textColorHint="#595959"
                                                 android:textSize="14dp"
-                                                tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                                android:importantForAutofill="no"
+                                                android:importantForAccessibility="no"
+                                                tools:ignore="HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                                         </LinearLayout>
 
@@ -1177,7 +1189,9 @@
                                                 android:textColorHighlight="#FFE1BC"
                                                 android:textColorHint="#595959"
                                                 android:textSize="14dp"
-                                                tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                                android:importantForAutofill="no"
+                                                android:importantForAccessibility="no"
+                                                tools:ignore="HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                                         </LinearLayout>
 
@@ -1306,7 +1320,9 @@
                                                 android:textColorHighlight="#FFE1BC"
                                                 android:textColorHint="#595959"
                                                 android:textSize="14dp"
-                                                tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                                android:importantForAutofill="no"
+                                                android:importantForAccessibility="no"
+                                                tools:ignore="HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                                         </LinearLayout>
 
@@ -1425,7 +1441,9 @@
                                                 android:textColorHighlight="#FFE1BC"
                                                 android:textColorHint="#595959"
                                                 android:textSize="14dp"
-                                                tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                                android:importantForAutofill="no"
+                                                android:importantForAccessibility="no"
+                                                tools:ignore="HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                                         </LinearLayout>
 
@@ -1554,7 +1572,9 @@
                                                 android:textColorHighlight="#FFE1BC"
                                                 android:textColorHint="#595959"
                                                 android:textSize="14dp"
-                                                tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                                android:importantForAutofill="no"
+                                                android:importantForAccessibility="no"
+                                                tools:ignore="HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                                         </LinearLayout>
 
@@ -1683,7 +1703,9 @@
                                                 android:textColorHighlight="#FFE1BC"
                                                 android:textColorHint="#595959"
                                                 android:textSize="14dp"
-                                                tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                                android:importantForAutofill="no"
+                                                android:importantForAccessibility="no"
+                                                tools:ignore="HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                                         </LinearLayout>
 
@@ -1812,7 +1834,9 @@
                                                 android:textColorHighlight="#FFE1BC"
                                                 android:textColorHint="#595959"
                                                 android:textSize="14dp"
-                                                tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                                android:importantForAutofill="no"
+                                                android:importantForAccessibility="no"
+                                                tools:ignore="HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                                         </LinearLayout>
 
@@ -1931,7 +1955,9 @@
                                                 android:textColorHighlight="#FFE1BC"
                                                 android:textColorHint="#595959"
                                                 android:textSize="14dp"
-                                                tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                                android:importantForAutofill="no"
+                                                android:importantForAccessibility="no"
+                                                tools:ignore="HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                                         </LinearLayout>
 
@@ -2050,7 +2076,9 @@
                                                 android:textColorHighlight="#FFE1BC"
                                                 android:textColorHint="#595959"
                                                 android:textSize="14dp"
-                                                tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                                android:importantForAutofill="no"
+                                                android:importantForAccessibility="no"
+                                                tools:ignore="HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                                         </LinearLayout>
 

@@ -181,7 +181,9 @@
                                         android:textColorHighlight="#FFE1BC"
                                         android:textColorHint="#595959"
                                         android:textSize="14dp"
-                                        tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+                                        android:importantForAutofill="no"
+                                        android:importantForAccessibility="no"
+                                        tools:ignore="LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
                                     <TextView
                                         android:layout_width="wrap_content"

@@ -95,7 +95,7 @@
                             android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
                             android:textSize="17dp"
-                            tools:ignore="Autofill,HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                         <TextView
                             android:id="@+id/namaTV"

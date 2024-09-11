@@ -725,7 +725,9 @@
                                     android:textColorHighlight="#FFE1BC"
                                     android:textColorHint="#595959"
                                     android:textSize="14dp"
-                                    tools:ignore="Autofill,LabelFor,SpUsage,VisualLintTextFieldSize,SpeakableTextPresentCheck" />
+                                    android:importantForAutofill="no"
+                                    android:importantForAccessibility="no"
+                                    tools:ignore="LabelFor,SpUsage,VisualLintTextFieldSize,SpeakableTextPresentCheck" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -820,7 +822,9 @@
                                     android:textSize="14dp"
                                     android:textColorHint="#595959"
                                     android:textColorHighlight="#FFE1BC"
-                                    tools:ignore="Autofill,LabelFor,SpUsage,VisualLintTextFieldSize" />
+                                    android:importantForAutofill="no"
+                                    android:importantForAccessibility="no"
+                                    tools:ignore="LabelFor,SpUsage,VisualLintTextFieldSize" />
 
                                 <TextView
                                     android:layout_width="wrap_content"

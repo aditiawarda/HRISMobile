@@ -1222,6 +1222,8 @@
                                         android:textSize="14dp"
                                         android:textColorHint="#595959"
                                         android:textColorHighlight="#FFE1BC"
+                                        android:importantForAutofill="no"
+                                        android:importantForAccessibility="no"
                                         tools:ignore="Autofill,LabelFor,SpUsage" />
 
                                 </LinearLayout>
@@ -1262,7 +1264,9 @@
                                         android:textSize="14dp"
                                         android:textColorHint="#595959"
                                         android:textColorHighlight="#FFE1BC"
-                                        tools:ignore="Autofill,LabelFor,SpUsage,VisualLintTextFieldSize" />
+                                        android:importantForAutofill="no"
+                                        android:importantForAccessibility="no"
+                                        tools:ignore="LabelFor,SpUsage" />
 
                                 </LinearLayout>
 
