@@ -123,6 +123,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 || sharedPrefManager.getSpNik().equals("1504060711") // Ibu There
                 || sharedPrefManager.getSpNik().equals("0121010900") // Bapak Nurcahyo
                 || sharedPrefManager.getSpNik().equals("0981010210") // Ibu Ranti
+                || sharedPrefManager.getSpNik().equals("3436170924") // Bapak Nico
                 || sharedPrefManager.getSpNik().equals("0552260707") // Ibu Dina
                 || sharedPrefManager.getSpNik().equals("3318060323") // Bapak Dominggus
                 || sharedPrefManager.getSpNik().equals("0499070507") // Bapak Dawud
