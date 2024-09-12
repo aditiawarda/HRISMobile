@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -58,6 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
     ProgressBar loadingProgressBar;
     View rootview;
     private Handler handler = new Handler();
+    Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,20 +170,26 @@ public class RegisterActivity extends AppCompatActivity {
         nikED.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (runnable != null) {
+                    handler.removeCallbacks(runnable);
+                }
             }
-
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 String nik = nikED.getText().toString();
-                if(!nik.equals("")){
-                    getNamaKaryawan(nik);
+                if (!nik.isEmpty()) {
+                    runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            getNamaKaryawan(nik);
+                        }
+                    };
+                    handler.postDelayed(runnable, 3000);
                 }
             }
-
         });
 
         passwordED.addTextChangedListener(new TextWatcher() {
