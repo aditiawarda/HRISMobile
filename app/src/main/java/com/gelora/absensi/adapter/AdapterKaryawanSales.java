@@ -67,10 +67,12 @@ public class AdapterKaryawanSales extends RecyclerView.Adapter<AdapterKaryawanSa
                 Intent intent = new Intent("karyawan_sales_broad");
                 intent.putExtra("nik_karyawan_sales",karyawanSales.getNIK());
                 intent.putExtra("nama_karyawan_sales",karyawanSales.getNama());
+                intent.putExtra("wilayah_sales",karyawanSales.getWilayah());
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, karyawanSales.getNama());
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, karyawanSales.getNIK());
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA, karyawanSales.getWilayah());
 
             }
 

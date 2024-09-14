@@ -168,8 +168,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     KAlertDialog pDialog;
     private int i = -1;
     NestedScrollView scrollView;
-    CheckBox agendaCB1, agendaCB2, agendaCB3;
-    CheckBox realisasiCB1, realisasiCB2, realisasiCB3;
+    CheckBox agendaCB1, agendaCB2, agendaCB3, agendaCB4;
+    CheckBox realisasiCB1, realisasiCB2, realisasiCB3, realisasiCB4;
     BottomSheetLayout bottomSheet;
     RecyclerView noSjRV;
     private DataNoSuratJalan[] dataNoSuratJalans;
@@ -272,9 +272,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         agendaCB1 = findViewById(R.id.agenda_cb_1);
         agendaCB2 = findViewById(R.id.agenda_cb_2);
         agendaCB3 = findViewById(R.id.agenda_cb_3);
+        agendaCB4 = findViewById(R.id.agenda_cb_4);
         realisasiCB1 = findViewById(R.id.realisasi_cb_1);
         realisasiCB2 = findViewById(R.id.realisasi_cb_2);
         realisasiCB3 = findViewById(R.id.realisasi_cb_3);
+        realisasiCB4 = findViewById(R.id.realisasi_cb_4);
         noDataPiutang = findViewById(R.id.no_data_inv);
         loadingDataPiutang = findViewById(R.id.loading_data_inv);
         pengirimanLayoutTambahan = findViewById(R.id.pengiriman_layout_tambahan);
@@ -336,6 +338,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 realisasiCB1.setChecked(false);
                 realisasiCB2.setChecked(false);
                 realisasiCB3.setChecked(false);
+                realisasiCB4.setChecked(false);
                 promosiLayoutTambahan.setVisibility(View.GONE);
                 penagihanLayoutTambahan.setVisibility(View.GONE);
                 pengirimanLayoutTambahan.setVisibility(View.GONE);
@@ -1694,6 +1697,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 } else {
                     params.put("pengiriman", "false");
                 }
+                if(realisasiCB4.isChecked()){
+                    params.put("njv", "true");
+                } else {
+                    params.put("njv", "false");
+                }
                 params.put("jumlah_lampiran", String.valueOf(lampiranImage.size()));
                 params.put("extensi_lampiran", listToString(extentionImage));
                 return params;
@@ -2032,9 +2040,11 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     agendaCB1.setButtonTintList(defaultColor);
                                     agendaCB2.setButtonTintList(defaultColor);
                                     agendaCB3.setButtonTintList(defaultColor);
+                                    agendaCB4.setButtonTintList(defaultColor);
                                     agendaCB1.setChecked(false);
                                     agendaCB2.setChecked(false);
                                     agendaCB3.setChecked(false);
+                                    agendaCB4.setChecked(false);
 
                                     for (int x=0; x<dataArrayAgenda.length; x++){
                                         if(dataArrayAgenda[x].equals("2")){
@@ -2046,6 +2056,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         } else if(dataArrayAgenda[x].equals("4")){
                                             agendaCB3.setButtonTintList(colorStateList);
                                             agendaCB3.setChecked(true);
+                                        } else if(dataArrayAgenda[x].equals("5")){
+                                            agendaCB4.setButtonTintList(colorStateList);
+                                            agendaCB4.setChecked(true);
                                         }
                                     }
 
@@ -2302,6 +2315,29 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     } else {
                                         noSuratJalanTV.setText(noSuratJalan);
                                     }
+
+                                    String file = dataArray.getString("file");
+                                    viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                            intent.putExtra("data", file);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                } else if(tipeLaporan.equals("5")){
+                                    if(idSales.equals(sharedPrefManager.getSpNik())){
+                                        updatePart.setVisibility(View.VISIBLE);
+                                    } else {
+                                        updatePart.setVisibility(View.GONE);
+                                    }
+                                    updateRealisasiKunjunganPart.setVisibility(View.GONE);
+                                    viewLampiranBTN.setVisibility(View.VISIBLE);
+                                    reportKategoriTV.setText("NON JOIN VISIT");
+                                    tglRencanaPart.setVisibility(View.GONE);
+                                    totalPesananPart.setVisibility(View.GONE);
+                                    totalPenagihanPart.setVisibility(View.GONE);
+                                    noSuratJalanPart.setVisibility(View.GONE);
 
                                     String file = dataArray.getString("file");
                                     viewLampiranBTN.setOnClickListener(new View.OnClickListener() {

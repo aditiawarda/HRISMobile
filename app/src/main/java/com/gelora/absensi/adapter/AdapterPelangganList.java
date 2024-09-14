@@ -50,28 +50,33 @@ public class AdapterPelangganList extends RecyclerView.Adapter<AdapterPelangganL
         final PelangganList pelangganList = data[i];
         ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(mContext, R.color.colorAccent2));
 
+        myViewHolder.noTV.setText(String.valueOf(i+1));
         if(pelangganList.getKategoriPelanggan().equals("1")){
             myViewHolder.kategoriPelangganTV.setText("BARU");
             myViewHolder.kategoriPelangganTV.setTextColor(Color.parseColor("#37b422"));
         } else if(pelangganList.getKategoriPelanggan().equals("2")){
             myViewHolder.kategoriPelangganTV.setText("LAMA");
-            myViewHolder.kategoriPelangganTV.setTextColor(Color.parseColor("#436bc5"));
+            myViewHolder.kategoriPelangganTV.setTextColor(Color.parseColor("#6b8ad1"));
         }
 
         String dataAgendainput = pelangganList.getRencanAgenda().replaceAll("\\[|\\]|\"", ""); // Hapus kurung siku dan tanda kutip
         String[] dataArray = dataAgendainput.split(",");
 
         for (int x=0; x<dataArray.length; x++){
-            if(dataArray[x].equals("1")){
+            if(dataArray[x].equals("2")){
                 myViewHolder.agendaCB1.setButtonTintList(colorStateList);
                 myViewHolder.agendaCB1.setChecked(true);
-            } else if(dataArray[x].equals("2")){
+            } else if(dataArray[x].equals("3")){
                 myViewHolder.agendaCB2.setButtonTintList(colorStateList);
                 myViewHolder.agendaCB2.setChecked(true);
-            } else if(dataArray[x].equals("3")){
+            } else if(dataArray[x].equals("4")){
                 myViewHolder.agendaCB3.setButtonTintList(colorStateList);
                 myViewHolder.agendaCB3.setChecked(true);
+            } else if(dataArray[x].equals("5")){
+                myViewHolder.agendaCB4.setButtonTintList(colorStateList);
+                myViewHolder.agendaCB4.setChecked(true);
             }
+
         }
 
         myViewHolder.namaPelangganTV.setText(pelangganList.getNamaPelanggan());
@@ -98,12 +103,13 @@ public class AdapterPelangganList extends RecyclerView.Adapter<AdapterPelangganL
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView kategoriPelangganTV, namaPelangganTV, alamatPelangganTV, keteranganKunjunganTV;
+        TextView noTV, kategoriPelangganTV, namaPelangganTV, alamatPelangganTV, keteranganKunjunganTV;
         LinearLayout parentPart, deleteBTN;
-        CheckBox agendaCB1, agendaCB2, agendaCB3;
+        CheckBox agendaCB1, agendaCB2, agendaCB3, agendaCB4;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parentPart = itemView.findViewById(R.id.parent_part);
+            noTV = itemView.findViewById(R.id.no_tv);
             kategoriPelangganTV = itemView.findViewById(R.id.kategori_pelanggan_tv);
             namaPelangganTV = itemView.findViewById(R.id.nama_pelanggan_tv);
             alamatPelangganTV = itemView.findViewById(R.id.alamat_pelanggan_tv);
@@ -112,6 +118,7 @@ public class AdapterPelangganList extends RecyclerView.Adapter<AdapterPelangganL
             agendaCB1 = itemView.findViewById(R.id.agenda_cb_1);
             agendaCB2 = itemView.findViewById(R.id.agenda_cb_2);
             agendaCB3 = itemView.findViewById(R.id.agenda_cb_3);
+            agendaCB4 = itemView.findViewById(R.id.agenda_cb_4);
         }
     }
 }
