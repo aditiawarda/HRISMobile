@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -1610,8 +1609,13 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                     actionPart.setVisibility(View.VISIBLE);
                                                     warningPenilaian.setVisibility(View.GONE);
                                                 } else {
-                                                    actionPart.setVisibility(View.GONE);
-                                                    warningPenilaian.setVisibility(View.GONE);
+                                                    if(status_approve_astkadept.equals("1") && sharedPrefManager.getSpNik().equals("0057010793")){
+                                                        actionPart.setVisibility(View.VISIBLE);
+                                                        warningPenilaian.setVisibility(View.GONE);
+                                                    } else {
+                                                        actionPart.setVisibility(View.GONE);
+                                                        warningPenilaian.setVisibility(View.GONE);
+                                                    }
                                                 }
                                             } else {
                                                 actionPart.setVisibility(View.GONE);

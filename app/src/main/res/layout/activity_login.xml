@@ -385,7 +385,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="HRIS Mobile Gelora v 2.9.1"
+                android:text="HRIS Mobile Gelora v 2.9.2"
                 android:textColor="#BEFFC9B8"
                 android:textSize="12dp"
                 tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
