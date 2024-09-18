@@ -2555,33 +2555,37 @@ public class ReportSumaActivity extends AppCompatActivity {
             String picPelanggan = intent.getStringExtra("pic_pelanggan_toko");
             String teleponPelanggan = intent.getStringExtra("telepon_pelanggan_toko");
 
-            f1PelangganOptionLama.setChecked(true);
-            statuspelangganBaru = "0";
-            baruBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_another));
+            try {
+                f1PelangganOptionLama.setChecked(true);
+                statuspelangganBaru = "0";
+                baruBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_another));
 
-            f1TokoChoiceTV.setText(namaPelangganToko);
-            f1IdPelangganLama = idPelanggan;
-            f1AlamatPelangganLamaTV.setText(alamatPelanggan);
-            f1DetailPelanggan.setVisibility(View.VISIBLE);
-            f1NamaPelangganLamaChoiceTV.setText(namaPelangganToko);
-            f1PelangganLamaPart.setVisibility(View.GONE);
-            f1AddPelangganPart.setVisibility(View.VISIBLE);
-            f1AgendaOptionPart.setVisibility(View.VISIBLE);
+                f1TokoChoiceTV.setText(namaPelangganToko);
+                f1IdPelangganLama = idPelanggan;
+                f1AlamatPelangganLamaTV.setText(alamatPelanggan);
+                f1DetailPelanggan.setVisibility(View.VISIBLE);
+                f1NamaPelangganLamaChoiceTV.setText(namaPelangganToko);
+                f1PelangganLamaPart.setVisibility(View.GONE);
+                f1AddPelangganPart.setVisibility(View.VISIBLE);
+                f1AgendaOptionPart.setVisibility(View.VISIBLE);
 
-            InputMethodManager imm = (InputMethodManager) ReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
-            View view = ReportSumaActivity.this.getCurrentFocus();
-            if (view == null) {
-                view = new View(ReportSumaActivity.this);
-            }
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            f1KeteranganKunjunganED.clearFocus();
-
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    bottomSheet.dismissSheet();
+                InputMethodManager imm = (InputMethodManager) ReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                View view = ReportSumaActivity.this.getCurrentFocus();
+                if (view == null) {
+                    view = new View(ReportSumaActivity.this);
                 }
-            }, 300);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                f1KeteranganKunjunganED.clearFocus();
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            } catch(NullPointerException e) {
+                Log.e("Error", e.toString());
+            }
         }
     };
 
