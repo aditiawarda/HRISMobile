@@ -1087,7 +1087,9 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     jabatanLamaDetailTV.setText(nama_jabatan_lama_detail);
                                     jabatanBaruDetailTV.setText(nama_jabatan_baru_detail);
                                     tglPengangkatanJabatanLamaDetailTV.setText(tgl_pengangkatan_lama.substring(8,10)+"/"+tgl_pengangkatan_lama.substring(5,7)+"/"+tgl_pengangkatan_lama.substring(0,4));
-                                    tglPengangkatanJabatanBaruDetailTV.setText(tgl_pengangkatan_baru.substring(8,10)+"/"+tgl_pengangkatan_baru.substring(5,7)+"/"+tgl_pengangkatan_baru.substring(0,4));
+                                    if(!tgl_pengangkatan_baru.equals("null")&&!tgl_pengangkatan_baru.equals("")&&!tgl_pengangkatan_baru.equals("0000-00-00")){
+                                        tglPengangkatanJabatanBaruDetailTV.setText(tgl_pengangkatan_baru.substring(8,10)+"/"+tgl_pengangkatan_baru.substring(5,7)+"/"+tgl_pengangkatan_baru.substring(0,4));
+                                    }
                                     alasanPengangkatanTV.setText(alasan_pengangkatan);
 
                                     tglDibutuhkan2TV.setText(tgl_dibutuhkan.substring(8,10)+"/"+tgl_dibutuhkan.substring(5,7)+"/"+tgl_dibutuhkan.substring(0,4));
