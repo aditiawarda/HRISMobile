@@ -151,7 +151,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     JSONArray f1JsonArrayPelanggan = new JSONArray();
     private PelangganList[] pelangganLists;
     private AdapterPelangganList adapterPelangganList;
-    CheckBox f1CB1, f1CB2, f1CB3, f1CB4;
+    CheckBox f1CB1, f1CB2, f1CB3, f1CB4, f1CB5, f1CB6;
 
     EditText f2KeteranganKunjunganED, keywordED, keywordEDProduk, f2NamaPelangganBaruED, f2AlamatPelangganBaruED;
     LinearLayout f2LoadingDataPartSj, f2NoDataPartSj, f2NoSuratJalanBTN, f2PengirimanFormPart, f2NoDataInv, f2LoadingDataInv, f2PenagihanPart, f2SubmitPesananBTN, f2GPSLocationBTN, f2ViewLampiranBTN, f2LampiranFotoBTN, f2ProductInputDetailPart, f2AddProductBTN, f2ProductChoiceBTN, f2AgendaOptionPart, f2PromosiPart, f2DetailPelanggan, f2NamaPelangganLamaBTN, f2PelangganAttantionPart, f2PelangganBaruPart, f2PelangganLamaPart;
@@ -166,7 +166,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     private AdapterPelangganLama adapterPelangganLama;
     private AdapterProductSuma adapterProductSuma;
     String statuspelangganBaru = "0", f2IdPelangganLama = "", f2JenisPelanggan = "", f2FullDataProduct = "", f2QtyProduct = "", f2IdProduct = "", f2ProductName = "", f2ProductHargaSatuan = "", f2SubTotal = "";
-    CheckBox f2CB1, f2CB2, f2CB3, f2CB4;
+    CheckBox f2CB1, f2CB2, f2CB3, f2CB4, f2CB5, f2CB6;
     int f2TotalInvTagihan = 0;
     RecyclerView f2InvRV;
     private DataInvoicePiutang[] dataInvoicePiutangs;
@@ -252,6 +252,8 @@ public class ReportSumaActivity extends AppCompatActivity {
         f1CB2 = findViewById(R.id.f1_cb_2);
         f1CB3 = findViewById(R.id.f1_cb_3);
         f1CB4 = findViewById(R.id.f1_cb_4);
+        f1CB5 = findViewById(R.id.f1_cb_5);
+        f1CB6 = findViewById(R.id.f1_cb_6);
 
         f2KeteranganKunjunganED = findViewById(R.id.f2_keterangan_kunjungan_ed);
         f2PelangganAttantionPart = findViewById(R.id.f2_pelanggan_attantion);
@@ -296,6 +298,8 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2CB2 = findViewById(R.id.f2_cb_2);
         f2CB3 = findViewById(R.id.f2_cb_3);
         f2CB4 = findViewById(R.id.f2_cb_4);
+        f2CB5 = findViewById(R.id.f2_cb_5);
+        f2CB6 = findViewById(R.id.f2_cb_6);
 
         adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
         f2ListProductInputRV.setLayoutManager(new LinearLayoutManager(this));
@@ -353,6 +357,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f1CB2.setChecked(false);
                 f1CB3.setChecked(false);
                 f1CB4.setChecked(false);
+                f1CB5.setChecked(false);
+                f1CB6.setChecked(false);
 
                 f2KeteranganKunjunganED.setText("");
                 f2PelangganOption.clearCheck();
@@ -372,6 +378,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f2CB2.setChecked(false);
                 f2CB3.setChecked(false);
                 f2CB4.setChecked(false);
+                f2CB5.setChecked(false);
+                f2CB6.setChecked(false);
                 f2PromosiPart.setVisibility(View.GONE);
                 f2PenagihanPart.setVisibility(View.GONE);
                 f2PengirimanFormPart.setVisibility(View.GONE);
@@ -480,6 +488,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1CB2.setChecked(false);
                     f1CB3.setChecked(false);
                     f1CB4.setChecked(false);
+                    f1CB5.setChecked(false);
+                    f1CB6.setChecked(false);
                 } else if (f1PelangganOptionLama.isChecked()) {
                     f1JenisPelanggan = "2";
                     f1PelangganBaruPart.setVisibility(View.GONE);
@@ -493,6 +503,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1CB2.setChecked(false);
                     f1CB3.setChecked(false);
                     f1CB4.setChecked(false);
+                    f1CB5.setChecked(false);
+                    f1CB6.setChecked(false);
                 }
             }
         });
@@ -513,60 +525,251 @@ public class ReportSumaActivity extends AppCompatActivity {
                     if(f1CB2.isChecked()){
                         if(f1CB3.isChecked()){
                             if(f1CB4.isChecked()){
-                                arrayAgenda = "[\"2\",\"3\",\"4\",\"5\"]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"4\",\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\",\"4\",\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"4\",\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\",\"4\",\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[\"2\",\"3\",\"4\"]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"4\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\",\"4\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"4\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\",\"4\"]";
+                                    }
+                                }
                             }
                         } else {
                             if(f1CB4.isChecked()){
-                                arrayAgenda = "[\"2\",\"3\",\"5\"]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\",\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\",\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[\"2\",\"3\"]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\"]";
+                                    }
+                                }
                             }
                         }
                     } else {
                         if(f1CB3.isChecked()){
                             if(f1CB4.isChecked()){
-                                arrayAgenda = "[\"2\",\"4\",\"5\"]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"4\",\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"4\",\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"4\",\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"4\",\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[\"2\",\"4\"]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"4\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"4\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"4\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"4\"]";
+                                    }
+                                }
                             }
                         } else {
                             if(f1CB4.isChecked()){
-                                arrayAgenda = "[\"2\",\"5\"]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[\"2\"]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\"]";
+                                    }
+                                }
                             }
                         }
                     }
-                }
-                else {
+                } else {
                     if(f1CB2.isChecked()){
                         if(f1CB3.isChecked()){
                             if(f1CB4.isChecked()){
-                                arrayAgenda = "[\"3\",\"4\",\"5\"]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"4\",\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\",\"4\",\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"4\",\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\",\"4\",\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[\"3\",\"4\"]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"4\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\",\"4\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"4\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\",\"4\"]";
+                                    }
+                                }
                             }
                         } else {
                             if(f1CB4.isChecked()){
-                                arrayAgenda = "[\"3\",\"5\"]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\",\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\",\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[\"3\"]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\"]";
+                                    }
+                                }
                             }
                         }
                     } else {
                         if(f1CB3.isChecked()){
                             if(f1CB4.isChecked()){
-                                arrayAgenda = "[\"4\",\"5\"]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"4\",\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"4\",\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"4\",\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"4\",\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[\"4\"]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"4\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"4\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"4\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"4\"]";
+                                    }
+                                }
                             }
                         } else {
                             if(f1CB4.isChecked()){
-                                arrayAgenda = "[\"5\"]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[]";
+                                if(f1CB5.isChecked()){
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"6\"]";
+                                    }
+                                } else {
+                                    if(f1CB6.isChecked()){
+                                        arrayAgenda = "[\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[]";
+                                    }
+                                }
                             }
                         }
                     }
@@ -735,7 +938,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2PelangganLamaPart.setVisibility(View.VISIBLE);
                     f2TotalPesananTV.setText("Rp 0");
                     f2TotalPesanan = 0;
-                    if(f2CB1.isChecked()||f2CB2.isChecked()||f2CB3.isChecked()||f2CB4.isChecked()){
+                    if(f2CB1.isChecked()||f2CB2.isChecked()||f2CB3.isChecked()||f2CB4.isChecked()||f2CB5.isChecked()||f2CB6.isChecked()){
                         f2AgendaOptionPart.setVisibility(View.VISIBLE);
                     } else {
                         f2AgendaOptionPart.setVisibility(View.GONE);
@@ -1054,60 +1257,251 @@ public class ReportSumaActivity extends AppCompatActivity {
                     if(f2CB2.isChecked()){
                         if(f2CB3.isChecked()){
                             if(f2CB4.isChecked()){
-                                arrayAgenda = "[\"2\",\"3\",\"4\",\"5\"]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"4\",\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\",\"4\",\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"4\",\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\",\"4\",\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[\"2\",\"3\",\"4\"]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"4\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\",\"4\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"4\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\",\"4\"]";
+                                    }
+                                }
                             }
                         } else {
                             if(f2CB4.isChecked()){
-                                arrayAgenda = "[\"2\",\"3\",\"5\"]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\",\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\",\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[\"2\",\"3\"]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"3\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"3\"]";
+                                    }
+                                }
                             }
                         }
                     } else {
                         if(f2CB3.isChecked()){
                             if(f2CB4.isChecked()){
-                                arrayAgenda = "[\"2\",\"4\",\"5\"]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"4\",\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"4\",\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"4\",\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"4\",\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[\"2\",\"4\"]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"4\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"4\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"4\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"4\"]";
+                                    }
+                                }
                             }
                         } else {
                             if(f2CB4.isChecked()){
-                                arrayAgenda = "[\"2\",\"5\"]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[\"2\"]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"2\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"2\"]";
+                                    }
+                                }
                             }
                         }
                     }
-                }
-                else {
+                } else {
                     if(f2CB2.isChecked()){
                         if(f2CB3.isChecked()){
                             if(f2CB4.isChecked()){
-                                arrayAgenda = "[\"3\",\"4\",\"5\"]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"4\",\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\",\"4\",\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"4\",\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\",\"4\",\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[\"3\",\"4\"]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"4\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\",\"4\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"4\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\",\"4\"]";
+                                    }
+                                }
                             }
                         } else {
                             if(f2CB4.isChecked()){
-                                arrayAgenda = "[\"3\",\"5\"]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\",\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\",\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[\"3\"]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"3\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"3\"]";
+                                    }
+                                }
                             }
                         }
                     } else {
                         if(f2CB3.isChecked()){
                             if(f2CB4.isChecked()){
-                                arrayAgenda = "[\"4\",\"5\"]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"4\",\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"4\",\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"4\",\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"4\",\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[\"4\"]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"4\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"4\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"4\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"4\"]";
+                                    }
+                                }
                             }
                         } else {
                             if(f2CB4.isChecked()){
-                                arrayAgenda = "[\"5\"]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"5\",\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"5\",\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"5\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"5\"]";
+                                    }
+                                }
                             } else {
-                                arrayAgenda = "[]";
+                                if(f2CB5.isChecked()){
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"6\",\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[\"6\"]";
+                                    }
+                                } else {
+                                    if(f2CB6.isChecked()){
+                                        arrayAgenda = "[\"7\"]";
+                                    } else {
+                                        arrayAgenda = "[]";
+                                    }
+                                }
                             }
                         }
                     }
@@ -1419,6 +1813,9 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1CB1.setChecked(false);
                     f1CB2.setChecked(false);
                     f1CB3.setChecked(false);
+                    f1CB4.setChecked(false);
+                    f1CB5.setChecked(false);
+                    f1CB6.setChecked(false);
 
                     f2KeteranganKunjunganED.setText("");
                     f2PelangganOption.clearCheck();
@@ -1438,6 +1835,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2CB2.setChecked(false);
                     f2CB3.setChecked(false);
                     f2CB4.setChecked(false);
+                    f2CB5.setChecked(false);
+                    f2CB6.setChecked(false);
                     f2PromosiPart.setVisibility(View.GONE);
                     f2PenagihanPart.setVisibility(View.GONE);
                     f2PengirimanFormPart.setVisibility(View.GONE);
@@ -1531,6 +1930,9 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1CB1.setChecked(false);
                     f1CB2.setChecked(false);
                     f1CB3.setChecked(false);
+                    f1CB4.setChecked(false);
+                    f1CB5.setChecked(false);
+                    f1CB6.setChecked(false);
 
                     f2KeteranganKunjunganED.setText("");
                     f2PelangganOption.clearCheck();
@@ -1550,6 +1952,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f2CB2.setChecked(false);
                     f2CB3.setChecked(false);
                     f2CB4.setChecked(false);
+                    f2CB5.setChecked(false);
+                    f2CB6.setChecked(false);
                     f2PromosiPart.setVisibility(View.GONE);
                     f2PenagihanPart.setVisibility(View.GONE);
                     f2PengirimanFormPart.setVisibility(View.GONE);
@@ -1675,6 +2079,9 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1CB1.setChecked(false);
                         f1CB2.setChecked(false);
                         f1CB3.setChecked(false);
+                        f1CB4.setChecked(false);
+                        f1CB5.setChecked(false);
+                        f1CB6.setChecked(false);
 
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
@@ -1694,6 +2101,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f2CB2.setChecked(false);
                         f2CB3.setChecked(false);
                         f2CB4.setChecked(false);
+                        f2CB5.setChecked(false);
+                        f2CB6.setChecked(false);
                         f2PromosiPart.setVisibility(View.GONE);
                         f2PenagihanPart.setVisibility(View.GONE);
                         f2PengirimanFormPart.setVisibility(View.GONE);
@@ -1793,6 +2202,9 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1CB1.setChecked(false);
                         f1CB2.setChecked(false);
                         f1CB3.setChecked(false);
+                        f1CB4.setChecked(false);
+                        f1CB5.setChecked(false);
+                        f1CB6.setChecked(false);
 
                         f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
@@ -1812,6 +2224,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f2CB2.setChecked(false);
                         f2CB3.setChecked(false);
                         f2CB4.setChecked(false);
+                        f2CB5.setChecked(false);
+                        f2CB6.setChecked(false);
                         f2PromosiPart.setVisibility(View.GONE);
                         f2PenagihanPart.setVisibility(View.GONE);
                         f2PengirimanFormPart.setVisibility(View.GONE);
@@ -3363,6 +3777,16 @@ public class ReportSumaActivity extends AppCompatActivity {
                         params.put("njv", "true");
                     } else {
                         params.put("njv", "false");
+                    }
+                    if(f2CB5.isChecked()) {
+                        params.put("jv", "true");
+                    } else {
+                        params.put("jv", "false");
+                    }
+                    if(f2CB6.isChecked()) {
+                        params.put("pameran", "true");
+                    } else {
+                        params.put("pameran", "false");
                     }
 
                     params.put("nik_sales", sharedPrefManager.getSpNik());

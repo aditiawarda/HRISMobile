@@ -73,6 +73,12 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         } else if (dataReportSuma.getTipeLaporan().equals("5")) {
             myViewHolder.reportCategoryTV.setText("Non Join Visit");
             myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
+        } else if (dataReportSuma.getTipeLaporan().equals("6")) {
+            myViewHolder.reportCategoryTV.setText("Join Visit");
+            myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
+        } else if (dataReportSuma.getTipeLaporan().equals("7")) {
+            myViewHolder.reportCategoryTV.setText("Pameran");
+            myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
         }
 
         myViewHolder.namaSalesTV.setText(dataReportSuma.getNamaKaryawan());
@@ -150,7 +156,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
                 myViewHolder.f4NoSJTV.setText(dataReportSuma.getNoSuratJalan());
             }
             myViewHolder.f4TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
-        } else if(dataReportSuma.getTipeLaporan().equals("5")){
+        } else if(dataReportSuma.getTipeLaporan().equals("5")||dataReportSuma.getTipeLaporan().equals("6")||dataReportSuma.getTipeLaporan().equals("7")){
             myViewHolder.rencanaKunjunganPart.setVisibility(View.GONE);
             myViewHolder.kunjunganPart.setVisibility(View.GONE);
             myViewHolder.penagihanPart.setVisibility(View.GONE);

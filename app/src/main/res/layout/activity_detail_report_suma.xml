@@ -86,7 +86,7 @@
                                             android:layout_height="wrap_content"
                                             android:text="00/00/0000 00:00"
                                             android:textColor="#ED9C83"
-                                            android:textSize="10dp"
+                                            android:textSize="12dp"
                                             android:gravity="right"
                                             tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,TooDeepLayout" />
 
@@ -96,10 +96,9 @@
                                             android:layout_height="wrap_content"
                                             android:text="KATEGORI LAPORAN "
                                             android:textColor="#B1670B"
-                                            android:textSize="13dp"
+                                            android:textSize="14dp"
                                             android:textStyle="bold"
                                             tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck,TooDeepLayout" />
-
 
                                     </LinearLayout>
 
@@ -473,7 +472,7 @@
                                                     android:layout_marginBottom="5dp"
                                                     android:lineSpacingExtra="4dp"
                                                     android:layout_weight=".25"
-                                                    android:text="Detail Titik"
+                                                    android:text="Titik Pelaporan"
                                                     android:textColor="#515151"
                                                     android:textSize="14dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -518,6 +517,7 @@
                                             android:orientation="horizontal">
 
                                             <TextView
+                                                android:id="@+id/keterangan_label_tv"
                                                 android:layout_width="0dp"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
@@ -722,6 +722,29 @@
 
                                                         </LinearLayout>
 
+                                                        <LinearLayout
+                                                            android:layout_width="match_parent"
+                                                            android:orientation="horizontal"
+                                                            android:gravity="left|center"
+                                                            android:layout_marginTop="10dp"
+                                                            android:layout_height="wrap_content"
+                                                            tools:ignore="RtlHardcoded">
+
+                                                            <CheckBox
+                                                                android:id="@+id/agenda_cb_5"
+                                                                android:enabled="false"
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content" />
+
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:text="Join Visit"
+                                                                android:textSize="14dp"
+                                                                tools:ignore="HardcodedText,SpUsage" />
+
+                                                        </LinearLayout>
+
                                                     </LinearLayout>
 
                                                     <LinearLayout
@@ -761,6 +784,29 @@
                                                             tools:ignore="RtlHardcoded">
 
                                                             <CheckBox
+                                                                android:id="@+id/agenda_cb_6"
+                                                                android:enabled="false"
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content" />
+
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:text="Pameran"
+                                                                android:textSize="14dp"
+                                                                tools:ignore="HardcodedText,SpUsage" />
+
+                                                        </LinearLayout>
+
+                                                        <LinearLayout
+                                                            android:layout_width="match_parent"
+                                                            android:orientation="horizontal"
+                                                            android:gravity="left|center"
+                                                            android:layout_marginTop="10dp"
+                                                            android:layout_height="wrap_content"
+                                                            tools:ignore="RtlHardcoded">
+
+                                                            <CheckBox
                                                                 android:id="@+id/agenda_cb_4"
                                                                 android:enabled="false"
                                                                 android:layout_width="wrap_content"
@@ -776,6 +822,8 @@
                                                         </LinearLayout>
 
                                                     </LinearLayout>
+
+
 
                                                 </LinearLayout>
 
@@ -950,7 +998,7 @@
                                             android:drawableLeft="@drawable/ic_baseline_content_surat"
                                             android:drawablePadding="7dp"
                                             android:gravity="center"
-                                            android:text="Lihat Lampiran"
+                                            android:text="Lihat Foto Kunjungan"
                                             android:textColor="@color/white"
                                             android:textSize="13dp"
                                             android:textStyle="bold"
@@ -1493,6 +1541,29 @@
 
                                                                 </LinearLayout>
 
+                                                                <LinearLayout
+                                                                    android:layout_width="match_parent"
+                                                                    android:orientation="horizontal"
+                                                                    android:gravity="left|center"
+                                                                    android:layout_marginTop="10dp"
+                                                                    android:layout_height="wrap_content"
+                                                                    tools:ignore="RtlHardcoded,TooManyViews">
+
+                                                                    <CheckBox
+                                                                        android:id="@+id/realisasi_cb_5"
+                                                                        android:layout_width="wrap_content"
+                                                                        android:layout_height="wrap_content"
+                                                                        tools:ignore="TooManyViews" />
+
+                                                                    <TextView
+                                                                        android:layout_width="wrap_content"
+                                                                        android:layout_height="wrap_content"
+                                                                        android:text="Join Visit"
+                                                                        android:textSize="14dp"
+                                                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                                                </LinearLayout>
+
                                                             </LinearLayout>
 
                                                             <LinearLayout
@@ -1518,6 +1589,28 @@
                                                                         android:layout_height="wrap_content"
                                                                         android:text="Pengiriman"
                                                                         android:textSize="15dp"
+                                                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                                                </LinearLayout>
+
+                                                                <LinearLayout
+                                                                    android:layout_width="match_parent"
+                                                                    android:orientation="horizontal"
+                                                                    android:gravity="left|center"
+                                                                    android:layout_marginTop="10dp"
+                                                                    android:layout_height="wrap_content"
+                                                                    tools:ignore="RtlHardcoded">
+
+                                                                    <CheckBox
+                                                                        android:id="@+id/realisasi_cb_6"
+                                                                        android:layout_width="wrap_content"
+                                                                        android:layout_height="wrap_content" />
+
+                                                                    <TextView
+                                                                        android:layout_width="wrap_content"
+                                                                        android:layout_height="wrap_content"
+                                                                        android:text="Pameran"
+                                                                        android:textSize="14dp"
                                                                         tools:ignore="HardcodedText,SpUsage" />
 
                                                                 </LinearLayout>
@@ -2460,7 +2553,7 @@
                                                 android:drawableLeft="@drawable/ic_baseline_content_surat"
                                                 android:drawablePadding="7dp"
                                                 android:gravity="center"
-                                                android:text="Lihat Realisasi"
+                                                android:text="Lihat Realisasi Kunjungan"
                                                 android:textColor="@color/white"
                                                 android:textSize="13dp"
                                                 android:textStyle="bold"
@@ -2725,6 +2818,7 @@
                             tools:ignore="RtlHardcoded">
 
                             <TextView
+                                android:id="@+id/title_page_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"

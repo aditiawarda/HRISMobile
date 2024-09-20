@@ -760,6 +760,28 @@
 
                                                             </LinearLayout>
 
+                                                            <LinearLayout
+                                                                android:layout_width="match_parent"
+                                                                android:orientation="horizontal"
+                                                                android:gravity="left|center"
+                                                                android:layout_marginTop="10dp"
+                                                                android:layout_height="wrap_content"
+                                                                tools:ignore="RtlHardcoded">
+
+                                                                <CheckBox
+                                                                    android:id="@+id/f1_cb_5"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content" />
+
+                                                                <TextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Join Visit"
+                                                                    android:textSize="13dp"
+                                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                                            </LinearLayout>
+
                                                         </LinearLayout>
 
                                                         <LinearLayout
@@ -784,6 +806,28 @@
                                                                     android:layout_width="wrap_content"
                                                                     android:layout_height="wrap_content"
                                                                     android:text="Pengiriman"
+                                                                    android:textSize="13dp"
+                                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                                            </LinearLayout>
+
+                                                            <LinearLayout
+                                                                android:layout_width="match_parent"
+                                                                android:orientation="horizontal"
+                                                                android:gravity="left|center"
+                                                                android:layout_marginTop="10dp"
+                                                                android:layout_height="wrap_content"
+                                                                tools:ignore="RtlHardcoded">
+
+                                                                <CheckBox
+                                                                    android:id="@+id/f1_cb_6"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content" />
+
+                                                                <TextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Pameran"
                                                                     android:textSize="13dp"
                                                                     tools:ignore="HardcodedText,SpUsage" />
 
@@ -1240,6 +1284,28 @@
 
                                                 </LinearLayout>
 
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:orientation="horizontal"
+                                                    android:gravity="left|center"
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_height="wrap_content"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <CheckBox
+                                                        android:id="@+id/f2_cb_5"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content" />
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Join Visit"
+                                                        android:textSize="13dp"
+                                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                                </LinearLayout>
+
                                             </LinearLayout>
 
                                             <LinearLayout
@@ -1264,6 +1330,28 @@
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="wrap_content"
                                                         android:text="Pengiriman"
+                                                        android:textSize="13dp"
+                                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:orientation="horizontal"
+                                                    android:gravity="left|center"
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_height="wrap_content"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <CheckBox
+                                                        android:id="@+id/f2_cb_6"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content" />
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Pameran"
                                                         android:textSize="13dp"
                                                         tools:ignore="HardcodedText,SpUsage" />
 
