@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     LinearLayout forgotPasswordBTN, registerBTN, connectBTN, closeBTN, contactServiceBTN, loginBTN, showPasswordBTN;
     EditText nikED, passwordED;
     SharedPrefManager sharedPrefManager;
-    TextView showPassword, icPerson, icPassword;
+    TextView versionAppTV, showPassword, icPerson, icPassword;
     String statusCheck = "", deviceID, visibilityPassword = "hide";
     BottomSheetLayout bottomSheet, bottomSheetCS;
     SwipeRefreshLayout refreshLayout;
@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     View rootview;
     private Handler handler = new Handler();
 
-    @SuppressLint({"ClickableViewAccessibility", "HardwareIds"})
+    @SuppressLint({"ClickableViewAccessibility", "HardwareIds", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +84,9 @@ public class LoginActivity extends AppCompatActivity {
         icPerson = findViewById(R.id.ic_person);
         icPassword = findViewById(R.id.ic_password);
         forgotPasswordBTN = findViewById(R.id.forgot_password_btn);
+        versionAppTV = findViewById(R.id.version_app_tv);
+
+        versionAppTV.setText("HRIS Mobile Gelora v "+sharedPrefManager.getSpVersionApp());
 
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);

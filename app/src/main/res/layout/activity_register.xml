@@ -384,10 +384,11 @@
             android:gravity="bottom|center">
 
             <TextView
+                android:id="@+id/version_app_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="HRIS Mobile Gelora v 2.9.3"
+                android:text="HRIS Mobile Gelora v -"
                 android:textColor="#BEFFC9B8"
                 android:textSize="12dp"
                 tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />

@@ -51,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private StatusBarColorManager mStatusBarColorManager;
     EditText nikED, passwordED, repasswordED;
-    TextView namaTV, showPassword, matchPassword, indicatorMatchPass;
+    TextView versionAppTV, namaTV, showPassword, matchPassword, indicatorMatchPass;
     String regisStatus = "", statusPass = "hide";
     LinearLayout toLoginBTN, registerBTN, contactServiceBTN, connectBTN, closeBTN;
     BottomSheetLayout bottomSheetCS;
@@ -60,7 +60,9 @@ public class RegisterActivity extends AppCompatActivity {
     View rootview;
     private Handler handler = new Handler();
     Runnable runnable;
+    SharedPrefManager sharedPrefManager;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
 
+        sharedPrefManager = new SharedPrefManager(this);
         rootview = findViewById(android.R.id.content);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         nikED = findViewById(R.id.nikED);
@@ -83,6 +86,9 @@ public class RegisterActivity extends AppCompatActivity {
         bottomSheetCS = findViewById(R.id.bottom_sheet_cs);
         toLoginBTN = findViewById(R.id.to_login_btn);
         loadingProgressBar = findViewById(R.id.loadingProgressBar);
+        versionAppTV = findViewById(R.id.version_app_tv);
+
+        versionAppTV.setText("HRIS Mobile Gelora v "+sharedPrefManager.getSpVersionApp());
 
         loadingProgressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#A6441F"),android.graphics.PorterDuff.Mode.MULTIPLY);
 

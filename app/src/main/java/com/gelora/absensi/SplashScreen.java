@@ -27,6 +27,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -73,7 +74,7 @@ public class SplashScreen extends AppCompatActivity {
     View rootview;
     LinearLayout refreshPart, refreshBTN, updateBTN, closeBTN, updateLayout, updateDialog;
     TextView loadingOff, refreshLabel, descTV;
-    String closeBottomSheet, statusUpdateLayout = "0";
+    String closeBottomSheet, statusUpdateLayout = "0", currentVersion = "";
     SwipeRefreshLayout refreshLayout;
     ProgressBar loadingProgressBar;
     SharedPrefManager sharedPrefManager;
@@ -108,6 +109,15 @@ public class SplashScreen extends AppCompatActivity {
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
 
         refreshLayout.setEnabled(false);
+
+        try {
+            currentVersion = getPackageManager()
+                    .getPackageInfo(getPackageName(), 0)
+                    .versionName;
+            sharedPrefManager.saveSPString(SharedPrefManager.SP_VERSION_APP, currentVersion);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -402,7 +412,7 @@ public class SplashScreen extends AppCompatActivity {
                             String close_btn = data.getString("close_btn");
 
                             if (status.equals("Success")){
-                                String currentVersion = "2.9.3";
+                                String currentVersion = sharedPrefManager.getSpVersionApp();
                                 if (popup.equals("1") && ((!currentVersion.equals(version) && target.equals("all")) || target.equals(currentVersion))){
                                     refreshPart.animate()
                                             .translationY(refreshPart.getHeight())

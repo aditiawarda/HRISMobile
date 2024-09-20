@@ -164,7 +164,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "2.9.3";
+    String appVersion = "";
     private StatusBarColorManager mStatusBarColorManager;
 
     private RecyclerView dataAbsensiRV;
@@ -268,6 +268,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         backHome = findViewById(R.id.back_home);
         warningLabelIzin = findViewById(R.id.warning_label_izin);
         warningLabelLayoff = findViewById(R.id.warning_label_layoff);
+
+        appVersion = sharedPrefManager.getSpVersionApp();
 
         dataAbsensiRV = findViewById(R.id.data_absensi_rv);
         dataAbsensiRV.setLayoutManager(new LinearLayoutManager(this));
