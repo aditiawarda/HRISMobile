@@ -142,7 +142,7 @@ import java.util.UUID;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout noDataComment, commentLoading, commentSendBTNPart, addProductBTN, productInputDetailPart, loadingDataPartProduk, noDataPartProduk, startAttantionPart, startAttantionPartProduk, productChoiceBTN, markRealKunjungan, markRealPenagihan, markRealPengiriman, realKunjunganBTN, realPenagihanBTN, realPengirimanBTN, noDataPiutang, loadingDataPiutang, loadingDataPartSj, noDataPartSj, noSuratJalanBTN, promosiLayoutTambahan, penagihanLayoutTambahan, pengirimanLayoutTambahan, submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
+    LinearLayout markRealNjv, markRealJv, markRealPameran, realNjvBTN, realJvBTN, realPameranBTN, noDataComment, commentLoading, commentSendBTNPart, addProductBTN, productInputDetailPart, loadingDataPartProduk, noDataPartProduk, startAttantionPart, startAttantionPartProduk, productChoiceBTN, markRealKunjungan, markRealPenagihan, markRealPengiriman, realKunjunganBTN, realPenagihanBTN, realPengirimanBTN, noDataPiutang, loadingDataPiutang, loadingDataPartSj, noDataPartSj, noSuratJalanBTN, promosiLayoutTambahan, penagihanLayoutTambahan, pengirimanLayoutTambahan, submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
     SharedPrefManager sharedPrefManager;
     EditText commentED, keywordEDProduk, keteranganKunjunganRealisasiED, keteranganUpdateED;
     ExpandableLayout updateRealisasiKunjunganForm, rescheduleForm, updateForm;
@@ -3026,19 +3026,37 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         realKunjunganBTN = findViewById(R.id.real_kunjungan_btn);
         realPenagihanBTN = findViewById(R.id.real_penagihan_btn);
         realPengirimanBTN = findViewById(R.id.real_pengiriman_btn);
+        realNjvBTN = findViewById(R.id.real_njv_btn);
+        realJvBTN = findViewById(R.id.real_jv_btn);
+        realPameranBTN = findViewById(R.id.real_pameran_btn);
         markRealKunjungan = findViewById(R.id.mark_real_kunjungan);
         markRealPenagihan = findViewById(R.id.mark_real_penagihan);
         markRealPengiriman = findViewById(R.id.mark_real_pengiriman);
+        markRealNjv = findViewById(R.id.mark_real_njv);
+        markRealJv = findViewById(R.id.mark_real_jv);
+        markRealPameran = findViewById(R.id.mark_real_pameran);
 
         realKunjunganBTN.setVisibility(View.GONE);
         realPenagihanBTN.setVisibility(View.GONE);
         realPengirimanBTN.setVisibility(View.GONE);
+        realNjvBTN.setVisibility(View.GONE);
+        realJvBTN.setVisibility(View.GONE);
+        realPameranBTN.setVisibility(View.GONE);
         markRealKunjungan.setVisibility(View.GONE);
         markRealPenagihan.setVisibility(View.GONE);
         markRealPengiriman.setVisibility(View.GONE);
+
+        markRealNjv.setVisibility(View.GONE);
+        markRealJv.setVisibility(View.GONE);
+        markRealPameran.setVisibility(View.GONE);
+
         realKunjunganBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
         realPenagihanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
         realPengirimanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+
+        realNjvBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+        realJvBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+        realPameranBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
 
         String[] list = arrayRealisasi.split(",");
         String tipe, id;
@@ -3054,9 +3072,15 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                         realKunjunganBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option_choice));
                         realPenagihanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
                         realPengirimanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realNjvBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realJvBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realPameranBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
                         markRealKunjungan.setVisibility(View.VISIBLE);
                         markRealPenagihan.setVisibility(View.GONE);
                         markRealPengiriman.setVisibility(View.GONE);
+                        markRealNjv.setVisibility(View.GONE);
+                        markRealJv.setVisibility(View.GONE);
+                        markRealPameran.setVisibility(View.GONE);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -3082,9 +3106,15 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                         realKunjunganBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
                         realPenagihanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option_choice));
                         realPengirimanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realNjvBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realJvBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realPameranBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
                         markRealKunjungan.setVisibility(View.GONE);
                         markRealPenagihan.setVisibility(View.VISIBLE);
                         markRealPengiriman.setVisibility(View.GONE);
+                        markRealNjv.setVisibility(View.GONE);
+                        markRealJv.setVisibility(View.GONE);
+                        markRealPameran.setVisibility(View.GONE);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -3110,9 +3140,117 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                         realKunjunganBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
                         realPenagihanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
                         realPengirimanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option_choice));
+                        realNjvBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realJvBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realPameranBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
                         markRealKunjungan.setVisibility(View.GONE);
                         markRealPenagihan.setVisibility(View.GONE);
                         markRealPengiriman.setVisibility(View.VISIBLE);
+                        markRealNjv.setVisibility(View.GONE);
+                        markRealJv.setVisibility(View.GONE);
+                        markRealPameran.setVisibility(View.GONE);
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
+                                        intent.putExtra("report_id", finalId);
+                                        startActivity(intent);
+                                    }
+                                }, 200);
+                            }
+                        }, 200);
+                    }
+                });
+            } else if(tipe.equals("5")){
+                String finalId = id;
+                realNjvBTN.setVisibility(View.VISIBLE);
+                realNjvBTN.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        realKunjunganBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realPenagihanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realPengirimanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realNjvBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option_choice));
+                        realJvBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realPameranBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        markRealKunjungan.setVisibility(View.GONE);
+                        markRealPenagihan.setVisibility(View.GONE);
+                        markRealPengiriman.setVisibility(View.GONE);
+                        markRealNjv.setVisibility(View.VISIBLE);
+                        markRealJv.setVisibility(View.GONE);
+                        markRealPameran.setVisibility(View.GONE);
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
+                                        intent.putExtra("report_id", finalId);
+                                        startActivity(intent);
+                                    }
+                                }, 200);
+                            }
+                        }, 200);
+                    }
+                });
+            } else if(tipe.equals("6")){
+                String finalId = id;
+                realJvBTN.setVisibility(View.VISIBLE);
+                realJvBTN.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        realKunjunganBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realPenagihanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realPengirimanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realNjvBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realJvBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option_choice));
+                        realPameranBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        markRealKunjungan.setVisibility(View.GONE);
+                        markRealPenagihan.setVisibility(View.GONE);
+                        markRealPengiriman.setVisibility(View.GONE);
+                        markRealNjv.setVisibility(View.GONE);
+                        markRealJv.setVisibility(View.VISIBLE);
+                        markRealPameran.setVisibility(View.GONE);
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
+                                        intent.putExtra("report_id", finalId);
+                                        startActivity(intent);
+                                    }
+                                }, 200);
+                            }
+                        }, 200);
+                    }
+                });
+            } else if(tipe.equals("7")){
+                String finalId = id;
+                realPameranBTN.setVisibility(View.VISIBLE);
+                realPameranBTN.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        realKunjunganBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realPenagihanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realPengirimanBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realNjvBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realJvBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option));
+                        realPameranBTN.setBackground(ContextCompat.getDrawable(DetailReportSumaActivity.this, R.drawable.shape_option_choice));
+                        markRealKunjungan.setVisibility(View.GONE);
+                        markRealPenagihan.setVisibility(View.GONE);
+                        markRealPengiriman.setVisibility(View.GONE);
+                        markRealNjv.setVisibility(View.GONE);
+                        markRealJv.setVisibility(View.GONE);
+                        markRealPameran.setVisibility(View.VISIBLE);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {

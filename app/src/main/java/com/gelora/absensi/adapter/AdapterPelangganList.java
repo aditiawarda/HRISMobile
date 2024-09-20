@@ -75,6 +75,12 @@ public class AdapterPelangganList extends RecyclerView.Adapter<AdapterPelangganL
             } else if(dataArray[x].equals("5")){
                 myViewHolder.agendaCB4.setButtonTintList(colorStateList);
                 myViewHolder.agendaCB4.setChecked(true);
+            } else if(dataArray[x].equals("6")){
+                myViewHolder.agendaCB5.setButtonTintList(colorStateList);
+                myViewHolder.agendaCB5.setChecked(true);
+            } else if(dataArray[x].equals("7")){
+                myViewHolder.agendaCB6.setButtonTintList(colorStateList);
+                myViewHolder.agendaCB6.setChecked(true);
             }
 
         }
@@ -105,7 +111,7 @@ public class AdapterPelangganList extends RecyclerView.Adapter<AdapterPelangganL
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView noTV, kategoriPelangganTV, namaPelangganTV, alamatPelangganTV, keteranganKunjunganTV;
         LinearLayout parentPart, deleteBTN;
-        CheckBox agendaCB1, agendaCB2, agendaCB3, agendaCB4;
+        CheckBox agendaCB1, agendaCB2, agendaCB3, agendaCB4, agendaCB5, agendaCB6;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parentPart = itemView.findViewById(R.id.parent_part);
@@ -119,6 +125,8 @@ public class AdapterPelangganList extends RecyclerView.Adapter<AdapterPelangganL
             agendaCB2 = itemView.findViewById(R.id.agenda_cb_2);
             agendaCB3 = itemView.findViewById(R.id.agenda_cb_3);
             agendaCB4 = itemView.findViewById(R.id.agenda_cb_4);
+            agendaCB5 = itemView.findViewById(R.id.agenda_cb_5);
+            agendaCB6 = itemView.findViewById(R.id.agenda_cb_6);
         }
     }
 }
