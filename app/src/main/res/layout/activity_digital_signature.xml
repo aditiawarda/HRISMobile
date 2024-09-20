@@ -308,7 +308,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="7dp"
                                 android:lineSpacingExtra="2.5dp"
-                                android:text="Tanda tangan digital karyawan hanya dipergunakan untuk kepentingan personal pada aplikasi HRIS Mobile Gelora."
+                                android:text="Tanda tangan digital karyawan hanya dipergunakan untuk kepentingan personal pada aplikasi HRIS Mobile Gelora dan GAP Portal."
                                 android:textColor="#C68D46"
                                 android:textSize="12dp"
                                 tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
