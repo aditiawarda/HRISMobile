@@ -154,10 +154,10 @@ public class ReportSumaActivity extends AppCompatActivity {
     CheckBox f1CB1, f1CB2, f1CB3, f1CB4, f1CB5, f1CB6;
 
     EditText f2KeteranganKunjunganED, keywordED, keywordEDProduk, f2NamaPelangganBaruED, f2AlamatPelangganBaruED;
-    LinearLayout f2LoadingDataPartSj, f2NoDataPartSj, f2NoSuratJalanBTN, f2PengirimanFormPart, f2NoDataInv, f2LoadingDataInv, f2PenagihanPart, f2SubmitPesananBTN, f2GPSLocationBTN, f2ViewLampiranBTN, f2LampiranFotoBTN, f2ProductInputDetailPart, f2AddProductBTN, f2ProductChoiceBTN, f2AgendaOptionPart, f2PromosiPart, f2DetailPelanggan, f2NamaPelangganLamaBTN, f2PelangganAttantionPart, f2PelangganBaruPart, f2PelangganLamaPart;
+    LinearLayout f2TokoChoiceBTN, f2TokoBTN, f2LoadingDataPartSj, f2NoDataPartSj, f2NoSuratJalanBTN, f2PengirimanFormPart, f2NoDataInv, f2LoadingDataInv, f2PenagihanPart, f2SubmitPesananBTN, f2GPSLocationBTN, f2ViewLampiranBTN, f2LampiranFotoBTN, f2ProductInputDetailPart, f2AddProductBTN, f2ProductChoiceBTN, f2AgendaOptionPart, f2PromosiPart, f2DetailPelanggan, f2NamaPelangganLamaBTN, f2PelangganAttantionPart, f2PelangganBaruPart, f2PelangganLamaPart;
     RadioGroup f2PelangganOption;
     RadioButton f2PelangganOptionBaru, f2PelangganOptionLama;
-    TextView f2NoSuratJalanChoiceTV, f2TotalTagihanInvTV, f2CountImageTV, f2DetailLocationTV, f2LabelLampiranTV, f2TotalPesananTV, f2SubTotalTV, f2ProductHargaSatuanTV, f2ProductChoiceTV, f2NamaPelangganLamaChoiceTV, f2AlamatPelangganLamaTV;
+    TextView f2TokoChoiceTV, f2NoSuratJalanChoiceTV, f2TotalTagihanInvTV, f2CountImageTV, f2DetailLocationTV, f2LabelLampiranTV, f2TotalPesananTV, f2SubTotalTV, f2ProductHargaSatuanTV, f2ProductChoiceTV, f2NamaPelangganLamaChoiceTV, f2AlamatPelangganLamaTV;
     NumberPicker f2QtyProductPicker;
     RecyclerView pelangganRV, produkRV, f2ListProductInputRV;
     private PelangganLama[] pelangganLamas;
@@ -255,6 +255,9 @@ public class ReportSumaActivity extends AppCompatActivity {
         f1CB5 = findViewById(R.id.f1_cb_5);
         f1CB6 = findViewById(R.id.f1_cb_6);
 
+        f2TokoBTN = findViewById(R.id.f2_toko_btn);
+        f2TokoChoiceBTN = findViewById(R.id.f2_toko_choice_btn);
+        f2TokoChoiceTV = findViewById(R.id.f2_toko_choice_tv);
         f2KeteranganKunjunganED = findViewById(R.id.f2_keterangan_kunjungan_ed);
         f2PelangganAttantionPart = findViewById(R.id.f2_pelanggan_attantion);
         f2PelangganBaruPart = findViewById(R.id.f2_pelanggan_baru);
@@ -345,6 +348,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f1JenisPelanggan = "";
                 f1NamaPelangganLamaChoiceTV.setText("");
                 f1TokoChoiceTV.setText("");
+                f2TokoChoiceTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
                 f1DetailPelanggan.setVisibility(View.GONE);
                 f1AlamatPelangganLamaTV.setText("");
@@ -781,6 +785,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         try {
                             statuspelangganBaru = "0";
                             f1TokoChoiceTV.setText("");
+                            f2TokoChoiceTV.setText("");
 
                             dataPelangganBaru.put("idPelanggan", "null");
                             dataPelangganBaru.put("kategoriPelanggan", f1JenisPelanggan);
@@ -830,6 +835,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         try {
                             statuspelangganBaru = "0";
                             f1TokoChoiceTV.setText("");
+                            f2TokoChoiceTV.setText("");
 
                             dataPelangganLama.put("idPelanggan", f1IdPelangganLama);
                             dataPelangganLama.put("kategoriPelanggan", f1JenisPelanggan);
@@ -853,7 +859,6 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
                             f1NamaPelangganLamaChoiceTV.setText("");
-                            f1TokoChoiceTV.setText("");
                             f1DetailPelanggan.setVisibility(View.GONE);
                             f1AlamatPelangganLamaTV.setText("");
 
@@ -959,6 +964,15 @@ public class ReportSumaActivity extends AppCompatActivity {
                 }
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NO_SJ, "");
                 f2NoSuratJalanChoiceTV.setText("");
+            }
+        });
+
+        //disini
+
+        f2TokoChoiceBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                f2TokoPicker();
             }
         });
 
@@ -1804,6 +1818,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1JenisPelanggan = "";
                     f1NamaPelangganLamaChoiceTV.setText("");
                     f1TokoChoiceTV.setText("");
+                    f2TokoChoiceTV.setText("");
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
                     f1DetailPelanggan.setVisibility(View.GONE);
                     f1AlamatPelangganLamaTV.setText("");
@@ -1921,6 +1936,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1JenisPelanggan = "";
                     f1NamaPelangganLamaChoiceTV.setText("");
                     f1TokoChoiceTV.setText("");
+                    f2TokoChoiceTV.setText("");
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
                     f1DetailPelanggan.setVisibility(View.GONE);
                     f1AlamatPelangganLamaTV.setText("");
@@ -2070,6 +2086,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1JenisPelanggan = "";
                         f1NamaPelangganLamaChoiceTV.setText("");
                         f1TokoChoiceTV.setText("");
+                        f2TokoChoiceTV.setText("");
                         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
                         f1DetailPelanggan.setVisibility(View.GONE);
                         f1AlamatPelangganLamaTV.setText("");
@@ -2193,6 +2210,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1JenisPelanggan = "";
                         f1NamaPelangganLamaChoiceTV.setText("");
                         f1TokoChoiceTV.setText("");
+                        f2TokoChoiceTV.setText("");
                         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
                         f1DetailPelanggan.setVisibility(View.GONE);
                         f1AlamatPelangganLamaTV.setText("");
@@ -2565,6 +2583,100 @@ public class ReportSumaActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             getPelangganLama("Semua");
+                        }
+                    }, 500);
+                }
+            }
+
+        });
+
+    }
+
+    private void f2TokoPicker(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(ReportSumaActivity.this).inflate(R.layout.layout_pelanggan_toko, bottomSheet, false));
+        keywordTokoED = findViewById(R.id.keyword_toko_ed);
+        baruBTN = findViewById(R.id.baru_btn);
+        markBaru = findViewById(R.id.mark_baru);
+        keywordTokoED.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
+        tokoRV = findViewById(R.id.toko_rv);
+        startAttantionTokoPart = findViewById(R.id.attantion_data_toko_part);
+        noDataTokoPart = findViewById(R.id.no_data_toko_part);
+        loadingDataTokoPart = findViewById(R.id.loading_data_toko_part);
+
+        tokoRV.setLayoutManager(new LinearLayoutManager(this));
+        tokoRV.setHasFixedSize(true);
+        tokoRV.setNestedScrollingEnabled(false);
+        tokoRV.setItemAnimator(new DefaultItemAnimator());
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getToko("Semua");
+            }
+        }, 800);
+
+        if (statuspelangganBaru.equals("1")) {
+            markBaru.setVisibility(View.VISIBLE);
+            baruBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
+        } else {
+            markBaru.setVisibility(View.GONE);
+            baruBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_another));
+        }
+
+        baruBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View view) {
+                statuspelangganBaru = "1";
+                f2TokoChoiceTV.setText("Pelanggan Baru");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                markBaru.setVisibility(View.VISIBLE);
+                baruBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
+
+                f2PelangganOptionBaru.setChecked(true);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+
+            }
+        });
+
+        keywordTokoED.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                f1KeteranganKunjunganED.clearFocus();
+
+                String keyWordSearch = keywordTokoED.getText().toString();
+
+                startAttantionTokoPart.setVisibility(View.GONE);
+                loadingDataTokoPart.setVisibility(View.VISIBLE);
+                noDataTokoPart.setVisibility(View.GONE);
+                tokoRV.setVisibility(View.GONE);
+
+                if (!keyWordSearch.equals("")) {
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getToko(keyWordSearch);
+                        }
+                    }, 500);
+                } else {
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getToko("Semua");
                         }
                     }, 500);
                 }
@@ -2970,33 +3082,90 @@ public class ReportSumaActivity extends AppCompatActivity {
             String teleponPelanggan = intent.getStringExtra("telepon_pelanggan_toko");
 
             try {
-                f1PelangganOptionLama.setChecked(true);
+                if(categoryReport.equals("1")){
+                    f1PelangganOptionLama.setChecked(true);
+                } else {
+                    f2PelangganOptionLama.setChecked(true);
+                }
+
                 statuspelangganBaru = "0";
                 baruBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_another));
 
-                f1TokoChoiceTV.setText(namaPelangganToko);
-                f1IdPelangganLama = idPelanggan;
-                f1AlamatPelangganLamaTV.setText(alamatPelanggan);
-                f1DetailPelanggan.setVisibility(View.VISIBLE);
-                f1NamaPelangganLamaChoiceTV.setText(namaPelangganToko);
-                f1PelangganLamaPart.setVisibility(View.GONE);
-                f1AddPelangganPart.setVisibility(View.VISIBLE);
-                f1AgendaOptionPart.setVisibility(View.VISIBLE);
+                if(categoryReport.equals("1")){
+                    f1TokoChoiceTV.setText(namaPelangganToko);
+                    f1IdPelangganLama = idPelanggan;
+                    f1AlamatPelangganLamaTV.setText(alamatPelanggan);
+                    f1DetailPelanggan.setVisibility(View.VISIBLE);
+                    f1NamaPelangganLamaChoiceTV.setText(namaPelangganToko);
+                    f1PelangganLamaPart.setVisibility(View.GONE);
+                    f1AddPelangganPart.setVisibility(View.VISIBLE);
+                    f1AgendaOptionPart.setVisibility(View.VISIBLE);
 
-                InputMethodManager imm = (InputMethodManager) ReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
-                View view = ReportSumaActivity.this.getCurrentFocus();
-                if (view == null) {
-                    view = new View(ReportSumaActivity.this);
-                }
-                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                f1KeteranganKunjunganED.clearFocus();
-
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    InputMethodManager imm = (InputMethodManager) ReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    View view = ReportSumaActivity.this.getCurrentFocus();
+                    if (view == null) {
+                        view = new View(ReportSumaActivity.this);
                     }
-                }, 300);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    f1KeteranganKunjunganED.clearFocus();
+
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomSheet.dismissSheet();
+                        }
+                    }, 300);
+                } else if(categoryReport.equals("0")){
+                    f2TokoChoiceTV.setText(namaPelangganToko);
+                    f2AlamatPelangganLamaTV.setText(alamatPelanggan);
+                    f2IdPelangganLama = idPelanggan;
+                    f2DetailPelanggan.setVisibility(View.VISIBLE);
+                    f2AgendaOptionPart.setVisibility(View.VISIBLE);
+                    f2NamaPelangganLamaChoiceTV.setText(namaPelangganToko);
+
+                    InputMethodManager imm = (InputMethodManager) ReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    View view = ReportSumaActivity.this.getCurrentFocus();
+                    if (view == null) {
+                        view = new View(ReportSumaActivity.this);
+                    }
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    f2KeteranganKunjunganED.clearFocus();
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NO_SJ, "");
+                    f2NoSuratJalanChoiceTV.setText("");
+
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomSheet.dismissSheet();
+                            if(f2CB2.isChecked()){
+                                f2TotalTagihanInvTV.setText("Rp 0");
+                                f2TotalInvTagihan = 0;
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        bottomSheet.dismissSheet();
+                                        f2LoadingDataInv.setVisibility(View.VISIBLE);
+                                        f2InvRV.setVisibility(View.GONE);
+                                        f2NoDataInv.setVisibility(View.GONE);
+
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                if(f2IdPelangganLama.equals("")){
+                                                    getDataInvoice("-");
+                                                } else {
+                                                    getDataInvoice(f2IdPelangganLama);
+                                                }
+                                            }
+                                        }, 100);
+
+                                    }
+                                }, 300);
+                            }
+                        }
+                    }, 300);
+                }
+
             } catch(NullPointerException e) {
                 Log.e("Error", e.toString());
             }
@@ -3689,7 +3858,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                                     formPart.setVisibility(View.GONE);
                                     pDialog.dismiss();
 
-                                    viewPermohonanTV.setText("OK");
+                                    viewPermohonanTV.setText("Lihat List Data");
                                     viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -3840,7 +4009,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 successPart.setVisibility(View.VISIBLE);
                 formPart.setVisibility(View.GONE);
                 pDialog.dismiss();
-                viewPermohonanTV.setText("OK");
+                viewPermohonanTV.setText("Lihat List Data");
                 viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

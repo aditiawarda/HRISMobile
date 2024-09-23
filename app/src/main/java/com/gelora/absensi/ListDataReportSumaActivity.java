@@ -77,7 +77,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
     BottomSheetLayout bottomSheet;
-    String categoryCode = "", subCategoryCode = "", dateStartChoice = getDate(), dateEndChoice = getDate();
+    String statusGL = "", categoryCode = "", subCategoryCode = "", dateStartChoice = getDate(), dateEndChoice = getDate();
     private RecyclerView reportRV;
     private DataReportSuma[] dataReportSumas;
     private AdapterSumaReport adapterSumaReport;
@@ -155,14 +155,17 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, sharedPrefManager.getSpNama());
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, sharedPrefManager.getSpNik());
                 addBTN.setVisibility(View.VISIBLE);
+                wilayahBTN.setVisibility(View.GONE);
+                salesChoiceTV.setText(sharedPrefManager.getSpNama());
+                statusGL = "1";
             } else { // Management
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA, "");
                 addBTN.setVisibility(View.VISIBLE);
+                wilayahBTN.setVisibility(View.VISIBLE);
+                salesChoiceTV.setText("Semua Sales");
             }
-            wilayahBTN.setVisibility(View.VISIBLE);
-            salesChoiceTV.setText("Semua Sales");
             salesBTN.setVisibility(View.VISIBLE);
         } else {
             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, sharedPrefManager.getSpNama());
@@ -1221,6 +1224,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         loadingDataPart = findViewById(R.id.loading_data_sales_part);
         semuaDataBTN = findViewById(R.id.semua_data_btn);
 
+        if(statusGL.equals("1")){
+            semuaDataBTN.setVisibility(View.GONE);
+        } else {
+            semuaDataBTN.setVisibility(View.VISIBLE);
+        }
+
         karyawanSalesRV.setLayoutManager(new LinearLayoutManager(this));
         karyawanSalesRV.setHasFixedSize(true);
         karyawanSalesRV.setNestedScrollingEnabled(false);
@@ -1442,17 +1451,17 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             salesChoiceTV.setText(namaKaryawanSales);
 
             if(wilayahSales.equals("1")){
-                wilayahChoiceTV.setText("Jakarta 1");
+                wilayahChoiceTV.setText("Suma 1");
             } else if(wilayahSales.equals("2")){
-                wilayahChoiceTV.setText("Jakarta 2");
+                wilayahChoiceTV.setText("Suma 2");
             } else if(wilayahSales.equals("3")){
-                wilayahChoiceTV.setText("Jakarta 3");
+                wilayahChoiceTV.setText("Suma 3");
             } else if(wilayahSales.equals("4")){
-                wilayahChoiceTV.setText("Bandung");
+                wilayahChoiceTV.setText("Suma Bandung");
             } else if(wilayahSales.equals("5")){
-                wilayahChoiceTV.setText("Semarang");
+                wilayahChoiceTV.setText("Suma Semarang");
             } else if(wilayahSales.equals("6")){
-                wilayahChoiceTV.setText("Surabaya");
+                wilayahChoiceTV.setText("Suma Surabaya");
             } else if(wilayahSales.equals("7")){
                 wilayahChoiceTV.setText("Jakarta AE");
             } else {
