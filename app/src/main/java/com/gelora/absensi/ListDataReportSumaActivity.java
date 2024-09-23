@@ -1451,17 +1451,17 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             salesChoiceTV.setText(namaKaryawanSales);
 
             if(wilayahSales.equals("1")){
-                wilayahChoiceTV.setText("Suma 1");
+                wilayahChoiceTV.setText("Jakarta 1");
             } else if(wilayahSales.equals("2")){
-                wilayahChoiceTV.setText("Suma 2");
+                wilayahChoiceTV.setText("Jakarta 2");
             } else if(wilayahSales.equals("3")){
-                wilayahChoiceTV.setText("Suma 3");
+                wilayahChoiceTV.setText("Jakarta 3");
             } else if(wilayahSales.equals("4")){
-                wilayahChoiceTV.setText("Suma Bandung");
+                wilayahChoiceTV.setText("Bandung");
             } else if(wilayahSales.equals("5")){
-                wilayahChoiceTV.setText("Suma Semarang");
+                wilayahChoiceTV.setText("Semarang");
             } else if(wilayahSales.equals("6")){
-                wilayahChoiceTV.setText("Suma Surabaya");
+                wilayahChoiceTV.setText("Surabaya");
             } else if(wilayahSales.equals("7")){
                 wilayahChoiceTV.setText("Jakarta AE");
             } else {
