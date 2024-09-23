@@ -73,6 +73,7 @@ import com.gelora.absensi.adapter.AdapterPelangganLama;
 import com.gelora.absensi.adapter.AdapterPelangganList;
 import com.gelora.absensi.adapter.AdapterProductInputSuma;
 import com.gelora.absensi.adapter.AdapterProductSuma;
+import com.gelora.absensi.adapter.AdapterStatusAbsen;
 import com.gelora.absensi.adapter.AdapterTokoPelanggan;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataInvoicePiutang;
@@ -80,6 +81,7 @@ import com.gelora.absensi.model.DataNoSuratJalan;
 import com.gelora.absensi.model.PelangganLama;
 import com.gelora.absensi.model.PelangganList;
 import com.gelora.absensi.model.ProductSuma;
+import com.gelora.absensi.model.StatusAbsen;
 import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
 import com.google.android.gms.common.api.ApiException;
@@ -146,7 +148,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     LinearLayout f1TokoChoiceBTN, f1TokoBTN, f1AgendaOptionPart, f1AddPelangganBTN, f1AddPelangganPart, f1ChoiceDateBTN, f1DetailPelanggan, f1NamaPelangganLamaBTN, f1SubmitPesananBTN, f1PelangganAttantionPart, f1PelangganBaruPart, f1PelangganLamaPart;
     RadioGroup f1PelangganOption;
     RadioButton f1PelangganOptionBaru, f1PelangganOptionLama;
-    String f1DateChoice = "", f1JenisPelanggan = "", f1IdPelangganLama = "";
+    String devModeStatus = "", f1DateChoice = "", f1JenisPelanggan = "", f1IdPelangganLama = "";
     TextView titleMessageTV, f1TokoChoiceTV, f1ChoiceDateTV, f1NamaPelangganLamaChoiceTV, f1LabelLampiranTV, f1TotalPesananTV, f1SubTotalTV, f1AlamatPelangganLamaTV;
     RecyclerView f1PelangganRV, tokoRV;
     JSONArray f1JsonArrayPelanggan = new JSONArray();
@@ -314,6 +316,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2ListProductInputRV.setItemAnimator(new DefaultItemAnimator());
 
         salesPosition();
+        devModeCheck();
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
@@ -428,6 +431,9 @@ public class ReportSumaActivity extends AppCompatActivity {
                 extentionImage.clear();
                 fullBase64String = "";
                 f2TotalPesanan = 0;
+
+                salesPosition();
+                devModeCheck();
 
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -971,8 +977,6 @@ public class ReportSumaActivity extends AppCompatActivity {
             }
         });
 
-        //disini
-
         f2TokoChoiceBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1216,7 +1220,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                                         }
                                         public void onFinish() {
                                             i = -1;
-                                            if (isDeveloperModeEnabled()){
+                                            if (isDeveloperModeEnabled() && devModeStatus.equals("on")){
                                                 pDialog.dismiss();
                                                 new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
@@ -1595,7 +1599,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                                                     }
                                                     public void onFinish() {
                                                         i = -1;
-                                                        if (isDeveloperModeEnabled()){
+                                                        if (isDeveloperModeEnabled() && devModeStatus.equals("on")){
                                                             pDialog.dismiss();
                                                             new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian")
@@ -1724,7 +1728,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                                                     }
                                                     public void onFinish() {
                                                         i = -1;
-                                                        if (isDeveloperModeEnabled()){
+                                                        if (isDeveloperModeEnabled() && devModeStatus.equals("on")){
                                                             pDialog.dismiss();
                                                             new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian")
@@ -4225,6 +4229,52 @@ public class ReportSumaActivity extends AppCompatActivity {
             out.close();
             return Uri.fromFile(jpgFile);
         }
+    }
+
+    private void devModeCheck() {
+        final String url = "https://hrisgelora.co.id/api/dev_mode_check";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if(status.equals("on")){
+                                devModeStatus = "on";
+                            } else {
+                                devModeStatus = "off";
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
     }
 
     public boolean isDeveloperModeEnabled(){
