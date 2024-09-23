@@ -96,6 +96,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.hmdevcoders.awesometoast.AwesomeToast;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -146,7 +147,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     RadioGroup f1PelangganOption;
     RadioButton f1PelangganOptionBaru, f1PelangganOptionLama;
     String f1DateChoice = "", f1JenisPelanggan = "", f1IdPelangganLama = "";
-    TextView f1TokoChoiceTV, f1ChoiceDateTV, f1NamaPelangganLamaChoiceTV, f1LabelLampiranTV, f1TotalPesananTV, f1SubTotalTV, f1AlamatPelangganLamaTV;
+    TextView titleMessageTV, f1TokoChoiceTV, f1ChoiceDateTV, f1NamaPelangganLamaChoiceTV, f1LabelLampiranTV, f1TotalPesananTV, f1SubTotalTV, f1AlamatPelangganLamaTV;
     RecyclerView f1PelangganRV, tokoRV;
     JSONArray f1JsonArrayPelanggan = new JSONArray();
     private PelangganList[] pelangganLists;
@@ -224,6 +225,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         viewPermohonanTV = findViewById(R.id.view_permohonan_tv);
         titlePageTV = findViewById(R.id.title_page_tv);
         messageTV = findViewById(R.id.message_tv);
+        titleMessageTV = findViewById(R.id.title_message_tv);
 
         f1KeteranganKunjunganED = findViewById(R.id.f1_keterangan_kunjungan_ed);
         f1ChoiceDateBTN = findViewById(R.id.f1_choice_date_btn);
@@ -783,6 +785,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     if(!f1NamaPelangganBaruED.getText().toString().equals("") && !f1KeteranganKunjunganED.getText().toString().equals("") && !arrayAgenda.equals("[]")){
                         JSONObject dataPelangganBaru = new JSONObject();
                         try {
+                            AwesomeToast.makeText(getApplicationContext(), "Data berhasil ditambahkan", AwesomeToast.LENGTH_LONG, AwesomeToast.SUCCESS);
                             statuspelangganBaru = "0";
                             f1TokoChoiceTV.setText("");
                             f2TokoChoiceTV.setText("");
@@ -833,6 +836,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     if(!f1IdPelangganLama.equals("") && !f1KeteranganKunjunganED.getText().toString().equals("") && !arrayAgenda.equals("[]")){
                         JSONObject dataPelangganLama = new JSONObject();
                         try {
+                            AwesomeToast.makeText(getApplicationContext(), "Data berhasil ditambahkan", AwesomeToast.LENGTH_LONG, AwesomeToast.SUCCESS);
                             statuspelangganBaru = "0";
                             f1TokoChoiceTV.setText("");
                             f2TokoChoiceTV.setText("");
@@ -3853,6 +3857,7 @@ public class ReportSumaActivity extends AppCompatActivity {
 
                                 if(categoryReport.equals("1")){
                                     laporanTerkirim = "1";
+                                    titleMessageTV.setText("Rencana Terkirim");
                                     messageTV.setText("Terima kasih, rencana anda telah terkirim dan disimpan.");
                                     successPart.setVisibility(View.VISIBLE);
                                     formPart.setVisibility(View.GONE);
@@ -4005,6 +4010,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             }
             if(lampiranImage.size()-1==i){
                 laporanTerkirim = "1";
+                titleMessageTV.setText("Laporan Terkirim");
                 messageTV.setText("Terima kasih, laporan anda telah terkirim dan disimpan.");
                 successPart.setVisibility(View.VISIBLE);
                 formPart.setVisibility(View.GONE);

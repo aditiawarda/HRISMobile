@@ -116,5 +116,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel:2.8.6'
     implementation 'androidx.lifecycle:lifecycle-livedata:2.8.6'
+    implementation 'com.github.HMDevCoders:AwesomeToast-Android:1.0'
 
 }
