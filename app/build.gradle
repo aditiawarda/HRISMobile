@@ -12,8 +12,8 @@ android {
         minSdkVersion 21
         //noinspection OldTargetApi
         targetSdkVersion 34
-        versionCode 186
-        versionName "2.8.6"
+        versionCode 195
+        versionName "2.9.5"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -70,7 +70,7 @@ dependencies {
     implementation 'com.takisoft.datetimepicker:datetimepicker:1.0.3'
     implementation 'com.github.shasin89:NotificationBanner:1.1.5'
     implementation 'com.github.Mahfa:DayNightSwitch:1.5'
-    implementation platform('com.google.firebase:firebase-bom:33.2.0')
+    implementation platform('com.google.firebase:firebase-bom:33.3.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'androidx.cardview:cardview:1.0.0'

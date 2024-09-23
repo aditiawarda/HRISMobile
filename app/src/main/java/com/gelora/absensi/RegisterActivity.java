@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -50,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private StatusBarColorManager mStatusBarColorManager;
     EditText nikED, passwordED, repasswordED;
-    TextView namaTV, showPassword, matchPassword, indicatorMatchPass;
+    TextView versionAppTV, namaTV, showPassword, matchPassword, indicatorMatchPass;
     String regisStatus = "", statusPass = "hide";
     LinearLayout toLoginBTN, registerBTN, contactServiceBTN, connectBTN, closeBTN;
     BottomSheetLayout bottomSheetCS;
@@ -58,7 +59,10 @@ public class RegisterActivity extends AppCompatActivity {
     ProgressBar loadingProgressBar;
     View rootview;
     private Handler handler = new Handler();
+    Runnable runnable;
+    SharedPrefManager sharedPrefManager;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
 
+        sharedPrefManager = new SharedPrefManager(this);
         rootview = findViewById(android.R.id.content);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         nikED = findViewById(R.id.nikED);
@@ -81,6 +86,9 @@ public class RegisterActivity extends AppCompatActivity {
         bottomSheetCS = findViewById(R.id.bottom_sheet_cs);
         toLoginBTN = findViewById(R.id.to_login_btn);
         loadingProgressBar = findViewById(R.id.loadingProgressBar);
+        versionAppTV = findViewById(R.id.version_app_tv);
+
+        versionAppTV.setText("HRIS Mobile Gelora v "+sharedPrefManager.getSpVersionApp());
 
         loadingProgressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#A6441F"),android.graphics.PorterDuff.Mode.MULTIPLY);
 
@@ -168,20 +176,26 @@ public class RegisterActivity extends AppCompatActivity {
         nikED.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (runnable != null) {
+                    handler.removeCallbacks(runnable);
+                }
             }
-
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 String nik = nikED.getText().toString();
-                if(!nik.equals("")){
-                    getNamaKaryawan(nik);
+                if (!nik.isEmpty()) {
+                    runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            getNamaKaryawan(nik);
+                        }
+                    };
+                    handler.postDelayed(runnable, 3000);
                 }
             }
-
         });
 
         passwordED.addTextChangedListener(new TextWatcher() {

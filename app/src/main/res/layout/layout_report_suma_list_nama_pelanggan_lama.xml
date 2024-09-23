@@ -63,7 +63,8 @@
             android:textColor="@color/colorPrimaryDark"
             android:textColorHighlight="#FFDCB1"
             android:textColorHint="#D36C46"
-            tools:ignore="Autofill,HardcodedText,RtlHardcoded,TouchTargetSizeCheck,UnusedAttribute,VisualLintTextFieldSize" />
+            android:textSize="16dp"
+            tools:ignore="Autofill,HardcodedText,RtlHardcoded,SpUsage,TouchTargetSizeCheck,UnusedAttribute,VisualLintTextFieldSize" />
 
         <TextView
             android:layout_width="match_parent"

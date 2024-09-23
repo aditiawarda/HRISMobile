@@ -82,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="invisible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -734,8 +734,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
                             android:orientation="vertical"
-                            android:layout_marginBottom="15dp"
                             android:background="@color/darker_gray"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="8dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:textColor="#a6a6a6"
+                            android:text="Gunakan dua jari untuk zoom dokumen"
+                            tools:ignore="HardcodedText,SpUsage" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:orientation="vertical"
+                            android:layout_marginBottom="15dp"
+                            android:background="#D1D1D1"/>
 
                     </LinearLayout>
 
@@ -745,7 +762,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20dp"
                         android:orientation="horizontal"
-                        tools:ignore="DisableBaselineAlignment">
+                        tools:ignore="DisableBaselineAlignment,TooManyViews">
 
                         <LinearLayout
                             android:id="@+id/left_btn"
@@ -852,7 +869,7 @@
                 android:layout_height="match_parent"
                 android:paddingTop="140dp"
                 android:gravity="center|top"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:orientation="vertical"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"

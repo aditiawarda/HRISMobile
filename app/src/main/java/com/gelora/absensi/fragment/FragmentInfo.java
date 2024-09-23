@@ -76,7 +76,7 @@ public class FragmentInfo extends Fragment {
     TextView bagianNameTvEc, descContactHRDTV, titlePage, dateNowTV, countNotifFingerTV, countNotifIzinTV;
     ExpandableLayout aboutAppField, privacyPolicyField, contactServiceField;
     LinearLayout inLayoutIzin, inLayoutFinger, countNotificationIkk, permohonanIkkBTN, reportSalesPart, ecBTN, menuPermohonanPart, headerPart, helpDeskIT, helpDeskHRD, sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
-    TextView labelNotificationFinger, countNotifIkkTV, labelNotificationIzin, bagianNameTVSDM, historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    TextView versionAppTV, labelNotificationFinger, countNotifIkkTV, labelNotificationIzin, bagianNameTVSDM, historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     ImageView hrisLogo, notifFiturLoading, sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     SwipeRefreshLayout refreshLayout;
     String selectMonth = "", statusFiturIzinCuti = "1", statusFiturFinger = "1", currentDay = "", otoritorEC = "", listSDM = "";
@@ -178,6 +178,9 @@ public class FragmentInfo extends Fragment {
         imgFinger = view.findViewById(R.id.img_finger);
         inLayoutIzin = view.findViewById(R.id.in_layout_izin);
         inLayoutFinger = view.findViewById(R.id.in_layout_finger);
+        versionAppTV = view.findViewById(R.id.version_app_tv);
+
+        versionAppTV.setText("Versi yang saat ini anda gunakan adalah versi "+sharedPrefManager.getSpVersionApp());
 
         selectMonth = getBulanTahun();
         dateNowTV.setText(getDate().substring(8,10)+"/"+getDate().substring(5,7)+"/"+getDate().substring(0,4));
@@ -900,7 +903,7 @@ public class FragmentInfo extends Fragment {
                                         bagianNameTV.setText(bagian);
                                         bagianNameTVSDM.setText(bagian);
                                         bagianNameTvEc.setText(bagian);
-                                    } else if (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")){
+                                    } else if (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")||sharedPrefManager.getSpNik().equals("1738040712")){
                                         monitoringStaffBTN.setVisibility(View.VISIBLE);
                                         titlePantau.setText("Pantau kehadiran bagian*");
                                         notePantau.setText("*Fitur khusus monitoring Bagian");

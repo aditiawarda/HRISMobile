@@ -70,6 +70,15 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         } else if (dataReportSuma.getTipeLaporan().equals("4")) {
             myViewHolder.reportCategoryTV.setText("Aktivitas Pengiriman");
             myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
+        } else if (dataReportSuma.getTipeLaporan().equals("5")) {
+            myViewHolder.reportCategoryTV.setText("Non Join Visit");
+            myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
+        } else if (dataReportSuma.getTipeLaporan().equals("6")) {
+            myViewHolder.reportCategoryTV.setText("Join Visit");
+            myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
+        } else if (dataReportSuma.getTipeLaporan().equals("7")) {
+            myViewHolder.reportCategoryTV.setText("Pameran");
+            myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
         }
 
         myViewHolder.namaSalesTV.setText(dataReportSuma.getNamaKaryawan());
@@ -81,7 +90,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         } else if(dataReportSuma.getNmJabatan().equals("Group Leader Suma 3") || dataReportSuma.getNmJabatan().equals("Salesman Suma 3")){
             myViewHolder.regionTV.setText("Jakarta 3");
         } else if(dataReportSuma.getNmJabatan().equals("Group Leader AE") || dataReportSuma.getNmJabatan().equals("Staff AE")){
-            myViewHolder.regionTV.setText("Account Executive");
+            myViewHolder.regionTV.setText("Jakarta AE");
         } else {
             String[] jabatan = dataReportSuma.getNmJabatan().split("\\s+");
             String region = jabatan[jabatan.length - 1];
@@ -96,6 +105,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             myViewHolder.kunjunganPart.setVisibility(View.GONE);
             myViewHolder.penagihanPart.setVisibility(View.GONE);
             myViewHolder.pengirimanPart.setVisibility(View.GONE);
+            myViewHolder.njvPart.setVisibility(View.GONE);
             if(String.valueOf(dataReportSuma.getTgl_rencana()).equals("")||String.valueOf(dataReportSuma.getTgl_rencana()).equals("null")){
                 myViewHolder.f1TanggalRencanaTV.setText("Tidak tersedia");
             } else {
@@ -107,6 +117,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             myViewHolder.kunjunganPart.setVisibility(View.VISIBLE);
             myViewHolder.penagihanPart.setVisibility(View.GONE);
             myViewHolder.pengirimanPart.setVisibility(View.GONE);
+            myViewHolder.njvPart.setVisibility(View.GONE);
             if(!dataReportSuma.getTotalPesanan().equals("null") && !dataReportSuma.getTotalPesanan().equals("") && !dataReportSuma.equals(null)){
                 if(!dataReportSuma.getTotalPesanan().equals("0")){
                     myViewHolder.f2TotalPesananTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalPesanan())));
@@ -122,6 +133,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             myViewHolder.kunjunganPart.setVisibility(View.GONE);
             myViewHolder.penagihanPart.setVisibility(View.VISIBLE);
             myViewHolder.pengirimanPart.setVisibility(View.GONE);
+            myViewHolder.njvPart.setVisibility(View.GONE);
             if(!dataReportSuma.getTotalTagihan().equals("null") && !dataReportSuma.getTotalTagihan().equals("") && !dataReportSuma.equals(null)){
                 if(!dataReportSuma.getTotalTagihan().equals("0")){
                     myViewHolder.f3TotalTagihanTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalTagihan())));
@@ -137,12 +149,20 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             myViewHolder.kunjunganPart.setVisibility(View.GONE);
             myViewHolder.penagihanPart.setVisibility(View.GONE);
             myViewHolder.pengirimanPart.setVisibility(View.VISIBLE);
+            myViewHolder.njvPart.setVisibility(View.GONE);
             if(String.valueOf(dataReportSuma.getNoSuratJalan()).equals("null")||String.valueOf(dataReportSuma.getNoSuratJalan()).equals("")){
                 myViewHolder.f4NoSJTV.setText("Tidak dicantumkan");
             } else {
                 myViewHolder.f4NoSJTV.setText(dataReportSuma.getNoSuratJalan());
             }
             myViewHolder.f4TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
+        } else if(dataReportSuma.getTipeLaporan().equals("5")||dataReportSuma.getTipeLaporan().equals("6")||dataReportSuma.getTipeLaporan().equals("7")){
+            myViewHolder.rencanaKunjunganPart.setVisibility(View.GONE);
+            myViewHolder.kunjunganPart.setVisibility(View.GONE);
+            myViewHolder.penagihanPart.setVisibility(View.GONE);
+            myViewHolder.pengirimanPart.setVisibility(View.GONE);
+            myViewHolder.njvPart.setVisibility(View.VISIBLE);
+            myViewHolder.f5TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
         }
 
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
@@ -163,8 +183,8 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView namaSalesTV, namaPelangganTV, f1StatusRealisasi, regionTV;
-        TextView f4NoSJTV, f4TanggalLaporanTV, f3TanggalLaporanTV, f3TotalTagihanTV, reportCategoryTV, f1TanggalRencanaTV, f1TanggalLaporanTV, f2TotalPesananTV, f2TanggalLaporanTV;
-        LinearLayout pengirimanPart, parentPart, kunjunganPart, rencanaKunjunganPart, penagihanPart;
+        TextView f5TanggalLaporanTV, f4NoSJTV, f4TanggalLaporanTV, f3TanggalLaporanTV, f3TotalTagihanTV, reportCategoryTV, f1TanggalRencanaTV, f1TanggalLaporanTV, f2TotalPesananTV, f2TanggalLaporanTV;
+        LinearLayout njvPart, pengirimanPart, parentPart, kunjunganPart, rencanaKunjunganPart, penagihanPart;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parentPart = itemView.findViewById(R.id.parent_part);
@@ -181,12 +201,14 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             f3TotalTagihanTV = itemView.findViewById(R.id.f3_total_tagihan_tv);
             f3TanggalLaporanTV = itemView.findViewById(R.id.f3_tanggal_laporan_tv);
             f4TanggalLaporanTV = itemView.findViewById(R.id.f4_tanggal_laporan_tv);
+            f5TanggalLaporanTV = itemView.findViewById(R.id.f5_tanggal_laporan_tv);
             f4NoSJTV = itemView.findViewById(R.id.f4_no_sj_tv);
 
             kunjunganPart = itemView.findViewById(R.id.kunjungan_part);
             rencanaKunjunganPart = itemView.findViewById(R.id.rencana_kunjungan_part);
             penagihanPart = itemView.findViewById(R.id.penagihan_part);
             pengirimanPart = itemView.findViewById(R.id.pengiriman_part);
+            njvPart = itemView.findViewById(R.id.njv_part);
         }
     }
 

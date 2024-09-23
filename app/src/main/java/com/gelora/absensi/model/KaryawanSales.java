@@ -8,6 +8,7 @@ public class KaryawanSales {
     private String jabatan;
     private String bagian;
     private String departemen;
+    private String wilayah;
 
     public String getNIK() {
         return NIK;
@@ -49,4 +50,11 @@ public class KaryawanSales {
         this.departemen = departemen;
     }
 
+    public String getWilayah() {
+        return wilayah;
+    }
+
+    public void setWilayah(String wilayah) {
+        this.wilayah = wilayah;
+    }
 }

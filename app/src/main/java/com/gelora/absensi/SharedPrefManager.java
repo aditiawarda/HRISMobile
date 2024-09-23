@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 
 public class SharedPrefManager {
 
+
     public static final String SP_ABSENSI_APP = "spAbsensiApp";
+    public static final String SP_VERSION_APP = "spVersionApp";
     public static final String SP_HALAMAN = "spHalaman";
     public static final String SP_SUDAH_LOGIN = "spSudahLogin";
     public static final String SP_ID = "spID";
@@ -49,6 +51,9 @@ public class SharedPrefManager {
         spEditor.commit();
     }
 
+    public String getSpVersionApp(){
+        return sp.getString(SP_VERSION_APP, "");
+    }
     public String getSpHalaman(){
         return sp.getString(SP_HALAMAN, "");
     }

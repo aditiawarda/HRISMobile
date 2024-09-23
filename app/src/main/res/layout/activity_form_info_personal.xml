@@ -495,7 +495,9 @@
                                     android:textColorHighlight="#FFE1BC"
                                     android:textColorHint="#595959"
                                     android:textSize="13dp"
-                                    tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+                                    android:importantForAutofill="no"
+                                    android:importantForAccessibility="no"
+                                    tools:ignore="LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
                             </LinearLayout>
 
@@ -560,7 +562,9 @@
                                         android:textColorHighlight="#FFE1BC"
                                         android:textColorHint="#595959"
                                         android:textSize="13dp"
-                                        tools:ignore="Autofill,LabelFor,SpUsage,VisualLintTextFieldSize" />
+                                        android:importantForAutofill="no"
+                                        android:importantForAccessibility="no"
+                                        tools:ignore="LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
                                 </net.cachapa.expandablelayout.ExpandableLayout>
 

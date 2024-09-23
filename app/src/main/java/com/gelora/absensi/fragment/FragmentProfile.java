@@ -88,7 +88,7 @@ public class FragmentProfile extends Fragment {
 
     LinearLayout nonGapSgnBTN, infoGapPart, warningInfoKontakDarurat, warningInfoPersonal, updateAppBTN, removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
     LinearLayout infoPersonalBTN, infoPekerjaanBTN, infoKontakDaruratBTN, infoKeluargaBTN, infoPengalamanDanPelatihanBTN, infoPayrollBTN;
-    TextView nameOfUser, nikTV, positionOfUser, descAvailable, descEmpty;
+    TextView versionAppTV, nameOfUser, nikTV, positionOfUser, descAvailable, descEmpty;
     ImageView avatarUser;
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
@@ -103,6 +103,7 @@ public class FragmentProfile extends Fragment {
     private int i = -1;
     private Handler handler = new Handler();
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -145,6 +146,9 @@ public class FragmentProfile extends Fragment {
         warningInfoKontakDarurat = view.findViewById(R.id.warning_info_kontak_darurat);
         infoGapPart = view.findViewById(R.id.info_gap_part);
         nonGapSgnBTN = view.findViewById(R.id.non_gap_sgn_btn);
+        versionAppTV = view.findViewById(R.id.version_app_tv);
+
+        versionAppTV.setText("Versi "+sharedPrefManager.getSpVersionApp());
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -577,7 +581,7 @@ public class FragmentProfile extends Fragment {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "2.8.6"; //harus disesuaikan
+                                String currentVersion = sharedPrefManager.getSpVersionApp();
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateAppBTN.setVisibility(View.VISIBLE);
                                     updateAppBTN.setOnClickListener(new View.OnClickListener() {

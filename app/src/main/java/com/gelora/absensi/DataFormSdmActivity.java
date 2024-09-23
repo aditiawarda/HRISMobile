@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -129,7 +130,7 @@ public class DataFormSdmActivity extends AppCompatActivity {
                                 int waiting_data = Integer.parseInt(waiting_kadep) + Integer.parseInt(waiting_kabag);
 
                                 if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")){
-                                    if(sharedPrefManager.getSpNik().equals("3294031022") || sharedPrefManager.getSpNik().equals("0113010500") || sharedPrefManager.getSpNik().equals("0687260508") || sharedPrefManager.getSpNik().equals("0057010793") || sharedPrefManager.getSpNik().equals("0015141287") || sharedPrefManager.getSpNik().equals("0121010900")){
+                                    if(sharedPrefManager.getSpNik().equals("3294031022") || sharedPrefManager.getSpNik().equals("0113010500") || sharedPrefManager.getSpNik().equals("0687260508") || sharedPrefManager.getSpNik().equals("0057010793") || sharedPrefManager.getSpNik().equals("1504060711") || sharedPrefManager.getSpNik().equals("0015141287") || sharedPrefManager.getSpNik().equals("0121010900")){
                                         if(waiting_data>0){
                                             countWaitingBTN.setVisibility(View.VISIBLE);
                                             countWaitingTV.setText(String.valueOf(waiting_data));
@@ -146,7 +147,7 @@ public class DataFormSdmActivity extends AppCompatActivity {
                                             countWaitingTV.setText("");
                                         }
                                     }
-                                } else if(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
+                                } else if(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")||sharedPrefManager.getSpNik().equals("1738040712"))){
                                     if(waiting_data>0){
                                         countWaitingBTN.setVisibility(View.VISIBLE);
                                         countWaitingTV.setText(String.valueOf(waiting_data));
@@ -197,6 +198,12 @@ public class DataFormSdmActivity extends AppCompatActivity {
                 return params;
             }
         };
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                0,
+                -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
 
         requestQueue.add(postRequest);
 

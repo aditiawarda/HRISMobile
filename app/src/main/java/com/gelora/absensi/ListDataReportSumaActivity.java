@@ -16,6 +16,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.icu.util.Calendar;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -30,7 +31,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -40,10 +43,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterKaryawanSales;
+import com.gelora.absensi.adapter.AdapterStatusAbsen;
 import com.gelora.absensi.adapter.AdapterSumaReport;
+import com.gelora.absensi.adapter.AdapterWilayahSuma;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataReportSuma;
 import com.gelora.absensi.model.KaryawanSales;
+import com.gelora.absensi.model.StatusAbsen;
+import com.gelora.absensi.model.WilayahSuma;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.gson.Gson;
@@ -63,8 +70,8 @@ import java.util.Map;
 
 public class ListDataReportSumaActivity extends AppCompatActivity {
 
-    LinearLayout subCatBTN, attantionReportPart, salesChoiceBTN, salesBTN, catBTN, filterBarPart, dateBTN, noDataPartReport, loadingDataPartReport, rencanaBTN, aktivitasBTN, penagihanBTN, pengirimanBTN, promosiBTN, markRencana, markAktivitas, markPenagihan, markPengiriman, markKunjungan, actionBar, backBTN, addBTN, filterCategoryBTN, filterSubCategoryBTN;
-    TextView semuaDataBTN, salesChoiceTV, choiceDateTV, categoryChoiceTV, subCategoryChoiceTV, dateLabel;
+    LinearLayout pameranBTN, jvBTN, njvBTN, wilayahBTN, filterWilayahBTN, subCatBTN, attantionReportPart, salesChoiceBTN, salesBTN, catBTN, filterBarPart, dateBTN, noDataPartReport, loadingDataPartReport, rencanaBTN, aktivitasBTN, penagihanBTN, pengirimanBTN, promosiBTN, markRencana, markAktivitas, markNjv, markJv, markPameran, markPenagihan, markPengiriman, markKunjungan, actionBar, backBTN, addBTN, filterCategoryBTN, filterSubCategoryBTN;
+    TextView semuaWilayahBTN, wilayahChoiceTV, semuaDataBTN, salesChoiceTV, choiceDateTV, categoryChoiceTV, subCategoryChoiceTV, dateLabel;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -75,9 +82,11 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     private DataReportSuma[] dataReportSumas;
     private AdapterSumaReport adapterSumaReport;
     EditText keywordKaryawanSales;
-    RecyclerView karyawanSalesRV;
+    RecyclerView karyawanSalesRV, wilayahRV;
     LinearLayout contentPart, startAttantionPart, noDataPart, loadingDataPart;
     private KaryawanSales[] karyawanSales;
+    private WilayahSuma[] wilayahSumas;
+    private AdapterWilayahSuma adapterWilayahSuma;
     private AdapterKaryawanSales adapterKaryawanSales;
     private Handler handler = new Handler();
 
@@ -98,6 +107,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         filterSubCategoryBTN = findViewById(R.id.filter_sub_category_btn);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         categoryChoiceTV = findViewById(R.id.category_choice_tv);
+        subCategoryChoiceTV = findViewById(R.id.sub_category_choice_tv);
         loadingDataPartReport = findViewById(R.id.loading_data_part_report);
         noDataPartReport = findViewById(R.id.no_data_part_report);
         attantionReportPart = findViewById(R.id.attantion_data_part_report);
@@ -112,9 +122,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         salesChoiceBTN = findViewById(R.id.sales_choice_btn);
         salesChoiceTV = findViewById(R.id.sales_choice_tv);
         contentPart = findViewById(R.id.content_part);
-        subCategoryChoiceTV = findViewById(R.id.sub_category_choice_tv);
+        wilayahBTN = findViewById(R.id.wilayah_btn);
+        filterWilayahBTN = findViewById(R.id.filter_wilayah_btn);
+        wilayahChoiceTV = findViewById(R.id.wilayah_choice_tv);
 
         MaterialDatePicker materialDatePicker = MaterialDatePicker.Builder.dateRangePicker().setSelection(Pair.create(MaterialDatePicker.todayInUtcMilliseconds(),MaterialDatePicker.todayInUtcMilliseconds())).build();
+        LocalBroadcastManager.getInstance(this).registerReceiver(wilayahSumaBroad, new IntentFilter("wilayah_suma_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(karyawanSalesBroad, new IntentFilter("karyawan_sales_broad"));
 
         catBTN.setVisibility(View.VISIBLE);
@@ -123,6 +136,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 || sharedPrefManager.getSpNik().equals("1504060711") // Ibu There
                 || sharedPrefManager.getSpNik().equals("0121010900") // Bapak Nurcahyo
                 || sharedPrefManager.getSpNik().equals("0981010210") // Ibu Ranti
+                || sharedPrefManager.getSpNik().equals("3436170924") // Bapak Nico
                 || sharedPrefManager.getSpNik().equals("0552260707") // Ibu Dina
                 || sharedPrefManager.getSpNik().equals("3318060323") // Bapak Dominggus
                 || sharedPrefManager.getSpNik().equals("0499070507") // Bapak Dawud
@@ -144,13 +158,17 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             } else { // Management
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA, "");
                 addBTN.setVisibility(View.VISIBLE);
             }
+            wilayahBTN.setVisibility(View.VISIBLE);
             salesChoiceTV.setText("Semua Sales");
             salesBTN.setVisibility(View.VISIBLE);
         } else {
             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, sharedPrefManager.getSpNama());
             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, sharedPrefManager.getSpNik());
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA, "");
+            wilayahBTN.setVisibility(View.GONE);
             salesChoiceTV.setText(sharedPrefAbsen.getSpSalesActive());
             salesBTN.setVisibility(View.GONE);
             addBTN.setVisibility(View.VISIBLE);
@@ -158,6 +176,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         categoryCode = "1";
         dateLabel.setText("Tanggal Rencana :");
         categoryChoiceTV.setText("Rencana Kunjungan");
+        wilayahChoiceTV.setText("Semua Wilayah");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "1");
         subCatBTN.setVisibility(View.GONE);
 
@@ -192,7 +211,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                             getData(subCategoryCode);
                         }
                     }
-                }, 500);
+                }, 0);
             }
         });
 
@@ -254,9 +273,16 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                                     getData(subCategoryCode);
                                 }
                             }
-                        }, 1000);
+                        }, 0);
                     }
                 });
+            }
+        });
+
+        filterWilayahBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                wilayahPicker();
             }
         });
 
@@ -288,7 +314,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     getData(categoryCode);
                 }
             }
-        }, 500);
+        }, 0);
 
     }
 
@@ -319,9 +345,9 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     private void getData(String category_code){
         String url;
         if(sharedPrefAbsen.getSpNikSalesActive().equals("")){
-            url = "https://reporting.sumasistem.co.id/api/suma_report_list?nik=0&tipe_laporan="+category_code+"&tanggal_mulai="+dateStartChoice+"&tanggal_akhir="+dateEndChoice+"&requester="+sharedPrefManager.getSpNik();
+            url = "https://reporting.sumasistem.co.id/api/suma_report_list?nik=0&tipe_laporan="+category_code+"&tanggal_mulai="+dateStartChoice+"&tanggal_akhir="+dateEndChoice+"&wilayah="+sharedPrefAbsen.getSpWilayahSuma()+"&requester="+sharedPrefManager.getSpNik();
         } else {
-            url = "https://reporting.sumasistem.co.id/api/suma_report_list?nik="+sharedPrefAbsen.getSpNikSalesActive()+"&tipe_laporan="+category_code+"&tanggal_mulai="+dateStartChoice+"&tanggal_akhir="+dateEndChoice+"&requester="+sharedPrefManager.getSpNik();
+            url = "https://reporting.sumasistem.co.id/api/suma_report_list?nik="+sharedPrefAbsen.getSpNikSalesActive()+"&tipe_laporan="+category_code+"&tanggal_mulai="+dateStartChoice+"&wilayah="+sharedPrefAbsen.getSpWilayahSuma()+"&tanggal_akhir="+dateEndChoice+"&requester="+sharedPrefManager.getSpNik();
         }
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -349,7 +375,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                                         loadingDataPartReport.setVisibility(View.GONE);
                                         noDataPartReport.setVisibility(View.GONE);
                                     }
-                                }, 1500);
+                                }, 0);
 
                             } else {
                                 attantionReportPart.setVisibility(View.GONE);
@@ -383,6 +409,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         .show();
             }
         });
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                0,
+                -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        request.setRetryPolicy(retryPolicy);
 
         requestQueue.add(request);
 
@@ -452,7 +484,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                             public void run() {
                                 getData(categoryCode);
                             }
-                        }, 1000);
+                        }, 0);
                     }
                 }, 300);
 
@@ -468,7 +500,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 categoryCode = "0";
                 subCategoryCode = "2";
                 categoryChoiceTV.setText("Aktivitas Kunjungan");
-                subCategoryChoiceTV.setText("Aktivitas Promosi");
+                subCategoryChoiceTV.setText("Promosi");
 
                 subCatBTN.setVisibility(View.VISIBLE);
                 markRencana.setVisibility(View.GONE);
@@ -492,7 +524,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                                     getData(categoryCode);
                                 }
                             }
-                        }, 1000);
+                        }, 0);
                     }
                 }, 300);
 
@@ -507,35 +539,97 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         promosiBTN = findViewById(R.id.promosi_btn);
         pengirimanBTN = findViewById(R.id.pengiriman_btn);
         penagihanBTN = findViewById(R.id.penagihan_btn);
+        njvBTN = findViewById(R.id.njv_btn);
+        jvBTN = findViewById(R.id.jv_btn);
+        pameranBTN = findViewById(R.id.pameran_btn);
         markKunjungan = findViewById(R.id.mark_pesanan);
         markPengiriman = findViewById(R.id.mark_pengiriman);
         markPenagihan = findViewById(R.id.mark_penagihan);
+        markNjv = findViewById(R.id.mark_njv);
+        markJv = findViewById(R.id.mark_jv);
+        markPameran = findViewById(R.id.mark_pameran);
 
        if(subCategoryCode.equals("2")) {
            dateLabel.setText("Tanggal :");
            markKunjungan.setVisibility(View.VISIBLE);
            markPengiriman.setVisibility(View.GONE);
            markPenagihan.setVisibility(View.GONE);
+           markNjv.setVisibility(View.GONE);
+           markJv.setVisibility(View.GONE);
+           markPameran.setVisibility(View.GONE);
            promosiBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option_choice));
            pengirimanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
            penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           njvBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           pameranBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
        } else if(subCategoryCode.equals("3")) {
            dateLabel.setText("Tanggal :");
            markKunjungan.setVisibility(View.GONE);
            markPengiriman.setVisibility(View.GONE);
            markPenagihan.setVisibility(View.VISIBLE);
+           markNjv.setVisibility(View.GONE);
+           markJv.setVisibility(View.GONE);
+           markPameran.setVisibility(View.GONE);
            promosiBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
            pengirimanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
            penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option_choice));
+           njvBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           pameranBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
        } else if(subCategoryCode.equals("4")) {
            dateLabel.setText("Tanggal :");
            markKunjungan.setVisibility(View.GONE);
            markPengiriman.setVisibility(View.VISIBLE);
            markPenagihan.setVisibility(View.GONE);
+           markNjv.setVisibility(View.GONE);
+           markJv.setVisibility(View.GONE);
+           markPameran.setVisibility(View.GONE);
            promosiBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
            pengirimanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option_choice));
            penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
-        }
+           njvBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           pameranBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+       } else if(subCategoryCode.equals("5")) {
+           dateLabel.setText("Tanggal :");
+           markKunjungan.setVisibility(View.GONE);
+           markPengiriman.setVisibility(View.GONE);
+           markPenagihan.setVisibility(View.GONE);
+           markNjv.setVisibility(View.VISIBLE);
+           markJv.setVisibility(View.GONE);
+           markPameran.setVisibility(View.GONE);
+           promosiBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           pengirimanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           njvBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option_choice));
+           pameranBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+       } else if(subCategoryCode.equals("6")) {
+           dateLabel.setText("Tanggal :");
+           markKunjungan.setVisibility(View.GONE);
+           markPengiriman.setVisibility(View.GONE);
+           markPenagihan.setVisibility(View.GONE);
+           markNjv.setVisibility(View.GONE);
+           markJv.setVisibility(View.VISIBLE);
+           markPameran.setVisibility(View.GONE);
+           promosiBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           pengirimanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           njvBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           jvBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option_choice));
+           pameranBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+       } else if(subCategoryCode.equals("7")) {
+           dateLabel.setText("Tanggal :");
+           markKunjungan.setVisibility(View.GONE);
+           markPengiriman.setVisibility(View.GONE);
+           markPenagihan.setVisibility(View.GONE);
+           markNjv.setVisibility(View.GONE);
+           markJv.setVisibility(View.GONE);
+           markPameran.setVisibility(View.VISIBLE);
+           promosiBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           pengirimanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           penagihanBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           njvBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           jvBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+           pameranBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option_choice));
+       }
 
         promosiBTN.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
@@ -544,13 +638,19 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 // sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "0");
                 dateLabel.setText("Tanggal :");
                 subCategoryCode = "2";
-                subCategoryChoiceTV.setText("Aktivitas Promosi");
+                subCategoryChoiceTV.setText("Promosi");
                 markKunjungan.setVisibility(View.VISIBLE);
                 markPengiriman.setVisibility(View.GONE);
                 markPenagihan.setVisibility(View.GONE);
+                markNjv.setVisibility(View.GONE);
+                markJv.setVisibility(View.GONE);
+                markPameran.setVisibility(View.GONE);
                 promosiBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
                 pengirimanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 penagihanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                njvBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                jvBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                pameranBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -564,7 +664,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                             public void run() {
                                 getData(subCategoryCode);
                             }
-                        }, 1000);
+                        }, 0);
                     }
                 }, 300);
             }
@@ -577,13 +677,19 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 // sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "3");
                 dateLabel.setText("Tanggal :");
                 subCategoryCode = "3";
-                subCategoryChoiceTV.setText("Aktivitas Penagihan");
+                subCategoryChoiceTV.setText("Penagihan");
                 markKunjungan.setVisibility(View.GONE);
                 markPengiriman.setVisibility(View.GONE);
                 markPenagihan.setVisibility(View.VISIBLE);
+                markNjv.setVisibility(View.GONE);
+                markJv.setVisibility(View.GONE);
+                markPameran.setVisibility(View.GONE);
                 promosiBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 pengirimanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 penagihanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
+                njvBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                jvBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                pameranBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -597,7 +703,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                             public void run() {
                                 getData(subCategoryCode);
                             }
-                        }, 1000);
+                        }, 0);
                     }
                 }, 300);
 
@@ -611,13 +717,19 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 // sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "4");
                 dateLabel.setText("Tanggal :");
                 subCategoryCode = "4";
-                subCategoryChoiceTV.setText("Aktivitas Pengiriman");
+                subCategoryChoiceTV.setText("Pengiriman");
                 markKunjungan.setVisibility(View.GONE);
                 markPengiriman.setVisibility(View.VISIBLE);
                 markPenagihan.setVisibility(View.GONE);
+                markNjv.setVisibility(View.GONE);
+                markJv.setVisibility(View.GONE);
+                markPameran.setVisibility(View.GONE);
                 promosiBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 pengirimanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
                 penagihanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                njvBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                jvBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                pameranBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -632,7 +744,133 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                             public void run() {
                                 getData(subCategoryCode);
                             }
-                        }, 1000);
+                        }, 0);
+
+                    }
+                }, 300);
+
+            }
+        });
+
+        njvBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                // sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "4");
+                dateLabel.setText("Tanggal :");
+                subCategoryCode = "5";
+                subCategoryChoiceTV.setText("Non Join Visit");
+                markKunjungan.setVisibility(View.GONE);
+                markPengiriman.setVisibility(View.GONE);
+                markPenagihan.setVisibility(View.GONE);
+                markNjv.setVisibility(View.VISIBLE);
+                markJv.setVisibility(View.GONE);
+                markPameran.setVisibility(View.GONE);
+                promosiBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                pengirimanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                penagihanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                njvBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
+                jvBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                pameranBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+
+                        attantionReportPart.setVisibility(View.GONE);
+                        reportRV.setVisibility(View.GONE);
+                        loadingDataPartReport.setVisibility(View.VISIBLE);
+                        noDataPartReport.setVisibility(View.GONE);
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                getData(subCategoryCode);
+                            }
+                        }, 0);
+
+                    }
+                }, 300);
+
+            }
+        });
+
+        jvBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                // sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "4");
+                dateLabel.setText("Tanggal :");
+                subCategoryCode = "6";
+                subCategoryChoiceTV.setText("Join Visit");
+                markKunjungan.setVisibility(View.GONE);
+                markPengiriman.setVisibility(View.GONE);
+                markPenagihan.setVisibility(View.GONE);
+                markNjv.setVisibility(View.GONE);
+                markJv.setVisibility(View.VISIBLE);
+                markPameran.setVisibility(View.GONE);
+                promosiBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                pengirimanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                penagihanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                njvBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                jvBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
+                pameranBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+
+                        attantionReportPart.setVisibility(View.GONE);
+                        reportRV.setVisibility(View.GONE);
+                        loadingDataPartReport.setVisibility(View.VISIBLE);
+                        noDataPartReport.setVisibility(View.GONE);
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                getData(subCategoryCode);
+                            }
+                        }, 0);
+
+                    }
+                }, 300);
+
+            }
+        });
+
+        pameranBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                // sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "4");
+                dateLabel.setText("Tanggal :");
+                subCategoryCode = "7";
+                subCategoryChoiceTV.setText("Pameran");
+                markKunjungan.setVisibility(View.GONE);
+                markPengiriman.setVisibility(View.GONE);
+                markPenagihan.setVisibility(View.GONE);
+                markNjv.setVisibility(View.GONE);
+                markJv.setVisibility(View.GONE);
+                markPameran.setVisibility(View.VISIBLE);
+                promosiBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                pengirimanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                penagihanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                njvBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                jvBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                pameranBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+
+                        attantionReportPart.setVisibility(View.GONE);
+                        reportRV.setVisibility(View.GONE);
+                        loadingDataPartReport.setVisibility(View.VISIBLE);
+                        noDataPartReport.setVisibility(View.GONE);
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                getData(subCategoryCode);
+                            }
+                        }, 0);
 
                     }
                 }, 300);
@@ -743,7 +981,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                             getData(subCategoryCode);
                         }
                     }
-                }, 1000);
+                }, 0);
 
             }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
             dpd.show();
@@ -848,11 +1086,99 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                             getData(subCategoryCode);
                         }
                     }
-                }, 1000);
+                }, 0);
 
             }, y,m-1,d);
             dpd.show();
         }
+
+    }
+
+    private void wilayahPicker(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_wilayah_suma, bottomSheet, false));
+        wilayahRV = findViewById(R.id.wilayah_rv);
+        semuaWilayahBTN = findViewById(R.id.semua_wilayah_btn);
+
+        try {
+            wilayahRV.setLayoutManager(new LinearLayoutManager(this));
+            wilayahRV.setHasFixedSize(true);
+            wilayahRV.setNestedScrollingEnabled(false);
+            wilayahRV.setItemAnimator(new DefaultItemAnimator());
+
+            getWilayah();
+        } catch (NullPointerException e){
+            Log.e("Error", e.toString());
+        }
+
+        semuaWilayahBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                wilayahChoiceTV.setText("Semua Wilayah");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA, "");
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                        attantionReportPart.setVisibility(View.GONE);
+                        reportRV.setVisibility(View.GONE);
+                        loadingDataPartReport.setVisibility(View.VISIBLE);
+                        noDataPartReport.setVisibility(View.GONE);
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(categoryCode.equals("1")){
+                                    getData(categoryCode);
+                                } else {
+                                    getData(subCategoryCode);
+                                }
+                            }
+                        }, 0);
+                    }
+                }, 300);
+            }
+        });
+    }
+
+    private void getWilayah() {
+        final String url = "https://reporting.sumasistem.co.id/api/get_wilayah?asmen="+sharedPrefManager.getSpNik();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            String data = response.getString("data");
+
+                            GsonBuilder builder =new GsonBuilder();
+                            Gson gson = builder.create();
+                            wilayahSumas = gson.fromJson(data, WilayahSuma[].class);
+                            adapterWilayahSuma = new AdapterWilayahSuma(wilayahSumas,ListDataReportSumaActivity.this);
+                            try {
+                                wilayahRV.setAdapter(adapterWilayahSuma);
+                            } catch (NullPointerException e) {
+                                e.printStackTrace();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.d("Error.Response", error.toString());
+                bottomSheet.dismissSheet();
+                connectionFailed();
+            }
+        });
+
+        requestQueue.add(request);
 
     }
 
@@ -971,6 +1297,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 salesChoiceTV.setText("Semua Sales");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA, "");
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -988,7 +1315,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                                     getData(subCategoryCode);
                                 }
                             }
-                        }, 1000);
+                        }, 0);
                     }
                 }, 300);
             }
@@ -1064,14 +1391,14 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
 
     }
 
-    public BroadcastReceiver karyawanSalesBroad = new BroadcastReceiver() {
+    public BroadcastReceiver wilayahSumaBroad = new BroadcastReceiver() {
         @SuppressLint("SetTextI18n")
         @Override
         public void onReceive(Context context, Intent intent) {
-            String nikKaryawanSales = intent.getStringExtra("nik_karyawan_sales");
-            String namaKaryawanSales = intent.getStringExtra("nama_karyawan_sales");
+            String idWilayah = intent.getStringExtra("id_wilayah_suma");
+            String namaWilayah = intent.getStringExtra("nama_wilayah_suma");
 
-            salesChoiceTV.setText(namaKaryawanSales);
+            wilayahChoiceTV.setText(namaWilayah);
 
             InputMethodManager imm = (InputMethodManager) ListDataReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
             View view = ListDataReportSumaActivity.this.getCurrentFocus();
@@ -1098,7 +1425,66 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                             }
 
                         }
-                    }, 1000);
+                    }, 0);
+                }
+            }, 300);
+        }
+    };
+
+    public BroadcastReceiver karyawanSalesBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String nikKaryawanSales = intent.getStringExtra("nik_karyawan_sales");
+            String namaKaryawanSales = intent.getStringExtra("nama_karyawan_sales");
+            String wilayahSales = intent.getStringExtra("wilayah_sales");
+
+            salesChoiceTV.setText(namaKaryawanSales);
+
+            if(wilayahSales.equals("1")){
+                wilayahChoiceTV.setText("Jakarta 1");
+            } else if(wilayahSales.equals("2")){
+                wilayahChoiceTV.setText("Jakarta 2");
+            } else if(wilayahSales.equals("3")){
+                wilayahChoiceTV.setText("Jakarta 3");
+            } else if(wilayahSales.equals("4")){
+                wilayahChoiceTV.setText("Bandung");
+            } else if(wilayahSales.equals("5")){
+                wilayahChoiceTV.setText("Semarang");
+            } else if(wilayahSales.equals("6")){
+                wilayahChoiceTV.setText("Surabaya");
+            } else if(wilayahSales.equals("7")){
+                wilayahChoiceTV.setText("Jakarta AE");
+            } else {
+                wilayahChoiceTV.setText("Semua Wilayah");
+            }
+
+            InputMethodManager imm = (InputMethodManager) ListDataReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            View view = ListDataReportSumaActivity.this.getCurrentFocus();
+            if (view == null) {
+                view = new View(ListDataReportSumaActivity.this);
+            }
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+
+                    attantionReportPart.setVisibility(View.GONE);
+                    reportRV.setVisibility(View.GONE);
+                    loadingDataPartReport.setVisibility(View.VISIBLE);
+                    noDataPartReport.setVisibility(View.GONE);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(categoryCode.equals("1")){
+                                getData(categoryCode);
+                            } else {
+                                getData(subCategoryCode);
+                            }
+
+                        }
+                    }, 0);
                 }
             }, 300);
         }
@@ -1121,7 +1507,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         getData("0");
                     }
                 }
-            }, 1000);
+            }, 0);
         } else {
             categoryCode = sharedPrefAbsen.getSpReportCategoryActive();
              if(categoryCode.equals("1")) {
@@ -1136,26 +1522,32 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                      public void run() {
                          getData(categoryCode);
                      }
-                }, 1000);
+                }, 0);
             } else {
                 categoryCode = "0";
                 subCategoryCode = sharedPrefAbsen.getSpReportCategoryActive().substring(sharedPrefAbsen.getSpReportCategoryActive().length()-1,sharedPrefAbsen.getSpReportCategoryActive().length());
                 if(subCategoryCode.equals("2")){
                     dateLabel.setText("Tanggal :");
                     categoryChoiceTV.setText("Aktivitas Kunjungan");
-                    subCategoryChoiceTV.setText("Aktivitas Promosi");
+                    subCategoryChoiceTV.setText("Promosi");
                     dateStartChoice = getDate();
                     dateEndChoice = getDate();
                 } else if(subCategoryCode.equals("3")){
                     dateLabel.setText("Tanggal :");
                     categoryChoiceTV.setText("Aktivitas Kunjungan");
-                    subCategoryChoiceTV.setText("Aktivitas Penagihan");
+                    subCategoryChoiceTV.setText("Penagihan");
                     dateStartChoice = getDate();
                     dateEndChoice = getDate();
                 } else if(subCategoryCode.equals("4")){
                     dateLabel.setText("Tanggal :");
                     categoryChoiceTV.setText("Aktivitas Kunjungan");
-                    subCategoryChoiceTV.setText("Aktivitas Pengiriman");
+                    subCategoryChoiceTV.setText("Pengiriman");
+                    dateStartChoice = getDate();
+                    dateEndChoice = getDate();
+                } else if(subCategoryCode.equals("5")){
+                    dateLabel.setText("Tanggal :");
+                    categoryChoiceTV.setText("Aktivitas Kunjungan");
+                    subCategoryChoiceTV.setText("Non Join Visit");
                     dateStartChoice = getDate();
                     dateEndChoice = getDate();
                 }
@@ -1166,21 +1558,25 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                  handler.postDelayed(new Runnable() {
                      @Override
                      public void run() {
-                         if(subCategoryChoiceTV.getText().toString().equals("Aktivitas Promosi")){
+                         if(subCategoryChoiceTV.getText().toString().equals("Promosi")){
                              categoryCode = "0";
                              subCategoryCode = "2";
                              getData(subCategoryCode);
-                         } else if(subCategoryChoiceTV.getText().toString().equals("Aktivitas Penagihan")){
+                         } else if(subCategoryChoiceTV.getText().toString().equals("Penagihan")){
                              categoryCode = "0";
                              subCategoryCode = "3";
                              getData(subCategoryCode);
-                         } else if(subCategoryChoiceTV.getText().toString().equals("Aktivitas Pengiriman")){
+                         } else if(subCategoryChoiceTV.getText().toString().equals("Pengiriman")){
                              categoryCode = "0";
                              subCategoryCode = "4";
                              getData(subCategoryCode);
+                         } else if(subCategoryChoiceTV.getText().toString().equals("Non Join Visit")){
+                             categoryCode = "0";
+                             subCategoryCode = "5";
+                             getData(subCategoryCode);
                          }
                      }
-                 }, 1000);
+                 }, 0);
             }
 
         }

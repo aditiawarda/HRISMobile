@@ -95,7 +95,9 @@
                             android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
                             android:textSize="17dp"
-                            tools:ignore="Autofill,HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                            android:importantForAutofill="no"
+                            android:importantForAccessibility="no"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                         <TextView
                             android:id="@+id/namaTV"
@@ -140,6 +142,8 @@
                             android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
                             android:textSize="17dp"
+                            android:importantForAutofill="no"
+                            android:importantForAccessibility="no"
                             tools:ignore="Autofill,HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                         <EditText
@@ -161,6 +165,8 @@
                             android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
                             android:textSize="17dp"
+                            android:importantForAutofill="no"
+                            android:importantForAccessibility="no"
                             tools:ignore="Autofill,HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                         <LinearLayout
@@ -378,10 +384,11 @@
             android:gravity="bottom|center">
 
             <TextView
+                android:id="@+id/version_app_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="HRIS Mobile Gelora v 2.8.6"
+                android:text="HRIS Mobile Gelora v -"
                 android:textColor="#BEFFC9B8"
                 android:textSize="12dp"
                 tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />

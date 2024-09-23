@@ -1707,12 +1707,13 @@
                                                 tools:ignore="HardcodedText,SpUsage,VisualLintLongText" />
 
                                             <com.codesgood.views.JustifiedTextView
+                                                android:id="@+id/version_app_tv"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginBottom="5dp"
                                                 android:fontFamily="@font/roboto"
                                                 android:lineSpacingExtra="2dp"
-                                                android:text="Versi yang saat ini anda gunakan adalah versi 2.8.6"
+                                                android:text="Versi yang saat ini anda gunakan adalah versi -"
                                                 android:textColor="@color/text_color"
                                                 android:textSize="13dp"
                                                 tools:ignore="HardcodedText,SpUsage" />

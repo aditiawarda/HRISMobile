@@ -53,124 +53,150 @@
                             android:paddingTop="40dp"
                             tools:ignore="UselessParent">
 
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="45dp"
-                                android:layout_marginLeft="30dp"
+                                android:layout_marginLeft="25dp"
                                 android:layout_marginTop="5dp"
-                                android:layout_marginRight="30dp"
+                                android:layout_marginRight="25dp"
                                 android:layout_marginBottom="10dp"
-                                android:gravity="right"
-                                android:orientation="horizontal"
-                                tools:ignore="RtlHardcoded">
+                                android:layout_height="54dp">
 
-                                <RelativeLayout
+                                <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="match_parent"
+                                    android:padding="5dp"
+                                    android:gravity="right"
+                                    android:orientation="horizontal"
+                                    tools:ignore="RtlHardcoded">
 
-                                    <LinearLayout
-                                        android:layout_width="43dp"
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:gravity="center"
                                         tools:ignore="TooDeepLayout">
 
-                                        <TextView
-                                            android:id="@+id/ic_person"
-                                            android:layout_width="24dp"
-                                            android:layout_height="24dp"
-                                            android:background="@drawable/ic_baseline_person"
-                                            android:padding="10dp" />
+                                        <LinearLayout
+                                            android:layout_width="43dp"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            tools:ignore="TooDeepLayout">
 
-                                    </LinearLayout>
+                                            <TextView
+                                                android:id="@+id/ic_person"
+                                                android:layout_width="24dp"
+                                                android:layout_height="24dp"
+                                                android:background="@drawable/ic_baseline_person"
+                                                android:padding="10dp" />
 
-                                    <EditText
-                                        android:id="@+id/nikED"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="@drawable/shape_feel_login"
-                                        android:drawablePadding="10dp"
-                                        android:hint="NIK"
-                                        android:inputType="textVisiblePassword|textCapSentences"
-                                        android:padding="10dp"
-                                        android:paddingStart="43dp"
-                                        android:textColor="@color/white"
-                                        android:textColorHighlight="#EC9426"
-                                        android:textColorHint="#BFFFF3E9"
-                                        android:textSize="17dp"
-                                        tools:ignore="Autofill,HardcodedText,RtlSymmetry,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                        </LinearLayout>
 
-                                </RelativeLayout>
+                                        <EditText
+                                            android:id="@+id/nikED"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="@drawable/shape_feel_login"
+                                            android:drawablePadding="10dp"
+                                            android:hint="NIK"
+                                            android:inputType="textCapSentences"
+                                            android:padding="10dp"
+                                            android:paddingStart="43dp"
+                                            android:textColor="@color/white"
+                                            android:textColorHighlight="#EC9426"
+                                            android:textColorHint="#BFFFF3E9"
+                                            android:textSize="17dp"
+                                            tools:ignore="Autofill,HardcodedText,RtlSymmetry,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
-                            </LinearLayout>
+                                    </RelativeLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="45dp"
-                                android:layout_marginLeft="30dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginRight="30dp"
-                                android:layout_marginBottom="10dp"
-                                android:gravity="right"
-                                android:orientation="horizontal"
-                                tools:ignore="RtlHardcoded">
+                                </LinearLayout>
 
-                                <RelativeLayout
+                                <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/shape_feel_login_outer"/>
 
-                                    <LinearLayout
-                                        android:layout_width="43dp"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center">
+                            </RelativeLayout>
 
-                                        <TextView
-                                            android:id="@+id/ic_password"
-                                            android:layout_width="24dp"
-                                            android:layout_height="24dp"
-                                            android:background="@drawable/ic_baseline_lock"
-                                            android:padding="10dp" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginRight="25dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_height="54dp">
 
-                                    </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:padding="5dp"
+                                    android:gravity="right"
+                                    android:orientation="horizontal"
+                                    tools:ignore="RtlHardcoded">
 
-                                    <EditText
-                                        android:id="@+id/passwordED"
+                                    <RelativeLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="@drawable/shape_pw_feel"
-                                        android:hint="Password"
-                                        android:inputType="textPassword"
-                                        android:paddingStart="43dp"
-                                        android:paddingLeft="10dp"
-                                        android:paddingTop="10dp"
-                                        android:paddingRight="80dp"
-                                        android:paddingBottom="10dp"
-                                        android:textColor="@color/white"
-                                        android:textColorHighlight="#EC9426"
-                                        android:textColorHint="#BFFFF3E9"
-                                        android:textSize="17dp"
-                                        tools:ignore="Autofill,HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                        android:layout_height="match_parent">
 
-                                    <LinearLayout
-                                        android:id="@+id/show_password_btn"
-                                        android:layout_width="70dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_marginLeft="-1dp"
-                                        android:background="@drawable/shape_pw_show"
-                                        android:gravity="center">
+                                        <LinearLayout
+                                            android:layout_width="43dp"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center">
 
-                                        <TextView
-                                            android:id="@+id/show_password"
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:background="@drawable/ic_baseline_visibility_on"
-                                            android:padding="10dp" />
+                                            <TextView
+                                                android:id="@+id/ic_password"
+                                                android:layout_width="24dp"
+                                                android:layout_height="24dp"
+                                                android:background="@drawable/ic_baseline_lock"
+                                                android:padding="10dp" />
 
-                                    </LinearLayout>
+                                        </LinearLayout>
 
-                                </RelativeLayout>
+                                        <EditText
+                                            android:id="@+id/passwordED"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="@drawable/shape_pw_feel"
+                                            android:hint="Password"
+                                            android:inputType="textPassword"
+                                            android:paddingStart="43dp"
+                                            android:paddingLeft="10dp"
+                                            android:paddingTop="10dp"
+                                            android:paddingRight="80dp"
+                                            android:paddingBottom="10dp"
+                                            android:layout_marginRight="75dp"
+                                            android:textColor="@color/white"
+                                            android:textColorHighlight="#EC9426"
+                                            android:textColorHint="#BFFFF3E9"
+                                            android:textSize="17dp"
+                                            tools:ignore="Autofill,HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
-                            </LinearLayout>
+                                        <LinearLayout
+                                            android:id="@+id/show_password_btn"
+                                            android:layout_width="60dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_alignParentRight="true"
+                                            android:layout_marginLeft="-1dp"
+                                            android:background="@drawable/shape_pw_feel"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:id="@+id/show_password"
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"
+                                                android:background="@drawable/ic_baseline_visibility_on"
+                                                android:padding="10dp" />
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginRight="75dp"
+                                    android:background="@drawable/shape_feel_login_outer"/>
+
+                            </RelativeLayout>
 
                             <LinearLayout
                                 android:id="@+id/login_btn"
@@ -356,10 +382,11 @@
             android:gravity="bottom|center">
 
             <TextView
+                android:id="@+id/version_app_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="HRIS Mobile Gelora v 2.8.6"
+                android:text="HRIS Mobile Gelora v -"
                 android:textColor="#BEFFC9B8"
                 android:textSize="12dp"
                 tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />

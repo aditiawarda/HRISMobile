@@ -103,35 +103,145 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             myViewHolder.accMark.setVisibility(View.GONE);
             myViewHolder.rejMark.setVisibility(View.GONE);
             myViewHolder.proMark.setVisibility(View.VISIBLE);
-            if(sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpNik().equals("3294031022")||sharedPrefManager.getSpNik().equals("0113010500")||sharedPrefManager.getSpNik().equals("0687260508")||sharedPrefManager.getSpNik().equals("0121010900")||sharedPrefManager.getSpNik().equals("0015141287") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")||sharedPrefManager.getSpNik().equals("0057010793"))){
+            if(sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpNik().equals("3294031022")||sharedPrefManager.getSpNik().equals("0113010500")||sharedPrefManager.getSpNik().equals("0687260508")||sharedPrefManager.getSpNik().equals("0121010900")||sharedPrefManager.getSpNik().equals("0015141287") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")||sharedPrefManager.getSpNik().equals("1738040712")||sharedPrefManager.getSpNik().equals("0057010793")||sharedPrefManager.getSpNik().equals("1504060711"))){
                 myViewHolder.waitingMark.setVisibility(View.VISIBLE);
             } else {
                 myViewHolder.waitingMark.setVisibility(View.GONE);
             }
         } else if(dataFormSDM.getStatus_approve_kabag().equals("1")){
-            if(dataFormSDM.getStatus_approve_kadept().equals("0")){
-                myViewHolder.detailTV.setText("Menunggu verifikasi Atasan Departemen");
-                myViewHolder.accMark.setVisibility(View.GONE);
-                myViewHolder.rejMark.setVisibility(View.GONE);
-                myViewHolder.proMark.setVisibility(View.VISIBLE);
-                if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")){
+            if(sharedPrefManager.getSpNik().equals("0687260508")||sharedPrefManager.getSpNik().equals("0113010500")||sharedPrefManager.getSpNik().equals("0829030809")){
+                if(dataFormSDM.getStatus_approve_astkadept().equals("0")){
+                    myViewHolder.detailTV.setText("Menunggu verifikasi Ast.Ka.Dept");
+                    myViewHolder.accMark.setVisibility(View.GONE);
+                    myViewHolder.rejMark.setVisibility(View.GONE);
+                    myViewHolder.proMark.setVisibility(View.VISIBLE);
                     myViewHolder.waitingMark.setVisibility(View.VISIBLE);
-                } else {
-                    myViewHolder.waitingMark.setVisibility(View.GONE);
-                }
-            } else if(dataFormSDM.getStatus_approve_kadept().equals("1")){
-                if(dataFormSDM.getKeterangan().equals("1")||dataFormSDM.getKeterangan().equals("2")){
-                    if(dataFormSDM.getStatus_approve_direktur().equals("0")){
-                        myViewHolder.detailTV.setText("Menunggu verifikasi Direksi");
+                } else if(dataFormSDM.getStatus_approve_astkadept().equals("1")){
+                    if(dataFormSDM.getStatus_approve_kadept().equals("0")){
+                        myViewHolder.detailTV.setText("Menunggu verifikasi Atasan Departemen");
                         myViewHolder.accMark.setVisibility(View.GONE);
                         myViewHolder.rejMark.setVisibility(View.GONE);
                         myViewHolder.proMark.setVisibility(View.VISIBLE);
-                        if(sharedPrefManager.getSpIdJabatan().equals("8")){
+                        if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")){
                             myViewHolder.waitingMark.setVisibility(View.VISIBLE);
                         } else {
                             myViewHolder.waitingMark.setVisibility(View.GONE);
                         }
-                    } else if(dataFormSDM.getStatus_approve_direktur().equals("1")){
+                    }
+                    else if(dataFormSDM.getStatus_approve_kadept().equals("1")){
+                        if(dataFormSDM.getKeterangan().equals("1")||dataFormSDM.getKeterangan().equals("2")){
+                            if(dataFormSDM.getStatus_approve_direktur().equals("0")){
+                                myViewHolder.detailTV.setText("Menunggu verifikasi Direksi");
+                                myViewHolder.accMark.setVisibility(View.GONE);
+                                myViewHolder.rejMark.setVisibility(View.GONE);
+                                myViewHolder.proMark.setVisibility(View.VISIBLE);
+                                if(sharedPrefManager.getSpIdJabatan().equals("8")){
+                                    myViewHolder.waitingMark.setVisibility(View.VISIBLE);
+                                } else {
+                                    myViewHolder.waitingMark.setVisibility(View.GONE);
+                                }
+                            } else if(dataFormSDM.getStatus_approve_direktur().equals("1")){
+                                if(dataFormSDM.getStatus_approve_hrd().equals("0")){
+                                    myViewHolder.detailTV.setText("Menunggu verifikasi HRD");
+                                    myViewHolder.accMark.setVisibility(View.GONE);
+                                    myViewHolder.rejMark.setVisibility(View.GONE);
+                                    myViewHolder.proMark.setVisibility(View.VISIBLE);
+                                } else if(dataFormSDM.getStatus_approve_hrd().equals("1")){
+                                    myViewHolder.detailTV.setText("Pengajuan telah diverifikasi HRD");
+                                    myViewHolder.accMark.setVisibility(View.VISIBLE);
+                                    myViewHolder.rejMark.setVisibility(View.GONE);
+                                    myViewHolder.proMark.setVisibility(View.GONE);
+                                } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
+                                    myViewHolder.detailTV.setText("Pengajuan ditolak HRD");
+                                    myViewHolder.accMark.setVisibility(View.GONE);
+                                    myViewHolder.rejMark.setVisibility(View.VISIBLE);
+                                    myViewHolder.proMark.setVisibility(View.GONE);
+                                }
+                            } else if(dataFormSDM.getStatus_approve_direktur().equals("2")){
+                                myViewHolder.detailTV.setText("Pengajuan ditolak Direksi");
+                                myViewHolder.accMark.setVisibility(View.GONE);
+                                myViewHolder.rejMark.setVisibility(View.VISIBLE);
+                                myViewHolder.proMark.setVisibility(View.GONE);
+                            }
+                        } else {
+                            if(dataFormSDM.getStatus_approve_hrd().equals("0")){
+                                myViewHolder.detailTV.setText("Menunggu verifikasi HRD");
+                                myViewHolder.accMark.setVisibility(View.GONE);
+                                myViewHolder.rejMark.setVisibility(View.GONE);
+                                myViewHolder.proMark.setVisibility(View.VISIBLE);
+                            } else if(dataFormSDM.getStatus_approve_hrd().equals("1")){
+                                myViewHolder.detailTV.setText("Pengajuan telah diverifikasi HRD");
+                                myViewHolder.accMark.setVisibility(View.VISIBLE);
+                                myViewHolder.rejMark.setVisibility(View.GONE);
+                                myViewHolder.proMark.setVisibility(View.GONE);
+                            } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
+                                myViewHolder.detailTV.setText("Pengajuan ditolak HRD");
+                                myViewHolder.accMark.setVisibility(View.GONE);
+                                myViewHolder.rejMark.setVisibility(View.VISIBLE);
+                                myViewHolder.proMark.setVisibility(View.GONE);
+                            }
+                        }
+                    }
+                    else if(dataFormSDM.getStatus_approve_kadept().equals("2")){
+                        myViewHolder.detailTV.setText("Pengajuan ditolak Atasan Departemen");
+                        myViewHolder.accMark.setVisibility(View.GONE);
+                        myViewHolder.rejMark.setVisibility(View.VISIBLE);
+                        myViewHolder.proMark.setVisibility(View.GONE);
+                    }
+                } else if(dataFormSDM.getStatus_approve_astkadept().equals("2")){
+                    myViewHolder.detailTV.setText("Pengajuan ditolak Ast.Ka.Dept");
+                    myViewHolder.accMark.setVisibility(View.GONE);
+                    myViewHolder.rejMark.setVisibility(View.VISIBLE);
+                    myViewHolder.proMark.setVisibility(View.GONE);
+                }
+            } else {
+                if(dataFormSDM.getStatus_approve_kadept().equals("0")){
+                    myViewHolder.detailTV.setText("Menunggu verifikasi Atasan Departemen");
+                    myViewHolder.accMark.setVisibility(View.GONE);
+                    myViewHolder.rejMark.setVisibility(View.GONE);
+                    myViewHolder.proMark.setVisibility(View.VISIBLE);
+                    if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")){
+                        myViewHolder.waitingMark.setVisibility(View.VISIBLE);
+                    } else {
+                        myViewHolder.waitingMark.setVisibility(View.GONE);
+                    }
+                }
+                else if(dataFormSDM.getStatus_approve_kadept().equals("1")){
+                    if(dataFormSDM.getKeterangan().equals("1")||dataFormSDM.getKeterangan().equals("2")){
+                        if(dataFormSDM.getStatus_approve_direktur().equals("0")){
+                            myViewHolder.detailTV.setText("Menunggu verifikasi Direksi");
+                            myViewHolder.accMark.setVisibility(View.GONE);
+                            myViewHolder.rejMark.setVisibility(View.GONE);
+                            myViewHolder.proMark.setVisibility(View.VISIBLE);
+                            if(sharedPrefManager.getSpIdJabatan().equals("8")){
+                                myViewHolder.waitingMark.setVisibility(View.VISIBLE);
+                            } else {
+                                myViewHolder.waitingMark.setVisibility(View.GONE);
+                            }
+                        } else if(dataFormSDM.getStatus_approve_direktur().equals("1")){
+                            if(dataFormSDM.getStatus_approve_hrd().equals("0")){
+                                myViewHolder.detailTV.setText("Menunggu verifikasi HRD");
+                                myViewHolder.accMark.setVisibility(View.GONE);
+                                myViewHolder.rejMark.setVisibility(View.GONE);
+                                myViewHolder.proMark.setVisibility(View.VISIBLE);
+                            } else if(dataFormSDM.getStatus_approve_hrd().equals("1")){
+                                myViewHolder.detailTV.setText("Pengajuan telah diverifikasi HRD");
+                                myViewHolder.accMark.setVisibility(View.VISIBLE);
+                                myViewHolder.rejMark.setVisibility(View.GONE);
+                                myViewHolder.proMark.setVisibility(View.GONE);
+                            } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
+                                myViewHolder.detailTV.setText("Pengajuan ditolak HRD");
+                                myViewHolder.accMark.setVisibility(View.GONE);
+                                myViewHolder.rejMark.setVisibility(View.VISIBLE);
+                                myViewHolder.proMark.setVisibility(View.GONE);
+                            }
+                        } else if(dataFormSDM.getStatus_approve_direktur().equals("2")){
+                            myViewHolder.detailTV.setText("Pengajuan ditolak Direksi");
+                            myViewHolder.accMark.setVisibility(View.GONE);
+                            myViewHolder.rejMark.setVisibility(View.VISIBLE);
+                            myViewHolder.proMark.setVisibility(View.GONE);
+                        }
+                    } else {
                         if(dataFormSDM.getStatus_approve_hrd().equals("0")){
                             myViewHolder.detailTV.setText("Menunggu verifikasi HRD");
                             myViewHolder.accMark.setVisibility(View.GONE);
@@ -148,35 +258,14 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
                             myViewHolder.rejMark.setVisibility(View.VISIBLE);
                             myViewHolder.proMark.setVisibility(View.GONE);
                         }
-                    } else if(dataFormSDM.getStatus_approve_direktur().equals("2")){
-                        myViewHolder.detailTV.setText("Pengajuan ditolak Direksi");
-                        myViewHolder.accMark.setVisibility(View.GONE);
-                        myViewHolder.rejMark.setVisibility(View.VISIBLE);
-                        myViewHolder.proMark.setVisibility(View.GONE);
-                    }
-                } else {
-                    if(dataFormSDM.getStatus_approve_hrd().equals("0")){
-                        myViewHolder.detailTV.setText("Menunggu verifikasi HRD");
-                        myViewHolder.accMark.setVisibility(View.GONE);
-                        myViewHolder.rejMark.setVisibility(View.GONE);
-                        myViewHolder.proMark.setVisibility(View.VISIBLE);
-                    } else if(dataFormSDM.getStatus_approve_hrd().equals("1")){
-                        myViewHolder.detailTV.setText("Pengajuan telah diverifikasi HRD");
-                        myViewHolder.accMark.setVisibility(View.VISIBLE);
-                        myViewHolder.rejMark.setVisibility(View.GONE);
-                        myViewHolder.proMark.setVisibility(View.GONE);
-                    } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
-                        myViewHolder.detailTV.setText("Pengajuan ditolak HRD");
-                        myViewHolder.accMark.setVisibility(View.GONE);
-                        myViewHolder.rejMark.setVisibility(View.VISIBLE);
-                        myViewHolder.proMark.setVisibility(View.GONE);
                     }
                 }
-            } else if(dataFormSDM.getStatus_approve_kadept().equals("2")){
-                myViewHolder.detailTV.setText("Pengajuan ditolak Atasan Departemen");
-                myViewHolder.accMark.setVisibility(View.GONE);
-                myViewHolder.rejMark.setVisibility(View.VISIBLE);
-                myViewHolder.proMark.setVisibility(View.GONE);
+                else if(dataFormSDM.getStatus_approve_kadept().equals("2")){
+                    myViewHolder.detailTV.setText("Pengajuan ditolak Atasan Departemen");
+                    myViewHolder.accMark.setVisibility(View.GONE);
+                    myViewHolder.rejMark.setVisibility(View.VISIBLE);
+                    myViewHolder.proMark.setVisibility(View.GONE);
+                }
             }
         } else if(dataFormSDM.getStatus_approve_kabag().equals("2")){
             myViewHolder.detailTV.setText("Pengajuan ditolak Atasan Bagian");

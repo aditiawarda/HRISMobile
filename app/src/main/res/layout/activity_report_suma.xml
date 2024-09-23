@@ -38,6 +38,7 @@
                             android:paddingRight="20dp"
                             android:paddingLeft="20dp"
                             android:paddingTop="90dp"
+                            android:paddingBottom="30dp"
                             android:orientation="vertical"
                             tools:ignore="UselessParent">
 
@@ -303,11 +304,89 @@
                                             android:paddingBottom="13dp"
                                             android:orientation="vertical">
 
+                                            <LinearLayout
+                                                android:id="@+id/f1_toko_btn"
+                                                android:orientation="vertical"
+                                                android:layout_marginLeft="20dp"
+                                                android:layout_marginRight="20dp"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:text="Pelanggan/Toko :"
+                                                    android:textColor="#696969"
+                                                    android:textSize="12dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                <LinearLayout
+                                                    android:id="@+id/f1_toko_choice_btn"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="40dp"
+                                                    android:paddingStart="20dp"
+                                                    android:background="@drawable/shape_feel"
+                                                    android:orientation="horizontal"
+                                                    tools:ignore="RtlSymmetry">
+
+                                                    <RelativeLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        tools:ignore="UselessParent">
+
+                                                        <LinearLayout
+                                                            android:layout_marginTop="10dp"
+                                                            android:layout_marginBottom="10dp"
+                                                            android:layout_marginRight="48dp"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="40dp"
+                                                            android:orientation="vertical"
+                                                            android:gravity="center|left"
+                                                            tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                            <TextView
+                                                                android:id="@+id/f1_toko_choice_tv"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:textColor="#B15735"
+                                                                android:textSize="13dp"
+                                                                android:textStyle="bold"
+                                                                android:ellipsize="end"
+                                                                android:maxLines="1"
+                                                                android:singleLine="true"
+                                                                android:text=""
+                                                                tools:ignore="SpUsage" />
+
+                                                        </LinearLayout>
+
+                                                        <LinearLayout
+                                                            android:layout_alignParentRight="true"
+                                                            android:layout_width="40dp"
+                                                            android:layout_height="match_parent"
+                                                            android:background="@drawable/shape_btn"
+                                                            android:gravity="center"
+                                                            tools:ignore="RtlHardcoded">
+
+                                                            <TextView
+                                                                android:layout_width="25dp"
+                                                                android:layout_height="25dp"
+                                                                android:background="@drawable/ic_store"/>
+
+                                                        </LinearLayout>
+
+                                                    </RelativeLayout>
+
+                                                </LinearLayout>
+
+                                            </LinearLayout>
+
                                             <RadioGroup
                                                 android:id="@+id/f1_pelanggan_option"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:gravity="center"
+                                                android:visibility="gone"
                                                 android:orientation="horizontal">
 
                                                 <RadioButton
@@ -340,6 +419,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="20dp"
                                                 android:layout_height="1dp"
+                                                android:layout_marginBottom="5dp"
                                                 android:background="#41838383"/>
 
                                             <LinearLayout
@@ -361,103 +441,8 @@
                                                     android:textStyle="italic"
                                                     android:gravity="center"
                                                     android:lineSpacingExtra="3dp"
-                                                    android:text="Pilih jenis pelanggan terlebih dahulu untuk menambahkan data pelanggan"
+                                                    android:text="Masukkan data pelanggan terlebih dahulu"
                                                     tools:ignore="HardcodedText,SpUsage" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:id="@+id/f1_agenda_option"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:paddingRight="22dp"
-                                                android:paddingLeft="22dp"
-                                                android:layout_marginTop="18dp"
-                                                android:orientation="vertical">
-
-                                                <TextView
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="5dp"
-                                                    android:text="Agenda :"
-                                                    android:textColor="#696969"
-                                                    android:textSize="12dp"
-                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:background="@drawable/shape_pengumuman"
-                                                    android:paddingTop="15dp"
-                                                    android:paddingBottom="15dp"
-                                                    android:layout_marginBottom="15dp"
-                                                    android:orientation="horizontal"
-                                                    tools:ignore="DisableBaselineAlignment">
-
-                                                    <LinearLayout
-                                                        android:layout_weight=".33"
-                                                        android:layout_width="0dp"
-                                                        android:orientation="vertical"
-                                                        android:gravity="center"
-                                                        android:layout_height="wrap_content">
-
-                                                        <CheckBox
-                                                            android:id="@+id/f1_cb_1"
-                                                            android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content" />
-
-                                                        <TextView
-                                                            android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:text="Promosi"
-                                                            android:textSize="12dp"
-                                                            tools:ignore="HardcodedText,SpUsage" />
-
-                                                    </LinearLayout>
-
-                                                    <LinearLayout
-                                                        android:layout_weight=".33"
-                                                        android:layout_width="0dp"
-                                                        android:orientation="vertical"
-                                                        android:gravity="center"
-                                                        android:layout_height="wrap_content">
-
-                                                        <CheckBox
-                                                            android:id="@+id/f1_cb_2"
-                                                            android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content" />
-
-                                                        <TextView
-                                                            android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:text="Penagihan"
-                                                            android:textSize="12dp"
-                                                            tools:ignore="HardcodedText,SpUsage" />
-
-                                                    </LinearLayout>
-
-                                                    <LinearLayout
-                                                        android:layout_weight=".33"
-                                                        android:layout_width="0dp"
-                                                        android:orientation="vertical"
-                                                        android:gravity="center"
-                                                        android:layout_height="wrap_content">
-
-                                                        <CheckBox
-                                                            android:id="@+id/f1_cb_3"
-                                                            android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content" />
-
-                                                        <TextView
-                                                            android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:text="Pengiriman"
-                                                            android:textSize="12dp"
-                                                            tools:ignore="HardcodedText,SpUsage" />
-
-                                                    </LinearLayout>
-
-                                                </LinearLayout>
 
                                             </LinearLayout>
 
@@ -474,6 +459,7 @@
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginBottom="5dp"
+                                                    android:layout_marginTop="10dp"
                                                     android:text="Nama Pelanggan :"
                                                     android:textColor="#696969"
                                                     android:textSize="12dp"
@@ -669,7 +655,7 @@
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginTop="10dp"
                                                     android:layout_marginBottom="5dp"
-                                                    android:text="Keterangan Kunjungan :"
+                                                    android:text="Deskripsi Kunjungan :"
                                                     android:textColor="#696969"
                                                     android:textSize="12dp"
                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -698,9 +684,187 @@
                                                     tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,TooManyViews,VisualLintTextFieldSize" />
 
                                                 <LinearLayout
+                                                    android:id="@+id/f1_agenda_option"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:orientation="vertical">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="5dp"
+                                                        android:text="Agenda :"
+                                                        android:textColor="#696969"
+                                                        android:textSize="12dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:background="@drawable/shape_pengumuman"
+                                                        android:paddingTop="15dp"
+                                                        android:paddingBottom="15dp"
+                                                        android:layout_marginBottom="15dp"
+                                                        android:paddingLeft="15dp"
+                                                        android:paddingRight="15dp"
+                                                        android:orientation="horizontal"
+                                                        tools:ignore="DisableBaselineAlignment">
+
+                                                        <LinearLayout
+                                                            android:layout_width="0dp"
+                                                            android:layout_weight=".50"
+                                                            android:layout_height="wrap_content"
+                                                            android:orientation="vertical">
+
+                                                            <LinearLayout
+                                                                android:layout_width="match_parent"
+                                                                android:orientation="horizontal"
+                                                                android:gravity="left|center"
+                                                                android:layout_height="wrap_content"
+                                                                tools:ignore="RtlHardcoded">
+
+                                                                <CheckBox
+                                                                    android:id="@+id/f1_cb_1"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content" />
+
+                                                                <TextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Promosi"
+                                                                    android:textSize="13dp"
+                                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                                            </LinearLayout>
+
+                                                            <LinearLayout
+                                                                android:layout_width="match_parent"
+                                                                android:orientation="horizontal"
+                                                                android:gravity="left|center"
+                                                                android:layout_marginTop="10dp"
+                                                                android:layout_height="wrap_content"
+                                                                tools:ignore="RtlHardcoded,TooManyViews">
+
+                                                                <CheckBox
+                                                                    android:id="@+id/f1_cb_2"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    tools:ignore="TooManyViews" />
+
+                                                                <TextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Penagihan"
+                                                                    android:textSize="13dp"
+                                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                                            </LinearLayout>
+
+                                                            <LinearLayout
+                                                                android:layout_width="match_parent"
+                                                                android:orientation="horizontal"
+                                                                android:gravity="left|center"
+                                                                android:layout_marginTop="10dp"
+                                                                android:layout_height="wrap_content"
+                                                                tools:ignore="RtlHardcoded">
+
+                                                                <CheckBox
+                                                                    android:id="@+id/f1_cb_5"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content" />
+
+                                                                <TextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Join Visit"
+                                                                    android:textSize="13dp"
+                                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                                            </LinearLayout>
+
+                                                        </LinearLayout>
+
+                                                        <LinearLayout
+                                                            android:layout_width="0dp"
+                                                            android:layout_weight=".50"
+                                                            android:layout_height="wrap_content"
+                                                            android:orientation="vertical">
+
+                                                            <LinearLayout
+                                                                android:layout_width="match_parent"
+                                                                android:orientation="horizontal"
+                                                                android:gravity="left|center"
+                                                                android:layout_height="wrap_content"
+                                                                tools:ignore="RtlHardcoded">
+
+                                                                <CheckBox
+                                                                    android:id="@+id/f1_cb_3"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content" />
+
+                                                                <TextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Pengiriman"
+                                                                    android:textSize="13dp"
+                                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                                            </LinearLayout>
+
+                                                            <LinearLayout
+                                                                android:layout_width="match_parent"
+                                                                android:orientation="horizontal"
+                                                                android:gravity="left|center"
+                                                                android:layout_marginTop="10dp"
+                                                                android:layout_height="wrap_content"
+                                                                tools:ignore="RtlHardcoded">
+
+                                                                <CheckBox
+                                                                    android:id="@+id/f1_cb_6"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content" />
+
+                                                                <TextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Pameran"
+                                                                    android:textSize="13dp"
+                                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                                            </LinearLayout>
+
+                                                            <LinearLayout
+                                                                android:layout_width="match_parent"
+                                                                android:orientation="horizontal"
+                                                                android:gravity="left|center"
+                                                                android:layout_marginTop="10dp"
+                                                                android:layout_height="wrap_content"
+                                                                tools:ignore="RtlHardcoded">
+
+                                                                <CheckBox
+                                                                    android:id="@+id/f1_cb_4"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content" />
+
+                                                                <TextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Non Join Visit"
+                                                                    android:textSize="13dp"
+                                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                                            </LinearLayout>
+
+                                                        </LinearLayout>
+
+                                                    </LinearLayout>
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
                                                     android:layout_width="match_parent"
                                                     android:layout_height="1.5dp"
-                                                    android:layout_marginTop="8dp"
+                                                    android:layout_marginTop="3dp"
                                                     android:layout_marginBottom="6dp"
                                                     android:background="#3CCFCFCF" />
 
@@ -1064,70 +1228,156 @@
                                             android:background="@drawable/shape_pengumuman"
                                             android:paddingTop="15dp"
                                             android:paddingBottom="15dp"
-                                            android:layout_marginBottom="10dp"
+                                            android:layout_marginBottom="15dp"
+                                            android:paddingLeft="15dp"
+                                            android:paddingRight="15dp"
                                             android:orientation="horizontal"
                                             tools:ignore="DisableBaselineAlignment">
 
                                             <LinearLayout
-                                                android:layout_weight=".33"
                                                 android:layout_width="0dp"
-                                                android:orientation="vertical"
-                                                android:gravity="center"
-                                                android:layout_height="wrap_content">
+                                                android:layout_weight=".50"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical">
 
-                                                <CheckBox
-                                                    android:id="@+id/f2_cb_1"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content" />
-
-                                                <TextView
-                                                    android:layout_width="wrap_content"
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:orientation="horizontal"
+                                                    android:gravity="left|center"
                                                     android:layout_height="wrap_content"
-                                                    android:text="Promosi"
-                                                    android:textSize="12dp"
-                                                    tools:ignore="HardcodedText,SpUsage" />
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <CheckBox
+                                                        android:id="@+id/f2_cb_1"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content" />
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Promosi"
+                                                        android:textSize="13dp"
+                                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:orientation="horizontal"
+                                                    android:gravity="left|center"
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_height="wrap_content"
+                                                    tools:ignore="RtlHardcoded,TooManyViews">
+
+                                                    <CheckBox
+                                                        android:id="@+id/f2_cb_2"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        tools:ignore="TooManyViews" />
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Penagihan"
+                                                        android:textSize="13dp"
+                                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:orientation="horizontal"
+                                                    android:gravity="left|center"
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_height="wrap_content"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <CheckBox
+                                                        android:id="@+id/f2_cb_5"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content" />
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Join Visit"
+                                                        android:textSize="13dp"
+                                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                                </LinearLayout>
 
                                             </LinearLayout>
 
                                             <LinearLayout
-                                                android:layout_weight=".33"
                                                 android:layout_width="0dp"
-                                                android:orientation="vertical"
-                                                android:gravity="center"
-                                                android:layout_height="wrap_content">
+                                                android:layout_weight=".50"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical">
 
-                                                <CheckBox
-                                                    android:id="@+id/f2_cb_2"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content" />
-
-                                                <TextView
-                                                    android:layout_width="wrap_content"
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:orientation="horizontal"
+                                                    android:gravity="left|center"
                                                     android:layout_height="wrap_content"
-                                                    android:text="Penagihan"
-                                                    android:textSize="12dp"
-                                                    tools:ignore="HardcodedText,SpUsage" />
+                                                    tools:ignore="RtlHardcoded">
 
-                                            </LinearLayout>
+                                                    <CheckBox
+                                                        android:id="@+id/f2_cb_3"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content" />
 
-                                            <LinearLayout
-                                                android:layout_weight=".33"
-                                                android:layout_width="0dp"
-                                                android:orientation="vertical"
-                                                android:gravity="center"
-                                                android:layout_height="wrap_content">
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Pengiriman"
+                                                        android:textSize="13dp"
+                                                        tools:ignore="HardcodedText,SpUsage" />
 
-                                                <CheckBox
-                                                    android:id="@+id/f2_cb_3"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content" />
+                                                </LinearLayout>
 
-                                                <TextView
-                                                    android:layout_width="wrap_content"
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:orientation="horizontal"
+                                                    android:gravity="left|center"
+                                                    android:layout_marginTop="10dp"
                                                     android:layout_height="wrap_content"
-                                                    android:text="Pengiriman"
-                                                    android:textSize="12dp"
-                                                    tools:ignore="HardcodedText,SpUsage" />
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <CheckBox
+                                                        android:id="@+id/f2_cb_6"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content" />
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Pameran"
+                                                        android:textSize="13dp"
+                                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:orientation="horizontal"
+                                                    android:gravity="left|center"
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_height="wrap_content"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <CheckBox
+                                                        android:id="@+id/f2_cb_4"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content" />
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Non Join Visit"
+                                                        android:textSize="13dp"
+                                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                                </LinearLayout>
 
                                             </LinearLayout>
 
@@ -2201,6 +2451,7 @@
                             tools:ignore="RtlHardcoded">
 
                             <TextView
+                                android:id="@+id/title_page_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
