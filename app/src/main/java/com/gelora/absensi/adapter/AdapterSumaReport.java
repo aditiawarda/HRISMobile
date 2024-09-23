@@ -62,13 +62,13 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
                 myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
             }
         } else if (dataReportSuma.getTipeLaporan().equals("2")) {
-            myViewHolder.reportCategoryTV.setText("Aktivitas Promosi");
+            myViewHolder.reportCategoryTV.setText("Promosi");
             myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
         } else if (dataReportSuma.getTipeLaporan().equals("3")) {
-            myViewHolder.reportCategoryTV.setText("Aktivitas Penagihan");
+            myViewHolder.reportCategoryTV.setText("Penagihan");
             myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
         } else if (dataReportSuma.getTipeLaporan().equals("4")) {
-            myViewHolder.reportCategoryTV.setText("Aktivitas Pengiriman");
+            myViewHolder.reportCategoryTV.setText("Pengiriman");
             myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
         } else if (dataReportSuma.getTipeLaporan().equals("5")) {
             myViewHolder.reportCategoryTV.setText("Non Join Visit");
