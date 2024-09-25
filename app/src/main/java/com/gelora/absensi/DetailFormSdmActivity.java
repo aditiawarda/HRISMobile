@@ -1,14 +1,23 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialog;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +41,12 @@ import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -184,7 +199,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
             public void onClick(View v) {
                 new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Unduh File?")
-                        .setContentText("Perhatian! file hasil unduh hanya dapat dibuka dengan aplikasi WPS")
+                        .setContentText("File hasil unduh akan disimpan pada folder Download/HRIS Mobile")
                         .setCancelText(" BATAL ")
                         .setConfirmText(" UNDUH ")
                         .showCancelButton(true)
@@ -198,12 +213,46 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                             @Override
                             public void onClick(KAlertDialog sDialog) {
                                 sDialog.dismiss();
-                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlDownload));
-                                try {
-                                    startActivity(browserIntent);
-                                } catch (SecurityException e) {
-                                    e.printStackTrace();
-                                }
+                                String link = "https://hrisgelora.co.id/api/download_pdf_formulir_sdm/"+idData;
+                                pDialog = new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1000, 500) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+                                    public void onFinish() {
+                                        i = -1;
+                                        checkLinkStatus(link);
+                                    }
+                                }.start();
                             }
                         })
                         .show();
@@ -344,6 +393,153 @@ public class DetailFormSdmActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void checkLinkStatus(String link) {
+        new Thread(() -> {
+            try {
+                URL url = new URL(link);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("HEAD");
+                urlConnection.setConnectTimeout(3000);
+                urlConnection.setReadTimeout(3000);
+                urlConnection.connect();
+
+                int responseCode = urlConnection.getResponseCode();
+                String result;
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    downloadFile();
+                } else if (responseCode == HttpURLConnection.HTTP_NOT_FOUND) {
+                    pDialog.dismiss();
+                    new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Tidak dapat mengakses file")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    pDialog.dismiss();
+                    new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Tidak dapat mengakses file")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                runOnUiThread(() -> {
+                    pDialog.dismiss();
+                    new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Terjadi kesalahan")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                });
+            }
+        }).start();
+    }
+
+    private void downloadFile() {
+        new Thread(() -> {
+            try {
+                URL url = new URL("https://hrisgelora.co.id/download/sdm/" + idData + ".pdf");
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.connect();
+                if (urlConnection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                    runOnUiThread(() -> {
+                        pDialog.dismiss();
+                        new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Tidak dapat mengakses file")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(AppCompatDialog::dismiss)
+                                .show();
+                    });
+                    Log.e("Download Error", "Server returned HTTP " + urlConnection.getResponseCode() + " " + urlConnection.getResponseMessage());
+                    return;
+                }
+
+                File hrisFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "HRIS Mobile");
+                if (!hrisFolder.exists()) {
+                    hrisFolder.mkdirs();
+                }
+                File pdfFile = new File(hrisFolder, "Formulir_SDM_" + idData + ".pdf");
+
+                InputStream inputStream = urlConnection.getInputStream();
+                FileOutputStream outputStream = new FileOutputStream(pdfFile);
+
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+                outputStream.close();
+                inputStream.close();
+
+                Uri fileUri = Uri.fromFile(pdfFile);
+                runOnUiThread(() -> {
+                    pDialog.dismiss();
+                    new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.SUCCESS_TYPE)
+                            .setTitleText("Unduh Berhasil")
+                            .setContentText("File formulir SDM berhasil diunduh, periksa folder download anda")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(AppCompatDialog::dismiss)
+                            .show();
+                    showDownloadNotification(pdfFile);
+                });
+
+            } catch (Exception e) {
+                Log.e("Download Error", "Error : " + e.getMessage());
+                runOnUiThread(() -> {
+                    pDialog.dismiss();
+                    new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("File formulir SDM gagal diunduh")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(AppCompatDialog::dismiss)
+                            .show();
+                });
+            }
+        }).start();
+    }
+
+    private void showDownloadNotification(File pdfFile) {
+        Uri pdfUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", pdfFile);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(pdfUri, "application/pdf");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        String channelId = "pdf_view_channel";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(channelId, "PDF View Notifications", NotificationManager.IMPORTANCE_DEFAULT);
+            notificationManager.createNotificationChannel(channel);
+        }
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.drawable.ic_skylight_notification)
+                .setContentTitle("Berhasil Diunduh")
+                .setContentText("Tap untuk melihat dokumen formulir SDM yang telah diunduh.")
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+        notificationManager.notify(1, builder.build());
     }
 
     private void getData() {

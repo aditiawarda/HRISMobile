@@ -71,6 +71,8 @@ public class PdfViewerActivity extends AppCompatActivity {
             titlePage.setText("SERAH TERIMA PERSONALIA");
         } else if(kodeST.equals("penilaian_tahunan")){
             titlePage.setText("PENILAIAN KARYAWAN TAHUNAN");
+        } else if(kodeST.equals("pdf_permohonan")){
+            titlePage.setText("FILE PDF");
         }
 
         if(initialisasi.equals("form")){
