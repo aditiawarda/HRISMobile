@@ -903,7 +903,7 @@ public class FragmentInfo extends Fragment {
                                         bagianNameTV.setText(bagian);
                                         bagianNameTVSDM.setText(bagian);
                                         bagianNameTvEc.setText(bagian);
-                                    } else if (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")||sharedPrefManager.getSpNik().equals("1738040712")){
+                                    } else if (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")){
                                         monitoringStaffBTN.setVisibility(View.VISIBLE);
                                         titlePantau.setText("Pantau kehadiran bagian*");
                                         notePantau.setText("*Fitur khusus monitoring Bagian");

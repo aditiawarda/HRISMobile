@@ -1500,7 +1500,7 @@
                                     android:textStyle="bold"
                                     android:textSize="13dp"
                                     android:textColor="@color/white"
-                                    android:text="Wakili Persetujuan Ka.Dept"
+                                    android:text="Wakili Persetujuan Ka.Dept/GM"
                                     tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
