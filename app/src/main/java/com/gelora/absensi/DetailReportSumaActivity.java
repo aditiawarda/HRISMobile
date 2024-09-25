@@ -29,8 +29,6 @@ import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Rect;
-import android.icu.util.Calendar;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -55,7 +53,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,18 +65,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterInvoicePiutangRealisasi;
 import com.gelora.absensi.adapter.AdapterNoSuratJalanRealisasi;
 import com.gelora.absensi.adapter.AdapterProductInputSumaRealisasi;
 import com.gelora.absensi.adapter.AdapterProductSumaRealisasi;
 import com.gelora.absensi.adapter.AdapterReportComment;
-import com.gelora.absensi.adapter.AdapterSumaReport;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataInvoicePiutang;
 import com.gelora.absensi.model.DataNoSuratJalan;
-import com.gelora.absensi.model.DataReportSuma;
 import com.gelora.absensi.model.ProductSuma;
 import com.gelora.absensi.model.ReportComment;
 import com.gelora.absensi.support.FilePathimage;
@@ -148,7 +142,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     ExpandableLayout updateRealisasiKunjunganForm, rescheduleForm, updateForm;
     RequestQueue requestQueue;
     TextView keteranganLabelTV, titlePageTV, jumlahKomenTV, inputTotalPesananTV, subTotalTV, productHargaSatuanTV, productChoiceTV, agendaLabel, totalInvTV, noSuratJalanChoiceTV, noSuratJalanTV, countImageUpdateTV, countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, labelLampTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
-    String subTotal = "", qtyProduct = "", tipeLaporan = "", idReport = "", idProduct = "", productName = "", productHargaSatuan = "";
+    String nikSales = "", subTotal = "", qtyProduct = "", tipeLaporan = "", idReport = "", idProduct = "", productName = "", productHargaSatuan = "";
     SwipeRefreshLayout refreshLayout;
     SharedPrefAbsen sharedPrefAbsen;
     private StatusBarColorManager mStatusBarColorManager;
@@ -190,6 +184,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     private boolean isFirstRun = true;
     ImageButton commentSendBTN;
     private Handler handler = new Handler();
+    List<String> nikListComment = new ArrayList<>();
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -2620,6 +2615,15 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     reportComments = gson.fromJson(data_comment, ReportComment[].class);
                                     adapterReportComment = new AdapterReportComment(reportComments, DetailReportSumaActivity.this);
                                     commentRV.setAdapter(adapterReportComment);
+
+                                    JSONArray jsonArray = new JSONArray(data_comment);
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                        String nik = jsonObject.getString("nik");
+                                        if (!nikListComment.contains(nik)) {
+                                            nikListComment.add(nik);
+                                        }
+                                    }
                                 } else {
                                     jumlahKomenTV.setText("Komentar");
                                     commentRV.setVisibility(View.GONE);
@@ -2660,6 +2664,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 String NIK = data.getString("NIK");
                                 namaSalesTV.setText(nama);
                                 nikSalesTV.setText(NIK);
+                                nikSales = NIK;
                                 if(mMap != null && (tipeLaporan.equals("2") || tipeLaporan.equals("3") || tipeLaporan.equals("4"))){
                                     mMap.addMarker(new MarkerOptions().position(userPoint).title(nama).snippet(latitude+","+longitude).icon(BitmapDescriptorFactory.fromResource(R.drawable.location_picker_ic)));
                                 }
@@ -2721,6 +2726,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
+                                pushNotif();
                                 getComment(idReport);
                                 commentLoading.setVisibility(View.GONE);
                                 commentSendBTNPart.setVisibility(View.GONE);
@@ -2762,6 +2768,52 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 params.put("nik", sharedPrefManager.getSpNik());
                 params.put("comment", comment);
                 params.put("created_at", getTimeStamp());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void pushNotif() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://hrisgelora.co.id/api/push_personal_notification";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint({"SetTextI18n", "MissingPermission"})
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        Log.d("Success.Response", response.toString());
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("type", "2");
+                if(tipeLaporan.equals("1")){
+                    params.put("sub_type", "1");
+                } else {
+                    params.put("sub_type", "2");
+                }
+                params.put("notif_from", sharedPrefManager.getSpNik());
+                params.put("notif_for", String.valueOf(nikListComment).replace("[", "").replace("]", ""));
+                params.put("direct_id", idReport);
+                params.put("data_owner", nikSales);
                 return params;
             }
         };

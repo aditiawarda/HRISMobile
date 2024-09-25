@@ -2056,8 +2056,7 @@ public class FragmentHome extends Fragment {
     }
 
     private void getCountPersonalNotif(){
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://hrisgelora.co.id/api/count_notif_yet_read";
+        final String url = "https://hrisgelora.co.id/api/count_personal_notification_yet_read";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -2087,12 +2086,6 @@ public class FragmentHome extends Fragment {
                                         shortName = shortNameArray[0];
                                     }
 
-                                    // String shortName = sharedPrefManager.getSpNama()+" ";
-                                    // if(shortName.contains(" ")){
-                                    //    shortName = shortName.substring(0, shortName.indexOf(" "));
-                                    //    System.out.println(shortName);
-                                    // }
-
                                     try {
                                         Intent intent = new Intent(mContext, PersonalNotificationActivity.class);
                                         Notify.build(mContext)
@@ -2108,11 +2101,9 @@ public class FragmentHome extends Fragment {
                                         e.printStackTrace();
                                     }
 
-                                    // Vibrate for 500 milliseconds
                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                                         vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
                                     } else {
-                                        //deprecated in API 26
                                         vibrate.vibrate(500);
                                     }
                                 } else {
