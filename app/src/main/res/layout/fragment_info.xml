@@ -1582,7 +1582,7 @@
                                             android:letterSpacing="0.05"
                                             android:maxLines="1"
                                             android:singleLine="true"
-                                            android:text="DAILY REPORT SALESMAN"
+                                            android:text="LAPORAN HARIAN SALES"
                                             android:textColor="#FFF3F1"
                                             android:textSize="13dp"
                                             android:textStyle="bold"

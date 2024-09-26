@@ -1118,6 +1118,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 wilayahChoiceTV.setText("Semua Wilayah");
+                salesChoiceTV.setText("Semua Sales");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA, "");

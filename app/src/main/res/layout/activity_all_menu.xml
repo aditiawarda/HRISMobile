@@ -956,7 +956,7 @@
                                                 android:ellipsize="end"
                                                 android:maxLines="2"
                                                 android:gravity="center"
-                                                android:text="Daily Report Salesman"
+                                                android:text="Laporan Harian Sales"
                                                 android:textColor="#515151"
                                                 android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -1301,7 +1301,7 @@
                                                 android:ellipsize="end"
                                                 android:gravity="center"
                                                 android:maxLines="2"
-                                                android:text="Daily Report Salesman"
+                                                android:text="Laporan Harian Sales"
                                                 android:textColor="#515151"
                                                 android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -1467,7 +1467,7 @@
                                                 android:ellipsize="end"
                                                 android:maxLines="2"
                                                 android:gravity="center"
-                                                android:text="Daily Report Salesman"
+                                                android:text="Laporan Harian Sales"
                                                 android:textColor="#515151"
                                                 android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />

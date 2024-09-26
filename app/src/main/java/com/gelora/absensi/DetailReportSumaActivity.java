@@ -53,6 +53,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -105,6 +106,9 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 import com.takisoft.datetimepicker.DatePickerDialog;
 import com.travijuu.numberpicker.library.Enums.ActionEnum;
 import com.travijuu.numberpicker.library.Interface.ValueChangedListener;
@@ -136,10 +140,11 @@ import java.util.UUID;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout markRealNjv, markRealJv, markRealPameran, realNjvBTN, realJvBTN, realPameranBTN, noDataComment, commentLoading, commentSendBTNPart, addProductBTN, productInputDetailPart, loadingDataPartProduk, noDataPartProduk, startAttantionPart, startAttantionPartProduk, productChoiceBTN, markRealKunjungan, markRealPenagihan, markRealPengiriman, realKunjunganBTN, realPenagihanBTN, realPengirimanBTN, noDataPiutang, loadingDataPiutang, loadingDataPartSj, noDataPartSj, noSuratJalanBTN, promosiLayoutTambahan, penagihanLayoutTambahan, pengirimanLayoutTambahan, submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
+    LinearLayout picPelangganPart, teleponPelangganPart, photoRevPart, markRealNjv, markRealJv, markRealPameran, realNjvBTN, realJvBTN, realPameranBTN, noDataComment, commentLoading, commentSendBTNPart, addProductBTN, productInputDetailPart, loadingDataPartProduk, noDataPartProduk, startAttantionPart, startAttantionPartProduk, productChoiceBTN, markRealKunjungan, markRealPenagihan, markRealPengiriman, realKunjunganBTN, realPenagihanBTN, realPengirimanBTN, noDataPiutang, loadingDataPiutang, loadingDataPartSj, noDataPartSj, noSuratJalanBTN, promosiLayoutTambahan, penagihanLayoutTambahan, pengirimanLayoutTambahan, submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
     SharedPrefManager sharedPrefManager;
     EditText commentED, keywordEDProduk, keteranganKunjunganRealisasiED, keteranganUpdateED;
     ExpandableLayout updateRealisasiKunjunganForm, rescheduleForm, updateForm;
+    ImageView revLampiran;
     RequestQueue requestQueue;
     TextView keteranganLabelTV, titlePageTV, jumlahKomenTV, inputTotalPesananTV, subTotalTV, productHargaSatuanTV, productChoiceTV, agendaLabel, totalInvTV, noSuratJalanChoiceTV, noSuratJalanTV, countImageUpdateTV, countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, labelLampTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
     String nikSales = "", subTotal = "", qtyProduct = "", tipeLaporan = "", idReport = "", idProduct = "", productName = "", productHargaSatuan = "";
@@ -304,6 +309,10 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         noDataComment = findViewById(R.id.no_data_comment);
         jumlahKomenTV = findViewById(R.id.jumlah_komen_tv);
         keteranganLabelTV = findViewById(R.id.keterangan_label_tv);
+        photoRevPart = findViewById(R.id.photo_rev_part);
+        revLampiran = findViewById(R.id.rev_lampiran);
+        picPelangganPart = findViewById(R.id.pic_pelanggan_part);
+        teleponPelangganPart = findViewById(R.id.telepon_pelanggan_part);
 
         commentRV.setLayoutManager(new LinearLayoutManager(DetailReportSumaActivity.this));
         commentRV.setHasFixedSize(true);
@@ -2027,9 +2036,29 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 if(tipeLaporan.equals("1")){
                                     titlePageTV.setText("DETAIL RENCANA");
                                     keteranganLabelTV.setText("Keterangan");
+                                    photoRevPart.setVisibility(View.GONE);
                                 } else {
                                     titlePageTV.setText("DETAIL LAPORAN");
                                     keteranganLabelTV.setText("Ket. Hasil");
+                                    photoRevPart.setVisibility(View.VISIBLE);
+                                    String file = dataArray.getString("file");
+                                    String result = file
+                                            .replaceAll("\\[", "")
+                                            .replaceAll("\\]", "")
+                                            .replaceAll("\"", "");
+                                    String[] splitArray = result.split(",");
+                                    Picasso.get().load(splitArray[0]).networkPolicy(NetworkPolicy.NO_CACHE)
+                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                            .into(revLampiran);
+
+                                    photoRevPart.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                            intent.putExtra("data", file);
+                                            startActivity(intent);
+                                        }
+                                    });
                                 }
 
                                 getComment(idReport);
@@ -2354,8 +2383,10 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                     String totalLaporan = dataArray.getString("totalLaporan");
                                     if(totalLaporan.equals("")||totalLaporan.equals("null")||totalLaporan.equals("0")){
+                                        totalPesananPart.setVisibility(View.GONE);
                                         totalPesananTV.setText("Tidak dicantumkan");
                                     } else {
+                                        totalPesananPart.setVisibility(View.VISIBLE);
                                         totalPesananTV.setText(decimalFormat.format(Integer.parseInt(totalLaporan)));
                                     }
 
@@ -2389,8 +2420,10 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                     String totalLaporan = dataArray.getString("totalLaporan");
                                     if(totalLaporan.equals("")||totalLaporan.equals("null")||totalLaporan.equals("0")){
+                                        totalPenagihanPart.setVisibility(View.GONE);
                                         totalPenagihanTV.setText("Tidak dicantumkan");
                                     } else {
+                                        totalPenagihanPart.setVisibility(View.VISIBLE);
                                         totalPenagihanTV.setText(decimalFormat.format(Integer.parseInt(totalLaporan)));
                                     }
 
@@ -2419,8 +2452,10 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                     String noSuratJalan = dataArray.getString("noSuratJalan");
                                     if(noSuratJalan.equals("null")||noSuratJalan.equals("")){
+                                        noSuratJalanPart.setVisibility(View.GONE);
                                         noSuratJalanTV.setText("Tidak dicantumkan");
                                     } else {
+                                        noSuratJalanPart.setVisibility(View.VISIBLE);
                                         noSuratJalanTV.setText(noSuratJalan);
                                     }
 
@@ -2520,14 +2555,18 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 }
 
                                 if(pic.equals("null")){
+                                    picPelangganPart.setVisibility(View.GONE);
                                     picPelangganTV.setText("Belum diketahui");
                                 } else {
+                                    picPelangganPart.setVisibility(View.VISIBLE);
                                     picPelangganTV.setText(pic);
                                 }
 
                                 if(no_telp.equals("null")){
+                                    teleponPelangganPart.setVisibility(View.GONE);
                                     teleponPelangganTV.setText("Belum diketahui");
                                 } else {
+                                    teleponPelangganPart.setVisibility(View.VISIBLE);
                                     teleponPelangganTV.setText(no_telp);
                                 }
 
@@ -2662,7 +2701,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                             if (status.equals("Success")){
                                 String nama = data.getString("nama");
                                 String NIK = data.getString("NIK");
-                                namaSalesTV.setText(nama);
+                                namaSalesTV.setText(nama.toUpperCase());
                                 nikSalesTV.setText(NIK);
                                 nikSales = NIK;
                                 if(mMap != null && (tipeLaporan.equals("2") || tipeLaporan.equals("3") || tipeLaporan.equals("4"))){
