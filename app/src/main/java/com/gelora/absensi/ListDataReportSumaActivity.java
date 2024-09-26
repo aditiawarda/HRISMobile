@@ -1465,8 +1465,6 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 wilayahChoiceTV.setText("Surabaya");
             } else if(wilayahSales.equals("7")){
                 wilayahChoiceTV.setText("Jakarta AE");
-            } else {
-                wilayahChoiceTV.setText("Semua Wilayah");
             }
 
             InputMethodManager imm = (InputMethodManager) ListDataReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
