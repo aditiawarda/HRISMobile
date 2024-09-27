@@ -1503,93 +1503,95 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(sharedPrefAbsen.getSpReportCategoryActive().equals("")){
-            reportRV.setVisibility(View.GONE);
-            loadingDataPartReport.setVisibility(View.VISIBLE);
-            noDataPartReport.setVisibility(View.GONE);
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if(categoryCode.equals("1")){
-                        getData(categoryCode);
-                    } else {
-                        getData("0");
-                    }
-                }
-            }, 0);
-        } else {
-            categoryCode = sharedPrefAbsen.getSpReportCategoryActive();
-             if(categoryCode.equals("1")) {
-                dateLabel.setText("Tanggal Rencana :");
-                categoryChoiceTV.setText("Rencana Kunjungan");
-
+        if(sharedPrefAbsen.getSpReloadRequest().equals("true")){
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_RELOAD_REQUEST, "");
+            if(sharedPrefAbsen.getSpReportCategoryActive().equals("")){
                 reportRV.setVisibility(View.GONE);
                 loadingDataPartReport.setVisibility(View.VISIBLE);
                 noDataPartReport.setVisibility(View.GONE);
-                 handler.postDelayed(new Runnable() {
-                     @Override
-                     public void run() {
-                         getData(categoryCode);
-                     }
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(categoryCode.equals("1")){
+                            getData(categoryCode);
+                        } else {
+                            getData("0");
+                        }
+                    }
                 }, 0);
             } else {
-                categoryCode = "0";
-                subCategoryCode = sharedPrefAbsen.getSpReportCategoryActive().substring(sharedPrefAbsen.getSpReportCategoryActive().length()-1,sharedPrefAbsen.getSpReportCategoryActive().length());
-                if(subCategoryCode.equals("2")){
-                    dateLabel.setText("Tanggal :");
-                    categoryChoiceTV.setText("Aktivitas Kunjungan");
-                    subCategoryChoiceTV.setText("Promosi");
-                    dateStartChoice = getDate();
-                    dateEndChoice = getDate();
-                } else if(subCategoryCode.equals("3")){
-                    dateLabel.setText("Tanggal :");
-                    categoryChoiceTV.setText("Aktivitas Kunjungan");
-                    subCategoryChoiceTV.setText("Penagihan");
-                    dateStartChoice = getDate();
-                    dateEndChoice = getDate();
-                } else if(subCategoryCode.equals("4")){
-                    dateLabel.setText("Tanggal :");
-                    categoryChoiceTV.setText("Aktivitas Kunjungan");
-                    subCategoryChoiceTV.setText("Pengiriman");
-                    dateStartChoice = getDate();
-                    dateEndChoice = getDate();
-                } else if(subCategoryCode.equals("5")){
-                    dateLabel.setText("Tanggal :");
-                    categoryChoiceTV.setText("Aktivitas Kunjungan");
-                    subCategoryChoiceTV.setText("Non Join Visit");
-                    dateStartChoice = getDate();
-                    dateEndChoice = getDate();
+                categoryCode = sharedPrefAbsen.getSpReportCategoryActive();
+                if(categoryCode.equals("1")) {
+                    dateLabel.setText("Tanggal Rencana :");
+                    categoryChoiceTV.setText("Rencana Kunjungan");
+
+                    reportRV.setVisibility(View.GONE);
+                    loadingDataPartReport.setVisibility(View.VISIBLE);
+                    noDataPartReport.setVisibility(View.GONE);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getData(categoryCode);
+                        }
+                    }, 0);
+                } else {
+                    categoryCode = "0";
+                    subCategoryCode = sharedPrefAbsen.getSpReportCategoryActive().substring(sharedPrefAbsen.getSpReportCategoryActive().length()-1,sharedPrefAbsen.getSpReportCategoryActive().length());
+                    if(subCategoryCode.equals("2")){
+                        dateLabel.setText("Tanggal :");
+                        categoryChoiceTV.setText("Aktivitas Kunjungan");
+                        subCategoryChoiceTV.setText("Promosi");
+                        dateStartChoice = getDate();
+                        dateEndChoice = getDate();
+                    } else if(subCategoryCode.equals("3")){
+                        dateLabel.setText("Tanggal :");
+                        categoryChoiceTV.setText("Aktivitas Kunjungan");
+                        subCategoryChoiceTV.setText("Penagihan");
+                        dateStartChoice = getDate();
+                        dateEndChoice = getDate();
+                    } else if(subCategoryCode.equals("4")){
+                        dateLabel.setText("Tanggal :");
+                        categoryChoiceTV.setText("Aktivitas Kunjungan");
+                        subCategoryChoiceTV.setText("Pengiriman");
+                        dateStartChoice = getDate();
+                        dateEndChoice = getDate();
+                    } else if(subCategoryCode.equals("5")){
+                        dateLabel.setText("Tanggal :");
+                        categoryChoiceTV.setText("Aktivitas Kunjungan");
+                        subCategoryChoiceTV.setText("Non Join Visit");
+                        dateStartChoice = getDate();
+                        dateEndChoice = getDate();
+                    }
+
+                    reportRV.setVisibility(View.GONE);
+                    loadingDataPartReport.setVisibility(View.VISIBLE);
+                    noDataPartReport.setVisibility(View.GONE);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(subCategoryChoiceTV.getText().toString().equals("Promosi")){
+                                categoryCode = "0";
+                                subCategoryCode = "2";
+                                getData(subCategoryCode);
+                            } else if(subCategoryChoiceTV.getText().toString().equals("Penagihan")){
+                                categoryCode = "0";
+                                subCategoryCode = "3";
+                                getData(subCategoryCode);
+                            } else if(subCategoryChoiceTV.getText().toString().equals("Pengiriman")){
+                                categoryCode = "0";
+                                subCategoryCode = "4";
+                                getData(subCategoryCode);
+                            } else if(subCategoryChoiceTV.getText().toString().equals("Non Join Visit")){
+                                categoryCode = "0";
+                                subCategoryCode = "5";
+                                getData(subCategoryCode);
+                            }
+                        }
+                    }, 0);
                 }
 
-                 reportRV.setVisibility(View.GONE);
-                 loadingDataPartReport.setVisibility(View.VISIBLE);
-                 noDataPartReport.setVisibility(View.GONE);
-                 handler.postDelayed(new Runnable() {
-                     @Override
-                     public void run() {
-                         if(subCategoryChoiceTV.getText().toString().equals("Promosi")){
-                             categoryCode = "0";
-                             subCategoryCode = "2";
-                             getData(subCategoryCode);
-                         } else if(subCategoryChoiceTV.getText().toString().equals("Penagihan")){
-                             categoryCode = "0";
-                             subCategoryCode = "3";
-                             getData(subCategoryCode);
-                         } else if(subCategoryChoiceTV.getText().toString().equals("Pengiriman")){
-                             categoryCode = "0";
-                             subCategoryCode = "4";
-                             getData(subCategoryCode);
-                         } else if(subCategoryChoiceTV.getText().toString().equals("Non Join Visit")){
-                             categoryCode = "0";
-                             subCategoryCode = "5";
-                             getData(subCategoryCode);
-                         }
-                     }
-                 }, 0);
             }
-
         }
-
     }
 
     public void onBackPressed() {

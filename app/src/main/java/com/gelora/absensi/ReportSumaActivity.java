@@ -3871,7 +3871,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                                     viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                           onBackPressed();
+                                            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_RELOAD_REQUEST, "true");
+                                            onBackPressed();
                                         }
                                     });
                                 } else if(categoryReport.equals("0")){
@@ -4023,6 +4024,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_RELOAD_REQUEST, "true");
                         onBackPressed();
                     }
                 });

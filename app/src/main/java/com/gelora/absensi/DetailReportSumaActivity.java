@@ -159,7 +159,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     ResultReceiver resultReceiver;
     Context mContext;
     Activity mActivity;
-    String fullDataProduct = "", idPelanggan = "", locationNow = "", salesLat = "", salesLong = "", choiceDateReschedule = "";
+    String devModeStatus = "", fullDataProduct = "", idPelanggan = "", locationNow = "", salesLat = "", salesLong = "", choiceDateReschedule = "";
     int REQUEST_IMAGE = 100;
     private Uri uri;
     private List<String> lampiranImage = new ArrayList<>();
@@ -326,6 +326,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         listProductInputRV.setNestedScrollingEnabled(false);
         listProductInputRV.setItemAnimator(new DefaultItemAnimator());
 
+        devModeCheck();
+
         LocalBroadcastManager.getInstance(this).registerReceiver(productSumaBroad, new IntentFilter("product_suma_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(noSuratJalanBroad, new IntentFilter("list_no_sj"));
         LocalBroadcastManager.getInstance(this).registerReceiver(productDeleteBroad, new IntentFilter("product_delete_broad_realisasi"));
@@ -387,6 +389,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 uri = null;
                 lampiranImage.clear();
                 extentionImage.clear();
+                devModeCheck();
 
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -814,7 +817,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         }
                                         public void onFinish() {
                                             i = -1;
-                                            if (isDeveloperModeEnabled()){
+                                            if (isDeveloperModeEnabled() && devModeStatus.equals("on")){
                                                 pDialog.dismiss();
                                                 new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
@@ -1467,6 +1470,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                                             lampiranImage.clear();
                                                             fotoLamBTN.setVisibility(View.VISIBLE);
                                                             viewLampiranUpdateBTN.setVisibility(View.GONE);
+                                                            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_RELOAD_REQUEST, "true");
                                                         }
                                                     })
                                                     .changeAlertType(KAlertDialog.SUCCESS_TYPE);
@@ -1594,6 +1598,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                                 choiceDateReschedule = "";
                                                 choiceDateTV.setText("");
                                                 scrollView.fullScroll(NestedScrollView.FOCUS_UP);
+                                                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_RELOAD_REQUEST, "true");
                                             }
                                         })
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);
@@ -1659,6 +1664,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 updateForm.collapse();
                                 rescheduleForm.collapse();
                                 updateRealisasiKunjunganForm.collapse();
+                                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_RELOAD_REQUEST, "true");
                             } else {
                                 pDialog.setTitleText("Gagal Terkirim")
                                         .setConfirmText("    OK    ")
@@ -2049,6 +2055,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     String[] splitArray = result.split(",");
                                     Picasso.get().load(splitArray[0]).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                            .centerCrop()
+                                            .resize(120, 180)
                                             .into(revLampiran);
 
                                     photoRevPart.setOnClickListener(new View.OnClickListener() {
@@ -3743,6 +3751,52 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             out.close();
             return Uri.fromFile(jpgFile);
         }
+    }
+
+    private void devModeCheck() {
+        final String url = "https://hrisgelora.co.id/api/dev_mode_check";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if(status.equals("on")){
+                                devModeStatus = "on";
+                            } else {
+                                devModeStatus = "off";
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
     }
 
     public boolean isDeveloperModeEnabled(){
