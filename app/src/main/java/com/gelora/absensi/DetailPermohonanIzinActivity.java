@@ -277,7 +277,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
             public void onClick(View v) {
                 new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Unduh File?")
-                        .setContentText("File hasil unduh akan disimpan pada folder Download/HRIS Mobile")
+                        .setContentText("File dokumen permohonan hasil unduh berformat PDF")
                         .setCancelText(" BATAL ")
                         .setConfirmText(" UNDUH ")
                         .showCancelButton(true)
@@ -328,13 +328,30 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                     }
                                     public void onFinish() {
                                         i = -1;
-                                        checkLinkStatus(link);
+                                        Intent webIntent = new Intent(Intent.ACTION_VIEW);
+                                        webIntent.setData(Uri.parse(link));
+                                        try {
+                                            startActivity(webIntent);
+                                            pDialog.dismiss();
+                                        } catch (SecurityException e) {
+                                            e.printStackTrace();
+                                            new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.WARNING_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Terjadi kesalahan, tidak dapat membuka browser")
+                                                    .setConfirmText("TUTUP")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+                                        }
                                     }
                                 }.start();
                             }
                         })
                         .show();
-
             }
         });
 
@@ -485,158 +502,6 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
         idPermohonanTV.setText(idIzinRecord);
 
-    }
-
-    private void checkLinkStatus(String link) {
-        new Thread(() -> {
-            try {
-                URL url = new URL(link);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestMethod("HEAD");
-                urlConnection.setConnectTimeout(3000);
-                urlConnection.setReadTimeout(3000);
-                urlConnection.connect();
-
-                int responseCode = urlConnection.getResponseCode();
-                String result;
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    downloadFile();
-                } else if (responseCode == HttpURLConnection.HTTP_NOT_FOUND) {
-                    pDialog.dismiss();
-                    new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Tidak dapat mengakses file")
-                            .setConfirmText("    OK    ")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
-                } else {
-                    pDialog.dismiss();
-                    new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Tidak dapat mengakses file")
-                            .setConfirmText("    OK    ")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                runOnUiThread(() -> {
-                    pDialog.dismiss();
-                    new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Terjadi kesalahan")
-                            .setConfirmText("    OK    ")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
-                });
-            }
-        }).start();
-    }
-
-    private void downloadFile() {
-        new Thread(() -> {
-            try {
-                URL url = new URL("https://hrisgelora.co.id/download/izin/" + nikIzin + ".pdf");
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.connect();
-                if (urlConnection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                    pDialog.dismiss();
-                    new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Tidak dapat mengakses file")
-                            .setConfirmText("    OK    ")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
-                    Log.e("Download Error", "Server returned HTTP " + urlConnection.getResponseCode() + " " + urlConnection.getResponseMessage());
-                    return;
-                }
-                File hrisFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "HRIS Mobile");
-                if (!hrisFolder.exists()) {
-                    hrisFolder.mkdirs();
-                }
-                File pdfFile = new File(hrisFolder, "Izin_" + nikIzin + "_" + idIzinRecord + ".pdf");
-                InputStream inputStream = urlConnection.getInputStream();
-                FileOutputStream outputStream = new FileOutputStream(pdfFile);
-                byte[] buffer = new byte[4096];
-                int bytesRead;
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
-                outputStream.close();
-                inputStream.close();
-                Uri fileUri = Uri.fromFile(pdfFile);
-                runOnUiThread(() -> {
-                    pDialog.dismiss();
-                    new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.SUCCESS_TYPE)
-                            .setTitleText("Unduh Berhasil")
-                            .setContentText("File permohonan berhasil diunduh, periksa folder download anda")
-                            .setConfirmText("    OK    ")
-                            .setCancelClickListener(KAlertDialog::dismiss)
-                            .setConfirmClickListener(AppCompatDialog::dismiss)
-                            .show();
-                    showDownloadNotification(pdfFile);
-                });
-
-            } catch (Exception e) {
-                Log.e("Download Error", e.getMessage());
-                runOnUiThread(() -> {
-                    pDialog.dismiss();
-                    new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("File permohonan gagal diunduh")
-                            .setConfirmText("    OK    ")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
-                });
-            }
-        }).start();
-    }
-
-    private void showDownloadNotification(File pdfFile) {
-        Uri pdfUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", pdfFile);
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(pdfUri, "application/pdf");
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        String channelId = "pdf_view_channel";
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(channelId, "PDF View Notifications", NotificationManager.IMPORTANCE_DEFAULT);
-            notificationManager.createNotificationChannel(channel);
-        }
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
-                .setSmallIcon(R.drawable.ic_skylight_notification)
-                .setContentTitle("Berhasil Diunduh")
-                .setContentText("Tap untuk melihat dokumen permohonan izin yang telah diunduh.")
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
-        notificationManager.notify(1, builder.build());
     }
 
     private void generateQRCode(){

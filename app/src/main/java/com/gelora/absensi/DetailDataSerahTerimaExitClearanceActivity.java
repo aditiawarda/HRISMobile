@@ -11,6 +11,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -50,7 +51,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
 
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
-    LinearLayout actionBar, backBTN, statusCard, lampiranBTN, pendingBTN, verifBTN, verifPart, waitingApproval, doneApproval;
+    LinearLayout viewBTN, actionBar, backBTN, statusCard, lampiranBTN, pendingBTN, verifBTN, verifPart, waitingApproval, doneApproval;
     LinearLayout stRincian1, stRincian2, stRincian3, stRincian4, stRincian5, stRincian6;
     TextView namaKaryawanTV, nikKaryawanTV, detailKaryawanTV, serahTerimaTV, statusTV, tglMasukTV, tglKeluarTV, lampiranTV;
     ImageView statusGif;
@@ -89,6 +90,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
         pendingBTN = findViewById(R.id.pending_btn);
         verifPart = findViewById(R.id.verif_part);
         pendingLabelBTN = findViewById(R.id.pending_label_btn);
+        viewBTN = findViewById(R.id.view_btn);
 
         statusCard = findViewById(R.id.status_card);
         tglMasukTV = findViewById(R.id.tgl_masuk);
@@ -206,6 +208,30 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        viewBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent webIntent = new Intent(Intent.ACTION_VIEW);
+                webIntent.setData(Uri.parse("https://hrisgelora.co.id/api/download_pdf_exit_clearance/"+idCore));
+                try {
+                    startActivity(webIntent);
+                } catch (SecurityException e) {
+                    e.printStackTrace();
+                    new KAlertDialog(DetailDataSerahTerimaExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Terjadi kesalahan, tidak dapat membuka browser")
+                            .setConfirmText("TUTUP")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
             }
         });
 

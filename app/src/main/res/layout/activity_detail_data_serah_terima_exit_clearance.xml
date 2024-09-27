@@ -2171,19 +2171,41 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:orientation="vertical"
+                                android:background="#CFCFCF"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="15dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"/>
+
+                            <LinearLayout
+                                android:id="@+id/view_btn"
+                                android:layout_marginBottom="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="@drawable/shape_third_btn"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:drawableLeft="@drawable/ic_baseline_search_4"
+                                    android:drawablePadding="4dp"
+                                    android:gravity="center"
+                                    android:text="Lihat Dokumen"
+                                    android:textColor="#CF811F"
+                                    android:textSize="13dp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,UseCompatTextViewDrawableXml" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:id="@+id/verif_part"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:visibility="gone"
                                 android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:orientation="vertical"
-                                    android:background="#CFCFCF"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="13dp"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"/>
 
                                 <LinearLayout
                                     android:orientation="vertical"
