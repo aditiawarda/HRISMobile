@@ -66,6 +66,7 @@ public class AdapterPersonalNotification extends RecyclerView.Adapter<AdapterPer
         final DataPersonalNotification dataPersonalNotification = data[i];
 
         if(dataPersonalNotification.getType().equals("1")){
+            myViewHolder.typeNotifikasi.setText("CUTI");
             myViewHolder.statusNotifikasiTV.setText(dataPersonalNotification.getNotif_from_name()+" mencantumkan anda sebagai pengganti selama cuti");
             String input_date = dataPersonalNotification.getCreated_at().substring(0,10);
             String dayDate = input_date.substring(8,10);
@@ -150,6 +151,7 @@ public class AdapterPersonalNotification extends RecyclerView.Adapter<AdapterPer
                 myViewHolder.statusNotifikasiTV.setTextColor(Color.parseColor("#7d7d7d"));
                 myViewHolder.statusNotifikasiTV.setTypeface(myViewHolder.statusNotifikasiTV.getTypeface(), Typeface.NORMAL);
                 myViewHolder.tanggalNotifikasi.setTextColor(Color.parseColor("#7d7d7d"));
+                myViewHolder.typeNotifikasi.setTextColor(Color.parseColor("#7d7d7d"));
                 myViewHolder.lineLimit.setBackgroundColor(Color.parseColor("#EAEAEA"));
             } else {
                 myViewHolder.statusNotifikasiTV.setTypeface(myViewHolder.statusNotifikasiTV.getTypeface(), Typeface.BOLD);
@@ -165,6 +167,7 @@ public class AdapterPersonalNotification extends RecyclerView.Adapter<AdapterPer
                 }
             });
         } else if(dataPersonalNotification.getType().equals("2")){
+            myViewHolder.typeNotifikasi.setText("LHS");
             if(dataPersonalNotification.getSubType().equals("1")){
                 if(dataPersonalNotification.getData_owner().equals(sharedPrefManager.getSpNik())){
                     myViewHolder.statusNotifikasiTV.setText(dataPersonalNotification.getNotif_from_name()+" mengomentari rencana kunjungan anda");
@@ -269,6 +272,7 @@ public class AdapterPersonalNotification extends RecyclerView.Adapter<AdapterPer
                 myViewHolder.statusNotifikasiTV.setTextColor(Color.parseColor("#7d7d7d"));
                 myViewHolder.statusNotifikasiTV.setTypeface(myViewHolder.statusNotifikasiTV.getTypeface(), Typeface.NORMAL);
                 myViewHolder.tanggalNotifikasi.setTextColor(Color.parseColor("#7d7d7d"));
+                myViewHolder.typeNotifikasi.setTextColor(Color.parseColor("#7d7d7d"));
                 myViewHolder.lineLimit.setBackgroundColor(Color.parseColor("#EAEAEA"));
             } else {
                 myViewHolder.statusNotifikasiTV.setTypeface(myViewHolder.statusNotifikasiTV.getTypeface(), Typeface.BOLD);
@@ -293,12 +297,13 @@ public class AdapterPersonalNotification extends RecyclerView.Adapter<AdapterPer
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView statusNotifikasiTV, tanggalNotifikasi, lineLimit;
+        TextView statusNotifikasiTV, tanggalNotifikasi, lineLimit, typeNotifikasi;
         LinearLayout parentPart;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             statusNotifikasiTV = itemView.findViewById(R.id.status_notifikasi_tv);
             tanggalNotifikasi = itemView.findViewById(R.id.tanggal_notifikasi);
+            typeNotifikasi = itemView.findViewById(R.id.type_notifikasi);
             lineLimit = itemView.findViewById(R.id.line_limit);
             parentPart = itemView.findViewById(R.id.parent_part);
         }
