@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -103,7 +104,86 @@ public class DetailIzinKeluar extends AppCompatActivity {
             DetailIzinKeluar.this.finish();
         });
 
-        getBinding().appbar.setOnClickListener(view1 -> {
+        getBinding().appbar.setOnClickListener(view1 -> {});
+
+        getBinding().downloadBtn.setOnClickListener(view1 -> {
+            new KAlertDialog(DetailIzinKeluar.this, KAlertDialog.WARNING_TYPE)
+                    .setTitleText("Unduh File?")
+                    .setContentText("File dokumen permohonan hasil unduh berformat PDF")
+                    .setCancelText(" BATAL ")
+                    .setConfirmText(" UNDUH ")
+                    .showCancelButton(true)
+                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(KAlertDialog sDialog) {
+                            sDialog.dismiss();
+                        }
+                    })
+                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(KAlertDialog sDialog) {
+                            sDialog.dismiss();
+                            String link = "https://hrisgelora.co.id/api/download_pdf_izin_keluar_kantor/"+getApprovalId;
+                            pDialog = new KAlertDialog(DetailIzinKeluar.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                            pDialog.show();
+                            pDialog.setCancelable(false);
+                            new CountDownTimer(1000, 500) {
+                                public void onTick(long millisUntilFinished) {
+                                    i++;
+                                    switch (i) {
+                                        case 0:
+                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                    (DetailIzinKeluar.this, R.color.colorGradien));
+                                            break;
+                                        case 1:
+                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                    (DetailIzinKeluar.this, R.color.colorGradien2));
+                                            break;
+                                        case 2:
+                                        case 6:
+                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                    (DetailIzinKeluar.this, R.color.colorGradien3));
+                                            break;
+                                        case 3:
+                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                    (DetailIzinKeluar.this, R.color.colorGradien4));
+                                            break;
+                                        case 4:
+                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                    (DetailIzinKeluar.this, R.color.colorGradien5));
+                                            break;
+                                        case 5:
+                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                    (DetailIzinKeluar.this, R.color.colorGradien6));
+                                            break;
+                                    }
+                                }
+                                public void onFinish() {
+                                    i = -1;
+                                    Intent webIntent = new Intent(Intent.ACTION_VIEW);
+                                    webIntent.setData(Uri.parse(link));
+                                    try {
+                                        startActivity(webIntent);
+                                        pDialog.dismiss();
+                                    } catch (SecurityException e) {
+                                        e.printStackTrace();
+                                        new KAlertDialog(DetailIzinKeluar.this, KAlertDialog.WARNING_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Terjadi kesalahan, tidak dapat membuka browser")
+                                                .setConfirmText("TUTUP")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    }
+                                }
+                            }.start();
+                        }
+                    })
+                    .show();
         });
 
         getBinding().swipeToRefreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);

@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -399,17 +400,22 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 loadingDataPartReport.setVisibility(View.GONE);
                 noDataPartReport.setVisibility(View.VISIBLE);
 
-                new KAlertDialog(ListDataReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
-                        .setTitleText("Perhatian")
-                        .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
-                        .setConfirmText("    OK    ")
-                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(KAlertDialog sDialog) {
-                                sDialog.dismiss();
-                            }
-                        })
-                        .show();
+                try {
+                    new KAlertDialog(ListDataReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } catch (WindowManager.BadTokenException e){
+                    Log.e("Error", "Error : "+e.toString());
+                }
+
             }
         });
 
