@@ -55,6 +55,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".VisitStatisticActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailIzinKeluar"
             android:exported="false"
             tools:ignore="DiscouragedApi,LockedOrientationActivity" />
@@ -609,7 +612,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_pathsimage" />
         </provider>
-
     </application>
 
 </manifest>

@@ -1678,7 +1678,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                     actionPart.setVisibility(View.VISIBLE);
                                                     warningPenilaian.setVisibility(View.GONE);
                                                 } else {
-                                                    if(status_approve_astkadept.equals("1") && sharedPrefManager.getSpNik().equals("0057010793")){
+                                                    if(status_approve_astkadept.equals("1") && !status_approve_kadept.equals("1") && sharedPrefManager.getSpNik().equals("0057010793")){
                                                         actionPart.setVisibility(View.VISIBLE);
                                                         warningPenilaian.setVisibility(View.GONE);
                                                     } else {

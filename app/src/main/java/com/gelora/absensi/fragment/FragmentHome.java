@@ -83,6 +83,7 @@ import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.VisiMisiActivity;
+import com.gelora.absensi.VisitStatisticActivity;
 import com.gelora.absensi.adapter.AdapterListPengumumanNew;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataPengumuman;

@@ -45,7 +45,7 @@ public class DeviceWarningActivity extends AppCompatActivity {
             messageWarningDevice.setVisibility(View.GONE);
         } else {
             messageWarningDevice.setVisibility(View.VISIBLE);
-            messageWarningDevice.setText("Perangkat ini terdaftar atas nama "+userName.toUpperCase()+" dengan NIK : "+userNIK+".");
+            messageWarningDevice.setText("Perangkat ini terdaftar atas nama "+userName.toUpperCase()+" dengan NIK : "+userNIK.toUpperCase()+".");
         }
 
         loginBTN.setOnClickListener(new View.OnClickListener() {
