@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -969,7 +968,7 @@ public class AllMenuActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(View v) {
                                         if(chat_room.equals("1")){
-                                            Intent intent = new Intent(AllMenuActivity.this, ChatSplashScreenActivity.class);
+                                            Intent intent = new Intent(AllMenuActivity.this, ChatStartFeatureActivity.class);
                                             startActivity(intent);
                                         } else {
                                             new KAlertDialog(AllMenuActivity.this, KAlertDialog.WARNING_TYPE)

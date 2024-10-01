@@ -37,7 +37,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -59,7 +58,7 @@ import com.application.isradeleon.notify.Notify;
 import com.bumptech.glide.Glide;
 import com.gelora.absensi.AllMenuActivity;
 import com.gelora.absensi.CalendarPageActivity;
-import com.gelora.absensi.ChatSplashScreenActivity;
+import com.gelora.absensi.ChatStartFeatureActivity;
 import com.gelora.absensi.DataFormSdmActivity;
 import com.gelora.absensi.DetailCuacaActivity;
 import com.gelora.absensi.DetailPengumumanActivity;
@@ -83,7 +82,6 @@ import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.VisiMisiActivity;
-import com.gelora.absensi.VisitStatisticActivity;
 import com.gelora.absensi.adapter.AdapterListPengumumanNew;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataPengumuman;
@@ -309,7 +307,7 @@ public class FragmentHome extends Fragment {
         chatBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
+                Intent intent = new Intent(mContext, ChatStartFeatureActivity.class);
                 startActivity(intent);
             }
         });
@@ -1535,7 +1533,7 @@ public class FragmentHome extends Fragment {
                                         }
 
                                         try {
-                                            Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
+                                            Intent intent = new Intent(mContext, ChatStartFeatureActivity.class);
                                             Notify.build(mContext)
                                                     .setTitle("HRIS Mobile Gelora")
                                                     .setContent("Halo "+shortName+", terdapat "+message_count+" pesan yang belum dibaca di Gelora Messenger")
@@ -1574,7 +1572,7 @@ public class FragmentHome extends Fragment {
                                             }
 
                                             try {
-                                                Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
+                                                Intent intent = new Intent(mContext, ChatStartFeatureActivity.class);
                                                 Notify.build(mContext)
                                                         .setTitle("HRIS Mobile Gelora")
                                                         .setContent("Halo "+shortName+", terdapat "+message_count+" pesan yang belum dibaca di Gelora Messenger")

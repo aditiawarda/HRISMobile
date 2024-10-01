@@ -6,23 +6,22 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 
 @SuppressLint("CustomSplashScreen")
-public class ChatSplashScreenActivity extends AppCompatActivity {
+public class ChatStartFeatureActivity extends AppCompatActivity {
 
     private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat_splash_screen);
+        setContentView(R.layout.activity_chat_start_feature);
 
         handler.postDelayed(new Runnable() {
             @SuppressLint("SetTextI18n")
             @Override
             public void run() {
-                Intent intent = new Intent(ChatSplashScreenActivity.this, ListChatMateActivity.class);
+                Intent intent = new Intent(ChatStartFeatureActivity.this, ListChatMateActivity.class);
                 startActivity(intent);
                 finish();
             }

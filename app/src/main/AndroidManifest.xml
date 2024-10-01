@@ -434,7 +434,7 @@
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity" />
         <activity
-            android:name=".ChatSplashScreenActivity"
+            android:name=".ChatStartFeatureActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity" />
@@ -587,7 +587,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".SplashScreen"
+            android:name=".StartApp"
             android:exported="true"
             android:label="@string/title_activity_maps"
             android:screenOrientation="portrait"

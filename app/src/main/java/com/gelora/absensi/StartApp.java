@@ -27,7 +27,6 @@ import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -66,7 +65,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SuppressLint("CustomSplashScreen")
-public class SplashScreen extends AppCompatActivity {
+public class StartApp extends AppCompatActivity {
 
     private static final String[] LOCATION_PERMS = {Manifest.permission.ACCESS_FINE_LOCATION};
     private static final int INITIAL_REQUEST = 1337;
@@ -89,7 +88,7 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        setContentView(R.layout.activity_start_app);
 
         sharedPrefManager = new SharedPrefManager(this);
         requestQueue = Volley.newRequestQueue(this);
@@ -131,7 +130,7 @@ public class SplashScreen extends AppCompatActivity {
                         loadingOff.setVisibility(View.GONE);
                         loadingProgressBar.setVisibility(View.VISIBLE);
                         refreshBTN.setOnClickListener(null);
-                        refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss_off));
+                        refreshBTN.setBackground(ContextCompat.getDrawable(StartApp.this, R.drawable.shape_refresh_ss_off));
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
@@ -160,7 +159,7 @@ public class SplashScreen extends AppCompatActivity {
                 loadingOff.setVisibility(View.GONE);
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 refreshBTN.setOnClickListener(null);
-                refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss_off));
+                refreshBTN.setBackground(ContextCompat.getDrawable(StartApp.this, R.drawable.shape_refresh_ss_off));
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -182,7 +181,7 @@ public class SplashScreen extends AppCompatActivity {
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
 
-        Task<LocationSettingsResponse> result = LocationServices.getSettingsClient(SplashScreen.this).checkLocationSettings(builder.build());
+        Task<LocationSettingsResponse> result = LocationServices.getSettingsClient(StartApp.this).checkLocationSettings(builder.build());
 
         result.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
             @Override
@@ -203,7 +202,7 @@ public class SplashScreen extends AppCompatActivity {
                                 // Show the dialog by calling startResolutionForResult(),
                                 // and check the result in onActivityResult().
                                 resolvable.startResolutionForResult(
-                                        SplashScreen.this,
+                                        StartApp.this,
                                         LocationRequest.PRIORITY_HIGH_ACCURACY);
 
                             } catch (IntentSender.SendIntentException e) {
@@ -247,7 +246,7 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     private void permissionLoc() {
-        if (ContextCompat.checkSelfPermission(SplashScreen.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(SplashScreen.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(StartApp.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(StartApp.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
             }
@@ -261,7 +260,7 @@ public class SplashScreen extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(SplashScreen.this, HomeActivity.class);
+                    Intent intent = new Intent(StartApp.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -298,7 +297,7 @@ public class SplashScreen extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(SplashScreen.this, HomeActivity.class);
+                            Intent intent = new Intent(StartApp.this, HomeActivity.class);
                             startActivity(intent);
                             finish();
                         }
@@ -330,7 +329,7 @@ public class SplashScreen extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(SplashScreen.this, HomeActivity.class);
+                    Intent intent = new Intent(StartApp.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -382,7 +381,7 @@ public class SplashScreen extends AppCompatActivity {
                             Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             refreshLayout.setRefreshing(false);
-                            refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss));
+                            refreshBTN.setBackground(ContextCompat.getDrawable(StartApp.this, R.drawable.shape_refresh_ss));
 
                             refreshBTN.setOnClickListener(new View.OnClickListener() {
                                 @SuppressLint("SetTextI18n")
@@ -392,7 +391,7 @@ public class SplashScreen extends AppCompatActivity {
                                     loadingOff.setVisibility(View.GONE);
                                     loadingProgressBar.setVisibility(View.VISIBLE);
                                     refreshBTN.setOnClickListener(null);
-                                    refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss_off));
+                                    refreshBTN.setBackground(ContextCompat.getDrawable(StartApp.this, R.drawable.shape_refresh_ss_off));
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
@@ -474,7 +473,7 @@ public class SplashScreen extends AppCompatActivity {
                                                 finish();
                                             } catch (SecurityException e) {
                                                 e.printStackTrace();
-                                                new KAlertDialog(SplashScreen.this, KAlertDialog.WARNING_TYPE)
+                                                new KAlertDialog(StartApp.this, KAlertDialog.WARNING_TYPE)
                                                         .setTitleText("Perhatian")
                                                         .setContentText("Tidak dapat terhubung ke Play Store, anda dapat membuka Play Store secara langsung dan cari HRIS Mobile Gelora di kolom pencarian")
                                                         .setConfirmText("TUTUP")
@@ -545,7 +544,7 @@ public class SplashScreen extends AppCompatActivity {
                                 refreshLabel.setText("REFRESH");
                                 refreshLayout.setEnabled(true);
 
-                                Banner.make(rootview, SplashScreen.this, Banner.ERROR, "Not found!", Banner.BOTTOM, 3000).show();
+                                Banner.make(rootview, StartApp.this, Banner.ERROR, "Not found!", Banner.BOTTOM, 3000).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -563,7 +562,7 @@ public class SplashScreen extends AppCompatActivity {
                         loadingOff.setVisibility(View.VISIBLE);
                         loadingProgressBar.setVisibility(View.GONE);
 
-                        refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss));
+                        refreshBTN.setBackground(ContextCompat.getDrawable(StartApp.this, R.drawable.shape_refresh_ss));
                         refreshBTN.setOnClickListener(new View.OnClickListener() {
                             @SuppressLint("SetTextI18n")
                             @Override
@@ -572,7 +571,7 @@ public class SplashScreen extends AppCompatActivity {
                                 loadingOff.setVisibility(View.GONE);
                                 loadingProgressBar.setVisibility(View.VISIBLE);
                                 refreshBTN.setOnClickListener(null);
-                                refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss_off));
+                                refreshBTN.setBackground(ContextCompat.getDrawable(StartApp.this, R.drawable.shape_refresh_ss_off));
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
@@ -593,7 +592,7 @@ public class SplashScreen extends AppCompatActivity {
                         refreshLabel.setText("REFRESH");
                         refreshLayout.setEnabled(true);
 
-                        CookieBar.build(SplashScreen.this)
+                        CookieBar.build(StartApp.this)
                                 .setCustomView(R.layout.layout_custom_cookie)
                                 .setEnableAutoDismiss(true)
                                 .setSwipeToDismiss(false)
