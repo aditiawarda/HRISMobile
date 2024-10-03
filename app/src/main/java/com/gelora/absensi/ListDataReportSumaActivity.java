@@ -144,7 +144,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 || sharedPrefManager.getSpNik().equals("3318060323") // Bapak Dominggus
                 || sharedPrefManager.getSpNik().equals("0499070507") // Bapak Dawud
                 || sharedPrefManager.getSpNik().equals("1405020311") // Bapak Panda
-                || sharedPrefManager.getSpNik().equals("3321130323") // Bapak Marpon
+                // || sharedPrefManager.getSpNik().equals("3321130323") // Bapak Marpon
                 || sharedPrefManager.getSpNik().equals("3320130323") // Bapak Daniel
                 || sharedPrefManager.getSpIdJabatan().equals("43")   // GL Suma 1
                 || sharedPrefManager.getSpIdJabatan().equals("45")   // GL Suma 2

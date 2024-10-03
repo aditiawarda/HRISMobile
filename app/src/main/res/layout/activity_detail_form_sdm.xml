@@ -2891,6 +2891,29 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/cancel_btn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:paddingTop="12dp"
+                                    android:paddingBottom="12dp"
+                                    android:background="@drawable/shape_btn_rejected"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:textSize="13dp"
+                                        android:textColor="@color/white"
+                                        android:text="Batalkan"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,UnusedAttribute,UseCompatTextViewDrawableXml" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:id="@+id/lihat_penilaian_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"

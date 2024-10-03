@@ -52,7 +52,7 @@ import java.util.Map;
 
 public class DetailFormSdmActivity extends AppCompatActivity {
 
-    LinearLayout ttdAstKadeptPart, lihatPenilaianPart, lihatPenilaianBTN, penilaianBTN, ttdDireksiPart, downloadBTN, backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
+    LinearLayout cancelBTN, ttdAstKadeptPart, lihatPenilaianPart, lihatPenilaianBTN, penilaianBTN, ttdDireksiPart, downloadBTN, backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     TextView tglApproveAstKadept, jabatanApprover, jabatanApprover2, warningPenilaian, labelDireksi, markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
@@ -155,6 +155,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         lihatPenilaianPart = findViewById(R.id.lihat_penilaian_part);
         lihatPenilaianBTN = findViewById(R.id.lihat_penilaian_btn);
         warningPenilaian = findViewById(R.id.warning_penilaian);
+        cancelBTN = findViewById(R.id.cancel_btn);
 
         jabatanApprover = findViewById(R.id.jabatan_approver);
         jabatanAstKadept = findViewById(R.id.jabatan_askadept);
@@ -191,6 +192,72 @@ public class DetailFormSdmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        cancelBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Yakin untuk membatalkan permohonan SDM?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                pDialog = new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1000, 500) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+
+                                    public void onFinish() {
+                                        i = -1;
+                                        cancelPermohonan();
+                                    }
+                                }.start();
+
+                            }
+                        })
+                        .show();
             }
         });
 
@@ -413,6 +480,68 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
     }
 
+    private void cancelPermohonan(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://hrisgelora.co.id/api/cancel_sdm";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response);
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if(status.equals("Success")){
+                                actionPart.setVisibility(View.GONE);
+                                pDialog.setTitleText("Permohonan Dibatalkan")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                Intent intent = new Intent(DetailFormSdmActivity.this, HomeActivity.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            } else {
+                                actionPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Permohonan Gagal Dibatalkan")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id", idData);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
     private void getData() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://hrisgelora.co.id/api/get_detail_form_sdm";
@@ -510,6 +639,16 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String id_bagian               = dataArray.getString("id_bagian");
                                 String id_penilaian            = dataArray.getString("id_penilaian");
                                 String approval_penilaian      = dataArray.getString("approval_penilaian");
+
+                                if(sharedPrefManager.getSpNik().equals(dibuat_oleh)){
+                                    if(status_approve_kabag.equals("1")||status_approve_kabag.equals("2")){
+                                        cancelBTN.setVisibility(View.GONE);
+                                    } else {
+                                        cancelBTN.setVisibility(View.VISIBLE);
+                                    }
+                                } else {
+                                    cancelBTN.setVisibility(View.GONE);
+                                }
 
                                 String depart = "";
                                 if(keterangan.equals("1")){
