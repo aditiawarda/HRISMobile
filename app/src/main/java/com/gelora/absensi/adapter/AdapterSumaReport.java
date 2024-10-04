@@ -97,10 +97,14 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         } else if(dataReportSuma.getNmJabatan().equals("Group Leader AE") || dataReportSuma.getNmJabatan().equals("Staff AE")){
             myViewHolder.regionTV.setText("Jakarta AE");
         } else {
-            String[] jabatan = dataReportSuma.getNmJabatan().split("\\s+");
-            String region = jabatan[jabatan.length - 1];
+            if(dataReportSuma.getIdSales().equals("3321130323")||dataReportSuma.getIdSales().equals("3278130622")){
+                myViewHolder.regionTV.setText("Akunting dan Keuangan");
+            } else {
+                String[] jabatan = dataReportSuma.getNmJabatan().split("\\s+");
+                String region = jabatan[jabatan.length - 1];
 
-            myViewHolder.regionTV.setText(region);
+                myViewHolder.regionTV.setText(region);
+            }
         }
 
         myViewHolder.namaPelangganTV.setText(dataReportSuma.getNamaPelanggan());

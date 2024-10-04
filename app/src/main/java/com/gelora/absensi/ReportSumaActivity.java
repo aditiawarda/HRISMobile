@@ -3867,7 +3867,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                                     formPart.setVisibility(View.GONE);
                                     pDialog.dismiss();
 
-                                    viewPermohonanTV.setText("Lihat List Data");
+                                    viewPermohonanTV.setText("LIHAT LIST DATA");
                                     viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -4020,7 +4020,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 successPart.setVisibility(View.VISIBLE);
                 formPart.setVisibility(View.GONE);
                 pDialog.dismiss();
-                viewPermohonanTV.setText("Lihat List Data");
+                viewPermohonanTV.setText("LIHAT LIST DATA");
                 viewPermohonanBTN.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

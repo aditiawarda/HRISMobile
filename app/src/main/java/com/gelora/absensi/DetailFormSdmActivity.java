@@ -501,7 +501,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
                                                 sDialog.dismiss();
-                                                Intent intent = new Intent(DetailFormSdmActivity.this, HomeActivity.class);
+                                                Intent intent = new Intent(DetailFormSdmActivity.this, DataFormSdmActivity.class);
                                                 startActivity(intent);
                                                 finish();
                                             }

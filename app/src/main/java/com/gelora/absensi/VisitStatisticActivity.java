@@ -2,6 +2,8 @@ package com.gelora.absensi;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,13 +22,30 @@ import java.util.ArrayList;
 
 public class VisitStatisticActivity extends AppCompatActivity {
 
+    PieChart pieChart;
+    LinearLayout backBTN, actionBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_visit_statistic);
 
-        PieChart pieChart = findViewById(R.id.piechart);
+        backBTN = findViewById(R.id.back_btn);
+        actionBar = findViewById(R.id.action_bar);
+        pieChart = findViewById(R.id.piechart);
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         // Data untuk PieChart
         ArrayList<PieEntry> entries = new ArrayList<>();

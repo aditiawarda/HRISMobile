@@ -231,7 +231,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         statistikBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListDataReportSumaActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(ListDataReportSumaActivity.this, VisitStatisticActivity.class);
                 startActivity(intent);
             }
         });
@@ -1482,6 +1482,8 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 wilayahChoiceTV.setText("Surabaya");
             } else if(wilayahSales.equals("7")){
                 wilayahChoiceTV.setText("Jakarta AE");
+            } else if(wilayahSales.equals("8")){
+                wilayahChoiceTV.setText("Akunting dan Keuangan");
             }
 
             InputMethodManager imm = (InputMethodManager) ListDataReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
