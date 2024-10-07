@@ -56,7 +56,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".VisitStatisticActivity"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
         <activity
             android:name=".DetailIzinKeluar"
             android:exported="false"

@@ -354,6 +354,13 @@ public class FragmentInfo extends Fragment {
             @Override
             public void onClick(View v) {
                 Calendar now = Calendar.getInstance();
+                try {
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+                    Date date = sdf.parse(selectMonth);
+                    now.setTime(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(mContext,
                         new MonthPickerDialog.OnDateSetListener() {
                             @SuppressLint("SetTextI18n")

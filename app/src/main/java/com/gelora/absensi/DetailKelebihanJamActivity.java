@@ -33,6 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -103,6 +104,7 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                bulanPilih = getIntent().getExtras().getString("bulan");
                 bulanLoading.setVisibility(View.VISIBLE);
                 dataBulan.setVisibility(View.GONE);
                 dataTahun.setVisibility(View.GONE);
@@ -130,8 +132,14 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
         monthBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
                 Calendar now = Calendar.getInstance();
+                try {
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+                    Date date = sdf.parse(bulanPilih);
+                    now.setTime(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(DetailKelebihanJamActivity.this,
                         new MonthPickerDialog.OnDateSetListener() {
                             @SuppressLint("SetTextI18n")
