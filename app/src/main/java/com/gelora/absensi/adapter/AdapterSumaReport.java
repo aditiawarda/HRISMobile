@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +20,9 @@ import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataReportSuma;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -62,23 +67,23 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
                 myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
             }
         } else if (dataReportSuma.getTipeLaporan().equals("2")) {
-            myViewHolder.reportCategoryTV.setText("Aktivitas Promosi");
-            myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
+            myViewHolder.reportCategoryTV.setText("Promosi");
+            myViewHolder.f1StatusRealisasi.setVisibility(View.VISIBLE);
         } else if (dataReportSuma.getTipeLaporan().equals("3")) {
-            myViewHolder.reportCategoryTV.setText("Aktivitas Penagihan");
-            myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
+            myViewHolder.reportCategoryTV.setText("Penagihan");
+            myViewHolder.f1StatusRealisasi.setVisibility(View.VISIBLE);
         } else if (dataReportSuma.getTipeLaporan().equals("4")) {
-            myViewHolder.reportCategoryTV.setText("Aktivitas Pengiriman");
-            myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
+            myViewHolder.reportCategoryTV.setText("Pengiriman");
+            myViewHolder.f1StatusRealisasi.setVisibility(View.VISIBLE);
         } else if (dataReportSuma.getTipeLaporan().equals("5")) {
             myViewHolder.reportCategoryTV.setText("Non Join Visit");
-            myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
+            myViewHolder.f1StatusRealisasi.setVisibility(View.VISIBLE);
         } else if (dataReportSuma.getTipeLaporan().equals("6")) {
             myViewHolder.reportCategoryTV.setText("Join Visit");
-            myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
+            myViewHolder.f1StatusRealisasi.setVisibility(View.VISIBLE);
         } else if (dataReportSuma.getTipeLaporan().equals("7")) {
             myViewHolder.reportCategoryTV.setText("Pameran");
-            myViewHolder.f1StatusRealisasi.setVisibility(View.GONE);
+            myViewHolder.f1StatusRealisasi.setVisibility(View.VISIBLE);
         }
 
         myViewHolder.namaSalesTV.setText(dataReportSuma.getNamaKaryawan());
@@ -92,15 +97,21 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         } else if(dataReportSuma.getNmJabatan().equals("Group Leader AE") || dataReportSuma.getNmJabatan().equals("Staff AE")){
             myViewHolder.regionTV.setText("Jakarta AE");
         } else {
-            String[] jabatan = dataReportSuma.getNmJabatan().split("\\s+");
-            String region = jabatan[jabatan.length - 1];
+            if(dataReportSuma.getIdSales().equals("3321130323")||dataReportSuma.getIdSales().equals("3278130622")){
+                myViewHolder.regionTV.setText("Akunting dan Keuangan");
+            } else {
+                String[] jabatan = dataReportSuma.getNmJabatan().split("\\s+");
+                String region = jabatan[jabatan.length - 1];
 
-            myViewHolder.regionTV.setText(region);
+                myViewHolder.regionTV.setText(region);
+            }
         }
 
         myViewHolder.namaPelangganTV.setText(dataReportSuma.getNamaPelanggan());
 
         if(dataReportSuma.getTipeLaporan().equals("1")){
+            myViewHolder.photoRevPart.setVisibility(View.GONE);
+            myViewHolder.mainPart.setPadding(0,0,0,0);
             myViewHolder.rencanaKunjunganPart.setVisibility(View.VISIBLE);
             myViewHolder.kunjunganPart.setVisibility(View.GONE);
             myViewHolder.penagihanPart.setVisibility(View.GONE);
@@ -113,6 +124,23 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             }
             myViewHolder.f1TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
         } else if(dataReportSuma.getTipeLaporan().equals("2")){
+            myViewHolder.photoRevPart.setVisibility(View.VISIBLE);
+            int right = 75;
+            int paddingRight = dpToPixels(right, mContext);
+            myViewHolder.mainPart.setPadding(0,0,paddingRight,0);
+
+            String result = String.valueOf(dataReportSuma.getFile())
+                    .replaceAll("\\[", "")
+                    .replaceAll("\\]", "")
+                    .replaceAll("\"", "");
+            String[] splitArray = result.split(",");
+
+            Picasso.get().load(splitArray[0]).networkPolicy(NetworkPolicy.NO_CACHE)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .centerCrop()
+                    .resize(40, 60)
+                    .into(myViewHolder.revLampiran);
+
             myViewHolder.rencanaKunjunganPart.setVisibility(View.GONE);
             myViewHolder.kunjunganPart.setVisibility(View.VISIBLE);
             myViewHolder.penagihanPart.setVisibility(View.GONE);
@@ -129,12 +157,29 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             }
             myViewHolder.f2TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
         } else if(dataReportSuma.getTipeLaporan().equals("3")){
+            myViewHolder.photoRevPart.setVisibility(View.VISIBLE);
+            int right = 75;
+            int paddingRight = dpToPixels(right, mContext);
+            myViewHolder.mainPart.setPadding(0,0,paddingRight,0);
+
+            String result = String.valueOf(dataReportSuma.getFile())
+                    .replaceAll("\\[", "")
+                    .replaceAll("\\]", "")
+                    .replaceAll("\"", "");
+            String[] splitArray = result.split(",");
+
+            Picasso.get().load(splitArray[0]).networkPolicy(NetworkPolicy.NO_CACHE)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .centerCrop()
+                    .resize(40, 60)
+                    .into(myViewHolder.revLampiran);
+
             myViewHolder.rencanaKunjunganPart.setVisibility(View.GONE);
             myViewHolder.kunjunganPart.setVisibility(View.GONE);
             myViewHolder.penagihanPart.setVisibility(View.VISIBLE);
             myViewHolder.pengirimanPart.setVisibility(View.GONE);
             myViewHolder.njvPart.setVisibility(View.GONE);
-            if(!dataReportSuma.getTotalTagihan().equals("null") && !dataReportSuma.getTotalTagihan().equals("") && !dataReportSuma.equals(null)){
+            if(!String.valueOf(dataReportSuma.getTotalTagihan()).equals("null")){
                 if(!dataReportSuma.getTotalTagihan().equals("0")){
                     myViewHolder.f3TotalTagihanTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalTagihan())));
                 } else {
@@ -145,6 +190,23 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             }
             myViewHolder.f3TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
         } else if(dataReportSuma.getTipeLaporan().equals("4")){
+            myViewHolder.photoRevPart.setVisibility(View.VISIBLE);
+            int right = 75;
+            int paddingRight = dpToPixels(right, mContext);
+            myViewHolder.mainPart.setPadding(0,0,paddingRight,0);
+
+            String result = String.valueOf(dataReportSuma.getFile())
+                    .replaceAll("\\[", "")
+                    .replaceAll("\\]", "")
+                    .replaceAll("\"", "");
+            String[] splitArray = result.split(",");
+
+            Picasso.get().load(splitArray[0]).networkPolicy(NetworkPolicy.NO_CACHE)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .centerCrop()
+                    .resize(40, 60)
+                    .into(myViewHolder.revLampiran);
+
             myViewHolder.rencanaKunjunganPart.setVisibility(View.GONE);
             myViewHolder.kunjunganPart.setVisibility(View.GONE);
             myViewHolder.penagihanPart.setVisibility(View.GONE);
@@ -157,6 +219,23 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             }
             myViewHolder.f4TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
         } else if(dataReportSuma.getTipeLaporan().equals("5")||dataReportSuma.getTipeLaporan().equals("6")||dataReportSuma.getTipeLaporan().equals("7")){
+            myViewHolder.photoRevPart.setVisibility(View.VISIBLE);
+            int right = 75;
+            int paddingRight = dpToPixels(right, mContext);
+            myViewHolder.mainPart.setPadding(0,0,paddingRight,0);
+
+            String result = String.valueOf(dataReportSuma.getFile())
+                    .replaceAll("\\[", "")
+                    .replaceAll("\\]", "")
+                    .replaceAll("\"", "");
+            String[] splitArray = result.split(",");
+
+            Picasso.get().load(splitArray[0]).networkPolicy(NetworkPolicy.NO_CACHE)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .centerCrop()
+                    .resize(40, 60)
+                    .into(myViewHolder.revLampiran);
+            
             myViewHolder.rencanaKunjunganPart.setVisibility(View.GONE);
             myViewHolder.kunjunganPart.setVisibility(View.GONE);
             myViewHolder.penagihanPart.setVisibility(View.GONE);
@@ -184,10 +263,12 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView namaSalesTV, namaPelangganTV, f1StatusRealisasi, regionTV;
         TextView f5TanggalLaporanTV, f4NoSJTV, f4TanggalLaporanTV, f3TanggalLaporanTV, f3TotalTagihanTV, reportCategoryTV, f1TanggalRencanaTV, f1TanggalLaporanTV, f2TotalPesananTV, f2TanggalLaporanTV;
-        LinearLayout njvPart, pengirimanPart, parentPart, kunjunganPart, rencanaKunjunganPart, penagihanPart;
+        LinearLayout photoRevPart, mainPart, njvPart, pengirimanPart, parentPart, kunjunganPart, rencanaKunjunganPart, penagihanPart;
+        ImageView revLampiran;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parentPart = itemView.findViewById(R.id.parent_part);
+            mainPart = itemView.findViewById(R.id.main_part);
             reportCategoryTV = itemView.findViewById(R.id.report_kategori_tv);
             f1StatusRealisasi = itemView.findViewById(R.id.status_realisasi);
             namaPelangganTV = itemView.findViewById(R.id.nama_pelanggan_tv);
@@ -209,7 +290,14 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             penagihanPart = itemView.findViewById(R.id.penagihan_part);
             pengirimanPart = itemView.findViewById(R.id.pengiriman_part);
             njvPart = itemView.findViewById(R.id.njv_part);
+            photoRevPart = itemView.findViewById(R.id.photo_rev_part);
+            revLampiran = itemView.findViewById(R.id.rev_lampiran);
         }
+    }
+
+    public int dpToPixels(int dp, Context context) {
+        float density = context.getResources().getDisplayMetrics().density;
+        return (int) (dp * density + 0.5f);
     }
 
 }

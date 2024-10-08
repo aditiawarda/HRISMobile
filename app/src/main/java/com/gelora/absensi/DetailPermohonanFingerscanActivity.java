@@ -1,14 +1,23 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialog;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +25,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,6 +43,12 @@ import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,7 +57,7 @@ import java.util.Map;
 
 public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
-    String file_url, kode, idPermohonan, keteranganForm = "", statusKondisi = "0", ketLemburStatus = "";
+    String file_url, kode, idPermohonan, nikFs = "", noFs = "", keteranganForm = "", statusKondisi = "0", ketLemburStatus = "";
     TextView catatanHRDTV, ketLemburChoiceTV, noPermohonan, tanggalTV, nikNamaTV, deptBagianTV, keteranganTV, alasanTV, pemohonTV, tanggalApproveTV, approverTV, jabatanApproverTV, tanggalApproveHRDTV, approverHRDTV;
     LinearLayout catatanHRDPart, actionBar, downloadBTN, markStatusTidakLembur, markStatusLembur, lemburBTN, tidakLemburBTN, ketLemburBTN, opsiKetLembur, detailKeteranganPart, backBTN, cancelPermohonanBTN, editPermohonanBTN, rejectedMark, acceptedMark, actionPart, approvedBTN, rejectedBTN;
     ImageView ttdPemohon, ttdApprover,ttdApproverHRD;
@@ -130,6 +146,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 handler.postDelayed(new Runnable() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -228,7 +245,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
             public void onClick(View v) {
                 new KAlertDialog(DetailPermohonanFingerscanActivity.this, KAlertDialog.WARNING_TYPE)
                     .setTitleText("Unduh File?")
-                    .setContentText("Perhatian! file hasil unduh hanya dapat dibuka dengan aplikasi WPS")
+                    .setContentText("File dokumen permohonan hasil unduh berformat PDF")
                     .setCancelText(" BATAL ")
                     .setConfirmText(" UNDUH ")
                     .showCancelButton(true)
@@ -242,16 +259,67 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                         @Override
                         public void onClick(KAlertDialog sDialog) {
                             sDialog.dismiss();
-                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(file_url));
-                            try {
-                                startActivity(browserIntent);
-                            } catch (SecurityException e) {
-                                e.printStackTrace();
-                            }
+                            String link = "https://hrisgelora.co.id/api/download_pdf_form_finger/"+idPermohonan;
+                            pDialog = new KAlertDialog(DetailPermohonanFingerscanActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                            pDialog.show();
+                            pDialog.setCancelable(false);
+                            new CountDownTimer(1000, 500) {
+                                public void onTick(long millisUntilFinished) {
+                                    i++;
+                                    switch (i) {
+                                        case 0:
+                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                    (DetailPermohonanFingerscanActivity.this, R.color.colorGradien));
+                                            break;
+                                        case 1:
+                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                    (DetailPermohonanFingerscanActivity.this, R.color.colorGradien2));
+                                            break;
+                                        case 2:
+                                        case 6:
+                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                    (DetailPermohonanFingerscanActivity.this, R.color.colorGradien3));
+                                            break;
+                                        case 3:
+                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                    (DetailPermohonanFingerscanActivity.this, R.color.colorGradien4));
+                                            break;
+                                        case 4:
+                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                    (DetailPermohonanFingerscanActivity.this, R.color.colorGradien5));
+                                            break;
+                                        case 5:
+                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                    (DetailPermohonanFingerscanActivity.this, R.color.colorGradien6));
+                                            break;
+                                    }
+                                }
+                                public void onFinish() {
+                                    i = -1;
+                                    Intent webIntent = new Intent(Intent.ACTION_VIEW);
+                                    webIntent.setData(Uri.parse(link));
+                                    try {
+                                        startActivity(webIntent);
+                                        pDialog.dismiss();
+                                    } catch (SecurityException e) {
+                                        e.printStackTrace();
+                                        new KAlertDialog(DetailPermohonanFingerscanActivity.this, KAlertDialog.WARNING_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Terjadi kesalahan, tidak dapat membuka browser")
+                                                .setConfirmText("TUTUP")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    }
+                                }
+                            }.start();
                         }
                     })
                     .show();
-
             }
         });
 
@@ -507,6 +575,8 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                 tanggalTV.setText(tanggal.substring(8,10)+"/"+tanggal.substring(5,7)+"/"+tanggal.substring(0,4));
                                 nikNamaTV.setText(nik+"/"+nama_karyawan);
                                 deptBagianTV.setText(departemen+"/"+bagian);
+                                noFs = nomor;
+                                nikFs = nik;
 
                                 if(keterangan.equals("1")){
                                     keteranganTV.setText("Tidak Absen Masuk dan Pulang");

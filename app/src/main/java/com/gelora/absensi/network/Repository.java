@@ -159,9 +159,6 @@ public class Repository {
         apiClient.addToRequestQueue(jsonObjectRequest);
     }
 
-
-
-
     public String getSignature(String signatureName) {
         return GET_SIGNATURE_ENDPOINT + signatureName;
     }
@@ -190,7 +187,6 @@ public class Repository {
         apiClient.addToRequestQueue(jsonObjectRequest);
     }
 
-
     public void cancelIzinKeluarKantor(String id,  final Context context, final Callback<Void> callback) {
         Call<Void> call = apiService.cancelIzinKeluarKantor(id);
         call.enqueue(new Callback<Void>() {
@@ -212,7 +208,6 @@ public class Repository {
         });
 
 }
-
 
 public void postData(PostIzinResponse karyawanKeluar, Response.Listener<String> listener, Response.ErrorListener errorListener) {
         JSONObject jsonBody = new JSONObject();
@@ -250,7 +245,6 @@ public void postData(PostIzinResponse karyawanKeluar, Response.Listener<String> 
         };
         requestQueue.add(jsonObjectRequest);
     }
-
 
     public void updateApproveAtasan(ApprovalAtasanResponse approvalAtasanResponse, Response.Listener<String> listener, Response.ErrorListener errorListener) {
         JSONObject jsonBody = new JSONObject();

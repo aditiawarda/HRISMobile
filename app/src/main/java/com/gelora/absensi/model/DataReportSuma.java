@@ -9,6 +9,7 @@ public class DataReportSuma {
     private String idPelanggan;
     private String namaPelanggan;
     private String idSales;
+    private String file;
     private String createdAt;
     private String tanggalRencana;
     private String totalPesanan;
@@ -72,6 +73,14 @@ public class DataReportSuma {
 
     public void setIdSales(String idSales) {
         this.idSales = idSales;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
     }
 
     public String getCreatedAt() {

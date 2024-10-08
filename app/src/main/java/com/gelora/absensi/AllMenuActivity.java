@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -38,9 +37,9 @@ import java.util.Map;
 
 public class AllMenuActivity extends AppCompatActivity {
 
-    LinearLayout makanLemburPart4, projectPart3, menuProjectBTN3, menuMakanLemburBTN, menuMakanLembur2BTN, menuMakanLembur3BTN, makanLemburPart, makanLemburPart2, makanLemburPart3, menuReportSumaBTN, menuReport3SumaBTN, menuReport2SumaBTN, reportSumaPart3, reportSumaPart2, reportSumaPart, menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
-    LinearLayout countInIkkPart, countInIkkPart2, countInIkkPart3, countInIkkPart4, countInIkkPart5, countInIkkPart6, keluarKantorPart6, menuKeluarKantor6BTN, keluarKantorPart5, menuKeluarKantor5BTN, keluarKantorPart4, menuKeluarKantor4BTN, keluarKantorPart3, menuKeluarKantor3BTN, keluarKantorPart2, menuKeluarKantor2BTN, keluarKantorPart, menuKeluarKantorBTN, menuMakanLembur4BTN, actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
-    TextView labelIzinTV, countInIkkTv, countInIkkTv2, countInIkkTv3, countInIkkTv4, countInIkkTv5, countInIkkTv6, countNotifGMTV, countNotifClearanceTV, countNotifPenilaianTV;
+    LinearLayout sdmSubPart, absensiPart, makanLemburPart4, projectPart3, menuProjectBTN3, menuMakanLemburBTN, menuMakanLembur2BTN, menuMakanLembur3BTN, makanLemburPart, makanLemburPart2, makanLemburPart3, menuReportSumaBTN, menuReport3SumaBTN, menuReport2SumaBTN, reportSumaPart3, reportSumaPart2, reportSumaPart, menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
+    LinearLayout countNotificationPenilaian2, countInIkkPart, countInIkkPart2, countInIkkPart3, countInIkkPart4, countInIkkPart5, countInIkkPart6, keluarKantorPart6, menuKeluarKantor6BTN, keluarKantorPart5, menuKeluarKantor5BTN, keluarKantorPart4, menuKeluarKantor4BTN, keluarKantorPart3, menuKeluarKantor3BTN, keluarKantorPart2, menuKeluarKantor2BTN, keluarKantorPart, menuKeluarKantorBTN, menuMakanLembur4BTN, actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmSubBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
+    TextView labelIzinTV, countInIkkTv, countInIkkTv2, countInIkkTv3, countInIkkTv4, countInIkkTv5, countInIkkTv6, countNotifGMTV, countNotifClearanceTV, countNotifPenilaianTV, countNotifPenilaianTV2;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -79,6 +78,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuPengaduanBTN = findViewById(R.id.menu_pengaduan_btn);
         menuFingerBTN = findViewById(R.id.menu_finger_btn);
         menuSdmBTN = findViewById(R.id.menu_sdm_btn);
+        menuSdmSubBTN = findViewById(R.id.menu_sdm_sub_btn);
         menuCardBTN = findViewById(R.id.menu_card_btn);
         menuSignatureBTN = findViewById(R.id.menu_signature_btn);
         menuClearanceBTN = findViewById(R.id.menu_clearance_btn);
@@ -133,17 +133,25 @@ public class AllMenuActivity extends AppCompatActivity {
         countInIkkPart6 = findViewById(R.id.count_in_ikk_part_6);
         countInIkkTv6 = findViewById(R.id.count_in_ikk_tv_6);
         countNotificationPenilaian = findViewById(R.id.count_notification_penilaian);
+        countNotificationPenilaian2 = findViewById(R.id.count_notification_penilaian_2);
         countNotifPenilaianTV = findViewById(R.id.count_notif_penilaian_tv);
+        countNotifPenilaianTV2 = findViewById(R.id.count_notif_penilaian_tv_2);
         countNotificationClearancePart = findViewById(R.id.count_notification_clearance);
         countNotifClearanceTV = findViewById(R.id.count_notif_clearance_tv);
         countNotificationGMPart = findViewById(R.id.count_notification_gm);
         countNotifGMTV = findViewById(R.id.count_notif_gm_tv);
         labelIzinTV = findViewById(R.id.label_izin_tv);
+        sdmSubPart = findViewById(R.id.sdm_sub_part);
+        absensiPart = findViewById(R.id.absensi_part);
 
         if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
             labelIzinTV.setText("Izin/Cuti");
+            absensiPart.setVisibility(View.GONE);
+            sdmSubPart.setVisibility(View.VISIBLE);
         } else {
             labelIzinTV.setText("Izin");
+            absensiPart.setVisibility(View.VISIBLE);
+            sdmSubPart.setVisibility(View.GONE);
         }
 
         actionBar.setOnClickListener(new View.OnClickListener() {
@@ -359,6 +367,15 @@ public class AllMenuActivity extends AppCompatActivity {
         });
 
         menuSdmBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllMenuActivity.this, HumanResourceActivity.class);
+                intent.putExtra("list_sdm_visibity", listSDM);
+                startActivity(intent);
+            }
+        });
+
+        menuSdmSubBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AllMenuActivity.this, HumanResourceActivity.class);
@@ -599,7 +616,7 @@ public class AllMenuActivity extends AppCompatActivity {
             messengerPart.setVisibility(View.VISIBLE);
             newsPart.setVisibility(View.GONE);
 
-            if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("41") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")||sharedPrefManager.getSpNik().equals("1738040712"))){ //Kabag Kadep
+            if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("41") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){ //Kabag Kadep
                 cardPart.setVisibility(View.GONE);
                 sdmPart.setVisibility(View.VISIBLE);
                 projectPart.setVisibility(View.VISIBLE);
@@ -697,7 +714,7 @@ public class AllMenuActivity extends AppCompatActivity {
                     cardPart.setVisibility(View.VISIBLE);
                     sdmPart.setVisibility(View.GONE);
                     projectPart.setVisibility(View.GONE);
-                    if((sharedPrefManager.getSpIdHeadDept().equals("3") || sharedPrefManager.getSpNik().equals("1405020311") || sharedPrefManager.getSpNik().equals("3321130323") || sharedPrefManager.getSpNik().equals("3320130323"))){
+                    if((sharedPrefManager.getSpIdHeadDept().equals("3") || sharedPrefManager.getSpNik().equals("1405020311") || sharedPrefManager.getSpNik().equals("3321130323") || sharedPrefManager.getSpNik().equals("3320130323") || sharedPrefManager.getSpNik().equals("3278130622"))){
                         reportSumaPart.setVisibility(View.VISIBLE);
                         keluarKantorPart.setVisibility(View.GONE);
                         keluarKantorPart2.setVisibility(View.GONE);
@@ -969,7 +986,7 @@ public class AllMenuActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(View v) {
                                         if(chat_room.equals("1")){
-                                            Intent intent = new Intent(AllMenuActivity.this, ChatSplashScreenActivity.class);
+                                            Intent intent = new Intent(AllMenuActivity.this, ChatStartFeatureActivity.class);
                                             startActivity(intent);
                                         } else {
                                             new KAlertDialog(AllMenuActivity.this, KAlertDialog.WARNING_TYPE)
@@ -994,7 +1011,7 @@ public class AllMenuActivity extends AppCompatActivity {
                                     countNotificationClearancePart.setVisibility(View.GONE);
                                 }
 
-                                if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")||sharedPrefManager.getSpNik().equals("1738040712"))){
+                                if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
                                     getWaitingConfirm();
                                 }
 
@@ -1100,15 +1117,24 @@ public class AllMenuActivity extends AppCompatActivity {
                                 String jumlah_penilaian = data.getString("jumlah_penilaian");
                                 String jumlah_sdm = data.getString("jumlah_sdm");
                                 if(Integer.parseInt(jumlah_penilaian)+Integer.parseInt(jumlah_sdm)>0){
-                                    countNotificationPenilaian.setVisibility(View.VISIBLE);
-                                    countNotifPenilaianTV.setText(String.valueOf(Integer.parseInt(jumlah_penilaian)+Integer.parseInt(jumlah_sdm)));
+                                    if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
+                                        countNotificationPenilaian2.setVisibility(View.VISIBLE);
+                                        countNotifPenilaianTV2.setText(String.valueOf(Integer.parseInt(jumlah_penilaian)+Integer.parseInt(jumlah_sdm)));
+                                    } else {
+                                        countNotificationPenilaian.setVisibility(View.VISIBLE);
+                                        countNotifPenilaianTV.setText(String.valueOf(Integer.parseInt(jumlah_penilaian)+Integer.parseInt(jumlah_sdm)));
+                                    }
                                 } else {
                                     countNotificationPenilaian.setVisibility(View.GONE);
                                     countNotifPenilaianTV.setText("");
+                                    countNotificationPenilaian2.setVisibility(View.GONE);
+                                    countNotifPenilaianTV2.setText("");
                                 }
                             } else {
                                 countNotificationPenilaian.setVisibility(View.GONE);
                                 countNotifPenilaianTV.setText("");
+                                countNotificationPenilaian2.setVisibility(View.GONE);
+                                countNotifPenilaianTV2.setText("");
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -2882,11 +2882,34 @@
                                         android:drawableLeft="@drawable/ic_baseline_save_permohonan"
                                         android:drawablePadding="7dp"
                                         android:gravity="center"
-                                        android:text="Unduh File"
+                                        android:text="Unduh File Formulir"
                                         android:textColor="#CF811F"
                                         android:textSize="13dp"
                                         android:textStyle="bold"
                                         tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,UseCompatTextViewDrawableXml" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/cancel_btn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:paddingTop="12dp"
+                                    android:paddingBottom="12dp"
+                                    android:background="@drawable/shape_btn_rejected"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:textSize="13dp"
+                                        android:textColor="@color/white"
+                                        android:text="Batalkan"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                                 </LinearLayout>
 

@@ -29,8 +29,6 @@ import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Rect;
-import android.icu.util.Calendar;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -68,18 +66,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterInvoicePiutangRealisasi;
 import com.gelora.absensi.adapter.AdapterNoSuratJalanRealisasi;
 import com.gelora.absensi.adapter.AdapterProductInputSumaRealisasi;
 import com.gelora.absensi.adapter.AdapterProductSumaRealisasi;
 import com.gelora.absensi.adapter.AdapterReportComment;
-import com.gelora.absensi.adapter.AdapterSumaReport;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataInvoicePiutang;
 import com.gelora.absensi.model.DataNoSuratJalan;
-import com.gelora.absensi.model.DataReportSuma;
 import com.gelora.absensi.model.ProductSuma;
 import com.gelora.absensi.model.ReportComment;
 import com.gelora.absensi.support.FilePathimage;
@@ -111,6 +106,9 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 import com.takisoft.datetimepicker.DatePickerDialog;
 import com.travijuu.numberpicker.library.Enums.ActionEnum;
 import com.travijuu.numberpicker.library.Interface.ValueChangedListener;
@@ -142,13 +140,14 @@ import java.util.UUID;
 
 public class DetailReportSumaActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    LinearLayout markRealNjv, markRealJv, markRealPameran, realNjvBTN, realJvBTN, realPameranBTN, noDataComment, commentLoading, commentSendBTNPart, addProductBTN, productInputDetailPart, loadingDataPartProduk, noDataPartProduk, startAttantionPart, startAttantionPartProduk, productChoiceBTN, markRealKunjungan, markRealPenagihan, markRealPengiriman, realKunjunganBTN, realPenagihanBTN, realPengirimanBTN, noDataPiutang, loadingDataPiutang, loadingDataPartSj, noDataPartSj, noSuratJalanBTN, promosiLayoutTambahan, penagihanLayoutTambahan, pengirimanLayoutTambahan, submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
+    LinearLayout picPelangganPart, teleponPelangganPart, photoRevPart, markRealNjv, markRealJv, markRealPameran, realNjvBTN, realJvBTN, realPameranBTN, noDataComment, commentLoading, commentSendBTNPart, addProductBTN, productInputDetailPart, loadingDataPartProduk, noDataPartProduk, startAttantionPart, startAttantionPartProduk, productChoiceBTN, markRealKunjungan, markRealPenagihan, markRealPengiriman, realKunjunganBTN, realPenagihanBTN, realPengirimanBTN, noDataPiutang, loadingDataPiutang, loadingDataPartSj, noDataPartSj, noSuratJalanBTN, promosiLayoutTambahan, penagihanLayoutTambahan, pengirimanLayoutTambahan, submitUpdateBTN, fotoLamBTN, updateBTN, updatePart, deletePart, deleteBTN, noSuratJalanPart, submitRescheduleBTN, choiceDateBTN, rescheduleBTN, reschedulePart, totalPenagihanPart, totalPesananPart, viewRealisasiPart, viewRealisasiBTN, realMark, submitRealisasiBTN, viewLampiranRealisasiBTN, viewLampiranUpdateBTN, fotoLampiranRealisasiBTN, gpsRealisasiBTN, updateRealisasiBTN, viewLampiranBTN, tglRencanaPart, backBTN, actionBar, mapsPart, updateRealisasiKunjunganPart;
     SharedPrefManager sharedPrefManager;
     EditText commentED, keywordEDProduk, keteranganKunjunganRealisasiED, keteranganUpdateED;
     ExpandableLayout updateRealisasiKunjunganForm, rescheduleForm, updateForm;
+    ImageView revLampiran;
     RequestQueue requestQueue;
     TextView keteranganLabelTV, titlePageTV, jumlahKomenTV, inputTotalPesananTV, subTotalTV, productHargaSatuanTV, productChoiceTV, agendaLabel, totalInvTV, noSuratJalanChoiceTV, noSuratJalanTV, countImageUpdateTV, countImageTV, choiceDateTV, totalPenagihanTV, totalPesananTV, tanggalBuatTV, labelLampiranTV, labelLampTV, detailLocationRealisasiTV, tglRencanaTV, nikSalesTV, namaSalesTV, detailLocationTV, reportKategoriTV, namaPelangganTV, alamatPelangganTV, picPelangganTV, teleponPelangganTV, keteranganTV;
-    String subTotal = "", qtyProduct = "", tipeLaporan = "", idReport = "", idProduct = "", productName = "", productHargaSatuan = "";
+    String nikSales = "", subTotal = "", qtyProduct = "", tipeLaporan = "", idReport = "", idProduct = "", productName = "", productHargaSatuan = "";
     SwipeRefreshLayout refreshLayout;
     SharedPrefAbsen sharedPrefAbsen;
     private StatusBarColorManager mStatusBarColorManager;
@@ -160,7 +159,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     ResultReceiver resultReceiver;
     Context mContext;
     Activity mActivity;
-    String fullDataProduct = "", idPelanggan = "", locationNow = "", salesLat = "", salesLong = "", choiceDateReschedule = "";
+    String devModeStatus = "", fullDataProduct = "", idPelanggan = "", locationNow = "", salesLat = "", salesLong = "", choiceDateReschedule = "";
     int REQUEST_IMAGE = 100;
     private Uri uri;
     private List<String> lampiranImage = new ArrayList<>();
@@ -190,6 +189,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     private boolean isFirstRun = true;
     ImageButton commentSendBTN;
     private Handler handler = new Handler();
+    List<String> nikListComment = new ArrayList<>();
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -309,6 +309,10 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         noDataComment = findViewById(R.id.no_data_comment);
         jumlahKomenTV = findViewById(R.id.jumlah_komen_tv);
         keteranganLabelTV = findViewById(R.id.keterangan_label_tv);
+        photoRevPart = findViewById(R.id.photo_rev_part);
+        revLampiran = findViewById(R.id.rev_lampiran);
+        picPelangganPart = findViewById(R.id.pic_pelanggan_part);
+        teleponPelangganPart = findViewById(R.id.telepon_pelanggan_part);
 
         commentRV.setLayoutManager(new LinearLayoutManager(DetailReportSumaActivity.this));
         commentRV.setHasFixedSize(true);
@@ -321,6 +325,8 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
         listProductInputRV.setHasFixedSize(true);
         listProductInputRV.setNestedScrollingEnabled(false);
         listProductInputRV.setItemAnimator(new DefaultItemAnimator());
+
+        devModeCheck();
 
         LocalBroadcastManager.getInstance(this).registerReceiver(productSumaBroad, new IntentFilter("product_suma_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(noSuratJalanBroad, new IntentFilter("list_no_sj"));
@@ -383,6 +389,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 uri = null;
                 lampiranImage.clear();
                 extentionImage.clear();
+                devModeCheck();
 
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -810,7 +817,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                         }
                                         public void onFinish() {
                                             i = -1;
-                                            if (isDeveloperModeEnabled()){
+                                            if (isDeveloperModeEnabled() && devModeStatus.equals("on")){
                                                 pDialog.dismiss();
                                                 new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
@@ -1463,6 +1470,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                                             lampiranImage.clear();
                                                             fotoLamBTN.setVisibility(View.VISIBLE);
                                                             viewLampiranUpdateBTN.setVisibility(View.GONE);
+                                                            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_RELOAD_REQUEST, "true");
                                                         }
                                                     })
                                                     .changeAlertType(KAlertDialog.SUCCESS_TYPE);
@@ -1590,6 +1598,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                                 choiceDateReschedule = "";
                                                 choiceDateTV.setText("");
                                                 scrollView.fullScroll(NestedScrollView.FOCUS_UP);
+                                                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_RELOAD_REQUEST, "true");
                                             }
                                         })
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);
@@ -1655,6 +1664,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 updateForm.collapse();
                                 rescheduleForm.collapse();
                                 updateRealisasiKunjunganForm.collapse();
+                                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_RELOAD_REQUEST, "true");
                             } else {
                                 pDialog.setTitleText("Gagal Terkirim")
                                         .setConfirmText("    OK    ")
@@ -2032,9 +2042,31 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 if(tipeLaporan.equals("1")){
                                     titlePageTV.setText("DETAIL RENCANA");
                                     keteranganLabelTV.setText("Keterangan");
+                                    photoRevPart.setVisibility(View.GONE);
                                 } else {
                                     titlePageTV.setText("DETAIL LAPORAN");
                                     keteranganLabelTV.setText("Ket. Hasil");
+                                    photoRevPart.setVisibility(View.VISIBLE);
+                                    String file = dataArray.getString("file");
+                                    String result = file
+                                            .replaceAll("\\[", "")
+                                            .replaceAll("\\]", "")
+                                            .replaceAll("\"", "");
+                                    String[] splitArray = result.split(",");
+                                    Picasso.get().load(splitArray[0]).networkPolicy(NetworkPolicy.NO_CACHE)
+                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                            .centerCrop()
+                                            .resize(120, 180)
+                                            .into(revLampiran);
+
+                                    photoRevPart.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                            intent.putExtra("data", file);
+                                            startActivity(intent);
+                                        }
+                                    });
                                 }
 
                                 getComment(idReport);
@@ -2359,8 +2391,10 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                     String totalLaporan = dataArray.getString("totalLaporan");
                                     if(totalLaporan.equals("")||totalLaporan.equals("null")||totalLaporan.equals("0")){
+                                        totalPesananPart.setVisibility(View.GONE);
                                         totalPesananTV.setText("Tidak dicantumkan");
                                     } else {
+                                        totalPesananPart.setVisibility(View.VISIBLE);
                                         totalPesananTV.setText(decimalFormat.format(Integer.parseInt(totalLaporan)));
                                     }
 
@@ -2394,8 +2428,10 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                     String totalLaporan = dataArray.getString("totalLaporan");
                                     if(totalLaporan.equals("")||totalLaporan.equals("null")||totalLaporan.equals("0")){
+                                        totalPenagihanPart.setVisibility(View.GONE);
                                         totalPenagihanTV.setText("Tidak dicantumkan");
                                     } else {
+                                        totalPenagihanPart.setVisibility(View.VISIBLE);
                                         totalPenagihanTV.setText(decimalFormat.format(Integer.parseInt(totalLaporan)));
                                     }
 
@@ -2424,8 +2460,10 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
 
                                     String noSuratJalan = dataArray.getString("noSuratJalan");
                                     if(noSuratJalan.equals("null")||noSuratJalan.equals("")){
+                                        noSuratJalanPart.setVisibility(View.GONE);
                                         noSuratJalanTV.setText("Tidak dicantumkan");
                                     } else {
+                                        noSuratJalanPart.setVisibility(View.VISIBLE);
                                         noSuratJalanTV.setText(noSuratJalan);
                                     }
 
@@ -2525,14 +2563,18 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                 }
 
                                 if(pic.equals("null")){
+                                    picPelangganPart.setVisibility(View.GONE);
                                     picPelangganTV.setText("Belum diketahui");
                                 } else {
+                                    picPelangganPart.setVisibility(View.VISIBLE);
                                     picPelangganTV.setText(pic);
                                 }
 
                                 if(no_telp.equals("null")){
+                                    teleponPelangganPart.setVisibility(View.GONE);
                                     teleponPelangganTV.setText("Belum diketahui");
                                 } else {
+                                    teleponPelangganPart.setVisibility(View.VISIBLE);
                                     teleponPelangganTV.setText(no_telp);
                                 }
 
@@ -2620,6 +2662,15 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                                     reportComments = gson.fromJson(data_comment, ReportComment[].class);
                                     adapterReportComment = new AdapterReportComment(reportComments, DetailReportSumaActivity.this);
                                     commentRV.setAdapter(adapterReportComment);
+
+                                    JSONArray jsonArray = new JSONArray(data_comment);
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                        String nik = jsonObject.getString("nik");
+                                        if (!nikListComment.contains(nik)) {
+                                            nikListComment.add(nik);
+                                        }
+                                    }
                                 } else {
                                     jumlahKomenTV.setText("Komentar");
                                     commentRV.setVisibility(View.GONE);
@@ -2658,8 +2709,9 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                             if (status.equals("Success")){
                                 String nama = data.getString("nama");
                                 String NIK = data.getString("NIK");
-                                namaSalesTV.setText(nama);
+                                namaSalesTV.setText(nama.toUpperCase());
                                 nikSalesTV.setText(NIK);
+                                nikSales = NIK;
                                 if(mMap != null && (tipeLaporan.equals("2") || tipeLaporan.equals("3") || tipeLaporan.equals("4"))){
                                     mMap.addMarker(new MarkerOptions().position(userPoint).title(nama).snippet(latitude+","+longitude).icon(BitmapDescriptorFactory.fromResource(R.drawable.location_picker_ic)));
                                 }
@@ -2721,6 +2773,7 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
+                                pushNotif();
                                 getComment(idReport);
                                 commentLoading.setVisibility(View.GONE);
                                 commentSendBTNPart.setVisibility(View.GONE);
@@ -2762,6 +2815,52 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
                 params.put("nik", sharedPrefManager.getSpNik());
                 params.put("comment", comment);
                 params.put("created_at", getTimeStamp());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void pushNotif() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://hrisgelora.co.id/api/push_personal_notification";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint({"SetTextI18n", "MissingPermission"})
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        Log.d("Success.Response", response.toString());
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("type", "2");
+                if(tipeLaporan.equals("1")){
+                    params.put("sub_type", "1");
+                } else {
+                    params.put("sub_type", "2");
+                }
+                params.put("notif_from", sharedPrefManager.getSpNik());
+                params.put("notif_for", String.valueOf(nikListComment).replace("[", "").replace("]", ""));
+                params.put("direct_id", idReport);
+                params.put("data_owner", nikSales);
                 return params;
             }
         };
@@ -3652,6 +3751,52 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
             out.close();
             return Uri.fromFile(jpgFile);
         }
+    }
+
+    private void devModeCheck() {
+        final String url = "https://hrisgelora.co.id/api/dev_mode_check";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if(status.equals("on")){
+                                devModeStatus = "on";
+                            } else {
+                                devModeStatus = "off";
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
     }
 
     public boolean isDeveloperModeEnabled(){

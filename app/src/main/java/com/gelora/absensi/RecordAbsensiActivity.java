@@ -31,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -112,11 +113,18 @@ public class RecordAbsensiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Calendar now = Calendar.getInstance();
+                try {
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+                    Date date = sdf.parse(selectMonth);
+                    now.setTime(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(RecordAbsensiActivity.this,
                         new MonthPickerDialog.OnDateSetListener() {
                             @SuppressLint("SetTextI18n")
                             @Override
-                            public void onDateSet(int month, int year) { // on date set
+                            public void onDateSet(int month, int year) {
                                 String bulan = "", bulanName = "";
                                 if(month==0){
                                     bulan = "01";

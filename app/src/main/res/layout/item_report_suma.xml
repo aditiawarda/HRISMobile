@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:id="@+id/parent_part"
@@ -39,173 +39,102 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                tools:ignore="DisableBaselineAlignment">
+                tools:ignore="UselessLeaf">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    tools:ignore="DisableBaselineAlignment">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/report_kategori_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="18dp"
-                            android:text="Memuat data..."
-                            android:textColor="#38A7AC"
-                            android:textSize="11dp"
-                            android:ellipsize="end"
-                            android:lineSpacingExtra="3dp"
-                            android:maxLines="3"
-                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                        <TextView
-                            android:id="@+id/status_realisasi"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="18dp"
-                            android:text="TERLAKSANA "
-                            android:textColor="#16A81D"
-                            android:textSize="11dp"
-                            android:ellipsize="end"
-                            android:textStyle="bold"
-                            android:lineSpacingExtra="3dp"
-                            android:maxLines="1"
-                            android:gravity="right"
-                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/nama_sales_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="Memuat data..."
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="15dp"
-                        android:ellipsize="end"
-                        android:lineSpacingExtra="3dp"
-                        android:maxLines="2"
-                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
-
-                    <TextView
-                        android:id="@+id/jabatan_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:text="Memuat data..."
-                        android:textColor="#618F63"
-                        android:textSize="12dp"
-                        android:ellipsize="end"
-                        android:lineSpacingExtra="3dp"
-                        android:maxLines="2"
-                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1.5dp"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginBottom="2dp"
-                        android:background="#3CCFCFCF" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="Pelanggan"
-                        android:textColor="#A1A1A1"
-                        android:textSize="10dp"
-                        android:ellipsize="end"
-                        android:lineSpacingExtra="3dp"
-                        android:maxLines="3"
-                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                    <TextView
-                        android:id="@+id/nama_pelanggan_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:text="Memuat data..."
-                        android:textColor="#0288D1"
-                        android:textSize="15dp"
-                        android:ellipsize="end"
-                        android:lineSpacingExtra="3dp"
-                        android:maxLines="2"
-                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1.5dp"
-                        android:layout_marginTop="6dp"
-                        android:background="#3CCFCFCF" />
-
-                    <!-- Rencana Kunjungan -->
-
-                    <LinearLayout
-                        android:id="@+id/rencana_kunjungan_part"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight=".50"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="match_parent"
+                                android:id="@+id/report_kategori_tv"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="7dp"
-                                android:text="Tanggal Rencana Kunjungan"
-                                android:textColor="#A1A1A1"
-                                android:textSize="10dp"
+                                android:layout_marginTop="18dp"
+                                android:text="Memuat data..."
+                                android:textColor="#38A7AC"
+                                android:textSize="11dp"
                                 android:ellipsize="end"
                                 android:lineSpacingExtra="3dp"
                                 android:maxLines="3"
                                 tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                             <TextView
-                                android:id="@+id/f1_tgl_kunjungan_tv"
+                                android:id="@+id/status_realisasi"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="1dp"
-                                android:layout_marginBottom="20dp"
-                                android:text="00/00/0000"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="12dp"
+                                android:layout_marginTop="18dp"
+                                android:text="TERLAKSANA "
+                                android:textColor="#16A81D"
+                                android:textSize="11dp"
                                 android:ellipsize="end"
+                                android:textStyle="bold"
                                 android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
+                                android:maxLines="1"
+                                android:gravity="right"
                                 tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight=".50"
-                            android:gravity="right"
+                            android:id="@+id/main_part"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            tools:ignore="RtlHardcoded">
+                            android:paddingRight="75dp">
 
                             <TextView
-                                android:gravity="right"
+                                android:id="@+id/nama_sales_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="Memuat data..."
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="15dp"
+                                android:ellipsize="end"
+                                android:lineSpacingExtra="3dp"
+                                android:maxLines="2"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
+
+                            <TextView
+                                android:id="@+id/jabatan_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="Memuat data..."
+                                android:textColor="#618F63"
+                                android:textSize="12dp"
+                                android:ellipsize="end"
+                                android:lineSpacingExtra="3dp"
+                                android:maxLines="2"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1.5dp"
                                 android:layout_marginTop="7dp"
-                                android:text="Waktu Laporan"
+                                android:layout_marginBottom="2dp"
+                                android:background="#3CCFCFCF" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Pelanggan"
                                 android:textColor="#A1A1A1"
                                 android:textSize="10dp"
                                 android:ellipsize="end"
@@ -214,321 +143,407 @@
                                 tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                             <TextView
-                                android:id="@+id/f1_tanggal_laporan_tv"
-                                android:gravity="right"
+                                android:id="@+id/nama_pelanggan_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="1dp"
-                                android:layout_marginBottom="20dp"
-                                android:text="00/00/0000 00:00:00"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="12dp"
+                                android:layout_marginTop="3dp"
+                                android:text="Memuat data..."
+                                android:textColor="#0288D1"
+                                android:textSize="15dp"
                                 android:ellipsize="end"
                                 android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
-                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+                                android:maxLines="2"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1.5dp"
+                                android:layout_marginTop="6dp"
+                                android:background="#3CCFCFCF" />
 
                         </LinearLayout>
 
-                    </LinearLayout>
-
-                    <!-- Kunjungan -->
-
-                    <LinearLayout
-                        android:id="@+id/kunjungan_part"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        <!-- Rencana Kunjungan -->
 
                         <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight=".50"
+                            android:id="@+id/rencana_kunjungan_part"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="match_parent"
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight=".50"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="7dp"
-                                android:text="Rencana Pesanan"
-                                android:textColor="#A1A1A1"
-                                android:textSize="10dp"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
-                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+                                android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/f2_total_pesanan_tv"
-                                android:layout_width="match_parent"
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Tanggal Rencana Kunjungan"
+                                    android:textColor="#A1A1A1"
+                                    android:textSize="10dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                <TextView
+                                    android:id="@+id/f1_tgl_kunjungan_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:text="00/00/0000"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="12dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight=".50"
+                                android:gravity="right"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="1dp"
-                                android:layout_marginBottom="20dp"
-                                android:text="Rp 0"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="12dp"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
-                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+                                android:orientation="vertical"
+                                tools:ignore="RtlHardcoded">
+
+                                <TextView
+                                    android:gravity="right"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Waktu Input"
+                                    android:textColor="#A1A1A1"
+                                    android:textSize="10dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                <TextView
+                                    android:id="@+id/f1_tanggal_laporan_tv"
+                                    android:gravity="right"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:text="00/00/0000 00:00:00"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="12dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- Kunjungan -->
+
+                        <LinearLayout
+                            android:id="@+id/kunjungan_part"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight=".50"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Rencana Pesanan"
+                                    android:textColor="#A1A1A1"
+                                    android:textSize="10dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                <TextView
+                                    android:id="@+id/f2_total_pesanan_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:text="Rp 0"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="12dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight=".50"
+                                android:gravity="right"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                tools:ignore="RtlHardcoded">
+
+                                <TextView
+                                    android:gravity="right"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Waktu Laporan"
+                                    android:textColor="#A1A1A1"
+                                    android:textSize="10dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                <TextView
+                                    android:id="@+id/f2_tanggal_laporan_tv"
+                                    android:gravity="right"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:text="00/00/0000 00:00:00"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="12dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- Pegagihan -->
+
+                        <LinearLayout
+                            android:id="@+id/penagihan_part"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight=".50"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Total INV Piutang"
+                                    android:textColor="#A1A1A1"
+                                    android:textSize="10dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                <TextView
+                                    android:id="@+id/f3_total_tagihan_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:text="Rp 0"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="12dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight=".50"
+                                android:gravity="right"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                tools:ignore="RtlHardcoded">
+
+                                <TextView
+                                    android:gravity="right"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Waktu Laporan"
+                                    android:textColor="#A1A1A1"
+                                    android:textSize="10dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                <TextView
+                                    android:id="@+id/f3_tanggal_laporan_tv"
+                                    android:gravity="right"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:text="00/00/0000 00:00:00"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="12dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- Pengiriman -->
+
+                        <LinearLayout
+                            android:id="@+id/pengiriman_part"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight=".50"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Nomor SJ"
+                                    android:textColor="#A1A1A1"
+                                    android:textSize="10dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                <TextView
+                                    android:id="@+id/f4_no_sj_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:text="SJ/00/00/J-000"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="12dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight=".50"
+                                android:gravity="right"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                tools:ignore="RtlHardcoded">
+
+                                <TextView
+                                    android:gravity="right"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Waktu Laporan"
+                                    android:textColor="#A1A1A1"
+                                    android:textSize="10dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                <TextView
+                                    android:id="@+id/f4_tanggal_laporan_tv"
+                                    android:gravity="right"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:text="00/00/0000 00:00:00"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="12dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight=".50"
-                            android:gravity="right"
+                            android:id="@+id/njv_part"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            tools:ignore="RtlHardcoded">
+                            android:orientation="horizontal">
 
-                            <TextView
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight=".50"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                tools:ignore="UselessLeaf">
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight=".50"
                                 android:gravity="right"
-                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="7dp"
-                                android:text="Waktu Laporan"
-                                android:textColor="#A1A1A1"
-                                android:textSize="10dp"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
-                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+                                android:orientation="vertical"
+                                tools:ignore="RtlHardcoded">
 
-                            <TextView
-                                android:id="@+id/f2_tanggal_laporan_tv"
-                                android:gravity="right"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="1dp"
-                                android:layout_marginBottom="20dp"
-                                android:text="00/00/0000 00:00:00"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="12dp"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
-                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+                                <TextView
+                                    android:gravity="right"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Waktu Laporan"
+                                    android:textColor="#A1A1A1"
+                                    android:textSize="10dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
-                        </LinearLayout>
+                                <TextView
+                                    android:id="@+id/f5_tanggal_laporan_tv"
+                                    android:gravity="right"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:text="00/00/0000 00:00:00"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="12dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
-                    </LinearLayout>
-
-                    <!-- Pegagihan -->
-
-                    <LinearLayout
-                        android:id="@+id/penagihan_part"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight=".50"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="7dp"
-                                android:text="Total INV Piutang"
-                                android:textColor="#A1A1A1"
-                                android:textSize="10dp"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
-                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                            <TextView
-                                android:id="@+id/f3_total_tagihan_tv"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="1dp"
-                                android:layout_marginBottom="20dp"
-                                android:text="Rp 0"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="12dp"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
-                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight=".50"
-                            android:gravity="right"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            tools:ignore="RtlHardcoded">
-
-                            <TextView
-                                android:gravity="right"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="7dp"
-                                android:text="Waktu Laporan"
-                                android:textColor="#A1A1A1"
-                                android:textSize="10dp"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
-                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                            <TextView
-                                android:id="@+id/f3_tanggal_laporan_tv"
-                                android:gravity="right"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="1dp"
-                                android:layout_marginBottom="20dp"
-                                android:text="00/00/0000 00:00:00"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="12dp"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
-                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <!-- Pengiriman -->
-
-                    <LinearLayout
-                        android:id="@+id/pengiriman_part"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight=".50"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="7dp"
-                                android:text="Nomor SJ"
-                                android:textColor="#A1A1A1"
-                                android:textSize="10dp"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
-                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                            <TextView
-                                android:id="@+id/f4_no_sj_tv"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="1dp"
-                                android:layout_marginBottom="20dp"
-                                android:text="SJ/00/00/J-000"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="12dp"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
-                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight=".50"
-                            android:gravity="right"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            tools:ignore="RtlHardcoded">
-
-                            <TextView
-                                android:gravity="right"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="7dp"
-                                android:text="Waktu Laporan"
-                                android:textColor="#A1A1A1"
-                                android:textSize="10dp"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
-                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                            <TextView
-                                android:id="@+id/f4_tanggal_laporan_tv"
-                                android:gravity="right"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="1dp"
-                                android:layout_marginBottom="20dp"
-                                android:text="00/00/0000 00:00:00"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="12dp"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
-                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/njv_part"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight=".50"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            tools:ignore="UselessLeaf">
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight=".50"
-                            android:gravity="right"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            tools:ignore="RtlHardcoded">
-
-                            <TextView
-                                android:gravity="right"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="7dp"
-                                android:text="Waktu Laporan"
-                                android:textColor="#A1A1A1"
-                                android:textSize="10dp"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
-                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                            <TextView
-                                android:id="@+id/f5_tanggal_laporan_tv"
-                                android:gravity="right"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="1dp"
-                                android:layout_marginBottom="20dp"
-                                android:text="00/00/0000 00:00:00"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="12dp"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="3dp"
-                                android:maxLines="3"
-                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -536,7 +551,40 @@
 
                 </LinearLayout>
 
-            </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/photo_rev_part"
+                    android:orientation="vertical"
+                    android:background="@drawable/shape_pengumuman"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="43dp"
+                    android:padding="1dp"
+                    android:layout_width="60dp"
+                    android:layout_height="90dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardCornerRadius="9dp"
+                        android:outlineSpotShadowColor="@color/transparent"
+                        android:outlineAmbientShadowColor="@color/transparent"
+                        android:elevation="0dp"
+                        tools:ignore="UnusedAttribute"
+                        tools:targetApi="p">
+
+                        <ImageView
+                            android:id="@+id/rev_lampiran"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:background="@drawable/no_image_2"
+                            android:src="@drawable/no_image"
+                            tools:ignore="ContentDescription" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="70dp"

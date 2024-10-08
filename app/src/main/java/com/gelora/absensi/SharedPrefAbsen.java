@@ -66,6 +66,7 @@ public class SharedPrefAbsen {
     public static final String SP_BAGIAN_RL = "spBagianRL";
     public static final String SP_LUNCH_REQUEST_TIMEOUT = "spLunchRequestTimeout";
     public static final String SP_WILAYAH_SUMA = "spWilayahSuma";
+    public static final String SP_RELOAD_REQUEST = "spReloadRequest";
 
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
@@ -325,6 +326,10 @@ public class SharedPrefAbsen {
 
     public String getSpWilayahSuma(){
         return sp.getString(SP_WILAYAH_SUMA, "");
+    }
+
+    public String getSpReloadRequest(){
+        return sp.getString(SP_RELOAD_REQUEST, "");
     }
 
 }

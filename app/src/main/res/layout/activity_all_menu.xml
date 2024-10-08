@@ -64,33 +64,119 @@
                                         tools:ignore="RtlHardcoded,TooDeepLayout">
 
                                         <LinearLayout
-                                            android:id="@+id/menu_absensi_btn"
+                                            android:id="@+id/absensi_part"
                                             android:layout_width="match_parent"
-                                            android:layout_height="65dp"
-                                            android:background="@drawable/shape_menu_1"
-                                            android:orientation="vertical"
-                                            android:padding="10dp">
+                                            android:layout_height="wrap_content"
+                                            android:visibility="visible"
+                                            android:orientation="vertical">
 
-                                            <ImageView
+                                            <LinearLayout
+                                                android:id="@+id/menu_absensi_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_1"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_absen"
+                                                    tools:ignore="ContentDescription" />
+
+                                            </LinearLayout>
+
+                                            <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_absen"
-                                                tools:ignore="ContentDescription" />
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="2"
+                                                android:text="Absensi"
+                                                android:textColor="#515151"
+                                                android:textSize="10dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
 
-                                        <TextView
+                                        <LinearLayout
+                                            android:id="@+id/sdm_sub_part"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginTop="3dp"
-                                            android:ellipsize="end"
-                                            android:gravity="center"
-                                            android:maxLines="2"
-                                            android:text="Absensi"
-                                            android:textColor="#515151"
-                                            android:textSize="10dp"
-                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:orientation="vertical">
+
+                                                    <LinearLayout
+                                                        android:id="@+id/menu_sdm_sub_btn"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="65dp"
+                                                        android:background="@drawable/shape_menu_1"
+                                                        android:orientation="vertical"
+                                                        android:padding="10dp">
+
+                                                        <ImageView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:scaleType="fitCenter"
+                                                            android:src="@drawable/icon_sdm"
+                                                            tools:ignore="ContentDescription" />
+
+                                                    </LinearLayout>
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginTop="3dp"
+                                                        android:ellipsize="end"
+                                                        android:gravity="center"
+                                                        android:maxLines="2"
+                                                        android:text="SDM"
+                                                        android:textColor="#515151"
+                                                        android:textSize="10dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:visibility="gone"
+                                                    android:layout_alignParentRight="true"
+                                                    android:id="@+id/count_notification_penilaian_2"
+                                                    android:layout_marginRight="7dp"
+                                                    android:layout_marginTop="7dp"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:paddingRight="3.5dp"
+                                                    android:paddingLeft="3.5dp"
+                                                    android:paddingBottom="0.5dp"
+                                                    android:gravity="center"
+                                                    android:background="@drawable/shape_notification_mark_info">
+
+                                                    <TextView
+                                                        android:id="@+id/count_notif_penilaian_tv_2"
+                                                        android:gravity="center"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="@color/white"
+                                                        android:textSize="9dp"
+                                                        android:text="0"
+                                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
@@ -956,7 +1042,7 @@
                                                 android:ellipsize="end"
                                                 android:maxLines="2"
                                                 android:gravity="center"
-                                                android:text="Daily Report Salesman"
+                                                android:text="Laporan Harian Sales"
                                                 android:textColor="#515151"
                                                 android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -1301,7 +1387,7 @@
                                                 android:ellipsize="end"
                                                 android:gravity="center"
                                                 android:maxLines="2"
-                                                android:text="Daily Report Salesman"
+                                                android:text="Laporan Harian Sales"
                                                 android:textColor="#515151"
                                                 android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -1467,7 +1553,7 @@
                                                 android:ellipsize="end"
                                                 android:maxLines="2"
                                                 android:gravity="center"
-                                                android:text="Daily Report Salesman"
+                                                android:text="Laporan Harian Sales"
                                                 android:textColor="#515151"
                                                 android:textSize="10dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />

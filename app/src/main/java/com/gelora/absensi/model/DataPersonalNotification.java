@@ -3,70 +3,96 @@ package com.gelora.absensi.model;
 
 public class DataPersonalNotification {
 
-    private String id_record;
-    private String nik_pecuti;
-    private String nama_pecuti;
-    private String nik_pengganti;
-    private String nama_pengganti;
-    private String tanggal_mulai;
-    private String tanggal_akhir;
-    private String created_at;
+    private String id;
+    private String type;
+    private String sub_type;
+    private String notif_from;
+    private String notif_from_name;
+    private String notif_for;
+    private String direct_id;
+    private String data_owner;
+    private String data_owner_name;
     private String status_read;
+    private String created_at;
 
-    public String getId_record() {
-        return id_record;
+    public String getId() {
+        return id;
     }
 
-    public void setId_record(String id_record) {
-        this.id_record = id_record;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getNik_pecuti() {
-        return nik_pecuti;
+    public String getType() {
+        return type;
     }
 
-    public void setNik_pecuti(String nik_pecuti) {
-        this.nik_pecuti = nik_pecuti;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getNama_pecuti() {
-        return nama_pecuti;
+    public String getSubType() {
+        return sub_type;
     }
 
-    public void setNama_pecuti(String nama_pecuti) {
-        this.nama_pecuti = nama_pecuti;
+    public void setSubType(String subType) {
+        this.sub_type = subType;
     }
 
-    public String getNik_pengganti() {
-        return nik_pengganti;
+    public String getNotif_from() {
+        return notif_from;
     }
 
-    public void setNik_pengganti(String nik_pengganti) {
-        this.nik_pengganti = nik_pengganti;
+    public void setNotif_from(String notif_from) {
+        this.notif_from = notif_from;
     }
 
-    public String getNama_pengganti() {
-        return nama_pengganti;
+    public String getNotif_from_name() {
+        return notif_from_name;
     }
 
-    public void setNama_pengganti(String nama_pengganti) {
-        this.nama_pengganti = nama_pengganti;
+    public void setNotif_from_name(String notif_from_name) {
+        this.notif_from_name = notif_from_name;
     }
 
-    public String getTanggal_mulai() {
-        return tanggal_mulai;
+    public String getNotif_for() {
+        return notif_for;
     }
 
-    public void setTanggal_mulai(String tanggal_mulai) {
-        this.tanggal_mulai = tanggal_mulai;
+    public void setNotif_for(String notif_for) {
+        this.notif_for = notif_for;
     }
 
-    public String getTanggal_akhir() {
-        return tanggal_akhir;
+    public String getDirect_id() {
+        return direct_id;
     }
 
-    public void setTanggal_akhir(String tanggal_akhir) {
-        this.tanggal_akhir = tanggal_akhir;
+    public void setDirect_id(String direct_id) {
+        this.direct_id = direct_id;
+    }
+
+    public String getData_owner() {
+        return data_owner;
+    }
+
+    public void setData_owner(String data_owner) {
+        this.data_owner = data_owner;
+    }
+
+    public String getData_owner_name() {
+        return data_owner_name;
+    }
+
+    public void setData_owner_name(String data_owner_name) {
+        this.data_owner_name = data_owner_name;
+    }
+
+    public String getStatus_read() {
+        return status_read;
+    }
+
+    public void setStatus_read(String status_read) {
+        this.status_read = status_read;
     }
 
     public String getCreated_at() {
@@ -77,11 +103,4 @@ public class DataPersonalNotification {
         this.created_at = created_at;
     }
 
-    public String getStatus_read() {
-        return status_read;
-    }
-
-    public void setStatus_read(String status_read) {
-        this.status_read = status_read;
-    }
 }

@@ -145,10 +145,9 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
         downloadBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String file_url = "https://hrisgelora.co.id/absen/pdf_clearance_form/"+idData;
                 new KAlertDialog(DetailDataExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Unduh File?")
-                        .setContentText("Perhatian! file hasil unduh hanya dapat dibuka dengan aplikasi WPS")
+                        .setContentText("File dokumen permohonan hasil unduh berformat PDF")
                         .setCancelText(" BATAL ")
                         .setConfirmText(" UNDUH ")
                         .showCancelButton(true)
@@ -162,12 +161,64 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                             @Override
                             public void onClick(KAlertDialog sDialog) {
                                 sDialog.dismiss();
-                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(file_url));
-                                try {
-                                    startActivity(browserIntent);
-                                } catch (SecurityException e) {
-                                    e.printStackTrace();
-                                }
+                                String link = "https://hrisgelora.co.id/api/download_pdf_exit_clearance/"+idData;
+                                pDialog = new KAlertDialog(DetailDataExitClearanceActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1000, 500) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataExitClearanceActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataExitClearanceActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataExitClearanceActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataExitClearanceActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataExitClearanceActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataExitClearanceActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+                                    public void onFinish() {
+                                        i = -1;
+                                        Intent webIntent = new Intent(Intent.ACTION_VIEW);
+                                        webIntent.setData(Uri.parse(link));
+                                        try {
+                                            startActivity(webIntent);
+                                            pDialog.dismiss();
+                                        } catch (SecurityException e) {
+                                            e.printStackTrace();
+                                            new KAlertDialog(DetailDataExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Terjadi kesalahan, tidak dapat membuka browser")
+                                                    .setConfirmText("TUTUP")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+                                        }
+                                    }
+                                }.start();
                             }
                         })
                         .show();

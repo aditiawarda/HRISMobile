@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -70,14 +71,14 @@ import java.util.Map;
 
 public class ListDataReportSumaActivity extends AppCompatActivity {
 
-    LinearLayout pameranBTN, jvBTN, njvBTN, wilayahBTN, filterWilayahBTN, subCatBTN, attantionReportPart, salesChoiceBTN, salesBTN, catBTN, filterBarPart, dateBTN, noDataPartReport, loadingDataPartReport, rencanaBTN, aktivitasBTN, penagihanBTN, pengirimanBTN, promosiBTN, markRencana, markAktivitas, markNjv, markJv, markPameran, markPenagihan, markPengiriman, markKunjungan, actionBar, backBTN, addBTN, filterCategoryBTN, filterSubCategoryBTN;
+    LinearLayout statistikPart, statistikBTN, pameranBTN, jvBTN, njvBTN, wilayahBTN, filterWilayahBTN, subCatBTN, attantionReportPart, salesChoiceBTN, salesBTN, catBTN, filterBarPart, dateBTN, noDataPartReport, loadingDataPartReport, rencanaBTN, aktivitasBTN, penagihanBTN, pengirimanBTN, promosiBTN, markRencana, markAktivitas, markNjv, markJv, markPameran, markPenagihan, markPengiriman, markKunjungan, actionBar, backBTN, addBTN, filterCategoryBTN, filterSubCategoryBTN;
     TextView semuaWilayahBTN, wilayahChoiceTV, semuaDataBTN, salesChoiceTV, choiceDateTV, categoryChoiceTV, subCategoryChoiceTV, dateLabel;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
     BottomSheetLayout bottomSheet;
-    String categoryCode = "", subCategoryCode = "", dateStartChoice = getDate(), dateEndChoice = getDate();
+    String statusGL = "", categoryCode = "", subCategoryCode = "", dateStartChoice = getDate(), dateEndChoice = getDate();
     private RecyclerView reportRV;
     private DataReportSuma[] dataReportSumas;
     private AdapterSumaReport adapterSumaReport;
@@ -125,6 +126,8 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         wilayahBTN = findViewById(R.id.wilayah_btn);
         filterWilayahBTN = findViewById(R.id.filter_wilayah_btn);
         wilayahChoiceTV = findViewById(R.id.wilayah_choice_tv);
+        statistikPart = findViewById(R.id.statistik_part);
+        statistikBTN = findViewById(R.id.statistik_btn);
 
         MaterialDatePicker materialDatePicker = MaterialDatePicker.Builder.dateRangePicker().setSelection(Pair.create(MaterialDatePicker.todayInUtcMilliseconds(),MaterialDatePicker.todayInUtcMilliseconds())).build();
         LocalBroadcastManager.getInstance(this).registerReceiver(wilayahSumaBroad, new IntentFilter("wilayah_suma_broad"));
@@ -141,7 +144,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 || sharedPrefManager.getSpNik().equals("3318060323") // Bapak Dominggus
                 || sharedPrefManager.getSpNik().equals("0499070507") // Bapak Dawud
                 || sharedPrefManager.getSpNik().equals("1405020311") // Bapak Panda
-                || sharedPrefManager.getSpNik().equals("3321130323") // Bapak Marpon
+                // || sharedPrefManager.getSpNik().equals("3321130323") // Bapak Marpon
                 || sharedPrefManager.getSpNik().equals("3320130323") // Bapak Daniel
                 || sharedPrefManager.getSpIdJabatan().equals("43")   // GL Suma 1
                 || sharedPrefManager.getSpIdJabatan().equals("45")   // GL Suma 2
@@ -155,14 +158,17 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, sharedPrefManager.getSpNama());
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, sharedPrefManager.getSpNik());
                 addBTN.setVisibility(View.VISIBLE);
+                wilayahBTN.setVisibility(View.GONE);
+                salesChoiceTV.setText(sharedPrefManager.getSpNama());
+                statusGL = "1";
             } else { // Management
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA, "");
                 addBTN.setVisibility(View.VISIBLE);
+                wilayahBTN.setVisibility(View.VISIBLE);
+                salesChoiceTV.setText("Semua Sales");
             }
-            wilayahBTN.setVisibility(View.VISIBLE);
-            salesChoiceTV.setText("Semua Sales");
             salesBTN.setVisibility(View.VISIBLE);
         } else {
             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, sharedPrefManager.getSpNama());
@@ -219,6 +225,14 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        statistikBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListDataReportSumaActivity.this, VisitStatisticActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -396,17 +410,22 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 loadingDataPartReport.setVisibility(View.GONE);
                 noDataPartReport.setVisibility(View.VISIBLE);
 
-                new KAlertDialog(ListDataReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
-                        .setTitleText("Perhatian")
-                        .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
-                        .setConfirmText("    OK    ")
-                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(KAlertDialog sDialog) {
-                                sDialog.dismiss();
-                            }
-                        })
-                        .show();
+                try {
+                    new KAlertDialog(ListDataReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } catch (WindowManager.BadTokenException e){
+                    Log.e("Error", "Error : "+e.toString());
+                }
+
             }
         });
 
@@ -1115,6 +1134,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 wilayahChoiceTV.setText("Semua Wilayah");
+                salesChoiceTV.setText("Semua Sales");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA, "");
@@ -1221,6 +1241,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         loadingDataPart = findViewById(R.id.loading_data_sales_part);
         semuaDataBTN = findViewById(R.id.semua_data_btn);
 
+        if(statusGL.equals("1")){
+            semuaDataBTN.setVisibility(View.GONE);
+        } else {
+            semuaDataBTN.setVisibility(View.VISIBLE);
+        }
+
         karyawanSalesRV.setLayoutManager(new LinearLayoutManager(this));
         karyawanSalesRV.setHasFixedSize(true);
         karyawanSalesRV.setNestedScrollingEnabled(false);
@@ -1295,6 +1321,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 salesChoiceTV.setText("Semua Sales");
+                wilayahChoiceTV.setText("Semua Wilayah");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, "");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, "");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA, "");
@@ -1455,8 +1482,8 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 wilayahChoiceTV.setText("Surabaya");
             } else if(wilayahSales.equals("7")){
                 wilayahChoiceTV.setText("Jakarta AE");
-            } else {
-                wilayahChoiceTV.setText("Semua Wilayah");
+            } else if(wilayahSales.equals("8")){
+                wilayahChoiceTV.setText("Akunting dan Keuangan");
             }
 
             InputMethodManager imm = (InputMethodManager) ListDataReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -1494,93 +1521,95 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(sharedPrefAbsen.getSpReportCategoryActive().equals("")){
-            reportRV.setVisibility(View.GONE);
-            loadingDataPartReport.setVisibility(View.VISIBLE);
-            noDataPartReport.setVisibility(View.GONE);
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if(categoryCode.equals("1")){
-                        getData(categoryCode);
-                    } else {
-                        getData("0");
-                    }
-                }
-            }, 0);
-        } else {
-            categoryCode = sharedPrefAbsen.getSpReportCategoryActive();
-             if(categoryCode.equals("1")) {
-                dateLabel.setText("Tanggal Rencana :");
-                categoryChoiceTV.setText("Rencana Kunjungan");
-
+        if(sharedPrefAbsen.getSpReloadRequest().equals("true")){
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_RELOAD_REQUEST, "");
+            if(sharedPrefAbsen.getSpReportCategoryActive().equals("")){
                 reportRV.setVisibility(View.GONE);
                 loadingDataPartReport.setVisibility(View.VISIBLE);
                 noDataPartReport.setVisibility(View.GONE);
-                 handler.postDelayed(new Runnable() {
-                     @Override
-                     public void run() {
-                         getData(categoryCode);
-                     }
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(categoryCode.equals("1")){
+                            getData(categoryCode);
+                        } else {
+                            getData("0");
+                        }
+                    }
                 }, 0);
             } else {
-                categoryCode = "0";
-                subCategoryCode = sharedPrefAbsen.getSpReportCategoryActive().substring(sharedPrefAbsen.getSpReportCategoryActive().length()-1,sharedPrefAbsen.getSpReportCategoryActive().length());
-                if(subCategoryCode.equals("2")){
-                    dateLabel.setText("Tanggal :");
-                    categoryChoiceTV.setText("Aktivitas Kunjungan");
-                    subCategoryChoiceTV.setText("Promosi");
-                    dateStartChoice = getDate();
-                    dateEndChoice = getDate();
-                } else if(subCategoryCode.equals("3")){
-                    dateLabel.setText("Tanggal :");
-                    categoryChoiceTV.setText("Aktivitas Kunjungan");
-                    subCategoryChoiceTV.setText("Penagihan");
-                    dateStartChoice = getDate();
-                    dateEndChoice = getDate();
-                } else if(subCategoryCode.equals("4")){
-                    dateLabel.setText("Tanggal :");
-                    categoryChoiceTV.setText("Aktivitas Kunjungan");
-                    subCategoryChoiceTV.setText("Pengiriman");
-                    dateStartChoice = getDate();
-                    dateEndChoice = getDate();
-                } else if(subCategoryCode.equals("5")){
-                    dateLabel.setText("Tanggal :");
-                    categoryChoiceTV.setText("Aktivitas Kunjungan");
-                    subCategoryChoiceTV.setText("Non Join Visit");
-                    dateStartChoice = getDate();
-                    dateEndChoice = getDate();
+                categoryCode = sharedPrefAbsen.getSpReportCategoryActive();
+                if(categoryCode.equals("1")) {
+                    dateLabel.setText("Tanggal Rencana :");
+                    categoryChoiceTV.setText("Rencana Kunjungan");
+
+                    reportRV.setVisibility(View.GONE);
+                    loadingDataPartReport.setVisibility(View.VISIBLE);
+                    noDataPartReport.setVisibility(View.GONE);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getData(categoryCode);
+                        }
+                    }, 0);
+                } else {
+                    categoryCode = "0";
+                    subCategoryCode = sharedPrefAbsen.getSpReportCategoryActive().substring(sharedPrefAbsen.getSpReportCategoryActive().length()-1,sharedPrefAbsen.getSpReportCategoryActive().length());
+                    if(subCategoryCode.equals("2")){
+                        dateLabel.setText("Tanggal :");
+                        categoryChoiceTV.setText("Aktivitas Kunjungan");
+                        subCategoryChoiceTV.setText("Promosi");
+                        dateStartChoice = getDate();
+                        dateEndChoice = getDate();
+                    } else if(subCategoryCode.equals("3")){
+                        dateLabel.setText("Tanggal :");
+                        categoryChoiceTV.setText("Aktivitas Kunjungan");
+                        subCategoryChoiceTV.setText("Penagihan");
+                        dateStartChoice = getDate();
+                        dateEndChoice = getDate();
+                    } else if(subCategoryCode.equals("4")){
+                        dateLabel.setText("Tanggal :");
+                        categoryChoiceTV.setText("Aktivitas Kunjungan");
+                        subCategoryChoiceTV.setText("Pengiriman");
+                        dateStartChoice = getDate();
+                        dateEndChoice = getDate();
+                    } else if(subCategoryCode.equals("5")){
+                        dateLabel.setText("Tanggal :");
+                        categoryChoiceTV.setText("Aktivitas Kunjungan");
+                        subCategoryChoiceTV.setText("Non Join Visit");
+                        dateStartChoice = getDate();
+                        dateEndChoice = getDate();
+                    }
+
+                    reportRV.setVisibility(View.GONE);
+                    loadingDataPartReport.setVisibility(View.VISIBLE);
+                    noDataPartReport.setVisibility(View.GONE);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(subCategoryChoiceTV.getText().toString().equals("Promosi")){
+                                categoryCode = "0";
+                                subCategoryCode = "2";
+                                getData(subCategoryCode);
+                            } else if(subCategoryChoiceTV.getText().toString().equals("Penagihan")){
+                                categoryCode = "0";
+                                subCategoryCode = "3";
+                                getData(subCategoryCode);
+                            } else if(subCategoryChoiceTV.getText().toString().equals("Pengiriman")){
+                                categoryCode = "0";
+                                subCategoryCode = "4";
+                                getData(subCategoryCode);
+                            } else if(subCategoryChoiceTV.getText().toString().equals("Non Join Visit")){
+                                categoryCode = "0";
+                                subCategoryCode = "5";
+                                getData(subCategoryCode);
+                            }
+                        }
+                    }, 0);
                 }
 
-                 reportRV.setVisibility(View.GONE);
-                 loadingDataPartReport.setVisibility(View.VISIBLE);
-                 noDataPartReport.setVisibility(View.GONE);
-                 handler.postDelayed(new Runnable() {
-                     @Override
-                     public void run() {
-                         if(subCategoryChoiceTV.getText().toString().equals("Promosi")){
-                             categoryCode = "0";
-                             subCategoryCode = "2";
-                             getData(subCategoryCode);
-                         } else if(subCategoryChoiceTV.getText().toString().equals("Penagihan")){
-                             categoryCode = "0";
-                             subCategoryCode = "3";
-                             getData(subCategoryCode);
-                         } else if(subCategoryChoiceTV.getText().toString().equals("Pengiriman")){
-                             categoryCode = "0";
-                             subCategoryCode = "4";
-                             getData(subCategoryCode);
-                         } else if(subCategoryChoiceTV.getText().toString().equals("Non Join Visit")){
-                             categoryCode = "0";
-                             subCategoryCode = "5";
-                             getData(subCategoryCode);
-                         }
-                     }
-                 }, 0);
             }
-
         }
-
     }
 
     public void onBackPressed() {

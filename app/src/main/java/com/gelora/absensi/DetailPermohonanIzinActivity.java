@@ -1,13 +1,17 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialog;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.app.DownloadManager;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -20,6 +24,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.pdf.PdfDocument;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
@@ -52,6 +57,9 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -64,7 +72,7 @@ import androidmads.library.qrgenearator.QRGEncoder;
 public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     TextView catatanHRDTV, approverHrdTV, notedTV, appoveStatusHRD, idPermohonanTV, namaKaryawanTV, nikKaryawanTV, bagianKaryawanTV, jabatanKaryawanTV, alasanIzinTV, tglMulaiTV, tglAkhirTV, totalHariTV, tglPermohonanTV, pemohonTV, tanggalApproveTV, tanggalApproveHRDTV, supervisorTV, hrdTV;
-    String uriImage, uriImage2, idIzinRecord, statusKondisi = "0", kode, title;
+    String nikIzin = "", uriImage, uriImage2, idIzinRecord, statusKondisi = "0", kode, title;
     LinearLayout kopGap, kopErlass, catatanHRDPart, actionBar, editPermohonanBTN, cancelPermohonanBTN, pdfBTN, viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, approvedBTN, rejectedBTN, actionPart;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdSupervisor, ttdHRD, qrDocument;
@@ -269,7 +277,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
             public void onClick(View v) {
                 new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Unduh File?")
-                        .setContentText("Perhatian! file hasil unduh hanya dapat dibuka dengan aplikasi WPS")
+                        .setContentText("File dokumen permohonan hasil unduh berformat PDF")
                         .setCancelText(" BATAL ")
                         .setConfirmText(" UNDUH ")
                         .showCancelButton(true)
@@ -283,16 +291,67 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                             @Override
                             public void onClick(KAlertDialog sDialog) {
                                 sDialog.dismiss();
-                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(file_url));
-                                try {
-                                    startActivity(browserIntent);
-                                } catch (SecurityException e) {
-                                    e.printStackTrace();
-                                }
+                                String link = "https://hrisgelora.co.id/api/download_pdf_form_izin/"+idIzinRecord;
+                                pDialog = new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1000, 500) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPermohonanIzinActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPermohonanIzinActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPermohonanIzinActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPermohonanIzinActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPermohonanIzinActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPermohonanIzinActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+                                    public void onFinish() {
+                                        i = -1;
+                                        Intent webIntent = new Intent(Intent.ACTION_VIEW);
+                                        webIntent.setData(Uri.parse(link));
+                                        try {
+                                            startActivity(webIntent);
+                                            pDialog.dismiss();
+                                        } catch (SecurityException e) {
+                                            e.printStackTrace();
+                                            new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.WARNING_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Terjadi kesalahan, tidak dapat membuka browser")
+                                                    .setConfirmText("TUTUP")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+                                        }
+                                    }
+                                }.start();
                             }
                         })
                         .show();
-
             }
         });
 
@@ -808,6 +867,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                 String nama_approver_hrd = detail.getString("nama_approver_hrd");
 
                                 String jumlah_hari = data.getString("jumlah_hari");
+                                nikIzin = nik_karyawan;
 
                                 if(tipe_izin.equals("5")){
                                     notedTV.setVisibility(View.INVISIBLE);

@@ -1,14 +1,23 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialog;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +41,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,7 +62,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
     TextView nilai1, nilai2, nilai3, nilai4, nilai5, nilai6, nilai7, nilai8, nilai9, nilai10, nilai11, nilai12, nilai13, nilai14;
     TextView totalBobotTV, totalNilaiTV, predikatTV, markLulus, markTidakLulus, namaPenilai, tglPenilai, namaAtasanPenilai, tglAtasanPenilai, catatanHRDTV;
     ImageView ttdPenilai, ttdAtasanPenilai;
-    String idPenilaian = "";
+    String nikDitilai = "", idPenilaian = "";
     int totalBobot = 0, totalNilai = 0;
     String file_url = "";
     KAlertDialog pDialog;
@@ -168,7 +183,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
             public void onClick(View v) {
                 new KAlertDialog(DetailPenilaianKaryawanActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Unduh File?")
-                        .setContentText("Perhatian! file hasil unduh hanya dapat dibuka dengan aplikasi WPS")
+                        .setContentText("File dokumen penilaian hasil unduh berformat PDF")
                         .setCancelText(" BATAL ")
                         .setConfirmText(" UNDUH ")
                         .showCancelButton(true)
@@ -182,12 +197,64 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                             @Override
                             public void onClick(KAlertDialog sDialog) {
                                 sDialog.dismiss();
-                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(file_url));
-                                try {
-                                    startActivity(browserIntent);
-                                } catch (SecurityException e) {
-                                    e.printStackTrace();
-                                }
+                                String link = "https://hrisgelora.co.id/api/download_pdf_penilaian_sdm/"+idPenilaian;
+                                pDialog = new KAlertDialog(DetailPenilaianKaryawanActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1000, 500) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+                                    public void onFinish() {
+                                        i = -1;
+                                        Intent webIntent = new Intent(Intent.ACTION_VIEW);
+                                        webIntent.setData(Uri.parse(link));
+                                        try {
+                                            startActivity(webIntent);
+                                            pDialog.dismiss();
+                                        } catch (SecurityException e) {
+                                            e.printStackTrace();
+                                            new KAlertDialog(DetailPenilaianKaryawanActivity.this, KAlertDialog.WARNING_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Terjadi kesalahan, tidak dapat membuka browser")
+                                                    .setConfirmText("TUTUP")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+                                        }
+                                    }
+                                }.start();
                             }
                         })
                         .show();
@@ -348,6 +415,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                             String status = data.getString("status");
                             if (status.equals("Success")){
                                 JSONObject dataArray = data.getJSONObject("data");
+                                String NIK = dataArray.getString("NIK");
                                 String nama_karyawan = dataArray.getString("nama_karyawan");
                                 String jabatan = dataArray.getString("jabatan");
                                 String dept = dataArray.getString("dept");
@@ -366,6 +434,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                 String id_departemen = dataArray.getString("id_departemen");
                                 String id_bagian = dataArray.getString("id_bagian");
 
+                                nikDitilai = NIK;
                                 karNama.setText(nama_karyawan);
                                 karJabatan.setText(jabatan);
                                 karDepbag.setText(dept+"/"+bag);

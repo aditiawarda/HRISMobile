@@ -37,7 +37,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -59,7 +58,7 @@ import com.application.isradeleon.notify.Notify;
 import com.bumptech.glide.Glide;
 import com.gelora.absensi.AllMenuActivity;
 import com.gelora.absensi.CalendarPageActivity;
-import com.gelora.absensi.ChatSplashScreenActivity;
+import com.gelora.absensi.ChatStartFeatureActivity;
 import com.gelora.absensi.DataFormSdmActivity;
 import com.gelora.absensi.DetailCuacaActivity;
 import com.gelora.absensi.DetailPengumumanActivity;
@@ -308,7 +307,7 @@ public class FragmentHome extends Fragment {
         chatBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
+                Intent intent = new Intent(mContext, ChatStartFeatureActivity.class);
                 startActivity(intent);
             }
         });
@@ -596,7 +595,7 @@ public class FragmentHome extends Fragment {
             }
         }
 
-        if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")||sharedPrefManager.getSpNik().equals("1311201210")||(sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")||sharedPrefManager.getSpNik().equals("1738040712"))){
+        if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")||sharedPrefManager.getSpNik().equals("1311201210")||(sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
             cardPart.setVisibility(View.GONE);
             sdmPart.setVisibility(View.VISIBLE);
             if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")){
@@ -911,7 +910,7 @@ public class FragmentHome extends Fragment {
                                 getDataPengumumanNew(chat_room);
                                 getCountPersonalNotif();
 
-                                if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111")||sharedPrefManager.getSpNik().equals("1738040712"))){
+                                if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
                                     getWaitingConfirm();
                                 }
 
@@ -1534,7 +1533,7 @@ public class FragmentHome extends Fragment {
                                         }
 
                                         try {
-                                            Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
+                                            Intent intent = new Intent(mContext, ChatStartFeatureActivity.class);
                                             Notify.build(mContext)
                                                     .setTitle("HRIS Mobile Gelora")
                                                     .setContent("Halo "+shortName+", terdapat "+message_count+" pesan yang belum dibaca di Gelora Messenger")
@@ -1573,7 +1572,7 @@ public class FragmentHome extends Fragment {
                                             }
 
                                             try {
-                                                Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
+                                                Intent intent = new Intent(mContext, ChatStartFeatureActivity.class);
                                                 Notify.build(mContext)
                                                         .setTitle("HRIS Mobile Gelora")
                                                         .setContent("Halo "+shortName+", terdapat "+message_count+" pesan yang belum dibaca di Gelora Messenger")
@@ -2056,8 +2055,7 @@ public class FragmentHome extends Fragment {
     }
 
     private void getCountPersonalNotif(){
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://hrisgelora.co.id/api/count_notif_yet_read";
+        final String url = "https://hrisgelora.co.id/api/count_personal_notification_yet_read";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -2087,12 +2085,6 @@ public class FragmentHome extends Fragment {
                                         shortName = shortNameArray[0];
                                     }
 
-                                    // String shortName = sharedPrefManager.getSpNama()+" ";
-                                    // if(shortName.contains(" ")){
-                                    //    shortName = shortName.substring(0, shortName.indexOf(" "));
-                                    //    System.out.println(shortName);
-                                    // }
-
                                     try {
                                         Intent intent = new Intent(mContext, PersonalNotificationActivity.class);
                                         Notify.build(mContext)
@@ -2108,11 +2100,9 @@ public class FragmentHome extends Fragment {
                                         e.printStackTrace();
                                     }
 
-                                    // Vibrate for 500 milliseconds
                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                                         vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
                                     } else {
-                                        //deprecated in API 26
                                         vibrate.vibrate(500);
                                     }
                                 } else {
