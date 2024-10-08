@@ -10,8 +10,11 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -21,13 +24,20 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.gelora.absensi.adapter.AdapterListDataPenilaianSDM;
+import com.gelora.absensi.adapter.AdapterListDataVisitStatisticSales;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.model.DataPenilaianSDM;
+import com.gelora.absensi.model.SalesVisitStatistic;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import org.json.JSONException;
@@ -39,6 +49,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class VisitStatisticActivity extends AppCompatActivity {
 
@@ -47,6 +59,8 @@ public class VisitStatisticActivity extends AppCompatActivity {
     LinearLayout loadingDataSalesPart, noDataSalesPart, noDataPart, bulanBTN, loadingDataPart, backBTN, actionBar;
     TextView bulanPilihTV, totalVisitTV;
     RecyclerView listSalesRV;
+    private SalesVisitStatistic[] salesVisitStatistics;
+    AdapterListDataVisitStatisticSales adapterListDataVisitStatisticSales;
     RequestQueue requestQueue;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -76,6 +90,11 @@ public class VisitStatisticActivity extends AppCompatActivity {
         listSalesRV = findViewById(R.id.list_sales_rv);
         noDataSalesPart = findViewById(R.id.no_data_sales_part);
         loadingDataSalesPart = findViewById(R.id.loading_data_sales_part);
+
+        listSalesRV.setLayoutManager(new LinearLayoutManager(this));
+        listSalesRV.setHasFixedSize(true);
+        listSalesRV.setNestedScrollingEnabled(false);
+        listSalesRV.setItemAnimator(new DefaultItemAnimator());
 
         String bulan = getMonthOnly(), bulanName = "";
         if(bulan.equals("01")){
@@ -275,10 +294,9 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                 loadingDataPart.setVisibility(View.GONE);
                                 pieChartPart.setVisibility(View.VISIBLE);
 
-                                listSalesRV.setVisibility(View.GONE);
-                                loadingDataSalesPart.setVisibility(View.GONE);
-                                noDataSalesPart.setVisibility(View.VISIBLE);
-                                //getDataSales();
+
+
+                                getDataStatisticSales();
                             } else {
                                 noDataPart.setVisibility(View.VISIBLE);
                                 loadingDataPart.setVisibility(View.GONE);
@@ -322,6 +340,69 @@ public class VisitStatisticActivity extends AppCompatActivity {
         request.setRetryPolicy(retryPolicy);
 
         requestQueue.add(request);
+    }
+
+    private void getDataStatisticSales() {
+        String url = "https://reporting.sumasistem.co.id/api/get_visit_statistic_sales?month="+selectMonth;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String status = response.getString("status");
+                            if(status.equals("Success")){
+                                String data_statistik = response.getString("data");
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                salesVisitStatistics = gson.fromJson(data_statistik, SalesVisitStatistic[].class);
+                                adapterListDataVisitStatisticSales = new AdapterListDataVisitStatisticSales(salesVisitStatistics, VisitStatisticActivity.this);
+                                listSalesRV.setAdapter(adapterListDataVisitStatisticSales);
+
+                                listSalesRV.setVisibility(View.VISIBLE);
+                                loadingDataSalesPart.setVisibility(View.GONE);
+                                noDataSalesPart.setVisibility(View.GONE);
+                            } else {
+                                listSalesRV.setVisibility(View.GONE);
+                                loadingDataSalesPart.setVisibility(View.GONE);
+                                noDataSalesPart.setVisibility(View.VISIBLE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                try {
+                    new KAlertDialog(VisitStatisticActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } catch (WindowManager.BadTokenException e){
+                    Log.e("Error", "Error : "+e.toString());
+                }
+
+            }
+        });
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                0,
+                -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        request.setRetryPolicy(retryPolicy);
+
+        requestQueue.add(request);
+
     }
 
     private String getMonth() {

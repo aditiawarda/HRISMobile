@@ -16,6 +16,7 @@ import com.gelora.absensi.DataPenilaianSdmActivity;
 import com.gelora.absensi.DetailPenilaianKaryawanActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefManager;
+import com.gelora.absensi.VisitStatisticActivity;
 import com.gelora.absensi.model.DataPenilaianSDM;
 import com.gelora.absensi.model.SalesVisitStatistic;
 import com.squareup.picasso.MemoryPolicy;
@@ -30,7 +31,7 @@ public class AdapterListDataVisitStatisticSales extends RecyclerView.Adapter<Ada
     private Context mContext;
     SharedPrefManager sharedPrefManager;
 
-    public AdapterListDataVisitStatisticSales(SalesVisitStatistic[] data, DataPenilaianSdmActivity context) {
+    public AdapterListDataVisitStatisticSales(SalesVisitStatistic[] data, VisitStatisticActivity context) {
         this.data = data;
         this.mContext = context;
     }
@@ -55,8 +56,8 @@ public class AdapterListDataVisitStatisticSales extends RecyclerView.Adapter<Ada
 
         myViewHolder.namaTV.setText(salesVisitStatistic.getNamaKaryawan().toUpperCase());
         myViewHolder.nikTV.setText(salesVisitStatistic.getIdSales());
-        myViewHolder.detailTV.setText(salesVisitStatistic.getWilayah());
-        myViewHolder.predikatTV.setText(salesVisitStatistic.getJumlah_kunjungan());
+        myViewHolder.wilayahTV.setText(salesVisitStatistic.getWilayah());
+        myViewHolder.jumlahKunjunganTV.setText(salesVisitStatistic.getJumlah_kunjungan());
 
     }
 
@@ -67,21 +68,16 @@ public class AdapterListDataVisitStatisticSales extends RecyclerView.Adapter<Ada
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         LinearLayout parrentPart, waitingMark;
-        TextView namaTV, nikTV, detailTV, predikatTV, tanggalBuatTV, waitingMarkTV, accMark, rejMark;
+        TextView namaTV, nikTV, wilayahTV, jumlahKunjunganTV;
         CircleImageView profileImage;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parrentPart = itemView.findViewById(R.id.parent_part);
             namaTV = itemView.findViewById(R.id.nama_tv);
             nikTV = itemView.findViewById(R.id.nik_tv);
-            detailTV = itemView.findViewById(R.id.detail_tv);
-            predikatTV = itemView.findViewById(R.id.predikat);
+            wilayahTV = itemView.findViewById(R.id.wilayah_tv);
+            jumlahKunjunganTV = itemView.findViewById(R.id.jumlah_kunjungan);
             profileImage = itemView.findViewById(R.id.profile_image);
-            tanggalBuatTV = itemView.findViewById(R.id.tanggal_buat_tv);
-            waitingMark = itemView.findViewById(R.id.waiting_mark);
-            waitingMarkTV = itemView.findViewById(R.id.waiting_mark_tv);
-            accMark = itemView.findViewById(R.id.acc_mark);
-            rejMark = itemView.findViewById(R.id.rej_mark);
         }
     }
 
