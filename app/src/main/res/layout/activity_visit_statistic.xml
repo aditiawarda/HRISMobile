@@ -202,7 +202,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Record Absensi tidak tersedia"
+                                    android:text="Statistik kunjungan tidak tersedia"
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
                                     android:textSize="10dp"
@@ -221,7 +221,7 @@
                         <LinearLayout
                             android:paddingRight="20dp"
                             android:paddingLeft="20dp"
-                            android:layout_marginBottom="30dp"
+                            android:layout_marginBottom="90dp"
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -284,7 +284,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Pengumuman tidak tersedia"
+                                    android:text="Statistik sales tidak tersedia"
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
                                     android:textSize="10dp"

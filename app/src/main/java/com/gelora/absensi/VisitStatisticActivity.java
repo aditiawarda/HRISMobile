@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -53,8 +54,9 @@ public class VisitStatisticActivity extends AppCompatActivity {
 
     PieChart pieChart;
     RelativeLayout pieChartPart;
-    LinearLayout noDataPart, bulanBTN, loadingDataPart, backBTN, actionBar;
+    LinearLayout loadingDataSalesPart, noDataSalesPart, noDataPart, bulanBTN, loadingDataPart, backBTN, actionBar;
     TextView bulanPilihTV, totalVisitTV;
+    RecyclerView listSalesRV;
     RequestQueue requestQueue;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -81,6 +83,9 @@ public class VisitStatisticActivity extends AppCompatActivity {
         noDataPart = findViewById(R.id.no_data_part);
         pieChartPart = findViewById(R.id.piechart_part);
         totalVisitTV = findViewById(R.id.total_visit_tv);
+        listSalesRV = findViewById(R.id.list_sales_rv);
+        noDataSalesPart = findViewById(R.id.no_data_sales_part);
+        loadingDataSalesPart = findViewById(R.id.loading_data_sales_part);
 
         String bulan = getMonthOnly(), bulanName = "";
         if(bulan.equals("01")){
@@ -139,7 +144,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
                     new MonthPickerDialog.OnDateSetListener() {
                         @SuppressLint("SetTextI18n")
                         @Override
-                        public void onDateSet(int month, int year) { // on date set
+                        public void onDateSet(int month, int year) {
                             String bulan = "", bulanName = "";
                             if(month==0){
                                 bulan = "01";
@@ -224,7 +229,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                 int jakarta1 = totalPerWilayah.getInt("Jakarta 1");
                                 int jakarta2 = totalPerWilayah.getInt("Jakarta 2");
                                 int jakarta3 = totalPerWilayah.getInt("Jakarta 3");
-                                int bandung = totalPerWilayah.getInt("Bandung");
+                                int bandung  = totalPerWilayah.getInt("Bandung");
                                 int semarang = totalPerWilayah.getInt("Semarang");
                                 int surabaya = totalPerWilayah.getInt("Surabaya");
                                 int akuntingKeuangan = totalPerWilayah.getInt("Akunting dan Keuangan");
@@ -244,15 +249,14 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                 PieDataSet dataSet = new PieDataSet(entries, "");
                                 dataSet.setValueTextSize(25f);
 
-                                // Custom colors for PieChart
                                 ArrayList<Integer> colors = new ArrayList<>();
-                                colors.add(Color.parseColor("#FF5722")); // Orange
-                                colors.add(Color.parseColor("#4CAF50")); // Green
-                                colors.add(Color.parseColor("#2196F3")); // Blue
-                                colors.add(Color.parseColor("#FFC107")); // Yellow
-                                colors.add(Color.parseColor("#9C27B0")); // Purple
-                                colors.add(Color.parseColor("#FF9800")); // Deep Orange
-                                colors.add(Color.parseColor("#3F51B5")); // Indigo
+                                colors.add(Color.parseColor("#FF5722")); // Jakarta 1
+                                colors.add(Color.parseColor("#4CAF50")); // Jakarta 2
+                                colors.add(Color.parseColor("#2196F3")); // Jakarta 3
+                                colors.add(Color.parseColor("#FFC107")); // Bandung
+                                colors.add(Color.parseColor("#9C27B0")); // Semarang
+                                colors.add(Color.parseColor("#FF9800")); // Surabaya
+                                colors.add(Color.parseColor("#3F51B5")); // Akunting dan Keuangan
                                 dataSet.setColors(colors);
 
                                 PieData data = new PieData(dataSet);
@@ -276,10 +280,19 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                 noDataPart.setVisibility(View.GONE);
                                 loadingDataPart.setVisibility(View.GONE);
                                 pieChartPart.setVisibility(View.VISIBLE);
+
+                                listSalesRV.setVisibility(View.GONE);
+                                loadingDataSalesPart.setVisibility(View.GONE);
+                                noDataSalesPart.setVisibility(View.VISIBLE);
+                                //getDataSales();
                             } else {
                                 noDataPart.setVisibility(View.VISIBLE);
                                 loadingDataPart.setVisibility(View.GONE);
                                 pieChartPart.setVisibility(View.GONE);
+
+                                listSalesRV.setVisibility(View.GONE);
+                                loadingDataSalesPart.setVisibility(View.GONE);
+                                noDataSalesPart.setVisibility(View.VISIBLE);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
