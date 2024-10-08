@@ -159,7 +159,7 @@
                             android:text="0"
                             android:textColor="#020202"
                             android:textSize="15dp"
-                            tools:ignore="HardcodedText,SpUsage" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
 
