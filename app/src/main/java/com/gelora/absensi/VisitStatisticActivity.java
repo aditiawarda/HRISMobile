@@ -190,6 +190,10 @@ public class VisitStatisticActivity extends AppCompatActivity {
                             pieChartPart.setVisibility(View.GONE);
                             noDataPart.setVisibility(View.GONE);
 
+                            listSalesRV.setVisibility(View.GONE);
+                            loadingDataSalesPart.setVisibility(View.VISIBLE);
+                            noDataSalesPart.setVisibility(View.GONE);
+
                             bulanPilihTV.setText(bulanName+" "+String.valueOf(year));
 
                             handler.postDelayed(new Runnable() {
