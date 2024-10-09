@@ -330,7 +330,6 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                 colors.add(Color.parseColor("#FF9FA8DA")); // Akunting dan Keuangan
                                 dataSet.setColors(colors);
 
-
                                 PieData data = new PieData(dataSet);
                                 data.setValueTextSize(16f);
                                 data.setValueTextColor(Color.BLACK);
@@ -352,8 +351,6 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                 noDataPart.setVisibility(View.GONE);
                                 loadingDataPart.setVisibility(View.GONE);
                                 pieChartPart.setVisibility(View.VISIBLE);
-
-
 
                                 getDataStatisticSales();
                             } else {
