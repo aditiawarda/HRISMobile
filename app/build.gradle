@@ -70,7 +70,7 @@ dependencies {
     implementation 'com.takisoft.datetimepicker:datetimepicker:1.0.3'
     implementation 'com.github.shasin89:NotificationBanner:1.1.5'
     implementation 'com.github.Mahfa:DayNightSwitch:1.5'
-    implementation platform('com.google.firebase:firebase-bom:33.3.0')
+    implementation platform('com.google.firebase:firebase-bom:33.4.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'androidx.cardview:cardview:1.0.0'
