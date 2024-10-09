@@ -198,7 +198,7 @@ public class DetailPulangCepatActivity extends AppCompatActivity {
 
                 builder.setMinYear(1952)
                         .setActivatedYear(now.get(Calendar.YEAR))
-                        .setMaxYear(now.get(Calendar.YEAR))
+                        .setMaxYear(Integer.parseInt(getYearOnly()))
                         .setActivatedMonth(now.get(Calendar.MONTH))
                         .build()
                         .show();
@@ -296,8 +296,6 @@ public class DetailPulangCepatActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        // Banner.make(rootview, DetailPulangCepatActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
-
         CookieBar.build(DetailPulangCepatActivity.this)
                 .setTitle("Perhatian")
                 .setMessage("Koneksi anda terputus!")
@@ -313,6 +311,13 @@ public class DetailPulangCepatActivity extends AppCompatActivity {
     private String getBulanTahun() {
         @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getYearOnly() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy");
         Date date = new Date();
         return dateFormat.format(date);
     }

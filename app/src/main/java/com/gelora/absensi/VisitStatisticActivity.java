@@ -153,6 +153,9 @@ public class VisitStatisticActivity extends AppCompatActivity {
                 } else if (bulan.equals("12")){
                     bulanName = "Desember";
                 }
+
+                selectMonth = getMonth();
+
                 bulanPilihTV.setText(bulanName+" "+getYearOnly());
                 titleSalesListTV.setText("Statistik Kunjungan Sales Bulan "+bulanPilihTV.getText().toString());
 
@@ -268,7 +271,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
                     }, now.get(Calendar.YEAR), now.get(Calendar.MONTH));
                 builder.setMinYear(1952)
                 .setActivatedYear(now.get(Calendar.YEAR))
-                .setMaxYear(now.get(Calendar.YEAR))
+                .setMaxYear(Integer.parseInt(getYearOnly()))
                 .setActivatedMonth(now.get(Calendar.MONTH))
                 .build()
                 .show();
