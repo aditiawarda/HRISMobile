@@ -46,8 +46,6 @@ import com.gelora.absensi.ListIzinKeluarKantor;
 import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.ListNotifikasiFingerscanActivity;
 import com.gelora.absensi.MonitoringAbsensiBagianActivity;
-import com.gelora.absensi.NewsActivity;
-import com.gelora.absensi.ProjectViewActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.kalert.KAlertDialog;
@@ -1041,7 +1039,6 @@ public class FragmentInfo extends Fragment {
     }
 
     private void checkNotification() {
-        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://hrisgelora.co.id/api/check_notification_info";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
