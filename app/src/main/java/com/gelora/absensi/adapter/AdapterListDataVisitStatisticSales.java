@@ -54,9 +54,14 @@ public class AdapterListDataVisitStatisticSales extends RecyclerView.Adapter<Ada
                 .resize(100, 100)
                 .into(myViewHolder.profileImage);
 
+        myViewHolder.noTV.setText(String.valueOf(i+1));
         myViewHolder.namaTV.setText(salesVisitStatistic.getNamaKaryawan().toUpperCase());
         myViewHolder.nikTV.setText(salesVisitStatistic.getIdSales());
-        myViewHolder.wilayahTV.setText(salesVisitStatistic.getWilayah());
+        if(salesVisitStatistic.getWilayah().equals("Jakarta 1") || salesVisitStatistic.getWilayah().equals("Jakarta 2") || salesVisitStatistic.getWilayah().equals("Jakarta 3") || salesVisitStatistic.getWilayah().equals("Bandung") || salesVisitStatistic.getWilayah().equals("Semarang") || salesVisitStatistic.getWilayah().equals("Surabaya")){
+            myViewHolder.wilayahTV.setText("Suma "+salesVisitStatistic.getWilayah());
+        } else {
+            myViewHolder.wilayahTV.setText(salesVisitStatistic.getWilayah());
+        }
         myViewHolder.jumlahKunjunganTV.setText(salesVisitStatistic.getJumlah_kunjungan());
 
     }
@@ -68,7 +73,7 @@ public class AdapterListDataVisitStatisticSales extends RecyclerView.Adapter<Ada
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         LinearLayout parrentPart, waitingMark;
-        TextView namaTV, nikTV, wilayahTV, jumlahKunjunganTV;
+        TextView noTV, namaTV, nikTV, wilayahTV, jumlahKunjunganTV;
         CircleImageView profileImage;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,6 +83,7 @@ public class AdapterListDataVisitStatisticSales extends RecyclerView.Adapter<Ada
             wilayahTV = itemView.findViewById(R.id.wilayah_tv);
             jumlahKunjunganTV = itemView.findViewById(R.id.jumlah_kunjungan);
             profileImage = itemView.findViewById(R.id.profile_image);
+            noTV = itemView.findViewById(R.id.no_tv);
         }
     }
 

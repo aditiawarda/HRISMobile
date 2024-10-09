@@ -50,10 +50,13 @@ public class AdapterWilayahSuma extends RecyclerView.Adapter<AdapterWilayahSuma.
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
             Typeface typeface = ResourcesCompat.getFont(mContext, R.font.roboto);
             myViewHolder.name.setTypeface(typeface);
-            myViewHolder.name.setTypeface(typeface);
         }
 
-        myViewHolder.name.setText(wilayahSuma.getNama_wilayah());
+        if(wilayahSuma.getNama_wilayah().equals("Jakarta 1") || wilayahSuma.getNama_wilayah().equals("Jakarta 2") || wilayahSuma.getNama_wilayah().equals("Jakarta 3") || wilayahSuma.getNama_wilayah().equals("Bandung") || wilayahSuma.getNama_wilayah().equals("Semarang") || wilayahSuma.getNama_wilayah().equals("Surabaya")){
+            myViewHolder.name.setText("Suma "+wilayahSuma.getNama_wilayah());
+        } else {
+            myViewHolder.name.setText(wilayahSuma.getNama_wilayah());
+        }
 
         if (sharedPrefAbsen.getSpWilayahSuma().equals(wilayahSuma.getId())) {
             myViewHolder.mark.setVisibility(View.VISIBLE);

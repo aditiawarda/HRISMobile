@@ -89,11 +89,11 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         myViewHolder.namaSalesTV.setText(dataReportSuma.getNamaKaryawan());
 
         if(dataReportSuma.getNmJabatan().equals("Group Leader Suma 1") || dataReportSuma.getNmJabatan().equals("Salesman Suma 1")){
-            myViewHolder.regionTV.setText("Jakarta 1");
+            myViewHolder.regionTV.setText("Suma Jakarta 1");
         } else if(dataReportSuma.getNmJabatan().equals("Group Leader Suma 2") || dataReportSuma.getNmJabatan().equals("Salesman Suma 2")){
-            myViewHolder.regionTV.setText("Jakarta 2");
+            myViewHolder.regionTV.setText("Suma Jakarta 2");
         } else if(dataReportSuma.getNmJabatan().equals("Group Leader Suma 3") || dataReportSuma.getNmJabatan().equals("Salesman Suma 3")){
-            myViewHolder.regionTV.setText("Jakarta 3");
+            myViewHolder.regionTV.setText("Suma Jakarta 3");
         } else if(dataReportSuma.getNmJabatan().equals("Group Leader AE") || dataReportSuma.getNmJabatan().equals("Staff AE")){
             myViewHolder.regionTV.setText("Jakarta AE");
         } else {
@@ -103,7 +103,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
                 String[] jabatan = dataReportSuma.getNmJabatan().split("\\s+");
                 String region = jabatan[jabatan.length - 1];
 
-                myViewHolder.regionTV.setText(region);
+                myViewHolder.regionTV.setText("Suma "+region);
             }
         }
 

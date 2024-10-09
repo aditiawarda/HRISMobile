@@ -1425,7 +1425,11 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             String idWilayah = intent.getStringExtra("id_wilayah_suma");
             String namaWilayah = intent.getStringExtra("nama_wilayah_suma");
 
-            wilayahChoiceTV.setText(namaWilayah);
+            if(namaWilayah.equals("Jakarta 1") || namaWilayah.equals("Jakarta 2") || namaWilayah.equals("Jakarta 3") || namaWilayah.equals("Bandung") || namaWilayah.equals("Semarang") || namaWilayah.equals("Surabaya")){
+                wilayahChoiceTV.setText("Suma "+namaWilayah);
+            } else {
+                wilayahChoiceTV.setText(namaWilayah);
+            }
 
             InputMethodManager imm = (InputMethodManager) ListDataReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
             View view = ListDataReportSumaActivity.this.getCurrentFocus();
@@ -1469,17 +1473,17 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             salesChoiceTV.setText(namaKaryawanSales);
 
             if(wilayahSales.equals("1")){
-                wilayahChoiceTV.setText("Jakarta 1");
+                wilayahChoiceTV.setText("Suma Jakarta 1");
             } else if(wilayahSales.equals("2")){
-                wilayahChoiceTV.setText("Jakarta 2");
+                wilayahChoiceTV.setText("Suma Jakarta 2");
             } else if(wilayahSales.equals("3")){
-                wilayahChoiceTV.setText("Jakarta 3");
+                wilayahChoiceTV.setText("Suma Jakarta 3");
             } else if(wilayahSales.equals("4")){
-                wilayahChoiceTV.setText("Bandung");
+                wilayahChoiceTV.setText("Suma Bandung");
             } else if(wilayahSales.equals("5")){
-                wilayahChoiceTV.setText("Semarang");
+                wilayahChoiceTV.setText("Suma Semarang");
             } else if(wilayahSales.equals("6")){
-                wilayahChoiceTV.setText("Surabaya");
+                wilayahChoiceTV.setText("Suma Surabaya");
             } else if(wilayahSales.equals("7")){
                 wilayahChoiceTV.setText("Jakarta AE");
             } else if(wilayahSales.equals("8")){

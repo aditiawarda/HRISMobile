@@ -10,7 +10,6 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -24,12 +23,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.gelora.absensi.adapter.AdapterListDataPenilaianSDM;
 import com.gelora.absensi.adapter.AdapterListDataVisitStatisticSales;
+import com.gelora.absensi.adapter.AdapterProductInputSuma;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.model.DataPenilaianSDM;
 import com.gelora.absensi.model.SalesVisitStatistic;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -49,15 +46,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class VisitStatisticActivity extends AppCompatActivity {
 
     PieChart pieChart;
     RelativeLayout pieChartPart;
     LinearLayout loadingDataSalesPart, noDataSalesPart, noDataPart, bulanBTN, loadingDataPart, backBTN, actionBar;
-    TextView bulanPilihTV, totalVisitTV;
+    TextView titleSalesListTV, bulanPilihTV, totalVisitTV;
     RecyclerView listSalesRV;
     private SalesVisitStatistic[] salesVisitStatistics;
     AdapterListDataVisitStatisticSales adapterListDataVisitStatisticSales;
@@ -90,6 +85,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
         listSalesRV = findViewById(R.id.list_sales_rv);
         noDataSalesPart = findViewById(R.id.no_data_sales_part);
         loadingDataSalesPart = findViewById(R.id.loading_data_sales_part);
+        titleSalesListTV = findViewById(R.id.title_sales_list);
 
         listSalesRV.setLayoutManager(new LinearLayoutManager(this));
         listSalesRV.setHasFixedSize(true);
@@ -124,6 +120,61 @@ public class VisitStatisticActivity extends AppCompatActivity {
         }
 
         bulanPilihTV.setText(bulanName+" "+getYearOnly());
+        titleSalesListTV.setText("Statistik Kunjungan Sales Bulan "+bulanPilihTV.getText().toString());
+
+        refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onRefresh() {
+                String bulan = getMonthOnly(), bulanName = "";
+                if(bulan.equals("01")){
+                    bulanName = "Januari";
+                } else if (bulan.equals("02")){
+                    bulanName = "Februari";
+                } else if (bulan.equals("03")){
+                    bulanName = "Maret";
+                } else if (bulan.equals("04")){
+                    bulanName = "April";
+                } else if (bulan.equals("05")){
+                    bulanName = "Mei";
+                } else if (bulan.equals("06")){
+                    bulanName = "Juni";
+                } else if (bulan.equals("07")){
+                    bulanName = "Juli";
+                } else if (bulan.equals("08")){
+                    bulanName = "Agustus";
+                } else if (bulan.equals("09")){
+                    bulanName = "September";
+                } else if (bulan.equals("10")){
+                    bulanName = "Oktober";
+                } else if (bulan.equals("11")){
+                    bulanName = "November";
+                } else if (bulan.equals("12")){
+                    bulanName = "Desember";
+                }
+                bulanPilihTV.setText(bulanName+" "+getYearOnly());
+                titleSalesListTV.setText("Statistik Kunjungan Sales Bulan "+bulanPilihTV.getText().toString());
+
+                loadingDataPart.setVisibility(View.VISIBLE);
+                pieChartPart.setVisibility(View.GONE);
+                noDataPart.setVisibility(View.GONE);
+
+                listSalesRV.setVisibility(View.GONE);
+                loadingDataSalesPart.setVisibility(View.VISIBLE);
+                noDataSalesPart.setVisibility(View.GONE);
+
+                getPieCart();
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                    }
+                }, 1000);
+
+            }
+        });
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,13 +255,14 @@ public class VisitStatisticActivity extends AppCompatActivity {
                             noDataSalesPart.setVisibility(View.GONE);
 
                             bulanPilihTV.setText(bulanName+" "+String.valueOf(year));
+                            titleSalesListTV.setText("Statistik Kunjungan Sales Bulan "+bulanPilihTV.getText().toString());
 
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     getPieCart();
                                 }
-                            }, 100);
+                            }, 0);
 
                         }
                     }, now.get(Calendar.YEAR), now.get(Calendar.MONTH));
@@ -245,32 +297,36 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                 int bandung  = totalPerWilayah.getInt("Bandung");
                                 int semarang = totalPerWilayah.getInt("Semarang");
                                 int surabaya = totalPerWilayah.getInt("Surabaya");
+                                int jakartaae = totalPerWilayah.getInt("Jakarta AE");
                                 int akuntingKeuangan = totalPerWilayah.getInt("Akunting dan Keuangan");
                                 int totalKeseluruhan = response.getInt("total_keseluruhan");
 
                                 totalVisitTV.setText("Total Kunjungan : "+String.valueOf(totalKeseluruhan));
 
                                 ArrayList<PieEntry> entries = new ArrayList<>();
-                                entries.add(new PieEntry(jakarta1, "Jakarta 1"));
-                                entries.add(new PieEntry(jakarta2, "Jakarta 2"));
-                                entries.add(new PieEntry(jakarta3, "Jakarta 3"));
-                                entries.add(new PieEntry(bandung, "Bandung"));
-                                entries.add(new PieEntry(semarang, "Semarang"));
-                                entries.add(new PieEntry(surabaya, "Surabaya"));
+                                entries.add(new PieEntry(jakarta1, "Suma Jakarta 1"));
+                                entries.add(new PieEntry(jakarta2, "Suma Jakarta 2"));
+                                entries.add(new PieEntry(jakarta3, "Suma Jakarta 3"));
+                                entries.add(new PieEntry(bandung, "Suma Bandung"));
+                                entries.add(new PieEntry(semarang, "Suma Semarang"));
+                                entries.add(new PieEntry(surabaya, "Suma Surabaya"));
+                                entries.add(new PieEntry(jakartaae, "Jakarta AE"));
                                 entries.add(new PieEntry(akuntingKeuangan, "Akunting dan Keuangan"));
 
                                 PieDataSet dataSet = new PieDataSet(entries, "");
                                 dataSet.setValueTextSize(25f);
 
                                 ArrayList<Integer> colors = new ArrayList<>();
-                                colors.add(Color.parseColor("#FF5722")); // Jakarta 1
-                                colors.add(Color.parseColor("#4CAF50")); // Jakarta 2
-                                colors.add(Color.parseColor("#2196F3")); // Jakarta 3
-                                colors.add(Color.parseColor("#FFC107")); // Bandung
-                                colors.add(Color.parseColor("#9C27B0")); // Semarang
-                                colors.add(Color.parseColor("#FF9800")); // Surabaya
-                                colors.add(Color.parseColor("#3F51B5")); // Akunting dan Keuangan
+                                colors.add(Color.parseColor("#FFFF8A65")); // Jakarta 1
+                                colors.add(Color.parseColor("#FF80E27E")); // Jakarta 2
+                                colors.add(Color.parseColor("#FF82B1FF")); // Jakarta 3
+                                colors.add(Color.parseColor("#FFFFF176")); // Bandung
+                                colors.add(Color.parseColor("#FFEA80FC")); // Semarang
+                                colors.add(Color.parseColor("#FFFFD180")); // Surabaya
+                                colors.add(Color.parseColor("#FFFF867C")); // Jakarta AE
+                                colors.add(Color.parseColor("#FF9FA8DA")); // Akunting dan Keuangan
                                 dataSet.setColors(colors);
+
 
                                 PieData data = new PieData(dataSet);
                                 data.setValueTextSize(16f);
@@ -353,6 +409,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
                         try {
                             String status = response.getString("status");
                             if(status.equals("Success")){
+                                titleSalesListTV.setText("Statistik Kunjungan Sales Bulan "+bulanPilihTV.getText().toString());
                                 String data_statistik = response.getString("data");
                                 GsonBuilder builder = new GsonBuilder();
                                 Gson gson = builder.create();

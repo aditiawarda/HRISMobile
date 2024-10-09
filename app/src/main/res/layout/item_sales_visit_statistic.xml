@@ -14,15 +14,13 @@
         android:layout_marginBottom="4dp"
         android:background="@drawable/shape_pengumuman"
         android:orientation="vertical"
-        android:paddingLeft="23dp"
-        android:paddingTop="8dp"
-        android:paddingRight="23dp"
+        android:paddingTop="2dp"
         tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="3dp"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -30,6 +28,8 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left|center"
@@ -113,6 +113,8 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_alignParentRight="true"
@@ -165,6 +167,29 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/shape_back_2"
+                    tools:ignore="RtlHardcoded">
+
+                    <TextView
+                        android:id="@+id/no_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:lineSpacingExtra="2dp"
+                        android:textStyle="bold"
+                        android:text="-"
+                        android:textColor="@color/white"
+                        android:textSize="8dp"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TooDeepLayout" />
+
+                </LinearLayout>
+
             </RelativeLayout>
 
         </LinearLayout>
@@ -172,6 +197,7 @@
         <LinearLayout
             android:layout_width="60dp"
             android:layout_height="50dp"
+            android:layout_marginStart="20dp"
             android:layout_marginBottom="-30dp"
             android:layout_marginTop="-20dp"
             android:background="@drawable/shape_ornament_2"
