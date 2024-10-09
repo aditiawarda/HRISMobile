@@ -254,12 +254,13 @@
                                 android:id="@+id/no_data_sales_part"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:paddingBottom="20dp"
+                                android:paddingBottom="80dp"
+                                android:paddingTop="50dp"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
-                                android:paddingTop="75dp"
                                 android:orientation="vertical"
                                 android:gravity="center"
+                                android:layout_marginBottom="20dp"
                                 android:visibility="gone">
 
                                 <TextView
@@ -299,10 +300,11 @@
                                 android:id="@+id/loading_data_sales_part"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:paddingBottom="20dp"
+                                android:paddingBottom="80dp"
+                                android:layout_marginBottom="20dp"
+                                android:paddingTop="70dp"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
-                                android:paddingTop="95dp"
                                 android:orientation="vertical"
                                 android:gravity="center">
 
