@@ -1409,7 +1409,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             }
                                         }
 
-                                        if(keterangan.equals("5")){
+                                        if(keterangan.equals("5")){ //test
                                             if(file_penilaian_tahunan.equals("null") || file_penilaian_tahunan == null || file_penilaian_tahunan.isEmpty()){
                                                 lihatPenilaianPart.setVisibility(View.GONE);
                                                 lihatPenilaianBTN.setVisibility(View.GONE);
@@ -1826,8 +1826,13 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                     }
                                                 }
                                             } else {
-                                                actionPart.setVisibility(View.GONE);
-                                                warningPenilaian.setVisibility(View.GONE);
+                                                if(!status_approve_kadept.equals("1") && sharedPrefManager.getSpNik().equals("0057010793")){
+                                                    actionPart.setVisibility(View.VISIBLE);
+                                                    warningPenilaian.setVisibility(View.GONE);
+                                                } else {
+                                                    actionPart.setVisibility(View.GONE);
+                                                    warningPenilaian.setVisibility(View.GONE);
+                                                }
                                             }
                                         } else if(approval.equals("2")){
                                             actionPart.setVisibility(View.GONE);
