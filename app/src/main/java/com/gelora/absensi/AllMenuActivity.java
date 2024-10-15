@@ -987,6 +987,13 @@ public class AllMenuActivity extends AppCompatActivity {
                 keluarKantorPart4.setVisibility(View.GONE);
                 keluarKantorPart5.setVisibility(View.GONE);
                 keluarKantorPart6.setVisibility(View.GONE);
+
+                pkPart.setVisibility(View.GONE);
+                pkPart2.setVisibility(View.GONE);
+                pkPart3.setVisibility(View.GONE);
+                pkPart4.setVisibility(View.GONE);
+                pkPart5.setVisibility(View.GONE);
+                pkPart6.setVisibility(View.GONE);
             }
         }
 
