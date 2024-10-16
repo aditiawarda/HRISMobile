@@ -2,6 +2,7 @@ package com.gelora.absensi.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gelora.absensi.DetailVisitStatisticSalesActivity;
 import com.gelora.absensi.R;
+import com.gelora.absensi.ResumeKaryawanActivity;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.VisitStatisticActivity;
 import com.gelora.absensi.model.SalesVisitStatistic;
@@ -64,7 +68,7 @@ public class AdapterListDataVisitStatisticSales extends RecyclerView.Adapter<Rec
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         if (viewType == VIEW_TYPE_EMPTY) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.item_empty_view, viewGroup, false);
-            return new EmptyViewHolder(view); // Mengembalikan ViewHolder untuk tampilan kosong
+            return new EmptyViewHolder(view);
         } else {
             sharedPrefManager = new SharedPrefManager(mContext);
             View view = LayoutInflater.from(mContext).inflate(R.layout.item_sales_visit_statistic, viewGroup, false);
@@ -77,8 +81,8 @@ public class AdapterListDataVisitStatisticSales extends RecyclerView.Adapter<Rec
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MyViewHolder) {
             final Pair<SalesVisitStatistic, Integer> itemWithIndex = indexedData.get(position);
-            final SalesVisitStatistic salesVisitStatistic = itemWithIndex.first; // Data
-            final int originalIndex = itemWithIndex.second; // Indeks asli
+            final SalesVisitStatistic salesVisitStatistic = itemWithIndex.first;
+            final int originalIndex = itemWithIndex.second;
 
             Picasso.get().load(salesVisitStatistic.getAvatar()).networkPolicy(NetworkPolicy.NO_CACHE)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -97,6 +101,15 @@ public class AdapterListDataVisitStatisticSales extends RecyclerView.Adapter<Rec
                 ((MyViewHolder) holder).wilayahTV.setText(salesVisitStatistic.getWilayah());
             }
             ((MyViewHolder) holder).jumlahKunjunganTV.setText(salesVisitStatistic.getJumlah_kunjungan());
+
+            ((MyViewHolder) holder).parrentPart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent("to_detail");
+                    intent.putExtra("NIK",salesVisitStatistic.getIdSales());
+                    LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+                }
+            });
         } else if (holder instanceof EmptyViewHolder) {
             ((EmptyViewHolder) holder).emptyTextView.setText("Tidak ada hasil ditemukan.");
         }

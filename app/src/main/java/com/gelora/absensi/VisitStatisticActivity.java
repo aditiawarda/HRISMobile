@@ -1,6 +1,10 @@
 package com.gelora.absensi;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -98,6 +103,8 @@ public class VisitStatisticActivity extends AppCompatActivity {
         listSalesRV.setHasFixedSize(true);
         listSalesRV.setNestedScrollingEnabled(false);
         listSalesRV.setItemAnimator(new DefaultItemAnimator());
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(toDetail, new IntentFilter("to_detail"));
 
         String bulan = getMonthOnly(), bulanName = "";
         if(bulan.equals("01")){
@@ -261,6 +268,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
                             pieChartPart.setVisibility(View.GONE);
                             noDataPart.setVisibility(View.GONE);
 
+                            searchInput.setVisibility(View.GONE);
                             listSalesRV.setVisibility(View.GONE);
                             loadingDataSalesPart.setVisibility(View.VISIBLE);
                             noDataSalesPart.setVisibility(View.GONE);
@@ -378,6 +386,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                 loadingDataPart.setVisibility(View.GONE);
                                 pieChartPart.setVisibility(View.GONE);
 
+                                searchInput.setVisibility(View.GONE);
                                 listSalesRV.setVisibility(View.GONE);
                                 loadingDataSalesPart.setVisibility(View.GONE);
                                 noDataSalesPart.setVisibility(View.VISIBLE);
@@ -483,6 +492,18 @@ public class VisitStatisticActivity extends AppCompatActivity {
         requestQueue.add(request);
 
     }
+
+    public BroadcastReceiver toDetail = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String NIK = intent.getStringExtra("NIK");
+            Intent intentPush = new Intent(VisitStatisticActivity.this, DetailVisitStatisticSalesActivity.class);
+            intentPush.putExtra("NIK",NIK);
+            intentPush.putExtra("month",selectMonth);
+            startActivity(intentPush);
+        }
+    };
 
     private String getMonth() {
         @SuppressLint("SimpleDateFormat")
