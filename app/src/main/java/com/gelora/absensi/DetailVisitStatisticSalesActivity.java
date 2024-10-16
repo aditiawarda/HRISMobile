@@ -253,30 +253,6 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
                                 jvTV.setText(jumlah_jv);
                                 njvTV.setText(jumlah_njv);
                                 lainnyaTV.setText(jumlah_multi);
-                            } else {
-                                promosiLoading.setVisibility(View.GONE);
-                                penagihanLoading.setVisibility(View.GONE);
-                                pengirimanLoading.setVisibility(View.GONE);
-                                pameranLoading.setVisibility(View.GONE);
-                                jvLoading.setVisibility(View.GONE);
-                                njvLoading.setVisibility(View.GONE);
-                                lainnyaLoading.setVisibility(View.GONE);
-
-                                promosiTV.setVisibility(View.VISIBLE);
-                                penagihanTV.setVisibility(View.VISIBLE);
-                                pengoirimanTV.setVisibility(View.VISIBLE);
-                                pameranTV.setVisibility(View.VISIBLE);
-                                jvTV.setVisibility(View.VISIBLE);
-                                njvTV.setVisibility(View.VISIBLE);
-                                lainnyaTV.setVisibility(View.VISIBLE);
-
-                                promosiTV.setText("-");
-                                penagihanTV.setText("-");
-                                pengoirimanTV.setText("-");
-                                pameranTV.setText("-");
-                                jvTV.setText("-");
-                                njvTV.setText("-");
-                                lainnyaTV.setText("-");
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -298,22 +274,6 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
                                 }
                             })
                             .show();
-
-                    promosiTV.setVisibility(View.VISIBLE);
-                    penagihanTV.setVisibility(View.VISIBLE);
-                    pengoirimanTV.setVisibility(View.VISIBLE);
-                    pameranTV.setVisibility(View.VISIBLE);
-                    jvTV.setVisibility(View.VISIBLE);
-                    njvTV.setVisibility(View.VISIBLE);
-                    lainnyaTV.setVisibility(View.VISIBLE);
-
-                    promosiTV.setText("-");
-                    penagihanTV.setText("-");
-                    pengoirimanTV.setText("-");
-                    pameranTV.setText("-");
-                    jvTV.setText("-");
-                    njvTV.setText("-");
-                    lainnyaTV.setText("-");
                 } catch (WindowManager.BadTokenException e){
                     Log.e("Error", "Error : "+e.toString());
                 }

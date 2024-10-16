@@ -71,6 +71,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
     String selectMonth = getMonth();
     EditText searchInput;
     private Handler handler = new Handler();
+    private boolean isActivityOpened = false;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -497,13 +498,23 @@ public class VisitStatisticActivity extends AppCompatActivity {
         @SuppressLint("SetTextI18n")
         @Override
         public void onReceive(Context context, Intent intent) {
-            String NIK = intent.getStringExtra("NIK");
-            Intent intentPush = new Intent(VisitStatisticActivity.this, DetailVisitStatisticSalesActivity.class);
-            intentPush.putExtra("NIK",NIK);
-            intentPush.putExtra("month",selectMonth);
-            startActivity(intentPush);
+            if (!isActivityOpened) {
+                isActivityOpened = true;
+
+                String NIK = intent.getStringExtra("NIK");
+                Intent intentPush = new Intent(VisitStatisticActivity.this, DetailVisitStatisticSalesActivity.class);
+                intentPush.putExtra("NIK", NIK);
+                intentPush.putExtra("month", selectMonth);
+                startActivity(intentPush);
+            }
         }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isActivityOpened = false;
+    }
 
     private String getMonth() {
         @SuppressLint("SimpleDateFormat")
