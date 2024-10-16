@@ -92,6 +92,8 @@ public class VisitStatisticActivity extends AppCompatActivity {
         titleSalesListTV = findViewById(R.id.title_sales_list);
         searchInput = findViewById(R.id.keyword_sales_ed);
 
+        searchInput.setVisibility(View.GONE);
+
         listSalesRV.setLayoutManager(new LinearLayoutManager(this));
         listSalesRV.setHasFixedSize(true);
         listSalesRV.setNestedScrollingEnabled(false);
@@ -168,6 +170,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
                 pieChartPart.setVisibility(View.GONE);
                 noDataPart.setVisibility(View.GONE);
 
+                searchInput.setVisibility(View.GONE);
                 listSalesRV.setVisibility(View.GONE);
                 loadingDataSalesPart.setVisibility(View.VISIBLE);
                 noDataSalesPart.setVisibility(View.GONE);
@@ -434,10 +437,12 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                 adapterListDataVisitStatisticSales = new AdapterListDataVisitStatisticSales(salesVisitStatistics, VisitStatisticActivity.this);
                                 listSalesRV.setAdapter(adapterListDataVisitStatisticSales);
 
+                                searchInput.setVisibility(View.VISIBLE);
                                 listSalesRV.setVisibility(View.VISIBLE);
                                 loadingDataSalesPart.setVisibility(View.GONE);
                                 noDataSalesPart.setVisibility(View.GONE);
                             } else {
+                                searchInput.setVisibility(View.GONE);
                                 listSalesRV.setVisibility(View.GONE);
                                 loadingDataSalesPart.setVisibility(View.GONE);
                                 noDataSalesPart.setVisibility(View.VISIBLE);
