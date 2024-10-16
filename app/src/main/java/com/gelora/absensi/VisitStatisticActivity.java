@@ -4,9 +4,12 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -61,6 +64,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
     String selectMonth = getMonth();
+    EditText searchInput;
     private Handler handler = new Handler();
 
     @SuppressLint("SetTextI18n")
@@ -86,6 +90,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
         noDataSalesPart = findViewById(R.id.no_data_sales_part);
         loadingDataSalesPart = findViewById(R.id.loading_data_sales_part);
         titleSalesListTV = findViewById(R.id.title_sales_list);
+        searchInput = findViewById(R.id.keyword_sales_ed);
 
         listSalesRV.setLayoutManager(new LinearLayoutManager(this));
         listSalesRV.setHasFixedSize(true);
@@ -275,6 +280,18 @@ public class VisitStatisticActivity extends AppCompatActivity {
                 .setActivatedMonth(now.get(Calendar.MONTH))
                 .build()
                 .show();
+            }
+        });
+
+        searchInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapterListDataVisitStatisticSales.filterByName(s.toString());
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
             }
         });
 

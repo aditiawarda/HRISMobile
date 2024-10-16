@@ -240,6 +240,29 @@
                                 android:textStyle="bold"
                                 tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
+                            <EditText
+                                android:id="@+id/keyword_sales_ed"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_search"
+                                android:drawableLeft="@drawable/ic_baseline_search_2"
+                                android:drawablePadding="10dp"
+                                android:drawableTint="@color/colorPrimaryDark"
+                                android:hint="Ketik nama sales..."
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:imeOptions="actionSearch"
+                                android:inputType="text"
+                                android:paddingLeft="17dp"
+                                android:paddingTop="9dp"
+                                android:paddingRight="20dp"
+                                android:paddingBottom="10dp"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textColorHighlight="#FFDCB1"
+                                android:textColorHint="#D36C46"
+                                android:textSize="16dp"
+                                tools:ignore="Autofill,HardcodedText,RtlHardcoded,SpUsage,TouchTargetSizeCheck,UnusedAttribute,VisualLintTextFieldSize" />
+
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/list_sales_rv"
                                 android:layout_width="match_parent"
