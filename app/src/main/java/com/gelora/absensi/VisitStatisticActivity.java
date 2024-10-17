@@ -373,7 +373,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                 data.setValueFormatter(new ValueFormatter() {
                                     @Override
                                     public String getFormattedValue(float value) {
-                                     return String.valueOf((int) value);
+                                        return String.valueOf((int) value);
                                     }
                                 });
                                 pieChart.setData(data);
