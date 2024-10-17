@@ -1,0 +1,1628 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginLeft="-2dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginRight="-2dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/shape_bar_chat"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:id="@+id/back_btn"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="17dp"
+            android:background="@drawable/shape_back_2"
+            android:gravity="center"
+            tools:ignore="RtlHardcoded">
+
+            <TextView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginRight="1.5dp"
+                android:background="@drawable/ic_baseline_chevron_back"
+                tools:ignore="RtlHardcoded" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right|center"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            tools:ignore="RtlHardcoded">
+
+            <TextView
+                android:id="@+id/tv_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="right"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="DETAIL PERMOHONAN"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appbar">
+
+        <LinearLayout
+            android:id="@+id/parent_lay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shape_detail_permohonan"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    tools:ignore="DisableBaselineAlignment">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".20"
+                        android:gravity="center"
+                        tools:ignore="TooDeepLayout">
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:src="@drawable/glogo_4"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".60"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="PT. Gelora Akrasa Pratama"
+                            android:textColor="#515151"
+                            android:textSize="12dp"
+                            android:textStyle="bold"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="The Leader in Printing Innovation"
+                            android:textColor="#515151"
+                            android:textSize="9dp"
+                            android:textStyle="bold|italic"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Jl. H. Baping Raya No. 100 Ciracas - Jakarta 13740"
+                            android:textColor="#515151"
+                            android:textSize="8dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Telp. (021) 8710060, Fax. (021) 87796644"
+                            android:textColor="#515151"
+                            android:textSize="8dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".20"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:src="@drawable/suma_logo"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#83494949"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    tools:ignore="SpUsage" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="30dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="No"
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text=":"
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
+
+                    <TextView
+                        android:id="@+id/detail_no_surat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Detail No Surat"
+                        android:textSize="11sp"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="120dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Kepada Yth "
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Bagian Ekspedisi PT Gelora Aksara Pratama "
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/roboto"
+
+                        android:textSize="11sp"></TextView>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Yang Bertanda tangan dibawah ini:"
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="30dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="NAMA"
+                        android:textSize="11sp"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text=":"
+                        android:textSize="11sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/detail_nama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Detail Nama"
+                        android:textSize="11sp"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="30dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="BAGIAN"
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text=":"
+                        android:textSize="11sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/detail_bagian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Detail Bagian"
+                        android:textSize="11sp"></TextView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="30dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="HARI / TANGGAL "
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText,TextSizeCheck"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text=":"
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
+
+                    <TextView
+                        android:id="@+id/detail_tanggal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Detail Tanggal"
+                        android:textSize="11sp"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="30dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="TUJUAN"
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text=":"
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
+
+                    <TextView
+                        android:id="@+id/detail_tujuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Detail Tujuan"
+                        android:textSize="11sp"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="30dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="KEPERLUAN"
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text=":"
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
+
+                    <TextView
+                        android:id="@+id/detail_keperluan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Detail Keperluan"
+                        android:textSize="11sp"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="30dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Nama Kendaraan"
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText,TextSizeCheck"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text=":"
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
+
+                    <TextView
+                        android:id="@+id/detail_jenis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Detail Jenis"
+                        android:textSize="11sp"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="30dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="NOMER KENDARAAN"
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText,TextSizeCheck"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text=":"
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
+
+                    <TextView
+                        android:id="@+id/detail_nomer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Detail Nomer"
+                        android:textSize="11sp"></TextView>
+
+
+                    <ImageView
+
+                        android:id="@+id/stample_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="end"
+                        android:layout_marginHorizontal="20dp">
+
+                    </ImageView>
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    tools:ignore="DisableBaselineAlignment">
+
+                    <LinearLayout
+
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="15dp"
+                            android:fontFamily="@font/roboto"
+                            android:text="Pemohon"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            tools:ignore="HardcodedText"></TextView>
+
+                        <ImageView
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/ttd_pemohon"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"></ImageView>
+
+                        <TextView
+                            android:id="@+id/nama_pemohon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/roboto"
+                            android:text=""
+                            android:textSize="10sp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/roboto"
+                            android:text="Pemohon"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            tools:ignore="HardcodedText">
+
+                        </TextView>
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="15dp"
+                            android:fontFamily="@font/roboto"
+                            android:text="Mengetahui"
+                            android:textSize="10sp"
+                            android:textStyle="bold"></TextView>
+
+                        <ImageView
+
+
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/ttd_atasan"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp">
+
+                        </ImageView>
+
+                        <TextView
+                            android:id="@+id/nama_atasan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/roboto"
+                            android:text=""
+                            android:textSize="10sp"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/roboto"
+                            android:text="Atasan Ybs"
+                            android:textSize="10sp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginBottom="15dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center_horizontal"
+                        android:text="Mengetahui,"
+
+                        android:textSize="10sp"
+                        android:textStyle="bold"></TextView>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/ttd_kabag_exp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"></ImageView>
+
+                            <TextView
+                                android:id="@+id/nama_kabag_exp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/roboto"
+                                android:text=""
+                                android:textSize="10sp"
+                                android:textStyle="bold"></TextView>
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/roboto"
+                                android:text="Ka.Bag.Ekspedisi"
+                                android:textSize="10sp"
+                                android:textStyle="bold">
+
+                            </TextView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="10dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_gravity="center_horizontal"
+                                android:id="@+id/ttd_kadept_logistik"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"></ImageView>
+
+                            <TextView
+                                android:id="@+id/nama_kadept_logistik"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/roboto"
+                                android:text=""
+                                android:textSize="10sp"
+                                android:textStyle="bold"></TextView>
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/roboto"
+                                android:text="Ka.Dept.Logistik"
+                                android:textSize="10sp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/kondisi_text"
+                    android:text="Kondisi Kendaraan"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="DisableBaselineAlignment">
+
+                    <LinearLayout
+                        android:id="@+id/kondisi_keluar_layout"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="30dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            tools:ignore="UselessParent">
+
+
+                            <TextView
+                                android:text="Keluar"
+                                android:textSize="13sp"
+                                android:layout_marginBottom="3dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                            </TextView>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginStart="30dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Jam "
+                                    android:textSize="10sp"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+
+                                    android:fontFamily="@font/roboto"
+                                    android:text=":"
+                                    android:textSize="11sp"></TextView>
+
+                                <TextView
+                                    android:id="@+id/detail_jam_keluar"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginStart="10dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Detail Jam Keluar"
+                                    android:textSize="11sp"></TextView>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginStart="30dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Km "
+                                    android:textSize="10sp"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+
+                                    android:fontFamily="@font/roboto"
+                                    android:text=":"
+                                    android:textSize="11sp"></TextView>
+
+                                <TextView
+                                    android:id="@+id/detail_km_keluar"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginStart="10dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Detail Km Keluar"
+                                    android:textSize="11sp"></TextView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:textSize="10sp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="Bersih/Kotor "
+                                    android:layout_marginStart="30dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content">
+                                </TextView>
+
+                                <TextView
+                                    android:textSize="11sp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text=":"
+
+                                    android:fontFamily="@font/roboto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/detail_bersih_keluar"
+                                    android:textSize="11sp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="Detail Bersih Keluar"
+                                    android:layout_marginStart="10dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                </TextView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:textSize="10sp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="BBM "
+                                    android:layout_marginStart="30dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:layout_width="40dp"
+                                    android:layout_height="wrap_content">
+                                </TextView>
+
+
+                                <RelativeLayout
+
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content">
+
+                                    <com.gelora.absensi.support.FuelGaugeView
+                                        android:id="@+id/fuelGaugeView_keluar"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_height="60dp"
+                                        android:layout_centerVertical="true"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginBottom="10dp" />
+
+                                    <TextView
+                                        android:layout_below="@id/fuelGaugeView_keluar"
+                                        android:textSize="10sp"
+                                        android:id="@+id/percentage_keluar"
+                                        android:gravity="center_horizontal"
+                                        android:text="BBM "
+                                        android:layout_marginStart="12dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+                                    </TextView>
+                                </RelativeLayout>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_toEndOf="@id/kondisi_keluar_layout"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginBottom="30dp"
+                        android:id="@+id/kondisi_masuk_layout"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            tools:ignore="UselessParent">
+
+
+                            <TextView
+                                android:text="Masuk"
+                                android:textSize="13sp"
+                                android:layout_marginBottom="3dp"
+                                android:layout_marginStart="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                            </TextView>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginStart="15dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Jam "
+                                    android:textSize="10sp"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+
+                                    android:fontFamily="@font/roboto"
+                                    android:text=":"
+                                    android:textSize="11sp"></TextView>
+
+                                <TextView
+                                    android:id="@+id/detail_jam_masuk"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginStart="10dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="patokan pdf"
+                                    android:textSize="11sp"></TextView>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginStart="15dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Km "
+                                    android:textSize="10sp"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+
+                                    android:fontFamily="@font/roboto"
+                                    android:text=":"
+                                    android:textSize="11sp"></TextView>
+
+                                <TextView
+                                    android:id="@+id/detail_km_masuk"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginStart="10dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Detail Km Masuk"
+                                    android:textSize="11sp"></TextView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:textSize="10sp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="Bersih/Kotor "
+                                    android:layout_marginStart="15dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content">
+                                </TextView>
+
+                                <TextView
+                                    android:textSize="11sp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text=":"
+
+                                    android:fontFamily="@font/roboto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/detail_bersih_masuk"
+                                    android:textSize="11sp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="Detail Bersih Masuk"
+                                    android:layout_marginStart="10dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                </TextView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:textSize="10sp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="BBM "
+                                    android:layout_marginStart="15dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:layout_width="40dp"
+                                    android:layout_height="wrap_content">
+                                </TextView>
+
+
+                                <RelativeLayout
+
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content">
+
+                                    <com.gelora.absensi.support.FuelGaugeView
+                                        android:id="@+id/fuelGaugeView_masuk"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_height="60dp"
+                                        android:layout_centerVertical="true"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginBottom="10dp" />
+
+                                    <TextView
+                                        android:id="@+id/percentage_masuk"
+                                        android:layout_below="@id/fuelGaugeView_masuk"
+                                        android:textSize="10sp"
+                                        android:gravity="center_horizontal"
+                                        android:text="BBM "
+                                        android:layout_marginStart="12dp"
+                                        android:fontFamily="@font/roboto"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+                                    </TextView>
+                                </RelativeLayout>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/button_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+
+                    android:id="@+id/left_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@id/batas"
+                    android:background="@drawable/rounded_corner_rectangle"
+                    android:backgroundTint="@color/redBtnTolak"
+                    android:fontFamily="@font/roboto"
+                    android:text="Tolak"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"></Button>
+
+                <View
+                    android:id="@+id/batas"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_marginHorizontal="5dp">
+
+                </View>
+
+                <Button
+                    android:id="@+id/right_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@id/batas"
+                    android:background="@drawable/rounded_corner_rectangle"
+                    android:backgroundTint="@color/greenBtnSetujui"
+                    android:fontFamily="@font/roboto"
+                    android:text="Setujui"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"></Button>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/pdf_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+
+
+                    android:id="@+id/pdf_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/rounded_corner_rectangle"
+                    android:backgroundTint="@color/blueBtnEdit"
+                    android:fontFamily="@font/roboto"
+                    android:text="UNDUH PDF"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"></Button>
+
+
+
+            </RelativeLayout>
+            <LinearLayout
+
+
+                android:id="@+id/edit_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/kondisi_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:text="Kondisi Kendaraan Saat Keluar"
+                        android:textSize="19sp"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_jam"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:text="Jam Keluar"
+                        android:textSize="14sp">
+
+                    </TextView>
+
+                    <LinearLayout
+                        android:id="@+id/jam_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/shape_feel"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+                        tools:ignore="RtlSymmetry">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            tools:ignore="UselessParent">
+
+                            <LinearLayout
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                <TextView
+                                    android:id="@+id/jam_keluar"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:textColor="#B15735"
+                                    android:textSize="15dp"
+                                    android:textStyle="bold"
+                                    tools:ignore="SpUsage" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/shape_btn"
+                                android:gravity="center"
+                                tools:ignore="RtlHardcoded">
+
+                                <TextView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:background="@drawable/ic_baseline_jam_masuk" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:paddingHorizontal="15dp"
+                                android:paddingTop="95dp"
+
+                                android:paddingBottom="20dp"
+                                android:visibility="invisible">
+
+                                <ProgressBar
+                                    android:layout_width="45dp"
+                                    android:layout_height="45dp"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginBottom="25dp"
+                                    android:indeterminateTint="@color/colorAccent2"
+                                    tools:ignore="RtlHardcoded" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="-8dp"
+                                    android:text="Memuat data"
+                                    android:textAlignment="center"
+                                    android:textColor="#E1BB8A"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tunggu beberapa saat"
+                                    android:textAlignment="center"
+                                    android:textColor="#ECC28D"
+                                    android:textSize="10dp"
+                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Km"
+                        android:textSize="14sp">
+
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/km"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="110px"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bordered_spinner"
+
+                        android:paddingHorizontal="15dp">
+
+                    </EditText>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bersih/Kotor"
+                        android:textSize="14sp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <Spinner
+                            android:id="@+id/bersih_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/bordered_spinner"
+                            android:padding="8dp"
+                            android:spinnerMode="dropdown" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="8dp"
+                            android:paddingEnd="10dp"
+                            android:src="@drawable/dropdown"
+                            tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BBM"
+                        android:textSize="14sp">
+
+                    </TextView>
+
+                    <com.gelora.absensi.support.FuelGaugeView
+                        android:id="@+id/fuelGaugeView"
+                        android:layout_width="280dp"
+                        android:layout_height="170dp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <SeekBar
+                        android:id="@+id/fuelSeekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/fuelGaugeView"
+                        android:layout_marginHorizontal="70dp"
+                        android:layout_marginTop="25dp"
+
+                        android:max="100" />
+
+                    <TextView
+                        android:id="@+id/percentageTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/fuelSeekBar"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="40dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="50%"
+                        android:textSize="21sp" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/kirim_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="20dp"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:text="Update"
+                    app:cornerRadius="40dp" /> <!-- Adjust this value to control the roundness -->
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_user_biasa"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+
+                <Button
+                    android:id="@+id/batalkan_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/rounded_corner_rectangle"
+                    android:backgroundTint="@color/redBtnTolak"
+                    android:fontFamily="@font/roboto"
+                    android:text="Batalkan"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"></Button>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_qr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+
+                <Button
+                    android:id="@+id/qr_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/rounded_corner_rectangle"
+                    android:backgroundTint="@color/blueBtnEdit"
+                    android:fontFamily="@font/roboto"
+                    android:text="Generate QR code"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"></Button>
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/loading_data_part"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingTop="95dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="25dp"
+            android:indeterminateTint="@color/colorAccent2"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            android:text="Memuat data"
+            android:textAlignment="center"
+            android:textColor="#E1BB8A"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tunggu beberapa saat"
+            android:textAlignment="center"
+            android:textColor="#ECC28D"
+            android:textSize="10dp"
+            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

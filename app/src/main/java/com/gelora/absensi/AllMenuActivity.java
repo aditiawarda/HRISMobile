@@ -581,7 +581,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuPkBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ListPinjamKendaraan.class);
                 startActivity(intent);
             }
         });
@@ -589,7 +589,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuPkBTN2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ListPinjamKendaraan.class);
                 startActivity(intent);
             }
         });
@@ -597,7 +597,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuPkBTN3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ListPinjamKendaraan.class);
                 startActivity(intent);
             }
         });
@@ -605,7 +605,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuPkBTN4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ListPinjamKendaraan.class);
                 startActivity(intent);
             }
         });
@@ -613,7 +613,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuPkBTN5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ListPinjamKendaraan.class);
                 startActivity(intent);
             }
         });
@@ -621,7 +621,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuPkBTN6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ListPinjamKendaraan.class);
                 startActivity(intent);
             }
         });
