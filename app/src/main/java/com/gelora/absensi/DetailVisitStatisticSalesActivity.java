@@ -1,6 +1,7 @@
 package com.gelora.absensi;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -30,15 +31,22 @@ import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterListDataVisitStatisticSales;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.SalesVisitStatistic;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,12 +58,13 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
-    LinearLayout backBTN, actionBar;
+    LinearLayout promosiBTN, penagihanBTN, pengirimanBTN, pameranBTN, jvBTN, njvBTN, lainnyaBTN, noDataPart, loadingDataPart, backBTN, actionBar;
     String nikSales, month;
     CircleImageView profileImage;
-    TextView monthTV, namaSalesTV, totalKunjunganTV, promosiTV, penagihanTV, pengoirimanTV, pameranTV, jvTV, njvTV, lainnyaTV;
+    TextView wilayahSalesTV, monthTV, namaSalesTV, totalKunjunganTV, promosiTV, penagihanTV, pengoirimanTV, pameranTV, jvTV, njvTV, lainnyaTV;
     ImageView promosiLoading, penagihanLoading, pengirimanLoading, pameranLoading, jvLoading, njvLoading, lainnyaLoading;
     private Handler handler = new Handler();
+    private LineChart lineChart;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -87,6 +96,17 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
         namaSalesTV = findViewById(R.id.nama_sales_tv);
         profileImage = findViewById(R.id.profile_image);
         monthTV = findViewById(R.id.month_tv);
+        lineChart = findViewById(R.id.lineChart);
+        loadingDataPart = findViewById(R.id.loading_data_part);
+        noDataPart = findViewById(R.id.no_data_part);
+        promosiBTN = findViewById(R.id.promosi_btn);
+        penagihanBTN = findViewById(R.id.penagihan_btn);
+        pengirimanBTN = findViewById(R.id.pengiriman_btn);
+        pameranBTN = findViewById(R.id.pameran_btn);
+        jvBTN = findViewById(R.id.jv_btn);
+        njvBTN = findViewById(R.id.njv_btn);
+        lainnyaBTN = findViewById(R.id.lainnya_btn);
+        wilayahSalesTV = findViewById(R.id.wilayah_sales_tv);
 
         Glide.with(DetailVisitStatisticSalesActivity.this)
                 .load(R.drawable.loading_dots)
@@ -169,6 +189,10 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
                 njvTV.setVisibility(View.GONE);
                 lainnyaTV.setVisibility(View.GONE);
 
+                lineChart.setVisibility(View.GONE);
+                loadingDataPart.setVisibility(View.VISIBLE);
+                noDataPart.setVisibility(View.GONE);
+
                 getData();
 
                 handler.postDelayed(new Runnable() {
@@ -198,6 +222,134 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
 
     }
 
+    private void touchBTN(String promosi, String penagihan, String pengiriman, String pameran, String jv, String njv, String lainnya){
+        promosiBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new KAlertDialog(DetailVisitStatisticSalesActivity.this, KAlertDialog.NORMAL_TYPE)
+                        .setTitleText(promosi)
+                        .setTitleTextSize(50)
+                        .setContentText("Aktivitas Promosi")
+                        .setConfirmText("    OK    ")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        penagihanBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new KAlertDialog(DetailVisitStatisticSalesActivity.this, KAlertDialog.NORMAL_TYPE)
+                        .setTitleText(penagihan)
+                        .setTitleTextSize(50)
+                        .setContentText("Aktivitas Penagihan")
+                        .setConfirmText("    OK    ")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        pengirimanBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new KAlertDialog(DetailVisitStatisticSalesActivity.this, KAlertDialog.NORMAL_TYPE)
+                        .setTitleText(pengiriman)
+                        .setTitleTextSize(50)
+                        .setContentText("Aktivitas Pengiriman")
+                        .setConfirmText("    OK    ")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        pameranBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new KAlertDialog(DetailVisitStatisticSalesActivity.this, KAlertDialog.NORMAL_TYPE)
+                        .setTitleText(pameran)
+                        .setTitleTextSize(50)
+                        .setContentText("Aktivitas Pameran")
+                        .setConfirmText("    OK    ")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        jvBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new KAlertDialog(DetailVisitStatisticSalesActivity.this, KAlertDialog.NORMAL_TYPE)
+                        .setTitleText(jv)
+                        .setTitleTextSize(50)
+                        .setContentText("Aktivitas Join Visit")
+                        .setConfirmText("    OK    ")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        njvBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new KAlertDialog(DetailVisitStatisticSalesActivity.this, KAlertDialog.NORMAL_TYPE)
+                        .setTitleText(njv)
+                        .setTitleTextSize(50)
+                        .setContentText("Aktivitas Non Join Visit")
+                        .setConfirmText("    OK    ")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        lainnyaBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new KAlertDialog(DetailVisitStatisticSalesActivity.this, KAlertDialog.NORMAL_TYPE)
+                        .setTitleText(lainnya)
+                        .setTitleTextSize(50)
+                        .setContentText("Aktivitas Lainnya")
+                        .setConfirmText("    OK    ")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+    }
+
     private void getData() {
         String url = "https://reporting.sumasistem.co.id/api/get_detail_visit_statistic_sales?nik="+nikSales+"&month="+month;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -222,13 +374,54 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
                                 String total_kunjungan = detailObject.getString("total_kunjungan");
                                 String namaKaryawan = detailObject.getString("namaKaryawan");
                                 String avatar = detailObject.getString("avatar");
+                                String wilayah = detailObject.getString("wilayah");
                                 totalKunjunganTV.setText(total_kunjungan);
                                 namaSalesTV.setText(namaKaryawan.toUpperCase());
+
+                                if(wilayah.equals("Jakarta 1") || wilayah.equals("Jakarta 2") || wilayah.equals("Jakarta 3") || wilayah.equals("Bandung") || wilayah.equals("Semarang") || wilayah.equals("Surabaya")){
+                                    wilayahSalesTV.setText("Suma "+wilayah);
+                                } else {
+                                    wilayahSalesTV.setText(wilayah);
+                                }
 
                                 Picasso.get().load(avatar).networkPolicy(NetworkPolicy.NO_CACHE)
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                                         .resize(150, 150)
                                         .into(profileImage);
+
+                                JSONArray graphic = response.getJSONArray("graphic");
+
+                                ArrayList<Entry> lineEntries = new ArrayList<>();
+                                for (int i = 0; i < graphic.length(); i++) {
+                                    JSONObject dataGraphic = graphic.getJSONObject(i);
+                                    String tanggal = dataGraphic.getString("tanggal");
+                                    String jumlah = dataGraphic.getString("jumlah");
+                                    lineEntries.add(new Entry(i, Integer.parseInt(jumlah)));
+                                }
+
+                                LineDataSet lineDataSet = new LineDataSet(lineEntries, monthTV.getText().toString());
+                                lineDataSet.setColor(getResources().getColor(R.color.color2));
+                                lineDataSet.setValueTextColor(getResources().getColor(R.color.black));
+                                lineDataSet.setLineWidth(2f);
+
+                                LineData lineData = new LineData(lineDataSet);
+                                lineChart.setData(lineData);
+
+                                Description description = new Description();
+                                description.setText("Grafik Kunjungan");
+                                lineChart.setDescription(description);
+
+                                lineChart.invalidate();
+
+                                if(Integer.parseInt(total_kunjungan)>0){
+                                    lineChart.setVisibility(View.VISIBLE);
+                                    loadingDataPart.setVisibility(View.GONE);
+                                    noDataPart.setVisibility(View.GONE);
+                                } else {
+                                    lineChart.setVisibility(View.GONE);
+                                    loadingDataPart.setVisibility(View.GONE);
+                                    noDataPart.setVisibility(View.VISIBLE);
+                                }
 
                                 promosiLoading.setVisibility(View.GONE);
                                 penagihanLoading.setVisibility(View.GONE);
@@ -253,6 +446,8 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
                                 jvTV.setText(jumlah_jv);
                                 njvTV.setText(jumlah_njv);
                                 lainnyaTV.setText(jumlah_multi);
+
+                                touchBTN(jumlah_promosi, jumlah_penagihan, jumlah_pengiriman, jumlah_pameran, jumlah_jv, jumlah_njv, jumlah_multi);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

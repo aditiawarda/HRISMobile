@@ -41,7 +41,7 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="3dp"
+                                    android:layout_marginBottom="20dp"
                                     android:orientation="vertical"
                                     tools:ignore="UselessParent">
 
@@ -107,6 +107,22 @@
                                             android:textStyle="bold"
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
+                                        <TextView
+                                            android:id="@+id/wilayah_sales_tv"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:ellipsize="end"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:singleLine="true"
+                                            android:text="Memuat data..."
+                                            android:textColor="@color/colorPrimaryDark"
+                                            android:textSize="11dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
                                     </LinearLayout>
 
                                     <RelativeLayout
@@ -132,24 +148,24 @@
                                             <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="STATISTIK KUNJUNGAN"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
+                                                android:text="STATISTIK KUNJUNGAN"
                                                 android:textColor="@color/colorPrimaryDark"
-                                                android:textStyle="bold"
                                                 android:textSize="14dp"
-                                                tools:ignore="HardcodedText,SpUsage" />
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             <TextView
                                                 android:id="@+id/month_tv"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="Memuat data..."
-                                                android:textColor="@color/colorPrimaryDark"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
+                                                android:text="Memuat data..."
+                                                android:textColor="@color/colorPrimaryDark"
                                                 android:textSize="14dp"
-                                                tools:ignore="HardcodedText,SpUsage" />
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -207,6 +223,110 @@
 
                                     </RelativeLayout>
 
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="300dp"
+                                        android:orientation="vertical">
+
+                                        <com.github.mikephil.charting.charts.LineChart
+                                            android:id="@+id/lineChart"
+                                            android:visibility="gone"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="300dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:layout_marginRight="17dp"
+                                            android:layout_marginLeft="17dp" />
+
+                                        <LinearLayout
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:paddingBottom="40dp"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/loading_data_part"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center"
+                                                android:layout_marginRight="17dp"
+                                                android:layout_marginLeft="17dp"
+                                                android:orientation="vertical">
+
+                                                <ProgressBar
+                                                    android:layout_width="45dp"
+                                                    android:layout_height="45dp"
+                                                    android:indeterminateTint="@color/colorAccent2"
+                                                    android:layout_marginTop="20dp"
+                                                    android:layout_marginBottom="25dp"
+                                                    tools:ignore="RtlHardcoded,TooDeepLayout" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="-8dp"
+                                                    android:text="Memuat data"
+                                                    android:textAlignment="center"
+                                                    android:textColor="#E1BB8A"
+                                                    android:textSize="12dp"
+                                                    android:textStyle="bold"
+                                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Tunggu beberapa saat"
+                                                    android:textAlignment="center"
+                                                    android:textColor="#ECC28D"
+                                                    android:textSize="10dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/no_data_part"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center"
+                                                android:orientation="vertical"
+                                                android:visibility="gone">
+
+                                                <TextView
+                                                    android:layout_width="85dp"
+                                                    android:layout_height="85dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:background="@drawable/empty_image"
+                                                    android:textAlignment="center"
+                                                    android:textSize="12dp"
+                                                    android:textStyle="bold"
+                                                    tools:ignore="SpUsage" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="-8dp"
+                                                    android:text="Data tidak tersedia"
+                                                    android:textAlignment="center"
+                                                    android:textColor="#E1BB8A"
+                                                    android:textSize="12dp"
+                                                    android:textStyle="bold"
+                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Grafik kunjungan tidak tersedia"
+                                                    android:textAlignment="center"
+                                                    android:textColor="#ECC28D"
+                                                    android:textSize="10dp"
+                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -222,7 +342,7 @@
                                             android:layout_height="wrap_content">
 
                                             <LinearLayout
-                                                android:id="@+id/btn_hadir"
+                                                android:id="@+id/promosi_btn"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".50"
                                                 android:paddingTop="10dp"
@@ -266,7 +386,7 @@
                                             </LinearLayout>
 
                                             <LinearLayout
-                                                android:id="@+id/btn_tidak_hadir"
+                                                android:id="@+id/penagihan_btn"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".50"
                                                 android:background="@drawable/shape_kelebihan_jam"
@@ -342,7 +462,7 @@
                                             tools:ignore="DisableBaselineAlignment,UselessParent">
 
                                             <LinearLayout
-                                                android:id="@+id/terlambat_btn"
+                                                android:id="@+id/pengiriman_btn"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".50"
                                                 android:background="@drawable/shape_tidak_hadir"
@@ -371,7 +491,7 @@
                                                             android:text="Pengiriman"
                                                             android:textColor="@color/white"
                                                             android:textSize="10dp"
-                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                                                         <TextView
                                                             android:id="@+id/pengiriman_tv"
@@ -389,7 +509,7 @@
                                                             android:layout_width="match_parent"
                                                             android:layout_height="40.5dp"
                                                             app:srcCompat="@drawable/loading_dots"
-                                                            tools:ignore="ContentDescription" />
+                                                            tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                                     </LinearLayout>
 
@@ -398,7 +518,7 @@
                                             </LinearLayout>
 
                                             <LinearLayout
-                                                android:id="@+id/tidak_checkout_btn"
+                                                android:id="@+id/pameran_btn"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".50"
                                                 android:background="@drawable/shape_terlambat"
@@ -474,7 +594,7 @@
                                             tools:ignore="DisableBaselineAlignment,UselessParent">
 
                                             <LinearLayout
-                                                android:id="@+id/pulang_cepat_btn"
+                                                android:id="@+id/jv_btn"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".33"
                                                 android:background="@drawable/shape_hadir"
@@ -530,7 +650,7 @@
                                             </LinearLayout>
 
                                             <LinearLayout
-                                                android:id="@+id/kelebihan_jam_btn"
+                                                android:id="@+id/njv_btn"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".33"
                                                 android:layout_marginLeft="8dp"
@@ -588,7 +708,7 @@
                                             </LinearLayout>
 
                                             <LinearLayout
-                                                android:id="@+id/layoff_btn"
+                                                android:id="@+id/lainnya_btn"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".33"
                                                 android:background="@drawable/shape_layoff"
@@ -619,7 +739,7 @@
                                                             android:text="Lainnya"
                                                             android:textColor="@color/white"
                                                             android:textSize="10dp"
-                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck,TooManyViews" />
 
                                                         <TextView
                                                             android:id="@+id/lainnya_tv"

@@ -13,10 +13,12 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -33,14 +35,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.adapter.AdapterListDataVisitStatisticSales;
-import com.gelora.absensi.adapter.AdapterProductInputSuma;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.SalesVisitStatistic;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
@@ -300,7 +304,11 @@ public class VisitStatisticActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapterListDataVisitStatisticSales.filterByName(s.toString());
+                try {
+                    adapterListDataVisitStatisticSales.filterByName(s.toString());
+                } catch (NullPointerException e) {
+                    Log.e("Error", e.toString());
+                }
             }
             @Override
             public void afterTextChanged(Editable editable) {
@@ -365,7 +373,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                 data.setValueFormatter(new ValueFormatter() {
                                     @Override
                                     public String getFormattedValue(float value) {
-                                        return String.valueOf((int) value);
+                                     return String.valueOf((int) value);
                                     }
                                 });
                                 pieChart.setData(data);
@@ -376,6 +384,30 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                 pieChart.setEntryLabelColor(Color.BLACK);
                                 pieChart.animateY(1000);
                                 pieChart.getLegend().setEnabled(false);
+
+                                pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+                                    @Override
+                                    public void onValueSelected(Entry e, Highlight h) {
+                                        PieEntry pieEntry = (PieEntry) e;
+                                        String label = pieEntry.getLabel();
+                                        float value = pieEntry.getValue();
+                                        new KAlertDialog(VisitStatisticActivity.this, KAlertDialog.NORMAL_TYPE)
+                                                .setTitleText(String.valueOf(value).split("\\.")[0])
+                                                .setTitleTextSize(50)
+                                                .setContentText(String.valueOf(label))
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    }
+                                    @Override
+                                    public void onNothingSelected() {
+                                    }
+                                });
 
                                 noDataPart.setVisibility(View.GONE);
                                 loadingDataPart.setVisibility(View.GONE);
@@ -514,6 +546,10 @@ public class VisitStatisticActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         isActivityOpened = false;
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+        searchInput.setText("");
+        searchInput.clearFocus();
     }
 
     private String getMonth() {
