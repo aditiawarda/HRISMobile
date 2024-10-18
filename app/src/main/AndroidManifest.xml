@@ -55,6 +55,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".DetailVisitStatisticAreaActivity"
+            android:exported="false"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
+        <activity
             android:name=".DetailPinjamKendaraan"
             android:exported="false"
             tools:ignore="DiscouragedApi,LockedOrientationActivity" />

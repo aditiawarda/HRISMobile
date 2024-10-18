@@ -31,10 +31,8 @@ public class KendaraanRepository {
     private static final String BASE_URL = "https://hrisgelora.co.id/api/";
     private static final String FILE_URL = "https://hrisgelora.co.id/";
 
-
     private static final String GAP_PORTAL_BASE = "https://family.geloraaksara.co.id/gap-f/api/";
     private static final String POST_PINJAM_KENDARAAN = "proses_buat_form_pk";
-
 
     public static final String GET_ALL_USER = BASE_URL + "get_all_user";
     public static final String GET_CURRENT_USER = BASE_URL + "get_karyawan?nik=";
@@ -42,12 +40,10 @@ public class KendaraanRepository {
     public static final String LIST_PK = GAP_PORTAL_BASE + "get_list_pk/";
     public static final String DETAIL_PK = GAP_PORTAL_BASE + "get_detail_pk/";
 
-
     public static final String APPROVAL_PK1 = GAP_PORTAL_BASE + "update_approval_pk1/";
     public static final String APPROVAL_PK2 = GAP_PORTAL_BASE + "update_approval_pk2/";
     public static final String APPROVAL_PK3 = GAP_PORTAL_BASE + "update_approval_pk3/";
     public static final String APPROVAL_PK4 = GAP_PORTAL_BASE + "update_approval_pk4/";
-
 
     public static final String KONDISI_PK = GAP_PORTAL_BASE + "update_kondisi_pk/";
 
@@ -64,18 +60,12 @@ public class KendaraanRepository {
         apiService = RetrofitClient.getClient().create(ApiService.class);
     }
 
-
     public void getCurrentUsers(String currentNik, Response.Listener<CurrentUser> listener, Response.Listener<String> codeListener, Response.ErrorListener errorListener) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, GET_CURRENT_USER + currentNik, null,
                 response -> {
                     try {
-                        // Extract the 'data' object from the JSON response
                         JSONObject dataObject = response.getJSONObject("data");
-
-                        // Convert the JSON Object to a CurrentUser object
                         CurrentUser user = gson.fromJson(((JSONObject) dataObject).toString(), CurrentUser.class);
-
-                        // Notify listener with the CurrentUser object
                         codeListener.onResponse(response.getString("status"));
                         listener.onResponse(user);
                     } catch (Exception e) {
@@ -95,24 +85,21 @@ public class KendaraanRepository {
     }
 
     public void postPK(String requestNik, String requestNoSurat, String requestBulanSurat, String requestTahunSurat, String tglKeluar, String reqTujuan, String reqKeperluan, String idKendaraan, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-
-        // Create a request to send data as form parameters
         StringRequest stringRequest = new StringRequest(Request.Method.POST, GAP_PORTAL_BASE + POST_PINJAM_KENDARAAN,
-                response -> {
-                    try {
-                        String message = new JSONObject(response).getString("status");
-                        Log.d("POST WOI", message.toString());
-                        listener.onResponse(message);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        errorListener.onErrorResponse(new VolleyError("Error parsing response JSON"));
-                    }
-                },
-                error -> {
-                    error.printStackTrace();
-                    errorListener.onErrorResponse(error);
-                }) {
-
+            response -> {
+                try {
+                    String message = new JSONObject(response).getString("status");
+                    Log.d("POST WOI", message.toString());
+                    listener.onResponse(message);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    errorListener.onErrorResponse(new VolleyError("Error parsing response JSON"));
+                }
+            },
+            error -> {
+                error.printStackTrace();
+                errorListener.onErrorResponse(error);
+            }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
@@ -126,7 +113,6 @@ public class KendaraanRepository {
                 params.put("id_kendaraan", idKendaraan);
                 return params;
             }
-
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
@@ -134,7 +120,6 @@ public class KendaraanRepository {
                 return headers;
             }
         };
-
         requestQueue.add(stringRequest);
     }
 
@@ -142,18 +127,12 @@ public class KendaraanRepository {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, LIST_PK + nik, null,
                 response -> {
                     try {
-                        // Check if the response status is "success"
                         if (response.getString("status").equals("success")) {
-                            // Get the "permohonan_masuk" array from the "data" object
                             JSONArray permohonanMasukArray = response.getJSONObject("data").getJSONArray("permohonan_masuk");
-
-
-                            // Convert the JSON Array to a List of PinjamKendaraanResponse objects
                             Type listType = new TypeToken<List<PinjamKendaraanResponse>>() {
                             }.getType();
                             List<PinjamKendaraanResponse> pk = gson.fromJson(permohonanMasukArray.toString(), listType);
                             Log.d("getmasuk", pk.toString());
-                            // Notify listeners
                             codeListener.onResponse("success");
                             listener.onResponse(pk);
                         } else {
@@ -183,17 +162,11 @@ public class KendaraanRepository {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, LIST_PK + nik, null,
                 response -> {
                     try {
-                        // Check if the response status is "success"
                         if (response.getString("status").equals("success")) {
-                            // Get the "permohonan_saya" array from the "data" object
                             JSONArray permohonanSayaArray = response.getJSONObject("data").getJSONArray("permohonan_saya");
-
-                            // Convert the JSON Array to a List of PinjamKendaraanResponse objects
                             Type listType = new TypeToken<List<PinjamKendaraanResponse>>() {
                             }.getType();
                             List<PinjamKendaraanResponse> pk = gson.fromJson(permohonanSayaArray.toString(), listType);
-
-                            // Notify listeners
                             codeListener.onResponse("success");
                             listener.onResponse(pk);
                         } else {
@@ -212,7 +185,6 @@ public class KendaraanRepository {
                     errorListener.onErrorResponse(error);
                 }
         );
-
         DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         jsonObjectRequest.setRetryPolicy(retryPolicy);
         jsonObjectRequest.setTag("get_list_saya");
@@ -223,16 +195,10 @@ public class KendaraanRepository {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, DETAIL_PK + idPk, null,
                 response -> {
                     try {
-                        // Check if the response status is "success"
                         if (response.getString("status").equals("success")) {
-                            // Get the "data" object from the response
                             JSONObject dataObject = response.getJSONObject("data");
                             Log.d("getpk", dataObject.toString());
-
-                            // Convert the JSON object to a DetailPkResponse object
                             DetailPkResponse pk = gson.fromJson(dataObject.toString(), DetailPkResponse.class);
-
-                            // Notify listeners
                             codeListener.onResponse("success");
                             listener.onResponse(pk);
                         } else {
@@ -251,7 +217,6 @@ public class KendaraanRepository {
                     errorListener.onErrorResponse(error);
                 }
         );
-
         DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         jsonObjectRequest.setRetryPolicy(retryPolicy);
         jsonObjectRequest.setTag("get_list_saya");
@@ -259,7 +224,6 @@ public class KendaraanRepository {
     }
 
     public void updateApprovalPk1(String idPK, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-        // Create a request to send data as form parameters
         StringRequest stringRequest = new StringRequest(Request.Method.POST, APPROVAL_PK1 + idPK,
                 response -> {
                     try {
@@ -274,16 +238,11 @@ public class KendaraanRepository {
                     error.printStackTrace();
                     errorListener.onErrorResponse(error);
                 }) {
-
-
-
         };
-
         requestQueue.add(stringRequest);
     }
 
     public void updateApprovalPk2(String idPK, String requestNik, String aksi, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-        // Create a request to send data as form parameters
         StringRequest stringRequest = new StringRequest(Request.Method.POST, APPROVAL_PK2 + idPK,
                 response -> {
                     try {
@@ -306,7 +265,6 @@ public class KendaraanRepository {
                 params.put("aksi", aksi);
                 return params;
             }
-
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
@@ -314,28 +272,24 @@ public class KendaraanRepository {
                 return headers;
             }
         };
-
         requestQueue.add(stringRequest);
     }
 
     public void updateApprovalPk3(String idPK, String requestNik, String aksi, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-        // Create a request to send data as form parameters
         StringRequest stringRequest = new StringRequest(Request.Method.POST, APPROVAL_PK3 + idPK,
-                response -> {
-                    try {
-                        String message = new JSONObject(response).getString("status");
-
-                        listener.onResponse(message);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        errorListener.onErrorResponse(new VolleyError("Error parsing response JSON"));
-                    }
-                },
-                error -> {
-                    error.printStackTrace();
-                    errorListener.onErrorResponse(error);
-                }) {
-
+            response -> {
+                try {
+                    String message = new JSONObject(response).getString("status");
+                    listener.onResponse(message);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    errorListener.onErrorResponse(new VolleyError("Error parsing response JSON"));
+                }
+            },
+            error -> {
+                error.printStackTrace();
+                errorListener.onErrorResponse(error);
+            }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
@@ -343,7 +297,6 @@ public class KendaraanRepository {
                 params.put("aksi", aksi);
                 return params;
             }
-
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
@@ -351,28 +304,24 @@ public class KendaraanRepository {
                 return headers;
             }
         };
-
         requestQueue.add(stringRequest);
     }
 
     public void updateApprovalPk4(String idPK, String requestNik, String aksi, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-        // Create a request to send data as form parameters
         StringRequest stringRequest = new StringRequest(Request.Method.POST, APPROVAL_PK4 + idPK,
-                response -> {
-                    try {
-                        String message = new JSONObject(response).getString("status");
-
-                        listener.onResponse(message);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        errorListener.onErrorResponse(new VolleyError("Error parsing response JSON"));
-                    }
-                },
-                error -> {
-                    error.printStackTrace();
-                    errorListener.onErrorResponse(error);
-                }) {
-
+            response -> {
+                try {
+                    String message = new JSONObject(response).getString("status");
+                    listener.onResponse(message);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    errorListener.onErrorResponse(new VolleyError("Error parsing response JSON"));
+                }
+            },
+            error -> {
+                error.printStackTrace();
+                errorListener.onErrorResponse(error);
+            }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
@@ -380,7 +329,6 @@ public class KendaraanRepository {
                 params.put("aksi", aksi);
                 return params;
             }
-
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
@@ -388,13 +336,10 @@ public class KendaraanRepository {
                 return headers;
             }
         };
-
         requestQueue.add(stringRequest);
     }
 
-
     public void updateKondisiPk(String idPK, String aksi, String bk, String bbm, String km, String jam, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-        // Create a request to send data as form parameters
         StringRequest stringRequest = new StringRequest(Request.Method.POST, KONDISI_PK + idPK,
                 response -> {
                     try {
@@ -412,24 +357,18 @@ public class KendaraanRepository {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-
-                // Add parameters conditionally based on the value of "aksi"
                 if (aksi.equals("0")) {
-
                     params.put("bk_keluar", bk);
                     params.put("km_keluar", km);
                     params.put("jam_keluar", jam);
                     params.put("bbm_keluar", bbm);
                 } else if (aksi.equals("1")) {
-                    // Add different parameters if "aksi" equals "1"
-
                     params.put("bk_masuk", bk);
                     params.put("km_masuk", km);
                     params.put("jam_masuk", jam);
                     params.put("bbm_masuk", bbm);
                 }
 
-                // Include the "aksi" parameter in both cases
                 params.put("aksi", aksi);
 
                 return params;
@@ -445,6 +384,5 @@ public class KendaraanRepository {
 
         requestQueue.add(stringRequest);
     }
-
 
 }

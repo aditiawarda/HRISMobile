@@ -1,5 +1,6 @@
 package com.gelora.absensi;
 
+import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -22,7 +23,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -51,72 +51,53 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     private KendaraanRepository repository;
-
     private ActivityDetailPinjamKendaraanBinding binding;
-
     private int status;
     private String getIdPK;
     DetailPkResponse detail;
-
-
     private String nik1;
     private String nama1;
-
     private String nik2;
     private String nama2;
-
     private String nik3;
     private String nama3;
-
     private String nik4;
     private String nama4;
-
-    private String getCurrentUserNik; // ganti dari shared pref / login session
-
+    private String getCurrentUserNik;
     private int updateState;
     private ConnectivityViewModel viewModel;
     KAlertDialog pDialog;
     private Boolean isConnected;
     private Boolean isClickSendWhileOffline = false;
     private int i = -1;
-
     private FuelGaugeView fuelGaugeView;
     private SeekBar fuelSeekBar;
     private TextView percentageTextView;
-
     private ArrayAdapter<String> autoCompleteAdapter;
-
     private Handler handler = new Handler();
     private Runnable runnable;
     private Boolean nomerSuratFilled = false;
     private Boolean tanggalFilled = false;
-
     private Boolean jamFilled = false;
-
     private Boolean kmKeluarFilled = false;
     private Boolean kmMasukFilled = false;
-
     private Boolean bbmKeluarFilled = false;
     private Boolean bbmMasukFilled = false;
-
     private Boolean bersihFilled = false;
     private boolean isSeekBarAdjusted = false;
-
     private String jam;
     private String bk;
     private String bbm;
     private String km;
+    private int idDept;
+    private int detectStatus;
 
-
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityDetailPinjamKendaraanBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        sharedPrefManager = new SharedPrefManager(this);
-        sharedPrefAbsen = new SharedPrefAbsen(this);
-        getCurrentUserNik = sharedPrefManager.getSpNik();
-
         updateKondisiValidation();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -124,6 +105,11 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
             return insets;
         });
 
+        sharedPrefManager = new SharedPrefManager(this);
+        sharedPrefAbsen = new SharedPrefAbsen(this);
+
+        idDept = Integer.parseInt(sharedPrefManager.getSpIdHeadDept());
+        getCurrentUserNik = sharedPrefManager.getSpNik();
 
         binding.loadingDataPart.setVisibility(View.VISIBLE);
         fuelGaugeView = binding.fuelGaugeView;
@@ -141,35 +127,6 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
 
         isConnected = true;
 
-
-//        binding.tvDetail.setOnClickListener(view -> {
-//            // Toggle between the values
-//
-//            if (getCurrentUserNik.equals("3417150724")) {
-//                getCurrentUserNik = "0981010210";
-//                userForDebug = "Bu Ranti";
-//            } else if (getCurrentUserNik.equals("0981010210")) {
-//                getCurrentUserNik = "0071280396";
-//                userForDebug = "Bu Maurina";
-//            } else if (getCurrentUserNik.equals("0071280396") && userForDebug.equals("Bu Maurina")) {
-//                getCurrentUserNik = "0071280396";
-//                userForDebug = "Bu Maurina Kadept";
-//            } else if (getCurrentUserNik.equals("0071280396")) {
-//                getCurrentUserNik = "0363170306";
-//                userForDebug = "Pa Ajat";
-//            } else {
-//                getCurrentUserNik = "3417150724";
-//                userForDebug = "Andika";
-//            }
-//
-//            // Optional: Display the current value in the TextView or log it for debugging
-//            // This will display the value in tvDetail
-//            handleLayoutByStatus(getIdPK);
-//            Toast.makeText(DetailPinjamKendaraan.this, userForDebug, Toast.LENGTH_SHORT).show();
-//
-//        });
-
-
         binding.backBtn.setOnClickListener(view -> {
             DetailPinjamKendaraan.this.onBackPressed();
 
@@ -179,20 +136,18 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             getIdPK = extras.getString("current_id_pk");
-
         }
-        getDetail(getIdPK);
 
         handleLayoutByStatus(getIdPK);
+        getDetail(getIdPK);
+
     }
 
+    @SuppressLint("SetTextI18n")
     private void getDetail(String idPk) {
-
-
         repository.getDetailPk(idPk, response -> {
-            // Handle successful response
             detail = response;
-
+            detectStatus = detail.getStatus();
             String noSurat = detail.getNoSurat();
             String bulanSurat = detail.getBulanSurat();
             String tahunSurat = detail.getTahunSurat();
@@ -211,49 +166,35 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
             getSignature3(detail.getApp3Nik());
             getSignature4(detail.getApp4Nik());
 
-
             status = detail.getStatus();
-
             String inputDateString = detail.getTanggalKeluar();
 
-// Update the input format to match the format of your date string
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             SimpleDateFormat outputFormat = new SimpleDateFormat("EEEE dd MMMM yyyy", new Locale("id", "ID"));
 
             try {
-                // Parse the input date string into a Date object
                 Date date = inputFormat.parse(inputDateString);
-
-                // Format the Date object into the desired output format
                 String formattedDate = outputFormat.format(date);
-
-                // Set the formatted date to the TextView
                 binding.detailTanggal.setText(formattedDate);
             } catch (ParseException e) {
                 e.printStackTrace();
-                binding.detailTanggal.setText(inputDateString); // Fallback to the original date string if parsing fails
+                binding.detailTanggal.setText(inputDateString);
             }
-
-
         }, responseCode -> {
             if (responseCode.equals("success")) {
-
-
             }
         }, error -> {
-
-
         });
     }
 
     private void getSignature1(String nik) {
         repository.getCurrentUsers(nik, new Response.Listener<CurrentUser>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(CurrentUser user) {
-
                 binding.namaPemohon.setText("( " + user.getNama() + " )");
                 Glide.with(DetailPinjamKendaraan.this)
-                        .load(user.getSignature())// Optional error image if loading fails
+                        .load(user.getSignature())
                         .into(binding.ttdPemohon);
             }
         }, new Response.Listener<String>() {
@@ -271,13 +212,16 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
 
     private void getSignature2(String nik) {
         repository.getCurrentUsers(nik, new Response.Listener<CurrentUser>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(CurrentUser user) {
-
                 binding.namaAtasan.setText("( " + user.getNama() + " )");
-                Glide.with(DetailPinjamKendaraan.this)
-                        .load(user.getSignature())// Optional error image if loading fails
-                        .into(binding.ttdAtasan);
+                if (detectStatus!=2){
+                    Glide.with(DetailPinjamKendaraan.this)
+                            .load(user.getSignature())
+                            .into(binding.ttdAtasan);
+                }
+
             }
         }, new Response.Listener<String>() {
             @Override
@@ -293,16 +237,16 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
     }
 
     private void getSignature3(String nik) {
-
         repository.getCurrentUsers(nik, new Response.Listener<CurrentUser>() {
-
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(CurrentUser user) {
-
                 binding.namaKabagExp.setText("( " + user.getNama() + " )");
-                Glide.with(DetailPinjamKendaraan.this)
-                        .load(user.getSignature())// Optional error image if loading fails
-                        .into(binding.ttdKabagExp);
+                if (detectStatus!=4){
+                    Glide.with(DetailPinjamKendaraan.this)
+                            .load(user.getSignature())
+                            .into(binding.ttdKabagExp);
+                }
             }
         }, new Response.Listener<String>() {
             @Override
@@ -319,13 +263,15 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
 
     private void getSignature4(String nik) {
         repository.getCurrentUsers(nik, new Response.Listener<CurrentUser>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(CurrentUser user) {
-
                 binding.namaKadeptLogistik.setText("( " + user.getNama() + " )");
-                Glide.with(DetailPinjamKendaraan.this)
-                        .load(user.getSignature())// Optional error image if loading fails
-                        .into(binding.ttdKadeptLogistik);
+                if (detectStatus!=6){
+                    Glide.with(DetailPinjamKendaraan.this)
+                            .load(user.getSignature())
+                            .into(binding.ttdKadeptLogistik);
+                }
             }
         }, new Response.Listener<String>() {
             @Override
@@ -347,81 +293,59 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                 handleLayoutByStatus(idPk);
                 pDialog.dismiss();
             }, error -> {
-
             });
         } else if (updateState == 2) {
             repository.updateApprovalPk2(idPk, getCurrentUserNik, "0", response -> {
                 handleLayoutByStatus(idPk);
                 pDialog.dismiss();
             }, error -> {
-
             });
         } else if (updateState == 3) {
             repository.updateApprovalPk2(idPk, getCurrentUserNik, "1", response -> {
                 handleLayoutByStatus(idPk);
                 pDialog.dismiss();
             }, error -> {
-
             });
         } else if (updateState == 4) {
             repository.updateApprovalPk3(idPk, getCurrentUserNik, "0", response -> {
                 handleLayoutByStatus(idPk);
                 pDialog.dismiss();
             }, error -> {
-
             });
-
-
         } else if (updateState == 5) {
-
             if (getCurrentUserNik.equals("0071280396")) {
                 repository.updateApprovalPk3(idPk, getCurrentUserNik, "1", response -> {
                     handleLayoutByStatus(idPk);
                     pDialog.dismiss();
-
                     repository.updateApprovalPk4(idPk, getCurrentUserNik, "1", response2 -> {
                         handleLayoutByStatus(idPk);
                         getSignature3(getCurrentUserNik);
                         getSignature4(getCurrentUserNik);
                         pDialog.dismiss();
-
                     }, error -> {
-
                     });
                 }, error -> {
-
                 });
-
-
             } else {
                 repository.updateApprovalPk3(idPk, getCurrentUserNik, "1", response -> {
                     handleLayoutByStatus(idPk);
                     pDialog.dismiss();
                 }, error -> {
-
                 });
             }
-
         } else if (updateState == 6) {
             repository.updateApprovalPk4(idPk, getCurrentUserNik, "0", response -> {
                 handleLayoutByStatus(idPk);
                 pDialog.dismiss();
-
             }, error -> {
-
             });
-
         } else if (updateState == 7) {
             repository.updateApprovalPk4(idPk, getCurrentUserNik, "1", response -> {
                 handleLayoutByStatus(idPk);
                 pDialog.dismiss();
-
             }, error -> {
-
             });
         } else if (updateState == 8) {
-
-
             String getBk = String.valueOf(binding.bersihSpinner.getSelectedItemPosition());
             if (getBk.equals("Bersih")) {
                 bk = "1";
@@ -435,14 +359,10 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                 pDialog.dismiss();
                 Intent intent = new Intent(DetailPinjamKendaraan.this, ListPinjamKendaraan.class);
                 startActivity(intent);
-
-
             }, error -> {
 
             });
         } else if (updateState == 9) {
-
-
             String getBk = String.valueOf(binding.bersihSpinner.getSelectedItemPosition());
             if (getBk.equals("Bersih")) {
                 bk = "1";
@@ -465,44 +385,37 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
     }
 
     private void updateKondisiValidation() {
-
-
         binding.km.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // Optional: Perform actions before the text changes
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Optional: Handle changes to the text while it is being typed
                 if (s.toString().trim().isEmpty()) {
                     kmKeluarFilled = false;
                     kmMasukFilled = false;
                 } else {
                     kmKeluarFilled = true;
-                    kmMasukFilled = true;// Clear the TextView if the input is empty
+                    kmMasukFilled = true;
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
-                // Check if the text is not empty before updating the TextView
-
             }
         });
     }
 
 
+    @SuppressLint("SetTextI18n")
     private void handleLayoutByStatus(String idPk) {
 
         repository.getDetailPk(idPk, response -> {
             detail = response;
+            detectStatus = detail.getStatus();
             Log.d("statusPK", String.valueOf(detail.getStatus()));
             binding.kondisiKeluarLayout.setVisibility(View.GONE);
             binding.kondisiMasukLayout.setVisibility(View.GONE);
             binding.kondisiText.setVisibility(View.GONE);
-
 
             if (detail.getStatus() == 8) {
                 binding.leftBtn.setVisibility(View.GONE);
@@ -515,11 +428,12 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                 binding.kirimBtn.setVisibility(View.GONE);
                 binding.editLayout.setVisibility(View.GONE);
                 binding.fuelSeekBar.setVisibility(View.GONE);
-
-
             }
             if (detail.getStatus() == 7) {
-                binding.editLayout.setVisibility(View.VISIBLE);
+                binding.kondisiText.setVisibility(View.VISIBLE);
+                if (getCurrentUserNik.equals(detail.getApp1Nik()) || idDept == 5){
+                    binding.editLayout.setVisibility(View.VISIBLE);
+                }
                 binding.kirimBtn.setOnClickListener(view -> {
                     if (jamFilled && kmMasukFilled && bersihFilled && isSeekBarAdjusted) {
                         kAlertDialog(8, idPk);
@@ -530,7 +444,10 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
             }
             if (detail.getStatus() == 8) {
                 binding.kondisiText.setVisibility(View.VISIBLE);
-                binding.editLayout.setVisibility(View.VISIBLE);
+                if (getCurrentUserNik.equals(detail.getApp1Nik()) || idDept == 5){
+                    binding.editLayout.setVisibility(View.VISIBLE);
+                }
+
                 binding.kondisiTitle.setText("Kondisi Kendaraan Saat Masuk");
                 binding.tvJam.setText("Jam Masuk");
                 binding.kirimBtn.setOnClickListener(view -> {
@@ -555,6 +472,7 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                     binding.detailBersihKeluar.setText("Kotor");
                 }
             }
+
             if (detail.getStatus() == 9) {
                 binding.kondisiText.setVisibility(View.VISIBLE);
                 binding.editLayout.setVisibility(View.GONE);
@@ -580,12 +498,10 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
 
                 String jamKeluar = detail.getJamKeluar();
 
-
                 if (jamMasuk != null && jamMasuk.length() >= 5) {
                     jamKeluar = jamKeluar.substring(0, 5);
                     binding.detailJamKeluar.setText(jamKeluar);
                 }
-
 
                 binding.detailKmKeluar.setText(detail.getKmKeluar());
 
@@ -614,18 +530,16 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                         Toast.makeText(view.getContext(), "Failed to start download.", Toast.LENGTH_SHORT).show();
                     }
                 });
-
             }
+
             if (detail.getStatus() == 2 || detail.getStatus() == 4 || detail.getStatus() == 6) {
                 binding.stampleImg.setImageResource(R.drawable.rejected_img);
-
             } else if (detail.getStatus() == 7) {
                 binding.stampleImg.setImageResource(R.drawable.accepted_img);
-
             } else if (detail.getStatus() == 0) {
                 binding.stampleImg.setImageResource(R.drawable.canceled_img);
-
             }
+
             if (detail.getStatus() == 0) {
                 binding.rightBtn.setVisibility(View.GONE);
                 binding.leftBtn.setVisibility(View.GONE);
@@ -642,7 +556,6 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                 binding.rightBtn.setVisibility(View.GONE);
                 binding.leftBtn.setVisibility(View.GONE);
                 binding.batas.setVisibility(View.GONE);
-
             }
 
             if (detail.getStatus() == 4) {
@@ -651,7 +564,6 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                 binding.rightBtn.setVisibility(View.GONE);
                 binding.leftBtn.setVisibility(View.GONE);
                 binding.batas.setVisibility(View.GONE);
-
             }
 
             if (detail.getStatus() == 6) {
@@ -660,10 +572,9 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                 binding.rightBtn.setVisibility(View.GONE);
                 binding.leftBtn.setVisibility(View.GONE);
                 binding.batas.setVisibility(View.GONE);
-
             }
-            if (getCurrentUserNik.equals(detail.getApp1Nik())) {
 
+            if (getCurrentUserNik.equals(detail.getApp1Nik())) {
                 if (detail.getStatus() != 1) {
                     binding.rightBtn.setVisibility(View.GONE);
                     binding.leftBtn.setVisibility(View.GONE);
@@ -674,7 +585,6 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                     binding.rightBtn.setVisibility(View.GONE);
                     binding.batas.setVisibility(View.GONE);
                     binding.leftBtn.setText("Batalkan");
-
                     binding.leftBtn.setOnClickListener(view -> {
                         kAlertDialog(0, idPk);
                     });
@@ -688,18 +598,14 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                     binding.leftBtn.setText("Tolak");
                     binding.leftBtn.setOnClickListener(view -> {
                         kAlertDialog(2, idPk);
-
                     });
 
                     binding.rightBtn.setOnClickListener(view -> {
                         kAlertDialog(3, idPk);
-
                     });
 
                 } else if (detail.getStatus() == 3) {
-
                     getSignature2(detail.getApp2Nik());
-
                     binding.leftBtn.setVisibility(View.VISIBLE);
                     binding.rightBtn.setVisibility(View.VISIBLE);
                     binding.batas.setVisibility(View.VISIBLE);
@@ -707,9 +613,7 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
 
                     binding.leftBtn.setOnClickListener(view -> {
                         kAlertDialog(4, idPk);
-
                     });
-
 
                     binding.rightBtn.setOnClickListener(view -> {
                         kAlertDialog(5, idPk);
@@ -718,7 +622,6 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                 } else if (detail.getStatus() == 5) {
                     binding.leftBtn.setVisibility(View.VISIBLE);
 
-
                     getSignature3(detail.getApp3Nik());
                     getSignature4(detail.getApp4Nik());
                     binding.rightBtn.setVisibility(View.VISIBLE);
@@ -726,12 +629,10 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                     binding.leftBtn.setText("Tolak");
                     binding.leftBtn.setOnClickListener(view -> {
                         kAlertDialog(6, idPk);
-
                     });
 
                     binding.rightBtn.setOnClickListener(view -> {
                         kAlertDialog(7, idPk);
-
                     });
                 } else if (detail.getStatus() == 7) {
                     binding.leftBtn.setVisibility(View.VISIBLE);
@@ -743,21 +644,17 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                     binding.leftBtn.setText("Tolak");
                     binding.leftBtn.setOnClickListener(view -> {
                         kAlertDialog(6, idPk);
-
                     });
 
                     binding.rightBtn.setOnClickListener(view -> {
                         kAlertDialog(7, idPk);
-
                     });
                 }
 
                 if (getCurrentUserNik.equals(detail.getApp2Nik())) {
                     if (detail.getApp2Nik().isEmpty()) {
                         if (detail.getStatus() != 2 || detail.getStatus() != 3) {
-
                             binding.leftBtn.setVisibility(View.VISIBLE);
-
                             binding.rightBtn.setVisibility(View.VISIBLE);
                             binding.leftBtn.setVisibility(View.VISIBLE);
                             binding.batas.setVisibility(View.VISIBLE);
@@ -766,24 +663,19 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                             binding.rightBtn.setVisibility(View.GONE);
                             binding.leftBtn.setVisibility(View.GONE);
                             binding.batas.setVisibility(View.GONE);
-
                         }
-
                     } else {
                         binding.rightBtn.setVisibility(View.GONE);
                         binding.leftBtn.setVisibility(View.GONE);
                         binding.batas.setVisibility(View.GONE);
                     }
-
 
                 }
 
                 if (getCurrentUserNik.equals(detail.getApp3Nik())) {
                     if (detail.getApp3Nik().isEmpty()) {
                         if (detail.getStatus() != 3 || detail.getStatus() != 4 || detail.getStatus() != 7 || detail.getStatus() != 8) {
-
                             binding.leftBtn.setVisibility(View.VISIBLE);
-
                             binding.rightBtn.setVisibility(View.VISIBLE);
                             binding.leftBtn.setVisibility(View.VISIBLE);
                             binding.batas.setVisibility(View.VISIBLE);
@@ -792,23 +684,19 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                             binding.rightBtn.setVisibility(View.GONE);
                             binding.leftBtn.setVisibility(View.GONE);
                             binding.batas.setVisibility(View.GONE);
-
                         }
                     } else {
                         binding.rightBtn.setVisibility(View.GONE);
                         binding.leftBtn.setVisibility(View.GONE);
                         binding.batas.setVisibility(View.GONE);
                     }
-
 
                 }
 
                 if (getCurrentUserNik.equals(detail.getApp4Nik())) {
                     if (detail.getApp4Nik().isEmpty()) {
                         if (detail.getStatus() != 5 || detail.getStatus() != 6) {
-
                             binding.leftBtn.setVisibility(View.VISIBLE);
-
                             binding.rightBtn.setVisibility(View.VISIBLE);
                             binding.leftBtn.setVisibility(View.VISIBLE);
                             binding.batas.setVisibility(View.VISIBLE);
@@ -817,7 +705,6 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                             binding.rightBtn.setVisibility(View.GONE);
                             binding.leftBtn.setVisibility(View.GONE);
                             binding.batas.setVisibility(View.GONE);
-
                         }
                     } else {
                         binding.rightBtn.setVisibility(View.GONE);
@@ -825,23 +712,16 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                         binding.batas.setVisibility(View.GONE);
                     }
 
-
                 }
 
-
             }
-
 
         }, responseCode -> {
             if (responseCode.equals("success")) {
-
                 binding.parentLay.setVisibility(View.VISIBLE);
                 binding.loadingDataPart.setVisibility(View.GONE);
-
             }
         }, error -> {
-
-
         });
 
     }
@@ -851,91 +731,59 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Calendar c = Calendar.getInstance();
-
-                // on below line we are getting our hour, minute.
                 int hour = c.get(Calendar.HOUR_OF_DAY);
                 int minute = c.get(Calendar.MINUTE);
 
                 TimePickerDialog timePickerDialog = new TimePickerDialog(DetailPinjamKendaraan.this,
                         new TimePickerDialog.OnTimeSetListener() {
+                            @SuppressLint("DefaultLocale")
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                                 tanggalFilled = true;
-
-                                // Get the current date in the format yyyy-MM-dd
                                 String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Calendar.getInstance().getTime());
-
-                                // Format the time to HH:mm:ss
-                                String formattedTime = String.format("%02d:%02d:00", hourOfDay, minute);
-
-                                // Combine date and time to create a timestamp
+                                @SuppressLint("DefaultLocale") String formattedTime = String.format("%02d:%02d:00", hourOfDay, minute);
                                 String timestamp = currentDate + " " + formattedTime;
-
-                                // Optionally, set only the time (HH:mm) to the TextView for display
                                 binding.jamKeluar.setText(String.format("%02d:%02d", hourOfDay, minute));
-
-
                                 jamFilled = true;
-                                // Set the 'jam' variable to the SQL-compatible timestamp format
                                 jam = String.format("%02d:%02d", hourOfDay, minute) + ":00";
                             }
-
-
                         }, hour, minute, false);
-
                 timePickerDialog.show();
             }
         });
-
     }
 
     private void seekBarInteractive() {
         fuelSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // Reverse the SeekBar progress: 0 = full, 100 = empty
-                float reversedProgress = 1.0f - (progress / 100f); // Invert the progress value
+                float reversedProgress = 1.0f - (progress / 100f);
                 fuelGaugeView.setFuelLevel(reversedProgress);
-
                 isSeekBarAdjusted = true;
-                // Update the percentage TextView with the current progress value
                 percentageTextView.setText(progress + "%");
             }
-
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // Optional: Handle event when user starts dragging the SeekBar
             }
-
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // Optional: Handle event when user stops dragging the SeekBar
             }
         });
-
-
     }
 
-
     private void bersihKotorSpinner() {
-        // Create a custom adapter for the Spinner
         binding.bersihSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // Get the selected item text
                 String selectedItem = (String) parent.getItemAtPosition(position);
-
-                // Perform actions based on the selected item
-                if (selectedItem.equals("Pilih")) { // Skip the "Pilih" option if it's selected
+                if (selectedItem.equals("Pilih")) {
                     bersihFilled = false;
                 } else {
                     bersihFilled = true;
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Handle the case when nothing is selected
             }
         });
 
@@ -944,7 +792,6 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
 
             @Override
             public boolean isEnabled(int position) {
-                // Disable the "Pilih" option (position 0)
                 return position != 0;
             }
 
@@ -952,26 +799,17 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView textView = (TextView) view;
-
-                // Grey out the "Pilih" option to indicate that it's not selectable
                 if (position == 0) {
                     textView.setTextColor(Color.GRAY);
                 } else {
                     textView.setTextColor(Color.BLACK);
                 }
-
                 return view;
             }
-
-
         };
-
         kondisiAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Set the adapter to the Spinner
         binding.bersihSpinner.setAdapter(kondisiAdapter);
     }
-
 
     private void kAlertDialog(int newUpdateState, String idPk) {
         new KAlertDialog(DetailPinjamKendaraan.this, KAlertDialog.WARNING_TYPE)
@@ -1024,33 +862,22 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                                         break;
                                 }
                             }
-
                             public void onFinish() {
                                 i = -1;
-
                                 if (isConnected) {
                                     isClickSendWhileOffline = false;
                                     updateState = newUpdateState;
-
                                     updateSign(idPk);
-
-
                                     handleLayoutByStatus(idPk);
                                 } else {
                                     isClickSendWhileOffline = true;
-
                                 }
-
-
                             }
                         }.start();
-
-
                     }
                 })
                 .show();
     }
-
 
     private void fillDataAlert() {
         new KAlertDialog(DetailPinjamKendaraan.this, KAlertDialog.ERROR_TYPE)

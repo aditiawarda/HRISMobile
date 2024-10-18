@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -35,10 +33,6 @@ public class ListPinjamKendaraan extends AppCompatActivity {
     private String currentUserNik;
     private String currentUserIdJabatan;
 
-//    //debug
-//    private String userForDebug;
-//    //debug
-
     private Handler handler = new Handler();
 
     private int currentRoleIndex = 0;
@@ -52,7 +46,6 @@ public class ListPinjamKendaraan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
-
         currentUserNik = sharedPrefManager.getSpNik();
         currentUserIdJabatan = sharedPrefManager.getSpIdJabatan();
 
@@ -66,13 +59,20 @@ public class ListPinjamKendaraan extends AppCompatActivity {
         repository = new KendaraanRepository(this);
         rAdapter = new AdapterListPinjamKendaraan();
 
-        getListDataMasuk(currentUserNik);
+        if (!Objects.equals(currentUserIdJabatan, "11") && !Objects.equals(currentUserIdJabatan, "10") && !Objects.equals(currentUserIdJabatan, "41") && !Objects.equals(currentUserIdJabatan, "3") && !Objects.equals(currentUserIdJabatan, "25")) {
+            getListDataSaya(currentUserNik);
+        } else {
+            getListDataMasuk(currentUserNik);
+        }
+
         binding.swipeToRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //Action ih here
-
-                getListDataMasuk(currentUserNik);
+                if (!Objects.equals(currentUserIdJabatan, "11") && !Objects.equals(currentUserIdJabatan, "10") && !Objects.equals(currentUserIdJabatan, "41") && !Objects.equals(currentUserIdJabatan, "3") && !Objects.equals(currentUserIdJabatan, "25")) {
+                    getListDataSaya(currentUserNik);
+                } else {
+                    getListDataMasuk(currentUserNik);
+                }
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -96,33 +96,10 @@ public class ListPinjamKendaraan extends AppCompatActivity {
 
         handleSelectedButton();
 
-//        binding.debug.setOnClickListener(view -> {
-//            // Toggle between the values
-//
-//            if (currentUserNik.equals("3417150724")) {
-//                currentUserNik = "0981010210";
-//                userForDebug = "Bu Ranti";
-//                currentUserIdJabatan = "11";
-//            }
-//             else {
-//                currentUserNik = "3417150724";
-//                currentUserIdJabatan = "24";
-//                userForDebug = "Andika";
-//            }
-//
-//            // Optional: Display the current value in the TextView or log it for debugging
-//            // This will display the value in tvDetail
-//            handleSelectedButton();
-//            Toast.makeText(ListPinjamKendaraan.this, userForDebug, Toast.LENGTH_SHORT).show();
-//
-//        });
     }
 
-
     private void getListDataMasuk(String nik) {
-        // nik tinggal di ganti dinamis dari shared pref
         repository.getListMasuk(nik, response -> {
-            // Handle successful response
             if (response.size() == 0) {
                 binding.noDataPart.setVisibility(View.VISIBLE);
                 binding.parentLay.setVisibility(View.VISIBLE);
@@ -130,7 +107,6 @@ public class ListPinjamKendaraan extends AppCompatActivity {
             } else {
                 binding.noDataPart.setVisibility(View.GONE);
             }
-
             rAdapter.getData(this, response);
             binding.expandableLayout.setLayoutManager(new LinearLayoutManager(this));
             binding.expandableLayout.setAdapter(rAdapter);
@@ -140,7 +116,6 @@ public class ListPinjamKendaraan extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        // Set the background tint list after delay
                         binding.parentLay.setVisibility(View.VISIBLE);
                         binding.loadingDataPart.setVisibility(View.GONE);
                     }
@@ -152,9 +127,7 @@ public class ListPinjamKendaraan extends AppCompatActivity {
     }
 
     private void getListDataSaya(String nik) {
-        // nik tinggal di ganti dinamis dari shared pref
         repository.getListSaya(nik, response -> {
-            // Handle successful response
             if (response.size() == 0) {
                 binding.noDataPart.setVisibility(View.VISIBLE);
                 binding.parentLay.setVisibility(View.VISIBLE);
@@ -162,19 +135,15 @@ public class ListPinjamKendaraan extends AppCompatActivity {
             } else {
                 binding.noDataPart.setVisibility(View.GONE);
             }
-
             rAdapter.getData(this, response);
             binding.expandableLayout.setLayoutManager(new LinearLayoutManager(this));
-
 
         }, responseCode -> {
             if (responseCode.equals("success")) {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        // Set the background tint list after delay
                         binding.parentLay.setVisibility(View.VISIBLE);
-
                         binding.expandableLayout.setAdapter(rAdapter);
                         binding.loadingDataPart.setVisibility(View.GONE);
                     }
@@ -182,20 +151,16 @@ public class ListPinjamKendaraan extends AppCompatActivity {
             }
         }, error -> {
 
-
         });
 
     }
 
     private void handleSelectedButton() {
-
-
         if (!Objects.equals(currentUserIdJabatan, "11") && !Objects.equals(currentUserIdJabatan, "10") && !Objects.equals(currentUserIdJabatan, "41") && !Objects.equals(currentUserIdJabatan, "3") && !Objects.equals(currentUserIdJabatan, "25")) {
             binding.tabBar.setVisibility(View.GONE);
-        }else{
+        } else {
             binding.tabBar.setVisibility(View.VISIBLE);
         }
-
 
         binding.permohonanMasuk.setOnClickListener(view1 -> {
             binding.parentLay.setVisibility(View.INVISIBLE);
@@ -215,15 +180,14 @@ public class ListPinjamKendaraan extends AppCompatActivity {
                 binding.loadingDataPart.setVisibility(View.VISIBLE);
                 binding.noDataPart.setVisibility(View.GONE);
                 getListDataMasuk(currentUserNik);
-
             } else {
                 binding.parentLay.setVisibility(View.VISIBLE);
                 binding.loadingDataPart.setVisibility(View.GONE);
             }
+
             if (preventRepetedCalls.equals("0") | preventRepetedCalls.equals("1")) {
                 preventRepetedCalls = "2";
             }
-
 
             if (selectedLeftButton) {
                 binding.permohonanMasuk.setBackgroundTintList(ColorStateList.valueOf((ContextCompat.getColor(ListPinjamKendaraan.this, R.color.selected_yellow))));
@@ -232,7 +196,6 @@ public class ListPinjamKendaraan extends AppCompatActivity {
             } else {
                 binding.permohonanMasuk.setBackgroundTintList(ColorStateList.valueOf((ContextCompat.getColor(ListPinjamKendaraan.this, R.color.darker_gray))));
             }
-
 
         });
 
@@ -249,23 +212,22 @@ public class ListPinjamKendaraan extends AppCompatActivity {
 
             selectedRightButton = true;
             selectedLeftButton = false;
+
             if (preventRepetedCalls.equals("0") || preventRepetedCalls.equals("2")) {
                 binding.parentLay.setVisibility(View.INVISIBLE);
                 binding.loadingDataPart.setVisibility(View.VISIBLE);
                 binding.noDataPart.setVisibility(View.GONE);
                 getListDataSaya(currentUserNik);
-
             } else {
                 binding.parentLay.setVisibility(View.VISIBLE);
                 binding.loadingDataPart.setVisibility(View.GONE);
             }
+
             if (preventRepetedCalls.equals("0") || preventRepetedCalls.equals("2")) {
                 preventRepetedCalls = "1";
             }
 
-
             if (selectedRightButton) {
-
                 binding.permohonanSaya.setBackgroundTintList(ColorStateList.valueOf((ContextCompat.getColor(ListPinjamKendaraan.this, R.color.selected_yellow))));
                 binding.permohonanMasuk.setBackgroundTintList(ColorStateList.valueOf((ContextCompat.getColor(ListPinjamKendaraan.this, R.color.darker_gray))));
             } else {
@@ -278,7 +240,11 @@ public class ListPinjamKendaraan extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        getListDataMasuk(currentUserNik);
+        if (!Objects.equals(currentUserIdJabatan, "11") && !Objects.equals(currentUserIdJabatan, "10") && !Objects.equals(currentUserIdJabatan, "41") && !Objects.equals(currentUserIdJabatan, "3") && !Objects.equals(currentUserIdJabatan, "25")) {
+            getListDataSaya(currentUserNik);
+        } else {
+            getListDataMasuk(currentUserNik);
+        }
     }
+
 }

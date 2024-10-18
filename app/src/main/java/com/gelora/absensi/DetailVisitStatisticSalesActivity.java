@@ -2,6 +2,7 @@ package com.gelora.absensi;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -10,13 +11,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -25,19 +21,18 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.gelora.absensi.adapter.AdapterListDataVisitStatisticSales;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.model.SalesVisitStatistic;
+import com.gelora.absensi.support.CustomValueFormatter;
+import com.gelora.absensi.support.YAxisValueFormatter;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -46,9 +41,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -217,8 +213,6 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
-        getData();
 
     }
 
@@ -389,6 +383,16 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
                                         .resize(150, 150)
                                         .into(profileImage);
 
+                                profileImage.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(DetailVisitStatisticSalesActivity.this, ViewImageActivity.class);
+                                        intent.putExtra("url",avatar);
+                                        intent.putExtra("kode","profile");
+                                        startActivity(intent);
+                                    }
+                                });
+
                                 JSONArray graphic = response.getJSONArray("graphic");
 
                                 ArrayList<Entry> lineEntries = new ArrayList<>();
@@ -396,20 +400,36 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
                                     JSONObject dataGraphic = graphic.getJSONObject(i);
                                     String tanggal = dataGraphic.getString("tanggal");
                                     String jumlah = dataGraphic.getString("jumlah");
-                                    lineEntries.add(new Entry(i, Integer.parseInt(jumlah)));
+                                    lineEntries.add(new Entry(i+1, Integer.parseInt(jumlah)));
                                 }
 
                                 LineDataSet lineDataSet = new LineDataSet(lineEntries, monthTV.getText().toString());
                                 lineDataSet.setColor(getResources().getColor(R.color.color2));
-                                lineDataSet.setValueTextColor(getResources().getColor(R.color.black));
+                                lineDataSet.setValueTextSize(10f);
+                                lineDataSet.setValueFormatter(new CustomValueFormatter());
+                                lineDataSet.setValueTextColor(Color.parseColor("#081a5b"));
                                 lineDataSet.setLineWidth(2f);
 
                                 LineData lineData = new LineData(lineDataSet);
                                 lineChart.setData(lineData);
 
+                                XAxis leftAxis = lineChart.getXAxis();
+                                leftAxis.setAxisMinimum(1f);
+                                if(month.equals(getMonth())){
+                                    leftAxis.setAxisMaximum(Float.parseFloat(getDay()));
+                                }
+
+                                YAxis leftYAxis = lineChart.getAxisLeft();
+                                leftYAxis.setValueFormatter(new YAxisValueFormatter());
+                                leftYAxis.setGranularity(1f);
+                                leftYAxis.setAxisMinimum(0f);
+
                                 Description description = new Description();
                                 description.setText("Grafik Kunjungan");
                                 lineChart.setDescription(description);
+
+                                YAxis rightYAxis = lineChart.getAxisRight();
+                                rightYAxis.setEnabled(false);
 
                                 lineChart.invalidate();
 
@@ -486,6 +506,33 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
+    }
+
+    private String getMonth() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDate() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDay() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("dd");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
 }

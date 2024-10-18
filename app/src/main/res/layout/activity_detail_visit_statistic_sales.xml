@@ -826,7 +826,7 @@
                                     android:gravity="right"
                                     android:maxLines="1"
                                     android:singleLine="true"
-                                    android:text="DETAIL STATISTIK"
+                                    android:text="DETAIL STATISTIK SALES"
                                     android:textColor="@color/white"
                                     android:textSize="15dp"
                                     android:textStyle="bold"

@@ -18,7 +18,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -305,7 +304,9 @@ public class VisitStatisticActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 try {
-                    adapterListDataVisitStatisticSales.filterByName(s.toString());
+                    if(!s.toString().isEmpty()){
+                        adapterListDataVisitStatisticSales.filterByName(s.toString());
+                    }
                 } catch (NullPointerException e) {
                     Log.e("Error", e.toString());
                 }
@@ -314,8 +315,6 @@ public class VisitStatisticActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
             }
         });
-
-        getPieCart();
 
     }
 
@@ -391,18 +390,33 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                         PieEntry pieEntry = (PieEntry) e;
                                         String label = pieEntry.getLabel();
                                         float value = pieEntry.getValue();
-                                        new KAlertDialog(VisitStatisticActivity.this, KAlertDialog.NORMAL_TYPE)
-                                                .setTitleText(String.valueOf(value).split("\\.")[0])
-                                                .setTitleTextSize(50)
-                                                .setContentText(String.valueOf(label))
-                                                .setConfirmText("    OK    ")
-                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                    @Override
-                                                    public void onClick(KAlertDialog sDialog) {
-                                                        sDialog.dismiss();
-                                                    }
-                                                })
-                                                .show();
+
+                                        String wilayah = "";
+                                        if(label.equals("Suma Jakarta 1")){
+                                            wilayah = "Jakarta 1";
+                                        } else if(label.equals("Suma Jakarta 2")){
+                                            wilayah = "Jakarta 2";
+                                        } else if(label.equals("Suma Jakarta 3")){
+                                            wilayah = "Jakarta 3";
+                                        } else if(label.equals("Suma Bandung")){
+                                            wilayah = "Bandung";
+                                        } else if(label.equals("Suma Semarang")){
+                                            wilayah = "Semarang";
+                                        } else if(label.equals("Suma Surabaya")){
+                                            wilayah = "Surabaya";
+                                        } else if(label.equals("Jakarta AE")){
+                                            wilayah = "Jakarta AE";
+                                        } else if(label.equals("Akunting dan Keuangan")){
+                                            wilayah = "Akunting dan Keuangan";
+                                        }
+
+                                        Intent intentPush = new Intent(VisitStatisticActivity.this, DetailVisitStatisticAreaActivity.class);
+                                        intentPush.putExtra("wilayah_full", label);
+                                        intentPush.putExtra("wilayah", wilayah);
+                                        intentPush.putExtra("month", selectMonth);
+                                        intentPush.putExtra("month_text", bulanPilihTV.getText().toString());
+                                        startActivity(intentPush);
+
                                     }
                                     @Override
                                     public void onNothingSelected() {
@@ -532,7 +546,6 @@ public class VisitStatisticActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             if (!isActivityOpened) {
                 isActivityOpened = true;
-
                 String NIK = intent.getStringExtra("NIK");
                 Intent intentPush = new Intent(VisitStatisticActivity.this, DetailVisitStatisticSalesActivity.class);
                 intentPush.putExtra("NIK", NIK);
@@ -550,6 +563,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
         imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
         searchInput.setText("");
         searchInput.clearFocus();
+        getPieCart();
     }
 
     private String getMonth() {
@@ -571,6 +585,12 @@ public class VisitStatisticActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 }
