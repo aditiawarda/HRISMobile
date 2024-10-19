@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -55,7 +54,7 @@
                 android:gravity="right"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="Form Peminjaman Kendaraan"
+                android:text="FORM PEMINJAMAN KENDARAAN"
                 android:textColor="@color/white"
                 android:textSize="17dp"
                 android:textStyle="bold"
@@ -83,38 +82,30 @@
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
-
                 <com.google.android.material.textfield.TextInputLayout
-
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
-
                     android:hint="Nomor Surat">
 
                     <com.google.android.material.textfield.TextInputEditText
-
-
                         android:id="@+id/nomer_surat"
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/underline"
                         android:inputType="number" />
+
                 </com.google.android.material.textfield.TextInputLayout>
-
-
 
                 <TextView
                     android:id="@+id/tanggal_surat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_marginLeft="10dp"
                     android:text="/EXP/GAP/"
                     android:textSize="17sp">
-
                 </TextView>
-            </LinearLayout>
 
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/no_surat_validation"
@@ -123,10 +114,8 @@
                 android:layout_marginHorizontal="20dp"
                 android:text="Sedang verifikasi nomor"
                 android:textSize="17sp"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-
             </TextView>
 
             <LinearLayout
@@ -141,7 +130,6 @@
                     android:layout_height="wrap_content"
                     android:text="Nama"
                     android:textSize="17sp">
-
                 </TextView>
 
                 <EditText
@@ -156,7 +144,6 @@
                     android:spinnerMode="dropdown" />
 
                 <TextView
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -173,12 +160,11 @@
                     android:layout_height="110px"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/bordered_spinner"
-
                     android:paddingHorizontal="15dp">
 
                 </EditText>
-            </LinearLayout>
 
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -189,7 +175,6 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
                     android:text="Hari / tanggal"
                     android:textSize="17sp">
@@ -212,7 +197,6 @@
                         android:layout_height="match_parent">
 
                         <LinearLayout
-
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_marginTop="10dp"
@@ -249,15 +233,12 @@
                         </LinearLayout>
 
                         <LinearLayout
-
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:orientation="vertical"
                             android:paddingHorizontal="15dp"
-
                             android:paddingTop="95dp"
-
                             android:paddingBottom="20dp"
                             android:visibility="invisible">
 
@@ -294,8 +275,8 @@
                     </RelativeLayout>
 
                 </LinearLayout>
-            </LinearLayout>
 
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -317,12 +298,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="15dp">
-
                 </EditText>
 
-
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -336,16 +314,13 @@
                     android:layout_height="wrap_content"
                     android:text="Keperluan"
                     android:textSize="17sp">
-
                 </TextView>
 
                 <EditText
                     android:id="@+id/keperluan"
                     android:layout_width="match_parent"
-
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="15dp">
-
                 </EditText>
 
 
@@ -365,7 +340,6 @@
                     android:text="Jenis Kendaraan"
                     android:textSize="17sp" />
 
-
                 <RelativeLayout
                     android:visibility="gone"
                     android:layout_width="match_parent"
@@ -373,13 +347,13 @@
                     android:layout_marginTop="10dp">
 
                     <Spinner
-
                         android:id="@+id/kendaraan_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/bordered_spinner"
                         android:padding="8dp"
                         android:spinnerMode="dropdown" />
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -388,6 +362,7 @@
                         android:layout_centerVertical="true"
                         android:paddingEnd="10dp"
                         android:layout_marginRight="8dp" />
+
                 </RelativeLayout>
 
             </LinearLayout>
@@ -404,23 +379,16 @@
                     android:layout_marginTop="20dp"
                     android:text="No. Kendaraan"
                     android:textSize="17sp">
-
                 </TextView>
-
-
 
                 <AutoCompleteTextView
                     android:id="@+id/no_kendaraan"
                     android:layout_width="match_parent"
                     android:layout_height="110px"
                     android:layout_marginTop="10dp"
-
                     android:background="@drawable/bordered_spinner"
                     android:paddingHorizontal="15dp">
-
                 </AutoCompleteTextView>
-
-
 
                 <TextView
                     android:visibility="gone"
@@ -435,7 +403,6 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:id="@+id/detail_kendaraan"
                 android:background="@drawable/bordered_spinner"
@@ -444,7 +411,6 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -481,7 +447,6 @@
                         android:textSize="11sp"></TextView>
 
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -590,6 +555,7 @@
                         android:textSize="11sp"></TextView>
 
                 </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -608,11 +574,9 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:text="Jam Keluar"
                         android:textSize="17sp">
-
                     </TextView>
 
                     <LinearLayout
@@ -631,7 +595,6 @@
                             android:layout_height="match_parent">
 
                             <LinearLayout
-
                                 android:layout_width="wrap_content"
                                 android:layout_height="40dp"
                                 android:layout_marginTop="10dp"
@@ -668,14 +631,12 @@
                             </LinearLayout>
 
                             <LinearLayout
-
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
                                 android:orientation="vertical"
                                 android:paddingHorizontal="15dp"
                                 android:paddingTop="95dp"
-
                                 android:paddingBottom="20dp"
                                 android:visibility="invisible">
 
@@ -728,7 +689,6 @@
                         android:layout_marginTop="20dp"
                         android:text="Km"
                         android:textSize="17sp">
-
                     </TextView>
 
                     <EditText
@@ -736,9 +696,7 @@
                         android:layout_height="110px"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/bordered_spinner"
-
                         android:paddingHorizontal="15dp">
-
                     </EditText>
 
                 </LinearLayout>
@@ -778,6 +736,7 @@
                             android:layout_centerVertical="true"
                             android:paddingEnd="10dp"
                             android:layout_marginRight="8dp" />
+
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -790,14 +749,11 @@
                     android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
-
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="BBM"
                         android:textSize="17sp">
-
                     </TextView>
 
                     <com.gelora.absensi.support.FuelGaugeView
@@ -844,11 +800,10 @@
                 android:text="Kirim"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                app:cornerRadius="40dp" /> <!-- Adjust this value to control the roundness -->
-
-
+                app:cornerRadius="40dp" />
 
         </LinearLayout>
+
     </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

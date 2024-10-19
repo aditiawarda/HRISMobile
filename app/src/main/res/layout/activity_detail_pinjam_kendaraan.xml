@@ -249,16 +249,12 @@
                         tools:ignore="HardcodedText"></TextView>
 
                     <TextView
-
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/roboto"
-
                         android:textSize="11sp"></TextView>
-
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -343,8 +339,8 @@
                         android:fontFamily="@font/roboto"
                         android:text="Detail Bagian"
                         android:textSize="11sp"></TextView>
-                </LinearLayout>
 
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -534,9 +530,7 @@
                         android:text="Detail Nomer"
                         android:textSize="11sp"></TextView>
 
-
                     <ImageView
-
                         android:id="@+id/stample_img"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -544,11 +538,10 @@
                         android:layout_marginHorizontal="20dp">
 
                     </ImageView>
+
                 </LinearLayout>
 
-
                 <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="35dp"
@@ -558,8 +551,6 @@
                     tools:ignore="DisableBaselineAlignment">
 
                     <LinearLayout
-
-
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -568,7 +559,6 @@
                         android:orientation="vertical">
 
                         <TextView
-
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -598,7 +588,6 @@
                         </TextView>
 
                         <TextView
-
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -610,8 +599,6 @@
 
                         </TextView>
 
-
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -622,7 +609,6 @@
                         android:orientation="vertical">
 
                         <TextView
-
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -633,13 +619,10 @@
                             android:textStyle="bold"></TextView>
 
                         <ImageView
-
-
                             android:layout_gravity="center_horizontal"
                             android:id="@+id/ttd_atasan"
                             android:layout_width="60dp"
                             android:layout_height="60dp">
-
                         </ImageView>
 
                         <TextView
@@ -653,7 +636,6 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
-
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -683,10 +665,8 @@
                         android:fontFamily="@font/roboto"
                         android:gravity="center_horizontal"
                         android:text="Mengetahui,"
-
                         android:textSize="10sp"
                         android:textStyle="bold"></TextView>
-
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -720,7 +700,6 @@
                                 android:textStyle="bold"></TextView>
 
                             <TextView
-
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
@@ -728,8 +707,8 @@
                                 android:text="Ka.Bag.Ekspedisi"
                                 android:textSize="10sp"
                                 android:textStyle="bold">
-
                             </TextView>
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -770,8 +749,8 @@
                         </LinearLayout>
 
                     </LinearLayout>
-                </LinearLayout>
 
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/kondisi_text"
@@ -780,12 +759,10 @@
                     android:layout_marginStart="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-
                 </TextView>
 
                 <LinearLayout
                     android:orientation="horizontal"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:ignore="DisableBaselineAlignment">
@@ -798,15 +775,11 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-
-
                         <LinearLayout
-
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             tools:ignore="UselessParent">
-
 
                             <TextView
                                 android:text="Keluar"
@@ -815,8 +788,8 @@
                                 android:layout_marginStart="20dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
-
                             </TextView>
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -836,7 +809,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-
                                     android:fontFamily="@font/roboto"
                                     android:text=":"
                                     android:textSize="11sp"></TextView>
@@ -852,6 +824,7 @@
                                     android:textSize="11sp"></TextView>
 
                             </LinearLayout>
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -871,7 +844,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-
                                     android:fontFamily="@font/roboto"
                                     android:text=":"
                                     android:textSize="11sp"></TextView>
@@ -908,7 +880,6 @@
                                     android:textSize="11sp"
                                     android:layout_gravity="center_horizontal"
                                     android:text=":"
-
                                     android:fontFamily="@font/roboto"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content">
@@ -943,9 +914,7 @@
                                     android:layout_height="wrap_content">
                                 </TextView>
 
-
                                 <RelativeLayout
-
                                     android:layout_width="100dp"
                                     android:layout_height="wrap_content">
 
@@ -969,12 +938,12 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content">
                                     </TextView>
+
                                 </RelativeLayout>
 
                             </LinearLayout>
+
                         </LinearLayout>
-
-
 
                     </LinearLayout>
 
@@ -988,15 +957,11 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-
-
                         <LinearLayout
-
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             tools:ignore="UselessParent">
-
 
                             <TextView
                                 android:text="Masuk"
@@ -1005,8 +970,8 @@
                                 android:layout_marginStart="5dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
-
                             </TextView>
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -1026,7 +991,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-
                                     android:fontFamily="@font/roboto"
                                     android:text=":"
                                     android:textSize="11sp"></TextView>
@@ -1042,6 +1006,7 @@
                                     android:textSize="11sp"></TextView>
 
                             </LinearLayout>
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -1061,7 +1026,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-
                                     android:fontFamily="@font/roboto"
                                     android:text=":"
                                     android:textSize="11sp"></TextView>
@@ -1098,7 +1062,6 @@
                                     android:textSize="11sp"
                                     android:layout_gravity="center_horizontal"
                                     android:text=":"
-
                                     android:fontFamily="@font/roboto"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content">
@@ -1133,9 +1096,7 @@
                                     android:layout_height="wrap_content">
                                 </TextView>
 
-
                                 <RelativeLayout
-
                                     android:layout_width="100dp"
                                     android:layout_height="wrap_content">
 
@@ -1159,14 +1120,15 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content">
                                     </TextView>
+
                                 </RelativeLayout>
 
                             </LinearLayout>
+
                         </LinearLayout>
 
-
-
                     </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -1182,7 +1144,6 @@
                 android:orientation="horizontal">
 
                 <Button
-
                     android:id="@+id/left_btn"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
@@ -1201,7 +1162,6 @@
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
                     android:layout_marginHorizontal="5dp">
-
                 </View>
 
                 <Button
@@ -1232,8 +1192,6 @@
                 android:orientation="horizontal">
 
                 <Button
-
-
                     android:id="@+id/pdf_btn"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
@@ -1245,12 +1203,9 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"></Button>
 
-
-
             </RelativeLayout>
+
             <LinearLayout
-
-
                 android:id="@+id/edit_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -1273,17 +1228,14 @@
                         android:text="Kondisi Kendaraan Saat Keluar"
                         android:textSize="19sp"
                         android:textStyle="bold">
-
                     </TextView>
 
                     <TextView
                         android:id="@+id/tv_jam"
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:text="Jam Keluar"
                         android:textSize="14sp">
-
                     </TextView>
 
                     <LinearLayout
@@ -1340,14 +1292,12 @@
                             </LinearLayout>
 
                             <LinearLayout
-
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
                                 android:orientation="vertical"
                                 android:paddingHorizontal="15dp"
                                 android:paddingTop="95dp"
-
                                 android:paddingBottom="20dp"
                                 android:visibility="invisible">
 
@@ -1385,7 +1335,6 @@
 
                     </LinearLayout>
 
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -1400,7 +1349,6 @@
                         android:layout_marginTop="20dp"
                         android:text="Km"
                         android:textSize="14sp">
-
                     </TextView>
 
                     <EditText
@@ -1410,9 +1358,7 @@
                         android:layout_height="110px"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/bordered_spinner"
-
                         android:paddingHorizontal="15dp">
-
                     </EditText>
 
                 </LinearLayout>
@@ -1454,11 +1400,10 @@
                             android:paddingEnd="10dp"
                             android:src="@drawable/dropdown"
                             tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
+
                     </RelativeLayout>
 
-
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1467,13 +1412,11 @@
                     android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="BBM"
                         android:textSize="14sp">
-
                     </TextView>
 
                     <com.gelora.absensi.support.FuelGaugeView
@@ -1492,7 +1435,6 @@
                         android:layout_below="@id/fuelGaugeView"
                         android:layout_marginHorizontal="70dp"
                         android:layout_marginTop="25dp"
-
                         android:max="100" />
 
                     <TextView
@@ -1507,6 +1449,7 @@
                         android:fontFamily="@font/roboto"
                         android:text="50%"
                         android:textSize="21sp" />
+
                 </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
@@ -1517,8 +1460,7 @@
                     android:layout_marginVertical="20dp"
                     android:backgroundTint="@color/colorPrimaryDark"
                     android:text="Update"
-                    app:cornerRadius="40dp" /> <!-- Adjust this value to control the roundness -->
-
+                    app:cornerRadius="40dp" />
 
             </LinearLayout>
 
@@ -1532,7 +1474,6 @@
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 android:visibility="gone">
-
 
                 <Button
                     android:id="@+id/batalkan_btn"
@@ -1559,7 +1500,6 @@
                 android:orientation="horizontal"
                 android:visibility="gone">
 
-
                 <Button
                     android:id="@+id/qr_btn"
                     android:layout_width="match_parent"
@@ -1572,18 +1512,14 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"></Button>
 
-
             </RelativeLayout>
 
-
         </LinearLayout>
-
 
     </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/loading_data_part"
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -1623,6 +1559,5 @@
             tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
     </LinearLayout>
-
 
 </RelativeLayout>
