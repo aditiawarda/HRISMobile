@@ -17,7 +17,7 @@
         android:layout_marginRight="-2dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/shape_bar_chat"
-        tools:ignore="UselessParent">
+        tools:ignore="UselessParent,VisualLintBounds">
 
         <LinearLayout
             android:id="@+id/back_btn"
@@ -67,7 +67,8 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/appbar">
+        android:layout_below="@+id/appbar"
+        tools:ignore="ObsoleteLayoutParam">
 
 
         <LinearLayout
@@ -85,14 +86,16 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:hint="Nomor Surat">
+                    android:hint="Nomor Surat"
+                    tools:ignore="HardcodedText">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/nomer_surat"
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/underline"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        tools:ignore="TouchTargetSizeCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,7 +105,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="/EXP/GAP/"
-                    android:textSize="17sp">
+                    android:textSize="17sp"
+                    tools:ignore="HardcodedText,RtlHardcoded">
                 </TextView>
 
             </LinearLayout>
@@ -115,7 +119,8 @@
                 android:text="Sedang verifikasi nomor"
                 android:textSize="17sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText">
             </TextView>
 
             <LinearLayout
@@ -129,38 +134,42 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nama"
-                    android:textSize="17sp">
+                    android:textSize="17sp"
+                    tools:ignore="HardcodedText">
                 </TextView>
 
                 <EditText
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:id="@+id/et_nama"
                     android:layout_width="match_parent"
                     android:layout_height="140px"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/bordered_spinner"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:paddingHorizontal="15dp"
-                    android:spinnerMode="dropdown" />
+                    android:spinnerMode="dropdown"
+                    tools:ignore="Autofill,LabelFor,PxUsage,SpeakableTextPresentCheck,TextFields,VisualLintTextFieldSize" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="Bagian"
-                    android:textSize="17sp">
+                    android:textSize="17sp"
+                    tools:ignore="HardcodedText">
 
                 </TextView>
 
                 <EditText
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:id="@+id/et_bagian"
                     android:layout_width="match_parent"
                     android:layout_height="110px"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/bordered_spinner"
-                    android:paddingHorizontal="15dp">
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:paddingHorizontal="15dp"
+                    tools:ignore="Autofill,LabelFor,PxUsage,SpeakableTextPresentCheck,TextFields,TouchTargetSizeCheck,VisualLintTextFieldSize">
 
                 </EditText>
 
@@ -177,7 +186,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hari / tanggal"
-                    android:textSize="17sp">
+                    android:textSize="17sp"
+                    tools:ignore="HardcodedText">
 
                 </TextView>
 
@@ -194,7 +204,8 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -289,7 +300,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tujuan"
-                    android:textSize="17sp">
+                    android:textSize="17sp"
+                    tools:ignore="HardcodedText">
 
                 </TextView>
 
@@ -297,8 +309,8 @@
                     android:id="@+id/tujuan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="15dp">
-                </EditText>
+                    android:paddingHorizontal="15dp"
+                    tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TextFields,TouchTargetSizeCheck,VisualLintTextFieldSize"></EditText>
 
             </LinearLayout>
 
@@ -313,15 +325,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Keperluan"
-                    android:textSize="17sp">
+                    android:textSize="17sp"
+                    tools:ignore="HardcodedText">
                 </TextView>
 
                 <EditText
                     android:id="@+id/keperluan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="15dp">
-                </EditText>
+                    android:paddingHorizontal="15dp"
+                    tools:ignore="Autofill,LabelFor,TextFields,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize"></EditText>
 
 
             </LinearLayout>
@@ -338,7 +351,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Jenis Kendaraan"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    tools:ignore="HardcodedText" />
 
                 <RelativeLayout
                     android:visibility="gone"
@@ -361,7 +375,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:paddingEnd="10dp"
-                        android:layout_marginRight="8dp" />
+                        android:layout_marginRight="8dp"
+                        tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
 
                 </RelativeLayout>
 
@@ -378,17 +393,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="No. Kendaraan"
-                    android:textSize="17sp">
+                    android:textSize="17sp"
+                    tools:ignore="HardcodedText">
                 </TextView>
 
                 <AutoCompleteTextView
                     android:id="@+id/no_kendaraan"
                     android:layout_width="match_parent"
-                    android:layout_height="110px"
+                    android:layout_height="48dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/bordered_spinner"
-                    android:paddingHorizontal="15dp">
-                </AutoCompleteTextView>
+                    android:paddingHorizontal="15dp"
+                    tools:ignore="LabelFor,PxUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize"></AutoCompleteTextView>
 
                 <TextView
                     android:visibility="gone"
@@ -397,7 +413,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="Checking The Number"
-                    android:textSize="17sp">
+                    android:textSize="17sp"
+                    tools:ignore="HardcodedText">
 
                 </TextView>
 
@@ -425,7 +442,8 @@
                         android:layout_marginStart="30dp"
                         android:fontFamily="@font/roboto"
                         android:text="Nama"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -434,7 +452,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text=":"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                     <TextView
                         android:id="@+id/detail_nama"
@@ -444,7 +463,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text="Detail Nama"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                 </LinearLayout>
 
@@ -461,7 +481,8 @@
                         android:layout_marginStart="30dp"
                         android:fontFamily="@font/roboto"
                         android:text="Jenis"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -470,7 +491,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text=":"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                     <TextView
                         android:id="@+id/detail_jenis"
@@ -480,7 +502,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text="Detail Nama"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                 </LinearLayout>
 
@@ -497,7 +520,8 @@
                         android:layout_marginStart="30dp"
                         android:fontFamily="@font/roboto"
                         android:text="Kategori"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -506,7 +530,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text=":"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                     <TextView
                         android:id="@+id/detail_kategori"
@@ -516,7 +541,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text="Detail Nama"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                 </LinearLayout>
 
@@ -533,7 +559,8 @@
                         android:layout_marginStart="30dp"
                         android:fontFamily="@font/roboto"
                         android:text="Plat Nomor"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -542,7 +569,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text=":"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                     <TextView
                         android:id="@+id/detail_plat"
@@ -552,7 +580,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text="Detail Nama"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                 </LinearLayout>
 
@@ -576,7 +605,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Jam Keluar"
-                        android:textSize="17sp">
+                        android:textSize="17sp"
+                        tools:ignore="HardcodedText">
                     </TextView>
 
                     <LinearLayout
@@ -592,7 +622,8 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:ignore="UselessParent">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -688,7 +719,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:text="Km"
-                        android:textSize="17sp">
+                        android:textSize="17sp"
+                        tools:ignore="HardcodedText">
                     </TextView>
 
                     <EditText
@@ -696,7 +728,8 @@
                         android:layout_height="110px"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/bordered_spinner"
-                        android:paddingHorizontal="15dp">
+                        android:paddingHorizontal="15dp"
+                        tools:ignore="Autofill,LabelFor,PxUsage,TextFields">
                     </EditText>
 
                 </LinearLayout>
@@ -711,7 +744,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Bersih/Kotor"
-                        android:textSize="17sp" />
+                        android:textSize="17sp"
+                        tools:ignore="HardcodedText,TooManyViews" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -735,7 +769,8 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:paddingEnd="10dp"
-                            android:layout_marginRight="8dp" />
+                            android:layout_marginRight="8dp"
+                            tools:ignore="ContentDescription,RtlSymmetry" />
 
                     </RelativeLayout>
 
@@ -753,7 +788,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="BBM"
-                        android:textSize="17sp">
+                        android:textSize="17sp"
+                        tools:ignore="HardcodedText">
                     </TextView>
 
                     <com.gelora.absensi.support.FuelGaugeView
@@ -786,7 +822,8 @@
                         android:layout_marginBottom="40dp"
                         android:fontFamily="@font/roboto"
                         android:text="50%"
-                        android:textSize="21sp" />
+                        android:textSize="21sp"
+                        tools:ignore="HardcodedText" />
 
                 </LinearLayout>
 
@@ -800,7 +837,8 @@
                 android:text="Kirim"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                app:cornerRadius="40dp" />
+                app:cornerRadius="40dp"
+                tools:ignore="HardcodedText,VisualLintButtonSize" />
 
         </LinearLayout>
 
