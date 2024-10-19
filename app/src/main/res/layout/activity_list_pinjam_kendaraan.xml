@@ -224,8 +224,8 @@
                         android:id="@+id/parent_lay"
                         android:visibility="invisible"
                         android:orientation="vertical"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="17dp"
+                        android:layout_marginLeft="17dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 

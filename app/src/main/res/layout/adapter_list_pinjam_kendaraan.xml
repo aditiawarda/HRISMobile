@@ -2,145 +2,131 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_height="wrap_content">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="7dp"
-        app:cardCornerRadius="10dp"
-        app:strokeWidth="2dp"
-        app:strokeColor="@color/heavy_gray"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp">
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_notifikasi"
+        android:padding="1dp"
+        android:layout_marginVertical="4dp"
+        tools:ignore="UselessParent">
 
-        <RelativeLayout
-
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
+            app:cardCornerRadius="11dp"
+            app:strokeWidth="0dp"
+            android:outlineSpotShadowColor="@color/transparent"
+            android:outlineAmbientShadowColor="@color/transparent"
             android:layout_width="match_parent"
-            android:layout_height="110dp">
+            android:layout_height="wrap_content"
+            tools:ignore="UnusedAttribute">
 
-            <View
-                android:id="@+id/vertical_line"
-                android:background="@color/heavy_gray"
-                android:layout_width="6dp"
-                android:layout_height="match_parent">
-            </View>
-
-            <TextView
-
-                android:id="@+id/detail_status"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:textStyle="bold"
-                android:layout_marginBottom="15dp"
-                android:layout_marginStart="5dp"
-                android:fontFamily="@font/roboto"
-
-                android:layout_marginEnd="40dp"
-                android:text="Status"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </TextView>
-
-
-            <ImageView
-                android:id="@+id/image_request"
-                android:src="@drawable/waiting_key"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="35dp"
-                android:layout_alignParentEnd="true"
-                android:layout_width="65dp"
-                android:layout_height="65dp">
-
-            </ImageView>
-
-            <View
-                android:layout_alignParentBottom="true"
-                android:id="@+id/top_line"
-                android:alpha="0.8"
-                android:backgroundTint="@color/heavy_gray"
-
-                android:background="@drawable/rounded_corner_rectangle"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="5dp">
-            </View>
+                android:layout_height="110dp"
+                tools:ignore="TextSizeCheck">
 
+                <TextView
+                    android:id="@+id/detail_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Status"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,VisualLintOverlap"></TextView>
 
-            <TextView
-                android:textSize="16sp"
-                android:id="@+id/tv_nama"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="90dp"
-                android:fontFamily="@font/roboto"
-                android:text="nama"
-                android:textColor="@color/black"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </TextView>
+                <ImageView
+                    android:id="@+id/image_request"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/waiting_key"
+                    tools:ignore="ContentDescription"></ImageView>
 
+                <TextView
+                    android:id="@+id/tv_nama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="90dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="NAMA KARYAWAN"
+                    android:textColor="@color/text_color"
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText"></TextView>
 
-            <TextView
-                android:id="@+id/tv_bagian"
-               android:layout_below="@+id/tv_nama"
-                android:alpha="0.9"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/roboto"
-                android:text="bagian"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </TextView>
+                <TextView
+                    android:id="@+id/tv_bagian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_nama"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:alpha="0.9"
+                    android:fontFamily="@font/roboto"
+                    android:text="-"
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText"></TextView>
 
-            <TextView
-                android:layout_toEndOf="@+id/tv_bagian"
-                android:id="@+id/tv_tanggal"
-                android:layout_below="@+id/tv_nama"
-                android:alpha="0.9"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginStart="5dp"
-                android:fontFamily="@font/roboto"
-                android:text="|  tanggal"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </TextView>
+                <TextView
+                    android:id="@+id/tv_tanggal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_nama"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_toEndOf="@+id/tv_bagian"
+                    android:alpha="0.9"
+                    android:fontFamily="@font/roboto"
+                    android:text="|  -"
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText"></TextView>
 
-            <View
+                <View
+                    android:id="@+id/horizontal_line"
+                    android:layout_width="280dp"
+                    android:layout_height="1dp"
+                    android:layout_above="@id/card_detail_proses"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="-5dp"
+                    android:alpha="0.6"
+                    android:background="#A4A4A4"></View>
 
-                android:id="@+id/horizontal_line"
-                android:layout_above="@id/card_detail_proses"
-                android:alpha="0.6"
-                android:layout_marginHorizontal="20dp"
-                android:background="@color/black"
-                android:layout_marginBottom="3dp"
-                android:layout_width="230dp"
-                android:layout_height="1dp">
-            </View>
+                <TextView
+                    android:id="@+id/card_detail_proses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_tanggal"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="7dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Menunggu Persetujuan"
+                    android:textColor="#C16D02"
+                    android:textSize="12dp"
+                    android:textStyle="italic"
+                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck"></TextView>
 
-            <TextView
-                android:id="@+id/card_detail_proses"
-                android:layout_below="@+id/tv_tanggal"
-                android:textSize="13sp"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="7dp"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/roboto"
-                android:text="Menunggu Persetujuan"
-                android:textColor="@color/black"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </TextView>
+            </RelativeLayout>
 
-        </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-    </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
 
 </LinearLayout>

@@ -218,7 +218,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text="Detail No Surat"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                 </LinearLayout>
 
@@ -281,7 +282,8 @@
                         android:layout_marginStart="30dp"
                         android:fontFamily="@font/roboto"
                         android:text="NAMA"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -290,7 +292,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text=":"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                     <TextView
                         android:id="@+id/detail_nama"
@@ -328,7 +331,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text=":"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                     <TextView
                         android:id="@+id/detail_bagian"
@@ -338,7 +342,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text="Detail Bagian"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                 </LinearLayout>
 
@@ -376,7 +381,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text="Detail Tanggal"
-                        android:textSize="11sp"></TextView>
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText"></TextView>
 
                 </LinearLayout>
 
@@ -1448,7 +1454,8 @@
                         android:layout_marginBottom="40dp"
                         android:fontFamily="@font/roboto"
                         android:text="50%"
-                        android:textSize="21sp" />
+                        android:textSize="21sp"
+                        tools:ignore="ObsoleteLayoutParam" />
 
                 </LinearLayout>
 
@@ -1485,7 +1492,8 @@
                     android:fontFamily="@font/roboto"
                     android:text="Batalkan"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"></Button>
+                    android:textColor="@color/white"
+                    tools:ignore="HardcodedText"></Button>
 
             </RelativeLayout>
 
@@ -1510,7 +1518,8 @@
                     android:fontFamily="@font/roboto"
                     android:text="Generate QR code"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"></Button>
+                    android:textColor="@color/white"
+                    tools:ignore="HardcodedText"></Button>
 
             </RelativeLayout>
 
@@ -1521,11 +1530,11 @@
     <LinearLayout
         android:id="@+id/loading_data_part"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
+        android:paddingTop="140dp"
         android:paddingLeft="20dp"
-        android:paddingTop="95dp"
         android:paddingRight="20dp"
         android:paddingBottom="20dp"
         android:visibility="gone">

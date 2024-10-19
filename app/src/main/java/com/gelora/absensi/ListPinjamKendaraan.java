@@ -226,7 +226,7 @@ public class ListPinjamKendaraan extends AppCompatActivity {
             binding.tabBar.setVisibility(View.GONE);
             selectedRightButton = true;
 
-            int top = 67;
+            int top = 70;
             int paddingTop = dpToPixels(top, getBaseContext());
             binding.parentLay.setPadding(0,paddingTop,0,0);
             binding.addBtnPart.setVisibility(View.VISIBLE);
@@ -242,7 +242,7 @@ public class ListPinjamKendaraan extends AppCompatActivity {
             binding.tabBar.setVisibility(View.VISIBLE);
             selectedLeftButton = true;
 
-            int top = 8;
+            int top = 10;
             int paddingTop = dpToPixels(top, getBaseContext());
             binding.parentLay.setPadding(0,paddingTop,0,0);
             binding.addBtnPart.setVisibility(View.GONE);

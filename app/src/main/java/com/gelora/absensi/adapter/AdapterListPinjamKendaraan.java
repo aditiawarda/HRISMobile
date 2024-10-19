@@ -1,5 +1,6 @@
 package com.gelora.absensi.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -27,13 +28,11 @@ public class AdapterListPinjamKendaraan extends RecyclerView.Adapter<AdapterList
     private Context context;
 
     private AdapterListPinjamKendaraanBinding binding;
-
     private List<PinjamKendaraanResponse> itemList;
 
     public void getData(Context context, List<PinjamKendaraanResponse> itemList) {
         this.context = context;
         this.itemList = itemList;
-
     }
 
     @NonNull
@@ -45,68 +44,54 @@ public class AdapterListPinjamKendaraan extends RecyclerView.Adapter<AdapterList
         return new MyViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         PinjamKendaraanResponse item = itemList.get(position);
         binding.tvBagian.setText(item.getBagianPemohon() + " |");
-        binding.tvNama.setText(item.getNamaPemohon());
+        binding.tvNama.setText(item.getNamaPemohon().toUpperCase());
         String inputDateString = item.getApp1();
-
 
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("id", "ID"));
 
         try {
-            // Parse the input date string into a Date object
             Date date = inputFormat.parse(inputDateString);
-
-            // Format the Date object into the desired output format
             String formattedDate = outputFormat.format(date);
-
-            // Set the formatted date to the TextView
             binding.tvTanggal.setText(formattedDate);
         } catch (ParseException e) {
             e.printStackTrace();
-            binding.tvTanggal.setText(inputDateString); // Fallback to the original date string if parsing fails
+            binding.tvTanggal.setText(inputDateString);
         }
         if (item.getStatus().equals("1") || item.getStatus().equals("3") || item.getStatus().equals("5")) {
             binding.detailStatus.setText("Pending");
             binding.cardDetailProses.setText("Menunggu Persetujuan");
             binding.imageRequest.setImageResource(R.drawable.waiting_key);
-            binding.detailStatus.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.black));
-            binding.cardDetailProses.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.black));
-
+            binding.detailStatus.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.selected_yellow));
+            binding.cardDetailProses.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.selected_yellow));
         } else if (item.getStatus().equals("7") || item.getStatus().equals("8") || item.getStatus().equals("9")) {
             binding.detailStatus.setText("Accepted");
             binding.cardDetailProses.setText("Permohonan diterima");
             binding.imageRequest.setImageResource(R.drawable.accepted_key);
             binding.detailStatus.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.heavyGreen));
             binding.cardDetailProses.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.heavyGreen));
-
         } else if (item.getStatus().equals("2") || item.getStatus().equals("4") || item.getStatus().equals("6")) {
             binding.detailStatus.setText("Rejected");
             binding.cardDetailProses.setText("Permohonan ditolak");
             binding.imageRequest.setImageResource(R.drawable.rejected_key);
             binding.detailStatus.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.heavyRed));
-
             binding.cardDetailProses.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.heavyRed));
-
         } else if (item.getStatus().equals("0")) {
             binding.detailStatus.setText("Canceled");
             binding.cardDetailProses.setText("Permohonan dibatalkan");
             binding.imageRequest.setImageResource(R.drawable.canceled_key);
             binding.detailStatus.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.heavyRed));
-
             binding.cardDetailProses.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.heavyRed));
-
         }
-
-
 
         binding.card.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), DetailPinjamKendaraan.class);
             intent.putExtra("current_id_pk", item.getId());
-//            intent.putExtra("nik_pemohon",item.getNik());
 
             view.getContext().startActivity(intent);
         });
@@ -124,7 +109,6 @@ public class AdapterListPinjamKendaraan extends RecyclerView.Adapter<AdapterList
 
         public MyViewHolder(View itemView) {
             super(itemView);
-
         }
     }
 }
