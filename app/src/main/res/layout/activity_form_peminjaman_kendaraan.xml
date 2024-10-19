@@ -618,7 +618,7 @@
                         android:background="@drawable/shape_feel"
                         android:orientation="horizontal"
                         android:paddingLeft="15dp"
-                        tools:ignore="RtlSymmetry">
+                        tools:ignore="RtlHardcoded,RtlSymmetry">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -769,7 +769,7 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:paddingEnd="10dp"
-                            android:layout_marginRight="8dp"
+                            android:layout_marginEnd="8dp"
                             tools:ignore="ContentDescription,RtlSymmetry" />
 
                     </RelativeLayout>
