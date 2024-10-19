@@ -224,6 +224,8 @@
                         android:id="@+id/parent_lay"
                         android:visibility="invisible"
                         android:orientation="vertical"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -398,7 +400,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Data izin keluar kantor tidak tersedia"
+            android:text="Data peminjaman kendaraan tidak tersedia"
             android:textAlignment="center"
             android:textColor="#ECC28D"
             android:textSize="10dp"
@@ -444,7 +446,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Data izin keluar kantor tidak tersedia"
+            android:text="Data peminjaman kendaraan tidak tersedia"
             android:textAlignment="center"
             android:textColor="#ECC28D"
             android:textSize="10dp"

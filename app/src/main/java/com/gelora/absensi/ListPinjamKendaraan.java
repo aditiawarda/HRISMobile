@@ -94,6 +94,7 @@ public class ListPinjamKendaraan extends AppCompatActivity {
             }
         });
 
+        binding.swipeToRefreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         binding.swipeToRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -225,15 +226,23 @@ public class ListPinjamKendaraan extends AppCompatActivity {
             binding.tabBar.setVisibility(View.GONE);
             selectedRightButton = true;
 
-            int top = 65;
+            int top = 67;
             int paddingTop = dpToPixels(top, getBaseContext());
             binding.parentLay.setPadding(0,paddingTop,0,0);
             binding.addBtnPart.setVisibility(View.VISIBLE);
+
+            int top2 = 140;
+            int paddingTop2 = dpToPixels(top2, getBaseContext());
+            binding.loadingDataPart.setPadding(0,paddingTop2,0,0);
+
+            int top3 = 120;
+            int paddingTop3 = dpToPixels(top3, getBaseContext());
+            binding.noDataPart2.setPadding(0,paddingTop3,0,0);
         } else {
             binding.tabBar.setVisibility(View.VISIBLE);
             selectedLeftButton = true;
 
-            int top = 5;
+            int top = 8;
             int paddingTop = dpToPixels(top, getBaseContext());
             binding.parentLay.setPadding(0,paddingTop,0,0);
             binding.addBtnPart.setVisibility(View.GONE);
