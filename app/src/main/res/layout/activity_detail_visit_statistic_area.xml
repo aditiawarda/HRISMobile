@@ -183,7 +183,7 @@
                                             android:textColor="@color/text_color"
                                             android:textSize="9dp"
                                             android:rotation="-90"
-                                            android:layout_marginLeft="-40dp"
+                                            android:layout_marginLeft="-38dp"
                                             android:gravity="center"
                                             android:layout_gravity="center"
                                             tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
