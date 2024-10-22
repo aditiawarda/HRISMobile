@@ -58,7 +58,6 @@ public class StatusBarColorManager {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private static class StatusBarColorManagerImplApi19 extends StatusBarColorManagerBase {
 
         protected Activity mActivity;
@@ -104,11 +103,7 @@ public class StatusBarColorManager {
         }
 
         protected void setDrawable(Drawable drawable) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-                mStatusBarBackground.setBackground(drawable);
-            } else {
-                mStatusBarBackground.setBackgroundDrawable(drawable);
-            }
+            mStatusBarBackground.setBackground(drawable);
         }
 
         protected void setDrawableRes(@DrawableRes int drawableRes) {
@@ -154,7 +149,6 @@ public class StatusBarColorManager {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private static class StatusBarColorManagerImplApi21 extends StatusBarColorManagerImplApi19 {
 
         public StatusBarColorManagerImplApi21(@NonNull Activity activity) {
@@ -205,12 +199,8 @@ public class StatusBarColorManager {
     public StatusBarColorManager(@NonNull Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             mStatusBarColorManagerImpl = new StatusBarColorManagerImplApi23(activity);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mStatusBarColorManagerImpl = new StatusBarColorManagerImplApi21(activity);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mStatusBarColorManagerImpl = new StatusBarColorManagerImplApi19(activity);
         } else {
-            mStatusBarColorManagerImpl = new StatusBarColorManagerBase();
+            mStatusBarColorManagerImpl = new StatusBarColorManagerImplApi21(activity);
         }
     }
 

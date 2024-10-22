@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,10 +45,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -136,38 +138,27 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
 
     private void nomerSuratTextWatcher() {
         binding.nomerSurat.addTextChangedListener(new TextWatcher() {
-
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
                 nomerSuratValidation();
-
             }
-
             @Override
             public void afterTextChanged(Editable s) {
-
             }
-
         });
     }
 
     private void nomerSuratValidation() {
         String noSuratInput = binding.nomerSurat.getText().toString();
         String url = "https://family.geloraaksara.co.id/gap-f/api/cek_nomer_surat_pinjam_kendaraan=" + noSuratInput;
-
-        Log.d("API Request", "Fetching suggestions from: " + url); // Log the URL being requested
-
+        Log.d("API Request", "Fetching suggestions from: " + url);
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
-                    Log.d("Valid Response", response); // Log the entire response
-
-                    if (response.trim().equals("unique")) { // Use trim() to avoid any leading/trailing spaces
+                    Log.d("Valid Response", response);
+                    if (response.trim().equals("unique")) {
                         noSuratValid = true;
                         enableSubmitByNoSurat();
                     } else {
@@ -181,8 +172,6 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
                     disableSubmitByNoSurat();
                 }
         );
-
-        // Adding the request to the Volley request queue
         ApiClient.getInstance(this).addToRequestQueue(request);
     }
 
@@ -222,36 +211,24 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Calendar c = Calendar.getInstance();
-
-                // Get the current year, month, and day
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
-                // Create a DatePickerDialog to select the date
-                DatePickerDialog datePickerDialog = new DatePickerDialog(FormPeminjamanKendaraan.this,
+                DatePickerDialog datePickerDialog = new DatePickerDialog(FormPeminjamanKendaraan.this, R.style.datePickerStyle,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
-                                // Create a Calendar instance with the selected date
                                 Calendar selectedDate = Calendar.getInstance();
                                 selectedDate.set(selectedYear, selectedMonth, selectedDay);
-
-                                // Set up SimpleDateFormat to display day name and date in Indonesian
                                 SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, dd MMMM yyyy", new Locale("id", "ID"));
                                 String formattedDate = dateFormat.format(selectedDate.getTime());
-
                                 SimpleDateFormat dateConversion = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                                 tanggalFilled = true;
-
                                 postDate = dateConversion.format(selectedDate.getTime());
-                                // Set the formatted date to your TextView
-
                                 binding.hari.setText(formattedDate);
                             }
                         }, year, month, day);
-
-                // Show the DatePickerDialog
                 datePickerDialog.show();
             }
         });
@@ -262,8 +239,6 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Calendar c = Calendar.getInstance();
-
-                // on below line we are getting our hour, minute.
                 int hour = c.get(Calendar.HOUR_OF_DAY);
                 int minute = c.get(Calendar.MINUTE);
 
@@ -271,19 +246,12 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
                         new TimePickerDialog.OnTimeSetListener() {
                             @SuppressLint("SetTextI18n")
                             @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay,
-                                                  int minute) {
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                                 tanggalFilled = true;
-                                //blm cek kompatibel dgn lower version android
                                 @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat(" dd-MM-yyyy").format(Calendar.getInstance().getTime());
                                 binding.jamKeluar.setText(hourOfDay + ":" + minute);
-//                                postJamKeluar = hourOfDay + ":" + minute + ":00";
-//                                jamKeluarFilled = true;
-
                             }
-
                         }, hour, minute, false);
-
                 timePickerDialog.show();
             }
         });
@@ -295,22 +263,15 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // Reverse the SeekBar progress: 0 = full, 100 = empty
-                float reversedProgress = 1.0f - (progress / 100f); // Invert the progress value
+                float reversedProgress = 1.0f - (progress / 100f);
                 fuelGaugeView.setFuelLevel(reversedProgress);
-
-                // Update the percentage TextView with the current progress value
                 percentageTextView.setText(progress + "%");
             }
-
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // Optional: Handle event when user starts dragging the SeekBar
             }
-
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // Optional: Handle event when user stops dragging the SeekBar
             }
         });
     }
@@ -319,7 +280,6 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
         repository.getCurrentUsers(nik, new Response.Listener<CurrentUser>() {
             @Override
             public void onResponse(CurrentUser user) {
-
                 binding.etNama.setText(user.getNama());
                 binding.etBagian.setText(user.getBagian());
             }
@@ -337,23 +297,17 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
     }
 
     private void kendaraanSpinner() {
-
-        // Set up the list of options for the Spinner
         List<String> kendaraanOptions = new ArrayList<>(Arrays.asList("Pilih Jenis Kendaraan", "MOBIL", "SEPEDA MOTOR", "TRUCK", "FORKLIFT", "HANDPALLET", "TROLLEY"));
         ArrayAdapter<String> kendaraanAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, kendaraanOptions) {
-
             @Override
             public boolean isEnabled(int position) {
-                // Disable the first item ("Pilih Jenis Kendaraan")
                 return position != 0;
             }
-
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView textView = (TextView) view;
-                // Set the color of the first item to gray to indicate that it is disabled
                 textView.setTextColor(position == 0 ? Color.GRAY : Color.BLACK);
                 return view;
             }
@@ -361,92 +315,66 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
 
         kendaraanAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.kendaraanSpinner.setAdapter(kendaraanAdapter);
-
-        // Set the default selection to "Pilih Jenis Kendaraan"
         binding.kendaraanSpinner.setSelection(0);
-
         binding.kendaraanSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // Do nothing when "Pilih Jenis Kendaraan" is selected
                 if (position == 0) {
-                    // Optionally, you can show a message indicating the user should select a valid option
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // No action needed when nothing is selected
             }
         });
     }
 
     private void formValidation() {
-
         binding.nomerSurat.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // No action needed here
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
                 if (s.length() > 0) {
                     nomerSuratFilled = true;
                 } else {
                     nomerSuratFilled = false;
-
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
-
 
         binding.tujuan.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // No action needed here
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
                 if (s.length() > 0) {
                     tujuanFilled = true;
                 } else {
                     tujuanFilled = false;
-
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
 
         binding.keperluan.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // No action needed here
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
                 if (s.length() > 0) {
                     keperluanFilled = true;
                 } else {
                     keperluanFilled = false;
-
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
 
@@ -456,23 +384,17 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
         binding.noKendaraan.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // No action needed here
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
                 if (s.length() > 0) {
                     nomerKendaraanFilled = true;
                 } else {
                     nomerKendaraanFilled = false;
-
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
 
@@ -481,11 +403,7 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
     private void bersihKotorSpinner() {
         ArrayAdapter<String> kondisiAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, new String[]{"Bersih", "Kotor"});
-
-
         kondisiAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
         binding.bersihSpinner.setAdapter(kondisiAdapter);
     }
 
@@ -493,18 +411,14 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
     private boolean isFocused = false;
 
     private void setupAutoCompleteTextView() {
-        binding.noKendaraan.setThreshold(1); // Start fetching suggestions after typing 1 character
-
-        // Set the OnFocusChangeListener to track focus state
+        binding.noKendaraan.setThreshold(1);
         binding.noKendaraan.setOnFocusChangeListener((v, hasFocus) -> {
-            isFocused = hasFocus; // Update the focus state flag
+            isFocused = hasFocus;
         });
 
-        // Set the OnItemClickListener to handle selection of suggestions
         binding.noKendaraan.setOnItemClickListener((parent, view, position, id) -> {
-            // User selected a suggestion, stop further API calls
-            isSuggestionSelected = true; // Set the flag to true when a suggestion is selected
-            binding.noKendaraan.clearFocus(); // Clear focus to prevent further text change triggering
+            isSuggestionSelected = true;
+            binding.noKendaraan.clearFocus();
             hideKeyboard(binding.noKendaraan);
         });
 
@@ -512,15 +426,11 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Reset the flag if the text changes manually after a selection
                 if (isSuggestionSelected) {
-                    isSuggestionSelected = false; // User manually changed the text, so reset the flag
+                    isSuggestionSelected = false;
                 }
-
-                // Skip processing if the AutoCompleteTextView is not focused or if a suggestion was already selected
                 if (!isFocused || isSuggestionSelected) {
                     return;
                 } else {
@@ -529,17 +439,12 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
                         fetchSuggestions(s.toString(), selectedJenisKendaraan);
                     }
                 }
-
-                // If the user has not made a selection yet, continue with the API call
                 disableSubmitByPlat();
-
-
                 platValidation();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                // Keep isSuggestionSelected true if a suggestion is chosen, otherwise reset it
                 if (!isSuggestionSelected) {
                     isSuggestionSelected = false;
                 }
@@ -559,61 +464,40 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
         String platInput = binding.noKendaraan.getText().toString();
         String url = "https://family.geloraaksara.co.id/gap-f/api/cek_kendaraan_by_plat?nik=" + nik + "&no_plat="
                 + platInput;
-
-        Log.d("API Request", "Fetching suggestions from: " + url); // Log the URL being requested
-
+        Log.d("API Request", "Fetching suggestions from: " + url);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
-                        Log.d("Valid Response", response.toString()); // Log the entire response
-
-
+                        Log.d("Valid Response", response.toString());
                         if (response.getString("status").equals("success")) {
                             binding.detailKendaraan.setVisibility(View.VISIBLE);
-
-
-
                             platValid = true;
-                            JSONObject data = response.getJSONObject("data"); // Extract the "data" object
+                            JSONObject data = response.getJSONObject("data");
                             String namaDetail = data.optString("nama_kendaraan", "");
                             String jenisDetail = data.optString("jenis_kendaraan", "");
                             String kategoriDetail = data.optString("kategori", "");
                             String platDetail = data.optString("plat_nomor", "");
-
-//                            String namaDetail = data.optString("nama", "");
-
                             binding.detailNama.setText(namaDetail);
                             binding.detailJenis.setText(jenisDetail);
                             binding.detailKategori.setText(kategoriDetail);
                             binding.detailPlat.setText(platDetail);
-
                             idKendaraan = data.getInt("id_kendaraan");
                             enableSubmitByPlat();
-
-
                         } else {
-
-
                             platValid = false;
                             disableSubmitByPlat();
-
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                         disableSubmitByPlat();
-
                     }
                 },
                 error -> {
                     error.printStackTrace();
-                    // Log detailed error response
                     Log.e("API Error", "Error fetching suggestions: " + error.toString());
                     disableSubmitByPlat();
-
-
                 });
 
-        // Adding the request to the Volley request queue
         ApiClient.getInstance(this).addToRequestQueue(request);
     }
 
@@ -621,48 +505,33 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
     private void fetchSuggestions(String noPlat, String jenisKendaraan) {
         String url = "https://family.geloraaksara.co.id/gap-f/api/cari_kendaraan_by_plat?nik=123&no_plat="
                 + Uri.encode(noPlat) + "&jenis_kendaraan=Mobil";
-
         Log.d("API Request", "Fetching suggestions from: " + url); // Log the URL being requested
-
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
-                        Log.d("API Response", response.toString()); // Log the entire response
-
-                        // Check for status in the response
+                        Log.d("API Response", response.toString());
                         if (response.getString("status").equals("success")) {
-                            // Parse the data array
                             JSONArray dataArray = response.getJSONArray("data");
                             List<String> suggestions = new ArrayList<>();
-
                             for (int i = 0; i < dataArray.length(); i++) {
                                 JSONObject vehicle = dataArray.getJSONObject(i);
                                 String suggestion = vehicle.getString("plat_nomor"); // or any other field you want
                                 suggestions.add(suggestion);
                             }
-
-                            // Update the AutoCompleteTextView adapter with new suggestions
                             ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                                     android.R.layout.simple_dropdown_item_1line, suggestions);
                             binding.noKendaraan.setAdapter(adapter);
                             binding.noKendaraan.showDropDown();
-                        } else {
-                            // If the status is not success, show the message
-
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
-
                     }
                 },
                 error -> {
                     error.printStackTrace();
-                    // Log detailed error response
                     Log.e("API Error", "Error fetching suggestions: " + error.toString());
-
                 });
 
-        // Adding the request to the Volley request queue
         ApiClient.getInstance(this).addToRequestQueue(request);
 
     }
@@ -671,77 +540,62 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
     private void disableSubmitByPlat() {
         if (isConnected){
             binding.platValidation.setVisibility(View.VISIBLE);
-            binding.platValidation.setText("Nomor Kendaraan Tidak Ditemukan");
+            binding.platValidation.setText("Nomor kendaraan tidak ditemukan");
             binding.platValidation.setTextColor(Color.parseColor("#B83633"));
             binding.kirimBtn.setEnabled(false);
-
             binding.kirimBtn.setAlpha(0.5f);
         } else {
             binding.platValidation.setVisibility(View.VISIBLE);
-            binding.platValidation.setText("No Internet Connection");
+            binding.platValidation.setText("Koneksi terputus...");
             binding.platValidation.setTextColor(Color.parseColor("#B83633"));
             binding.kirimBtn.setEnabled(false);
-
             binding.kirimBtn.setAlpha(0.5f);
         }
-
     }
 
     @SuppressLint("SetTextI18n")
     private void disableSubmitByNoSurat() {
         if (isConnected){
             binding.noSuratValidation.setVisibility(View.VISIBLE);
-            binding.noSuratValidation.setText("Nomor Sudah Pernah Digunakan");
+            binding.noSuratValidation.setText("Nomor sudah pernah digunakan");
             binding.noSuratValidation.setTextColor(Color.parseColor("#B83633"));
             binding.kirimBtn.setEnabled(false);
-
             binding.kirimBtn.setAlpha(0.5f);
-        }else{
+        } else {
             binding.noSuratValidation.setVisibility(View.VISIBLE);
-            binding.noSuratValidation.setText("No Internet Connection");
+            binding.noSuratValidation.setText("Koneksi terputus...");
             binding.noSuratValidation.setTextColor(Color.parseColor("#B83633"));
             binding.kirimBtn.setEnabled(false);
-
             binding.kirimBtn.setAlpha(0.5f);
         }
-
     }
 
+    @SuppressLint("SetTextI18n")
     private void enableSubmitByPlat() {
         binding.platValidation.setVisibility(View.VISIBLE);
-        binding.platValidation.setText("Nomor Kendaraan Valid");
+        binding.platValidation.setText("Nomor kendaraan valid");
         binding.platValidation.setTextColor(Color.parseColor("#309A35"));
-
         binding.kirimBtn.setEnabled(true);
-
-
         binding.kirimBtn.setAlpha(1f);
     }
 
+    @SuppressLint("SetTextI18n")
     private void enableSubmitByNoSurat() {
         binding.noSuratValidation.setVisibility(View.VISIBLE);
-        binding.noSuratValidation.setText("Nomor Bisa Di Gunakan");
+        binding.noSuratValidation.setText("Nomor dapat digunakan");
         binding.noSuratValidation.setTextColor(Color.parseColor("#309A35"));
-
         binding.kirimBtn.setEnabled(true);
-
-
         binding.kirimBtn.setAlpha(1f);
     }
 
     private void sendData() {
         repository.postPK(nik, binding.nomerSurat.getText().toString(), monthRoman, String.valueOf(currentYear), postDate, binding.tujuan.getText().toString(), binding.keperluan.getText().toString(), String.valueOf(idKendaraan), response -> {
-                    // Handle the success response here
                     Log.d("Response", "Success: " + response);
                     pDialog.dismiss();
                     onBackPressed();
                     finish();
-
-
-
                 },
                 error -> {
-                    // Handle the error response here
                     Log.e("Error", "Error: " + error.toString());
                     pDialog.setTitleText("Gagal Tersimpan")
                             .setContentText("Terjadi kesalahan saat mengirim data")
@@ -751,12 +605,10 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
     }
 
     private void checkInternet() {
-
         viewModel.getIsConnected().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean isConnectedNow) {
                 if (isConnectedNow) {
-                    // Connected
                     isConnected = true;
                     fetchCurrentUserData(nik);
                     if (!binding.nomerSurat.getText().toString().equals("")){
@@ -765,11 +617,9 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
                     if (!binding.noKendaraan.getText().toString().equals("")){
                         platValidation();
                     }
-
                     if (isClickSendWhileOffline) {
                         sendData();
                         isClickSendWhileOffline = false;
-
                     }
                 } else {
                     isConnected = false;
@@ -782,9 +632,7 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
                 }
             }
         });
-
     }
-
 
     private void connectionFailed() {
         CookieBar.build(FormPeminjamanKendaraan.this)
@@ -803,10 +651,7 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Calendar c = Calendar.getInstance();
-
                 if (nomerSuratFilled && nomerKendaraanFilled && tujuanFilled && tanggalFilled && keperluanFilled) {
-                    // push data api disini
-
                     new KAlertDialog(FormPeminjamanKendaraan.this, KAlertDialog.WARNING_TYPE)
                             .setTitleText("Perhatian")
                             .setContentText("Kirim permohonan sekarang?")
@@ -860,34 +705,20 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
 
                                         public void onFinish() {
                                             i = -1;
-
                                             if (isConnected) {
                                                 isClickSendWhileOffline = false;
-
                                                 sendData();
-//                                                Intent intent = new Intent(FormPeminjamanKendaraan.this, ListPinjamKendaraan.class);
-//                                                startActivity(intent);
-
-
-
                                             } else {
                                                 isClickSendWhileOffline = true;
                                                 checkInternet();
                                                 connectionFailed();
                                             }
-
-
                                         }
                                     }.start();
-
-
                                 }
                             })
                             .show();
-
-
                 } else {
-                    // tampilin alert dialog ada data yang belum terisi
                     new KAlertDialog(FormPeminjamanKendaraan.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
                             .setContentText("Harap isi semua data")
@@ -904,4 +735,5 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
         });
 
     }
+
 }

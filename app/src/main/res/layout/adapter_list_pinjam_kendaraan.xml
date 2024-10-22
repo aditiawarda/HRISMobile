@@ -40,7 +40,7 @@
                     android:layout_marginBottom="15dp"
                     android:fontFamily="@font/roboto"
                     android:text="Status"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText,VisualLintOverlap"></TextView>
 
@@ -100,7 +100,9 @@
 
                 <View
                     android:id="@+id/horizontal_line"
-                    android:layout_width="280dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="105dp"
+                    android:layout_marginStart="17dp"
                     android:layout_height="1dp"
                     android:layout_above="@id/card_detail_proses"
                     android:layout_marginHorizontal="20dp"

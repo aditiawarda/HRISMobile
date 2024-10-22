@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -83,207 +83,115 @@
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Nomor Surat"
-                    tools:ignore="HardcodedText">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/nomer_surat"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/underline"
-                        android:inputType="number"
-                        tools:ignore="TouchTargetSizeCheck" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                <EditText
+                    android:id="@+id/nomer_surat"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_input_form"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="No. Surat..."
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="#595959"
+                    android:textColorHighlight="#FFE1BC"
+                    android:textColorHint="#DA6F46"
+                    android:textSize="13dp"
+                    tools:ignore="Autofill,HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                 <TextView
                     android:id="@+id/tanggal_surat"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="/EXP/GAP/"
-                    android:textSize="17sp"
-                    tools:ignore="HardcodedText,RtlHardcoded">
-                </TextView>
+                    android:textSize="15dp"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage"/>
 
             </LinearLayout>
 
             <TextView
                 android:id="@+id/no_surat_validation"
                 android:visibility="gone"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginHorizontal="20dp"
                 android:text="Sedang verifikasi nomor"
-                android:textSize="17sp"
+                android:textSize="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:ignore="HardcodedText">
-            </TextView>
+                tools:ignore="HardcodedText,SpUsage"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nama"
-                    android:textSize="17sp"
-                    tools:ignore="HardcodedText">
-                </TextView>
-
-                <EditText
-                    android:id="@+id/et_nama"
-                    android:layout_width="match_parent"
-                    android:layout_height="140px"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/bordered_spinner"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:paddingHorizontal="15dp"
-                    android:spinnerMode="dropdown"
-                    tools:ignore="Autofill,LabelFor,PxUsage,SpeakableTextPresentCheck,TextFields,VisualLintTextFieldSize" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="Bagian"
-                    android:textSize="17sp"
-                    tools:ignore="HardcodedText">
-
-                </TextView>
-
-                <EditText
-                    android:id="@+id/et_bagian"
-                    android:layout_width="match_parent"
-                    android:layout_height="110px"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/bordered_spinner"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:paddingHorizontal="15dp"
-                    tools:ignore="Autofill,LabelFor,PxUsage,SpeakableTextPresentCheck,TextFields,TouchTargetSizeCheck,VisualLintTextFieldSize">
-
-                </EditText>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hari / tanggal"
-                    android:textSize="17sp"
-                    tools:ignore="HardcodedText">
-
-                </TextView>
+                    android:layout_marginBottom="5dp"
+                    android:text="Nama :"
+                    android:textColor="#696969"
+                    android:textSize="12dp"
+                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 <LinearLayout
-                    android:id="@+id/keluar_date"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/shape_feel"
+                    android:background="@drawable/shape_feel_disable"
+                    android:gravity="center|left"
                     android:orientation="horizontal"
-                    android:paddingStart="8dp"
-                    tools:ignore="RtlSymmetry">
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    tools:ignore="RtlHardcoded">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        tools:ignore="UselessParent">
+                    <TextView
+                        android:id="@+id/et_nama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Memuat data..."
+                        android:textColor="#B15735"
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:gravity="center|left"
-                            android:orientation="vertical"
-                            tools:ignore="RelativeOverlap,RtlHardcoded">
+                </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/hari"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textColor="#B15735"
-                                android:textSize="15dp"
-                                android:textStyle="bold"
-                                tools:ignore="SpUsage" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Bagian :"
+                    android:textColor="#696969"
+                    android:textSize="12dp"
+                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/shape_feel_disable"
+                    android:gravity="center|left"
+                    android:orientation="horizontal"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    tools:ignore="RtlHardcoded">
 
-                        <LinearLayout
-                            android:layout_width="40dp"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentRight="true"
-                            android:background="@drawable/shape_btn"
-                            android:gravity="center"
-                            tools:ignore="RtlHardcoded">
-
-                            <TextView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:background="@drawable/ic_baseline_jam_masuk" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:paddingHorizontal="15dp"
-                            android:paddingTop="95dp"
-                            android:paddingBottom="20dp"
-                            android:visibility="invisible">
-
-                            <ProgressBar
-                                android:layout_width="45dp"
-                                android:layout_height="45dp"
-                                android:layout_marginTop="20dp"
-                                android:layout_marginBottom="25dp"
-                                android:indeterminateTint="@color/colorAccent2"
-                                tools:ignore="RtlHardcoded" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="-8dp"
-                                android:text="Memuat data"
-                                android:textAlignment="center"
-                                android:textColor="#E1BB8A"
-                                android:textSize="12dp"
-                                android:textStyle="bold"
-                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Tunggu beberapa saat"
-                                android:textAlignment="center"
-                                android:textColor="#ECC28D"
-                                android:textSize="10dp"
-                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                        </LinearLayout>
-
-                    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/et_bagian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Memuat data..."
+                        android:textColor="#B15735"
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -293,57 +201,150 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tujuan"
-                    android:textSize="17sp"
-                    tools:ignore="HardcodedText">
+                    android:layout_marginBottom="5dp"
+                    android:text="Hari/Tanggal :"
+                    android:textColor="#696969"
+                    android:textSize="12dp"
+                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                </TextView>
-
-                <EditText
-                    android:id="@+id/tujuan"
+                <LinearLayout
+                    android:id="@+id/keluar_date"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="15dp"
-                    tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TextFields,TouchTargetSizeCheck,VisualLintTextFieldSize"></EditText>
+                    android:layout_height="40dp"
+                    android:paddingStart="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/shape_feel"
+                    android:orientation="horizontal"
+                    tools:ignore="RtlSymmetry">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:ignore="UselessParent">
+
+                        <LinearLayout
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:orientation="vertical"
+                            android:gravity="center|left"
+                            tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                            <TextView
+                                android:id="@+id/hari"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#B15735"
+                                android:textSize="13dp"
+                                android:textStyle="bold"
+                                android:text=""
+                                tools:ignore="SpUsage" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_alignParentRight="true"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/shape_btn"
+                            android:gravity="center"
+                            tools:ignore="RtlHardcoded">
+
+                            <TextView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:background="@drawable/ic_baseline_date_mulai"/>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Tujuan :"
+                android:layout_marginHorizontal="20dp"
+                android:textColor="#696969"
+                android:textSize="12dp"
+                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+            <EditText
+                android:id="@+id/tujuan"
+                android:layout_marginHorizontal="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/shape_input_form"
+                android:drawablePadding="10dp"
+                android:gravity="top"
+                android:hint=""
+                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
+                android:lineSpacingExtra="3dp"
+                android:maxLength="255"
+                android:minHeight="80dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="13dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="13dp"
+                android:textColor="#595959"
+                android:textColorHighlight="#FFE1BC"
+                android:textColorHint="#595959"
+                android:textSize="14dp"
+                android:importantForAutofill="no"
+                android:importantForAccessibility="no"
+                tools:ignore="LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Keperluan :"
+                android:layout_marginHorizontal="20dp"
+                android:textColor="#696969"
+                android:textSize="12dp"
+                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+            <EditText
+                android:id="@+id/keperluan"
+                android:layout_marginHorizontal="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_input_form"
+                android:drawablePadding="10dp"
+                android:gravity="top"
+                android:hint=""
+                android:inputType="textVisiblePassword|textCapSentences|textMultiLine|textNoSuggestions"
+                android:lineSpacingExtra="3dp"
+                android:maxLength="255"
+                android:minHeight="80dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="13dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="13dp"
+                android:textColor="#595959"
+                android:textColorHighlight="#FFE1BC"
+                android:textColorHint="#595959"
+                android:textSize="14dp"
+                android:importantForAutofill="no"
+                android:importantForAccessibility="no"
+                tools:ignore="LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Keperluan"
-                    android:textSize="17sp"
-                    tools:ignore="HardcodedText">
-                </TextView>
-
-                <EditText
-                    android:id="@+id/keperluan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="15dp"
-                    tools:ignore="Autofill,LabelFor,TextFields,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize"></EditText>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -352,7 +353,7 @@
                     android:layout_height="wrap_content"
                     android:text="Jenis Kendaraan"
                     android:textSize="17sp"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText"/>
 
                 <RelativeLayout
                     android:visibility="gone"
@@ -366,7 +367,7 @@
                         android:layout_height="50dp"
                         android:background="@drawable/bordered_spinner"
                         android:padding="8dp"
-                        android:spinnerMode="dropdown" />
+                        android:spinnerMode="dropdown"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -376,7 +377,7 @@
                         android:layout_centerVertical="true"
                         android:paddingEnd="10dp"
                         android:layout_marginRight="8dp"
-                        tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
+                        tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry"/>
 
                 </RelativeLayout>
 
@@ -391,43 +392,73 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="No. Kendaraan"
-                    android:textSize="17sp"
-                    tools:ignore="HardcodedText">
-                </TextView>
+                    android:layout_marginBottom="5dp"
+                    android:text="No. Kendaraan :"
+                    android:textColor="#696969"
+                    android:textSize="12dp"
+                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 <AutoCompleteTextView
                     android:id="@+id/no_kendaraan"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/bordered_spinner"
-                    android:paddingHorizontal="15dp"
-                    tools:ignore="LabelFor,PxUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize"></AutoCompleteTextView>
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_input_form"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint=""
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="#595959"
+                    android:textColorHighlight="#FFDDB3"
+                    android:textColorHint="#AAAAAA"
+                    android:textSize="13dp"
+                    tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/plat_validation"
+                    android:visibility="gone"
+                    android:layout_marginTop="5dp"
+                    android:text="Sedang verifikasi nomor"
+                    android:textSize="12dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="Checking The Number"
-                    android:textSize="17sp"
-                    tools:ignore="HardcodedText">
-
-                </TextView>
+                    tools:ignore="HardcodedText,SpUsage"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/detail_kendaraan"
-                android:background="@drawable/bordered_spinner"
+                android:background="@drawable/shape_detail_permohonan"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="20dp"
+                android:paddingRight="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="9dp"
+                android:paddingBottom="14dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="12dp"
+                        android:textColor="#515151"
+                        android:text="DETAIL KENDARAAN"
+                        tools:ignore="HardcodedText,SpUsage" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -436,14 +467,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="90dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="30dp"
                         android:fontFamily="@font/roboto"
                         android:text="Nama"
-                        android:textSize="11sp"
-                        tools:ignore="HardcodedText"></TextView>
+                        android:textSize="13dp"
+                        tools:ignore="HardcodedText,SpUsage"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -452,8 +482,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text=":"
-                        android:textSize="11sp"
-                        tools:ignore="HardcodedText"></TextView>
+                        android:textSize="13dp"
+                        tools:ignore="HardcodedText,SpUsage"/>
 
                     <TextView
                         android:id="@+id/detail_nama"
@@ -462,9 +492,9 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
-                        android:text="Detail Nama"
-                        android:textSize="11sp"
-                        tools:ignore="HardcodedText"></TextView>
+                        android:text="-"
+                        android:textSize="13dp"
+                        tools:ignore="HardcodedText,SpUsage"/>
 
                 </LinearLayout>
 
@@ -475,14 +505,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="90dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="30dp"
                         android:fontFamily="@font/roboto"
                         android:text="Jenis"
-                        android:textSize="11sp"
-                        tools:ignore="HardcodedText"></TextView>
+                        android:textSize="13dp"
+                        tools:ignore="HardcodedText,SpUsage"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -491,8 +520,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text=":"
-                        android:textSize="11sp"
-                        tools:ignore="HardcodedText"></TextView>
+                        android:textSize="13dp"
+                        tools:ignore="HardcodedText,SpUsage"/>
 
                     <TextView
                         android:id="@+id/detail_jenis"
@@ -501,9 +530,9 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
-                        android:text="Detail Nama"
-                        android:textSize="11sp"
-                        tools:ignore="HardcodedText"></TextView>
+                        android:text="-"
+                        android:textSize="13dp"
+                        tools:ignore="HardcodedText,SpUsage"/>
 
                 </LinearLayout>
 
@@ -514,14 +543,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="90dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="30dp"
                         android:fontFamily="@font/roboto"
                         android:text="Kategori"
-                        android:textSize="11sp"
-                        tools:ignore="HardcodedText"></TextView>
+                        android:textSize="13dp"
+                        tools:ignore="HardcodedText,SpUsage"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -530,8 +558,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text=":"
-                        android:textSize="11sp"
-                        tools:ignore="HardcodedText"></TextView>
+                        android:textSize="13dp"
+                        tools:ignore="HardcodedText,SpUsage"/>
 
                     <TextView
                         android:id="@+id/detail_kategori"
@@ -540,9 +568,9 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
-                        android:text="Detail Nama"
-                        android:textSize="11sp"
-                        tools:ignore="HardcodedText"></TextView>
+                        android:text="-"
+                        android:textSize="13dp"
+                        tools:ignore="HardcodedText,SpUsage"/>
 
                 </LinearLayout>
 
@@ -553,14 +581,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="90dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="30dp"
                         android:fontFamily="@font/roboto"
                         android:text="Plat Nomor"
-                        android:textSize="11sp"
-                        tools:ignore="HardcodedText"></TextView>
+                        android:textSize="13dp"
+                        tools:ignore="HardcodedText,SpUsage"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -569,8 +596,8 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text=":"
-                        android:textSize="11sp"
-                        tools:ignore="HardcodedText"></TextView>
+                        android:textSize="13dp"
+                        tools:ignore="HardcodedText,SpUsage"/>
 
                     <TextView
                         android:id="@+id/detail_plat"
@@ -579,9 +606,9 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
-                        android:text="Detail Nama"
-                        android:textSize="11sp"
-                        tools:ignore="HardcodedText"></TextView>
+                        android:text="-"
+                        android:textSize="13dp"
+                        tools:ignore="HardcodedText,SpUsage"/>
 
                 </LinearLayout>
 
@@ -606,8 +633,7 @@
                         android:layout_height="wrap_content"
                         android:text="Jam Keluar"
                         android:textSize="17sp"
-                        tools:ignore="HardcodedText">
-                    </TextView>
+                        tools:ignore="HardcodedText"/>
 
                     <LinearLayout
                         android:id="@+id/jam_picker"
@@ -729,10 +755,10 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/bordered_spinner"
                         android:paddingHorizontal="15dp"
-                        tools:ignore="Autofill,LabelFor,PxUsage,TextFields">
-                    </EditText>
+                        tools:ignore="Autofill,LabelFor,PxUsage,TextFields"/>
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -745,7 +771,7 @@
                         android:layout_height="wrap_content"
                         android:text="Bersih/Kotor"
                         android:textSize="17sp"
-                        tools:ignore="HardcodedText,TooManyViews" />
+                        tools:ignore="HardcodedText,TooManyViews"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -760,7 +786,7 @@
                             android:padding="8dp"
                             android:spinnerMode="dropdown"
                             android:layout_centerVertical="true"
-                            android:layout_alignParentStart="true" />
+                            android:layout_alignParentStart="true"/>
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -770,12 +796,11 @@
                             android:layout_centerVertical="true"
                             android:paddingEnd="10dp"
                             android:layout_marginEnd="8dp"
-                            tools:ignore="ContentDescription,RtlSymmetry" />
+                            tools:ignore="ContentDescription,RtlSymmetry"/>
 
                     </RelativeLayout>
 
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -789,8 +814,7 @@
                         android:layout_height="wrap_content"
                         android:text="BBM"
                         android:textSize="17sp"
-                        tools:ignore="HardcodedText">
-                    </TextView>
+                        tools:ignore="HardcodedText,TooManyViews"/>
 
                     <com.gelora.absensi.support.FuelGaugeView
                         android:id="@+id/fuelGaugeView"
@@ -799,8 +823,7 @@
                         android:layout_centerVertical="true"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        />
+                        android:layout_marginBottom="10dp"/>
 
                     <SeekBar
                         android:id="@+id/fuelSeekBar"
@@ -809,7 +832,7 @@
                         android:layout_below="@id/fuelGaugeView"
                         android:layout_marginHorizontal="70dp"
                         android:layout_marginTop="25dp"
-                        android:max="100" />
+                        android:max="100"/>
 
                     <TextView
                         android:id="@+id/percentageTextView"
@@ -823,22 +846,38 @@
                         android:fontFamily="@font/roboto"
                         android:text="50%"
                         android:textSize="21sp"
-                        tools:ignore="HardcodedText" />
+                        tools:ignore="HardcodedText"/>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-            <com.google.android.material.button.MaterialButton
+            <LinearLayout
                 android:id="@+id/kirim_btn"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:layout_marginVertical="20dp"
-                android:layout_marginHorizontal="20dp"
-                android:text="Kirim"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                app:cornerRadius="40dp"
-                tools:ignore="HardcodedText,VisualLintButtonSize" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="15dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/shape_btn"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_baseline_send_form"
+                    android:drawablePadding="7dp"
+                    android:drawableTint="@color/white"
+                    android:text="KIRIM"
+                    android:textColor="@color/white"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

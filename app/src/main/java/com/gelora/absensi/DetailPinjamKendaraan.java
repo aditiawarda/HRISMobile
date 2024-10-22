@@ -542,18 +542,70 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                     DownloadManager downloadManager = (DownloadManager) view.getContext().getSystemService(Context.DOWNLOAD_SERVICE);
                     if (downloadManager != null) {
                         downloadManager.enqueue(request);
-                        Toast.makeText(view.getContext(), "Mengunduh PDF", Toast.LENGTH_SHORT).show();
+                        pDialog = new KAlertDialog(DetailPinjamKendaraan.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                        pDialog.show();
+                        pDialog.setCancelable(false);
+                        new CountDownTimer(1300, 800) {
+                            public void onTick(long millisUntilFinished) {
+                                i++;
+                                switch (i) {
+                                    case 0:
+                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                (DetailPinjamKendaraan.this, R.color.colorGradien));
+                                        break;
+                                    case 1:
+                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                (DetailPinjamKendaraan.this, R.color.colorGradien2));
+                                        break;
+                                    case 2:
+                                    case 6:
+                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                (DetailPinjamKendaraan.this, R.color.colorGradien3));
+                                        break;
+                                    case 3:
+                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                (DetailPinjamKendaraan.this, R.color.colorGradien4));
+                                        break;
+                                    case 4:
+                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                (DetailPinjamKendaraan.this, R.color.colorGradien5));
+                                        break;
+                                    case 5:
+                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                (DetailPinjamKendaraan.this, R.color.colorGradien6));
+                                        break;
+                                }
+                            }
+
+                            public void onFinish() {
+                                i = -1;
+                                pDialog.dismiss();
+                                new KAlertDialog(DetailPinjamKendaraan.this, KAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Terjadi kesalahan")
+                                    .setConfirmText("    OK    ")
+                                    .show();
+                            }
+                        }.start();
+
                     } else {
-                        Toast.makeText(view.getContext(), "Failed to start download.", Toast.LENGTH_SHORT).show();
+                        new KAlertDialog(DetailPinjamKendaraan.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("O")
+                                .setContentText("File permohonan berhasil diunduh dan disimpan")
+                                .setConfirmText("    OK    ")
+                                .show();
                     }
                 });
             }
 
             if (detail.getStatus() == 2 || detail.getStatus() == 4 || detail.getStatus() == 6) {
+                binding.stampleImg.setVisibility(View.VISIBLE);
                 binding.stampleImg.setImageResource(R.drawable.rejected_img);
             } else if (detail.getStatus() == 7) {
+                binding.stampleImg.setVisibility(View.VISIBLE);
                 binding.stampleImg.setImageResource(R.drawable.accepted_img);
             } else if (detail.getStatus() == 0) {
+                binding.stampleImg.setVisibility(View.VISIBLE);
                 binding.stampleImg.setImageResource(R.drawable.canceled_img);
             }
 
@@ -609,7 +661,7 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                 if (detail.getStatus() == 1) {
                     binding.rightBtn.setVisibility(View.VISIBLE);
                     binding.batas.setVisibility(View.VISIBLE);
-                    binding.leftBtn.setText("Tolak");
+                    binding.leftBtn.setText("TOLAK");
                     binding.leftBtn.setOnClickListener(view -> {
                         kAlertDialog(2, idPk);
                     });
@@ -623,7 +675,7 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                     binding.leftBtn.setVisibility(View.VISIBLE);
                     binding.rightBtn.setVisibility(View.VISIBLE);
                     binding.batas.setVisibility(View.VISIBLE);
-                    binding.leftBtn.setText("Tolak");
+                    binding.leftBtn.setText("TOLAK");
                     binding.leftBtn.setOnClickListener(view -> {
                         kAlertDialog(4, idPk);
                     });
@@ -638,7 +690,7 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                     getSignature4(detail.getApp4Nik());
                     binding.rightBtn.setVisibility(View.VISIBLE);
                     binding.batas.setVisibility(View.VISIBLE);
-                    binding.leftBtn.setText("Tolak");
+                    binding.leftBtn.setText("TOLAK");
                     binding.leftBtn.setOnClickListener(view -> {
                         kAlertDialog(6, idPk);
                     });
@@ -653,7 +705,7 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                     getSignature4(detail.getApp4Nik());
                     binding.rightBtn.setVisibility(View.VISIBLE);
                     binding.batas.setVisibility(View.VISIBLE);
-                    binding.leftBtn.setText("Tolak");
+                    binding.leftBtn.setText("TOLAK");
                     binding.leftBtn.setOnClickListener(view -> {
                         kAlertDialog(6, idPk);
                     });
@@ -691,7 +743,7 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                             binding.rightBtn.setVisibility(View.VISIBLE);
                             binding.leftBtn.setVisibility(View.VISIBLE);
                             binding.batas.setVisibility(View.VISIBLE);
-                            binding.leftBtn.setText("Tolak");
+                            binding.leftBtn.setText("TOLAK");
                         } else {
                             binding.rightBtn.setVisibility(View.GONE);
                             binding.leftBtn.setVisibility(View.GONE);
@@ -711,7 +763,7 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
                             binding.rightBtn.setVisibility(View.VISIBLE);
                             binding.leftBtn.setVisibility(View.VISIBLE);
                             binding.batas.setVisibility(View.VISIBLE);
-                            binding.leftBtn.setText("Tolak");
+                            binding.leftBtn.setText("TOLAK");
                         } else {
                             binding.rightBtn.setVisibility(View.GONE);
                             binding.leftBtn.setVisibility(View.GONE);
@@ -830,7 +882,7 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
     private void kAlertDialog(int newUpdateState, String idPk) {
         new KAlertDialog(DetailPinjamKendaraan.this, KAlertDialog.WARNING_TYPE)
                 .setTitleText("Perhatian")
-                .setContentText("Update Permohonan Ini?")
+                .setContentText("Yakin untuk membatalkan permohonan?")
                 .setCancelText("TIDAK")
                 .setConfirmText("   YA   ")
                 .showCancelButton(true)
