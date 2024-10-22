@@ -1211,7 +1211,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
-                android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -1260,13 +1259,14 @@
                     android:backgroundTint="@color/redBtnTolak"
                     android:fontFamily="@font/roboto"
                     android:text="TOLAK"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:shadowColor="@color/transparent"
                     android:outlineSpotShadowColor="@color/transparent"
                     android:outlineAmbientShadowColor="@color/transparent"
-                    tools:ignore="HardcodedText,UnusedAttribute,VisualLintButtonSize"/>
+                    tools:ignore="HardcodedText,SpUsage,UnusedAttribute,VisualLintButtonSize"/>
 
                 <View
                     android:id="@+id/batas"
@@ -1286,13 +1286,14 @@
                     android:backgroundTint="@color/greenBtnSetujui"
                     android:fontFamily="@font/roboto"
                     android:text="SETUJUI"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     android:textAllCaps="false"
                     android:shadowColor="@color/transparent"
                     android:outlineSpotShadowColor="@color/transparent"
                     android:outlineAmbientShadowColor="@color/transparent"
                     android:textColor="@color/white"
-                    tools:ignore="HardcodedText,UnusedAttribute,VisualLintButtonSize"/>
+                    tools:ignore="HardcodedText,SpUsage,UnusedAttribute,VisualLintButtonSize"/>
 
             </RelativeLayout>
 
