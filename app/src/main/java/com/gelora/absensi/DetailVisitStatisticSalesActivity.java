@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,6 +56,7 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
     LinearLayout promosiBTN, penagihanBTN, pengirimanBTN, pameranBTN, jvBTN, njvBTN, lainnyaBTN, noDataPart, loadingDataPart, backBTN, actionBar;
+    RelativeLayout lineChartPart;
     String nikSales, month;
     CircleImageView profileImage;
     TextView wilayahSalesTV, monthTV, namaSalesTV, totalKunjunganTV, promosiTV, penagihanTV, pengoirimanTV, pameranTV, jvTV, njvTV, lainnyaTV;
@@ -103,6 +105,7 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
         njvBTN = findViewById(R.id.njv_btn);
         lainnyaBTN = findViewById(R.id.lainnya_btn);
         wilayahSalesTV = findViewById(R.id.wilayah_sales_tv);
+        lineChartPart = findViewById(R.id.line_chart_part);
 
         Glide.with(DetailVisitStatisticSalesActivity.this)
                 .load(R.drawable.loading_dots)
@@ -185,7 +188,7 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
                 njvTV.setVisibility(View.GONE);
                 lainnyaTV.setVisibility(View.GONE);
 
-                lineChart.setVisibility(View.GONE);
+                lineChartPart.setVisibility(View.GONE);
                 loadingDataPart.setVisibility(View.VISIBLE);
                 noDataPart.setVisibility(View.GONE);
 
@@ -434,11 +437,11 @@ public class DetailVisitStatisticSalesActivity extends AppCompatActivity {
                                 lineChart.invalidate();
 
                                 if(Integer.parseInt(total_kunjungan)>0){
-                                    lineChart.setVisibility(View.VISIBLE);
+                                    lineChartPart.setVisibility(View.VISIBLE);
                                     loadingDataPart.setVisibility(View.GONE);
                                     noDataPart.setVisibility(View.GONE);
                                 } else {
-                                    lineChart.setVisibility(View.GONE);
+                                    lineChartPart.setVisibility(View.GONE);
                                     loadingDataPart.setVisibility(View.GONE);
                                     noDataPart.setVisibility(View.VISIBLE);
                                 }

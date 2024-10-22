@@ -235,49 +235,65 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="vertical">
+                            android:layout_marginTop="10dp">
 
-                            <TextView
-                                android:layout_width="120dp"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="30dp"
-                                android:fontFamily="@font/roboto"
-                                android:text="Kepada Yth "
-                                android:textSize="11sp"
-                                tools:ignore="HardcodedText"/>
+                                android:orientation="vertical">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="30dp"
-                                android:layout_marginTop="2dp"
-                                android:fontFamily="@font/roboto"
-                                android:text="Bagian Ekspedisi PT Gelora Aksara Pratama "
-                                android:textSize="11sp"
-                                tools:ignore="HardcodedText"/>
+                                <TextView
+                                    android:layout_width="120dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Kepada Yth "
+                                    android:textSize="11sp"
+                                    tools:ignore="HardcodedText"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="30dp"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/roboto"
-                                android:textSize="11sp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:layout_marginTop="2dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Bagian Ekspedisi PT Gelora Aksara Pratama "
+                                    android:textSize="11sp"
+                                    tools:ignore="HardcodedText"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="30dp"
-                                android:fontFamily="@font/roboto"
-                                android:text="Yang Bertanda tangan dibawah ini:"
-                                android:textSize="11sp"
-                                tools:ignore="HardcodedText"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:layout_marginTop="5dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:textSize="11sp"/>
 
-                        </LinearLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Yang bertanda tangan dibawah ini:"
+                                    android:textSize="11sp"
+                                    tools:ignore="HardcodedText"/>
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentBottom="true"
+                                android:id="@+id/stample_img"
+                                android:layout_width="130dp"
+                                android:layout_height="58dp"
+                                android:layout_gravity="end"
+                                android:layout_marginHorizontal="20dp"
+                                tools:ignore="ContentDescription"/>
+
+                        </RelativeLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -549,15 +565,6 @@
                                 android:text="Detail Nomer"
                                 android:textSize="11sp"
                                 tools:ignore="HardcodedText"/>
-
-                            <ImageView
-                                android:id="@+id/stample_img"
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:layout_gravity="end"
-                                android:visibility="gone"
-                                android:layout_marginHorizontal="20dp"
-                                tools:ignore="ContentDescription"/>
 
                         </LinearLayout>
 
@@ -868,7 +875,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center_horizontal"
                                             android:fontFamily="@font/roboto"
-                                            android:text="Km "
+                                            android:text="Km"
                                             android:textSize="10sp"
                                             tools:ignore="HardcodedText,SmallSp"/>
 

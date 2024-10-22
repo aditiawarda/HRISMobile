@@ -601,7 +601,7 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
             if (detail.getStatus() == 2 || detail.getStatus() == 4 || detail.getStatus() == 6) {
                 binding.stampleImg.setVisibility(View.VISIBLE);
                 binding.stampleImg.setImageResource(R.drawable.rejected_img);
-            } else if (detail.getStatus() == 7) {
+            } else if (detail.getStatus() == 7 || detail.getStatus() == 9) {
                 binding.stampleImg.setVisibility(View.VISIBLE);
                 binding.stampleImg.setImageResource(R.drawable.accepted_img);
             } else if (detail.getStatus() == 0) {

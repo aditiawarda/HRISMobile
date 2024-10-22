@@ -151,14 +151,44 @@
                                     android:layout_height="300dp"
                                     android:orientation="vertical">
 
-                                    <com.github.mikephil.charting.charts.LineChart
-                                        android:id="@+id/lineChart"
-                                        android:visibility="gone"
+                                    <RelativeLayout
+                                        android:id="@+id/line_chart_part"
                                         android:layout_width="match_parent"
-                                        android:layout_height="300dp"
+                                        android:layout_height="wrap_content"
+                                        android:visibility="gone"
                                         android:layout_marginBottom="10dp"
                                         android:layout_marginRight="17dp"
-                                        android:layout_marginLeft="17dp" />
+                                        android:layout_marginLeft="17dp">
+
+                                        <com.github.mikephil.charting.charts.LineChart
+                                            android:id="@+id/lineChart"
+                                            android:layout_marginTop="17dp"
+                                            android:layout_marginStart="14dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="330dp" />
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="TANGGAL"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/text_color"
+                                            android:textSize="9dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:text="JUMLAH KUNJUNGAN"
+                                            android:textColor="@color/text_color"
+                                            android:textSize="9dp"
+                                            android:rotation="-90"
+                                            android:layout_marginLeft="-40dp"
+                                            android:gravity="center"
+                                            android:layout_gravity="center"
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                                    </RelativeLayout>
 
                                     <LinearLayout
                                         android:gravity="center"

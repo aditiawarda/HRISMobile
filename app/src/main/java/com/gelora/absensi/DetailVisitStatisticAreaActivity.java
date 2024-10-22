@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -36,9 +37,6 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,6 +58,7 @@ public class DetailVisitStatisticAreaActivity extends AppCompatActivity {
     TextView promosiTV, penagihanTV, pengoirimanTV, pameranTV, jvTV, njvTV, lainnyaTV;
     LinearLayout noDataPart, loadingDataPart, backBTN, actionBar;
     private LineChart lineChart;
+    RelativeLayout lineChartPart;
     private Handler handler = new Handler();
     ImageView promosiLoading, penagihanLoading, pengirimanLoading, pameranLoading, jvLoading, njvLoading, lainnyaLoading;
 
@@ -99,6 +98,7 @@ public class DetailVisitStatisticAreaActivity extends AppCompatActivity {
         jvBTN = findViewById(R.id.jv_btn);
         njvBTN = findViewById(R.id.njv_btn);
         lainnyaBTN = findViewById(R.id.lainnya_btn);
+        lineChartPart = findViewById(R.id.line_chart_part);
 
         wilayahFull = getIntent().getExtras().getString("wilayah_full");
         wilayah = getIntent().getExtras().getString("wilayah");
@@ -170,7 +170,7 @@ public class DetailVisitStatisticAreaActivity extends AppCompatActivity {
                 njvTV.setVisibility(View.GONE);
                 lainnyaTV.setVisibility(View.GONE);
 
-                lineChart.setVisibility(View.GONE);
+                lineChartPart.setVisibility(View.GONE);
                 loadingDataPart.setVisibility(View.VISIBLE);
                 noDataPart.setVisibility(View.GONE);
 
@@ -253,11 +253,11 @@ public class DetailVisitStatisticAreaActivity extends AppCompatActivity {
                                 lineChart.invalidate();
 
                                 if(Integer.parseInt(total_keseluruhan)>0){
-                                    lineChart.setVisibility(View.VISIBLE);
+                                    lineChartPart.setVisibility(View.VISIBLE);
                                     loadingDataPart.setVisibility(View.GONE);
                                     noDataPart.setVisibility(View.GONE);
                                 } else {
-                                    lineChart.setVisibility(View.GONE);
+                                    lineChartPart.setVisibility(View.GONE);
                                     loadingDataPart.setVisibility(View.GONE);
                                     noDataPart.setVisibility(View.VISIBLE);
                                 }
