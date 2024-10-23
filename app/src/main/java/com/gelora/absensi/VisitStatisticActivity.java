@@ -197,6 +197,9 @@ public class VisitStatisticActivity extends AppCompatActivity {
 
                 bulanPilihTV.setText(bulanName+" "+getYearOnly());
                 titleSalesListTV.setText("Statistik Kunjungan Sales Bulan "+bulanPilihTV.getText().toString());
+                komplainField.collapse();
+                komplainED.clearFocus();
+                komplainED.setText("");
 
                 loadingDataPart.setVisibility(View.VISIBLE);
                 pieChartPart.setVisibility(View.GONE);
@@ -206,6 +209,8 @@ public class VisitStatisticActivity extends AppCompatActivity {
                 listSalesRV.setVisibility(View.GONE);
                 loadingDataSalesPart.setVisibility(View.VISIBLE);
                 noDataSalesPart.setVisibility(View.GONE);
+
+                pieChart.highlightValues(null);
 
                 getTryWarning();
                 getPieCart();
