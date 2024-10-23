@@ -6,11 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -20,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,7 +36,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterListDataVisitStatisticSales;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.SalesVisitStatistic;
@@ -48,6 +54,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
 
+import net.cachapa.expandablelayout.ExpandableLayout;
+
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -57,12 +66,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class VisitStatisticActivity extends AppCompatActivity {
 
     PieChart pieChart;
     RelativeLayout pieChartPart;
-    LinearLayout loadingDataSalesPart, noDataSalesPart, noDataPart, bulanBTN, loadingDataPart, backBTN, actionBar;
+    LinearLayout submitkomplainBTN, komplainBTN, connectBTN, closeBTN, tryWarningBTN, loadingDataSalesPart, noDataSalesPart, noDataPart, bulanBTN, loadingDataPart, backBTN, actionBar;
     TextView titleSalesListTV, bulanPilihTV, totalVisitTV;
     RecyclerView listSalesRV;
     private SalesVisitStatistic[] salesVisitStatistics;
@@ -72,9 +83,13 @@ public class VisitStatisticActivity extends AppCompatActivity {
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
     String selectMonth = getMonth();
-    EditText searchInput;
+    EditText searchInput, komplainED;
     private Handler handler = new Handler();
     private boolean isActivityOpened = false;
+    BottomSheetLayout bottomSheetLayout;
+    ExpandableLayout komplainField;
+    KAlertDialog pDialog;
+    private int i = -1;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -100,6 +115,12 @@ public class VisitStatisticActivity extends AppCompatActivity {
         loadingDataSalesPart = findViewById(R.id.loading_data_sales_part);
         titleSalesListTV = findViewById(R.id.title_sales_list);
         searchInput = findViewById(R.id.keyword_sales_ed);
+        tryWarningBTN = findViewById(R.id.try_warning_btn);
+        bottomSheetLayout = findViewById(R.id.bottom_sheet_layout);
+        komplainBTN = findViewById(R.id.komplain_btn);
+        komplainField = findViewById(R.id.komplain_field);
+        komplainED = findViewById(R.id.komplain_ed);
+        submitkomplainBTN = findViewById(R.id.submit_komplain_btn);
 
         searchInput.setVisibility(View.GONE);
 
@@ -186,6 +207,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
                 loadingDataSalesPart.setVisibility(View.VISIBLE);
                 noDataSalesPart.setVisibility(View.GONE);
 
+                getTryWarning();
                 getPieCart();
 
                 handler.postDelayed(new Runnable() {
@@ -208,6 +230,94 @@ public class VisitStatisticActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        tryWarningBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tryWarning();
+            }
+        });
+
+        submitkomplainBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(komplainED.getText().toString().equals("")){
+                    new KAlertDialog(VisitStatisticActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Kolom kompain belum terisi")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    new KAlertDialog(VisitStatisticActivity.this, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Kirim komplain anda sekarang?")
+                            .setCancelText("TIDAK")
+                            .setConfirmText("   YA   ")
+                            .showCancelButton(true)
+                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+
+                                    pDialog = new KAlertDialog(VisitStatisticActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                    pDialog.show();
+                                    pDialog.setCancelable(false);
+                                    new CountDownTimer(1000, 500) {
+                                        public void onTick(long millisUntilFinished) {
+                                            i++;
+                                            switch (i) {
+                                                case 0:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (VisitStatisticActivity.this, R.color.colorGradien));
+                                                    break;
+                                                case 1:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (VisitStatisticActivity.this, R.color.colorGradien2));
+                                                    break;
+                                                case 2:
+                                                case 6:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (VisitStatisticActivity.this, R.color.colorGradien3));
+                                                    break;
+                                                case 3:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (VisitStatisticActivity.this, R.color.colorGradien4));
+                                                    break;
+                                                case 4:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (VisitStatisticActivity.this, R.color.colorGradien5));
+                                                    break;
+                                                case 5:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (VisitStatisticActivity.this, R.color.colorGradien6));
+                                                    break;
+                                            }
+                                        }
+
+                                        public void onFinish() {
+                                            i = -1;
+                                            kirimKomplain(komplainED.getText().toString());
+                                        }
+                                    }.start();
+
+                                }
+                            })
+                            .show();
+                }
             }
         });
 
@@ -298,6 +408,17 @@ public class VisitStatisticActivity extends AppCompatActivity {
             }
         });
 
+        komplainBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(komplainField.isExpanded()){
+                    komplainField.collapse();
+                } else {
+                    komplainField.expand();
+                }
+            }
+        });
+
         searchInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -315,6 +436,149 @@ public class VisitStatisticActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
             }
         });
+
+    }
+
+    private void kirimKomplain(String komplain){
+        final String url = "https://reporting.sumasistem.co.id/api/insert_statistic_complain";
+            StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void onResponse(String response) {
+                            // response
+                            try {
+                                Log.d("Success.Response", response.toString());
+                                JSONObject data = new JSONObject(response);
+                                String status = data.getString("status");
+                                if(status.equals("Success")){
+                                    komplainED.setText("");
+                                    komplainED.clearFocus();
+                                    komplainField.collapse();
+                                    pDialog.setTitleText("Berhasil Terkirim")
+                                            .setContentText("Ajuan komplain berhasil terkirim")
+                                            .setConfirmText("    OK    ")
+                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                @Override
+                                                public void onClick(KAlertDialog sDialog) {
+                                                    sDialog.dismiss();
+                                                }
+                                            })
+                                            .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                } else {
+                                    pDialog.setTitleText("Gagal Terkirim")
+                                            .setConfirmText("    OK    ")
+                                            .changeAlertType(KAlertDialog.ERROR_TYPE);
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener()
+                    {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // error
+                            Log.d("Error.Response", error.toString());
+                            pDialog.setTitleText("Perhatian")
+                                    .setContentText("Terjadi kesalahan!")
+                                    .setConfirmText("TUTUP")
+                                    .changeAlertType(KAlertDialog.ERROR_TYPE);
+                        }
+                    }
+            )
+            {
+                @Override
+                protected Map<String, String> getParams()
+                {
+                    Map<String, String>  params = new HashMap<String, String>();
+                    params.put("id_sales", sharedPrefManager.getSpNik());
+                    params.put("komplain", komplain);
+                    return params;
+                }
+            };
+
+            DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                    0,
+                    -1,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+            postRequest.setRetryPolicy(retryPolicy);
+
+            requestQueue.add(postRequest);
+
+    }
+
+    private void tryWarning(){
+        bottomSheetLayout.showWithSheetView(LayoutInflater.from(VisitStatisticActivity.this).inflate(R.layout.layout_try_feature, bottomSheetLayout, false));
+        closeBTN = findViewById(R.id.close_btn);
+        connectBTN = findViewById(R.id.connect_btn);
+        getContactIT();
+    }
+
+    private void getContactIT() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+        final String url = "https://hrisgelora.co.id/api/get_contact_it";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String bagian = response.getString("bagian");
+                            String nama = response.getString("nama");
+                            String whatsapp = response.getString("whatsapp");
+
+                            closeBTN = findViewById(R.id.close_btn);
+                            connectBTN = findViewById(R.id.connect_btn);
+
+                            try {
+                                closeBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        bottomSheetLayout.dismissSheet();
+                                    }
+                                });
+                                connectBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+"+whatsapp+"&text="));
+                                        try {
+                                            startActivity(webIntent);
+                                        } catch (SecurityException e) {
+                                            e.printStackTrace();
+                                            new KAlertDialog(VisitStatisticActivity.this, KAlertDialog.WARNING_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Tidak dapat terhubung ke Whatsapp, anda bisa hubungi secara langsung ke 0"+whatsapp.substring(2, whatsapp.length())+" atas nama Bapak "+nama+" bagian HRD")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+                                        }
+                                    }
+                                });
+                            } catch (NullPointerException e){
+                                e.printStackTrace();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        requestQueue.add(request);
 
     }
 
@@ -555,6 +819,48 @@ public class VisitStatisticActivity extends AppCompatActivity {
         }
     };
 
+    private void getTryWarning() {
+        final String url = "https://hrisgelora.co.id/api/lhs_statistic_try_status";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String status = response.getString("status");
+                            String visibility = response.getString("visibility");
+                            if(visibility.equals("1")){
+                                tryWarningBTN.setVisibility(View.VISIBLE);
+                            } else {
+                                tryWarningBTN.setVisibility(View.GONE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                new KAlertDialog(VisitStatisticActivity.this, KAlertDialog.ERROR_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
+                        .setConfirmText("    OK    ")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -564,6 +870,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
         searchInput.setText("");
         searchInput.clearFocus();
         getPieCart();
+        getTryWarning();
     }
 
     private String getMonth() {
@@ -591,6 +898,15 @@ public class VisitStatisticActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (bottomSheetLayout.isSheetShowing()){
+            bottomSheetLayout.dismissSheet();
+        } else {
+            super.onBackPressed();
+        }
     }
 
 }

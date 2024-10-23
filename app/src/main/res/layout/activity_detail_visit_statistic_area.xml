@@ -42,13 +42,111 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="20dp"
+                                android:layout_marginTop="67dp"
                                 android:orientation="vertical"
                                 tools:ignore="UselessParent">
+
+                                <LinearLayout
+                                    android:id="@+id/try_warning_btn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/shape_congrat"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="5dp"
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        tools:ignore="TooDeepLayout,UselessParent">
+
+                                        <LinearLayout
+                                            android:orientation="horizontal"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <LinearLayout
+                                                android:layout_width="50dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_marginRight="7dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:gravity="center"
+                                                android:orientation="vertical"
+                                                tools:ignore="RtlHardcoded,TooDeepLayout">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="50dp"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/pengumuman_ic"
+                                                    tools:ignore="ContentDescription" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="6dp"
+                                                android:layout_marginBottom="9dp"
+                                                android:layout_marginRight="35dp"
+                                                android:orientation="vertical"
+                                                tools:ignore="RtlHardcoded">
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Dalam Masa Percobaan"
+                                                    android:textStyle="bold"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="11dp"
+                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:fontFamily="sans-serif"
+                                                    android:lineSpacingExtra="1dp"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:text="Lihat selengkapnya..."
+                                                    android:textColor="@color/white"
+                                                    android:textSize="10dp"
+                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_alignParentRight="true"
+                                            android:layout_marginRight="6dp"
+                                            android:layout_marginTop="-5dp"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
+
+                                            <LinearLayout
+                                                android:background="@drawable/ic_baseline_arrow_right_pengumuman"
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"/>
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
 
                                 <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="67dp"
                                     android:paddingTop="20dp"
                                     android:paddingRight="20dp"
                                     android:paddingLeft="20dp"

@@ -1,10 +1,13 @@
 package com.gelora.absensi;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -12,11 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -27,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.CustomValueFormatter;
 import com.gelora.absensi.support.YAxisValueFormatter;
@@ -52,7 +52,7 @@ public class DetailVisitStatisticAreaActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
-    LinearLayout promosiBTN, penagihanBTN, pengirimanBTN, pameranBTN, jvBTN, njvBTN, lainnyaBTN;
+    LinearLayout tryWarningBTN, connectBTN, closeBTN, promosiBTN, penagihanBTN, pengirimanBTN, pameranBTN, jvBTN, njvBTN, lainnyaBTN;
     String wilayahFull, wilayah, month, monthText;
     TextView totalKunjunganTV, wilayahTV, monthTV;
     TextView promosiTV, penagihanTV, pengoirimanTV, pameranTV, jvTV, njvTV, lainnyaTV;
@@ -61,6 +61,7 @@ public class DetailVisitStatisticAreaActivity extends AppCompatActivity {
     RelativeLayout lineChartPart;
     private Handler handler = new Handler();
     ImageView promosiLoading, penagihanLoading, pengirimanLoading, pameranLoading, jvLoading, njvLoading, lainnyaLoading;
+    BottomSheetLayout bottomSheetLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +100,8 @@ public class DetailVisitStatisticAreaActivity extends AppCompatActivity {
         njvBTN = findViewById(R.id.njv_btn);
         lainnyaBTN = findViewById(R.id.lainnya_btn);
         lineChartPart = findViewById(R.id.line_chart_part);
+        bottomSheetLayout = findViewById(R.id.bottom_sheet_layout);
+        tryWarningBTN = findViewById(R.id.try_warning_btn);
 
         wilayahFull = getIntent().getExtras().getString("wilayah_full");
         wilayah = getIntent().getExtras().getString("wilayah");
@@ -174,6 +177,7 @@ public class DetailVisitStatisticAreaActivity extends AppCompatActivity {
                 loadingDataPart.setVisibility(View.VISIBLE);
                 noDataPart.setVisibility(View.GONE);
 
+                getTryWarning();
                 getData();
 
                 handler.postDelayed(new Runnable() {
@@ -183,6 +187,13 @@ public class DetailVisitStatisticAreaActivity extends AppCompatActivity {
                     }
                 }, 1000);
 
+            }
+        });
+
+        tryWarningBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tryWarning();
             }
         });
 
@@ -449,6 +460,120 @@ public class DetailVisitStatisticAreaActivity extends AppCompatActivity {
         });
     }
 
+    private void getTryWarning() {
+        final String url = "https://hrisgelora.co.id/api/lhs_statistic_try_status";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String status = response.getString("status");
+                            String visibility = response.getString("visibility");
+                            if(visibility.equals("1")){
+                                tryWarningBTN.setVisibility(View.VISIBLE);
+                            } else {
+                                tryWarningBTN.setVisibility(View.GONE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                new KAlertDialog(DetailVisitStatisticAreaActivity.this, KAlertDialog.ERROR_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
+                        .setConfirmText("    OK    ")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
+    private void tryWarning(){
+        bottomSheetLayout.showWithSheetView(LayoutInflater.from(DetailVisitStatisticAreaActivity.this).inflate(R.layout.layout_try_feature, bottomSheetLayout, false));
+        closeBTN = findViewById(R.id.close_btn);
+        connectBTN = findViewById(R.id.connect_btn);
+        getContactIT();
+    }
+
+    private void getContactIT() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+        final String url = "https://hrisgelora.co.id/api/get_contact_it";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String bagian = response.getString("bagian");
+                            String nama = response.getString("nama");
+                            String whatsapp = response.getString("whatsapp");
+
+                            closeBTN = findViewById(R.id.close_btn);
+                            connectBTN = findViewById(R.id.connect_btn);
+
+                            try {
+                                closeBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        bottomSheetLayout.dismissSheet();
+                                    }
+                                });
+                                connectBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+"+whatsapp+"&text="));
+                                        try {
+                                            startActivity(webIntent);
+                                        } catch (SecurityException e) {
+                                            e.printStackTrace();
+                                            new KAlertDialog(DetailVisitStatisticAreaActivity.this, KAlertDialog.WARNING_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Tidak dapat terhubung ke Whatsapp, anda bisa hubungi secara langsung ke 0"+whatsapp.substring(2, whatsapp.length())+" atas nama Bapak "+nama+" bagian HRD")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+                                        }
+                                    }
+                                });
+                            } catch (NullPointerException e){
+                                e.printStackTrace();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
     private String getMonth() {
         @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
@@ -473,6 +598,7 @@ public class DetailVisitStatisticAreaActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        getTryWarning();
         getData();
     }
 
@@ -480,6 +606,15 @@ public class DetailVisitStatisticAreaActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (bottomSheetLayout.isSheetShowing()){
+            bottomSheetLayout.dismissSheet();
+        } else {
+            super.onBackPressed();
+        }
     }
 
 }
