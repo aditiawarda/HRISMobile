@@ -2016,627 +2016,639 @@ public class DetailReportSumaActivity extends FragmentActivity implements OnMapR
     }
 
     private void getData() {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://reporting.sumasistem.co.id/api/report_detail";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @SuppressLint({"SetTextI18n", "MissingPermission"})
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        JSONObject data = null;
-                        try {
-                            Log.d("Success.Response", response.toString());
-                            data = new JSONObject(response);
-                            String status = data.getString("status");
-                            if (status.equals("Success")){
-                                JSONObject dataArray = data.getJSONObject("data");
-                                String latitude = dataArray.getString("latitude");
-                                String longitude = dataArray.getString("longitude");
-                                String idSales = dataArray.getString("idSales");
-                                getSales(idSales, latitude, longitude);
-                                tipeLaporan = dataArray.getString("tipeLaporan");
-                                String createdAt = dataArray.getString("createdAt");
-                                idPelanggan = dataArray.getString("idPelanggan");
-
-                                if(tipeLaporan.equals("1")){
-                                    titlePageTV.setText("DETAIL RENCANA");
-                                    keteranganLabelTV.setText("Keterangan");
-                                    photoRevPart.setVisibility(View.GONE);
-                                } else {
-                                    titlePageTV.setText("DETAIL LAPORAN");
-                                    keteranganLabelTV.setText("Ket. Hasil");
-                                    photoRevPart.setVisibility(View.VISIBLE);
-                                    String file = dataArray.getString("file");
-                                    String result = file
-                                            .replaceAll("\\[", "")
-                                            .replaceAll("\\]", "")
-                                            .replaceAll("\"", "");
-                                    String[] splitArray = result.split(",");
-                                    Picasso.get().load(splitArray[0]).networkPolicy(NetworkPolicy.NO_CACHE)
-                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                            .centerCrop()
-                                            .resize(120, 180)
-                                            .into(revLampiran);
-
-                                    photoRevPart.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
-                                            intent.putExtra("data", file);
-                                            startActivity(intent);
-                                        }
-                                    });
-                                }
-
-                                getComment(idReport);
-
-                                String date_create = createdAt;
-                                @SuppressLint("SimpleDateFormat")
-                                SimpleDateFormat format0 = new SimpleDateFormat("yyyy-MM-dd");
-                                Date dt0 = null;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                RequestQueue requestQueue = Volley.newRequestQueue(DetailReportSumaActivity.this);
+                final String url = "https://reporting.sumasistem.co.id/api/report_detail";
+                StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                        new Response.Listener<String>() {
+                            @SuppressLint({"SetTextI18n", "MissingPermission"})
+                            @Override
+                            public void onResponse(String response) {
+                                // response
+                                JSONObject data = null;
                                 try {
-                                    dt0 = format0.parse(date_create);
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                                @SuppressLint("SimpleDateFormat")
-                                DateFormat format00 = new SimpleDateFormat("EEE");
-                                String fixDay = format00.format(dt0);
-                                String hariNameFix = "";
+                                    Log.d("Success.Response", response.toString());
+                                    data = new JSONObject(response);
+                                    String status = data.getString("status");
+                                    if (status.equals("Success")){
+                                        JSONObject dataArray = data.getJSONObject("data");
+                                        String latitude = dataArray.getString("latitude");
+                                        String longitude = dataArray.getString("longitude");
+                                        String idSales = dataArray.getString("idSales");
+                                        getSales(idSales, latitude, longitude);
+                                        tipeLaporan = dataArray.getString("tipeLaporan");
+                                        String createdAt = dataArray.getString("createdAt");
+                                        idPelanggan = dataArray.getString("idPelanggan");
 
-                                if (fixDay.equals("Mon") || fixDay.equals("Sen")) {
-                                    hariNameFix = "Senin";
-                                } else if (fixDay.equals("Tue") || fixDay.equals("Sel")) {
-                                    hariNameFix = "Selasa";
-                                } else if (fixDay.equals("Wed") || fixDay.equals("Rab")) {
-                                    hariNameFix = "Rabu";
-                                } else if (fixDay.equals("Thu") || fixDay.equals("Kam")) {
-                                    hariNameFix = "Kamis";
-                                } else if (fixDay.equals("Fri") || fixDay.equals("Jum")) {
-                                    hariNameFix = "Jumat";
-                                } else if (fixDay.equals("Sat") || fixDay.equals("Sab")) {
-                                    hariNameFix = "Sabtu";
-                                } else if (fixDay.equals("Sun") || fixDay.equals("Min")) {
-                                    hariNameFix = "Minggu";
-                                }
-
-                                String dayDateFix = date_create.substring(8,10);
-                                String yearDateFix = date_create.substring(0,4);
-                                String bulanValueFix = date_create.substring(5,7);
-                                String bulanNameFix;
-
-                                switch (bulanValueFix) {
-                                    case "01":
-                                        bulanNameFix = "Jan";
-                                        break;
-                                    case "02":
-                                        bulanNameFix = "Feb";
-                                        break;
-                                    case "03":
-                                        bulanNameFix = "Mar";
-                                        break;
-                                    case "04":
-                                        bulanNameFix = "Apr";
-                                        break;
-                                    case "05":
-                                        bulanNameFix = "Mei";
-                                        break;
-                                    case "06":
-                                        bulanNameFix = "Jun";
-                                        break;
-                                    case "07":
-                                        bulanNameFix = "Jul";
-                                        break;
-                                    case "08":
-                                        bulanNameFix = "Agu";
-                                        break;
-                                    case "09":
-                                        bulanNameFix = "Sep";
-                                        break;
-                                    case "10":
-                                        bulanNameFix = "Okt";
-                                        break;
-                                    case "11":
-                                        bulanNameFix = "Nov";
-                                        break;
-                                    case "12":
-                                        bulanNameFix = "Des";
-                                        break;
-                                    default:
-                                        bulanNameFix = "Not found!";
-                                        break;
-                                }
-
-                                tanggalBuatTV.setText(hariNameFix+", "+String.valueOf(Integer.parseInt(dayDateFix))+" "+bulanNameFix+" "+yearDateFix+" "+createdAt.substring(10,16));
-
-                                if(idSales.equals(sharedPrefManager.getSpNik())){
-                                    deletePart.setVisibility(View.VISIBLE);
-                                } else {
-                                    deletePart.setVisibility(View.GONE);
-                                }
-
-                                if(tipeLaporan.equals("1")){
-                                    updatePart.setVisibility(View.GONE);
-                                    viewLampiranBTN.setVisibility(View.GONE);
-                                    reportKategoriTV.setText("RENCANA KUNJUNGAN");
-                                    tglRencanaPart.setVisibility(View.VISIBLE);
-                                    totalPesananPart.setVisibility(View.GONE);
-                                    totalPenagihanPart.setVisibility(View.GONE);
-                                    noSuratJalanPart.setVisibility(View.GONE);
-                                    String tgl_rencana = dataArray.getString("tanggalRencana");
-                                    String tipeRencanaLaporan = dataArray.getString("tipeRencanaLaporan");
-
-                                    ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(mContext, R.color.colorAccent2));
-                                    ColorStateList defaultColor = ColorStateList.valueOf(ContextCompat.getColor(mContext, R.color.cbDefault));
-                                    String dataAgenda = tipeRencanaLaporan.replaceAll("\\[|\\]|\"", ""); // Hapus kurung siku dan tanda kutip
-                                    String[] dataArrayAgenda = dataAgenda.split(",");
-
-                                    agendaCB1.setButtonTintList(defaultColor);
-                                    agendaCB2.setButtonTintList(defaultColor);
-                                    agendaCB3.setButtonTintList(defaultColor);
-                                    agendaCB4.setButtonTintList(defaultColor);
-                                    agendaCB5.setButtonTintList(defaultColor);
-                                    agendaCB6.setButtonTintList(defaultColor);
-                                    agendaCB1.setChecked(false);
-                                    agendaCB2.setChecked(false);
-                                    agendaCB3.setChecked(false);
-                                    agendaCB4.setChecked(false);
-                                    agendaCB5.setChecked(false);
-                                    agendaCB6.setChecked(false);
-
-                                    for (int x=0; x<dataArrayAgenda.length; x++){
-                                        if(dataArrayAgenda[x].equals("2")){
-                                            agendaCB1.setButtonTintList(colorStateList);
-                                            agendaCB1.setChecked(true);
-                                        } else if(dataArrayAgenda[x].equals("3")){
-                                            agendaCB2.setButtonTintList(colorStateList);
-                                            agendaCB2.setChecked(true);
-                                        } else if(dataArrayAgenda[x].equals("4")){
-                                            agendaCB3.setButtonTintList(colorStateList);
-                                            agendaCB3.setChecked(true);
-                                        } else if(dataArrayAgenda[x].equals("5")){
-                                            agendaCB4.setButtonTintList(colorStateList);
-                                            agendaCB4.setChecked(true);
-                                        } else if(dataArrayAgenda[x].equals("6")){
-                                            agendaCB5.setButtonTintList(colorStateList);
-                                            agendaCB5.setChecked(true);
-                                        } else if(dataArrayAgenda[x].equals("7")){
-                                            agendaCB6.setButtonTintList(colorStateList);
-                                            agendaCB6.setChecked(true);
-                                        }
-                                    }
-
-                                    String input_date = tgl_rencana;
-                                    @SuppressLint("SimpleDateFormat")
-                                    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-                                    Date dt1 = null;
-                                    try {
-                                        dt1 = format1.parse(input_date);
-                                    } catch (ParseException e) {
-                                        e.printStackTrace();
-                                    }
-                                    @SuppressLint("SimpleDateFormat")
-                                    DateFormat format2 = new SimpleDateFormat("EEE");
-                                    String finalDay = format2.format(dt1);
-                                    String hariName = "";
-
-                                    if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
-                                        hariName = "Senin";
-                                    } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
-                                        hariName = "Selasa";
-                                    } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
-                                        hariName = "Rabu";
-                                    } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
-                                        hariName = "Kamis";
-                                    } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
-                                        hariName = "Jumat";
-                                    } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
-                                        hariName = "Sabtu";
-                                    } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
-                                        hariName = "Minggu";
-                                    }
-
-                                    String dayDate = input_date.substring(8,10);
-                                    String yearDate = input_date.substring(0,4);
-                                    String bulanValue = input_date.substring(5,7);
-                                    String bulanName;
-
-                                    switch (bulanValue) {
-                                        case "01":
-                                            bulanName = "Januari";
-                                            break;
-                                        case "02":
-                                            bulanName = "Februari";
-                                            break;
-                                        case "03":
-                                            bulanName = "Maret";
-                                            break;
-                                        case "04":
-                                            bulanName = "April";
-                                            break;
-                                        case "05":
-                                            bulanName = "Mei";
-                                            break;
-                                        case "06":
-                                            bulanName = "Juni";
-                                            break;
-                                        case "07":
-                                            bulanName = "Juli";
-                                            break;
-                                        case "08":
-                                            bulanName = "Agustus";
-                                            break;
-                                        case "09":
-                                            bulanName = "September";
-                                            break;
-                                        case "10":
-                                            bulanName = "Oktober";
-                                            break;
-                                        case "11":
-                                            bulanName = "November";
-                                            break;
-                                        case "12":
-                                            bulanName = "Desember";
-                                            break;
-                                        default:
-                                            bulanName = "Not found!";
-                                            break;
-                                    }
-
-                                    tglRencanaTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
-
-                                    String statusRealisasi = dataArray.getString("statusRealisasi");
-                                    if(statusRealisasi.equals("0")){
-                                        agendaLabel.setText("Rencana");
-                                        if(idSales.equals(sharedPrefManager.getSpNik())){
-                                            reschedulePart.setVisibility(View.VISIBLE);
+                                        if(tipeLaporan.equals("1")){
+                                            titlePageTV.setText("DETAIL RENCANA");
+                                            keteranganLabelTV.setText("Keterangan");
+                                            photoRevPart.setVisibility(View.GONE);
                                         } else {
-                                            reschedulePart.setVisibility(View.GONE);
+                                            titlePageTV.setText("DETAIL LAPORAN");
+                                            keteranganLabelTV.setText("Ket. Hasil");
+                                            photoRevPart.setVisibility(View.VISIBLE);
+                                            String file = dataArray.getString("file");
+                                            String result = file
+                                                    .replaceAll("\\[", "")
+                                                    .replaceAll("\\]", "")
+                                                    .replaceAll("\"", "");
+                                            String[] splitArray = result.split(",");
+                                            Picasso.get().load(splitArray[0]).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                    .centerCrop()
+                                                    .resize(120, 180)
+                                                    .into(revLampiran);
+
+                                            photoRevPart.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                                    intent.putExtra("data", file);
+                                                    startActivity(intent);
+                                                }
+                                            });
                                         }
+
+                                        getComment(idReport);
+
+                                        String date_create = createdAt;
                                         @SuppressLint("SimpleDateFormat")
-                                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                                        Date date = null;
-                                        Date date2 = null;
+                                        SimpleDateFormat format0 = new SimpleDateFormat("yyyy-MM-dd");
+                                        Date dt0 = null;
                                         try {
-                                            date = sdf.parse(tgl_rencana);
-                                            date2 = sdf.parse(getDate());
+                                            dt0 = format0.parse(date_create);
                                         } catch (ParseException e) {
                                             e.printStackTrace();
                                         }
-                                        long rencana = date.getTime();
-                                        long now = date2.getTime();
+                                        @SuppressLint("SimpleDateFormat")
+                                        DateFormat format00 = new SimpleDateFormat("EEE");
+                                        String fixDay = format00.format(dt0);
+                                        String hariNameFix = "";
 
-                                        if (rencana==now){
-                                            if(idSales.equals(sharedPrefManager.getSpNik())){
-                                                updateRealisasiKunjunganPart.setVisibility(View.VISIBLE);
-                                            } else {
-                                                updateRealisasiKunjunganPart.setVisibility(View.GONE);
-                                            }
-                                        } else {
-                                            updateRealisasiKunjunganPart.setVisibility(View.GONE);
+                                        if (fixDay.equals("Mon") || fixDay.equals("Sen")) {
+                                            hariNameFix = "Senin";
+                                        } else if (fixDay.equals("Tue") || fixDay.equals("Sel")) {
+                                            hariNameFix = "Selasa";
+                                        } else if (fixDay.equals("Wed") || fixDay.equals("Rab")) {
+                                            hariNameFix = "Rabu";
+                                        } else if (fixDay.equals("Thu") || fixDay.equals("Kam")) {
+                                            hariNameFix = "Kamis";
+                                        } else if (fixDay.equals("Fri") || fixDay.equals("Jum")) {
+                                            hariNameFix = "Jumat";
+                                        } else if (fixDay.equals("Sat") || fixDay.equals("Sab")) {
+                                            hariNameFix = "Sabtu";
+                                        } else if (fixDay.equals("Sun") || fixDay.equals("Min")) {
+                                            hariNameFix = "Minggu";
                                         }
 
-                                        realMark.setVisibility(View.GONE);
-                                        viewRealisasiPart.setVisibility(View.GONE);
-                                    } else if(statusRealisasi.equals("1")){
-                                        agendaLabel.setText("Realisasi");
-                                        reschedulePart.setVisibility(View.GONE);
-                                        updateRealisasiKunjunganPart.setVisibility(View.GONE);
-                                        realMark.setVisibility(View.VISIBLE);
-                                        viewRealisasiPart.setVisibility(View.VISIBLE);
-                                        String jumlah_realisasi = data.getString("jumlah_realisasi");
+                                        String dayDateFix = date_create.substring(8,10);
+                                        String yearDateFix = date_create.substring(0,4);
+                                        String bulanValueFix = date_create.substring(5,7);
+                                        String bulanNameFix;
 
-                                        if(jumlah_realisasi.equals("0")){
-                                            viewRealisasiPart.setVisibility(View.GONE);
+                                        switch (bulanValueFix) {
+                                            case "01":
+                                                bulanNameFix = "Jan";
+                                                break;
+                                            case "02":
+                                                bulanNameFix = "Feb";
+                                                break;
+                                            case "03":
+                                                bulanNameFix = "Mar";
+                                                break;
+                                            case "04":
+                                                bulanNameFix = "Apr";
+                                                break;
+                                            case "05":
+                                                bulanNameFix = "Mei";
+                                                break;
+                                            case "06":
+                                                bulanNameFix = "Jun";
+                                                break;
+                                            case "07":
+                                                bulanNameFix = "Jul";
+                                                break;
+                                            case "08":
+                                                bulanNameFix = "Agu";
+                                                break;
+                                            case "09":
+                                                bulanNameFix = "Sep";
+                                                break;
+                                            case "10":
+                                                bulanNameFix = "Okt";
+                                                break;
+                                            case "11":
+                                                bulanNameFix = "Nov";
+                                                break;
+                                            case "12":
+                                                bulanNameFix = "Des";
+                                                break;
+                                            default:
+                                                bulanNameFix = "Not found!";
+                                                break;
+                                        }
+
+                                        tanggalBuatTV.setText(hariNameFix+", "+String.valueOf(Integer.parseInt(dayDateFix))+" "+bulanNameFix+" "+yearDateFix+" "+createdAt.substring(10,16));
+
+                                        if(idSales.equals(sharedPrefManager.getSpNik())){
+                                            deletePart.setVisibility(View.VISIBLE);
                                         } else {
-                                            if(jumlah_realisasi.equals("1")){
-                                                String realisasi = data.getString("realisasi");
-                                                JSONObject dataRealisasi = new JSONObject(realisasi);
-                                                String id = dataRealisasi.getString("id");
-                                                String tipe = dataRealisasi.getString("tipeLaporan");
-                                                viewRealisasiBTN.setOnClickListener(new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View v) {
-                                                        Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
-                                                        intent.putExtra("report_id",id);
-                                                        startActivity(intent);
-                                                    }
-                                                });
-                                            } else {
-                                                String realisasi = data.getString("realisasi");
-                                                JSONArray jsonArray = new JSONArray(realisasi);
-                                                int arrayLength = jsonArray.length();
+                                            deletePart.setVisibility(View.GONE);
+                                        }
 
-                                                String arrayString = "";
-                                                JSONObject dataListRealisasi = new JSONObject();
-                                                for (int i = 0; i < arrayLength; i++) {
-                                                    dataListRealisasi = jsonArray.getJSONObject(i);
-                                                    String tipeLaporan = dataListRealisasi.getString("tipeLaporan");
-                                                    String id = dataListRealisasi.getString("id");
-                                                    arrayString = arrayString+tipeLaporan+"-"+id+",";
+                                        if(tipeLaporan.equals("1")){
+                                            updatePart.setVisibility(View.GONE);
+                                            viewLampiranBTN.setVisibility(View.GONE);
+                                            reportKategoriTV.setText("RENCANA KUNJUNGAN");
+                                            tglRencanaPart.setVisibility(View.VISIBLE);
+                                            totalPesananPart.setVisibility(View.GONE);
+                                            totalPenagihanPart.setVisibility(View.GONE);
+                                            noSuratJalanPart.setVisibility(View.GONE);
+                                            String tgl_rencana = dataArray.getString("tanggalRencana");
+                                            String tipeRencanaLaporan = dataArray.getString("tipeRencanaLaporan");
+
+                                            ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(mContext, R.color.colorAccent2));
+                                            ColorStateList defaultColor = ColorStateList.valueOf(ContextCompat.getColor(mContext, R.color.cbDefault));
+                                            String dataAgenda = tipeRencanaLaporan.replaceAll("\\[|\\]|\"", ""); // Hapus kurung siku dan tanda kutip
+                                            String[] dataArrayAgenda = dataAgenda.split(",");
+
+                                            agendaCB1.setButtonTintList(defaultColor);
+                                            agendaCB2.setButtonTintList(defaultColor);
+                                            agendaCB3.setButtonTintList(defaultColor);
+                                            agendaCB4.setButtonTintList(defaultColor);
+                                            agendaCB5.setButtonTintList(defaultColor);
+                                            agendaCB6.setButtonTintList(defaultColor);
+                                            agendaCB1.setChecked(false);
+                                            agendaCB2.setChecked(false);
+                                            agendaCB3.setChecked(false);
+                                            agendaCB4.setChecked(false);
+                                            agendaCB5.setChecked(false);
+                                            agendaCB6.setChecked(false);
+
+                                            for (int x=0; x<dataArrayAgenda.length; x++){
+                                                if(dataArrayAgenda[x].equals("2")){
+                                                    agendaCB1.setButtonTintList(colorStateList);
+                                                    agendaCB1.setChecked(true);
+                                                } else if(dataArrayAgenda[x].equals("3")){
+                                                    agendaCB2.setButtonTintList(colorStateList);
+                                                    agendaCB2.setChecked(true);
+                                                } else if(dataArrayAgenda[x].equals("4")){
+                                                    agendaCB3.setButtonTintList(colorStateList);
+                                                    agendaCB3.setChecked(true);
+                                                } else if(dataArrayAgenda[x].equals("5")){
+                                                    agendaCB4.setButtonTintList(colorStateList);
+                                                    agendaCB4.setChecked(true);
+                                                } else if(dataArrayAgenda[x].equals("6")){
+                                                    agendaCB5.setButtonTintList(colorStateList);
+                                                    agendaCB5.setChecked(true);
+                                                } else if(dataArrayAgenda[x].equals("7")){
+                                                    agendaCB6.setButtonTintList(colorStateList);
+                                                    agendaCB6.setChecked(true);
+                                                }
+                                            }
+
+                                            String input_date = tgl_rencana;
+                                            @SuppressLint("SimpleDateFormat")
+                                            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                                            Date dt1 = null;
+                                            try {
+                                                dt1 = format1.parse(input_date);
+                                            } catch (ParseException e) {
+                                                e.printStackTrace();
+                                            }
+                                            @SuppressLint("SimpleDateFormat")
+                                            DateFormat format2 = new SimpleDateFormat("EEE");
+                                            String finalDay = format2.format(dt1);
+                                            String hariName = "";
+
+                                            if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                                                hariName = "Senin";
+                                            } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                                                hariName = "Selasa";
+                                            } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                                                hariName = "Rabu";
+                                            } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                                                hariName = "Kamis";
+                                            } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                                                hariName = "Jumat";
+                                            } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                                                hariName = "Sabtu";
+                                            } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                                                hariName = "Minggu";
+                                            }
+
+                                            String dayDate = input_date.substring(8,10);
+                                            String yearDate = input_date.substring(0,4);
+                                            String bulanValue = input_date.substring(5,7);
+                                            String bulanName;
+
+                                            switch (bulanValue) {
+                                                case "01":
+                                                    bulanName = "Januari";
+                                                    break;
+                                                case "02":
+                                                    bulanName = "Februari";
+                                                    break;
+                                                case "03":
+                                                    bulanName = "Maret";
+                                                    break;
+                                                case "04":
+                                                    bulanName = "April";
+                                                    break;
+                                                case "05":
+                                                    bulanName = "Mei";
+                                                    break;
+                                                case "06":
+                                                    bulanName = "Juni";
+                                                    break;
+                                                case "07":
+                                                    bulanName = "Juli";
+                                                    break;
+                                                case "08":
+                                                    bulanName = "Agustus";
+                                                    break;
+                                                case "09":
+                                                    bulanName = "September";
+                                                    break;
+                                                case "10":
+                                                    bulanName = "Oktober";
+                                                    break;
+                                                case "11":
+                                                    bulanName = "November";
+                                                    break;
+                                                case "12":
+                                                    bulanName = "Desember";
+                                                    break;
+                                                default:
+                                                    bulanName = "Not found!";
+                                                    break;
+                                            }
+
+                                            tglRencanaTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                                            String statusRealisasi = dataArray.getString("statusRealisasi");
+                                            if(statusRealisasi.equals("0")){
+                                                agendaLabel.setText("Rencana");
+                                                if(idSales.equals(sharedPrefManager.getSpNik())){
+                                                    reschedulePart.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    reschedulePart.setVisibility(View.GONE);
+                                                }
+                                                @SuppressLint("SimpleDateFormat")
+                                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                                Date date = null;
+                                                Date date2 = null;
+                                                try {
+                                                    date = sdf.parse(tgl_rencana);
+                                                    date2 = sdf.parse(getDate());
+                                                } catch (ParseException e) {
+                                                    e.printStackTrace();
+                                                }
+                                                long rencana = date.getTime();
+                                                long now = date2.getTime();
+
+                                                if (rencana==now){
+                                                    if(idSales.equals(sharedPrefManager.getSpNik())){
+                                                        updateRealisasiKunjunganPart.setVisibility(View.VISIBLE);
+                                                    } else {
+                                                        updateRealisasiKunjunganPart.setVisibility(View.GONE);
+                                                    }
+                                                } else {
+                                                    updateRealisasiKunjunganPart.setVisibility(View.GONE);
                                                 }
 
-                                                String finalArrayString = arrayString.substring(0,arrayString.length()-1);
-                                                viewRealisasiBTN.setOnClickListener(new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View v) {
-                                                        realisasiDirect(finalArrayString);
+                                                realMark.setVisibility(View.GONE);
+                                                viewRealisasiPart.setVisibility(View.GONE);
+                                            } else if(statusRealisasi.equals("1")){
+                                                agendaLabel.setText("Realisasi");
+                                                reschedulePart.setVisibility(View.GONE);
+                                                updateRealisasiKunjunganPart.setVisibility(View.GONE);
+                                                realMark.setVisibility(View.VISIBLE);
+                                                viewRealisasiPart.setVisibility(View.VISIBLE);
+                                                String jumlah_realisasi = data.getString("jumlah_realisasi");
+
+                                                if(jumlah_realisasi.equals("0")){
+                                                    viewRealisasiPart.setVisibility(View.GONE);
+                                                } else {
+                                                    if(jumlah_realisasi.equals("1")){
+                                                        String realisasi = data.getString("realisasi");
+                                                        JSONObject dataRealisasi = new JSONObject(realisasi);
+                                                        String id = dataRealisasi.getString("id");
+                                                        String tipe = dataRealisasi.getString("tipeLaporan");
+                                                        viewRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                Intent intent = new Intent(DetailReportSumaActivity.this, DetailReportSumaActivity.class);
+                                                                intent.putExtra("report_id",id);
+                                                                startActivity(intent);
+                                                            }
+                                                        });
+                                                    } else {
+                                                        String realisasi = data.getString("realisasi");
+                                                        JSONArray jsonArray = new JSONArray(realisasi);
+                                                        int arrayLength = jsonArray.length();
+
+                                                        String arrayString = "";
+                                                        JSONObject dataListRealisasi = new JSONObject();
+                                                        for (int i = 0; i < arrayLength; i++) {
+                                                            dataListRealisasi = jsonArray.getJSONObject(i);
+                                                            String tipeLaporan = dataListRealisasi.getString("tipeLaporan");
+                                                            String id = dataListRealisasi.getString("id");
+                                                            arrayString = arrayString+tipeLaporan+"-"+id+",";
+                                                        }
+
+                                                        String finalArrayString = arrayString.substring(0,arrayString.length()-1);
+                                                        viewRealisasiBTN.setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                realisasiDirect(finalArrayString);
+                                                            }
+                                                        });
+
                                                     }
-                                                });
+                                                }
 
                                             }
-                                        }
 
-                                    }
-
-                                } else if(tipeLaporan.equals("2")){
-                                    if(idSales.equals(sharedPrefManager.getSpNik())){
-                                        updatePart.setVisibility(View.VISIBLE);
-                                    } else {
-                                        updatePart.setVisibility(View.GONE);
-                                    }
-                                    updateRealisasiKunjunganPart.setVisibility(View.GONE);
-                                    viewLampiranBTN.setVisibility(View.VISIBLE);
-                                    reportKategoriTV.setText("PROMOSI");
-                                    tglRencanaPart.setVisibility(View.GONE);
-                                    totalPesananPart.setVisibility(View.VISIBLE);
-                                    totalPenagihanPart.setVisibility(View.GONE);
-                                    noSuratJalanPart.setVisibility(View.GONE);
-
-                                    Locale localeID = new Locale("id", "ID");
-                                    DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
-                                    decimalFormat.applyPattern("¤ #,##0;-¤ #,##0");
-                                    decimalFormat.setMaximumFractionDigits(0);
-
-                                    String totalLaporan = dataArray.getString("totalLaporan");
-                                    if(totalLaporan.equals("")||totalLaporan.equals("null")||totalLaporan.equals("0")){
-                                        totalPesananPart.setVisibility(View.GONE);
-                                        totalPesananTV.setText("Tidak dicantumkan");
-                                    } else {
-                                        totalPesananPart.setVisibility(View.VISIBLE);
-                                        totalPesananTV.setText(decimalFormat.format(Integer.parseInt(totalLaporan)));
-                                    }
-
-                                    String file = dataArray.getString("file");
-                                    viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
-                                            intent.putExtra("data", file);
-                                            startActivity(intent);
-                                        }
-                                    });
-                                } else if(tipeLaporan.equals("3")){
-                                    if(idSales.equals(sharedPrefManager.getSpNik())){
-                                        updatePart.setVisibility(View.VISIBLE);
-                                    } else {
-                                        updatePart.setVisibility(View.GONE);
-                                    }
-                                    updateRealisasiKunjunganPart.setVisibility(View.GONE);
-                                    viewLampiranBTN.setVisibility(View.VISIBLE);
-                                    reportKategoriTV.setText("PENAGIHAN");
-                                    tglRencanaPart.setVisibility(View.GONE);
-                                    totalPesananPart.setVisibility(View.GONE);
-                                    totalPenagihanPart.setVisibility(View.VISIBLE);
-                                    noSuratJalanPart.setVisibility(View.GONE);
-
-                                    Locale localeID = new Locale("id", "ID");
-                                    DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
-                                    decimalFormat.applyPattern("¤ #,##0;-¤ #,##0");
-                                    decimalFormat.setMaximumFractionDigits(0);
-
-                                    String totalLaporan = dataArray.getString("totalLaporan");
-                                    if(totalLaporan.equals("")||totalLaporan.equals("null")||totalLaporan.equals("0")){
-                                        totalPenagihanPart.setVisibility(View.GONE);
-                                        totalPenagihanTV.setText("Tidak dicantumkan");
-                                    } else {
-                                        totalPenagihanPart.setVisibility(View.VISIBLE);
-                                        totalPenagihanTV.setText(decimalFormat.format(Integer.parseInt(totalLaporan)));
-                                    }
-
-                                    String file = dataArray.getString("file");
-                                    viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
-                                            intent.putExtra("data", file);
-                                            startActivity(intent);
-                                        }
-                                    });
-                                } else if(tipeLaporan.equals("4")){
-                                    if(idSales.equals(sharedPrefManager.getSpNik())){
-                                        updatePart.setVisibility(View.VISIBLE);
-                                    } else {
-                                        updatePart.setVisibility(View.GONE);
-                                    }
-                                    updateRealisasiKunjunganPart.setVisibility(View.GONE);
-                                    viewLampiranBTN.setVisibility(View.VISIBLE);
-                                    reportKategoriTV.setText("PENGIRIMAN");
-                                    tglRencanaPart.setVisibility(View.GONE);
-                                    totalPesananPart.setVisibility(View.GONE);
-                                    totalPenagihanPart.setVisibility(View.GONE);
-                                    noSuratJalanPart.setVisibility(View.VISIBLE);
-
-                                    String noSuratJalan = dataArray.getString("noSuratJalan");
-                                    if(noSuratJalan.equals("null")||noSuratJalan.equals("")){
-                                        noSuratJalanPart.setVisibility(View.GONE);
-                                        noSuratJalanTV.setText("Tidak dicantumkan");
-                                    } else {
-                                        noSuratJalanPart.setVisibility(View.VISIBLE);
-                                        noSuratJalanTV.setText(noSuratJalan);
-                                    }
-
-                                    String file = dataArray.getString("file");
-                                    viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
-                                            intent.putExtra("data", file);
-                                            startActivity(intent);
-                                        }
-                                    });
-                                } else if(tipeLaporan.equals("5")){
-                                    if(idSales.equals(sharedPrefManager.getSpNik())){
-                                        updatePart.setVisibility(View.VISIBLE);
-                                    } else {
-                                        updatePart.setVisibility(View.GONE);
-                                    }
-                                    updateRealisasiKunjunganPart.setVisibility(View.GONE);
-                                    viewLampiranBTN.setVisibility(View.VISIBLE);
-                                    reportKategoriTV.setText("NON JOIN VISIT");
-                                    tglRencanaPart.setVisibility(View.GONE);
-                                    totalPesananPart.setVisibility(View.GONE);
-                                    totalPenagihanPart.setVisibility(View.GONE);
-                                    noSuratJalanPart.setVisibility(View.GONE);
-
-                                    String file = dataArray.getString("file");
-                                    viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
-                                            intent.putExtra("data", file);
-                                            startActivity(intent);
-                                        }
-                                    });
-                                } else if(tipeLaporan.equals("6")){
-                                    if(idSales.equals(sharedPrefManager.getSpNik())){
-                                        updatePart.setVisibility(View.VISIBLE);
-                                    } else {
-                                        updatePart.setVisibility(View.GONE);
-                                    }
-                                    updateRealisasiKunjunganPart.setVisibility(View.GONE);
-                                    viewLampiranBTN.setVisibility(View.VISIBLE);
-                                    reportKategoriTV.setText("JOIN VISIT");
-                                    tglRencanaPart.setVisibility(View.GONE);
-                                    totalPesananPart.setVisibility(View.GONE);
-                                    totalPenagihanPart.setVisibility(View.GONE);
-                                    noSuratJalanPart.setVisibility(View.GONE);
-
-                                    String file = dataArray.getString("file");
-                                    viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
-                                            intent.putExtra("data", file);
-                                            startActivity(intent);
-                                        }
-                                    });
-                                } else if(tipeLaporan.equals("7")){
-                                    if(idSales.equals(sharedPrefManager.getSpNik())){
-                                        updatePart.setVisibility(View.VISIBLE);
-                                    } else {
-                                        updatePart.setVisibility(View.GONE);
-                                    }
-                                    updateRealisasiKunjunganPart.setVisibility(View.GONE);
-                                    viewLampiranBTN.setVisibility(View.VISIBLE);
-                                    reportKategoriTV.setText("PAMERAN");
-                                    tglRencanaPart.setVisibility(View.GONE);
-                                    totalPesananPart.setVisibility(View.GONE);
-                                    totalPenagihanPart.setVisibility(View.GONE);
-                                    noSuratJalanPart.setVisibility(View.GONE);
-
-                                    String file = dataArray.getString("file");
-                                    viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
-                                            intent.putExtra("data", file);
-                                            startActivity(intent);
-                                        }
-                                    });
-                                }
-
-                                String namaPelanggan = dataArray.getString("namaPelanggan");
-                                String alamat_customer = dataArray.getString("alamat_customer");
-                                String pic = dataArray.getString("pic");
-                                String no_telp = dataArray.getString("noTelp");
-                                String keterangan = dataArray.getString("keterangan");
-
-                                keteranganUpdateED.setText(keterangan);
-                                namaPelangganTV.setText(namaPelanggan);
-
-                                if(alamat_customer.equals("null") || alamat_customer.equals("")){
-                                    alamatPelangganTV.setText("Belum diketahui");
-                                } else {
-                                    alamatPelangganTV.setText(alamat_customer);
-                                }
-
-                                if(pic.equals("null")){
-                                    picPelangganPart.setVisibility(View.GONE);
-                                    picPelangganTV.setText("Belum diketahui");
-                                } else {
-                                    picPelangganPart.setVisibility(View.VISIBLE);
-                                    picPelangganTV.setText(pic);
-                                }
-
-                                if(no_telp.equals("null")){
-                                    teleponPelangganPart.setVisibility(View.GONE);
-                                    teleponPelangganTV.setText("Belum diketahui");
-                                } else {
-                                    teleponPelangganPart.setVisibility(View.VISIBLE);
-                                    teleponPelangganTV.setText(no_telp);
-                                }
-
-                                keteranganTV.setText(keterangan);
-
-                                if(mMap != null && (tipeLaporan.equals("2") || tipeLaporan.equals("3") || tipeLaporan.equals("4") || tipeLaporan.equals("5") || tipeLaporan.equals("6") || tipeLaporan.equals("7"))){
-                                    mapsPart.setVisibility(View.VISIBLE);
-                                    mMap.setMyLocationEnabled(false);
-                                    mMap.getUiSettings().setMyLocationButtonEnabled(false);
-                                    userPoint = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
-                                    float zoomLevel = 17.8f;
-                                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPoint, zoomLevel));
-                                    mMap.getUiSettings().setCompassEnabled(false);
-                                    Location location = new Location("dummyProvider");
-                                    location.setLatitude(Double.parseDouble(latitude));
-                                    location.setLongitude(Double.parseDouble(longitude));
-                                    new ReverseGeocodingTask().execute(location);
-                                } else {
-                                    mapsPart.setVisibility(View.GONE);
-                                }
-
-                            } else {
-                                new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
-                                        .setTitleText("Perhatian")
-                                        .setContentText("Terjadi kesalahan saat mengakses data")
-                                        .setConfirmText("    OK    ")
-                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                            @Override
-                                            public void onClick(KAlertDialog sDialog) {
-                                                sDialog.dismiss();
+                                        } else if(tipeLaporan.equals("2")){
+                                            if(idSales.equals(sharedPrefManager.getSpNik())){
+                                                updatePart.setVisibility(View.VISIBLE);
+                                            } else {
+                                                updatePart.setVisibility(View.GONE);
                                             }
-                                        })
-                                        .show();
+                                            updateRealisasiKunjunganPart.setVisibility(View.GONE);
+                                            viewLampiranBTN.setVisibility(View.VISIBLE);
+                                            reportKategoriTV.setText("PROMOSI");
+                                            tglRencanaPart.setVisibility(View.GONE);
+                                            totalPesananPart.setVisibility(View.VISIBLE);
+                                            totalPenagihanPart.setVisibility(View.GONE);
+                                            noSuratJalanPart.setVisibility(View.GONE);
+
+                                            Locale localeID = new Locale("id", "ID");
+                                            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
+                                            decimalFormat.applyPattern("¤ #,##0;-¤ #,##0");
+                                            decimalFormat.setMaximumFractionDigits(0);
+
+                                            String totalLaporan = dataArray.getString("totalLaporan");
+                                            if(totalLaporan.equals("")||totalLaporan.equals("null")||totalLaporan.equals("0")){
+                                                totalPesananPart.setVisibility(View.GONE);
+                                                totalPesananTV.setText("Tidak dicantumkan");
+                                            } else {
+                                                totalPesananPart.setVisibility(View.VISIBLE);
+                                                totalPesananTV.setText(decimalFormat.format(Integer.parseInt(totalLaporan)));
+                                            }
+
+                                            String file = dataArray.getString("file");
+                                            viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                                    intent.putExtra("data", file);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        } else if(tipeLaporan.equals("3")){
+                                            if(idSales.equals(sharedPrefManager.getSpNik())){
+                                                updatePart.setVisibility(View.VISIBLE);
+                                            } else {
+                                                updatePart.setVisibility(View.GONE);
+                                            }
+                                            updateRealisasiKunjunganPart.setVisibility(View.GONE);
+                                            viewLampiranBTN.setVisibility(View.VISIBLE);
+                                            reportKategoriTV.setText("PENAGIHAN");
+                                            tglRencanaPart.setVisibility(View.GONE);
+                                            totalPesananPart.setVisibility(View.GONE);
+                                            totalPenagihanPart.setVisibility(View.VISIBLE);
+                                            noSuratJalanPart.setVisibility(View.GONE);
+
+                                            Locale localeID = new Locale("id", "ID");
+                                            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
+                                            decimalFormat.applyPattern("¤ #,##0;-¤ #,##0");
+                                            decimalFormat.setMaximumFractionDigits(0);
+
+                                            String totalLaporan = dataArray.getString("totalLaporan");
+                                            if(totalLaporan.equals("")||totalLaporan.equals("null")||totalLaporan.equals("0")){
+                                                totalPenagihanPart.setVisibility(View.GONE);
+                                                totalPenagihanTV.setText("Tidak dicantumkan");
+                                            } else {
+                                                totalPenagihanPart.setVisibility(View.VISIBLE);
+                                                totalPenagihanTV.setText(decimalFormat.format(Integer.parseInt(totalLaporan)));
+                                            }
+
+                                            String file = dataArray.getString("file");
+                                            viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                                    intent.putExtra("data", file);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        } else if(tipeLaporan.equals("4")){
+                                            if(idSales.equals(sharedPrefManager.getSpNik())){
+                                                updatePart.setVisibility(View.VISIBLE);
+                                            } else {
+                                                updatePart.setVisibility(View.GONE);
+                                            }
+                                            updateRealisasiKunjunganPart.setVisibility(View.GONE);
+                                            viewLampiranBTN.setVisibility(View.VISIBLE);
+                                            reportKategoriTV.setText("PENGIRIMAN");
+                                            tglRencanaPart.setVisibility(View.GONE);
+                                            totalPesananPart.setVisibility(View.GONE);
+                                            totalPenagihanPart.setVisibility(View.GONE);
+                                            noSuratJalanPart.setVisibility(View.VISIBLE);
+
+                                            String noSuratJalan = dataArray.getString("noSuratJalan");
+                                            if(noSuratJalan.equals("null")||noSuratJalan.equals("")){
+                                                noSuratJalanPart.setVisibility(View.GONE);
+                                                noSuratJalanTV.setText("Tidak dicantumkan");
+                                            } else {
+                                                noSuratJalanPart.setVisibility(View.VISIBLE);
+                                                noSuratJalanTV.setText(noSuratJalan);
+                                            }
+
+                                            String file = dataArray.getString("file");
+                                            viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                                    intent.putExtra("data", file);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        } else if(tipeLaporan.equals("5")){
+                                            if(idSales.equals(sharedPrefManager.getSpNik())){
+                                                updatePart.setVisibility(View.VISIBLE);
+                                            } else {
+                                                updatePart.setVisibility(View.GONE);
+                                            }
+                                            updateRealisasiKunjunganPart.setVisibility(View.GONE);
+                                            viewLampiranBTN.setVisibility(View.VISIBLE);
+                                            reportKategoriTV.setText("NON JOIN VISIT");
+                                            tglRencanaPart.setVisibility(View.GONE);
+                                            totalPesananPart.setVisibility(View.GONE);
+                                            totalPenagihanPart.setVisibility(View.GONE);
+                                            noSuratJalanPart.setVisibility(View.GONE);
+
+                                            String file = dataArray.getString("file");
+                                            viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                                    intent.putExtra("data", file);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        } else if(tipeLaporan.equals("6")){
+                                            if(idSales.equals(sharedPrefManager.getSpNik())){
+                                                updatePart.setVisibility(View.VISIBLE);
+                                            } else {
+                                                updatePart.setVisibility(View.GONE);
+                                            }
+                                            updateRealisasiKunjunganPart.setVisibility(View.GONE);
+                                            viewLampiranBTN.setVisibility(View.VISIBLE);
+                                            reportKategoriTV.setText("JOIN VISIT");
+                                            tglRencanaPart.setVisibility(View.GONE);
+                                            totalPesananPart.setVisibility(View.GONE);
+                                            totalPenagihanPart.setVisibility(View.GONE);
+                                            noSuratJalanPart.setVisibility(View.GONE);
+
+                                            String file = dataArray.getString("file");
+                                            viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                                    intent.putExtra("data", file);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        } else if(tipeLaporan.equals("7")){
+                                            if(idSales.equals(sharedPrefManager.getSpNik())){
+                                                updatePart.setVisibility(View.VISIBLE);
+                                            } else {
+                                                updatePart.setVisibility(View.GONE);
+                                            }
+                                            updateRealisasiKunjunganPart.setVisibility(View.GONE);
+                                            viewLampiranBTN.setVisibility(View.VISIBLE);
+                                            reportKategoriTV.setText("PAMERAN");
+                                            tglRencanaPart.setVisibility(View.GONE);
+                                            totalPesananPart.setVisibility(View.GONE);
+                                            totalPenagihanPart.setVisibility(View.GONE);
+                                            noSuratJalanPart.setVisibility(View.GONE);
+
+                                            String file = dataArray.getString("file");
+                                            viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    Intent intent = new Intent(DetailReportSumaActivity.this, ViewImageSliderActivity.class);
+                                                    intent.putExtra("data", file);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        }
+
+                                        String namaPelanggan = dataArray.getString("namaPelanggan");
+                                        String alamat_customer = dataArray.getString("alamat_customer");
+                                        String pic = dataArray.getString("pic");
+                                        String no_telp = dataArray.getString("noTelp");
+                                        String keterangan = dataArray.getString("keterangan");
+
+                                        keteranganUpdateED.setText(keterangan);
+                                        namaPelangganTV.setText(namaPelanggan);
+
+                                        if(alamat_customer.equals("null") || alamat_customer.equals("")){
+                                            alamatPelangganTV.setText("Belum diketahui");
+                                        } else {
+                                            alamatPelangganTV.setText(alamat_customer);
+                                        }
+
+                                        if(pic.equals("null")){
+                                            picPelangganPart.setVisibility(View.GONE);
+                                            picPelangganTV.setText("Belum diketahui");
+                                        } else {
+                                            picPelangganPart.setVisibility(View.VISIBLE);
+                                            picPelangganTV.setText(pic);
+                                        }
+
+                                        if(no_telp.equals("null")){
+                                            teleponPelangganPart.setVisibility(View.GONE);
+                                            teleponPelangganTV.setText("Belum diketahui");
+                                        } else {
+                                            teleponPelangganPart.setVisibility(View.VISIBLE);
+                                            teleponPelangganTV.setText(no_telp);
+                                        }
+
+                                        keteranganTV.setText(keterangan);
+
+                                        if(mMap != null && (tipeLaporan.equals("2") || tipeLaporan.equals("3") || tipeLaporan.equals("4") || tipeLaporan.equals("5") || tipeLaporan.equals("6") || tipeLaporan.equals("7"))){
+                                            mapsPart.setVisibility(View.VISIBLE);
+                                            mMap.setMyLocationEnabled(false);
+                                            mMap.getUiSettings().setMyLocationButtonEnabled(false);
+                                            userPoint = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
+                                            float zoomLevel = 17.8f;
+                                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPoint, zoomLevel));
+                                            mMap.getUiSettings().setCompassEnabled(false);
+                                            Location location = new Location("dummyProvider");
+                                            location.setLatitude(Double.parseDouble(latitude));
+                                            location.setLongitude(Double.parseDouble(longitude));
+                                            new ReverseGeocodingTask().execute(location);
+                                        } else {
+                                            mapsPart.setVisibility(View.GONE);
+                                        }
+
+                                    } else {
+                                        new KAlertDialog(DetailReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Terjadi kesalahan saat mengakses data")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                             }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        },
+                        new Response.ErrorListener()
+                        {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // error
+                                Log.d("Error.Response", error.toString());
+                                connectionFailed();
+                            }
                         }
-                    }
-                },
-                new Response.ErrorListener()
+                )
                 {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
-                        Log.d("Error.Response", error.toString());
-                        connectionFailed();
+                    protected Map<String, String> getParams()
+                    {
+                        Map<String, String>  params = new HashMap<String, String>();
+                        params.put("id_report", idReport);
+                        params.put("from", "android");
+                        return params;
                     }
-                }
-        )
-        {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("id_report", idReport);
-                params.put("from", "android");
-                return params;
-            }
-        };
+                };
 
-        requestQueue.add(postRequest);
+                DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                        0,
+                        -1,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+                postRequest.setRetryPolicy(retryPolicy);
+
+                requestQueue.add(postRequest);
+
+            }
+        }).start();
 
     }
 

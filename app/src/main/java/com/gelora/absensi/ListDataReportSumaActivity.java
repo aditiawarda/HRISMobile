@@ -211,11 +211,16 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
-                        if(categoryCode.equals("1")){
-                            getData(categoryCode);
-                        } else {
-                            getData(subCategoryCode);
-                        }
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(categoryCode.equals("1")){
+                                    getData(categoryCode);
+                                } else {
+                                    getData(subCategoryCode);
+                                }
+                            }
+                        }).start();
                     }
                 }, 0);
             }
@@ -281,11 +286,16 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                if(categoryCode.equals("1")){
-                                    getData(categoryCode);
-                                } else {
-                                    getData(subCategoryCode);
-                                }
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if(categoryCode.equals("1")){
+                                            getData(categoryCode);
+                                        } else {
+                                            getData(subCategoryCode);
+                                        }
+                                    }
+                                }).start();
                             }
                         }, 0);
                     }
@@ -322,11 +332,16 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(sharedPrefManager.getSpNik().equals("0499070507")){
-                    getData(subCategoryCode);
-                } else {
-                    getData(categoryCode);
-                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(sharedPrefManager.getSpNik().equals("0499070507")){
+                            getData(subCategoryCode);
+                        } else {
+                            getData(categoryCode);
+                        }
+                    }
+                }).start();
             }
         }, 0);
 
@@ -501,7 +516,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                getData(categoryCode);
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getData(categoryCode);
+                                    }
+                                }).start();
                             }
                         }, 0);
                     }
@@ -537,11 +557,16 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                if(categoryCode.equals("0")){
-                                    getData(subCategoryCode);
-                                } else {
-                                    getData(categoryCode);
-                                }
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if(categoryCode.equals("0")){
+                                            getData(subCategoryCode);
+                                        } else {
+                                            getData(categoryCode);
+                                        }
+                                    }
+                                }).start();
                             }
                         }, 0);
                     }
@@ -681,7 +706,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                getData(subCategoryCode);
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getData(subCategoryCode);
+                                    }
+                                }).start();
                             }
                         }, 0);
                     }
@@ -720,7 +750,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                getData(subCategoryCode);
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getData(subCategoryCode);
+                                    }
+                                }).start();
                             }
                         }, 0);
                     }
@@ -761,7 +796,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                getData(subCategoryCode);
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getData(subCategoryCode);
+                                    }
+                                }).start();
                             }
                         }, 0);
 
@@ -803,7 +843,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                getData(subCategoryCode);
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getData(subCategoryCode);
+                                    }
+                                }).start();
                             }
                         }, 0);
 
@@ -845,7 +890,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                getData(subCategoryCode);
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getData(subCategoryCode);
+                                    }
+                                }).start();
                             }
                         }, 0);
 
@@ -887,7 +937,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                getData(subCategoryCode);
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getData(subCategoryCode);
+                                    }
+                                }).start();
                             }
                         }, 0);
 
@@ -994,11 +1049,16 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if(categoryCode.equals("1")){
-                            getData(categoryCode);
-                        } else {
-                            getData(subCategoryCode);
-                        }
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(categoryCode.equals("1")){
+                                    getData(categoryCode);
+                                } else {
+                                    getData(subCategoryCode);
+                                }
+                            }
+                        }).start();
                     }
                 }, 0);
 
@@ -1099,11 +1159,16 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if(categoryCode.equals("1")){
-                            getData(categoryCode);
-                        } else {
-                            getData(subCategoryCode);
-                        }
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(categoryCode.equals("1")){
+                                    getData(categoryCode);
+                                } else {
+                                    getData(subCategoryCode);
+                                }
+                            }
+                        }).start();
                     }
                 }, 0);
 
@@ -1149,11 +1214,16 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                if(categoryCode.equals("1")){
-                                    getData(categoryCode);
-                                } else {
-                                    getData(subCategoryCode);
-                                }
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if(categoryCode.equals("1")){
+                                            getData(categoryCode);
+                                        } else {
+                                            getData(subCategoryCode);
+                                        }
+                                    }
+                                }).start();
                             }
                         }, 0);
                     }
@@ -1336,11 +1406,16 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                if(categoryCode.equals("1")){
-                                    getData(categoryCode);
-                                } else {
-                                    getData(subCategoryCode);
-                                }
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if(categoryCode.equals("1")){
+                                            getData(categoryCode);
+                                        } else {
+                                            getData(subCategoryCode);
+                                        }
+                                    }
+                                }).start();
                             }
                         }, 0);
                     }
@@ -1449,12 +1524,16 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            if(categoryCode.equals("1")){
-                                getData(categoryCode);
-                            } else {
-                                getData(subCategoryCode);
-                            }
-
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if(categoryCode.equals("1")){
+                                        getData(categoryCode);
+                                    } else {
+                                        getData(subCategoryCode);
+                                    }
+                                }
+                            }).start();
                         }
                     }, 0);
                 }
@@ -1508,12 +1587,16 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            if(categoryCode.equals("1")){
-                                getData(categoryCode);
-                            } else {
-                                getData(subCategoryCode);
-                            }
-
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if(categoryCode.equals("1")){
+                                        getData(categoryCode);
+                                    } else {
+                                        getData(subCategoryCode);
+                                    }
+                                }
+                            }).start();
                         }
                     }, 0);
                 }
@@ -1534,11 +1617,16 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if(categoryCode.equals("1")){
-                            getData(categoryCode);
-                        } else {
-                            getData("0");
-                        }
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(categoryCode.equals("1")){
+                                    getData(categoryCode);
+                                } else {
+                                    getData("0");
+                                }
+                            }
+                        }).start();
                     }
                 }, 0);
             } else {
@@ -1553,7 +1641,12 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            getData(categoryCode);
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    getData(categoryCode);
+                                }
+                            }).start();
                         }
                     }, 0);
                 } else {
@@ -1594,19 +1687,39 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                             if(subCategoryChoiceTV.getText().toString().equals("Promosi")){
                                 categoryCode = "0";
                                 subCategoryCode = "2";
-                                getData(subCategoryCode);
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getData(subCategoryCode);
+                                    }
+                                }).start();
                             } else if(subCategoryChoiceTV.getText().toString().equals("Penagihan")){
                                 categoryCode = "0";
                                 subCategoryCode = "3";
-                                getData(subCategoryCode);
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getData(subCategoryCode);
+                                    }
+                                }).start();
                             } else if(subCategoryChoiceTV.getText().toString().equals("Pengiriman")){
                                 categoryCode = "0";
                                 subCategoryCode = "4";
-                                getData(subCategoryCode);
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getData(subCategoryCode);
+                                    }
+                                }).start();
                             } else if(subCategoryChoiceTV.getText().toString().equals("Non Join Visit")){
                                 categoryCode = "0";
                                 subCategoryCode = "5";
-                                getData(subCategoryCode);
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getData(subCategoryCode);
+                                    }
+                                }).start();
                             }
                         }
                     }, 0);

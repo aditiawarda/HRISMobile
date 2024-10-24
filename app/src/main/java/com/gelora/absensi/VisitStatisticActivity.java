@@ -588,225 +588,235 @@ public class VisitStatisticActivity extends AppCompatActivity {
     }
 
     private void getPieCart(){
-        String url = "https://reporting.sumasistem.co.id/api/get_visit_statistic?month="+selectMonth;
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
-                        try {
-                            String status = response.getString("status");
-                            if(status.equals("Success")){
-                                JSONObject totalPerWilayah = response.getJSONObject("total_per_wilayah");
-                                int jakarta1 = totalPerWilayah.getInt("Jakarta 1");
-                                int jakarta2 = totalPerWilayah.getInt("Jakarta 2");
-                                int jakarta3 = totalPerWilayah.getInt("Jakarta 3");
-                                int bandung  = totalPerWilayah.getInt("Bandung");
-                                int semarang = totalPerWilayah.getInt("Semarang");
-                                int surabaya = totalPerWilayah.getInt("Surabaya");
-                                int jakartaae = totalPerWilayah.getInt("Jakarta AE");
-                                int akuntingKeuangan = totalPerWilayah.getInt("Akunting dan Keuangan");
-                                int totalKeseluruhan = response.getInt("total_keseluruhan");
-
-                                totalVisitTV.setText("Total Kunjungan : "+String.valueOf(totalKeseluruhan));
-
-                                ArrayList<PieEntry> entries = new ArrayList<>();
-                                entries.add(new PieEntry(jakarta1, "Suma Jakarta 1"));
-                                entries.add(new PieEntry(jakarta2, "Suma Jakarta 2"));
-                                entries.add(new PieEntry(jakarta3, "Suma Jakarta 3"));
-                                entries.add(new PieEntry(bandung, "Suma Bandung"));
-                                entries.add(new PieEntry(semarang, "Suma Semarang"));
-                                entries.add(new PieEntry(surabaya, "Suma Surabaya"));
-                                entries.add(new PieEntry(jakartaae, "Jakarta AE"));
-                                entries.add(new PieEntry(akuntingKeuangan, "Akunting dan Keuangan"));
-
-                                PieDataSet dataSet = new PieDataSet(entries, "");
-                                dataSet.setValueTextSize(25f);
-
-                                ArrayList<Integer> colors = new ArrayList<>();
-                                colors.add(Color.parseColor("#FFFF8A65")); // Jakarta 1
-                                colors.add(Color.parseColor("#FF80E27E")); // Jakarta 2
-                                colors.add(Color.parseColor("#FF82B1FF")); // Jakarta 3
-                                colors.add(Color.parseColor("#FFFFF176")); // Bandung
-                                colors.add(Color.parseColor("#FFEA80FC")); // Semarang
-                                colors.add(Color.parseColor("#FFFFD180")); // Surabaya
-                                colors.add(Color.parseColor("#FFFF867C")); // Jakarta AE
-                                colors.add(Color.parseColor("#FF9FA8DA")); // Akunting dan Keuangan
-                                dataSet.setColors(colors);
-
-                                PieData data = new PieData(dataSet);
-                                data.setValueTextSize(16f);
-                                data.setValueTextColor(Color.BLACK);
-                                data.setValueFormatter(new ValueFormatter() {
-                                    @Override
-                                    public String getFormattedValue(float value) {
-                                        return String.valueOf((int) value);
-                                    }
-                                });
-                                pieChart.setData(data);
-                                pieChart.setDrawHoleEnabled(false);
-                                pieChart.setUsePercentValues(false);
-                                pieChart.getDescription().setEnabled(false);
-                                pieChart.setEntryLabelTextSize(12f);
-                                pieChart.setEntryLabelColor(Color.BLACK);
-                                pieChart.animateY(1000);
-                                pieChart.getLegend().setEnabled(false);
-
-                                pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-                                    @Override
-                                    public void onValueSelected(Entry e, Highlight h) {
-                                        PieEntry pieEntry = (PieEntry) e;
-                                        String label = pieEntry.getLabel();
-                                        float value = pieEntry.getValue();
-
-                                        String wilayah = "";
-                                        if(label.equals("Suma Jakarta 1")){
-                                            wilayah = "Jakarta 1";
-                                        } else if(label.equals("Suma Jakarta 2")){
-                                            wilayah = "Jakarta 2";
-                                        } else if(label.equals("Suma Jakarta 3")){
-                                            wilayah = "Jakarta 3";
-                                        } else if(label.equals("Suma Bandung")){
-                                            wilayah = "Bandung";
-                                        } else if(label.equals("Suma Semarang")){
-                                            wilayah = "Semarang";
-                                        } else if(label.equals("Suma Surabaya")){
-                                            wilayah = "Surabaya";
-                                        } else if(label.equals("Jakarta AE")){
-                                            wilayah = "Jakarta AE";
-                                        } else if(label.equals("Akunting dan Keuangan")){
-                                            wilayah = "Akunting dan Keuangan";
-                                        }
-
-                                        Intent intentPush = new Intent(VisitStatisticActivity.this, DetailVisitStatisticAreaActivity.class);
-                                        intentPush.putExtra("wilayah_full", label);
-                                        intentPush.putExtra("wilayah", wilayah);
-                                        intentPush.putExtra("month", selectMonth);
-                                        intentPush.putExtra("month_text", bulanPilihTV.getText().toString());
-                                        startActivity(intentPush);
-
-                                    }
-                                    @Override
-                                    public void onNothingSelected() {
-                                    }
-                                });
-
-                                noDataPart.setVisibility(View.GONE);
-                                loadingDataPart.setVisibility(View.GONE);
-                                pieChartPart.setVisibility(View.VISIBLE);
-
-                                getDataStatisticSales();
-                            } else {
-                                noDataPart.setVisibility(View.VISIBLE);
-                                loadingDataPart.setVisibility(View.GONE);
-                                pieChartPart.setVisibility(View.GONE);
-
-                                searchInput.setVisibility(View.GONE);
-                                listSalesRV.setVisibility(View.GONE);
-                                loadingDataSalesPart.setVisibility(View.GONE);
-                                noDataSalesPart.setVisibility(View.VISIBLE);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
+        new Thread(new Runnable() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                try {
-                    new KAlertDialog(VisitStatisticActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
-                            .setConfirmText("    OK    ")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
+            public void run() {
+                String url = "https://reporting.sumasistem.co.id/api/get_visit_statistic?month="+selectMonth;
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                        new Response.Listener<JSONObject>() {
+                            @SuppressLint("SetTextI18n")
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.e("PaRSE JSON", response + "");
+                                try {
+                                    String status = response.getString("status");
+                                    if(status.equals("Success")){
+                                        JSONObject totalPerWilayah = response.getJSONObject("total_per_wilayah");
+                                        int jakarta1 = totalPerWilayah.getInt("Jakarta 1");
+                                        int jakarta2 = totalPerWilayah.getInt("Jakarta 2");
+                                        int jakarta3 = totalPerWilayah.getInt("Jakarta 3");
+                                        int bandung  = totalPerWilayah.getInt("Bandung");
+                                        int semarang = totalPerWilayah.getInt("Semarang");
+                                        int surabaya = totalPerWilayah.getInt("Surabaya");
+                                        int jakartaae = totalPerWilayah.getInt("Jakarta AE");
+                                        int akuntingKeuangan = totalPerWilayah.getInt("Akunting dan Keuangan");
+                                        int totalKeseluruhan = response.getInt("total_keseluruhan");
+
+                                        totalVisitTV.setText("Total Kunjungan : "+String.valueOf(totalKeseluruhan));
+
+                                        ArrayList<PieEntry> entries = new ArrayList<>();
+                                        entries.add(new PieEntry(jakarta1, "Suma Jakarta 1"));
+                                        entries.add(new PieEntry(jakarta2, "Suma Jakarta 2"));
+                                        entries.add(new PieEntry(jakarta3, "Suma Jakarta 3"));
+                                        entries.add(new PieEntry(bandung, "Suma Bandung"));
+                                        entries.add(new PieEntry(semarang, "Suma Semarang"));
+                                        entries.add(new PieEntry(surabaya, "Suma Surabaya"));
+                                        entries.add(new PieEntry(jakartaae, "Jakarta AE"));
+                                        entries.add(new PieEntry(akuntingKeuangan, "Akunting dan Keuangan"));
+
+                                        PieDataSet dataSet = new PieDataSet(entries, "");
+                                        dataSet.setValueTextSize(25f);
+
+                                        ArrayList<Integer> colors = new ArrayList<>();
+                                        colors.add(Color.parseColor("#FFFF8A65")); // Jakarta 1
+                                        colors.add(Color.parseColor("#FF80E27E")); // Jakarta 2
+                                        colors.add(Color.parseColor("#FF82B1FF")); // Jakarta 3
+                                        colors.add(Color.parseColor("#FFFFF176")); // Bandung
+                                        colors.add(Color.parseColor("#FFEA80FC")); // Semarang
+                                        colors.add(Color.parseColor("#FFFFD180")); // Surabaya
+                                        colors.add(Color.parseColor("#FFFF867C")); // Jakarta AE
+                                        colors.add(Color.parseColor("#FF9FA8DA")); // Akunting dan Keuangan
+                                        dataSet.setColors(colors);
+
+                                        PieData data = new PieData(dataSet);
+                                        data.setValueTextSize(16f);
+                                        data.setValueTextColor(Color.BLACK);
+                                        data.setValueFormatter(new ValueFormatter() {
+                                            @Override
+                                            public String getFormattedValue(float value) {
+                                                return String.valueOf((int) value);
+                                            }
+                                        });
+                                        pieChart.setData(data);
+                                        pieChart.setDrawHoleEnabled(false);
+                                        pieChart.setUsePercentValues(false);
+                                        pieChart.getDescription().setEnabled(false);
+                                        pieChart.setEntryLabelTextSize(12f);
+                                        pieChart.setEntryLabelColor(Color.BLACK);
+                                        pieChart.animateY(1000);
+                                        pieChart.getLegend().setEnabled(false);
+
+                                        pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+                                            @Override
+                                            public void onValueSelected(Entry e, Highlight h) {
+                                                PieEntry pieEntry = (PieEntry) e;
+                                                String label = pieEntry.getLabel();
+                                                float value = pieEntry.getValue();
+
+                                                String wilayah = "";
+                                                if(label.equals("Suma Jakarta 1")){
+                                                    wilayah = "Jakarta 1";
+                                                } else if(label.equals("Suma Jakarta 2")){
+                                                    wilayah = "Jakarta 2";
+                                                } else if(label.equals("Suma Jakarta 3")){
+                                                    wilayah = "Jakarta 3";
+                                                } else if(label.equals("Suma Bandung")){
+                                                    wilayah = "Bandung";
+                                                } else if(label.equals("Suma Semarang")){
+                                                    wilayah = "Semarang";
+                                                } else if(label.equals("Suma Surabaya")){
+                                                    wilayah = "Surabaya";
+                                                } else if(label.equals("Jakarta AE")){
+                                                    wilayah = "Jakarta AE";
+                                                } else if(label.equals("Akunting dan Keuangan")){
+                                                    wilayah = "Akunting dan Keuangan";
+                                                }
+
+                                                Intent intentPush = new Intent(VisitStatisticActivity.this, DetailVisitStatisticAreaActivity.class);
+                                                intentPush.putExtra("wilayah_full", label);
+                                                intentPush.putExtra("wilayah", wilayah);
+                                                intentPush.putExtra("month", selectMonth);
+                                                intentPush.putExtra("month_text", bulanPilihTV.getText().toString());
+                                                startActivity(intentPush);
+
+                                            }
+                                            @Override
+                                            public void onNothingSelected() {
+                                            }
+                                        });
+
+                                        noDataPart.setVisibility(View.GONE);
+                                        loadingDataPart.setVisibility(View.GONE);
+                                        pieChartPart.setVisibility(View.VISIBLE);
+
+                                        getDataStatisticSales();
+                                    } else {
+                                        noDataPart.setVisibility(View.VISIBLE);
+                                        loadingDataPart.setVisibility(View.GONE);
+                                        pieChartPart.setVisibility(View.GONE);
+
+                                        searchInput.setVisibility(View.GONE);
+                                        listSalesRV.setVisibility(View.GONE);
+                                        loadingDataSalesPart.setVisibility(View.GONE);
+                                        noDataSalesPart.setVisibility(View.VISIBLE);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                            })
-                            .show();
-                } catch (WindowManager.BadTokenException e){
-                    Log.e("Error", "Error : "+e.toString());
-                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        try {
+                            new KAlertDialog(VisitStatisticActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        } catch (WindowManager.BadTokenException e){
+                            Log.e("Error", "Error : "+e.toString());
+                        }
+
+                    }
+                });
+
+                DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                        0,
+                        -1,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+                request.setRetryPolicy(retryPolicy);
+
+                requestQueue.add(request);
 
             }
-        });
-
-        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
-                0,
-                -1,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        request.setRetryPolicy(retryPolicy);
-
-        requestQueue.add(request);
+        }).start();
     }
 
     private void getDataStatisticSales() {
-        String url = "https://reporting.sumasistem.co.id/api/get_visit_statistic_sales?month="+selectMonth;
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
-                        try {
-                            String status = response.getString("status");
-                            if(status.equals("Success")){
-                                titleSalesListTV.setText("Statistik Kunjungan Sales Bulan "+bulanPilihTV.getText().toString());
-                                String data_statistik = response.getString("data");
-                                GsonBuilder builder = new GsonBuilder();
-                                Gson gson = builder.create();
-                                salesVisitStatistics = gson.fromJson(data_statistik, SalesVisitStatistic[].class);
-                                adapterListDataVisitStatisticSales = new AdapterListDataVisitStatisticSales(salesVisitStatistics, VisitStatisticActivity.this);
-                                listSalesRV.setAdapter(adapterListDataVisitStatisticSales);
-
-                                searchInput.setVisibility(View.VISIBLE);
-                                listSalesRV.setVisibility(View.VISIBLE);
-                                loadingDataSalesPart.setVisibility(View.GONE);
-                                noDataSalesPart.setVisibility(View.GONE);
-                            } else {
-                                searchInput.setVisibility(View.GONE);
-                                listSalesRV.setVisibility(View.GONE);
-                                loadingDataSalesPart.setVisibility(View.GONE);
-                                noDataSalesPart.setVisibility(View.VISIBLE);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
+        new Thread(new Runnable() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                try {
-                    new KAlertDialog(VisitStatisticActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
-                            .setConfirmText("    OK    ")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
+            public void run() {
+                String url = "https://reporting.sumasistem.co.id/api/get_visit_statistic_sales?month="+selectMonth;
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                        new Response.Listener<JSONObject>() {
+                            @SuppressLint("SetTextI18n")
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.e("PaRSE JSON", response + "");
+                                try {
+                                    String status = response.getString("status");
+                                    if(status.equals("Success")){
+                                        titleSalesListTV.setText("Statistik Kunjungan Sales Bulan "+bulanPilihTV.getText().toString());
+                                        String data_statistik = response.getString("data");
+                                        GsonBuilder builder = new GsonBuilder();
+                                        Gson gson = builder.create();
+                                        salesVisitStatistics = gson.fromJson(data_statistik, SalesVisitStatistic[].class);
+                                        adapterListDataVisitStatisticSales = new AdapterListDataVisitStatisticSales(salesVisitStatistics, VisitStatisticActivity.this);
+                                        listSalesRV.setAdapter(adapterListDataVisitStatisticSales);
+
+                                        searchInput.setVisibility(View.VISIBLE);
+                                        listSalesRV.setVisibility(View.VISIBLE);
+                                        loadingDataSalesPart.setVisibility(View.GONE);
+                                        noDataSalesPart.setVisibility(View.GONE);
+                                    } else {
+                                        searchInput.setVisibility(View.GONE);
+                                        listSalesRV.setVisibility(View.GONE);
+                                        loadingDataSalesPart.setVisibility(View.GONE);
+                                        noDataSalesPart.setVisibility(View.VISIBLE);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                            })
-                            .show();
-                } catch (WindowManager.BadTokenException e){
-                    Log.e("Error", "Error : "+e.toString());
-                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        try {
+                            new KAlertDialog(VisitStatisticActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        } catch (WindowManager.BadTokenException e){
+                            Log.e("Error", "Error : "+e.toString());
+                        }
 
+                    }
+                });
+
+                DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                        0,
+                        -1,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+                request.setRetryPolicy(retryPolicy);
+
+                requestQueue.add(request);
             }
-        });
-
-        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
-                0,
-                -1,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        request.setRetryPolicy(retryPolicy);
-
-        requestQueue.add(request);
-
+        }).start();
     }
 
     public BroadcastReceiver toDetail = new BroadcastReceiver() {
