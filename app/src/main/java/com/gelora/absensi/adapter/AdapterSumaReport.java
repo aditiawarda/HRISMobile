@@ -3,6 +3,7 @@ package com.gelora.absensi.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -122,7 +123,11 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             } else {
                 myViewHolder.f1TanggalRencanaTV.setText(dataReportSuma.getTgl_rencana().substring(8,10)+"/"+dataReportSuma.getTgl_rencana().substring(5,7)+"/"+dataReportSuma.getTgl_rencana().substring(0,4));
             }
-            myViewHolder.f1TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
+            try {
+                myViewHolder.f1TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
+            } catch (NullPointerException e){
+                Log.e("Error", e.toString());
+            }
         } else if(dataReportSuma.getTipeLaporan().equals("2")){
             myViewHolder.photoRevPart.setVisibility(View.VISIBLE);
             int right = 75;
