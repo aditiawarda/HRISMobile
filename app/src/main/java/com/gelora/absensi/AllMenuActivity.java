@@ -735,7 +735,7 @@ public class AllMenuActivity extends AppCompatActivity {
                 reportSumaPart3.setVisibility(View.GONE);
 
             } else {
-                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")){ //Admin
+                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpIdJabatan().equals("85")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")){ //Admin
                     cardPart.setVisibility(View.GONE);
                     sdmPart.setVisibility(View.VISIBLE);
                     projectPart.setVisibility(View.VISIBLE);
@@ -905,7 +905,7 @@ public class AllMenuActivity extends AppCompatActivity {
                         projectPart3.setVisibility(View.GONE);
                         projectPartSub.setVisibility(View.VISIBLE);
 
-                        if(sharedPrefManager.getSpIdJabatan().equals("1") && sharedPrefManager.getSpIdCor().equals("1") && (sharedPrefManager.getSpIdCab().equals("1") || sharedPrefManager.getSpIdCab().equals("0"))){
+                        if((sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpIdJabatan().equals("85")) && sharedPrefManager.getSpIdCor().equals("1") && (sharedPrefManager.getSpIdCab().equals("1") || sharedPrefManager.getSpIdCab().equals("0"))){
                             makanLemburPart3.setVisibility(View.VISIBLE);
                         } else {
                             makanLemburPart3.setVisibility(View.GONE);
@@ -932,7 +932,7 @@ public class AllMenuActivity extends AppCompatActivity {
                         projectPart3.setVisibility(View.VISIBLE);
                         projectPartSub.setVisibility(View.GONE);
 
-                        if(sharedPrefManager.getSpIdJabatan().equals("1") && sharedPrefManager.getSpIdCor().equals("1") && (sharedPrefManager.getSpIdCab().equals("1") || sharedPrefManager.getSpIdCab().equals("0"))){
+                        if((sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpIdJabatan().equals("85")) && sharedPrefManager.getSpIdCor().equals("1") && (sharedPrefManager.getSpIdCab().equals("1") || sharedPrefManager.getSpIdCab().equals("0"))){
                             makanLemburPart4.setVisibility(View.VISIBLE);
 
                             keluarKantorPart4.setVisibility(View.VISIBLE);

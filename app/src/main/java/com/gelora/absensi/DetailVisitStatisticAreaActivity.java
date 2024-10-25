@@ -200,136 +200,142 @@ public class DetailVisitStatisticAreaActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        String url = "https://reporting.sumasistem.co.id/api/get_detail_visit_statistic_area?wilayah="+wilayah+"&month="+month;
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
-                        try {
-                            String status = response.getString("status");
-                            if(status.equals("Success")){
-                                String total_keseluruhan = response.getString("total_keseluruhan");
-                                String total_per_agenda = response.getString("total_per_agenda");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String url = "https://reporting.sumasistem.co.id/api/get_detail_visit_statistic_area?wilayah="+wilayah+"&month="+month;
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                        new Response.Listener<JSONObject>() {
+                            @SuppressLint("SetTextI18n")
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.e("PaRSE JSON", response + "");
+                                try {
+                                    String status = response.getString("status");
+                                    if(status.equals("Success")){
+                                        String total_keseluruhan = response.getString("total_keseluruhan");
+                                        String total_per_agenda = response.getString("total_per_agenda");
 
-                                JSONObject detailObject = new JSONObject(total_per_agenda);
-                                String promosi = detailObject.getString("promosi");
-                                String penagihan = detailObject.getString("penagihan");
-                                String pengiriman = detailObject.getString("pengiriman");
-                                String pameran = detailObject.getString("pameran");
-                                String jv = detailObject.getString("jv");
-                                String njv = detailObject.getString("njv");
-                                String lainnya = detailObject.getString("lainnya");
-                                totalKunjunganTV.setText(total_keseluruhan);
+                                        JSONObject detailObject = new JSONObject(total_per_agenda);
+                                        String promosi = detailObject.getString("promosi");
+                                        String penagihan = detailObject.getString("penagihan");
+                                        String pengiriman = detailObject.getString("pengiriman");
+                                        String pameran = detailObject.getString("pameran");
+                                        String jv = detailObject.getString("jv");
+                                        String njv = detailObject.getString("njv");
+                                        String lainnya = detailObject.getString("lainnya");
+                                        totalKunjunganTV.setText(total_keseluruhan);
 
-                                JSONArray graphic = response.getJSONArray("graphic");
+                                        JSONArray graphic = response.getJSONArray("graphic");
 
-                                ArrayList<Entry> lineEntries = new ArrayList<>();
-                                for (int i = 0; i < graphic.length(); i++) {
-                                    JSONObject dataGraphic = graphic.getJSONObject(i);
-                                    String tanggal = dataGraphic.getString("date");
-                                    String jumlah = dataGraphic.getString("count");
-                                    lineEntries.add(new Entry(i+1, Integer.parseInt(jumlah)));
+                                        ArrayList<Entry> lineEntries = new ArrayList<>();
+                                        for (int i = 0; i < graphic.length(); i++) {
+                                            JSONObject dataGraphic = graphic.getJSONObject(i);
+                                            String tanggal = dataGraphic.getString("date");
+                                            String jumlah = dataGraphic.getString("count");
+                                            lineEntries.add(new Entry(i+1, Integer.parseInt(jumlah)));
+                                        }
+
+                                        LineDataSet lineDataSet = new LineDataSet(lineEntries, monthTV.getText().toString());
+                                        lineDataSet.setColor(getResources().getColor(R.color.color2));
+                                        lineDataSet.setValueTextSize(10f);
+                                        lineDataSet.setValueFormatter(new CustomValueFormatter());
+                                        lineDataSet.setValueTextColor(Color.parseColor("#081a5b"));
+                                        lineDataSet.setLineWidth(2f);
+
+                                        LineData lineData = new LineData(lineDataSet);
+                                        lineChart.setData(lineData);
+
+                                        XAxis leftAxis = lineChart.getXAxis();
+                                        leftAxis.setAxisMinimum(1f);
+                                        if(month.equals(getMonth())){
+                                            leftAxis.setAxisMaximum(Float.parseFloat(getDay()));
+                                        }
+
+                                        YAxis leftYAxis = lineChart.getAxisLeft();
+                                        leftYAxis.setValueFormatter(new YAxisValueFormatter());
+                                        leftYAxis.setGranularity(1f);
+                                        leftYAxis.setAxisMinimum(0f);
+
+                                        Description description = new Description();
+                                        description.setText("Grafik Kunjungan");
+                                        lineChart.setDescription(description);
+
+                                        YAxis rightYAxis = lineChart.getAxisRight();
+                                        rightYAxis.setEnabled(false);
+
+                                        lineChart.invalidate();
+
+                                        if(Integer.parseInt(total_keseluruhan)>0){
+                                            lineChartPart.setVisibility(View.VISIBLE);
+                                            loadingDataPart.setVisibility(View.GONE);
+                                            noDataPart.setVisibility(View.GONE);
+                                        } else {
+                                            lineChartPart.setVisibility(View.GONE);
+                                            loadingDataPart.setVisibility(View.GONE);
+                                            noDataPart.setVisibility(View.VISIBLE);
+                                        }
+
+                                        promosiLoading.setVisibility(View.GONE);
+                                        penagihanLoading.setVisibility(View.GONE);
+                                        pengirimanLoading.setVisibility(View.GONE);
+                                        pameranLoading.setVisibility(View.GONE);
+                                        jvLoading.setVisibility(View.GONE);
+                                        njvLoading.setVisibility(View.GONE);
+                                        lainnyaLoading.setVisibility(View.GONE);
+
+                                        promosiTV.setVisibility(View.VISIBLE);
+                                        penagihanTV.setVisibility(View.VISIBLE);
+                                        pengoirimanTV.setVisibility(View.VISIBLE);
+                                        pameranTV.setVisibility(View.VISIBLE);
+                                        jvTV.setVisibility(View.VISIBLE);
+                                        njvTV.setVisibility(View.VISIBLE);
+                                        lainnyaTV.setVisibility(View.VISIBLE);
+
+                                        promosiTV.setText(promosi);
+                                        penagihanTV.setText(penagihan);
+                                        pengoirimanTV.setText(pengiriman);
+                                        pameranTV.setText(pameran);
+                                        jvTV.setText(jv);
+                                        njvTV.setText(njv);
+                                        lainnyaTV.setText(lainnya);
+
+                                        touchBTN(promosi, penagihan, pengiriman, pameran, jv, njv, lainnya);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-
-                                LineDataSet lineDataSet = new LineDataSet(lineEntries, monthTV.getText().toString());
-                                lineDataSet.setColor(getResources().getColor(R.color.color2));
-                                lineDataSet.setValueTextSize(10f);
-                                lineDataSet.setValueFormatter(new CustomValueFormatter());
-                                lineDataSet.setValueTextColor(Color.parseColor("#081a5b"));
-                                lineDataSet.setLineWidth(2f);
-
-                                LineData lineData = new LineData(lineDataSet);
-                                lineChart.setData(lineData);
-
-                                XAxis leftAxis = lineChart.getXAxis();
-                                leftAxis.setAxisMinimum(1f);
-                                if(month.equals(getMonth())){
-                                    leftAxis.setAxisMaximum(Float.parseFloat(getDay()));
-                                }
-
-                                YAxis leftYAxis = lineChart.getAxisLeft();
-                                leftYAxis.setValueFormatter(new YAxisValueFormatter());
-                                leftYAxis.setGranularity(1f);
-                                leftYAxis.setAxisMinimum(0f);
-
-                                Description description = new Description();
-                                description.setText("Grafik Kunjungan");
-                                lineChart.setDescription(description);
-
-                                YAxis rightYAxis = lineChart.getAxisRight();
-                                rightYAxis.setEnabled(false);
-
-                                lineChart.invalidate();
-
-                                if(Integer.parseInt(total_keseluruhan)>0){
-                                    lineChartPart.setVisibility(View.VISIBLE);
-                                    loadingDataPart.setVisibility(View.GONE);
-                                    noDataPart.setVisibility(View.GONE);
-                                } else {
-                                    lineChartPart.setVisibility(View.GONE);
-                                    loadingDataPart.setVisibility(View.GONE);
-                                    noDataPart.setVisibility(View.VISIBLE);
-                                }
-
-                                promosiLoading.setVisibility(View.GONE);
-                                penagihanLoading.setVisibility(View.GONE);
-                                pengirimanLoading.setVisibility(View.GONE);
-                                pameranLoading.setVisibility(View.GONE);
-                                jvLoading.setVisibility(View.GONE);
-                                njvLoading.setVisibility(View.GONE);
-                                lainnyaLoading.setVisibility(View.GONE);
-
-                                promosiTV.setVisibility(View.VISIBLE);
-                                penagihanTV.setVisibility(View.VISIBLE);
-                                pengoirimanTV.setVisibility(View.VISIBLE);
-                                pameranTV.setVisibility(View.VISIBLE);
-                                jvTV.setVisibility(View.VISIBLE);
-                                njvTV.setVisibility(View.VISIBLE);
-                                lainnyaTV.setVisibility(View.VISIBLE);
-
-                                promosiTV.setText(promosi);
-                                penagihanTV.setText(penagihan);
-                                pengoirimanTV.setText(pengiriman);
-                                pameranTV.setText(pameran);
-                                jvTV.setText(jv);
-                                njvTV.setText(njv);
-                                lainnyaTV.setText(lainnya);
-
-                                touchBTN(promosi, penagihan, pengiriman, pameran, jv, njv, lainnya);
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        try {
+                            new KAlertDialog(DetailVisitStatisticAreaActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        } catch (WindowManager.BadTokenException e){
+                            Log.e("Error", "Error : "+e.toString());
                         }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                try {
-                    new KAlertDialog(DetailVisitStatisticAreaActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
-                            .setConfirmText("    OK    ")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
-                } catch (WindowManager.BadTokenException e){
-                    Log.e("Error", "Error : "+e.toString());
-                }
+                });
+                DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                        0,
+                        -1,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+                request.setRetryPolicy(retryPolicy);
+                requestQueue.add(request);
+
             }
-        });
-        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
-                0,
-                -1,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        request.setRetryPolicy(retryPolicy);
-        requestQueue.add(request);
+        }).start();
     }
 
     private void touchBTN(String promosi, String penagihan, String pengiriman, String pameran, String jv, String njv, String lainnya){
