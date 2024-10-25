@@ -126,7 +126,7 @@
                 android:layout_marginTop="70dp"
                 android:foregroundGravity="center"
                 android:scaleType="fitXY"
-                android:src="@drawable/foto_test_3"
+                android:src="@drawable/foto_test_4"
                 tools:ignore="ContentDescription" />
 
         </LinearLayout>
