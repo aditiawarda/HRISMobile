@@ -134,10 +134,10 @@ public class StartApp extends AppCompatActivity {
         }
 
         int[] images = {
-                R.drawable.foto_test_1,
-                R.drawable.foto_test_2,
-                R.drawable.foto_test_3,
-                R.drawable.foto_test_4
+                R.drawable.start_img_1,
+                R.drawable.start_img_2,
+                R.drawable.start_img_3,
+                R.drawable.start_img_4
         };
 
         int randomIndex = new Random().nextInt(images.length);

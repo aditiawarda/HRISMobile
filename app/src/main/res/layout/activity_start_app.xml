@@ -126,8 +126,8 @@
                 android:layout_marginTop="70dp"
                 android:foregroundGravity="center"
                 android:scaleType="fitXY"
-                android:src="@drawable/foto_test_4"
-                tools:ignore="ContentDescription" />
+                android:src="@drawable/start_img_1"
+                tools:ignore="ContentDescription,ImageContrastCheck" />
 
         </LinearLayout>
 
