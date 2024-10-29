@@ -705,6 +705,56 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/refresh_data_part_report"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingTop="95dp"
+                                android:paddingBottom="35dp"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:id="@+id/refresh_btn"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:layout_marginBottom="15dp"
+                                    android:gravity="center"
+                                    android:background="@drawable/shape_refresh_ss">
+
+                                    <TextView
+                                        android:id="@+id/loading_off"
+                                        android:background="@drawable/loading_ss_disable"
+                                        android:layout_width="35dp"
+                                        android:layout_height="35dp" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="-8dp"
+                                    android:text="Refresh data"
+                                    android:textAlignment="center"
+                                    android:textColor="#E1BB8A"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Refresh untuk menampilkan data"
+                                    android:textAlignment="center"
+                                    android:textColor="#ECC28D"
+                                    android:textSize="10dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:id="@+id/loading_data_part_report"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -713,7 +763,8 @@
                                 android:paddingLeft="20dp"
                                 android:paddingTop="75dp"
                                 android:paddingRight="20dp"
-                                android:paddingBottom="35dp">
+                                android:paddingBottom="35dp"
+                                tools:ignore="TooManyViews">
 
                                 <ProgressBar
                                     android:layout_width="45dp"

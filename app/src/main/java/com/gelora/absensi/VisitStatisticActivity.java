@@ -90,6 +90,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
     ExpandableLayout komplainField;
     KAlertDialog pDialog;
     private int i = -1;
+    private static final String REQUEST_TAG = "LIST_DATA_REQUEST";
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -742,11 +743,8 @@ public class VisitStatisticActivity extends AppCompatActivity {
                     }
                 });
 
-                DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
-                        0,
-                        -1,
-                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-                request.setRetryPolicy(retryPolicy);
+                request.setTag(REQUEST_TAG);
+                request.setRetryPolicy(new DefaultRetryPolicy(5000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
                 requestQueue.add(request);
 
@@ -813,11 +811,8 @@ public class VisitStatisticActivity extends AppCompatActivity {
                     }
                 });
 
-                DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
-                        0,
-                        -1,
-                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-                request.setRetryPolicy(retryPolicy);
+                request.setTag(REQUEST_TAG);
+                request.setRetryPolicy(new DefaultRetryPolicy(5000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
                 requestQueue.add(request);
             }
@@ -917,7 +912,28 @@ public class VisitStatisticActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        isActivityOpened = false;
         handler.removeCallbacksAndMessages(null);
+        if (requestQueue != null) {
+            requestQueue.cancelAll(REQUEST_TAG);
+        }
+    }
+
+    protected void onStop() {
+        super.onStop();
+        isActivityOpened = false;
+        if (requestQueue != null) {
+            requestQueue.cancelAll(REQUEST_TAG);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isActivityOpened = false;
+        if (requestQueue != null) {
+            requestQueue.cancelAll(REQUEST_TAG);
+        }
     }
 
     @Override
@@ -926,6 +942,9 @@ public class VisitStatisticActivity extends AppCompatActivity {
             bottomSheetLayout.dismissSheet();
         } else {
             super.onBackPressed();
+            if (requestQueue != null) {
+                requestQueue.cancelAll(REQUEST_TAG);
+            }
         }
     }
 

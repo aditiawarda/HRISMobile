@@ -305,4 +305,10 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         return (int) (dp * density + 0.5f);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateData(DataReportSuma[] newData) {
+        this.data = newData;
+        notifyDataSetChanged(); // Notify adapter to refresh the view
+    }
+
 }

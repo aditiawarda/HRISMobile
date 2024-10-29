@@ -31,6 +31,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -67,7 +68,7 @@ import java.util.Map;
 
 public class ListDataReportSumaActivity extends AppCompatActivity {
 
-    LinearLayout statistikPart2, statistikBTN2, statistikPart, statistikBTN, pameranBTN, jvBTN, njvBTN, wilayahBTN, filterWilayahBTN, subCatBTN, attantionReportPart, salesChoiceBTN, salesBTN, catBTN, filterBarPart, dateBTN, noDataPartReport, loadingDataPartReport, rencanaBTN, aktivitasBTN, penagihanBTN, pengirimanBTN, promosiBTN, markRencana, markAktivitas, markNjv, markJv, markPameran, markPenagihan, markPengiriman, markKunjungan, actionBar, backBTN, addBTN, filterCategoryBTN, filterSubCategoryBTN;
+    LinearLayout refreshBTN, refreshDataPartReport, statistikPart2, statistikBTN2, statistikPart, statistikBTN, pameranBTN, jvBTN, njvBTN, wilayahBTN, filterWilayahBTN, subCatBTN, attantionReportPart, salesChoiceBTN, salesBTN, catBTN, filterBarPart, dateBTN, noDataPartReport, loadingDataPartReport, rencanaBTN, aktivitasBTN, penagihanBTN, pengirimanBTN, promosiBTN, markRencana, markAktivitas, markNjv, markJv, markPameran, markPenagihan, markPengiriman, markKunjungan, actionBar, backBTN, addBTN, filterCategoryBTN, filterSubCategoryBTN;
     TextView semuaWilayahBTN, wilayahChoiceTV, semuaDataBTN, salesChoiceTV, choiceDateTV, categoryChoiceTV, subCategoryChoiceTV, dateLabel;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -86,6 +87,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     private AdapterWilayahSuma adapterWilayahSuma;
     private AdapterKaryawanSales adapterKaryawanSales;
     private Handler handler = new Handler();
+    private static final String REQUEST_TAG = "LIST_DATA_REQUEST";
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -126,6 +128,8 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         statistikBTN2 = findViewById(R.id.statistik_btn_2);
         statistikPart = findViewById(R.id.statistik_part);
         statistikPart2 = findViewById(R.id.statistik_part_2);
+        refreshDataPartReport = findViewById(R.id.refresh_data_part_report);
+        refreshBTN = findViewById(R.id.refresh_btn);
 
         MaterialDatePicker materialDatePicker = MaterialDatePicker.Builder.dateRangePicker().setSelection(Pair.create(MaterialDatePicker.todayInUtcMilliseconds(),MaterialDatePicker.todayInUtcMilliseconds())).build();
         LocalBroadcastManager.getInstance(this).registerReceiver(wilayahSumaBroad, new IntentFilter("wilayah_suma_broad"));
@@ -191,7 +195,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
 
         getDateNow();
 
-        if(sharedPrefManager.getSpNik().equals("0981010210")||sharedPrefManager.getSpNik().equals("0121010900")||sharedPrefManager.getSpNik().equals("3318060323")||sharedPrefManager.getSpNik().equals("0552260707")){
+        if(sharedPrefManager.getSpNik().equals("2151010115")||sharedPrefManager.getSpNik().equals("0981010210")||sharedPrefManager.getSpNik().equals("0121010900")||sharedPrefManager.getSpNik().equals("3318060323")||sharedPrefManager.getSpNik().equals("0552260707")){
             statistikPart.setVisibility(View.VISIBLE);
             statistikPart2.setVisibility(View.GONE);
         } else {
@@ -213,6 +217,34 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 reportRV.setVisibility(View.GONE);
                 loadingDataPartReport.setVisibility(View.VISIBLE);
                 noDataPartReport.setVisibility(View.GONE);
+                refreshDataPartReport.setVisibility(View.GONE);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(categoryCode.equals("1")){
+                                    getData(categoryCode);
+                                } else {
+                                    getData(subCategoryCode);
+                                }
+                            }
+                        }).start();
+                    }
+                }, 0);
+            }
+        });
+
+        refreshBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                attantionReportPart.setVisibility(View.GONE);
+                reportRV.setVisibility(View.GONE);
+                loadingDataPartReport.setVisibility(View.VISIBLE);
+                noDataPartReport.setVisibility(View.GONE);
+                refreshDataPartReport.setVisibility(View.GONE);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -305,6 +337,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
+                        refreshDataPartReport.setVisibility(View.GONE);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -350,6 +383,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         reportRV.setVisibility(View.GONE);
         loadingDataPartReport.setVisibility(View.VISIBLE);
         noDataPartReport.setVisibility(View.GONE);
+        refreshDataPartReport.setVisibility(View.GONE);
 
         handler.postDelayed(new Runnable() {
             @Override
@@ -393,87 +427,103 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
 
     }
 
-    private void getData(String category_code){
-        String url;
-        if(sharedPrefAbsen.getSpNikSalesActive().equals("")){
-            url = "https://reporting.sumasistem.co.id/api/suma_report_list?nik=0&tipe_laporan="+category_code+"&tanggal_mulai="+dateStartChoice+"&tanggal_akhir="+dateEndChoice+"&wilayah="+sharedPrefAbsen.getSpWilayahSuma()+"&requester="+sharedPrefManager.getSpNik();
-        } else {
-            url = "https://reporting.sumasistem.co.id/api/suma_report_list?nik="+sharedPrefAbsen.getSpNikSalesActive()+"&tipe_laporan="+category_code+"&tanggal_mulai="+dateStartChoice+"&wilayah="+sharedPrefAbsen.getSpWilayahSuma()+"&tanggal_akhir="+dateEndChoice+"&requester="+sharedPrefManager.getSpNik();
-        }
+    private void getData(String category_code) {
+        String baseUrl = "https://reporting.sumasistem.co.id/api/suma_report_list";
+        String nikSalesActive = sharedPrefAbsen.getSpNikSalesActive().isEmpty() ? "0" : sharedPrefAbsen.getSpNikSalesActive();
+        String url = String.format(
+                "%s?nik=%s&tipe_laporan=%s&tanggal_mulai=%s&tanggal_akhir=%s&wilayah=%s&requester=%s",
+                baseUrl,
+                nikSalesActive,
+                category_code,
+                dateStartChoice,
+                dateEndChoice,
+                sharedPrefAbsen.getSpWilayahSuma(),
+                sharedPrefManager.getSpNik()
+        );
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
-                        try {
-                            String status = response.getString("status");
-
-                            if(status.equals("Success")){
-                                String data_report = response.getString("data");
-                                GsonBuilder builder = new GsonBuilder();
-                                Gson gson = builder.create();
-                                dataReportSumas = gson.fromJson(data_report, DataReportSuma[].class);
-                                adapterSumaReport = new AdapterSumaReport(dataReportSumas, ListDataReportSumaActivity.this);
-                                reportRV.setAdapter(adapterSumaReport);
-
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        attantionReportPart.setVisibility(View.GONE);
-                                        reportRV.setVisibility(View.VISIBLE);
-                                        loadingDataPartReport.setVisibility(View.GONE);
-                                        noDataPartReport.setVisibility(View.GONE);
-                                    }
-                                }, 0);
-
-                            } else {
-                                attantionReportPart.setVisibility(View.GONE);
-                                reportRV.setVisibility(View.GONE);
-                                loadingDataPartReport.setVisibility(View.GONE);
-                                noDataPartReport.setVisibility(View.VISIBLE);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                attantionReportPart.setVisibility(View.GONE);
-                reportRV.setVisibility(View.GONE);
-                loadingDataPartReport.setVisibility(View.GONE);
-                noDataPartReport.setVisibility(View.VISIBLE);
-
-                try {
-                    new KAlertDialog(ListDataReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
-                            .setConfirmText("    OK    ")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
-                } catch (WindowManager.BadTokenException e){
-                    Log.e("Error", "Error : "+e.toString());
+                response -> {
+                    Log.d("ParseJSON", response.toString());
+                    parseAndDisplayData(response);
+                },
+                error -> {
+                    error.printStackTrace();
+                    showErrorMessage("Gagal terhubung, harap periksa koneksi internet atau jaringan Anda");
                 }
+        );
 
-            }
-        });
-
-        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
-                0,
-                -1,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        request.setRetryPolicy(retryPolicy);
+        request.setTag(REQUEST_TAG);
+        request.setRetryPolicy(new DefaultRetryPolicy(10000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         requestQueue.add(request);
+    }
 
+    private void parseAndDisplayData(JSONObject response) {
+        new Thread(() -> {
+            try {
+                String status = response.getString("status");
+                runOnUiThread(() -> {
+                    if ("Success".equals(status)) {
+                        displayData(response);
+                    } else {
+                        showNoDataAvailable();
+                    }
+                });
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    private void displayData(JSONObject response) {
+        try {
+            String dataReport = response.getString("data");
+            Gson gson = new Gson();
+            dataReportSumas = gson.fromJson(dataReport, DataReportSuma[].class);
+            if (adapterSumaReport == null) {
+                adapterSumaReport = new AdapterSumaReport(dataReportSumas, this);
+                reportRV.setAdapter(adapterSumaReport);
+            } else {
+                adapterSumaReport.updateData(dataReportSumas);
+            }
+
+            attantionReportPart.setVisibility(View.GONE);
+            reportRV.setVisibility(View.VISIBLE);
+            loadingDataPartReport.setVisibility(View.GONE);
+            noDataPartReport.setVisibility(View.GONE);
+            refreshDataPartReport.setVisibility(View.GONE);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            showNoDataAvailable();
+        }
+    }
+
+    private void showErrorMessage(String message) {
+        attantionReportPart.setVisibility(View.GONE);
+        reportRV.setVisibility(View.GONE);
+        loadingDataPartReport.setVisibility(View.GONE);
+        noDataPartReport.setVisibility(View.VISIBLE);
+        refreshDataPartReport.setVisibility(View.GONE);
+
+        try {
+            new KAlertDialog(this, KAlertDialog.ERROR_TYPE)
+                    .setTitleText("Perhatian")
+                    .setContentText(message)
+                    .setConfirmText("    OK    ")
+                    .setConfirmClickListener(KAlertDialog::dismiss)
+                    .show();
+        } catch (WindowManager.BadTokenException e) {
+            Log.e("Error", "Error: " + e.toString());
+        }
+    }
+
+    private void showNoDataAvailable() {
+        attantionReportPart.setVisibility(View.GONE);
+        reportRV.setVisibility(View.GONE);
+        loadingDataPartReport.setVisibility(View.GONE);
+        noDataPartReport.setVisibility(View.VISIBLE);
+        refreshDataPartReport.setVisibility(View.GONE);
     }
 
     private void connectionFailed(){
@@ -535,6 +585,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
+                        refreshDataPartReport.setVisibility(View.GONE);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -576,6 +627,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
+                        refreshDataPartReport.setVisibility(View.GONE);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -725,6 +777,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
+                        refreshDataPartReport.setVisibility(View.GONE);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -769,6 +822,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
+                        refreshDataPartReport.setVisibility(View.GONE);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -815,6 +869,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
+                        refreshDataPartReport.setVisibility(View.GONE);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -862,6 +917,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
+                        refreshDataPartReport.setVisibility(View.GONE);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -909,6 +965,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
+                        refreshDataPartReport.setVisibility(View.GONE);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -956,6 +1013,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
+                        refreshDataPartReport.setVisibility(View.GONE);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -1068,6 +1126,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 reportRV.setVisibility(View.GONE);
                 loadingDataPartReport.setVisibility(View.VISIBLE);
                 noDataPartReport.setVisibility(View.GONE);
+                refreshDataPartReport.setVisibility(View.GONE);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -1178,6 +1237,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 reportRV.setVisibility(View.GONE);
                 loadingDataPartReport.setVisibility(View.VISIBLE);
                 noDataPartReport.setVisibility(View.GONE);
+                refreshDataPartReport.setVisibility(View.GONE);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -1233,6 +1293,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
+                        refreshDataPartReport.setVisibility(View.GONE);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -1425,6 +1486,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                         reportRV.setVisibility(View.GONE);
                         loadingDataPartReport.setVisibility(View.VISIBLE);
                         noDataPartReport.setVisibility(View.GONE);
+                        refreshDataPartReport.setVisibility(View.GONE);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -1543,6 +1605,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     reportRV.setVisibility(View.GONE);
                     loadingDataPartReport.setVisibility(View.VISIBLE);
                     noDataPartReport.setVisibility(View.GONE);
+                    refreshDataPartReport.setVisibility(View.GONE);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -1606,6 +1669,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     reportRV.setVisibility(View.GONE);
                     loadingDataPartReport.setVisibility(View.VISIBLE);
                     noDataPartReport.setVisibility(View.GONE);
+                    refreshDataPartReport.setVisibility(View.GONE);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -1636,6 +1700,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 reportRV.setVisibility(View.GONE);
                 loadingDataPartReport.setVisibility(View.VISIBLE);
                 noDataPartReport.setVisibility(View.GONE);
+                refreshDataPartReport.setVisibility(View.GONE);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -1660,6 +1725,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     reportRV.setVisibility(View.GONE);
                     loadingDataPartReport.setVisibility(View.VISIBLE);
                     noDataPartReport.setVisibility(View.GONE);
+                    refreshDataPartReport.setVisibility(View.GONE);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -1703,6 +1769,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                     reportRV.setVisibility(View.GONE);
                     loadingDataPartReport.setVisibility(View.VISIBLE);
                     noDataPartReport.setVisibility(View.GONE);
+                    refreshDataPartReport.setVisibility(View.GONE);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -1751,18 +1818,62 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
+        if (requestQueue != null) {
+            if (dataReportSumas == null || dataReportSumas.length == 0) {
+                requestQueue.cancelAll(REQUEST_TAG);
+
+                reportRV.setVisibility(View.GONE);
+                loadingDataPartReport.setVisibility(View.GONE);
+                noDataPartReport.setVisibility(View.GONE);
+                refreshDataPartReport.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    protected void onStop() {
+        super.onStop();
+        if (requestQueue != null) {
+            if (dataReportSumas == null || dataReportSumas.length == 0) {
+                requestQueue.cancelAll(REQUEST_TAG);
+
+                reportRV.setVisibility(View.GONE);
+                loadingDataPartReport.setVisibility(View.GONE);
+                noDataPartReport.setVisibility(View.GONE);
+                refreshDataPartReport.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (requestQueue != null) {
+            if (dataReportSumas == null || dataReportSumas.length == 0) {
+                requestQueue.cancelAll(REQUEST_TAG);
+
+                reportRV.setVisibility(View.GONE);
+                loadingDataPartReport.setVisibility(View.GONE);
+                noDataPartReport.setVisibility(View.GONE);
+                refreshDataPartReport.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
     public void onBackPressed() {
         if (bottomSheet.isSheetShowing()) {
             bottomSheet.dismissSheet();
         } else {
             super.onBackPressed();
+            if (requestQueue != null) {
+                if (dataReportSumas == null || dataReportSumas.length == 0) {
+                    requestQueue.cancelAll(REQUEST_TAG);
+                }
+            }
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        handler.removeCallbacksAndMessages(null);
     }
 
 }
