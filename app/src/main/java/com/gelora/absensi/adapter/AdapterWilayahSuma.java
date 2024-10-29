@@ -52,7 +52,7 @@ public class AdapterWilayahSuma extends RecyclerView.Adapter<AdapterWilayahSuma.
             myViewHolder.name.setTypeface(typeface);
         }
 
-        if(wilayahSuma.getNama_wilayah().equals("Jakarta 1") || wilayahSuma.getNama_wilayah().equals("Jakarta 2") || wilayahSuma.getNama_wilayah().equals("Jakarta 3") || wilayahSuma.getNama_wilayah().equals("Bandung") || wilayahSuma.getNama_wilayah().equals("Semarang") || wilayahSuma.getNama_wilayah().equals("Surabaya")){
+        if(wilayahSuma.getNama_wilayah().equals("Jakarta 1") || wilayahSuma.getNama_wilayah().equals("Jakarta 2") || wilayahSuma.getNama_wilayah().equals("Jakarta 3") || wilayahSuma.getNama_wilayah().equals("Bandung") || wilayahSuma.getNama_wilayah().equals("Semarang") || wilayahSuma.getNama_wilayah().equals("Surabaya") || wilayahSuma.getNama_wilayah().equals("Palembang")){
             myViewHolder.name.setText("Suma "+wilayahSuma.getNama_wilayah());
         } else {
             myViewHolder.name.setText(wilayahSuma.getNama_wilayah());

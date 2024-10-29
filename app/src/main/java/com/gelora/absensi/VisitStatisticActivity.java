@@ -608,6 +608,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                         int bandung  = totalPerWilayah.getInt("Bandung");
                                         int semarang = totalPerWilayah.getInt("Semarang");
                                         int surabaya = totalPerWilayah.getInt("Surabaya");
+                                        int palembang = totalPerWilayah.getInt("Palembang");
                                         int jakartaae = totalPerWilayah.getInt("Jakarta AE");
                                         int akuntingKeuangan = totalPerWilayah.getInt("Akunting dan Keuangan");
                                         int totalKeseluruhan = response.getInt("total_keseluruhan");
@@ -621,6 +622,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                         entries.add(new PieEntry(bandung, "Suma Bandung"));
                                         entries.add(new PieEntry(semarang, "Suma Semarang"));
                                         entries.add(new PieEntry(surabaya, "Suma Surabaya"));
+                                        entries.add(new PieEntry(palembang, "Suma Palembang"));
                                         entries.add(new PieEntry(jakartaae, "Jakarta AE"));
                                         entries.add(new PieEntry(akuntingKeuangan, "Akunting dan Keuangan"));
 
@@ -634,6 +636,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                         colors.add(Color.parseColor("#FFFFF176")); // Bandung
                                         colors.add(Color.parseColor("#FFEA80FC")); // Semarang
                                         colors.add(Color.parseColor("#FFFFD180")); // Surabaya
+                                        colors.add(Color.parseColor("#FFFFB250")); // Palembang
                                         colors.add(Color.parseColor("#FFFF867C")); // Jakarta AE
                                         colors.add(Color.parseColor("#FF9FA8DA")); // Akunting dan Keuangan
                                         dataSet.setColors(colors);
@@ -676,6 +679,8 @@ public class VisitStatisticActivity extends AppCompatActivity {
                                                     wilayah = "Semarang";
                                                 } else if(label.equals("Suma Surabaya")){
                                                     wilayah = "Surabaya";
+                                                } else if(label.equals("Suma Palembang")){
+                                                    wilayah = "Palembang";
                                                 } else if(label.equals("Jakarta AE")){
                                                     wilayah = "Jakarta AE";
                                                 } else if(label.equals("Akunting dan Keuangan")){

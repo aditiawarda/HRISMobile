@@ -95,7 +95,7 @@ public class AdapterListDataVisitStatisticSales extends RecyclerView.Adapter<Rec
 
             if (salesVisitStatistic.getWilayah().equals("Jakarta 1") || salesVisitStatistic.getWilayah().equals("Jakarta 2") ||
                     salesVisitStatistic.getWilayah().equals("Jakarta 3") || salesVisitStatistic.getWilayah().equals("Bandung") ||
-                    salesVisitStatistic.getWilayah().equals("Semarang") || salesVisitStatistic.getWilayah().equals("Surabaya")) {
+                    salesVisitStatistic.getWilayah().equals("Semarang") || salesVisitStatistic.getWilayah().equals("Surabaya") || salesVisitStatistic.getWilayah().equals("Palembang")) {
                 ((MyViewHolder) holder).wilayahTV.setText("Suma " + salesVisitStatistic.getWilayah());
             } else {
                 ((MyViewHolder) holder).wilayahTV.setText(salesVisitStatistic.getWilayah());

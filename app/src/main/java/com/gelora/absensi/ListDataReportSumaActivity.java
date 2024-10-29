@@ -16,7 +16,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.icu.util.Calendar;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -32,7 +31,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -44,13 +42,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterKaryawanSales;
-import com.gelora.absensi.adapter.AdapterStatusAbsen;
 import com.gelora.absensi.adapter.AdapterSumaReport;
 import com.gelora.absensi.adapter.AdapterWilayahSuma;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataReportSuma;
 import com.gelora.absensi.model.KaryawanSales;
-import com.gelora.absensi.model.StatusAbsen;
 import com.gelora.absensi.model.WilayahSuma;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
@@ -71,7 +67,7 @@ import java.util.Map;
 
 public class ListDataReportSumaActivity extends AppCompatActivity {
 
-    LinearLayout statistikBTN2, statistikPart, statistikBTN, pameranBTN, jvBTN, njvBTN, wilayahBTN, filterWilayahBTN, subCatBTN, attantionReportPart, salesChoiceBTN, salesBTN, catBTN, filterBarPart, dateBTN, noDataPartReport, loadingDataPartReport, rencanaBTN, aktivitasBTN, penagihanBTN, pengirimanBTN, promosiBTN, markRencana, markAktivitas, markNjv, markJv, markPameran, markPenagihan, markPengiriman, markKunjungan, actionBar, backBTN, addBTN, filterCategoryBTN, filterSubCategoryBTN;
+    LinearLayout statistikPart2, statistikBTN2, statistikPart, statistikBTN, pameranBTN, jvBTN, njvBTN, wilayahBTN, filterWilayahBTN, subCatBTN, attantionReportPart, salesChoiceBTN, salesBTN, catBTN, filterBarPart, dateBTN, noDataPartReport, loadingDataPartReport, rencanaBTN, aktivitasBTN, penagihanBTN, pengirimanBTN, promosiBTN, markRencana, markAktivitas, markNjv, markJv, markPameran, markPenagihan, markPengiriman, markKunjungan, actionBar, backBTN, addBTN, filterCategoryBTN, filterSubCategoryBTN;
     TextView semuaWilayahBTN, wilayahChoiceTV, semuaDataBTN, salesChoiceTV, choiceDateTV, categoryChoiceTV, subCategoryChoiceTV, dateLabel;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -126,9 +122,10 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         wilayahBTN = findViewById(R.id.wilayah_btn);
         filterWilayahBTN = findViewById(R.id.filter_wilayah_btn);
         wilayahChoiceTV = findViewById(R.id.wilayah_choice_tv);
-        statistikPart = findViewById(R.id.statistik_part);
         statistikBTN = findViewById(R.id.statistik_btn);
         statistikBTN2 = findViewById(R.id.statistik_btn_2);
+        statistikPart = findViewById(R.id.statistik_part);
+        statistikPart2 = findViewById(R.id.statistik_part_2);
 
         MaterialDatePicker materialDatePicker = MaterialDatePicker.Builder.dateRangePicker().setSelection(Pair.create(MaterialDatePicker.todayInUtcMilliseconds(),MaterialDatePicker.todayInUtcMilliseconds())).build();
         LocalBroadcastManager.getInstance(this).registerReceiver(wilayahSumaBroad, new IntentFilter("wilayah_suma_broad"));
@@ -145,7 +142,6 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 || sharedPrefManager.getSpNik().equals("3318060323") // Bapak Dominggus
                 || sharedPrefManager.getSpNik().equals("0499070507") // Bapak Dawud
                 || sharedPrefManager.getSpNik().equals("1405020311") // Bapak Panda
-                // || sharedPrefManager.getSpNik().equals("3321130323") // Bapak Marpon
                 || sharedPrefManager.getSpNik().equals("3320130323") // Bapak Daniel
                 || sharedPrefManager.getSpIdJabatan().equals("43")   // GL Suma 1
                 || sharedPrefManager.getSpIdJabatan().equals("45")   // GL Suma 2
@@ -154,8 +150,9 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 || sharedPrefManager.getSpIdJabatan().equals("51")   // GL Suma Bandung
                 || sharedPrefManager.getSpIdJabatan().equals("53")   // GL Suma Surabaya
                 || sharedPrefManager.getSpIdJabatan().equals("55")   // GL Suma Purwakarta
+                || sharedPrefManager.getSpIdJabatan().equals("87")   // GL Suma Palembang
                 || sharedPrefManager.getSpIdJabatan().equals("57")){ // GL AE
-            if(sharedPrefManager.getSpIdJabatan().equals("43") || sharedPrefManager.getSpIdJabatan().equals("45") || sharedPrefManager.getSpIdJabatan().equals("47") || sharedPrefManager.getSpIdJabatan().equals("49") || sharedPrefManager.getSpIdJabatan().equals("51") || sharedPrefManager.getSpIdJabatan().equals("53") || sharedPrefManager.getSpIdJabatan().equals("55") || sharedPrefManager.getSpIdJabatan().equals("57")){ //GL
+            if(sharedPrefManager.getSpIdJabatan().equals("43") || sharedPrefManager.getSpIdJabatan().equals("45") || sharedPrefManager.getSpIdJabatan().equals("47") || sharedPrefManager.getSpIdJabatan().equals("49") || sharedPrefManager.getSpIdJabatan().equals("51") || sharedPrefManager.getSpIdJabatan().equals("53") || sharedPrefManager.getSpIdJabatan().equals("55") || sharedPrefManager.getSpIdJabatan().equals("87") || sharedPrefManager.getSpIdJabatan().equals("57")){ //GL
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_SALES_ACTIVE, sharedPrefManager.getSpNama());
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NIK_SALES_ACTIVE, sharedPrefManager.getSpNik());
                 addBTN.setVisibility(View.VISIBLE);
@@ -193,6 +190,14 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         reportRV.setItemAnimator(new DefaultItemAnimator());
 
         getDateNow();
+
+        if(sharedPrefManager.getSpNik().equals("0981010210")||sharedPrefManager.getSpNik().equals("0121010900")||sharedPrefManager.getSpNik().equals("3318060323")||sharedPrefManager.getSpNik().equals("0552260707")){
+            statistikPart.setVisibility(View.VISIBLE);
+            statistikPart2.setVisibility(View.GONE);
+        } else {
+            statistikPart.setVisibility(View.GONE);
+            statistikPart2.setVisibility(View.VISIBLE);
+        }
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -245,7 +250,15 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         statistikBTN2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListDataReportSumaActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(ListDataReportSumaActivity.this, SaleStatisticActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        statistikPart2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListDataReportSumaActivity.this, VisitStatisticActivity.class);
                 startActivity(intent);
             }
         });
@@ -1509,7 +1522,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             String idWilayah = intent.getStringExtra("id_wilayah_suma");
             String namaWilayah = intent.getStringExtra("nama_wilayah_suma");
 
-            if(namaWilayah.equals("Jakarta 1") || namaWilayah.equals("Jakarta 2") || namaWilayah.equals("Jakarta 3") || namaWilayah.equals("Bandung") || namaWilayah.equals("Semarang") || namaWilayah.equals("Surabaya")){
+            if(namaWilayah.equals("Jakarta 1") || namaWilayah.equals("Jakarta 2") || namaWilayah.equals("Jakarta 3") || namaWilayah.equals("Bandung") || namaWilayah.equals("Semarang") || namaWilayah.equals("Surabaya") || namaWilayah.equals("Palembang")){
                 wilayahChoiceTV.setText("Suma "+namaWilayah);
             } else {
                 wilayahChoiceTV.setText(namaWilayah);
