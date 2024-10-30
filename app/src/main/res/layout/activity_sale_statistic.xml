@@ -32,6 +32,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="18dp"
+                        android:layout_marginBottom="20dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -479,6 +480,79 @@
                             android:background="#3CCFCFCF" />
 
                         <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="Wilayah :"
+                                android:textColor="#696969"
+                                android:textSize="12dp"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                            <LinearLayout
+                                android:id="@+id/wilayah_choice_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:paddingStart="20dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/shape_feel"
+                                android:orientation="horizontal"
+                                tools:ignore="RtlSymmetry">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    tools:ignore="UselessParent">
+
+                                    <LinearLayout
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:orientation="vertical"
+                                        android:gravity="center|left"
+                                        tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                        <TextView
+                                            android:id="@+id/wilayah_choice_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            android:text="Suma Jakarta 1"
+                                            tools:ignore="SpUsage" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentRight="true"
+                                        android:layout_width="40dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/shape_btn"
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:background="@drawable/ic_baseline_down"/>
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/suma_1_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -621,7 +695,8 @@
                                                             android:layout_height="55dp"
                                                             android:layout_marginStart="-10dp"
                                                             android:layout_marginTop="-20dp"
-                                                            android:background="@drawable/shape_ornament_3"/>
+                                                            android:background="@drawable/shape_ornament_3"
+                                                            tools:ignore="TooManyViews" />
 
                                                         <LinearLayout
                                                             android:layout_alignParentEnd="true"
@@ -891,6 +966,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/suma_2_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -1303,6 +1379,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/suma_3_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -1715,6 +1792,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/suma_bandung_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -2127,6 +2205,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/suma_semarang_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -2539,6 +2618,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/suma_surabaya_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -2951,6 +3031,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/suma_palembang_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -3363,6 +3444,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/jakarta_ae_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -3775,10 +3857,11 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/digital_marketing_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:layout_marginBottom="20dp"
+                            android:layout_marginBottom="5dp"
                             android:layout_marginHorizontal="20dp"
                             android:background="@drawable/shape_pengumuman"
                             android:orientation="horizontal"

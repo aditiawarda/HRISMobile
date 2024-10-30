@@ -2,7 +2,11 @@ package com.gelora.absensi;
 
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,10 +14,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -24,8 +35,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gelora.absensi.adapter.AdapterWilayahSuma;
+import com.gelora.absensi.adapter.AdapterWilayahSumaStatistik;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.model.WilayahSuma;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,8 +54,10 @@ import java.util.Locale;
 
 public class SaleStatisticActivity extends AppCompatActivity {
 
-    LinearLayout connectBTN, closeBTN, backBTN, actionBar, tryWarningBTN;
-    TextView dataUpdateTV, pendingTV, processTV, completeTV, totalTV;
+    SharedPrefManager sharedPrefManager;
+    SharedPrefAbsen sharedPrefAbsen;
+    LinearLayout suma1Part, suma2Part, suma3Part, sumaBandungPart, sumaSemarangPart, sumaSurabayaPart, sumaPalembangPart, jakartaAePart , digitalMarketingPart, wilayahChoiceBTN, connectBTN, closeBTN, backBTN, actionBar, tryWarningBTN;
+    TextView wilayahChoiceTV, dataUpdateTV, pendingTV, processTV, completeTV, totalTV;
     TextView aeCompleteTV, aeProcessTV, aePendingTV, aeTotalTV;
     TextView suma1CompleteTV, suma1ProcessTV, suma1PendingTV, suma1TotalTV;
     TextView suma2CompleteTV, suma2ProcessTV, suma2PendingTV, suma2TotalTV;
@@ -51,7 +70,10 @@ public class SaleStatisticActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     SwipeRefreshLayout refreshLayout;
     BottomSheetLayout bottomSheetLayout;
+    private AdapterWilayahSumaStatistik adapterWilayahSuma;
+    private WilayahSuma[] wilayahSumas;
     private Handler handler = new Handler();
+    RecyclerView wilayahRV;
     private static final String REQUEST_TAG = "LIST_DATA_REQUEST";
 
     @SuppressLint("SetTextI18n")
@@ -60,6 +82,8 @@ public class SaleStatisticActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sale_statistic);
 
+        sharedPrefManager = new SharedPrefManager(this);
+        sharedPrefAbsen = new SharedPrefAbsen(this);
         requestQueue = Volley.newRequestQueue(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         bottomSheetLayout = findViewById(R.id.bottom_sheet_layout);
@@ -117,6 +141,22 @@ public class SaleStatisticActivity extends AppCompatActivity {
         aeCompleteTV = findViewById(R.id.ae_complete_tv);
         aeTotalTV = findViewById(R.id.ae_total_tv);
 
+        wilayahChoiceTV = findViewById(R.id.wilayah_choice_tv);
+        wilayahChoiceBTN = findViewById(R.id.wilayah_choice_btn);
+
+        suma1Part = findViewById(R.id.suma_1_part);
+        suma2Part = findViewById(R.id.suma_2_part);
+        suma3Part = findViewById(R.id.suma_3_part);
+        sumaBandungPart = findViewById(R.id.suma_bandung_part);
+        sumaSemarangPart = findViewById(R.id.suma_semarang_part);
+        sumaSurabayaPart = findViewById(R.id.suma_surabaya_part);
+        sumaPalembangPart = findViewById(R.id.suma_palembang_part);
+        jakartaAePart = findViewById(R.id.jakarta_ae_part);
+        digitalMarketingPart = findViewById(R.id.digital_marketing_part);
+
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA, "1");
+        LocalBroadcastManager.getInstance(this).registerReceiver(wilayahSumaBroad, new IntentFilter("wilayah_suma_broad"));
+
         String input_date_masuk = getDate();
         String dayDateMasuk = input_date_masuk.substring(8,10);
         String yearDateMasuk = input_date_masuk.substring(0,4);
@@ -165,6 +205,16 @@ public class SaleStatisticActivity extends AppCompatActivity {
                 break;
         }
 
+        suma1Part.setVisibility(View.VISIBLE);
+        suma2Part.setVisibility(View.GONE);
+        suma3Part.setVisibility(View.GONE);
+        sumaBandungPart.setVisibility(View.GONE);
+        sumaSemarangPart.setVisibility(View.GONE);
+        sumaSurabayaPart.setVisibility(View.GONE);
+        sumaPalembangPart.setVisibility(View.GONE);
+        jakartaAePart.setVisibility(View.GONE);
+        digitalMarketingPart.setVisibility(View.GONE);
+
         dataUpdateTV.setText("* Update per "+Integer.parseInt(dayDateMasuk) +" "+bulanNameMasuk+" "+yearDateMasuk);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
@@ -201,6 +251,13 @@ public class SaleStatisticActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 tryWarning();
+            }
+        });
+
+        wilayahChoiceBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                wilayahPicker();
             }
         });
 
@@ -416,6 +473,205 @@ public class SaleStatisticActivity extends AppCompatActivity {
 
         requestQueue.add(request);
 
+    }
+
+    private void wilayahPicker(){
+        bottomSheetLayout.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_wilayah_suma, bottomSheetLayout, false));
+        wilayahRV = findViewById(R.id.wilayah_rv);
+        TextView semuaBTN = findViewById(R.id.semua_wilayah_btn);
+        semuaBTN.setVisibility(View.GONE);
+        try {
+            wilayahRV.setLayoutManager(new LinearLayoutManager(this));
+            wilayahRV.setHasFixedSize(true);
+            wilayahRV.setNestedScrollingEnabled(false);
+            wilayahRV.setItemAnimator(new DefaultItemAnimator());
+            getWilayah();
+        } catch (NullPointerException e){
+            Log.e("Error", e.toString());
+        }
+    }
+
+    public BroadcastReceiver wilayahSumaBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String idWilayah = intent.getStringExtra("id_wilayah_suma");
+            String namaWilayah = intent.getStringExtra("nama_wilayah_suma");
+
+            if(namaWilayah.equals("Jakarta 1") || namaWilayah.equals("Jakarta 2") || namaWilayah.equals("Jakarta 3") || namaWilayah.equals("Bandung") || namaWilayah.equals("Semarang") || namaWilayah.equals("Surabaya") || namaWilayah.equals("Palembang")){
+                wilayahChoiceTV.setText("Suma "+namaWilayah);
+            } else {
+                wilayahChoiceTV.setText(namaWilayah);
+            }
+
+            InputMethodManager imm = (InputMethodManager) SaleStatisticActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            View view = SaleStatisticActivity.this.getCurrentFocus();
+            if (view == null) {
+                view = new View(SaleStatisticActivity.this);
+            }
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            String wilayah = wilayahChoiceTV.getText().toString();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheetLayout.dismissSheet();
+//                    loadingDataPartReport.setVisibility(View.VISIBLE);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if(wilayah.equals("Suma Jakarta 1")) {
+                                        suma1Part.setVisibility(View.VISIBLE);
+                                        suma2Part.setVisibility(View.GONE);
+                                        suma3Part.setVisibility(View.GONE);
+                                        sumaBandungPart.setVisibility(View.GONE);
+                                        sumaSemarangPart.setVisibility(View.GONE);
+                                        sumaSurabayaPart.setVisibility(View.GONE);
+                                        sumaPalembangPart.setVisibility(View.GONE);
+                                        jakartaAePart.setVisibility(View.GONE);
+                                        digitalMarketingPart.setVisibility(View.GONE);
+                                    } else if(wilayah.equals("Suma Jakarta 2")) {
+                                        suma1Part.setVisibility(View.GONE);
+                                        suma2Part.setVisibility(View.VISIBLE);
+                                        suma3Part.setVisibility(View.GONE);
+                                        sumaBandungPart.setVisibility(View.GONE);
+                                        sumaSemarangPart.setVisibility(View.GONE);
+                                        sumaSurabayaPart.setVisibility(View.GONE);
+                                        sumaPalembangPart.setVisibility(View.GONE);
+                                        jakartaAePart.setVisibility(View.GONE);
+                                        digitalMarketingPart.setVisibility(View.GONE);
+                                    } else if(wilayah.equals("Suma Jakarta 3")) {
+                                        suma1Part.setVisibility(View.GONE);
+                                        suma2Part.setVisibility(View.GONE);
+                                        suma3Part.setVisibility(View.VISIBLE);
+                                        sumaBandungPart.setVisibility(View.GONE);
+                                        sumaSemarangPart.setVisibility(View.GONE);
+                                        sumaSurabayaPart.setVisibility(View.GONE);
+                                        sumaPalembangPart.setVisibility(View.GONE);
+                                        jakartaAePart.setVisibility(View.GONE);
+                                        digitalMarketingPart.setVisibility(View.GONE);
+                                    } else if(wilayah.equals("Suma Bandung")) {
+                                        suma1Part.setVisibility(View.GONE);
+                                        suma2Part.setVisibility(View.GONE);
+                                        suma3Part.setVisibility(View.GONE);
+                                        sumaBandungPart.setVisibility(View.VISIBLE);
+                                        sumaSemarangPart.setVisibility(View.GONE);
+                                        sumaSurabayaPart.setVisibility(View.GONE);
+                                        sumaPalembangPart.setVisibility(View.GONE);
+                                        jakartaAePart.setVisibility(View.GONE);
+                                        digitalMarketingPart.setVisibility(View.GONE);
+                                    } else if(wilayah.equals("Suma Semarang")) {
+                                        suma1Part.setVisibility(View.GONE);
+                                        suma2Part.setVisibility(View.GONE);
+                                        suma3Part.setVisibility(View.GONE);
+                                        sumaBandungPart.setVisibility(View.GONE);
+                                        sumaSemarangPart.setVisibility(View.VISIBLE);
+                                        sumaSurabayaPart.setVisibility(View.GONE);
+                                        sumaPalembangPart.setVisibility(View.GONE);
+                                        jakartaAePart.setVisibility(View.GONE);
+                                        digitalMarketingPart.setVisibility(View.GONE);
+                                    } else if(wilayah.equals("Suma Surabaya")) {
+                                        suma1Part.setVisibility(View.GONE);
+                                        suma2Part.setVisibility(View.GONE);
+                                        suma3Part.setVisibility(View.GONE);
+                                        sumaBandungPart.setVisibility(View.GONE);
+                                        sumaSemarangPart.setVisibility(View.GONE);
+                                        sumaSurabayaPart.setVisibility(View.VISIBLE);
+                                        sumaPalembangPart.setVisibility(View.GONE);
+                                        jakartaAePart.setVisibility(View.GONE);
+                                        digitalMarketingPart.setVisibility(View.GONE);
+                                    } else if(wilayah.equals("Suma Palembang")) {
+                                        suma1Part.setVisibility(View.GONE);
+                                        suma2Part.setVisibility(View.GONE);
+                                        suma3Part.setVisibility(View.GONE);
+                                        sumaBandungPart.setVisibility(View.GONE);
+                                        sumaSemarangPart.setVisibility(View.GONE);
+                                        sumaSurabayaPart.setVisibility(View.GONE);
+                                        sumaPalembangPart.setVisibility(View.VISIBLE);
+                                        jakartaAePart.setVisibility(View.GONE);
+                                        digitalMarketingPart.setVisibility(View.GONE);
+                                    } else if(wilayah.equals("Jakarta AE")) {
+                                        suma1Part.setVisibility(View.GONE);
+                                        suma2Part.setVisibility(View.GONE);
+                                        suma3Part.setVisibility(View.GONE);
+                                        sumaBandungPart.setVisibility(View.GONE);
+                                        sumaSemarangPart.setVisibility(View.GONE);
+                                        sumaSurabayaPart.setVisibility(View.GONE);
+                                        sumaPalembangPart.setVisibility(View.GONE);
+                                        jakartaAePart.setVisibility(View.VISIBLE);
+                                        digitalMarketingPart.setVisibility(View.GONE);
+                                    } else if(wilayah.equals("Digital Marketing")) {
+                                        suma1Part.setVisibility(View.GONE);
+                                        suma2Part.setVisibility(View.GONE);
+                                        suma3Part.setVisibility(View.GONE);
+                                        sumaBandungPart.setVisibility(View.GONE);
+                                        sumaSemarangPart.setVisibility(View.GONE);
+                                        sumaSurabayaPart.setVisibility(View.GONE);
+                                        sumaPalembangPart.setVisibility(View.GONE);
+                                        jakartaAePart.setVisibility(View.GONE);
+                                        digitalMarketingPart.setVisibility(View.VISIBLE);
+                                    }
+                                }
+                            });
+                        }
+                    }, 0);
+                }
+            }, 300);
+        }
+    };
+
+    private void getWilayah() {
+        final String url = "https://reporting.sumasistem.co.id/api/get_wilayah?asmen=0&role=statistik";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            String data = response.getString("data");
+
+                            GsonBuilder builder =new GsonBuilder();
+                            Gson gson = builder.create();
+                            wilayahSumas = gson.fromJson(data, WilayahSuma[].class);
+                            adapterWilayahSuma = new AdapterWilayahSumaStatistik(wilayahSumas,SaleStatisticActivity.this);
+                            try {
+                                wilayahRV.setAdapter(adapterWilayahSuma);
+                            } catch (NullPointerException e) {
+                                e.printStackTrace();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.d("Error.Response", error.toString());
+                bottomSheetLayout.dismissSheet();
+                connectionFailed();
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
+    private void connectionFailed(){
+        CookieBar.build(SaleStatisticActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
     }
 
     private void tryWarning(){
