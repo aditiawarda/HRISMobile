@@ -4342,7 +4342,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     LOCATION_REQUEST);
         } else {
-            mMap.clear();
+            if (mMap != null) {
+                mMap.clear();
+            }
+
             userPosition();
             getLocation();
 
