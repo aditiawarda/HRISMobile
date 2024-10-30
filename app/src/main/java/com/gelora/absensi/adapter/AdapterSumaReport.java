@@ -3,6 +3,7 @@ package com.gelora.absensi.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,11 +90,11 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         myViewHolder.namaSalesTV.setText(dataReportSuma.getNamaKaryawan());
 
         if(dataReportSuma.getNmJabatan().equals("Group Leader Suma 1") || dataReportSuma.getNmJabatan().equals("Salesman Suma 1")){
-            myViewHolder.regionTV.setText("Jakarta 1");
+            myViewHolder.regionTV.setText("Suma Jakarta 1");
         } else if(dataReportSuma.getNmJabatan().equals("Group Leader Suma 2") || dataReportSuma.getNmJabatan().equals("Salesman Suma 2")){
-            myViewHolder.regionTV.setText("Jakarta 2");
+            myViewHolder.regionTV.setText("Suma Jakarta 2");
         } else if(dataReportSuma.getNmJabatan().equals("Group Leader Suma 3") || dataReportSuma.getNmJabatan().equals("Salesman Suma 3")){
-            myViewHolder.regionTV.setText("Jakarta 3");
+            myViewHolder.regionTV.setText("Suma Jakarta 3");
         } else if(dataReportSuma.getNmJabatan().equals("Group Leader AE") || dataReportSuma.getNmJabatan().equals("Staff AE")){
             myViewHolder.regionTV.setText("Jakarta AE");
         } else {
@@ -103,7 +104,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
                 String[] jabatan = dataReportSuma.getNmJabatan().split("\\s+");
                 String region = jabatan[jabatan.length - 1];
 
-                myViewHolder.regionTV.setText(region);
+                myViewHolder.regionTV.setText("Suma "+region);
             }
         }
 
@@ -122,7 +123,11 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             } else {
                 myViewHolder.f1TanggalRencanaTV.setText(dataReportSuma.getTgl_rencana().substring(8,10)+"/"+dataReportSuma.getTgl_rencana().substring(5,7)+"/"+dataReportSuma.getTgl_rencana().substring(0,4));
             }
-            myViewHolder.f1TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
+            try {
+                myViewHolder.f1TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
+            } catch (NullPointerException e){
+                Log.e("Error", e.toString());
+            }
         } else if(dataReportSuma.getTipeLaporan().equals("2")){
             myViewHolder.photoRevPart.setVisibility(View.VISIBLE);
             int right = 75;
@@ -298,6 +303,12 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
     public int dpToPixels(int dp, Context context) {
         float density = context.getResources().getDisplayMetrics().density;
         return (int) (dp * density + 0.5f);
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateData(DataReportSuma[] newData) {
+        this.data = newData;
+        notifyDataSetChanged(); // Notify adapter to refresh the view
     }
 
 }

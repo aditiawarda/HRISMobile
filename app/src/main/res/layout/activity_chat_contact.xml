@@ -218,6 +218,7 @@
                     android:textColor="#fff"
                     android:textColorHighlight="#EC9426"
                     android:textColorHint="#BFFFF3E9"
+                    android:textSize="16dp"
                     tools:ignore="Autofill,HardcodedText,RtlHardcoded,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
             </LinearLayout>

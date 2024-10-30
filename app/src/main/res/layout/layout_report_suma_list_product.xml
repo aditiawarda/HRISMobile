@@ -64,7 +64,7 @@
             android:textColorHighlight="#FFDCB1"
             android:textColorHint="#D36C46"
             android:textSize="16dp"
-            tools:ignore="Autofill,HardcodedText,RtlHardcoded,TouchTargetSizeCheck,UnusedAttribute,VisualLintTextFieldSize" />
+            tools:ignore="Autofill,HardcodedText,RtlHardcoded,SpUsage,TouchTargetSizeCheck,UnusedAttribute,VisualLintTextFieldSize" />
 
         <TextView
             android:layout_width="match_parent"

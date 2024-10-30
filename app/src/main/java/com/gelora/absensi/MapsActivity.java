@@ -1359,9 +1359,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     idCheckin = data.getString("id_checkin");
                                     checkAbsen();
                                 } else if (status.equals("Available")) {
-                                    pDialog.dismiss();
-                                    new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                            .setTitleText("Perhatian")
+                                    pDialog.setTitleText("Perhatian")
                                             .setContentText("Hari ini anda sudah melakukan Check In!")
                                             .setConfirmText("    OK    ")
                                             .showCancelButton(true)
@@ -1373,18 +1371,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     checkAbsen();
                                                 }
                                             })
-                                            .show();
+                                            .changeAlertType(KAlertDialog.ERROR_TYPE);
                                 } else {
-                                    pDialog.dismiss();
-                                    new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                            .setTitleText("Check In Gagal")
+                                    pDialog.setTitleText("Check In Gagal")
                                             .setContentText("Terjadi kesalahan")
                                             .setConfirmText("    OK    ")
-                                            .show();
+                                            .changeAlertType(KAlertDialog.ERROR_TYPE);
                                 }
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                                pDialog.setTitleText("Check In Gagal")
+                                        .setContentText("Terjadi kesalahan")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
                             }
                         }
                     },
@@ -1394,6 +1394,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             // error
                             Log.d("Error.Response", error.toString());
                             connectionFailed();
+                            pDialog.setTitleText("Check In Gagal")
+                                    .setContentText("Terjadi kesalahan")
+                                    .setConfirmText("    OK    ")
+                                    .changeAlertType(KAlertDialog.ERROR_TYPE);
                         }
                     }
             ) {
@@ -1659,24 +1663,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         // response
                         try {
                             Log.d("Success.Response", response.toString());
-
                             connectionFailed.setVisibility(View.GONE);
                             connectionSuccess.setVisibility(View.VISIBLE);
-
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
-
                             if(status.equals("Success")){
                                 refreshData();
-
                                 pDialog.setTitleText("Anda Diliburkan")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);
-
+                            } else {
+                                pDialog.setTitleText("Diliburkan Gagal")
+                                        .setContentText("Terjadi kesalahan")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            pDialog.setTitleText("Diliburkan Gagal")
+                                    .setContentText("Terjadi kesalahan")
+                                    .setConfirmText("    OK    ")
+                                    .changeAlertType(KAlertDialog.ERROR_TYPE);
                         }
                     }
                 },
@@ -1687,6 +1694,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         // error
                         Log.d("Error.Response", error.toString());
                         connectionFailed();
+                        pDialog.setTitleText("Diliburkan Gagal")
+                                .setContentText("Terjadi kesalahan")
+                                .setConfirmText("    OK    ")
+                                .changeAlertType(KAlertDialog.ERROR_TYPE);
                     }
                 }
         )
@@ -3658,6 +3669,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            pDialog.setTitleText("Check Out Gagal")
+                                    .setContentText("Terjadi kesalahan")
+                                    .setConfirmText("    OK    ")
+                                    .changeAlertType(KAlertDialog.ERROR_TYPE);
                         }
                     }
                 },
@@ -3668,6 +3683,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         // error
                         Log.d("Error.Response", error.toString());
                         connectionFailed();
+                        pDialog.setTitleText("Check Out Gagal")
+                                .setContentText("Terjadi kesalahan")
+                                .setConfirmText("    OK    ")
+                                .changeAlertType(KAlertDialog.ERROR_TYPE);
                     }
                 }
         )
@@ -4323,7 +4342,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     LOCATION_REQUEST);
         } else {
-            mMap.clear();
+            if (mMap != null) {
+                mMap.clear();
+            }
+
             userPosition();
             getLocation();
 

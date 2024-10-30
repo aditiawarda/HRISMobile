@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     namespace = "com.gelora.absensi"
@@ -12,12 +13,11 @@ android {
         minSdkVersion 21
         //noinspection OldTargetApi
         targetSdkVersion 34
-        versionCode 204
-        versionName "3.0.4"
+        versionCode 219
+        versionName "3.1.9"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -27,13 +27,13 @@ android {
         }
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     lint {
@@ -46,6 +46,9 @@ android {
         warning 'unchecked'
     }
 
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 }
 
 dependencies {
@@ -55,7 +58,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'com.google.ar.sceneform:sceneform-base:1.17.1'
-    implementation 'androidx.activity:activity:1.9.2'
+    implementation 'androidx.activity:activity:1.9.3'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
@@ -70,7 +73,7 @@ dependencies {
     implementation 'com.takisoft.datetimepicker:datetimepicker:1.0.3'
     implementation 'com.github.shasin89:NotificationBanner:1.1.5'
     implementation 'com.github.Mahfa:DayNightSwitch:1.5'
-    implementation platform('com.google.firebase:firebase-bom:33.3.0')
+    implementation platform('com.google.firebase:firebase-bom:33.5.1')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'androidx.cardview:cardview:1.0.0'

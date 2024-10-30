@@ -199,7 +199,7 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
 
                 builder.setMinYear(1952)
                         .setActivatedYear(now.get(Calendar.YEAR))
-                        .setMaxYear(now.get(Calendar.YEAR))
+                        .setMaxYear(Integer.parseInt(getYearOnly()))
                         .setActivatedMonth(now.get(Calendar.MONTH))
                         .build()
                         .show();
@@ -312,6 +312,13 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
     private String getBulanTahun() {
         @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getYearOnly() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy");
         Date date = new Date();
         return dateFormat.format(date);
     }

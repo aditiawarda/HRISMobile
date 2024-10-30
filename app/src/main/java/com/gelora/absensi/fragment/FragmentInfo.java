@@ -46,8 +46,6 @@ import com.gelora.absensi.ListIzinKeluarKantor;
 import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.ListNotifikasiFingerscanActivity;
 import com.gelora.absensi.MonitoringAbsensiBagianActivity;
-import com.gelora.absensi.NewsActivity;
-import com.gelora.absensi.ProjectViewActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.kalert.KAlertDialog;
@@ -436,7 +434,7 @@ public class FragmentInfo extends Fragment {
 
                 builder.setMinYear(1952)
                         .setActivatedYear(now.get(Calendar.YEAR))
-                        .setMaxYear(now.get(Calendar.YEAR))
+                        .setMaxYear(Integer.parseInt(getYearOnly()))
                         .setActivatedMonth(now.get(Calendar.MONTH))
                         .build()
                         .show();
@@ -1041,7 +1039,6 @@ public class FragmentInfo extends Fragment {
     }
 
     private void checkNotification() {
-        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://hrisgelora.co.id/api/check_notification_info";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -1355,6 +1352,13 @@ public class FragmentInfo extends Fragment {
     private int convertDpToPx(Context context, int dp) {
         return (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
+    }
+
+    private String getYearOnly() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
     @Override

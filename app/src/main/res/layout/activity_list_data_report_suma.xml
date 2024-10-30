@@ -33,17 +33,156 @@
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:id="@+id/statistik_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
                             <LinearLayout
-                                android:id="@+id/statistik_btn"
+                                android:id="@+id/statistik_part"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                tools:ignore="DisableBaselineAlignment">
+
+                                <LinearLayout
+                                    android:id="@+id/statistik_btn"
+                                    android:layout_weight=".50"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:layout_marginTop="20dp"
+                                    android:background="@drawable/shape_project_form"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        tools:ignore="TooDeepLayout,UselessParent">
+
+                                        <LinearLayout
+                                            android:layout_width="52dp"
+                                            android:layout_height="52dp"
+                                            android:layout_alignParentRight="true"
+                                            android:layout_marginRight="3dp"
+                                            android:layout_marginBottom="-42dp"
+                                            android:background="@drawable/ic_visit_suma"
+                                            android:text=""
+                                            android:textStyle="bold"
+                                            tools:ignore="RtlHardcoded,TooDeepLayout" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginHorizontal="19dp"
+                                                android:layout_marginTop="13dp"
+                                                android:ellipsize="end"
+                                                android:letterSpacing="0.05"
+                                                android:text="STATISTIK"
+                                                android:textColor="#FFF3F1"
+                                                android:textSize="8dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginHorizontal="19dp"
+                                                android:layout_marginBottom="13dp"
+                                                android:ellipsize="end"
+                                                android:letterSpacing="0.05"
+                                                android:text="KUNJUNGAN"
+                                                android:textColor="#FFF3F1"
+                                                android:textSize="11.7dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/statistik_btn_2"
+                                    android:layout_weight=".50"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="20dp"
+                                    android:layout_marginTop="20dp"
+                                    android:background="@drawable/shape_izin_keluar_kantor"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        tools:ignore="TooDeepLayout,UselessParent">
+
+                                        <LinearLayout
+                                            android:layout_width="52dp"
+                                            android:layout_height="52dp"
+                                            android:layout_alignParentRight="true"
+                                            android:layout_marginRight="3dp"
+                                            android:layout_marginBottom="-42dp"
+                                            android:background="@drawable/ic_deal_suma"
+                                            android:text=""
+                                            android:textStyle="bold"
+                                            tools:ignore="RtlHardcoded,TooDeepLayout" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginHorizontal="19dp"
+                                                android:layout_marginTop="13dp"
+                                                android:ellipsize="end"
+                                                android:letterSpacing="0.05"
+                                                android:text="STATISTIK"
+                                                android:textColor="#FFF3F1"
+                                                android:textSize="8dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginHorizontal="19dp"
+                                                android:layout_marginBottom="13dp"
+                                                android:ellipsize="end"
+                                                android:letterSpacing="0.05"
+                                                android:text="PENJUALAN"
+                                                android:textColor="#FFF3F1"
+                                                android:textSize="11.7dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/statistik_part_2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginRight="20dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_marginTop="20dp"
                                 android:background="@drawable/shape_project_form"
                                 android:gravity="center"
@@ -63,7 +202,7 @@
                                         android:background="@drawable/ic_visit_statistic"
                                         android:text=""
                                         android:textStyle="bold"
-                                        tools:ignore="RtlHardcoded,TooDeepLayout" />
+                                        tools:ignore="RtlHardcoded" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -99,7 +238,6 @@
                                 android:background="#3CCFCFCF" />
 
                         </LinearLayout>
-
 
                         <LinearLayout
                             android:id="@+id/filter_bar_part"
@@ -567,6 +705,56 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/refresh_data_part_report"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingTop="95dp"
+                                android:paddingBottom="35dp"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:id="@+id/refresh_btn"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:layout_marginBottom="15dp"
+                                    android:gravity="center"
+                                    android:background="@drawable/shape_refresh_ss">
+
+                                    <TextView
+                                        android:id="@+id/loading_off"
+                                        android:background="@drawable/loading_ss_disable"
+                                        android:layout_width="35dp"
+                                        android:layout_height="35dp" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="-8dp"
+                                    android:text="Refresh data"
+                                    android:textAlignment="center"
+                                    android:textColor="#E1BB8A"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Refresh untuk menampilkan data"
+                                    android:textAlignment="center"
+                                    android:textColor="#ECC28D"
+                                    android:textSize="10dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:id="@+id/loading_data_part_report"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -575,7 +763,8 @@
                                 android:paddingLeft="20dp"
                                 android:paddingTop="75dp"
                                 android:paddingRight="20dp"
-                                android:paddingBottom="35dp">
+                                android:paddingBottom="35dp"
+                                tools:ignore="TooManyViews">
 
                                 <ProgressBar
                                     android:layout_width="45dp"

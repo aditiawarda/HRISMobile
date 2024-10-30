@@ -194,7 +194,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginRight="75dp"
-                                    android:background="@drawable/shape_feel_login_outer"/>
+                                    android:background="@drawable/shape_feel_login_outer"
+                                    tools:ignore="RtlHardcoded" />
 
                             </RelativeLayout>
 

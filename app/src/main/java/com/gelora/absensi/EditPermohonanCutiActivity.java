@@ -3852,7 +3852,6 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
     }
 
     private void submitCuti(){
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://hrisgelora.co.id/api/cuti_edit";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

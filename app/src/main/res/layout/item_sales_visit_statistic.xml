@@ -14,15 +14,13 @@
         android:layout_marginBottom="4dp"
         android:background="@drawable/shape_pengumuman"
         android:orientation="vertical"
-        android:paddingLeft="23dp"
-        android:paddingTop="8dp"
-        android:paddingRight="23dp"
+        android:paddingTop="2dp"
         tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="3dp"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -30,6 +28,8 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left|center"
@@ -76,7 +76,7 @@
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:singleLine="true"
-                            android:text="ADITIA WARDANI"
+                            android:text="-"
                             android:textColor="#C16D02"
                             android:textSize="13dp"
                             android:textStyle="bold"
@@ -90,7 +90,7 @@
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:singleLine="true"
-                            android:text="3186150321"
+                            android:text="-"
                             android:textColor="#C16D02"
                             android:textSize="10dp"
                             tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
@@ -103,7 +103,7 @@
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:singleLine="true"
-                            android:text="Suma Jakarta 1"
+                            android:text="-"
                             android:textColor="#C16D02"
                             android:textSize="11dp"
                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
@@ -113,6 +113,8 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_alignParentRight="true"
@@ -134,7 +136,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="KUNJUNAGAN"
+                            android:text="KUNJUNGAN"
                             android:textColor="#FFFFFF"
                             android:textSize="8dp"
                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -153,15 +155,38 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:id="@+id/predikat"
+                            android:id="@+id/jumlah_kunjungan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="200"
+                            android:text="0"
                             android:textColor="#020202"
-                            android:textSize="13dp"
-                            tools:ignore="HardcodedText,SpUsage" />
+                            android:textSize="15dp"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/shape_back_2"
+                    tools:ignore="RtlHardcoded">
+
+                    <TextView
+                        android:id="@+id/no_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:lineSpacingExtra="2dp"
+                        android:textStyle="bold"
+                        android:text="-"
+                        android:textColor="@color/white"
+                        android:textSize="8dp"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TooDeepLayout" />
 
                 </LinearLayout>
 
@@ -172,6 +197,7 @@
         <LinearLayout
             android:layout_width="60dp"
             android:layout_height="50dp"
+            android:layout_marginStart="20dp"
             android:layout_marginBottom="-30dp"
             android:layout_marginTop="-20dp"
             android:background="@drawable/shape_ornament_2"

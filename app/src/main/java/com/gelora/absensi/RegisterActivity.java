@@ -702,8 +702,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         };
 
-        //requestQueue.add(postRequest);
-
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(this);
             requestQueue.add(postRequest);

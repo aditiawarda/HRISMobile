@@ -2428,7 +2428,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f4UnitBisnisDisableModeTV.setText("");
                 f4KomponenGajiDisableModeTV.setText("");
 
-                if(sharedPrefManager.getSpIdJabatan().equals("1") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpNik().equals("3313210223") || sharedPrefManager.getSpNik().equals("3196310521") || sharedPrefManager.getSpNik().equals("3310140223") || sharedPrefManager.getSpNik().equals("1311201210")){
+                if(sharedPrefManager.getSpIdJabatan().equals("1") || sharedPrefManager.getSpIdJabatan().equals("85") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpNik().equals("3313210223") || sharedPrefManager.getSpNik().equals("3196310521") || sharedPrefManager.getSpNik().equals("3310140223") || sharedPrefManager.getSpNik().equals("1311201210")){
                     f1UnitBisnisPart.setVisibility(View.GONE);
                     f1UnitBisnisDisableMode.setVisibility(View.VISIBLE);
                     f1DepartemenPart.setVisibility(View.GONE);
@@ -5164,71 +5164,76 @@ public class FormSdmActivity extends AppCompatActivity {
     }
 
     private void f2GetDataKaryawanBaru(String keyword) {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://hrisgelora.co.id/api/cari_karyawan_sdm";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        JSONObject data = null;
-                        try {
-                            Log.d("Success.Response", response.toString());
-                            data = new JSONObject(response);
-                            String status = data.getString("status");
-                            if (status.equals("Success")) {
-                                f2StartAttantionKaryawanBaruPart.setVisibility(View.GONE);
-                                f2loadingDataKaryawanBaruPart.setVisibility(View.GONE);
-                                f2NoDataKaryawanBaruPart.setVisibility(View.GONE);
-                                f2KaryawanBaruRV.setVisibility(View.VISIBLE);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                RequestQueue requestQueue = Volley.newRequestQueue(FormSdmActivity.this);
+                final String url = "https://hrisgelora.co.id/api/cari_karyawan_sdm";
+                StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                // response
+                                JSONObject data = null;
+                                try {
+                                    Log.d("Success.Response", response.toString());
+                                    data = new JSONObject(response);
+                                    String status = data.getString("status");
+                                    if (status.equals("Success")) {
+                                        f2StartAttantionKaryawanBaruPart.setVisibility(View.GONE);
+                                        f2loadingDataKaryawanBaruPart.setVisibility(View.GONE);
+                                        f2NoDataKaryawanBaruPart.setVisibility(View.GONE);
+                                        f2KaryawanBaruRV.setVisibility(View.VISIBLE);
 
-                                String data_list = data.getString("data");
-                                GsonBuilder builder = new GsonBuilder();
-                                Gson gson = builder.create();
-                                f2KaryawanSDMS = gson.fromJson(data_list, KaryawanSDM[].class);
-                                f2AdapterKaryawanBaruSDM = new AdapterKaryawanBaruSDM(f2KaryawanSDMS, FormSdmActivity.this);
-                                f2KaryawanBaruRV.setAdapter(f2AdapterKaryawanBaruSDM);
-                            } else {
+                                        String data_list = data.getString("data");
+                                        GsonBuilder builder = new GsonBuilder();
+                                        Gson gson = builder.create();
+                                        f2KaryawanSDMS = gson.fromJson(data_list, KaryawanSDM[].class);
+                                        f2AdapterKaryawanBaruSDM = new AdapterKaryawanBaruSDM(f2KaryawanSDMS, FormSdmActivity.this);
+                                        f2KaryawanBaruRV.setAdapter(f2AdapterKaryawanBaruSDM);
+                                    } else {
+                                        f2StartAttantionKaryawanBaruPart.setVisibility(View.GONE);
+                                        f2loadingDataKaryawanBaruPart.setVisibility(View.GONE);
+                                        f2NoDataKaryawanBaruPart.setVisibility(View.VISIBLE);
+                                        f2KaryawanBaruRV.setVisibility(View.GONE);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener()
+                        {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // error
+                                Log.d("Error.Response", error.toString());
+                                connectionFailed();
+
                                 f2StartAttantionKaryawanBaruPart.setVisibility(View.GONE);
                                 f2loadingDataKaryawanBaruPart.setVisibility(View.GONE);
                                 f2NoDataKaryawanBaruPart.setVisibility(View.VISIBLE);
                                 f2KaryawanBaruRV.setVisibility(View.GONE);
+
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
-                    }
-                },
-                new Response.ErrorListener()
+                )
                 {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
-                        Log.d("Error.Response", error.toString());
-                        connectionFailed();
-
-                        f2StartAttantionKaryawanBaruPart.setVisibility(View.GONE);
-                        f2loadingDataKaryawanBaruPart.setVisibility(View.GONE);
-                        f2NoDataKaryawanBaruPart.setVisibility(View.VISIBLE);
-                        f2KaryawanBaruRV.setVisibility(View.GONE);
-
+                    protected Map<String, String> getParams()
+                    {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                        params.put("nik", sharedPrefManager.getSpNik());
+                        params.put("keyword_karyawan", keyword);
+                        return params;
                     }
-                }
-        )
-        {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("id_bagian", sharedPrefManager.getSpIdDept());
-                params.put("nik", sharedPrefManager.getSpNik());
-                params.put("keyword_karyawan", keyword);
-                return params;
+                };
+
+                requestQueue.add(postRequest);
+
             }
-        };
-
-        requestQueue.add(postRequest);
-
+        });
     }
 
     public BroadcastReceiver f2KaryawanBaruBroad = new BroadcastReceiver() {
@@ -8013,7 +8018,7 @@ public class FormSdmActivity extends AppCompatActivity {
                                 String departemen = data.getString("departemen");
                                 String bagian = data.getString("bagian");
                                 f1DepartemenDisableModeTV.setText(departemen);
-                                if(sharedPrefManager.getSpIdJabatan().equals("1") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
+                                if(sharedPrefManager.getSpIdJabatan().equals("1") || sharedPrefManager.getSpIdJabatan().equals("85") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
                                     f1BagianDisableModeTV.setText(bagian);
                                 }
                             } else {

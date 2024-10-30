@@ -1514,7 +1514,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                                 String url = "https://hrisgelora.co.id/upload/digital_signature/"+signature;
                                 submitRecord();
                             } else {
-                                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")){
+                                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpIdJabatan().equals("85")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")){
                                     if (sharedPrefManager.getSpNik().equals(nikKaryawan)){
                                         pDialog.setTitleText("Perhatian")
                                                 .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")

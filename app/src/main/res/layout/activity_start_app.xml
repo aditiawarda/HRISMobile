@@ -78,11 +78,88 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <RelativeLayout
+        android:id="@+id/gap_splash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            tools:ignore="RtlHardcoded">
+
+            <LinearLayout
+                android:layout_marginEnd="110dp"
+                android:layout_marginBottom="30dp"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:background="@drawable/shape_ornament_2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            tools:ignore="RtlHardcoded">
+
+            <LinearLayout
+                android:layout_marginStart="210dp"
+                android:layout_marginBottom="130dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/shape_ornament_1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/image_branding"
+                android:layout_width="400dp"
+                android:layout_height="400dp"
+                android:layout_marginTop="70dp"
+                android:foregroundGravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/start_img_1"
+                tools:ignore="ContentDescription,ImageContrastCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="130dp"
+            android:layout_marginBottom="70dp"
+            android:paddingEnd="160dp"
+            android:gravity="center|top"
+            tools:ignore="RtlSymmetry,UselessLeaf">
+
+            <ImageView
+                android:id="@+id/reguler_logo"
+                android:foregroundGravity="center"
+                android:layout_width="140dp"
+                android:layout_height="26dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/hris_text_logo"
+                tools:ignore="ContentDescription,TooDeepLayout" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
     <LinearLayout
+        android:id="@+id/reg_splash"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="70dp"
         android:orientation="vertical"
+        android:visibility="gone"
         android:gravity="center">
 
         <ImageView

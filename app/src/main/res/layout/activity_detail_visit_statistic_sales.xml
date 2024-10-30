@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailVisitStatisticSalesActivity">
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_to_refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.core.widget.NestedScrollView
+                        android:id="@id/scrollView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:ignore="MissingConstraints">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                tools:ignore="UselessLeaf,UselessParent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="vertical"
+                                    tools:ignore="UselessParent">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="200dp"
+                                        android:layout_marginTop="67dp"
+                                        android:background="@drawable/bg_resume"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <RelativeLayout
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"
+                                            android:layout_marginTop="5dp"
+                                            android:layout_marginBottom="5dp"
+                                            tools:ignore="TooDeepLayout,UselessParent">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:layout_width="100dp"
+                                                android:layout_height="100dp"
+                                                android:src="@drawable/default_profile"
+                                                app:civ_border_color="#FFF3E5"
+                                                app:civ_border_width="1dp"
+                                                tools:ignore="ImageContrastCheck" />
+
+                                            <LinearLayout
+                                                android:gravity="center"
+                                                android:layout_width="100dp"
+                                                android:layout_height="100dp">
+
+                                                <ProgressBar
+                                                    android:layout_width="35dp"
+                                                    android:layout_height="35dp"
+                                                    android:indeterminateTint="@color/colorPrimaryDark" />
+
+                                            </LinearLayout>
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/profile_image"
+                                                android:layout_width="100dp"
+                                                android:layout_height="100dp"
+                                                app:civ_border_color="#FFF3E5"
+                                                app:civ_border_width="1dp"
+                                                tools:ignore="ImageContrastCheck" />
+
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/nama_sales_tv"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:ellipsize="end"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:singleLine="true"
+                                            android:text="Memuat data..."
+                                            android:textColor="@color/colorPrimaryDark"
+                                            android:textSize="17dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <TextView
+                                            android:id="@+id/wilayah_sales_tv"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:ellipsize="end"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:singleLine="true"
+                                            android:text="Memuat data..."
+                                            android:textColor="@color/colorPrimaryDark"
+                                            android:textSize="11dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/try_warning_btn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/shape_congrat"
+                                        android:layout_marginTop="20dp"
+                                        android:layout_marginRight="20dp"
+                                        android:layout_marginLeft="20dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="5dp"
+                                        tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            tools:ignore="TooDeepLayout,UselessParent">
+
+                                            <LinearLayout
+                                                android:orientation="horizontal"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+                                                <LinearLayout
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_marginRight="7dp"
+                                                    android:layout_marginLeft="5dp"
+                                                    android:gravity="center"
+                                                    android:orientation="vertical"
+                                                    tools:ignore="RtlHardcoded,TooDeepLayout">
+
+                                                    <ImageView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="50dp"
+                                                        android:scaleType="fitXY"
+                                                        android:src="@drawable/pengumuman_ic"
+                                                        tools:ignore="ContentDescription" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center"
+                                                    android:layout_marginTop="6dp"
+                                                    android:layout_marginBottom="9dp"
+                                                    android:layout_marginRight="35dp"
+                                                    android:orientation="vertical"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Dalam Masa Percobaan"
+                                                        android:textStyle="bold"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:textColor="@color/white"
+                                                        android:textSize="11dp"
+                                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:fontFamily="sans-serif"
+                                                        android:lineSpacingExtra="1dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:text="Lihat selengkapnya..."
+                                                        android:textColor="@color/white"
+                                                        android:textSize="10dp"
+                                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                                </LinearLayout>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_marginRight="6dp"
+                                                android:layout_marginTop="-5dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
+
+                                                <LinearLayout
+                                                    android:background="@drawable/ic_baseline_arrow_right_pengumuman"
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="20dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingLeft="20dp"
+                                        android:paddingBottom="20dp">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginEnd="105dp"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:layout_width="50dp"
+                                                android:layout_height="11dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:background="@drawable/four_dots"/>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="STATISTIK KUNJUNGAN"
+                                                android:textColor="@color/colorPrimaryDark"
+                                                android:textSize="14dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <TextView
+                                                android:id="@+id/month_tv"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="Memuat data..."
+                                                android:textColor="@color/colorPrimaryDark"
+                                                android:textSize="14dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_alignParentRight="true"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded,UselessParent">
+
+                                            <LinearLayout
+                                                android:background="@drawable/shape_nilai_label"
+                                                android:paddingRight="7dp"
+                                                android:paddingLeft="7dp"
+                                                android:paddingTop="3dp"
+                                                android:paddingBottom="15dp"
+                                                android:gravity="center"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="     TOTAL     "
+                                                    android:textColor="#FFFFFF"
+                                                    android:textSize="12dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:background="@drawable/shape_nilai"
+                                                android:paddingRight="8dp"
+                                                android:paddingLeft="8dp"
+                                                android:paddingTop="5dp"
+                                                android:paddingBottom="5dp"
+                                                android:layout_marginTop="-14dp"
+                                                android:layout_width="match_parent"
+                                                android:gravity="center"
+                                                android:layout_height="wrap_content">
+
+                                                <TextView
+                                                    android:id="@+id/total_kunjungan"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="0"
+                                                    android:textColor="#020202"
+                                                    android:textSize="21dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="300dp"
+                                        android:orientation="vertical">
+
+                                        <RelativeLayout
+                                            android:id="@+id/line_chart_part"
+                                            android:visibility="gone"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="10dp"
+                                            android:layout_marginRight="17dp"
+                                            android:layout_marginLeft="17dp">
+
+                                            <com.github.mikephil.charting.charts.LineChart
+                                                android:id="@+id/lineChart"
+                                                android:layout_marginTop="17dp"
+                                                android:layout_marginStart="14dp"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="330dp" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="TANGGAL"
+                                                android:textAlignment="center"
+                                                android:textColor="@color/text_color"
+                                                android:textSize="9dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="match_parent"
+                                                android:text="JUMLAH KUNJUNGAN"
+                                                android:textColor="@color/text_color"
+                                                android:textSize="9dp"
+                                                android:rotation="-90"
+                                                android:layout_marginLeft="-36dp"
+                                                android:gravity="center"
+                                                android:layout_gravity="center"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                                        </RelativeLayout>
+
+                                        <LinearLayout
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:paddingBottom="40dp"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/loading_data_part"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center"
+                                                android:layout_marginRight="17dp"
+                                                android:layout_marginLeft="17dp"
+                                                android:orientation="vertical">
+
+                                                <ProgressBar
+                                                    android:layout_width="45dp"
+                                                    android:layout_height="45dp"
+                                                    android:indeterminateTint="@color/colorAccent2"
+                                                    android:layout_marginTop="20dp"
+                                                    android:layout_marginBottom="25dp"
+                                                    tools:ignore="RtlHardcoded,TooDeepLayout" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="-8dp"
+                                                    android:text="Memuat data"
+                                                    android:textAlignment="center"
+                                                    android:textColor="#E1BB8A"
+                                                    android:textSize="12dp"
+                                                    android:textStyle="bold"
+                                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Tunggu beberapa saat"
+                                                    android:textAlignment="center"
+                                                    android:textColor="#ECC28D"
+                                                    android:textSize="10dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/no_data_part"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center"
+                                                android:orientation="vertical"
+                                                android:visibility="gone">
+
+                                                <TextView
+                                                    android:layout_width="85dp"
+                                                    android:layout_height="85dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:background="@drawable/empty_image"
+                                                    android:textAlignment="center"
+                                                    android:textSize="12dp"
+                                                    android:textStyle="bold"
+                                                    tools:ignore="SpUsage" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="-8dp"
+                                                    android:text="Data tidak tersedia"
+                                                    android:textAlignment="center"
+                                                    android:textColor="#E1BB8A"
+                                                    android:textSize="12dp"
+                                                    android:textStyle="bold"
+                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Grafik kunjungan tidak tersedia"
+                                                    android:textAlignment="center"
+                                                    android:textColor="#ECC28D"
+                                                    android:textSize="10dp"
+                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="20dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="10dp"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".60"
+                                            android:layout_height="wrap_content">
+
+                                            <LinearLayout
+                                                android:id="@+id/promosi_btn"
+                                                android:layout_width="0dp"
+                                                android:layout_weight=".50"
+                                                android:paddingTop="10dp"
+                                                android:paddingBottom="10dp"
+                                                android:paddingRight="15dp"
+                                                android:paddingLeft="15dp"
+                                                android:background="@drawable/shape_no_checkout"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                tools:ignore="NestedWeights,RtlHardcoded">
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
+                                                    android:text="Promosi"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="10dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                                <TextView
+                                                    android:visibility="gone"
+                                                    android:id="@+id/promosi_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="30dp"
+                                                    android:textStyle="bold"
+                                                    android:text="0"
+                                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                                <ImageView
+                                                    android:id="@+id/promosi_loading"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="40.5dp"
+                                                    app:srcCompat="@drawable/loading_dots"
+                                                    tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/penagihan_btn"
+                                                android:layout_width="0dp"
+                                                android:layout_weight=".50"
+                                                android:background="@drawable/shape_kelebihan_jam"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="8dp"
+                                                android:orientation="vertical"
+                                                tools:ignore="RtlHardcoded">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    tools:ignore="UselessParent">
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="vertical"
+                                                        android:paddingLeft="15dp"
+                                                        android:paddingTop="10dp"
+                                                        android:paddingRight="15dp"
+                                                        android:paddingBottom="10dp">
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:ellipsize="end"
+                                                            android:maxLines="1"
+                                                            android:singleLine="true"
+                                                            android:text="Penagihan"
+                                                            android:textColor="@color/white"
+                                                            android:textSize="10dp"
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                                        <TextView
+                                                            android:id="@+id/penagihan_tv"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="0"
+                                                            android:textColor="@color/white"
+                                                            android:textSize="30dp"
+                                                            android:textStyle="bold"
+                                                            android:visibility="gone"
+                                                            tools:ignore="HardcodedText,SpUsage" />
+
+                                                        <ImageView
+                                                            android:id="@+id/penagihan_loading"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="40.5dp"
+                                                            app:srcCompat="@drawable/loading_dots"
+                                                            tools:ignore="ContentDescription,ImageContrastCheck,TooManyViews" />
+
+                                                    </LinearLayout>
+
+                                                </RelativeLayout>
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="20dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="10dp"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            tools:ignore="DisableBaselineAlignment,UselessParent">
+
+                                            <LinearLayout
+                                                android:id="@+id/pengiriman_btn"
+                                                android:layout_width="0dp"
+                                                android:layout_weight=".50"
+                                                android:background="@drawable/shape_tidak_hadir"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content">
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="vertical"
+                                                        android:paddingLeft="15dp"
+                                                        android:paddingTop="10dp"
+                                                        android:paddingRight="15dp"
+                                                        android:paddingBottom="10dp">
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:ellipsize="end"
+                                                            android:maxLines="1"
+                                                            android:singleLine="true"
+                                                            android:text="Pengiriman"
+                                                            android:textColor="@color/white"
+                                                            android:textSize="10dp"
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                                        <TextView
+                                                            android:id="@+id/pengiriman_tv"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="0"
+                                                            android:textColor="@color/white"
+                                                            android:textSize="30dp"
+                                                            android:textStyle="bold"
+                                                            android:visibility="gone"
+                                                            tools:ignore="HardcodedText,SpUsage" />
+
+                                                        <ImageView
+                                                            android:id="@+id/pengiriman_loading"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="40.5dp"
+                                                            app:srcCompat="@drawable/loading_dots"
+                                                            tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                                    </LinearLayout>
+
+                                                </RelativeLayout>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/pameran_btn"
+                                                android:layout_width="0dp"
+                                                android:layout_weight=".50"
+                                                android:background="@drawable/shape_terlambat"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="8dp"
+                                                android:orientation="vertical"
+                                                tools:ignore="RtlHardcoded">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content">
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="vertical"
+                                                        android:paddingLeft="15dp"
+                                                        android:paddingTop="10dp"
+                                                        android:paddingRight="15dp"
+                                                        android:paddingBottom="10dp"
+                                                        tools:ignore="TooManyViews">
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:ellipsize="end"
+                                                            android:maxLines="1"
+                                                            android:singleLine="true"
+                                                            android:text="Pameran"
+                                                            android:textColor="@color/white"
+                                                            android:textSize="10dp"
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                                        <TextView
+                                                            android:id="@+id/pameran_tv"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="0"
+                                                            android:textColor="@color/white"
+                                                            android:textSize="30dp"
+                                                            android:textStyle="bold"
+                                                            android:visibility="gone"
+                                                            tools:ignore="HardcodedText,SpUsage,TooManyViews" />
+
+                                                        <ImageView
+                                                            android:id="@+id/pameran_loading"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="40.5dp"
+                                                            app:srcCompat="@drawable/loading_dots"
+                                                            tools:ignore="ContentDescription" />
+
+                                                    </LinearLayout>
+
+                                                </RelativeLayout>
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="20dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="15dp"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            tools:ignore="DisableBaselineAlignment,UselessParent">
+
+                                            <LinearLayout
+                                                android:id="@+id/jv_btn"
+                                                android:layout_width="0dp"
+                                                android:layout_weight=".33"
+                                                android:background="@drawable/shape_hadir"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content">
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="vertical"
+                                                        android:paddingLeft="15dp"
+                                                        android:paddingTop="10dp"
+                                                        android:paddingRight="15dp"
+                                                        android:paddingBottom="10dp">
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:ellipsize="end"
+                                                            android:maxLines="1"
+                                                            android:singleLine="true"
+                                                            android:text="JV"
+                                                            android:textColor="@color/white"
+                                                            android:textSize="10dp"
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                                        <TextView
+                                                            android:id="@+id/jv_tv"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="0"
+                                                            android:textColor="@color/white"
+                                                            android:textSize="30dp"
+                                                            android:textStyle="bold"
+                                                            android:visibility="gone"
+                                                            tools:ignore="HardcodedText,SpUsage" />
+
+                                                        <ImageView
+                                                            android:id="@+id/jv_loading"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="40.5dp"
+                                                            app:srcCompat="@drawable/loading_dots"
+                                                            tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                                    </LinearLayout>
+
+                                                </RelativeLayout>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/njv_btn"
+                                                android:layout_width="0dp"
+                                                android:layout_weight=".33"
+                                                android:layout_marginLeft="8dp"
+                                                android:background="@drawable/shape_pulang_cepat"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                tools:ignore="RtlHardcoded">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content">
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="vertical"
+                                                        android:paddingLeft="15dp"
+                                                        android:paddingTop="10dp"
+                                                        android:paddingRight="15dp"
+                                                        android:paddingBottom="10dp">
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:ellipsize="end"
+                                                            android:maxLines="1"
+                                                            android:singleLine="true"
+                                                            android:text="NJV"
+                                                            android:textColor="@color/white"
+                                                            android:textSize="10dp"
+                                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                                        <TextView
+                                                            android:id="@+id/njv_tv"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="0"
+                                                            android:textColor="@color/white"
+                                                            android:textSize="30dp"
+                                                            android:textStyle="bold"
+                                                            android:visibility="gone"
+                                                            tools:ignore="HardcodedText,SpUsage" />
+
+                                                        <ImageView
+                                                            android:id="@+id/njv_loading"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="40.5dp"
+                                                            app:srcCompat="@drawable/loading_dots"
+                                                            tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                                    </LinearLayout>
+
+                                                </RelativeLayout>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/lainnya_btn"
+                                                android:layout_width="0dp"
+                                                android:layout_weight=".33"
+                                                android:background="@drawable/shape_layoff"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="8dp"
+                                                android:orientation="vertical"
+                                                tools:ignore="RtlHardcoded">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content">
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="vertical"
+                                                        android:paddingLeft="15dp"
+                                                        android:paddingTop="10dp"
+                                                        android:paddingRight="15dp"
+                                                        android:paddingBottom="10dp">
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:ellipsize="end"
+                                                            android:maxLines="1"
+                                                            android:singleLine="true"
+                                                            android:text="Lainnya"
+                                                            android:textColor="@color/white"
+                                                            android:textSize="10dp"
+                                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck,TooManyViews" />
+
+                                                        <TextView
+                                                            android:id="@+id/lainnya_tv"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="0"
+                                                            android:textColor="@color/white"
+                                                            android:textSize="30dp"
+                                                            android:textStyle="bold"
+                                                            android:visibility="gone"
+                                                            tools:ignore="HardcodedText,SpUsage" />
+
+                                                        <ImageView
+                                                            android:id="@+id/lainnya_loading"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="40.5dp"
+                                                            app:srcCompat="@drawable/loading_dots"
+                                                            tools:ignore="ContentDescription,TooManyViews" />
+
+                                                    </LinearLayout>
+
+                                                </RelativeLayout>
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.core.widget.NestedScrollView>
+
+                    <LinearLayout
+                        android:id="@+id/action_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_marginTop="-2dp"
+                            android:layout_marginRight="-2dp"
+                            android:layout_marginLeft="-2dp"
+                            android:background="@drawable/shape_bar_chat"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            tools:ignore="UselessParent">
+
+                            <LinearLayout
+                                android:id="@+id/back_btn"
+                                android:layout_marginTop="17dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_width="33dp"
+                                android:layout_height="33dp"
+                                android:gravity="center"
+                                android:background="@drawable/shape_back_2"
+                                tools:ignore="RtlHardcoded">
+
+                                <TextView
+                                    android:layout_width="28dp"
+                                    android:layout_height="28dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:background="@drawable/ic_baseline_chevron_back"
+                                    tools:ignore="RtlHardcoded" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:gravity="right|center"
+                                android:paddingLeft="30dp"
+                                android:paddingRight="30dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                tools:ignore="RtlHardcoded">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:gravity="right"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="DETAIL STATISTIK SALES"
+                                    android:textColor="@color/white"
+                                    android:textSize="15dp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <com.flipboard.bottomsheet.BottomSheetLayout
+                android:id="@+id/bottom_sheet_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal|center_vertical" />
+
+                </LinearLayout>
+
+            </com.flipboard.bottomsheet.BottomSheetLayout>
+
+        </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

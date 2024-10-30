@@ -24,8 +24,10 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -53,6 +55,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.shasin.notificationbanner.Banner;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -63,6 +68,7 @@ import static com.google.android.gms.location.LocationServices.getFusedLocationP
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @SuppressLint("CustomSplashScreen")
 public class StartApp extends AppCompatActivity {
@@ -71,18 +77,20 @@ public class StartApp extends AppCompatActivity {
     private static final int INITIAL_REQUEST = 1337;
     private static final int LOCATION_REQUEST = INITIAL_REQUEST + 3;
     View rootview;
-    LinearLayout refreshPart, refreshBTN, updateBTN, closeBTN, updateLayout, updateDialog;
+    LinearLayout regSplash, refreshPart, refreshBTN, updateBTN, closeBTN, updateLayout, updateDialog;
+    RelativeLayout gapSplash;
     TextView loadingOff, refreshLabel, descTV;
     String closeBottomSheet, statusUpdateLayout = "0", currentVersion = "";
     SwipeRefreshLayout refreshLayout;
     ProgressBar loadingProgressBar;
     SharedPrefManager sharedPrefManager;
     RequestQueue requestQueue;
+    ImageView imageBranding;
 
     private StatusBarColorManager mStatusBarColorManager;
     private LocationRequest mLocationRequest;
-    private long UPDATE_INTERVAL = 10 * 1000;  /* 10 secs */
-    private long FASTEST_INTERVAL = 2000; /* 2 sec */
+    private long UPDATE_INTERVAL = 10 * 1000;
+    private long FASTEST_INTERVAL = 2000;
     private Handler handler = new Handler();
 
     @Override
@@ -104,10 +112,42 @@ public class StartApp extends AppCompatActivity {
         refreshLabel = findViewById(R.id.refresh_label);
         loadingProgressBar = findViewById(R.id.loadingProgressBar);
         loadingOff = findViewById(R.id.loading_off);
+        imageBranding = findViewById(R.id.image_branding);
+        regSplash = findViewById(R.id.reg_splash);
+        gapSplash = findViewById(R.id.gap_splash);
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
 
         refreshLayout.setEnabled(false);
+
+        if(sharedPrefManager.getSpSudahLogin()){
+            if(sharedPrefManager.getSpIdCor().equals("1")){
+                gapSplash.setVisibility(View.VISIBLE);
+                regSplash.setVisibility(View.GONE);
+            } else {
+                gapSplash.setVisibility(View.GONE);
+                regSplash.setVisibility(View.VISIBLE);
+            }
+        } else {
+            gapSplash.setVisibility(View.GONE);
+            regSplash.setVisibility(View.VISIBLE);
+        }
+
+        int[] images = {
+                R.drawable.start_img_1,
+                R.drawable.start_img_2,
+                R.drawable.start_img_3,
+                R.drawable.start_img_4
+        };
+
+        int randomIndex = new Random().nextInt(images.length);
+        int selectedImage = images[randomIndex];
+
+        Picasso.get()
+                .load(selectedImage)
+                .networkPolicy(NetworkPolicy.NO_CACHE)
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .into(imageBranding);
 
         try {
             currentVersion = getPackageManager()

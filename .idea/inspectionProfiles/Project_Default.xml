@@ -26,6 +26,7 @@
       <option name="m_reportEmptyBlocks" value="true" />
     </inspection_tool>
     <inspection_tool class="EmptyTryBlock" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="EnhancedSwitchMigration" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="EqualsBetweenInconvertibleTypes" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="ExtractMethodRecommender" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="FieldCanBeLocal" enabled="false" level="WARNING" enabled_by_default="false" />
@@ -46,6 +47,7 @@
       <option name="callCheckString" value="java.io.File,.*,java.io.InputStream,read|skip|available|markSupported,java.io.Reader,read|skip|ready|markSupported,java.lang.Boolean,.*,java.lang.Byte,.*,java.lang.Character,.*,java.lang.Double,.*,java.lang.Float,.*,java.lang.Integer,.*,java.lang.Long,.*,java.lang.Math,.*,java.lang.Object,equals|hashCode|toString,java.lang.Short,.*,java.lang.StrictMath,.*,java.lang.String,.*,java.lang.Thread,interrupted,java.math.BigInteger,.*,java.math.BigDecimal,.*,java.net.InetAddress,.*,java.net.URI,.*,java.util.Arrays,.*,java.util.List,of,java.util.Set,of,java.util.Map,of|ofEntries|entry,java.util.Collections,(?!addAll).*,java.util.UUID,.*,java.util.regex.Matcher,pattern|toMatchResult|start|end|group|groupCount|matches|find|lookingAt|quoteReplacement|replaceAll|replaceFirst|regionStart|regionEnd|hasTransparentBounds|hasAnchoringBounds|hitEnd|requireEnd,java.util.regex.Pattern,.*,java.util.stream.BaseStream,.*" />
     </inspection_tool>
     <inspection_tool class="InnerClassMayBeStatic" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="JavaReflectionMemberAccess" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="JavacQuirks" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="NonStrictComparisonCanBeEquality" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="NullableProblems" enabled="false" level="WARNING" enabled_by_default="false">
@@ -65,6 +67,8 @@
     </inspection_tool>
     <inspection_tool class="RawUseOfParameterizedType" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="RegExpRedundantEscape" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="RegExpSingleCharAlternation" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="SameParameterValue" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="SingleStatementInBlock" enabled="false" level="INFORMATION" enabled_by_default="false" />
     <inspection_tool class="SizeReplaceableByIsEmpty" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="SpellCheckingInspection" enabled="false" level="TYPO" enabled_by_default="false">
@@ -73,6 +77,7 @@
       <option name="processComments" value="true" />
     </inspection_tool>
     <inspection_tool class="StringConcatenationInLoops" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="StringEqualsEmptyString" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="StringOperationCanBeSimplified" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="SwitchStatementWithTooFewBranches" enabled="false" level="WARNING" enabled_by_default="false">
       <option name="m_limit" value="2" />
@@ -80,6 +85,7 @@
     <inspection_tool class="ThrowablePrintStackTrace" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="TrivialIf" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="UNCHECKED_WARNING" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="UnclearBinaryExpression" enabled="false" level="INFORMATION" enabled_by_default="false" />
     <inspection_tool class="UnnecessarilyQualifiedInnerClassAccess" enabled="false" level="INFORMATION" enabled_by_default="false">
       <option name="ignoreReferencesNeedingImport" value="false" />
     </inspection_tool>

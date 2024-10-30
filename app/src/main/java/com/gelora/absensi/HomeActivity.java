@@ -604,7 +604,7 @@ public class HomeActivity extends AppCompatActivity {
 
                             if(getNamaHari().toLowerCase().equals("jumat")||getNamaHari().toLowerCase().equals("sabtu")){
                                 if(sharedPrefManager.getSpIdCor().equals("1") && sharedPrefManager.getSpIdCab().equals("1")){
-                                    if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")){
+                                    if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpIdJabatan().equals("85")||sharedPrefManager.getSpNik().equals("3313210223")||sharedPrefManager.getSpNik().equals("3196310521")||sharedPrefManager.getSpNik().equals("3310140223")||sharedPrefManager.getSpNik().equals("1311201210")){
                                         checkPengajuanMakan(getNamaHari().toLowerCase());
                                     }
                                 }
