@@ -537,7 +537,6 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 .show();
     }
 
-
     @SuppressLint("SetTextI18n")
     private void categoryChoice(){
         bottomSheet.showWithSheetView(LayoutInflater.from(ListDataReportSumaActivity.this).inflate(R.layout.layout_kategori_report_suma_list_data, bottomSheet, false));
