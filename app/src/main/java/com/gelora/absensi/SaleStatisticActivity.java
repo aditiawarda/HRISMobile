@@ -17,10 +17,8 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,7 +33,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.flipboard.bottomsheet.BottomSheetLayout;
-import com.gelora.absensi.adapter.AdapterWilayahSuma;
+import com.gelora.absensi.adapter.AdapterSales;
 import com.gelora.absensi.adapter.AdapterWilayahSumaStatistik;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.WilayahSuma;
@@ -43,13 +41,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.aviran.cookiebar2.CookieBar;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class SaleStatisticActivity extends AppCompatActivity {
@@ -75,6 +76,9 @@ public class SaleStatisticActivity extends AppCompatActivity {
     private Handler handler = new Handler();
     RecyclerView wilayahRV;
     private static final String REQUEST_TAG = "LIST_DATA_REQUEST";
+    private RecyclerView recyclerView;
+    private List<String> listSales = new ArrayList<>();
+    private AdapterSales adapterSalesSumaJakarta1;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -154,7 +158,12 @@ public class SaleStatisticActivity extends AppCompatActivity {
         jakartaAePart = findViewById(R.id.jakarta_ae_part);
         digitalMarketingPart = findViewById(R.id.digital_marketing_part);
 
-        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA, "1");
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA_STATISTIK, "1");
         LocalBroadcastManager.getInstance(this).registerReceiver(wilayahSumaBroad, new IntentFilter("wilayah_suma_broad"));
 
         String input_date_masuk = getDate();
@@ -222,6 +231,26 @@ public class SaleStatisticActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onRefresh() {
+                String wilayah = wilayahChoiceTV.getText().toString();
+                if(wilayah.equals("Suma Jakarta 1")) {
+                    getDataPerSales("SUMA 1");
+                } else if(wilayah.equals("Suma Jakarta 2")) {
+                    getDataPerSales("SUMA 2");
+                } else if(wilayah.equals("Suma Jakarta 3")) {
+                    getDataPerSales("SUMA 3");
+                } else if(wilayah.equals("Suma Bandung")) {
+                    getDataPerSales("BANDUNG");
+                } else if(wilayah.equals("Suma Semarang")) {
+                    getDataPerSales("SEMARANG");
+                } else if(wilayah.equals("Suma Surabaya")) {
+                    getDataPerSales("SURABAYA");
+                } else if(wilayah.equals("Suma Palembang")) {
+                    getDataPerSales("PALEMBANG");
+                } else if(wilayah.equals("Jakarta AE")) {
+                    getDataPerSales("JAKARTA");
+                } else if(wilayah.equals("Digital Marketing")) {
+                    getDataPerSales("DIGITAL MARKETING");
+                }
                 getTryWarning();
                 getData();
                 handler.postDelayed(new Runnable() {
@@ -288,7 +317,72 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         animateCurrency("total_process", 0, process, 3000);
                                         animateCurrency("total_complete", 0, complete, 3000);
                                         animateCurrency("total_total", 0, total, 3000);
+                                    } else {
+                                        new KAlertDialog(SaleStatisticActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Terjadi kesalahan saat mengakses data")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        try {
+                            new KAlertDialog(SaleStatisticActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan anda")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        } catch (WindowManager.BadTokenException e){
+                            Log.e("Error", "Error : "+e.toString());
+                        }
 
+                    }
+                });
+
+                request.setTag(REQUEST_TAG);
+                request.setRetryPolicy(new DefaultRetryPolicy(5000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+                requestQueue.add(request);
+
+            }
+        }).start();
+    }
+
+    private void getDataPerSales(String wilayah){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String url = "https://reporting.sumasistem.co.id/api/get_statistic_accurate?tanggal="+getDate();
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                        new Response.Listener<JSONObject>() {
+                            @SuppressLint("SetTextI18n")
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.e("PaRSE JSON", response + "");
+                                try {
+                                    String status = response.getString("status");
+                                    listSales.clear();
+
+                                    if(status.equals("Success")){
+                                        JSONObject data = response.getJSONObject("data");
                                         JSONObject total_per_departemen = data.getJSONObject("total_per_departemen");
                                         JSONObject suma_1 = total_per_departemen.getJSONObject("SUMA 1");
                                         long suma_1_pending = suma_1.getLong("pending");
@@ -361,10 +455,10 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         // long suma_palembang_process = suma_palembang.getLong("in_process");
                                         // long suma_palembang_complete = suma_palembang.getLong("complete");
                                         // long suma_palembang_total = suma_palembang.getLong("total");
-                                         long suma_palembang_pending = 0;
-                                         long suma_palembang_process = 0;
-                                         long suma_palembang_complete = 0;
-                                         long suma_palembang_total = 0;
+                                        long suma_palembang_pending = 0;
+                                        long suma_palembang_process = 0;
+                                        long suma_palembang_complete = 0;
+                                        long suma_palembang_total = 0;
 
                                         animateCurrency("suma_palembang_pending", 0, suma_palembang_pending, 3000);
                                         animateCurrency("suma_palembang_process", 0, suma_palembang_process, 3000);
@@ -394,8 +488,50 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         animateCurrency("ae_complete", 0, ae_complete, 3000);
                                         animateCurrency("ae_total", 0, ae_total, 3000);
 
-                                    } else {
+                                        String list_departemen = data.getString("list_departemen");
+                                        JSONArray jsonArray = new JSONArray(list_departemen);
+                                        int arrayLength = jsonArray.length();
 
+                                        JSONObject dataPerDepartemen = new JSONObject();
+                                        for (int i = 0; i < arrayLength; i++) {
+                                            dataPerDepartemen = jsonArray.getJSONObject(i);
+                                            String departemen = dataPerDepartemen.getString("departemen");
+                                            if(departemen.equals(wilayah)){
+                                                String list_sales = dataPerDepartemen.getString("sales");
+                                                JSONArray jsonArraySales = new JSONArray(list_sales);
+                                                int arraySalesLength = jsonArraySales.length();
+                                                JSONObject dataPerSales = new JSONObject();
+                                                for (int j = 0; j < arraySalesLength; j++) {
+                                                    dataPerSales = jsonArraySales.getJSONObject(j);
+                                                    String nama_sales = dataPerSales.getString("nama_sales");
+                                                    String pending = dataPerSales.getString("pending");
+                                                    String in_process = dataPerSales.getString("in_process");
+                                                    String complete = dataPerSales.getString("complete");
+                                                    String total = dataPerSales.getString("total");
+                                                    listSales.add(nama_sales+"~"+pending+"~"+in_process+"~"+complete+"~"+total);
+                                                }
+                                            }
+                                        }
+
+                                        adapterSalesSumaJakarta1 = new AdapterSales(listSales);
+                                        recyclerView.setLayoutManager(new LinearLayoutManager(SaleStatisticActivity.this));
+                                        recyclerView.setAdapter(adapterSalesSumaJakarta1);
+                                        recyclerView.setHasFixedSize(true);
+                                        recyclerView.setNestedScrollingEnabled(false);
+                                        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+                                    } else {
+                                        new KAlertDialog(SaleStatisticActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Terjadi kesalahan saat mengakses data")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -515,7 +651,6 @@ public class SaleStatisticActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     bottomSheetLayout.dismissSheet();
-//                    loadingDataPartReport.setVisibility(View.VISIBLE);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -532,6 +667,7 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         sumaPalembangPart.setVisibility(View.GONE);
                                         jakartaAePart.setVisibility(View.GONE);
                                         digitalMarketingPart.setVisibility(View.GONE);
+                                        getDataPerSales("SUMA 1");
                                     } else if(wilayah.equals("Suma Jakarta 2")) {
                                         suma1Part.setVisibility(View.GONE);
                                         suma2Part.setVisibility(View.VISIBLE);
@@ -542,6 +678,7 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         sumaPalembangPart.setVisibility(View.GONE);
                                         jakartaAePart.setVisibility(View.GONE);
                                         digitalMarketingPart.setVisibility(View.GONE);
+                                        getDataPerSales("SUMA 2");
                                     } else if(wilayah.equals("Suma Jakarta 3")) {
                                         suma1Part.setVisibility(View.GONE);
                                         suma2Part.setVisibility(View.GONE);
@@ -552,6 +689,7 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         sumaPalembangPart.setVisibility(View.GONE);
                                         jakartaAePart.setVisibility(View.GONE);
                                         digitalMarketingPart.setVisibility(View.GONE);
+                                        getDataPerSales("SUMA 3");
                                     } else if(wilayah.equals("Suma Bandung")) {
                                         suma1Part.setVisibility(View.GONE);
                                         suma2Part.setVisibility(View.GONE);
@@ -562,6 +700,7 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         sumaPalembangPart.setVisibility(View.GONE);
                                         jakartaAePart.setVisibility(View.GONE);
                                         digitalMarketingPart.setVisibility(View.GONE);
+                                        getDataPerSales("BANDUNG");
                                     } else if(wilayah.equals("Suma Semarang")) {
                                         suma1Part.setVisibility(View.GONE);
                                         suma2Part.setVisibility(View.GONE);
@@ -572,6 +711,7 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         sumaPalembangPart.setVisibility(View.GONE);
                                         jakartaAePart.setVisibility(View.GONE);
                                         digitalMarketingPart.setVisibility(View.GONE);
+                                        getDataPerSales("SEMARANG");
                                     } else if(wilayah.equals("Suma Surabaya")) {
                                         suma1Part.setVisibility(View.GONE);
                                         suma2Part.setVisibility(View.GONE);
@@ -582,6 +722,7 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         sumaPalembangPart.setVisibility(View.GONE);
                                         jakartaAePart.setVisibility(View.GONE);
                                         digitalMarketingPart.setVisibility(View.GONE);
+                                        getDataPerSales("SURABAYA");
                                     } else if(wilayah.equals("Suma Palembang")) {
                                         suma1Part.setVisibility(View.GONE);
                                         suma2Part.setVisibility(View.GONE);
@@ -592,6 +733,7 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         sumaPalembangPart.setVisibility(View.VISIBLE);
                                         jakartaAePart.setVisibility(View.GONE);
                                         digitalMarketingPart.setVisibility(View.GONE);
+                                        getDataPerSales("PALEMBANG");
                                     } else if(wilayah.equals("Jakarta AE")) {
                                         suma1Part.setVisibility(View.GONE);
                                         suma2Part.setVisibility(View.GONE);
@@ -602,6 +744,7 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         sumaPalembangPart.setVisibility(View.GONE);
                                         jakartaAePart.setVisibility(View.VISIBLE);
                                         digitalMarketingPart.setVisibility(View.GONE);
+                                        getDataPerSales("JAKARTA");
                                     } else if(wilayah.equals("Digital Marketing")) {
                                         suma1Part.setVisibility(View.GONE);
                                         suma2Part.setVisibility(View.GONE);
@@ -612,6 +755,7 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         sumaPalembangPart.setVisibility(View.GONE);
                                         jakartaAePart.setVisibility(View.GONE);
                                         digitalMarketingPart.setVisibility(View.VISIBLE);
+                                        getDataPerSales("DIGITAL MARKETING");
                                     }
                                 }
                             });
@@ -848,6 +992,7 @@ public class SaleStatisticActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        getDataPerSales("SUMA 1");
         getData();
         getTryWarning();
     }

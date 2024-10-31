@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/parent_part"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/shape_pengumuman"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            tools:ignore="RtlHardcoded,UselessParent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment,UselessParent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="18dp"
+                    android:paddingBottom="18dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNamaSales"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="NAMA KARYAWAN"
+                        android:layout_marginBottom="15dp"
+                        android:textColor="#C16D02"
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight=".50"
+                            android:layout_height="50dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginBottom="6dp"
+                            android:orientation="horizontal"
+                            android:background="@drawable/shape_tidak_hadir">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                tools:ignore="TooDeepLayout,UselessParent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center|right"
+                                    tools:ignore="RtlHardcoded">
+
+                                    <LinearLayout
+                                        android:layout_width="25dp"
+                                        android:layout_height="25dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/ic_sp_pending" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_marginTop="7dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:layout_marginStart="15dp"
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:ignore="RtlHardcoded">
+
+                                    <TextView
+                                        android:id="@+id/tvPending"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:drawablePadding="5dp"
+                                        android:text="Rp0"
+                                        android:textColor="@color/white"
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text="Pending"
+                                        android:textColor="@color/white"
+                                        android:textSize="10dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="-5dp"
+                                    android:layout_marginTop="-10dp"
+                                    android:background="@drawable/shape_ornament_3"
+                                    tools:ignore="TooManyViews" />
+
+                                <LinearLayout
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:layout_marginBottom="-40dp"
+                                    android:background="@drawable/shape_ornament_3"/>
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight=".50"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginBottom="6dp"
+                            android:orientation="horizontal"
+                            android:background="@drawable/shape_terlambat">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                tools:ignore="TooDeepLayout,UselessParent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center|right"
+                                    tools:ignore="RtlHardcoded">
+
+                                    <LinearLayout
+                                        android:layout_width="25dp"
+                                        android:layout_height="25dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/ic_sp_process" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_marginTop="7dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:layout_marginStart="15dp"
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:ignore="RtlHardcoded">
+
+                                    <TextView
+                                        android:id="@+id/tvInProcess"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:drawablePadding="5dp"
+                                        android:text="Rp0"
+                                        android:textColor="@color/white"
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text="In Process"
+                                        android:textColor="@color/white"
+                                        android:textSize="10dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="-5dp"
+                                    android:layout_marginTop="-10dp"
+                                    android:background="@drawable/shape_ornament_3"
+                                    tools:ignore="TooManyViews" />
+
+                                <LinearLayout
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:layout_marginBottom="-40dp"
+                                    android:background="@drawable/shape_ornament_3"/>
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight=".50"
+                            android:layout_height="50dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal"
+                            android:background="@drawable/shape_hadir">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                tools:ignore="TooDeepLayout,UselessParent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center|right"
+                                    tools:ignore="RtlHardcoded">
+
+                                    <LinearLayout
+                                        android:layout_width="25dp"
+                                        android:layout_height="25dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/ic_sp_complete" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_marginTop="7dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:layout_marginStart="15dp"
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:ignore="RtlHardcoded">
+
+                                    <TextView
+                                        android:id="@+id/tvComplete"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:drawablePadding="5dp"
+                                        android:text="Rp0"
+                                        android:textColor="@color/white"
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text="Complete"
+                                        android:textColor="@color/white"
+                                        android:textSize="10dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="-5dp"
+                                    android:layout_marginTop="-10dp"
+                                    android:background="@drawable/shape_ornament_3"
+                                    tools:ignore="TooManyViews" />
+
+                                <LinearLayout
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:layout_marginBottom="-40dp"
+                                    android:background="@drawable/shape_ornament_3"/>
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight=".50"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal"
+                            android:background="@drawable/shape_pulang_cepat">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                tools:ignore="TooDeepLayout,UselessParent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center|right"
+                                    tools:ignore="RtlHardcoded">
+
+                                    <LinearLayout
+                                        android:layout_width="25dp"
+                                        android:layout_height="25dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/ic_sp_total" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_marginTop="7dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:layout_marginStart="15dp"
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:ignore="RtlHardcoded">
+
+                                    <TextView
+                                        android:id="@+id/tvTotal"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:drawablePadding="5dp"
+                                        android:text="Rp0"
+                                        android:textColor="@color/white"
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2dp"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text="Total"
+                                        android:textColor="@color/white"
+                                        android:textSize="10dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="-5dp"
+                                    android:layout_marginTop="-10dp"
+                                    android:background="@drawable/shape_ornament_3"
+                                    tools:ignore="TooManyViews" />
+
+                                <LinearLayout
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:layout_marginBottom="-40dp"
+                                    android:background="@drawable/shape_ornament_3"/>
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

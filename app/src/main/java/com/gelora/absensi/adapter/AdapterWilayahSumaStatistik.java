@@ -57,7 +57,7 @@ public class AdapterWilayahSumaStatistik extends RecyclerView.Adapter<AdapterWil
             myViewHolder.name.setText(wilayahSuma.getNama_wilayah());
         }
 
-        if (sharedPrefAbsen.getSpWilayahSuma().equals(wilayahSuma.getId())) {
+        if (sharedPrefAbsen.getSpWilayahSumaStatistik().equals(wilayahSuma.getId())) {
             myViewHolder.mark.setVisibility(View.VISIBLE);
             myViewHolder.parent.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_option_choice));
         } else {
@@ -76,7 +76,7 @@ public class AdapterWilayahSumaStatistik extends RecyclerView.Adapter<AdapterWil
                 intent.putExtra("nama_wilayah_suma",wilayahSuma.getNama_wilayah());
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA, wilayahSuma.getId());
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA_STATISTIK, wilayahSuma.getId());
             }
 
         });
