@@ -121,7 +121,7 @@
                                     android:layout_marginStart="-5dp"
                                     android:layout_marginTop="-10dp"
                                     android:background="@drawable/shape_ornament_3"
-                                    tools:ignore="TooManyViews" />
+                                    tools:ignore="TooManyViews,VisualLintBounds" />
 
                                 <LinearLayout
                                     android:layout_alignParentEnd="true"
@@ -129,7 +129,8 @@
                                     android:layout_width="55dp"
                                     android:layout_height="55dp"
                                     android:layout_marginBottom="-40dp"
-                                    android:background="@drawable/shape_ornament_3"/>
+                                    android:background="@drawable/shape_ornament_3"
+                                    tools:ignore="VisualLintBounds" />
 
                             </RelativeLayout>
 
@@ -205,7 +206,7 @@
                                     android:layout_marginStart="-5dp"
                                     android:layout_marginTop="-10dp"
                                     android:background="@drawable/shape_ornament_3"
-                                    tools:ignore="TooManyViews" />
+                                    tools:ignore="TooManyViews,VisualLintBounds" />
 
                                 <LinearLayout
                                     android:layout_alignParentEnd="true"
@@ -213,7 +214,8 @@
                                     android:layout_width="55dp"
                                     android:layout_height="55dp"
                                     android:layout_marginBottom="-40dp"
-                                    android:background="@drawable/shape_ornament_3"/>
+                                    android:background="@drawable/shape_ornament_3"
+                                    tools:ignore="VisualLintBounds" />
 
                             </RelativeLayout>
 
@@ -296,7 +298,7 @@
                                     android:layout_marginStart="-5dp"
                                     android:layout_marginTop="-10dp"
                                     android:background="@drawable/shape_ornament_3"
-                                    tools:ignore="TooManyViews" />
+                                    tools:ignore="TooManyViews,VisualLintBounds" />
 
                                 <LinearLayout
                                     android:layout_alignParentEnd="true"
@@ -304,7 +306,8 @@
                                     android:layout_width="55dp"
                                     android:layout_height="55dp"
                                     android:layout_marginBottom="-40dp"
-                                    android:background="@drawable/shape_ornament_3"/>
+                                    android:background="@drawable/shape_ornament_3"
+                                    tools:ignore="VisualLintBounds" />
 
                             </RelativeLayout>
 
@@ -379,7 +382,7 @@
                                     android:layout_marginStart="-5dp"
                                     android:layout_marginTop="-10dp"
                                     android:background="@drawable/shape_ornament_3"
-                                    tools:ignore="TooManyViews" />
+                                    tools:ignore="TooManyViews,VisualLintBounds" />
 
                                 <LinearLayout
                                     android:layout_alignParentEnd="true"
@@ -387,7 +390,8 @@
                                     android:layout_width="55dp"
                                     android:layout_height="55dp"
                                     android:layout_marginBottom="-40dp"
-                                    android:background="@drawable/shape_ornament_3"/>
+                                    android:background="@drawable/shape_ornament_3"
+                                    tools:ignore="VisualLintBounds" />
 
                             </RelativeLayout>
 
