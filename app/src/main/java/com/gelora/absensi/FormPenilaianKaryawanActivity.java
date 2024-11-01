@@ -1255,7 +1255,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                 params.put("status", statusKelulusan);
                 params.put("no_frm", "FRM.HRD.01.04/ rev-1");
                 params.put("list_rating", listRating);
-                params.put("id_form_sdm", idFormSDM);
+                params.put("id_form_sdm", String.valueOf(idFormSDM));
 
                 return params;
             }
