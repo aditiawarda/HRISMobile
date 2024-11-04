@@ -10,11 +10,16 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -57,6 +62,7 @@ public class SaleStatisticActivity extends AppCompatActivity {
 
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
+    EditText searchInput;
     LinearLayout suma1Part, suma2Part, suma3Part, sumaBandungPart, sumaSemarangPart, sumaSurabayaPart, sumaPalembangPart, jakartaAePart , digitalMarketingPart, wilayahChoiceBTN, connectBTN, closeBTN, backBTN, actionBar, tryWarningBTN;
     TextView wilayahChoiceTV, dataUpdateTV, pendingTV, processTV, completeTV, totalTV;
     TextView aeCompleteTV, aeProcessTV, aePendingTV, aeTotalTV;
@@ -78,7 +84,7 @@ public class SaleStatisticActivity extends AppCompatActivity {
     private static final String REQUEST_TAG = "LIST_DATA_REQUEST";
     private RecyclerView recyclerView;
     private List<String> listSales = new ArrayList<>();
-    private AdapterSales adapterSalesSumaJakarta1;
+    private AdapterSales adapterSalesSuma;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -157,74 +163,13 @@ public class SaleStatisticActivity extends AppCompatActivity {
         sumaPalembangPart = findViewById(R.id.suma_palembang_part);
         jakartaAePart = findViewById(R.id.jakarta_ae_part);
         digitalMarketingPart = findViewById(R.id.digital_marketing_part);
+        searchInput = findViewById(R.id.keyword_sales_ed);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
-
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_WILAYAH_SUMA_STATISTIK, "1");
         LocalBroadcastManager.getInstance(this).registerReceiver(wilayahSumaBroad, new IntentFilter("wilayah_suma_broad"));
-
-        String input_date_masuk = getDate();
-        String dayDateMasuk = input_date_masuk.substring(8,10);
-        String yearDateMasuk = input_date_masuk.substring(0,4);
-        String bulanValueMasuk = input_date_masuk.substring(5,7);
-        String bulanNameMasuk;
-
-        switch (bulanValueMasuk) {
-            case "01":
-                bulanNameMasuk = "Januari";
-                break;
-            case "02":
-                bulanNameMasuk = "Februari";
-                break;
-            case "03":
-                bulanNameMasuk = "Maret";
-                break;
-            case "04":
-                bulanNameMasuk = "April";
-                break;
-            case "05":
-                bulanNameMasuk = "Mei";
-                break;
-            case "06":
-                bulanNameMasuk = "Juni";
-                break;
-            case "07":
-                bulanNameMasuk = "Juli";
-                break;
-            case "08":
-                bulanNameMasuk = "Agustus";
-                break;
-            case "09":
-                bulanNameMasuk = "September";
-                break;
-            case "10":
-                bulanNameMasuk = "Oktober";
-                break;
-            case "11":
-                bulanNameMasuk = "November";
-                break;
-            case "12":
-                bulanNameMasuk = "Desember";
-                break;
-            default:
-                bulanNameMasuk = "Not found";
-                break;
-        }
-
-        suma1Part.setVisibility(View.VISIBLE);
-        suma2Part.setVisibility(View.GONE);
-        suma3Part.setVisibility(View.GONE);
-        sumaBandungPart.setVisibility(View.GONE);
-        sumaSemarangPart.setVisibility(View.GONE);
-        sumaSurabayaPart.setVisibility(View.GONE);
-        sumaPalembangPart.setVisibility(View.GONE);
-        jakartaAePart.setVisibility(View.GONE);
-        digitalMarketingPart.setVisibility(View.GONE);
-
-        dataUpdateTV.setText("* Update per "+Integer.parseInt(dayDateMasuk) +" "+bulanNameMasuk+" "+yearDateMasuk);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -253,6 +198,8 @@ public class SaleStatisticActivity extends AppCompatActivity {
                 }
                 getTryWarning();
                 getData();
+                searchInput.clearFocus();
+                searchInput.setText("");
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -279,6 +226,7 @@ public class SaleStatisticActivity extends AppCompatActivity {
         tryWarningBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                searchInput.clearFocus();
                 tryWarning();
             }
         });
@@ -286,7 +234,37 @@ public class SaleStatisticActivity extends AppCompatActivity {
         wilayahChoiceBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                searchInput.clearFocus();
                 wilayahPicker();
+            }
+        });
+
+        searchInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    adapterSalesSuma.filterByName(s.toString());
+                } catch (NullPointerException e) {
+                    Log.e("Error", e.toString());
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
+        searchInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE ||
+                        (event != null && event.getAction() == KeyEvent.ACTION_DOWN &&
+                                event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+                 searchInput.clearFocus();
+                 return false;
+                }
+                return false;
             }
         });
 
@@ -306,6 +284,68 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                 try {
                                     String status = response.getString("status");
                                     if(status.equals("Success")){
+                                        String sale_until = response.getString("sale_until");
+
+                                        String input_date_masuk = sale_until;
+                                        String dayDateMasuk = input_date_masuk.substring(8,10);
+                                        String yearDateMasuk = input_date_masuk.substring(0,4);
+                                        String bulanValueMasuk = input_date_masuk.substring(5,7);
+                                        String bulanNameMasuk;
+
+                                        switch (bulanValueMasuk) {
+                                            case "01":
+                                                bulanNameMasuk = "Januari";
+                                                break;
+                                            case "02":
+                                                bulanNameMasuk = "Februari";
+                                                break;
+                                            case "03":
+                                                bulanNameMasuk = "Maret";
+                                                break;
+                                            case "04":
+                                                bulanNameMasuk = "April";
+                                                break;
+                                            case "05":
+                                                bulanNameMasuk = "Mei";
+                                                break;
+                                            case "06":
+                                                bulanNameMasuk = "Juni";
+                                                break;
+                                            case "07":
+                                                bulanNameMasuk = "Juli";
+                                                break;
+                                            case "08":
+                                                bulanNameMasuk = "Agustus";
+                                                break;
+                                            case "09":
+                                                bulanNameMasuk = "September";
+                                                break;
+                                            case "10":
+                                                bulanNameMasuk = "Oktober";
+                                                break;
+                                            case "11":
+                                                bulanNameMasuk = "November";
+                                                break;
+                                            case "12":
+                                                bulanNameMasuk = "Desember";
+                                                break;
+                                            default:
+                                                bulanNameMasuk = "Not found";
+                                                break;
+                                        }
+
+                                        suma1Part.setVisibility(View.VISIBLE);
+                                        suma2Part.setVisibility(View.GONE);
+                                        suma3Part.setVisibility(View.GONE);
+                                        sumaBandungPart.setVisibility(View.GONE);
+                                        sumaSemarangPart.setVisibility(View.GONE);
+                                        sumaSurabayaPart.setVisibility(View.GONE);
+                                        sumaPalembangPart.setVisibility(View.GONE);
+                                        jakartaAePart.setVisibility(View.GONE);
+                                        digitalMarketingPart.setVisibility(View.GONE);
+
+                                        dataUpdateTV.setText("* Update penjualan hingga "+Integer.parseInt(dayDateMasuk) +" "+bulanNameMasuk+" "+yearDateMasuk);
+
                                         JSONObject data = response.getJSONObject("data");
                                         JSONObject data_total = data.getJSONObject("total");
                                         long pending = data_total.getLong("pending");
@@ -513,9 +553,9 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                             }
                                         }
 
-                                        adapterSalesSumaJakarta1 = new AdapterSales(listSales);
+                                        adapterSalesSuma = new AdapterSales(listSales);
                                         recyclerView.setLayoutManager(new LinearLayoutManager(SaleStatisticActivity.this));
-                                        recyclerView.setAdapter(adapterSalesSumaJakarta1);
+                                        recyclerView.setAdapter(adapterSalesSuma);
                                         recyclerView.setHasFixedSize(true);
                                         recyclerView.setNestedScrollingEnabled(false);
                                         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -639,6 +679,8 @@ public class SaleStatisticActivity extends AppCompatActivity {
             } else {
                 wilayahChoiceTV.setText(namaWilayah);
             }
+
+            searchInput.setText("");
 
             InputMethodManager imm = (InputMethodManager) SaleStatisticActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
             View view = SaleStatisticActivity.this.getCurrentFocus();

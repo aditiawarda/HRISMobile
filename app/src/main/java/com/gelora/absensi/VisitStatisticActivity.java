@@ -13,9 +13,11 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -216,6 +218,9 @@ public class VisitStatisticActivity extends AppCompatActivity {
                 getTryWarning();
                 getPieCart();
 
+                searchInput.clearFocus();
+                searchInput.setText("");
+
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -242,6 +247,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
         tryWarningBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                searchInput.clearFocus();
                 tryWarning();
             }
         });
@@ -396,6 +402,9 @@ public class VisitStatisticActivity extends AppCompatActivity {
                             bulanPilihTV.setText(bulanName+" "+String.valueOf(year));
                             titleSalesListTV.setText("Statistik Kunjungan Sales Bulan "+bulanPilihTV.getText().toString());
 
+                            searchInput.clearFocus();
+                            searchInput.setText("");
+
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -417,6 +426,7 @@ public class VisitStatisticActivity extends AppCompatActivity {
         komplainBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                searchInput.clearFocus();
                 if(komplainField.isExpanded()){
                     komplainField.collapse();
                 } else {
@@ -443,6 +453,18 @@ public class VisitStatisticActivity extends AppCompatActivity {
             }
         });
 
+        searchInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE ||
+                        (event != null && event.getAction() == KeyEvent.ACTION_DOWN &&
+                                event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+                    searchInput.clearFocus();
+                    return false;
+                }
+                return false;
+            }
+        });
     }
 
     private void kirimKomplain(String komplain){
