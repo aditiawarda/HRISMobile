@@ -21,11 +21,13 @@ import android.widget.DatePicker;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -76,6 +78,7 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
     private Boolean noSuratValid = false;
     private ConnectivityViewModel viewModel;
     private Boolean nomerKendaraanFilled = false;
+    private Boolean refreshTap = false;
     KAlertDialog pDialog;
     private Boolean isConnected;
     private String monthRoman;
@@ -125,6 +128,44 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
         String formatSurat = "/EXP/GAP/" + monthRoman + "/" + (currentYear % 100);
         binding.tanggalSurat.setText(formatSurat);
 
+        binding.swipeToRefreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        binding.swipeToRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshTap = true;
+                binding.nomerSurat.clearFocus();
+                binding.nomerSurat.setText("");
+
+                binding.hari.setText("");
+                binding.tujuan.setText("");
+                binding.keperluan.setText("");
+                tanggalFilled = false;
+                nomerKendaraanFilled = false;
+                nomerSuratFilled = false;
+                keperluanFilled = false;
+                tujuanFilled = false;
+                binding.noKendaraan.setText("");
+                binding.detailKendaraan.setVisibility(View.GONE);
+                binding.noSuratValidation.setVisibility(View.GONE);
+                binding.platValidation.setVisibility(View.GONE);
+                binding.platValidation.setText("Memuat data...");
+                binding.noSuratValidation.setText("Memuat data...");
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.swipeToRefreshLayout.setRefreshing(false);
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                refreshTap = false;
+                            }
+                        }, 1000);
+                    }
+                }, 500);
+            }
+        });
+
         datePicker();
         seekBarInteractive();
         timePicker();
@@ -134,6 +175,7 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
         handleSubmit();
         nomerSuratTextWatcher();
         formValidation();
+
     }
 
     private void nomerSuratTextWatcher() {
@@ -143,7 +185,9 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                nomerSuratValidation();
+                if(!refreshTap){
+                    nomerSuratValidation();
+                }
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -458,7 +502,6 @@ public class FormPeminjamanKendaraan extends AppCompatActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
-
 
     private void platValidation() {
         String platInput = binding.noKendaraan.getText().toString();
