@@ -138,7 +138,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
-                            android:text="* Update per 28 Oktober 2024"
+                            android:text="* Memuat data..."
                             android:layout_marginHorizontal="20dp"
                             android:textColor="#FF811E"
                             android:textSize="12dp"
