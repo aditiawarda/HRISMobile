@@ -54,7 +54,7 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_weight=".50"
-                            android:layout_height="50dp"
+                            android:layout_height="47dp"
                             android:layout_marginRight="3dp"
                             android:layout_marginBottom="6dp"
                             android:orientation="horizontal"
@@ -74,18 +74,16 @@
                                     <LinearLayout
                                         android:layout_width="25dp"
                                         android:layout_height="25dp"
-                                        android:layout_marginRight="10dp"
+                                        android:layout_marginRight="7dp"
                                         android:background="@drawable/ic_sp_pending" />
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:layout_marginTop="7dp"
+                                    android:layout_marginTop="6dp"
                                     android:layout_marginBottom="5dp"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginRight="20dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:layout_marginStart="15dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_marginStart="10dp"
                                     android:orientation="vertical"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -139,7 +137,7 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_weight=".50"
-                            android:layout_height="50dp"
+                            android:layout_height="47dp"
                             android:layout_marginLeft="3dp"
                             android:layout_marginBottom="6dp"
                             android:orientation="horizontal"
@@ -159,18 +157,16 @@
                                     <LinearLayout
                                         android:layout_width="25dp"
                                         android:layout_height="25dp"
-                                        android:layout_marginRight="10dp"
+                                        android:layout_marginRight="7dp"
                                         android:background="@drawable/ic_sp_process" />
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:layout_marginTop="7dp"
+                                    android:layout_marginTop="6dp"
                                     android:layout_marginBottom="5dp"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginRight="20dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:layout_marginStart="15dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_marginStart="10dp"
                                     android:orientation="vertical"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -232,7 +228,7 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_weight=".50"
-                            android:layout_height="50dp"
+                            android:layout_height="47dp"
                             android:layout_marginRight="3dp"
                             android:orientation="horizontal"
                             android:background="@drawable/shape_hadir">
@@ -251,18 +247,16 @@
                                     <LinearLayout
                                         android:layout_width="25dp"
                                         android:layout_height="25dp"
-                                        android:layout_marginRight="10dp"
+                                        android:layout_marginRight="7dp"
                                         android:background="@drawable/ic_sp_complete" />
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:layout_marginTop="7dp"
+                                    android:layout_marginTop="6dp"
                                     android:layout_marginBottom="5dp"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginRight="20dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:layout_marginStart="15dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_marginStart="10dp"
                                     android:orientation="vertical"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -316,7 +310,7 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_weight=".50"
-                            android:layout_height="50dp"
+                            android:layout_height="47dp"
                             android:layout_marginLeft="3dp"
                             android:orientation="horizontal"
                             android:background="@drawable/shape_pulang_cepat">
@@ -335,18 +329,16 @@
                                     <LinearLayout
                                         android:layout_width="25dp"
                                         android:layout_height="25dp"
-                                        android:layout_marginRight="10dp"
+                                        android:layout_marginRight="7dp"
                                         android:background="@drawable/ic_sp_total" />
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:layout_marginTop="7dp"
+                                    android:layout_marginTop="6dp"
                                     android:layout_marginBottom="5dp"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginRight="20dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:layout_marginStart="15dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_marginStart="10dp"
                                     android:orientation="vertical"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
