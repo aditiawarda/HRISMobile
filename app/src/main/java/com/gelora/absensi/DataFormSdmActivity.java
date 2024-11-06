@@ -129,7 +129,7 @@ public class DataFormSdmActivity extends AppCompatActivity {
                                 String waiting_kabag = data.getString("waiting_kabag");
                                 int waiting_data = Integer.parseInt(waiting_kadep) + Integer.parseInt(waiting_kabag);
 
-                                if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")){
+                                if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("90") || sharedPrefManager.getSpIdJabatan().equals("3")){
                                     if(sharedPrefManager.getSpNik().equals("3294031022") || sharedPrefManager.getSpNik().equals("0113010500") || sharedPrefManager.getSpNik().equals("0687260508") || sharedPrefManager.getSpNik().equals("0057010793") || sharedPrefManager.getSpNik().equals("1504060711") || sharedPrefManager.getSpNik().equals("0015141287") || sharedPrefManager.getSpNik().equals("0121010900")){
                                         if(waiting_data>0){
                                             countWaitingBTN.setVisibility(View.VISIBLE);

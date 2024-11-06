@@ -281,7 +281,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         });
 
         //PT Gelora Aksara Pratama
-        if (sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) {
+        if (sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("90")||sharedPrefManager.getSpIdJabatan().equals("3")) {
             pageTitle.setText("KEHADIRAN DEPARTEMEN");
             choiceBagianBTN.setVisibility(View.VISIBLE);
         } else if (sharedPrefManager.getSpIdJabatan().equals("11") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
@@ -372,7 +372,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
-                                if (sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("33")){
+                                if (sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("90")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("33")){
                                     namaBagian.setText(data.getString("desc_departemen"));
                                     jumlahKaryawanTV.setText(data.getString("jumlah_karyawan_dept"));
                                 } else if (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){

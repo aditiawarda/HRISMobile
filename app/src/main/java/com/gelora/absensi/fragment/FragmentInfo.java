@@ -887,6 +887,13 @@ public class FragmentInfo extends Fragment {
                                         bagianNameTV.setText(departemen);
                                         bagianNameTVSDM.setText(departemen);
                                         bagianNameTvEc.setText(departemen);
+                                    } else if (sharedPrefManager.getSpIdJabatan().equals("90")) {
+                                        monitoringStaffBTN.setVisibility(View.VISIBLE);
+                                        titlePantau.setText("Pantau kehadiran departemen*");
+                                        notePantau.setText("*Fitur khusus Pjs.Ka.Dept");
+                                        bagianNameTV.setText(departemen);
+                                        bagianNameTVSDM.setText(departemen);
+                                        bagianNameTvEc.setText(departemen);
                                     } else if (sharedPrefManager.getSpIdJabatan().equals("3")){
                                         monitoringStaffBTN.setVisibility(View.VISIBLE);
                                         titlePantau.setText("Pantau kehadiran departemen*");

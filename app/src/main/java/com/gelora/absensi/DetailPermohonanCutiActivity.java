@@ -818,7 +818,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                 karyawanPenggantiTV.setText(karyawan_pengganti);
 
                                 if (kode.equals("form")){
-                                    if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("33") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
+                                    if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("90") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("33") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
                                         String nik_approver = detail.getString("nik_approver");
                                         String approver = detail.getString("approver");
                                         String jabatan_approver = detail.getString("jabatan_kabag");
@@ -947,7 +947,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                 else {
                                     if (NIK.equals(sharedPrefManager.getSpNik())){
                                         actionRead();
-                                        if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")|| sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("33") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
+                                        if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("90") || sharedPrefManager.getSpIdJabatan().equals("3")|| sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || sharedPrefManager.getSpIdJabatan().equals("33") || sharedPrefManager.getSpIdJabatan().equals("35") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
                                             String nik_approver = detail.getString("nik_approver");
                                             String approver = detail.getString("approver");
                                             String jabatan_approver = detail.getString("jabatan_kabag");
@@ -1179,8 +1179,8 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     jabatanApprover2.setText(jabatan_kadept);
 
                                                 } else {
-                                                    if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) {
-                                                        if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")){
+                                                    if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("90")||sharedPrefManager.getSpIdJabatan().equals("3")) {
+                                                        if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("90")){
                                                             actionPart.setVisibility(View.VISIBLE);
                                                         } else if(sharedPrefManager.getSpIdJabatan().equals("3")){
                                                             actionPart.setVisibility(View.GONE);
@@ -1331,8 +1331,8 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 jabatanApprover2.setText(jabatan_kadept);
 
                                             } else {
-                                                if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpIdJabatan().equals("33")) {
-                                                    if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpIdJabatan().equals("33")){
+                                                if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("90")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpIdJabatan().equals("33")) {
+                                                    if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("90")||sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpIdJabatan().equals("33")){
                                                         actionPart.setVisibility(View.VISIBLE);
                                                     } else if(sharedPrefManager.getSpIdJabatan().equals("3")){
                                                         actionPart.setVisibility(View.GONE);
@@ -1566,7 +1566,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                     } else {
                         params.put("action", "kabag");
                     }
-                } else if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("33")){
+                } else if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("90")||sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("33")){
                     params.put("action", "kadep");
                 } else if(sharedPrefManager.getSpIdJabatan().equals("8")){
                     params.put("action", "direksi");
@@ -1641,7 +1641,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                     } else {
                         params.put("action", "kabag");
                     }
-                } else if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("33")){
+                } else if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("90")||sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("33")){
                     params.put("action", "kadep");
                 } else if(sharedPrefManager.getSpIdJabatan().equals("8")){
                     params.put("action", "direksi");

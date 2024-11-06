@@ -133,7 +133,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                 .load(R.drawable.success_ic)
                 .into(successGif);
 
-        if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10")){
+        if(sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("90")){
             messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada bagian HRD untuk persetujuan.");
         } else if(sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
             messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada Kepala Departemen untuk persetujuan.");
