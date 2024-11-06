@@ -48,16 +48,19 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             myViewHolder.keteranganTV.setTextColor(Color.parseColor("#438cd6"));
             myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#438cd6"));
             myViewHolder.point1.setVisibility(View.VISIBLE);
+            myViewHolder.bagianTV.setText(dataFormSDM.getBagian().toUpperCase());
         } else if(dataFormSDM.getKeterangan().equals("2")){
             myViewHolder.keteranganTV.setText("PENGANGKATAN");
             myViewHolder.keteranganTV.setTextColor(Color.parseColor("#239fae"));
             myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#239fae"));
             myViewHolder.point2.setVisibility(View.VISIBLE);
+            myViewHolder.bagianTV.setText(dataFormSDM.getBagian_lama().toUpperCase());
         } else if(dataFormSDM.getKeterangan().equals("3")){
             myViewHolder.keteranganTV.setText("PENUGASAN KEMBALI");
             myViewHolder.keteranganTV.setTextColor(Color.parseColor("#9570f0"));
             myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#9570f0"));
             myViewHolder.point3.setVisibility(View.VISIBLE);
+            myViewHolder.bagianTV.setText(dataFormSDM.getBagian_lama().toUpperCase());
         } else if(dataFormSDM.getKeterangan().equals("4")){
             if(String.valueOf(dataFormSDM.getSub_keterangan()).equals("1")){
                 myViewHolder.keteranganTV.setText("PENSIUN");
@@ -69,6 +72,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             myViewHolder.keteranganTV.setTextColor(Color.parseColor("#e85588"));
             myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#e85588"));
             myViewHolder.point4.setVisibility(View.VISIBLE);
+            myViewHolder.bagianTV.setText(dataFormSDM.getBagian_lama().toUpperCase());
         } else if(dataFormSDM.getKeterangan().equals("5")){
             if(String.valueOf(dataFormSDM.getSub_keterangan()).equals("1")){
                 myViewHolder.keteranganTV.setText("PROMOSI");
@@ -80,16 +84,19 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             myViewHolder.keteranganTV.setTextColor(Color.parseColor("#db7a33"));
             myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#db7a33"));
             myViewHolder.point5.setVisibility(View.VISIBLE);
+            myViewHolder.bagianTV.setText(dataFormSDM.getBagian_lama().toUpperCase());
         } else if(dataFormSDM.getKeterangan().equals("6")){
             myViewHolder.keteranganTV.setText("PENYESUAIAN GAJI");
             myViewHolder.keteranganTV.setTextColor(Color.parseColor("#37a464"));
             myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#37a464"));
             myViewHolder.point6.setVisibility(View.VISIBLE);
+            myViewHolder.bagianTV.setText(dataFormSDM.getBagian_lama().toUpperCase());
         } else if(dataFormSDM.getKeterangan().equals("7")){
             myViewHolder.keteranganTV.setText("LAIN-LAIN");
             myViewHolder.keteranganTV.setTextColor(Color.parseColor("#ff6666"));
             myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#ff6666"));
             myViewHolder.point7.setVisibility(View.VISIBLE);
+            myViewHolder.bagianTV.setText(dataFormSDM.getBagian_lama().toUpperCase());
         }
 
         if(dataFormSDM.getKeterangan().equals("1")){
@@ -342,7 +349,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         LinearLayout parrentPart, point1, point2, point3, point4, point5, point6, point7, waitingMark;
-        TextView keteranganTV, timestampTV, detailTV, rejMark, accMark, proMark, atasNamaTV;
+        TextView keteranganTV, timestampTV, detailTV, rejMark, accMark, proMark, atasNamaTV, bagianTV;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parrentPart = itemView.findViewById(R.id.parent_part);
@@ -361,6 +368,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             rejMark = itemView.findViewById(R.id.rej_mark);
             proMark = itemView.findViewById(R.id.pro_mark);
             atasNamaTV = itemView.findViewById(R.id.atas_nama_tv);
+            bagianTV = itemView.findViewById(R.id.bagain_tv);
         }
     }
 

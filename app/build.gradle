@@ -13,8 +13,8 @@ android {
         minSdkVersion 21
         //noinspection OldTargetApi
         targetSdkVersion 34
-        versionCode 223
-        versionName "3.2.3"
+        versionCode 224
+        versionName "3.2.4"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
