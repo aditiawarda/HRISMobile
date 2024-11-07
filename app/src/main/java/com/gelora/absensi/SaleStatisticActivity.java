@@ -286,51 +286,51 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                     if(status.equals("Success")){
                                         String sale_until = response.getString("sale_until");
 
-                                        String input_date_masuk = sale_until;
-                                        String dayDateMasuk = input_date_masuk.substring(8,10);
-                                        String yearDateMasuk = input_date_masuk.substring(0,4);
-                                        String bulanValueMasuk = input_date_masuk.substring(5,7);
-                                        String bulanNameMasuk;
+                                        String input_date_until = sale_until;
+                                        String dayDateUntil = input_date_until.substring(8,10);
+                                        String yearDateUntil = input_date_until.substring(0,4);
+                                        String bulanValueUntil = input_date_until.substring(5,7);
+                                        String bulanNameUntil;
 
-                                        switch (bulanValueMasuk) {
+                                        switch (bulanValueUntil) {
                                             case "01":
-                                                bulanNameMasuk = "Januari";
+                                                bulanNameUntil = "Januari";
                                                 break;
                                             case "02":
-                                                bulanNameMasuk = "Februari";
+                                                bulanNameUntil = "Februari";
                                                 break;
                                             case "03":
-                                                bulanNameMasuk = "Maret";
+                                                bulanNameUntil = "Maret";
                                                 break;
                                             case "04":
-                                                bulanNameMasuk = "April";
+                                                bulanNameUntil = "April";
                                                 break;
                                             case "05":
-                                                bulanNameMasuk = "Mei";
+                                                bulanNameUntil = "Mei";
                                                 break;
                                             case "06":
-                                                bulanNameMasuk = "Juni";
+                                                bulanNameUntil = "Juni";
                                                 break;
                                             case "07":
-                                                bulanNameMasuk = "Juli";
+                                                bulanNameUntil = "Juli";
                                                 break;
                                             case "08":
-                                                bulanNameMasuk = "Agustus";
+                                                bulanNameUntil = "Agustus";
                                                 break;
                                             case "09":
-                                                bulanNameMasuk = "September";
+                                                bulanNameUntil = "September";
                                                 break;
                                             case "10":
-                                                bulanNameMasuk = "Oktober";
+                                                bulanNameUntil = "Oktober";
                                                 break;
                                             case "11":
-                                                bulanNameMasuk = "November";
+                                                bulanNameUntil = "November";
                                                 break;
                                             case "12":
-                                                bulanNameMasuk = "Desember";
+                                                bulanNameUntil = "Desember";
                                                 break;
                                             default:
-                                                bulanNameMasuk = "Not found";
+                                                bulanNameUntil = "Not found";
                                                 break;
                                         }
 
@@ -344,7 +344,7 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         jakartaAePart.setVisibility(View.GONE);
                                         digitalMarketingPart.setVisibility(View.GONE);
 
-                                        dataUpdateTV.setText("* Update penjualan hingga "+Integer.parseInt(dayDateMasuk) +" "+bulanNameMasuk+" "+yearDateMasuk);
+                                        dataUpdateTV.setText("* Update penjualan 22 April 2024 s.d. "+Integer.parseInt(dayDateUntil) +" "+bulanNameUntil+" "+yearDateUntil);
 
                                         JSONObject data = response.getJSONObject("data");
                                         JSONObject data_total = data.getJSONObject("total");
