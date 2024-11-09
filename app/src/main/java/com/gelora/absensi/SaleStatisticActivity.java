@@ -344,7 +344,11 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         jakartaAePart.setVisibility(View.GONE);
                                         digitalMarketingPart.setVisibility(View.GONE);
 
-                                        dataUpdateTV.setText("* Update penjualan 22 April 2024 s.d. "+Integer.parseInt(dayDateUntil) +" "+bulanNameUntil+" "+yearDateUntil);
+                                        if(Integer.parseInt(yearDateUntil)>2024){
+                                            dataUpdateTV.setText("* Update penjualan hingga "+Integer.parseInt(dayDateUntil) +" "+bulanNameUntil+" "+yearDateUntil);
+                                        } else {
+                                            dataUpdateTV.setText("* Update penjualan 22 April 2024 s.d. "+Integer.parseInt(dayDateUntil) +" "+bulanNameUntil+" "+yearDateUntil);
+                                        }
 
                                         JSONObject data = response.getJSONObject("data");
                                         JSONObject data_total = data.getJSONObject("total");
