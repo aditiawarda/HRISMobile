@@ -546,7 +546,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setPadding(0,0,0,0);
-        // mMap.setBuildingsEnabled(false);
+        mMap.setBuildingsEnabled(false);
         permissionLoc();
     }
 
