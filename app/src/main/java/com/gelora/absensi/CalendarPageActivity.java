@@ -131,7 +131,7 @@ public class CalendarPageActivity extends AppCompatActivity {
         eventCalender = findViewById(R.id.event_calender);
         prevBTN = findViewById(R.id.prevBTN);
         nextBTN = findViewById(R.id.nextBTN);
-        compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
+        compactCalendarView = findViewById(R.id.compactcalendar_view);
 
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
             Typeface typeface = ResourcesCompat.getFont(CalendarPageActivity.this, R.font.roboto);
