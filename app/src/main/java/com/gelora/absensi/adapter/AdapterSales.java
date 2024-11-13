@@ -1,7 +1,10 @@
 package com.gelora.absensi.adapter;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,6 +107,13 @@ public class AdapterSales extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         animator.addUpdateListener(animation -> {
             float fraction = animation.getAnimatedFraction();
             long animatedValue = (long) 0 + (long) (delta * fraction);
+
+            if (animatedValue > end) {
+                animatedValue = end;
+            }
+
+            Log.d("Final", "Animated value: " + String.valueOf(animatedValue));
+
             switch (key) {
                 case "pending":
                     holder.tvPending.setText(formatToRupiah(animatedValue));
@@ -119,6 +129,29 @@ public class AdapterSales extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     break;
             }
         });
+
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                Log.d("Final", "Final value: " + String.valueOf(end));
+                switch (key) {
+                    case "pending":
+                        holder.tvPending.setText(formatToRupiah(end));
+                        break;
+                    case "process":
+                        holder.tvInProcess.setText(formatToRupiah(end));
+                        break;
+                    case "complete":
+                        holder.tvComplete.setText(formatToRupiah(end));
+                        break;
+                    case "total":
+                        holder.tvTotal.setText(formatToRupiah(end));
+                        break;
+                }
+            }
+        });
+
         animator.start();
     }
 

@@ -1,5 +1,7 @@
 package com.gelora.absensi;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -357,10 +359,14 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         long complete = data_total.getLong("complete");
                                         long total = data_total.getLong("total");
 
-                                        animateCurrency("total_pending", 0, pending, 3000);
-                                        animateCurrency("total_process", 0, process, 3000);
-                                        animateCurrency("total_complete", 0, complete, 3000);
-                                        animateCurrency("total_total", 0, total, 3000);
+                                        Log.d("Source", "Source : "+String.valueOf(total));
+
+                                        totalTV.setText(String.valueOf(total));
+
+                                        animateCurrency("total_pending", pending);
+                                        animateCurrency("total_process", process);
+                                        animateCurrency("total_complete", complete);
+                                        animateCurrency("total_total", total);
                                     } else {
                                         new KAlertDialog(SaleStatisticActivity.this, KAlertDialog.ERROR_TYPE)
                                                 .setTitleText("Perhatian")
@@ -434,10 +440,10 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         long suma_1_complete = suma_1.getLong("complete");
                                         long suma_1_total = suma_1.getLong("total");
 
-                                        animateCurrency("suma_1_pending", 0, suma_1_pending, 3000);
-                                        animateCurrency("suma_1_process", 0, suma_1_process, 3000);
-                                        animateCurrency("suma_1_complete", 0, suma_1_complete, 3000);
-                                        animateCurrency("suma_1_total", 0, suma_1_total, 3000);
+                                        animateCurrency("suma_1_pending", suma_1_pending);
+                                        animateCurrency("suma_1_process", suma_1_process);
+                                        animateCurrency("suma_1_complete", suma_1_complete);
+                                        animateCurrency("suma_1_total", suma_1_total);
 
                                         JSONObject suma_2 = total_per_departemen.getJSONObject("SUMA 2");
                                         long suma_2_pending = suma_2.getLong("pending");
@@ -445,10 +451,10 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         long suma_2_complete = suma_2.getLong("complete");
                                         long suma_2_total = suma_2.getLong("total");
 
-                                        animateCurrency("suma_2_pending", 0, suma_2_pending, 3000);
-                                        animateCurrency("suma_2_process", 0, suma_2_process, 3000);
-                                        animateCurrency("suma_2_complete", 0, suma_2_complete, 3000);
-                                        animateCurrency("suma_2_total", 0, suma_2_total, 3000);
+                                        animateCurrency("suma_2_pending", suma_2_pending);
+                                        animateCurrency("suma_2_process", suma_2_process);
+                                        animateCurrency("suma_2_complete", suma_2_complete);
+                                        animateCurrency("suma_2_total", suma_2_total);
 
                                         JSONObject suma_3 = total_per_departemen.getJSONObject("SUMA 3");
                                         long suma_3_pending = suma_3.getLong("pending");
@@ -456,10 +462,10 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         long suma_3_complete = suma_3.getLong("complete");
                                         long suma_3_total = suma_3.getLong("total");
 
-                                        animateCurrency("suma_3_pending", 0, suma_3_pending, 3000);
-                                        animateCurrency("suma_3_process", 0, suma_3_process, 3000);
-                                        animateCurrency("suma_3_complete", 0, suma_3_complete, 3000);
-                                        animateCurrency("suma_3_total", 0, suma_3_total, 3000);
+                                        animateCurrency("suma_3_pending", suma_3_pending);
+                                        animateCurrency("suma_3_process", suma_3_process);
+                                        animateCurrency("suma_3_complete", suma_3_complete);
+                                        animateCurrency("suma_3_total", suma_3_total);
 
                                         JSONObject suma_bandung = total_per_departemen.getJSONObject("BANDUNG");
                                         long suma_bandung_pending = suma_bandung.getLong("pending");
@@ -467,10 +473,10 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         long suma_bandung_complete = suma_bandung.getLong("complete");
                                         long suma_bandung_total = suma_bandung.getLong("total");
 
-                                        animateCurrency("suma_bandung_pending", 0, suma_bandung_pending, 3000);
-                                        animateCurrency("suma_bandung_process", 0, suma_bandung_process, 3000);
-                                        animateCurrency("suma_bandung_complete", 0, suma_bandung_complete, 3000);
-                                        animateCurrency("suma_bandung_total", 0, suma_bandung_total, 3000);
+                                        animateCurrency("suma_bandung_pending", suma_bandung_pending);
+                                        animateCurrency("suma_bandung_process", suma_bandung_process);
+                                        animateCurrency("suma_bandung_complete", suma_bandung_complete);
+                                        animateCurrency("suma_bandung_total", suma_bandung_total);
 
                                         JSONObject suma_semarang = total_per_departemen.getJSONObject("SEMARANG");
                                         long suma_semarang_pending = suma_semarang.getLong("pending");
@@ -478,10 +484,10 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         long suma_semarang_complete = suma_semarang.getLong("complete");
                                         long suma_semarang_total = suma_semarang.getLong("total");
 
-                                        animateCurrency("suma_semarang_pending", 0, suma_semarang_pending, 3000);
-                                        animateCurrency("suma_semarang_process", 0, suma_semarang_process, 3000);
-                                        animateCurrency("suma_semarang_complete", 0, suma_semarang_complete, 3000);
-                                        animateCurrency("suma_semarang_total", 0, suma_semarang_total, 3000);
+                                        animateCurrency("suma_semarang_pending", suma_semarang_pending);
+                                        animateCurrency("suma_semarang_process", suma_semarang_process);
+                                        animateCurrency("suma_semarang_complete", suma_semarang_complete);
+                                        animateCurrency("suma_semarang_total", suma_semarang_total);
 
                                         JSONObject suma_surabaya = total_per_departemen.getJSONObject("SURABAYA");
                                         long suma_surabaya_pending = suma_surabaya.getLong("pending");
@@ -489,10 +495,10 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         long suma_surabaya_complete = suma_surabaya.getLong("complete");
                                         long suma_surabaya_total = suma_surabaya.getLong("total");
 
-                                        animateCurrency("suma_surabaya_pending", 0, suma_surabaya_pending, 3000);
-                                        animateCurrency("suma_surabaya_process", 0, suma_surabaya_process, 3000);
-                                        animateCurrency("suma_surabaya_complete", 0, suma_surabaya_complete, 3000);
-                                        animateCurrency("suma_surabaya_total", 0, suma_surabaya_total, 3000);
+                                        animateCurrency("suma_surabaya_pending", suma_surabaya_pending);
+                                        animateCurrency("suma_surabaya_process", suma_surabaya_process);
+                                        animateCurrency("suma_surabaya_complete", suma_surabaya_complete);
+                                        animateCurrency("suma_surabaya_total", suma_surabaya_total);
 
                                         // JSONObject suma_palembang = total_per_departemen.getJSONObject("PALEMBANG");
                                         // long suma_palembang_pending = suma_palembang.getLong("pending");
@@ -504,10 +510,10 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         long suma_palembang_complete = 0;
                                         long suma_palembang_total = 0;
 
-                                        animateCurrency("suma_palembang_pending", 0, suma_palembang_pending, 3000);
-                                        animateCurrency("suma_palembang_process", 0, suma_palembang_process, 3000);
-                                        animateCurrency("suma_palembang_complete", 0, suma_palembang_complete, 3000);
-                                        animateCurrency("suma_palembang_total", 0, suma_palembang_total, 3000);
+                                        animateCurrency("suma_palembang_pending", suma_palembang_pending);
+                                        animateCurrency("suma_palembang_process", suma_palembang_process);
+                                        animateCurrency("suma_palembang_complete", suma_palembang_complete);
+                                        animateCurrency("suma_palembang_total", suma_palembang_total);
 
 
                                         JSONObject digital_marketing = total_per_departemen.getJSONObject("DIGITAL MARKETING");
@@ -516,10 +522,10 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         long digital_marketing_complete = digital_marketing.getLong("complete");
                                         long digital_marketing_total = digital_marketing.getLong("total");
 
-                                        animateCurrency("digital_marketing_pending", 0, digital_marketing_pending, 3000);
-                                        animateCurrency("digital_marketing_process", 0, digital_marketing_process, 3000);
-                                        animateCurrency("digital_marketing_complete", 0, digital_marketing_complete, 3000);
-                                        animateCurrency("digital_marketing_total", 0, digital_marketing_total, 3000);
+                                        animateCurrency("digital_marketing_pending", digital_marketing_pending);
+                                        animateCurrency("digital_marketing_process", digital_marketing_process);
+                                        animateCurrency("digital_marketing_complete", digital_marketing_complete);
+                                        animateCurrency("digital_marketing_total", digital_marketing_total);
 
                                         JSONObject ae = total_per_departemen.getJSONObject("JAKARTA");
                                         long ae_pending = ae.getLong("pending");
@@ -527,10 +533,10 @@ public class SaleStatisticActivity extends AppCompatActivity {
                                         long ae_complete = ae.getLong("complete");
                                         long ae_total = ae.getLong("total");
 
-                                        animateCurrency("ae_pending", 0, ae_pending, 3000);
-                                        animateCurrency("ae_process", 0, ae_process, 3000);
-                                        animateCurrency("ae_complete", 0, ae_complete, 3000);
-                                        animateCurrency("ae_total", 0, ae_total, 3000);
+                                        animateCurrency("ae_pending", ae_pending);
+                                        animateCurrency("ae_process", ae_process);
+                                        animateCurrency("ae_complete", ae_complete);
+                                        animateCurrency("ae_total", ae_total);
 
                                         String list_departemen = data.getString("list_departemen");
                                         JSONArray jsonArray = new JSONArray(list_departemen);
@@ -936,14 +942,21 @@ public class SaleStatisticActivity extends AppCompatActivity {
 
     }
 
-    private void animateCurrency(String key, long start, long end, int duration) {
-        long delta = end - start;
+    private void animateCurrency(String key, long end) {
+        long delta = end - (long) 0;
 
         ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
-        animator.setDuration(duration);
+        animator.setDuration(3000);
         animator.addUpdateListener(animation -> {
             float fraction = animation.getAnimatedFraction();
-            long animatedValue = start + (long) (delta * fraction);
+            long animatedValue = (long) 0 + (long) (delta * fraction);
+
+            if (animatedValue > end) {
+                animatedValue = end;
+            }
+
+            Log.d("Final", "Animated value: " + String.valueOf(animatedValue));
+
             if(key.equals("total_pending")){
                 pendingTV.setText(formatToRupiah(animatedValue));
             } else if(key.equals("total_process")){
@@ -1026,6 +1039,96 @@ public class SaleStatisticActivity extends AppCompatActivity {
                 aeTotalTV.setText(formatToRupiah(animatedValue));
             }
         });
+
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                Log.d("Final", "Final value: " + String.valueOf(end));
+                if(key.equals("total_pending")){
+                    pendingTV.setText(formatToRupiah(end));
+                } else if(key.equals("total_process")){
+                    processTV.setText(formatToRupiah(end));
+                } else if(key.equals("total_complete")){
+                    completeTV.setText(formatToRupiah(end));
+                } else if(key.equals("total_total")){
+                    totalTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_1_pending")){
+                    suma1PendingTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_1_process")){
+                    suma1ProcessTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_1_complete")){
+                    suma1CompleteTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_1_total")){
+                    suma1TotalTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_2_pending")){
+                    suma2PendingTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_2_process")){
+                    suma2ProcessTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_2_complete")){
+                    suma2CompleteTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_2_total")){
+                    suma2TotalTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_3_pending")){
+                    suma3PendingTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_3_process")){
+                    suma3ProcessTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_3_complete")){
+                    suma3CompleteTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_3_total")){
+                    suma3TotalTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_bandung_pending")){
+                    sumaBandungPendingTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_bandung_process")){
+                    sumaBandungProcessTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_bandung_complete")){
+                    sumaBandungCompleteTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_bandung_total")){
+                    sumaBandungTotalTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_semarang_pending")){
+                    sumaSemarangPendingTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_semarang_process")){
+                    sumaSemarangProcessTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_semarang_complete")){
+                    sumaSemarangCompleteTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_semarang_total")){
+                    sumaSemarangTotalTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_surabaya_pending")){
+                    sumaSurabayaPendingTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_surabaya_process")){
+                    sumaSurabayaProcessTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_surabaya_complete")){
+                    sumaSurabayaCompleteTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_surabaya_total")){
+                    sumaSurabayaTotalTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_palembang_pending")){
+                    sumaPalembangPendingTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_palembang_process")){
+                    sumaPalembangProcessTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_palembang_complete")){
+                    sumaPalembangCompleteTV.setText(formatToRupiah(end));
+                } else if(key.equals("suma_palembang_total")){
+                    sumaPalembangTotalTV.setText(formatToRupiah(end));
+                } else if(key.equals("digital_marketing_pending")){
+                    digitalMarketingPendingTV.setText(formatToRupiah(end));
+                } else if(key.equals("digital_marketing_process")){
+                    digitalMarketingProcessTV.setText(formatToRupiah(end));
+                } else if(key.equals("digital_marketing_complete")){
+                    digitalMarketingCompleteTV.setText(formatToRupiah(end));
+                } else if(key.equals("digital_marketing_total")){
+                    digitalMarketingTotalTV.setText(formatToRupiah(end));
+                } else if(key.equals("ae_pending")){
+                    aePendingTV.setText(formatToRupiah(end));
+                } else if(key.equals("ae_process")){
+                    aeProcessTV.setText(formatToRupiah(end));
+                } else if(key.equals("ae_complete")){
+                    aeCompleteTV.setText(formatToRupiah(end));
+                } else if(key.equals("ae_total")){
+                    aeTotalTV.setText(formatToRupiah(end));
+                }
+            }
+        });
+
         animator.start();
     }
 
