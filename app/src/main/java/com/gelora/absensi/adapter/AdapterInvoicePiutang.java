@@ -2,7 +2,6 @@ package com.gelora.absensi.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +9,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.MonitoringAbsensiBagianActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.ReportSumaActivity;
 import com.gelora.absensi.SharedPrefAbsen;
-import com.gelora.absensi.model.Bagian;
 import com.gelora.absensi.model.DataInvoicePiutang;
 
 import java.text.DecimalFormat;

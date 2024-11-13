@@ -137,8 +137,6 @@ public class DetailPengumumanActivity extends AppCompatActivity {
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
                                             .into(imagePengumuman);
 
-                                    // Glide.with(getApplicationContext()).load("https://hrisgelora.co.id/assets/img/pengumuman/"+pengumuman_image).into(imagePengumuman);
-
                                     imageView.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {

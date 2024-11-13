@@ -29,7 +29,6 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -38,7 +37,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,11 +49,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
-import com.gelora.absensi.adapter.AdapterKaryawanPengganti;
 import com.gelora.absensi.adapter.AdapterKaryawanPenggantiEdit;
-import com.gelora.absensi.adapter.AdapterKategoriIzin;
 import com.gelora.absensi.adapter.AdapterKategoriIzinEdit;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.KaryawanPengganti;
@@ -257,6 +252,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         });
 
         removeLampiranBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 removeLampiranStatus = "1";
@@ -2685,14 +2681,14 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                                 dateChoiceAkhir = tanggal_akhir;
 
                                 String input_date = dateChoiceMulai;
-                                SimpleDateFormat format1 =new SimpleDateFormat("yyyy-MM-dd");
+                                @SuppressLint("SimpleDateFormat") SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                                 Date dt1 = null;
                                 try {
                                     dt1 = format1.parse(input_date);
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
-                                DateFormat format2 = new SimpleDateFormat("EEE");
+                                @SuppressLint("SimpleDateFormat") DateFormat format2 = new SimpleDateFormat("EEE");
                                 String finalDay = format2.format(dt1);
                                 String hariName = "";
 
@@ -2762,14 +2758,14 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                                 dariTanggalTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
                                 String input_date_akhir = dateChoiceAkhir;
-                                SimpleDateFormat format1_akhir = new SimpleDateFormat("yyyy-MM-dd");
+                                @SuppressLint("SimpleDateFormat") SimpleDateFormat format1_akhir = new SimpleDateFormat("yyyy-MM-dd");
                                 Date dt1_akhir = null;
                                 try {
                                     dt1_akhir = format1_akhir.parse(input_date_akhir);
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
-                                DateFormat format2_akhir = new SimpleDateFormat("EEE");
+                                @SuppressLint("SimpleDateFormat") DateFormat format2_akhir = new SimpleDateFormat("EEE");
                                 String finalDay_akhir = format2_akhir.format(dt1_akhir);
                                 String hariName_akhir = "";
 

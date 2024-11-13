@@ -447,7 +447,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 },
                 error -> {
                     error.printStackTrace();
-                    showErrorMessage("Gagal terhubung, harap periksa koneksi internet atau jaringan Anda");
+                    showErrorMessage();
                 }
         );
 
@@ -498,7 +498,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         }
     }
 
-    private void showErrorMessage(String message) {
+    private void showErrorMessage() {
         attantionReportPart.setVisibility(View.GONE);
         reportRV.setVisibility(View.GONE);
         loadingDataPartReport.setVisibility(View.GONE);
@@ -508,7 +508,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         try {
             new KAlertDialog(this, KAlertDialog.ERROR_TYPE)
                     .setTitleText("Perhatian")
-                    .setContentText(message)
+                    .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan Anda")
                     .setConfirmText("    OK    ")
                     .setConfirmClickListener(KAlertDialog::dismiss)
                     .show();

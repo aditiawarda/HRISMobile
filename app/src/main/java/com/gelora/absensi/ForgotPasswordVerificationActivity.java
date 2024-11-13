@@ -27,7 +27,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.chaos.view.PinView;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.support.StatusBarColorManager;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;

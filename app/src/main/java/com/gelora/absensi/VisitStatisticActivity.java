@@ -58,7 +58,6 @@ import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
-import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 

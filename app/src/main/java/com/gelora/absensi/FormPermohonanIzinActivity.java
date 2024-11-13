@@ -1630,6 +1630,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         }
 
         izinBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 markStatusIzin.setVisibility(View.VISIBLE);
@@ -1654,6 +1655,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         });
 
         sakitBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 markStatusIzin.setVisibility(View.GONE);

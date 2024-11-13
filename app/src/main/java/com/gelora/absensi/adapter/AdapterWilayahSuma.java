@@ -17,10 +17,8 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.ListDataReportSumaActivity;
-import com.gelora.absensi.MapsActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
-import com.gelora.absensi.model.StatusAbsen;
 import com.gelora.absensi.model.WilayahSuma;
 
 public class AdapterWilayahSuma extends RecyclerView.Adapter<AdapterWilayahSuma.MyViewHolder> {

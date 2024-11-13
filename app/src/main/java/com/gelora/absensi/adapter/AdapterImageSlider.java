@@ -1,5 +1,6 @@
 package com.gelora.absensi.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.gelora.absensi.R;
-import com.gelora.absensi.model.DataDokumentasiProject;
 import com.gelora.absensi.model.DataImageSlider;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.smarteist.autoimageslider.SliderViewAdapter;
@@ -32,19 +31,10 @@ public class AdapterImageSlider extends SliderViewAdapter<AdapterImageSlider.Sli
         notifyDataSetChanged();
     }
 
-    public void deleteItem(int position) {
-        this.mSliderItems.remove(position);
-        notifyDataSetChanged();
-    }
-
-    public void addItem(DataImageSlider sliderItems) {
-        this.mSliderItems.add(sliderItems);
-        notifyDataSetChanged();
-    }
-
     @NonNull
     @Override
     public SliderAdapterVH onCreateViewHolder(ViewGroup parent) {
+        @SuppressLint("InflateParams")
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_image_slider, null);
         return new SliderAdapterVH(inflate);
     }

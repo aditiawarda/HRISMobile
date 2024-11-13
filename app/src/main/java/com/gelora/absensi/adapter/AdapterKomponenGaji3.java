@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gelora.absensi.FormSdmActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
-import com.gelora.absensi.model.KomponenGaji;
 import com.gelora.absensi.model.KomponenGaji3;
 
 public class AdapterKomponenGaji3 extends RecyclerView.Adapter<AdapterKomponenGaji3.MyViewHolder> {

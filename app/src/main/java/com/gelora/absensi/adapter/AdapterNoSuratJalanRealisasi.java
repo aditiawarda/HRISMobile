@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.DetailReportSumaActivity;
 import com.gelora.absensi.R;
-import com.gelora.absensi.ReportSumaActivity;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.model.DataNoSuratJalan;
 

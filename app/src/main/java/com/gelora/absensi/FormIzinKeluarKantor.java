@@ -2,7 +2,6 @@ package com.gelora.absensi;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -19,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -37,7 +35,6 @@ import com.bumptech.glide.Glide;
 import com.gelora.absensi.databinding.ActivityFormIzinKeluarKantorBinding;
 import com.gelora.absensi.databinding.TimePickerDialogBinding;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.model.KaryawanKeluar;
 import com.gelora.absensi.model.PostIzinResponse;
 import com.gelora.absensi.network.Repository;
 import com.gelora.absensi.viewmodel.ConnectivityViewModel;
@@ -76,7 +73,6 @@ public class FormIzinKeluarKantor extends AppCompatActivity {
     private ConnectivityViewModel viewModel;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    private int currentRoleIndex = 0;
 
     @SuppressLint("SetTextI18n")
     @Override

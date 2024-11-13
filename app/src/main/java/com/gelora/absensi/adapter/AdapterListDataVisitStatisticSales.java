@@ -14,9 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.DetailVisitStatisticSalesActivity;
 import com.gelora.absensi.R;
-import com.gelora.absensi.ResumeKaryawanActivity;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.VisitStatisticActivity;
 import com.gelora.absensi.model.SalesVisitStatistic;

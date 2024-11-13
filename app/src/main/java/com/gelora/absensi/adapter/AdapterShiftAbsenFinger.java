@@ -63,6 +63,7 @@ public class AdapterShiftAbsenFinger extends RecyclerView.Adapter<AdapterShiftAb
         }
 
         myViewHolder.statusParent.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
 

@@ -8,20 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.DetailProjectActivity;
-import com.gelora.absensi.ProjectViewActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.UpdateTaskActivity;
-import com.gelora.absensi.model.ProjectData;
 import com.gelora.absensi.model.TaskData;
 
 import java.text.DateFormat;

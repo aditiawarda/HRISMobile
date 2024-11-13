@@ -3,13 +3,11 @@ package com.gelora.absensi;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -26,14 +24,12 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.adapter.AdapterListKeluarKantor;
 import com.gelora.absensi.databinding.ActivityListIzinKeluarKantorBinding;
-import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.network.Repository;
 import com.gelora.absensi.viewmodel.ConnectivityViewModel;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 
 public class ListIzinKeluarKantor extends AppCompatActivity {
 

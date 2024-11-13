@@ -97,6 +97,7 @@ public class FormLunchRequestActivity extends AppCompatActivity {
     private int i = -1;
     private Handler handler = new Handler();
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

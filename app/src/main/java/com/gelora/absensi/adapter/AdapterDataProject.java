@@ -3,41 +3,22 @@ package com.gelora.absensi.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.DetailPermohonanIzinActivity;
 import com.gelora.absensi.DetailProjectActivity;
-import com.gelora.absensi.NewsActivity;
 import com.gelora.absensi.ProjectViewActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
-import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.model.NewsData;
 import com.gelora.absensi.model.ProjectData;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class AdapterDataProject extends RecyclerView.Adapter<AdapterDataProject.MyViewHolder> {
 

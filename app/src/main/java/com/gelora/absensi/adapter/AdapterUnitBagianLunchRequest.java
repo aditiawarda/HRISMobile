@@ -17,11 +17,9 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.FormLunchRequestActivity;
-import com.gelora.absensi.FormSdmActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.model.BagianLunchRequest;
-import com.gelora.absensi.model.UnitBagian;
 
 public class AdapterUnitBagianLunchRequest extends RecyclerView.Adapter<AdapterUnitBagianLunchRequest.MyViewHolder> {
 

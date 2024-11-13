@@ -452,7 +452,6 @@ public class DetailIzinKeluar extends AppCompatActivity {
                                     repository.cancelIzinKeluarKantor(getApprovalId, DetailIzinKeluar.this, new Callback<Void>() {
                                         @Override
                                         public void onResponse(Call<Void> call, Response<Void> response) {
-                                            // Handle successful response if needed
                                             pDialog.setTitleText("Permohonan Dibatalkan")
                                                     .setConfirmText("    OK    ")
                                                     .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {

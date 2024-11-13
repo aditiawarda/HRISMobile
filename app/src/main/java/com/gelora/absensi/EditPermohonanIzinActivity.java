@@ -22,7 +22,6 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -261,14 +260,14 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
                                 dateChoiceAkhir = tgl_akhir;
 
                                 String input_date = dateChoiceMulai;
-                                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                                @SuppressLint("SimpleDateFormat") SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                                 Date dt1 = null;
                                 try {
                                     dt1 = format1.parse(input_date);
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
-                                DateFormat format2 = new SimpleDateFormat("EEE");
+                                @SuppressLint("SimpleDateFormat") DateFormat format2 = new SimpleDateFormat("EEE");
                                 String finalDay = format2.format(dt1);
                                 String hariName = "";
 
@@ -338,14 +337,14 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
                                 mulaiDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
                                 String input_date_akhir = dateChoiceAkhir;
-                                SimpleDateFormat format1_akhir = new SimpleDateFormat("yyyy-MM-dd");
+                                @SuppressLint("SimpleDateFormat") SimpleDateFormat format1_akhir = new SimpleDateFormat("yyyy-MM-dd");
                                 Date dt1_akhir = null;
                                 try {
                                     dt1_akhir = format1_akhir.parse(input_date_akhir);
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
-                                DateFormat format2_akhir = new SimpleDateFormat("EEE");
+                                @SuppressLint("SimpleDateFormat") DateFormat format2_akhir = new SimpleDateFormat("EEE");
                                 String finalDay_akhir = format2_akhir.format(dt1_akhir);
                                 String hariName_akhir = "";
 
@@ -473,6 +472,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
         }
 
         izinBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 markStatusIzin.setVisibility(View.VISIBLE);
@@ -497,6 +497,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
         });
 
         sakitBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 markStatusIzin.setVisibility(View.GONE);

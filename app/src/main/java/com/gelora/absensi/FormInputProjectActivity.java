@@ -16,7 +16,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -30,9 +29,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -45,7 +42,6 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterAllKaryawan;
-import com.gelora.absensi.adapter.AdapterProjectCategory;
 import com.gelora.absensi.adapter.AdapterProjectCategoryForm;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.KaryawanAll;
@@ -69,10 +65,9 @@ import java.util.Map;
 public class FormInputProjectActivity extends AppCompatActivity {
 
     LinearLayout viewDetailBTN, formPart, successPart, startDateBTN, endDateBTN, actionBar, backBTN, choiceCategoryBTN, submitBTN, projectLeaderBTN, startAttantionPart, noDataPart, loadingDataPart;
-    TextView projectNameTV, categoryChoiceTV, projectLeaderTV, startDateTV, endDateTV;
+    TextView categoryChoiceTV, projectLeaderTV, startDateTV, endDateTV;
     EditText projectNameED, projectDescED;
     ImageView successGif;
-    MultiAutoCompleteTextView picMultyTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     RequestQueue requestQueue;

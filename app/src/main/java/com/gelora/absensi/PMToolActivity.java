@@ -20,10 +20,7 @@ public class PMToolActivity extends AppCompatActivity {
 
         String id_project = getIntent().getExtras().getString("id_project");
 
-        // Enable JavaScript (optional)
         webSettings.setJavaScriptEnabled(true);
-
-        // Load a web page
         webView.loadUrl("https://appointment.geloraaksara.co.id/dashboard/detail_task?id="+id_project);
 
     }

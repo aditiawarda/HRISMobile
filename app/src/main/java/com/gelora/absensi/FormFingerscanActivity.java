@@ -20,7 +20,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.InputFilter;
-import android.text.InputType;
 import android.text.Spanned;
 import android.util.Log;
 import android.view.InflateException;
@@ -34,7 +33,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;

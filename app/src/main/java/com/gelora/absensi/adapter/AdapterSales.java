@@ -61,10 +61,10 @@ public class AdapterSales extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             long total = Long.parseLong(arrayData[4]);
 
             viewHolder.tvNamaSales.setText(arrayData[0]);
-            animateCurrency(viewHolder, "pending", 0, pending, 3000);
-            animateCurrency(viewHolder, "process", 0, process, 3000);
-            animateCurrency(viewHolder, "complete", 0, complete, 3000);
-            animateCurrency(viewHolder, "total", 0, total, 3000);
+            animateCurrency(viewHolder, "pending", pending);
+            animateCurrency(viewHolder, "process", process);
+            animateCurrency(viewHolder, "complete", complete);
+            animateCurrency(viewHolder, "total", total);
         } else if (holder instanceof EmptyViewHolder) {
             ((EmptyViewHolder) holder).emptyTextView.setText("Tidak ada hasil ditemukan.");
         }
@@ -97,13 +97,13 @@ public class AdapterSales extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-    private void animateCurrency(@NonNull ViewHolder holder, String key, long start, long end, int duration) {
-        long delta = end - start;
+    private void animateCurrency(@NonNull ViewHolder holder, String key, long end) {
+        long delta = end - (long) 0;
         ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
-        animator.setDuration(duration);
+        animator.setDuration(3000);
         animator.addUpdateListener(animation -> {
             float fraction = animation.getAnimatedFraction();
-            long animatedValue = start + (long) (delta * fraction);
+            long animatedValue = (long) 0 + (long) (delta * fraction);
             switch (key) {
                 case "pending":
                     holder.tvPending.setText(formatToRupiah(animatedValue));
