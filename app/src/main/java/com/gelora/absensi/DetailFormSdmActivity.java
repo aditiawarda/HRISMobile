@@ -909,7 +909,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             } else if(status_approve_astkadept.equals("0")){
                                                 accMark.setVisibility(View.GONE);
                                                 rejMark.setVisibility(View.GONE);
-                                                if(sharedPrefManager.getSpIdJabatan().equals("3")){
+                                                if(sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("90")){
                                                     actionPart.setVisibility(View.VISIBLE);
                                                 } else {
                                                     actionPart.setVisibility(View.GONE);
@@ -1157,7 +1157,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             } else if(status_approve_astkadept.equals("0")){
                                                 accMark.setVisibility(View.GONE);
                                                 rejMark.setVisibility(View.GONE);
-                                                if(sharedPrefManager.getSpIdJabatan().equals("3")){
+                                                if(sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("90")){
                                                     actionPart.setVisibility(View.VISIBLE);
                                                 } else {
                                                     actionPart.setVisibility(View.GONE);
@@ -1395,7 +1395,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             } else if(status_approve_astkadept.equals("0")){
                                                 accMark.setVisibility(View.GONE);
                                                 rejMark.setVisibility(View.GONE);
-                                                if(sharedPrefManager.getSpIdJabatan().equals("3")){
+                                                if(sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("90")){
                                                     actionPart.setVisibility(View.VISIBLE);
                                                 } else {
                                                     actionPart.setVisibility(View.GONE);
@@ -1403,7 +1403,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             }
                                         }
 
-                                        if(keterangan.equals("5")){ //test
+                                        if(keterangan.equals("5")){
                                             if(file_penilaian_tahunan.equals("null") || file_penilaian_tahunan == null || file_penilaian_tahunan.isEmpty()){
                                                 lihatPenilaianPart.setVisibility(View.GONE);
                                                 lihatPenilaianBTN.setVisibility(View.GONE);
@@ -1695,7 +1695,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             } else if(status_approve_astkadept.equals("0")){
                                                 accMark.setVisibility(View.GONE);
                                                 rejMark.setVisibility(View.GONE);
-                                                if(sharedPrefManager.getSpIdJabatan().equals("3")){
+                                                if(sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("90")){
                                                     actionPart.setVisibility(View.VISIBLE);
                                                 } else {
                                                     actionPart.setVisibility(View.GONE);
@@ -1788,6 +1788,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                         try {
                             Log.d("Success.Response", response);
                             data = new JSONObject(response);
+
                             String status = data.getString("status");
                             if (status.equals("Available")) {
                                 String last_id = data.getString("last_id");
