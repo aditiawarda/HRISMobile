@@ -22,7 +22,6 @@ import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -30,6 +29,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -59,14 +59,6 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
     private int status;
     private String getIdPK;
     DetailPkResponse detail;
-    private String nik1;
-    private String nama1;
-    private String nik2;
-    private String nama2;
-    private String nik3;
-    private String nama3;
-    private String nik4;
-    private String nama4;
     private String getCurrentUserNik;
     private int updateState;
     private ConnectivityViewModel viewModel;
@@ -77,16 +69,12 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
     private FuelGaugeView fuelGaugeView;
     private SeekBar fuelSeekBar;
     private TextView percentageTextView;
-    private ArrayAdapter<String> autoCompleteAdapter;
     private Handler handler = new Handler();
     private Runnable runnable;
-    private Boolean nomerSuratFilled = false;
     private Boolean tanggalFilled = false;
     private Boolean jamFilled = false;
     private Boolean kmKeluarFilled = false;
     private Boolean kmMasukFilled = false;
-    private Boolean bbmKeluarFilled = false;
-    private Boolean bbmMasukFilled = false;
     private Boolean bersihFilled = false;
     private boolean isSeekBarAdjusted = false;
     private String jam;
@@ -127,20 +115,40 @@ public class DetailPinjamKendaraan extends AppCompatActivity {
         seekBarInteractive();
         bersihKotorSpinner();
 
+        binding.swipeToRefreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        binding.swipeToRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fuelGaugeView.setFuelLevel(0.5f);
+                fuelSeekBar.setProgress(50);
+                percentageTextView.setText("Harap Tentukan BBM");
+                seekBarInteractive();
+                bersihKotorSpinner();
+                handleLayoutByStatus(getIdPK);
+                checkInternet();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.swipeToRefreshLayout.setRefreshing(false);
+                    }
+                }, 500);
+            }
+        });
+
         binding.parentLay.setVisibility(View.INVISIBLE);
         binding.editLayout.setVisibility(View.GONE);
         checkInternet();
 
         binding.backBtn.setOnClickListener(view -> {
             DetailPinjamKendaraan.this.onBackPressed();
-
         });
+
         binding.parentLay.setVisibility(View.GONE);
+
         repository = new KendaraanRepository(this);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             getIdPK = extras.getString("current_id_pk");
-
         }
 
         handleLayoutByStatus(getIdPK);

@@ -1,22 +1,16 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDialog;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
-import android.app.DownloadManager;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -24,7 +18,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.pdf.PdfDocument;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
@@ -32,8 +25,6 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.webkit.CookieManager;
-import android.webkit.URLUtil;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -57,9 +48,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -1441,61 +1429,6 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
             .setIcon(R.drawable.warning_connection_mini)
             .setCookiePosition(CookieBar.BOTTOM)
             .show();
-    }
-
-    private void downloadPermohonan(){
-        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(file_url));
-        title = URLUtil.guessFileName(file_url, null, null);
-        request.setTitle(title);
-        request.setDescription("Mengunduh Permohonan Izin...");
-        String cookie = CookieManager.getInstance().getCookie(file_url);
-        request.addRequestHeader("cookie", cookie);
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, title);
-        DownloadManager downloadManager = (DownloadManager)getSystemService(DOWNLOAD_SERVICE);
-        downloadManager.enqueue(request);
-        registerReceiver(onDownloadComplete,new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-
-        pDialog = new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Downloading...");
-        pDialog.show();
-        pDialog.setCancelable(false);
-        new CountDownTimer(2000, 1000) {
-            public void onTick(long millisUntilFinished) {
-                i++;
-                switch (i) {
-                    case 0:
-                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                (DetailPermohonanIzinActivity.this, R.color.colorGradien));
-                        break;
-                    case 1:
-                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                (DetailPermohonanIzinActivity.this, R.color.colorGradien2));
-                        break;
-                    case 2:
-                    case 6:
-                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                (DetailPermohonanIzinActivity.this, R.color.colorGradien3));
-                        break;
-                    case 3:
-                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                (DetailPermohonanIzinActivity.this, R.color.colorGradien4));
-                        break;
-                    case 4:
-                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                (DetailPermohonanIzinActivity.this, R.color.colorGradien5));
-                        break;
-                    case 5:
-                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                (DetailPermohonanIzinActivity.this, R.color.colorGradien6));
-                        break;
-                }
-            }
-            public void onFinish() {
-                i = -1;
-            }
-        }.start();
-
-
     }
 
     private final BroadcastReceiver onDownloadComplete = new BroadcastReceiver() {

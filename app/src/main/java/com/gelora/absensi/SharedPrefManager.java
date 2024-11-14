@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 
 public class SharedPrefManager {
 
-
     public static final String SP_ABSENSI_APP = "spAbsensiApp";
     public static final String SP_VERSION_APP = "spVersionApp";
     public static final String SP_HALAMAN = "spHalaman";

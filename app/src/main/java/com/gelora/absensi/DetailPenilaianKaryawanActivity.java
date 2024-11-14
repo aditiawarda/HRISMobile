@@ -1,23 +1,14 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDialog;
-import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -41,12 +32,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -608,12 +593,14 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
                                     } else if(status_approve_kadept.equals("0")){
-                                        if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10"))){
+                                        if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("90"))){
                                             actionPart.setVisibility(View.VISIBLE);
                                         } else {
                                             if(sharedPrefManager.getSpNik().equals("0829030809") && (id_bagian.equals("20") || id_bagian.equals("27"))) {
                                                 actionPart.setVisibility(View.VISIBLE);
-                                            } else if(sharedPrefManager.getSpNik().equals("0687260508") && (id_bagian.equals("16") || id_bagian.equals("17") || id_bagian.equals("22"))) {
+                                            } else if(sharedPrefManager.getSpNik().equals("0687260508") && (id_bagian.equals("16") || id_bagian.equals("17") || id_bagian.equals("22") || id_bagian.equals("9") || id_bagian.equals("89"))) {
+                                                actionPart.setVisibility(View.VISIBLE);
+                                            } else if(sharedPrefManager.getSpNik().equals("0132020401") && (id_bagian.equals("9") || id_bagian.equals("89"))) {
                                                 actionPart.setVisibility(View.VISIBLE);
                                             } else if(sharedPrefManager.getSpNik().equals("0113010500") && (id_bagian.equals("4") || id_bagian.equals("5") || id_bagian.equals("6"))) {
                                                 actionPart.setVisibility(View.VISIBLE);

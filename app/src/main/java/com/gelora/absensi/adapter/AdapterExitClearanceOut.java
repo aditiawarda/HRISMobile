@@ -4,27 +4,21 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.DetailDataExitClearanceActivity;
-import com.gelora.absensi.DetailPermohonanCutiActivity;
-import com.gelora.absensi.DetailPermohonanIzinActivity;
 import com.gelora.absensi.ExitClearanceActivity;
-import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.ListDataExitClearanceOut;
-import com.gelora.absensi.model.ListPermohonanIzin;
 
 import java.text.DateFormat;
 import java.text.ParseException;

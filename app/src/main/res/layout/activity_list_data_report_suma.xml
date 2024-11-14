@@ -726,7 +726,7 @@
 
                                     <TextView
                                         android:id="@+id/loading_off"
-                                        android:background="@drawable/loading_ss_disable"
+                                        android:background="@drawable/loading_ss_disable_2"
                                         android:layout_width="35dp"
                                         android:layout_height="35dp" />
 

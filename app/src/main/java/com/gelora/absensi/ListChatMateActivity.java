@@ -175,11 +175,6 @@ public class ListChatMateActivity extends AppCompatActivity {
                 shortName = shortNameArray[0];
             }
 
-            // String shortName = nama_rekan_chat;
-            // if(shortName.contains(" ")){
-            //    shortName = shortName.substring(0, shortName.indexOf(" "));
-            // }
-
             try {
                 new KAlertDialog(ListChatMateActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Perhatian")

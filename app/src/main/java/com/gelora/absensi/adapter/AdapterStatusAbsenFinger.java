@@ -63,6 +63,7 @@ public class AdapterStatusAbsenFinger extends RecyclerView.Adapter<AdapterStatus
         }
 
         myViewHolder.statusParent.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
 

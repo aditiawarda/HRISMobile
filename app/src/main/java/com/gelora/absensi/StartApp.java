@@ -228,23 +228,15 @@ public class StartApp extends AppCompatActivity {
             public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
                 try {
                     LocationSettingsResponse response = task.getResult(ApiException.class);
-                    // All location settings are satisfied. The client can initialize location
-                    // requests here.
                     permissionLoc();
                 } catch (ApiException exception) {
                     switch (exception.getStatusCode()) {
                         case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                            // Location settings are not satisfied. But could be fixed by showing the
-                            // user a dialog.
                             try {
-                                // Cast to a resolvable exception.
                                 ResolvableApiException resolvable = (ResolvableApiException) exception;
-                                // Show the dialog by calling startResolutionForResult(),
-                                // and check the result in onActivityResult().
                                 resolvable.startResolutionForResult(
                                         StartApp.this,
                                         LocationRequest.PRIORITY_HIGH_ACCURACY);
-
                             } catch (IntentSender.SendIntentException e) {
                                 // Ignore the error.
                             } catch (ClassCastException e) {
@@ -270,12 +262,10 @@ public class StartApp extends AppCompatActivity {
             case LocationRequest.PRIORITY_HIGH_ACCURACY:
                 switch (resultCode) {
                     case Activity.RESULT_OK:
-                        // All required changes were successfully made
                         Log.i(TAG, "onActivityResult: GPS Enabled by user");
                         permissionLoc();
                         break;
                     case Activity.RESULT_CANCELED:
-                        // The user was asked to change settings, but chose not to
                         Log.i(TAG, "onActivityResult: User rejected GPS request");
                         break;
                     default:
@@ -311,7 +301,6 @@ public class StartApp extends AppCompatActivity {
     // Trigger new location updates at interval
     @SuppressLint("MissingPermission")
     protected void startLocationUpdates() {
-        // Create the location request to start receiving updates
         mLocationRequest = new LocationRequest();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(UPDATE_INTERVAL);
@@ -331,7 +320,6 @@ public class StartApp extends AppCompatActivity {
         getFusedLocationProviderClient(this).getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-
                 if (location != null) {
                     Log.d("TAG", "GPS is on " + String.valueOf(location));
                     handler.postDelayed(new Runnable() {
@@ -345,7 +333,6 @@ public class StartApp extends AppCompatActivity {
                 }  else {
                     gpsEnableAction();
                 }
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -359,11 +346,8 @@ public class StartApp extends AppCompatActivity {
     }
 
     public void onLocationChanged(Location location) {
-        // New location has now been determined
         String msg = "Updated Location: " + Double.toString(location.getLatitude()) + "," + Double.toString(location.getLongitude());
-        // You can now create a LatLng Object for use with maps
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-
         if (location != null) {
             Log.d("TAG", "GPS is on " + String.valueOf(location));
             handler.postDelayed(new Runnable() {
@@ -377,17 +361,14 @@ public class StartApp extends AppCompatActivity {
         } else {
             gpsEnableAction();
         }
-
     }
 
     @SuppressLint("MissingPermission")
     public void getLastLocation() {
-        // Get last known recent location using new Google Play Services SDK (v11+)
         FusedLocationProviderClient locationClient = LocationServices.getFusedLocationProviderClient(this);
         locationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
-                        // GPS location can be null if GPS is switched off
                         if (location != null) {
                             onLocationChanged(location);
                             Log.d("TAG", "GPS is on " + String.valueOf(location));
@@ -404,25 +385,21 @@ public class StartApp extends AppCompatActivity {
                         gpsEnableAction();
                     }
                 });
-
     }
 
     public void versionCheck(){
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://hrisgelora.co.id/api/version_app";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(String response) {
-                        // response
                         JSONObject data = null;
                         try {
                             Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             refreshLayout.setRefreshing(false);
                             refreshBTN.setBackground(ContextCompat.getDrawable(StartApp.this, R.drawable.shape_refresh_ss));
-
                             refreshBTN.setOnClickListener(new View.OnClickListener() {
                                 @SuppressLint("SetTextI18n")
                                 @Override
@@ -464,7 +441,6 @@ public class StartApp extends AppCompatActivity {
                                                     refreshLayout.setEnabled(false);
                                                 }
                                             });
-
                                     statusUpdateLayout = "1";
 
                                     Animation animation = new TranslateAnimation(0, 0,500, 0);
@@ -583,7 +559,6 @@ public class StartApp extends AppCompatActivity {
                                 refreshPart.setVisibility(View.VISIBLE);
                                 refreshLabel.setText("REFRESH");
                                 refreshLayout.setEnabled(true);
-
                                 Banner.make(rootview, StartApp.this, Banner.ERROR, "Not found!", Banner.BOTTOM, 3000).show();
                             }
                         } catch (JSONException e) {
@@ -595,7 +570,6 @@ public class StartApp extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // error
                         Log.d("Error.Response", error.toString());
                         error.printStackTrace();
                         refreshLayout.setRefreshing(false);

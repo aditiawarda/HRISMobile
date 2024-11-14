@@ -194,7 +194,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
 
         getDateNow();
 
-        if(sharedPrefManager.getSpNik().equals("2151010115")||sharedPrefManager.getSpNik().equals("0981010210")||sharedPrefManager.getSpNik().equals("0121010900")||sharedPrefManager.getSpNik().equals("3318060323")||sharedPrefManager.getSpNik().equals("0552260707")||sharedPrefManager.getSpNik().equals("3436170924")){
+        if(sharedPrefManager.getSpNik().equals("1405020311")||sharedPrefManager.getSpNik().equals("0499070507")||sharedPrefManager.getSpNik().equals("1504060711")||sharedPrefManager.getSpNik().equals("2151010115")||sharedPrefManager.getSpNik().equals("0981010210")||sharedPrefManager.getSpNik().equals("0121010900")||sharedPrefManager.getSpNik().equals("3318060323")||sharedPrefManager.getSpNik().equals("0552260707")||sharedPrefManager.getSpNik().equals("3436170924")){
             statistikPart.setVisibility(View.VISIBLE);
             statistikPart2.setVisibility(View.GONE);
         } else {
@@ -447,7 +447,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 },
                 error -> {
                     error.printStackTrace();
-                    showErrorMessage("Gagal terhubung, harap periksa koneksi internet atau jaringan Anda");
+                    showErrorMessage();
                 }
         );
 
@@ -498,7 +498,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         }
     }
 
-    private void showErrorMessage(String message) {
+    private void showErrorMessage() {
         attantionReportPart.setVisibility(View.GONE);
         reportRV.setVisibility(View.GONE);
         loadingDataPartReport.setVisibility(View.GONE);
@@ -508,7 +508,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         try {
             new KAlertDialog(this, KAlertDialog.ERROR_TYPE)
                     .setTitleText("Perhatian")
-                    .setContentText(message)
+                    .setContentText("Gagal terhubung, harap periksa koneksi internet atau jaringan Anda")
                     .setConfirmText("    OK    ")
                     .setConfirmClickListener(KAlertDialog::dismiss)
                     .show();

@@ -26,7 +26,6 @@ public class AdapterDataAbsensi extends RecyclerView.Adapter<AdapterDataAbsensi.
     private final Context mContext;
     SharedPrefAbsen sharedPrefAbsen;
     SharedPrefManager sharedPrefManager;
-    String statusExpand = "0";
 
     public AdapterDataAbsensi(DataRecordAbsensi[] data, MapsActivity context) {
         this.data = data;

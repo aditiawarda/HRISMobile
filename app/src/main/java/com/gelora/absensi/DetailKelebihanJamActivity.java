@@ -223,6 +223,7 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
         final String url = "https://hrisgelora.co.id/api/total_kelebihan_jam";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(String response) {
                         // response

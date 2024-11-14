@@ -209,7 +209,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
             }
         });
 
-        if (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")) {
+        if (sharedPrefManager.getSpIdJabatan().equals("41") || sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("90") || sharedPrefManager.getSpIdJabatan().equals("3")) {
             choiceBagianBTN.setVisibility(View.VISIBLE);
             attantionDesc.setText("Fitur ini dibuat khusus untuk General Manager, Kepala Departemen dan Asisten Kepala Departemen agar dapat memantau kehadiran karyawan di departemennya masing-masing.");
         } else if (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")) {

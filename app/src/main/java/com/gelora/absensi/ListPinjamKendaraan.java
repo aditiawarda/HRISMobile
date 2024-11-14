@@ -6,15 +6,11 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -148,9 +144,15 @@ public class ListPinjamKendaraan extends AppCompatActivity {
         }, responseCode -> {
             if (responseCode.equals("success")) {
                 binding.parentLay.setVisibility(View.VISIBLE);
-                binding.loadingDataPart.setVisibility(View.GONE);
                 isLeftApiCallInProgress = false;
+
+                binding.expandableLayout.setLayoutManager(new LinearLayoutManager(this));
+                binding.expandableLayout.setHasFixedSize(true);
+                binding.expandableLayout.setNestedScrollingEnabled(false);
+                binding.expandableLayout.setItemAnimator(new DefaultItemAnimator());
                 binding.expandableLayout.setAdapter(rAdapter);
+
+                binding.loadingDataPart.setVisibility(View.GONE);
             }
         }, error -> {
             isLeftApiCallInProgress = false;
@@ -177,7 +179,13 @@ public class ListPinjamKendaraan extends AppCompatActivity {
             if (responseCode.equals("success")) {
                 binding.parentLay.setVisibility(View.VISIBLE);
                 isRightApiCallInProgress = false;
+
+                binding.expandableLayout2.setLayoutManager(new LinearLayoutManager(this));
+                binding.expandableLayout2.setHasFixedSize(true);
+                binding.expandableLayout2.setNestedScrollingEnabled(false);
+                binding.expandableLayout2.setItemAnimator(new DefaultItemAnimator());
                 binding.expandableLayout2.setAdapter(rAdapter);
+
                 binding.loadingDataPart.setVisibility(View.GONE);
             }
         }, error -> {

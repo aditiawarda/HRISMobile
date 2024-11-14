@@ -81,7 +81,7 @@ public class AdapterPermohonanFingerSaya extends RecyclerView.Adapter<AdapterPer
             } else if (listPermohonanFingerscan.getStatus_approve_hrd().equals("2")) {
                 statusPermohonan = "Permohonan Ditolak HRD";
             } else if (listPermohonanFingerscan.getStatus_approve_hrd().equals("0")) {
-                if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")){
+                if(sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("90")){
                     statusPermohonan = "Menunggu Persetujuan HRD";
                 } else {
                     statusPermohonan = "Permohonan Disetujui Atasan";

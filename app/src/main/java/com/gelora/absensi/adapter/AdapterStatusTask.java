@@ -17,10 +17,8 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.FormInputTaskActivity;
-import com.gelora.absensi.MapsActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
-import com.gelora.absensi.model.StatusAbsen;
 import com.gelora.absensi.model.StatusTask;
 
 public class AdapterStatusTask extends RecyclerView.Adapter<AdapterStatusTask.MyViewHolder> {

@@ -123,6 +123,7 @@ public class FullMapsActivity extends FragmentActivity implements OnMapReadyCall
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setPadding(0,0,0,145);
+        // mMap.setBuildingsEnabled(false);
         permissionLoc();
     }
 

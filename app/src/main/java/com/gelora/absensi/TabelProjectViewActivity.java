@@ -22,7 +22,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.gelora.absensi.adapter.AdapterDataTask;
 import com.gelora.absensi.adapter.AdapterDataTaskTabel;
 import com.gelora.absensi.model.TaskData;
 import com.google.gson.Gson;
@@ -38,7 +37,7 @@ import java.util.Map;
 
 public class TabelProjectViewActivity extends AppCompatActivity {
 
-    TextView projectNameTV, startDateTV, endDateTV, projectLeaderTV, dokumentasiProjectBTN;
+    TextView projectNameTV, projectLeaderTV;
     LinearLayout noDataPartTask;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;

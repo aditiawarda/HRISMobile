@@ -230,6 +230,7 @@ public class DetailTerlambatActivity extends AppCompatActivity {
         final String url = "https://hrisgelora.co.id/api/total_terlambat";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(String response) {
                         // response

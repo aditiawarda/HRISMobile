@@ -1,6 +1,5 @@
 package com.gelora.absensi.adapter;
 
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -92,7 +91,7 @@ public class AdapterListKeluarKantor extends RecyclerView.Adapter<AdapterListKel
                 getBinding().detailStatus.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.selected_yellow));
                 if(Objects.equals(item.getStatusApproval(), "0")){
                     getBinding().cardDetailProses.setText("Menunggu persetujuan Atasan");
-                    if ((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) || (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")) || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
+                    if ((sharedPrefManager.getSpIdJabatan().equals("41")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("90")||sharedPrefManager.getSpIdJabatan().equals("3")) || (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")) || (sharedPrefManager.getSpNik().equals("1280270910")||sharedPrefManager.getSpNik().equals("1090080310")||sharedPrefManager.getSpNik().equals("2840071116")||sharedPrefManager.getSpNik().equals("1332240111"))){
                         if(sharedPrefManager.getSpNik().equals(item.getNik())){
                             getBinding().batasStatus.setVisibility(View.GONE);
                             getBinding().waitingMark.setVisibility(View.GONE);

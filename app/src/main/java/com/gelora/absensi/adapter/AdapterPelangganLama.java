@@ -8,18 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.FormInputProjectActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.ReportSumaActivity;
 import com.gelora.absensi.SharedPrefAbsen;
-import com.gelora.absensi.model.KaryawanAll;
 import com.gelora.absensi.model.PelangganLama;
 
 public class AdapterPelangganLama extends RecyclerView.Adapter<AdapterPelangganLama.MyViewHolder> {

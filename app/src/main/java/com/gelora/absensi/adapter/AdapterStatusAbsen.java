@@ -63,6 +63,7 @@ public class AdapterStatusAbsen extends RecyclerView.Adapter<AdapterStatusAbsen.
         }
 
         myViewHolder.statusParent.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
 

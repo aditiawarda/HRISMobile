@@ -13,14 +13,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.support.StatusBarColorManager;
@@ -133,7 +131,7 @@ public class CalendarPageActivity extends AppCompatActivity {
         eventCalender = findViewById(R.id.event_calender);
         prevBTN = findViewById(R.id.prevBTN);
         nextBTN = findViewById(R.id.nextBTN);
-        compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
+        compactCalendarView = findViewById(R.id.compactcalendar_view);
 
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
             Typeface typeface = ResourcesCompat.getFont(CalendarPageActivity.this, R.font.roboto);

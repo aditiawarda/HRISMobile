@@ -14,7 +14,6 @@
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_to_refresh_layout"
-            android:layout_marginTop="68dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -24,6 +23,7 @@
 
                 <androidx.core.widget.NestedScrollView
                     android:id="@id/scrollView"
+                    android:layout_marginTop="68dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:ignore="MissingConstraints">
@@ -32,6 +32,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="18dp"
+                        android:layout_marginBottom="20dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -137,11 +138,44 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
-                            android:text="* Update per 28 Oktober 2024"
+                            android:text="* Memuat data..."
                             android:layout_marginHorizontal="20dp"
                             android:textColor="#FF811E"
                             android:textSize="12dp"
                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginBottom="15dp"
+                            android:background="@drawable/shape_attantion"
+                            android:orientation="vertical"
+                            android:paddingStart="20dp"
+                            android:paddingTop="15dp"
+                            android:paddingEnd="15dp"
+                            android:paddingBottom="17dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Perhatian :"
+                                android:textColor="#C68D46"
+                                android:textSize="12dp"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
+                                android:lineSpacingExtra="2.5dp"
+                                android:text="Data statistik penjualan yang tercantum di bawah ini diambil dari Accurate."
+                                android:textColor="#C68D46"
+                                android:textSize="12dp"
+                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -479,6 +513,79 @@
                             android:background="#3CCFCFCF" />
 
                         <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="Wilayah :"
+                                android:textColor="#696969"
+                                android:textSize="12dp"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                            <LinearLayout
+                                android:id="@+id/wilayah_choice_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:paddingStart="20dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/shape_feel"
+                                android:orientation="horizontal"
+                                tools:ignore="RtlSymmetry">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    tools:ignore="UselessParent">
+
+                                    <LinearLayout
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:orientation="vertical"
+                                        android:gravity="center|left"
+                                        tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                        <TextView
+                                            android:id="@+id/wilayah_choice_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            android:text="Suma Jakarta 1"
+                                            tools:ignore="HardcodedText,SpUsage" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentRight="true"
+                                        android:layout_width="40dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/shape_btn"
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:background="@drawable/ic_baseline_down"/>
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/suma_1_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -529,7 +636,7 @@
                                             android:layout_marginTop="20dp"
                                             android:text="Suma Jakarta 1"
                                             android:textColor="#0288D1"
-                                            android:textSize="14dp"
+                                            android:textSize="15dp"
                                             android:ellipsize="end"
                                             android:lineSpacingExtra="3dp"
                                             android:textStyle="bold"
@@ -539,7 +646,7 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="1.5dp"
-                                            android:layout_marginTop="7dp"
+                                            android:layout_marginTop="10dp"
                                             android:layout_marginBottom="15dp"
                                             android:background="#3CCFCFCF" />
 
@@ -621,7 +728,8 @@
                                                             android:layout_height="55dp"
                                                             android:layout_marginStart="-10dp"
                                                             android:layout_marginTop="-20dp"
-                                                            android:background="@drawable/shape_ornament_3"/>
+                                                            android:background="@drawable/shape_ornament_3"
+                                                            tools:ignore="TooManyViews" />
 
                                                         <LinearLayout
                                                             android:layout_alignParentEnd="true"
@@ -891,6 +999,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/suma_2_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -941,7 +1050,7 @@
                                             android:layout_marginTop="20dp"
                                             android:text="Suma Jakarta 2"
                                             android:textColor="#0288D1"
-                                            android:textSize="14dp"
+                                            android:textSize="15dp"
                                             android:ellipsize="end"
                                             android:lineSpacingExtra="3dp"
                                             android:textStyle="bold"
@@ -951,7 +1060,7 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="1.5dp"
-                                            android:layout_marginTop="7dp"
+                                            android:layout_marginTop="10dp"
                                             android:layout_marginBottom="15dp"
                                             android:background="#3CCFCFCF" />
 
@@ -1303,6 +1412,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/suma_3_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -1353,7 +1463,7 @@
                                             android:layout_marginTop="20dp"
                                             android:text="Suma Jakarta 3"
                                             android:textColor="#0288D1"
-                                            android:textSize="14dp"
+                                            android:textSize="15dp"
                                             android:ellipsize="end"
                                             android:lineSpacingExtra="3dp"
                                             android:textStyle="bold"
@@ -1363,7 +1473,7 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="1.5dp"
-                                            android:layout_marginTop="7dp"
+                                            android:layout_marginTop="10dp"
                                             android:layout_marginBottom="15dp"
                                             android:background="#3CCFCFCF" />
 
@@ -1715,6 +1825,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/suma_bandung_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -1765,7 +1876,7 @@
                                             android:layout_marginTop="20dp"
                                             android:text="Suma Bandung"
                                             android:textColor="#0288D1"
-                                            android:textSize="14dp"
+                                            android:textSize="15dp"
                                             android:ellipsize="end"
                                             android:lineSpacingExtra="3dp"
                                             android:textStyle="bold"
@@ -1775,7 +1886,7 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="1.5dp"
-                                            android:layout_marginTop="7dp"
+                                            android:layout_marginTop="10dp"
                                             android:layout_marginBottom="15dp"
                                             android:background="#3CCFCFCF" />
 
@@ -2127,6 +2238,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/suma_semarang_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -2177,7 +2289,7 @@
                                             android:layout_marginTop="20dp"
                                             android:text="Suma Semarang"
                                             android:textColor="#0288D1"
-                                            android:textSize="14dp"
+                                            android:textSize="15dp"
                                             android:ellipsize="end"
                                             android:lineSpacingExtra="3dp"
                                             android:textStyle="bold"
@@ -2187,7 +2299,7 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="1.5dp"
-                                            android:layout_marginTop="7dp"
+                                            android:layout_marginTop="10dp"
                                             android:layout_marginBottom="15dp"
                                             android:background="#3CCFCFCF" />
 
@@ -2539,6 +2651,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/suma_surabaya_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -2589,7 +2702,7 @@
                                             android:layout_marginTop="20dp"
                                             android:text="Suma Surabaya"
                                             android:textColor="#0288D1"
-                                            android:textSize="14dp"
+                                            android:textSize="15dp"
                                             android:ellipsize="end"
                                             android:lineSpacingExtra="3dp"
                                             android:textStyle="bold"
@@ -2599,7 +2712,7 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="1.5dp"
-                                            android:layout_marginTop="7dp"
+                                            android:layout_marginTop="10dp"
                                             android:layout_marginBottom="15dp"
                                             android:background="#3CCFCFCF" />
 
@@ -2951,6 +3064,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/suma_palembang_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -3001,7 +3115,7 @@
                                             android:layout_marginTop="20dp"
                                             android:text="Suma Palembang"
                                             android:textColor="#0288D1"
-                                            android:textSize="14dp"
+                                            android:textSize="15dp"
                                             android:ellipsize="end"
                                             android:lineSpacingExtra="3dp"
                                             android:textStyle="bold"
@@ -3011,7 +3125,7 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="1.5dp"
-                                            android:layout_marginTop="7dp"
+                                            android:layout_marginTop="10dp"
                                             android:layout_marginBottom="15dp"
                                             android:background="#3CCFCFCF" />
 
@@ -3363,6 +3477,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/jakarta_ae_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -3413,7 +3528,7 @@
                                             android:layout_marginTop="20dp"
                                             android:text="Jakarta AE"
                                             android:textColor="#0288D1"
-                                            android:textSize="14dp"
+                                            android:textSize="15dp"
                                             android:ellipsize="end"
                                             android:lineSpacingExtra="3dp"
                                             android:textStyle="bold"
@@ -3423,7 +3538,7 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="1.5dp"
-                                            android:layout_marginTop="7dp"
+                                            android:layout_marginTop="10dp"
                                             android:layout_marginBottom="15dp"
                                             android:background="#3CCFCFCF" />
 
@@ -3775,10 +3890,11 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/digital_marketing_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:layout_marginBottom="20dp"
+                            android:layout_marginBottom="5dp"
                             android:layout_marginHorizontal="20dp"
                             android:background="@drawable/shape_pengumuman"
                             android:orientation="horizontal"
@@ -3825,7 +3941,7 @@
                                             android:layout_marginTop="20dp"
                                             android:text="Digital Marketing"
                                             android:textColor="#0288D1"
-                                            android:textSize="14dp"
+                                            android:textSize="15dp"
                                             android:ellipsize="end"
                                             android:lineSpacingExtra="3dp"
                                             android:textStyle="bold"
@@ -3835,7 +3951,7 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="1.5dp"
-                                            android:layout_marginTop="7dp"
+                                            android:layout_marginTop="10dp"
                                             android:layout_marginBottom="15dp"
                                             android:background="#3CCFCFCF" />
 
@@ -4186,77 +4302,130 @@
 
                         </LinearLayout>
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Penjualan Per Sales"
+                            android:textColor="#C16D02"
+                            android:textSize="15dp"
+                            android:ellipsize="end"
+                            android:lineSpacingExtra="3dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:textStyle="bold"
+                            android:maxLines="2"
+                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1.5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:background="#3CCFCFCF" />
+
+                        <EditText
+                            android:id="@+id/keyword_sales_ed"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_search"
+                            android:drawableLeft="@drawable/ic_baseline_search_2"
+                            android:drawablePadding="10dp"
+                            android:drawableTint="@color/colorPrimaryDark"
+                            android:hint="Ketik nama sales..."
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:paddingLeft="17dp"
+                            android:paddingTop="9dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="10dp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textColorHighlight="#FFDCB1"
+                            android:textColorHint="#D36C46"
+                            android:textSize="16dp"
+                            tools:ignore="Autofill,HardcodedText,RtlHardcoded,SpUsage,TouchTargetSizeCheck,UnusedAttribute,VisualLintTextFieldSize" />
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
                     </LinearLayout>
 
                 </androidx.core.widget.NestedScrollView>
+
+                <LinearLayout
+                    android:id="@+id/action_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:ignore="MissingConstraints">
+
+                    <LinearLayout
+                        android:layout_marginTop="-2dp"
+                        android:layout_marginRight="-2dp"
+                        android:layout_marginLeft="-2dp"
+                        android:background="@drawable/shape_bar_chat"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        tools:ignore="UselessParent,VisualLintBounds">
+
+                        <LinearLayout
+                            android:id="@+id/back_btn"
+                            android:layout_marginTop="17dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="33dp"
+                            android:layout_height="33dp"
+                            android:gravity="center"
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
+
+                            <TextView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:layout_marginRight="1.5dp"
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="right|center"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="STATISTIK PENJUALAN"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </RelativeLayout>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/action_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:ignore="MissingConstraints">
-
-        <LinearLayout
-            android:layout_marginTop="-2dp"
-            android:layout_marginRight="-2dp"
-            android:layout_marginLeft="-2dp"
-            android:background="@drawable/shape_bar_chat"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            tools:ignore="UselessParent,VisualLintBounds">
-
-            <LinearLayout
-                android:id="@+id/back_btn"
-                android:layout_marginTop="17dp"
-                android:layout_marginLeft="20dp"
-                android:layout_width="33dp"
-                android:layout_height="33dp"
-                android:gravity="center"
-                android:background="@drawable/shape_back_2"
-                tools:ignore="RtlHardcoded">
-
-                <TextView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginRight="1.5dp"
-                    android:background="@drawable/ic_baseline_chevron_back"
-                    tools:ignore="RtlHardcoded" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:gravity="right|center"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:ignore="RtlHardcoded">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:gravity="right"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:text="STATISTIK PENJUALAN"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
 
     <com.flipboard.bottomsheet.BottomSheetLayout
         android:id="@+id/bottom_sheet_layout"

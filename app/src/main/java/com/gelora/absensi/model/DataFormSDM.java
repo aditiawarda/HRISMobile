@@ -8,6 +8,8 @@ public class DataFormSDM {
     private String sub_keterangan;
     private String nama;
     private String penerimaan_jabatan;
+    private String bagian;
+    private String bagian_lama;
     private String status_approve_kabag;
     private String status_approve_astkadept;
     private String status_approve_kadept;
@@ -112,4 +114,19 @@ public class DataFormSDM {
         this.sub_keterangan = sub_keterangan;
     }
 
+    public String getBagian() {
+        return bagian;
+    }
+
+    public void setBagian(String bagian) {
+        this.bagian = bagian;
+    }
+
+    public String getBagian_lama() {
+        return bagian_lama;
+    }
+
+    public void setBagian_lama(String bagian_lama) {
+        this.bagian_lama = bagian_lama;
+    }
 }
